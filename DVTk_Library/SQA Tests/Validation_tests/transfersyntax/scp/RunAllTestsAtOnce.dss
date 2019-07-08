@@ -1,0 +1,33 @@
+##
+## DVT DICOMSuperScript
+##
+## Name: ts_all_scp.dss
+##
+ts_1_scp.ds
+ts_2_scp.ds
+ts_3_scp.ds
+ts_4_scp.ds
+ts_5_scp.ds
+ts_6_scp.ds
+ts_7_scp.ds
+ts_8_scp.ds
+ts_9_scp.ds
+ts_10_scp.ds
+ts_11_scp.ds
+ts_12_scp.ds
+ts_13_scp.ds
+ts_14_scp.ds
+ts_15_scp.ds
+ts_16_scp.ds
+ts_17_scp.ds
+ts_18_scp.ds
+ts_19_scp.ds
+ts_20_scp.ds
+ts_21_scp.ds
+ts_22_scp.ds
+ts_23_scp.ds
+ts_24_scp.ds
+
+##
+## SuperScript Result should be: 21 error(s), 0 warning(s)
+##

@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!--
+Part of DvtkData.dll - .NET class library providing basic data-classes for DVTK
+Copyright © 2001-2005
+Philips Medical Systems NL B.V., Agfa-Gevaert N.V.
+-->
+<html>
+    <head>
+        <title>DvtkData Overview</title>
+        <meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+        <meta name="GENERATOR" content="Microsoft Visual Studio .NET 7.1">
+        <meta name="ProgId" content="VisualStudio.HTML">
+        <meta name="Originator" content="Microsoft Visual Studio .NET 7.1">
+    </head>
+    <body>
+        <H1>Dicom Validation ToolKit (DVTK)</H1>
+        <H2>Introduction</H2>
+        <P>The Dicom Validation ToolKit is a SDK framework to perform DICOM validation 
+            tests.</P>
+        <p>It consists of .NET components, <a href="#ArchitecturalViewOfTheDesignModel">see 
+                Architectural View Of The Design Model</a></p>
+        <H2>Abbreviations</H2>
+        <P>
+            <DL>
+                <DT><STRONG>DVT</STRONG>
+                    <DD>
+                        DICOM Validation Tool <DT><STRONG>DVTK</STRONG>
+                            <DD>
+                                DICOM Validation ToolKit <DT><STRONG>DICOM</STRONG>
+                                    <DD>
+                                        Digital Imaging and Communication in Medicine <DT><STRONG>SUT</STRONG>
+                                            <DD>
+                                                System Under Test <DT><STRONG>XML</STRONG>
+                                                    <DD>
+                                                        EXtended Markup Language <DT><STRONG>SCP</STRONG>
+                                                            <DD>
+                                                                DICOM Service Class Provider (Server) <DT><STRONG>SCU</STRONG>
+                                                                    <DD>
+                                                                        DICOM Service Class User (Client) <DT><STRONG>DIMSE</STRONG>
+                                                                            <DD>
+                                                                                DICOM Messaging Service Element (Communication Protocol) <DT><STRONG>DUL</STRONG>
+                                                                                    <DD>
+                                                                                        Dicom Upper Layer (Communication Protocol) <DT><strong>SDK</strong>
+                                                                                            <DD>
+                                                                                                Software Development Kit</DD>
+            </DL>
+        <P></P>
+        <A name="CapabilitiesOfDVTK"></A>
+        <H2>Capabilities Of DVTK</H2>
+        DVTK;
+        <UL>
+            <li>
+            is a software utility that assists in testing DICOM conformance,
+            <li>
+            provides an independant measurement of the accuracy of the Product‘s DICOM 
+            interface according to the DICOM Standard,
+            <li>
+            provides an independant measurement of the accuracy of the Product‘s DICOM 
+            interface according to the Product‘s Conf. Statement,
+            <LI>
+            can be used as either SCU or SCP with a direct connection to the Product (via 
+            TCP/IP),
+            <LI>
+                measures accuracy in terms of syntax and semantic correctness,</LI>
+        </UL>
+        DVTK does not;
+        <UL>
+            <LI>
+            perform inter-operability testing
+            <LI>
+            check what a specific medical device does with the transferred data.
+            <LI>
+                replace human interpretation
+            </LI>
+        </UL>
+        Human interpretation will always remain necessary! <A name="FunctionalBreakDown"></A>
+        <H2>Functional Break Down</H2>
+        The diagram below shows the functional areas covered by this validation tool. 
+        It gives a rough impression about the available functionality.
+        <P><IMG alt="Functional Break Down" src="FunctionalBreakDown.gif" border="1" width="100%"></P>
+        <A name="ArchitecturalViewOfTheDesignModel"></A>
+        <H2>Architectural View Of The Design Model</H2>
+        <P>
+            The DVTK SDK consists of several components. These components are provided in 
+            the form of .Net assemblies.
+        </P>
+        <P>
+            The DVTK and DvtkData assemblies may be used by any integrating application. 
+            Examples of integration applications;
+            <UL>
+                <LI>
+                GUI applications
+                <LI>
+                Test frameworks such as N-Unit
+                <LI>
+                    Script environments (see&nbsp;also&nbsp;DVTK SDK ScriptSupport)
+                </LI>
+            </UL>
+        DVTK provides DICOM connectivity and validation of DICOM connectivity 
+        with&nbsp;a System Under Test (SUT).
+        <P></P>
+        <P>DICOM and DUL Messages are defined with the classes defined in DvtkData. These 
+            messages are send and received within DVTK sessions. Results are typically 
+            safed to XML results output files.</P>
+        <P>The diagram below shows the component view with its relationships.</P>
+        <P><IMG alt="Architectural View Of The Design Model" src="ArchitecturalViewOfTheDesignModel.gif"
+                border="1" width="100%"></P>
+        <A name="ArchViewOfTheDesignModelAnchor"></A>
+        <H2>Architectural View Of The Deployment Model</H2>
+        <P>This diagram shows the physical connection between the DVTK hosting system 
+            (Dicom Validation Tool System) and the System Under Test. These systems are 
+            connected by means of a TCP/IP. The DICOM communication between these systems 
+            is subject to the DVTK validation algorithms.</P>
+        <P>With DVTK it is also possible to validate DICOM media files stored on a 
+            file-system.</P>
+        <P><IMG alt="Architectural View Of The Deployment Model" src="ArchitecturalViewOfTheDeploymentModel.gif"
+                border="1" width="100%"></P>
+        <H2>Validation Process</H2>
+        <P>DVTK implements the&nbsp;validation process shown below;</P>
+        <P>ACSE messages are validated against;</P>
+        <UL>
+            <LI>
+            encoding rules
+            <LI>
+                optional reference messages</LI></UL>
+        <P>DIMSE Commands and Datasets (DICOM Messages) are validated against;</P>
+        <UL>
+            <LI>
+            encoding rules.
+            <LI>
+            definition files.
+            <LI>
+                optional reference messages</LI></UL>
+        <P>The validation process is shown in the diagram</P>
+        <P><IMG alt="Validation Process" src="ValidationProcess.gif" border="1" width="100%"></P>
+    </body>
+</html>

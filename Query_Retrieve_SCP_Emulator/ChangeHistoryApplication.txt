@@ -1,0 +1,531 @@
+===================================================================
+= Query Retrieve SCP Emulator 3.0.2, based on DVTk library 3.0.16 =
+===================================================================
+
+
+
+=
+= Solved problems for 3.0.2
+=
+
+<------------------------------------------------------------------------------>
+
+Date 11-04-2008, ticket 853
+
+Description:
+------------
+Improved the exception handling for Invalid DICOM file reading.
+
+Version: 3.1.0
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Solved problems for 3.0.2
+=
+
+<------------------------------------------------------------------------------>
+
+Date 7-08-2009, ticket 863
+
+Description:
+------------
+The attribute matching bug is resolved in DVTk libraries.
+
+<------------------------------------------------------------------------------>
+
+Date 10-08-2009, ticket 1044
+
+Description:
+------------
+Corrected the data directory issue which is used to send responses.
+
+<------------------------------------------------------------------------------>
+
+Date 7-08-2009, ticket 1093
+
+Description:
+------------
+Added the missing Retrieve AE Title Data Element to QR Information models for C-FIND
+responses.
+
+=
+= Implemented change requests for 3.0.2
+=
+
+<------------------------------------------------------------------------------>
+
+Date 10/8/2009, ticket 1155
+
+Description:
+------------
+Implemented the C-CANCEL command handling in C-Find, C-Move message handlers.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+===================================================================
+= Query Retrieve SCP Emulator 3.1.0, based on DVTk library 3.0.19 =
+===================================================================
+No changes in the application code.
+
+
+
+
+
+
+===================================================================
+= Query Retrieve SCP Emulator 3.1.1, based on DVTk library 3.0.19 =
+===================================================================
+
+
+
+=
+= Solved problems for 3.1.1
+=
+
+<------------------------------------------------------------------------------>
+
+Date 1-12-2009, ticket 1354
+
+Description:
+------------
+Results folder is now cleared when closing the application, when configured to do so.
+
+<------------------------------------------------------------------------------>
+
+Date 18-11-2009, ticket 1348
+
+Description:
+------------
+Fixed the issue by stopping the thread in FormClosing event raised when user 
+close/Exit the application.
+
+<------------------------------------------------------------------------------>
+
+Date 07-12-2009, ticket 1357
+
+Description:
+------------
+Added the AllDimseCommands.def file in all emulators installers.
+I tested this by installing the QR SCP emulator locally. 
+
+<------------------------------------------------------------------------------>
+
+Date 15-12-2009, ticket 1359
+
+Description:
+------------
+Provided the support of secure connection in C-Move handler in case of C-Store 
+operation is performed.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+===================================================================
+= Query Retrieve SCP Emulator 3.1.2, based on DVTk library 3.0.20 =
+===================================================================
+
+
+
+=
+= Solved problems for 3.1.2
+=
+
+<------------------------------------------------------------------------------>
+
+Date 15-12-2009, ticket 1361
+
+Description:
+------------
+Fixed the retrieve problem by temporarily storing the data during reading of DICOM 
+files for creation info model.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+===================================================================
+= Query Retrieve SCP Emulator 3.1.3, based on DVTk library 3.0.20 =
+===================================================================
+
+<------------------------------------------------------------------------------>
+
+Date 15-1-2010, ticket 1367
+
+Description:
+------------
+Implemented read only text box for data directory for sending the QR responses.
+
+<------------------------------------------------------------------------------>
+
+Date 15-1-2010, ticket 1368
+
+Description:
+------------
+Improved the performance significantly through reading all DICOM objects for one 
+of the selected QR information model. Previously all the objects are read 3 times 
+for creation of all the QR info models.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+======================================================================
+= Query Retrieve SCP Emulator 3.1.3.1, based on DVTk library 3.1.0.3 =
+======================================================================
+
+
+
+=
+= Solved problems for 3.1.3.1
+=
+
+<------------------------------------------------------------------------------>
+
+Date 12-3-2010, ticket 1378
+
+Description:
+------------
+When the emulator is started and stopped multiple times it shows for each run, an additional 
+message during the start saying it is building an information model.
+Solved the issue by moving the logging to the Main overview thread. 
+
+<------------------------------------------------------------------------------>
+
+Date 12-3-2010, ticket 1380
+
+Description:
+------------
+The test data that arrived with the emulator contained incorrect UIDs(starting with 100).
+Solved the issue by using valid DICOM UIDs 
+
+<------------------------------------------------------------------------------>
+
+Date 12-3-2010 , ticket 1386
+
+Description:
+------------
+Error Handling was not implemented for certain C-Store scenarios.Implemented the same by
+explicitly handling different C-STORE Responses and setting the status in the C-MOVE RSP
+accordingly.
+
+<------------------------------------------------------------------------------>
+
+Date 25-3-2010 , ticket 1387
+
+Description:
+------------
+Wild Card Matching was not being performed for certain attributes.Fixed the issue by adding 
+the attribute in question to the information model.
+
+<------------------------------------------------------------------------------>
+
+Date 7-4-2010, ticket 1397
+
+Description:
+------------
+The transfer syntax(and the other parts of the file header) was not being retrieved from the file during the C-MOVE operation.Fixed the issue by reading
+the file header along with the data set.The existing AddTo InformationModel method was overloaded.
+
+<------------------------------------------------------------------------------>
+Date 6-9-2010 , ticket 1170
+
+Description:
+------------
+Q/R SCP Emulator cannot handle attribute (0008,0005)
+
+<------------------------------------------------------------------------------>
+
+
+
+
+=
+= Implemented change requests for 3.1.3.1
+=
+
+<------------------------------------------------------------------------------>
+
+Date 25-3-2010 , ticket 1379
+
+Description:
+------------
+Implemented the error and warning navigation buttons for the QR SCP Emulator.
+
+<------------------------------------------------------------------------------>
+
+
+Date 28 July 2010, ticket #1379
+
+Description:
+------------
+To Show what patients are send. Ticket #1379
+
+<------------------------------------------------------------------------------>
+Date 11 August 2010, ticket #1369
+
+Description:
+------------
+View model  Changes Ticket-1369
+
+<------------------------------------------------------------------------------>
+
+
+Date 30-11-2010 , ticket 1388
+
+Description:
+------------
+Case sensitive query settings in the QR emulator
+
+<------------------------------------------------------------------------------>
+
+
+==============================================================
+= Query Retrieve SCP Emulator 3.1.3.2, based on DVTk library 3.1.6. =
+==============================================================
+
+
+
+=
+= Implemented change requests for 3.1.3.2.
+=
+
+<------------------------------------------------------------------------------>
+
+Date 22 Nov 2010, ticket #1390
+
+Description:
+------------
+Move destinations selection.
+
+<------------------------------------------------------------------------------>
+
+Date 23-11-2010 , ticket 857
+
+Description:
+------------
+Implemented the save/load config functionality.
+
+<------------------------------------------------------------------------------>
+
+==============================================================
+= Query Retrieve SCP Emulator 4.0.0.0, based on DVTk library 3.1.7. =
+==============================================================
+
+
+
+=
+= Solved problems for 4.0.0.0
+=
+
+<------------------------------------------------------------------------------>
+
+Date , ticket 
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+==============================================================
+= Query Retrieve SCP Emulator 4.0.1., based on DVTk library 3.1.9. =
+==============================================================
+
+
+
+=
+= Solved problems for 4.0.1.
+=
+
+<------------------------------------------------------------------------------>
+
+Date , ticket 
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+
+==============================================================
+= Query Retrieve SCP Emulator 4.0.2., based on DVTk library 3.1.9 =
+==============================================================
+
+
+
+=
+= Solved problems for 4.0.2.
+=
+
+<------------------------------------------------------------------------------>
+
+Date , ticket 
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+
+
+
+==============================================================
+= Query Retrieve SCP Emulator 4.0.3., based on DVTk library 3.1.9. =
+==============================================================
+
+
+
+=
+= Solved problems for 4.0.2.
+=
+
+<------------------------------------------------------------------------------>
+
+Date 01-08-2011, ticket 
+
+Description:
+------------
+Timeout option in hte User interface
+<------------------------------------------------------------------------------>
+
+
+==============================================================
+= Query Retrieve SCP Emulator .4.1.0.., based on DVTk library 3.1.10... =
+==============================================================
+
+
+
+=
+= Solved problems for ...
+=
+
+<------------------------------------------------------------------------------>
+
+Date , ticket 
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+==============================================================
+= Query Retrieve SCP Emulator 4.1.1., based on DVTk library 3.2.0. =
+==============================================================
+
+
+
+=
+= Solved problems for ...
+=
+
+<------------------------------------------------------------------------------>
+
+Date , ticket 
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+
+
+==================================================================
+= Query Retrieve SCP Emulator 4.1.2, based on DVTk library 3.2.1 =
+==================================================================
+
+
+
+=
+= Solved problems for 4.1.2
+=
+
+<------------------------------------------------------------------------------>
+
+Date 12-01-2012, ticket  1479 Missing Validation Errors
+
+Description:
+------------
+fixed as part of application
+<------------------------------------------------------------------------------>
+
+
+
+================================================================
+= Query Retrieve SCP Emulator 4.1.3, based on DVTk library ... =
+================================================================
+
+
+
+
+=
+= Implemented change requests for 4.1.3
+=
+
+<------------------------------------------------------------------------------>
+
+Date Feb 14, ticket 1496 QR_SCP emulator does not find responses on Series level.
+
+Description: Implemented the SQ matching in C-Find-Rq
+------------
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+==================================================================
+= Query Retrieve SCP Emulator 5.0.0, based on DVTk library 5.0.0 =
+==================================================================
+
+
+
+=
+= Implemented change requests for 5.0.0
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2017-05-16 
+
+Description:
+------------
+- Application compiled with Visual Studio 2010 (previously Visual Studio 2005)
+- Application makes use of .NET Framework 4 (previously .NET Framework 2.0)
+- New application icon
+
+<------------------------------------------------------------------------------>

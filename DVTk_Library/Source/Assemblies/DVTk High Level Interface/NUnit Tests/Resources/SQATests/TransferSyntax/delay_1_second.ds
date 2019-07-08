@@ -1,0 +1,8 @@
+#
+# DVT DICOMScript
+#
+# Name: delay_1_second.ds
+#
+# Helper DICOMScript to introduce a 1 second delay between DICOMScript execution.
+#
+DELAY 1

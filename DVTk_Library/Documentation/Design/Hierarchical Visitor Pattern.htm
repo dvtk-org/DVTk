@@ -1,0 +1,493 @@
+<head><title>Hierarchical Visitor Pattern</title>
+
+</head>
+<body text=black bgcolor=white><h1><img src="http://www.c2.com/sig/wiki.gif">
+<a href="fullSearch" rel="nofollow">Hierarchical Visitor Pattern</a></h1>
+<div id="wiki">
+<strong>Background</strong>
+<p></p>
+<strong>Hierarchical Visitor</strong> -- <em>found to recur</em> while working with the <a href="wiki?CompositePattern">CompositePattern</a> and other hierarchical data-structures. Occurrences of <a href="wiki?HierarchicalVisitorPattern">HierarchicalVisitorPattern</a> included a logical and hierarchical grouping of network hosts, rules, Security Permissions and Roles, and the <a href="wiki?TestCase">TestCase</a> and <a href="wiki?TestSuite">TestSuite</a> classes described in <a href="wiki?CppUtxOverview">CppUtxOverview</a>. I, along with some others have used the <strong>hierarchical visitor</strong> in favor of the traditional <a href="wiki?VisitorPattern">VisitorPattern</a> for the last three years. I recently attempted to simplify or decompose this pattern further in <a href="wiki?HierarchicalVisitorDiscussion">HierarchicalVisitorDiscussion</a>. While some great ideas were contributed, I still found this to be (for me) the most straight forward representation. -- <a href="wiki?RobertDiFalco">RobertDiFalco</a>
+<p></p>
+<hr>
+<strong>Intent</strong>
+<p></p>
+Represent an operation to be performed on the nodes of a hierarchical object structure. Hierarchical Visitor lets one define new operations without changing the classes of the nodes on which it operates. Hierarchical Visitor overcomes the limitations of the traditional <a href="wiki?VisitorPattern">VisitorPattern</a> by allowing a programmer to track traversal depth and short-circuit branch traversal. 
+<p></p>
+<hr>
+<strong>Motivation</strong>
+<p></p>
+Consider a file system represented using a hierarchical structure, such as that provided by the <a href="wiki?CompositePattern">CompositePattern</a>. The file objects are leaf nodes and the directories are the composite nodes. Now consider two operations on a file system: (a) fully qualifying a file name and (b) searching for a specific file. 
+<p></p>
+To fully qualify a  file name, we must traverse each of its parent composites. To do this, we start with a string representing the root composite, and concatenate each child composite until we reach the actual file object. We need to determine what composites (directories) are children of the root and which are its siblings. This requires we track when we are entering a composite and leaving a composite. If we enter the composite <em>bar</em> before we have left the composite <em>foo</em>, we know we have &quot;<em>foo/bar</em>&quot;. However, if we leave <em>foo</em> before entering <em>bar</em> then <em>foo</em> and <em>bar</em> are siblings. 
+This is quite impossible if equipped only with the traditional <a href="wiki?VisitorPattern">VisitorPattern</a> as it only tells us when we are <em>entering</em> a composite node.
+<p></p>
+To search a file system optimally, we need to take advantage of fully qualified names. If we are searching for &quot;<em>root/foo2/bar3/file.dat</em>&quot;, we don't need to search through the branches &quot;<em>root/foo1/*</em>&quot;, &quot;<em>root/foo2/bar1/*</em>&quot;, or even &quot;<em>root/foo2/bar2/*</em>&quot;. Unfortunately, because the traditional <a href="wiki?VisitorPattern">VisitorPattern</a> does not have the ability to conditionally traverse a hierarchical structure, we are left with only two choices -- (a) use an alternative means of traversal or (b) search even those branches that have no possibility of a match.
+<p></p>
+These two examples summarize the advantages of the <a href="wiki?HierarchicalVisitorPattern">HierarchicalVisitorPattern</a>. One no longer needs to rely on multiple traversal techniques when the limitations of the traditional visitor pattern must be exceeded. We can generalize these limitations as: 
+<p></p>
+<UL>
+<li> <strong>hierarchical navigation</strong> -- the traditional <a href="wiki?VisitorPattern">VisitorPattern</a> has no concept of depth. As a result, visitor cannot determine if one composite is within another composite or beside it.
+<li> <strong>conditional navigation</strong> -- the traditional <a href="wiki?VisitorPattern">VisitorPattern</a> does not allow branches to be skipped. As a result, visitor cannot stop, filter, or optimize traversal based on some condition. 
+<p></p>
+</UL>
+The primary consequence of these limitations is a eventual violation of <a href="wiki?OnceAndOnlyOnce">OnceAndOnlyOnce</a> when using the traditional <a href="wiki?VisitorPattern">VisitorPattern</a> with Hierarchical Structures. At some point the limitations are exceeded and another, more powerful mode of traversal -- usually <a href="wiki?ExternalIteration">ExternalIteration</a> -- is required. The first two File System examples are typical of those operations that challenge these limitations. Further consider the File System sample discussed in <a href="wiki?PatternHatching">PatternHatching</a>. Some behavior is implemented with the <a href="wiki?VisitorPattern">VisitorPattern</a> while other more complex behaviors (such as indented tree-listings) require other iteration mechanisms. This is why we say that, eventually, <a href="wiki?OnceAndOnlyOnce">OnceAndOnlyOnce</a> will be violated when using the traditional <a href="wiki?VisitorPattern">VisitorPattern</a>.
+<p></p>
+<hr>
+<strong>Applicability</strong>
+<p></p>
+Like the traditional <a href="wiki?VisitorPattern">VisitorPattern</a>, the <a href="wiki?HierarchicalVisitorPattern">HierarchicalVisitorPattern</a> combines a <a href="wiki?FunctorObject">FunctorObject</a> (the <em>Visitor</em> object itself) with <a href="wiki?InternalIterator">InternalIterator</a><strong></strong>s (the <em>accept' members of the <a href="wiki?CompositePattern">CompositePattern</a>). Together, these form a generalized mechanism for tree traversal. These allow the <a href="wiki?HierarchicalVisitorPattern">HierarchicalVisitorPattern</a> to be useful anywhere the traditional <a href="wiki?VisitorPattern">VisitorPattern</a> would. The hierarchical visitor is then made more useful by allowing </em>hierarchical navigation<em> and </em>conditional navigation''.
+<p></p>
+<strong>Hierarchical navigation</strong>
+<p></p>
+Hierarchical navigation is important for any traversal that needs to know whether one node is the child of another or its sibling. The simplest example of this is tree listings where an indentation level needs to be maintained. With the traditional <a href="wiki?VisitorPattern">VisitorPattern</a>, one can only determine when we are entering a node. This tells us that we may want to indent but gives us no clues about outdenting. We don't know if we have left the previous node before we entered the current node. 
+<p></p>
+The <a href="wiki?HierarchicalVisitorPattern">HierarchicalVisitorPattern</a> removes this limitation by defining a two method protocol when visiting nodes -- <strong>visitEnter</strong> and <strong>visitLeave</strong>. If we are entering the composite node <em>bar</em> before leaving the composite node <em>foo</em>, we can safely assume that <em>bar</em> is a child (and not a sibling) of the composite <em>foo</em>.
+<p></p>
+<strong>Conditional Navigation</strong>
+<p></p>
+Conditional navigation is required to skip unnecessary branches and all of their children. Consider the second operation of the File System example. The search for a specific file in a particular path can only be performed optimally if we can dispose of branches that have no possibility of providing a match. Consider the following graph: 
+<PRE>
+ * 1. 
+  * 1.1 
+  * 1.2 
+</PRE><UL>
+<li> 1.2.1 
+<li> 1.2.2 
+</UL><PRE>
+  * 1.3 
+</PRE><UL>
+<li> 1.3.1 
+<li> 1.3.1.1 
+<li> 1.3.2 
+</UL><PRE>
+ * 2. 
+  * 2.1 
+  * 2.2 
+<p></p>
+</PRE>
+The traditional <a href="wiki?VisitorPattern">VisitorPattern</a> would have to visit each leaf of the entire structure in order to find the leaf labeled &quot;2.2&quot;!  Even though we can see that &quot;1&quot; does not match the root ancestor of &quot;2.2&quot;, we would still have no choice but to perform a match for the leaf &quot;1.3.1.1&quot;. The only way to avoid this is to abandon the traditional visitor and use another means of traversal. Most programmers violate the encapsulation provided by the traditional visitor when performing tree searches.
+<p></p>
+<a href="wiki?HierarchicalVisitorPattern">HierarchicalVisitorPattern</a> allows us to solve this problem within a single visiting paradigm. It does so by having each invocation of <em>accept</em> answer a boolean traversal state for its depth of the tree. For example, if <em>accept</em> on a composite or leaf answers <em>false</em>, traversal immediately stops at that tree depth. In other words, no more of its siblings will be traversed, even if some of those siblings are composites with children of their own. Reconsider the example graph. As we visit the node labeled &quot;1&quot;, we can cause its <em>accept</em> message to answer <em>false</em> like so:
+<p></p>
+<PRE>
+ boolean visitEnter( Composite node )
+ {
+	String sLabel = node.getLabel();
+	return sLabel.equals( &quot;2.2&quot;, sLabel.length() );
+ }
+<p></p>
+</PRE>
+If the composite's label does not match the first <em>N</em> characters of &quot;2.2&quot;, we do not enter the node and we do not traverse its children. We then proceed directly to the node labeled &quot;2&quot;. For this composite node, the expression will return <em>true</em>, causing us to continue searching its children. This strategy allows us to find the optimal path to &quot;2.2&quot;. Furthermore, we cannot construct this strategy using the traditional visitor alone.
+<p></p>
+<hr>
+<strong>Participants</strong>
+<p></p>
+<DL>
+<dt><strong>H</strong><strong>ierarchicalVisitor</strong> (F<strong></strong>ilenameQualifier)<dd>defines the <em>visitEnter</em> and <em>visitLeave</em> operations for Composite nodes and <em>visit</em> operation for Leaf nodes 
+<p></p>
+<dt><strong>Component</strong> (File<strong></strong>System<strong></strong>Item)<dd>defines the base class common to Leaf and Composite nodes. This interface/class establishes the basic <em>accept</em> protocol.
+<dt><strong>Composite</strong> (Directory)<dd>a Component that can contain children Components and implements <em>accept</em> to process itself and its children
+<dt><strong>Leaf</strong> (File)<dd>a concrete Component that implements the <em>accept</em> protocol to process only itself 
+<p></p>
+</DL>
+<hr>
+<strong>Collaborations</strong>
+<p></p>
+Hierarchical Visitor collaborates directly with <em>Leaf</em> and <em>Composite</em> objects. The members of the visitor interface are called indirectly by the implementation of <em>accept</em> in the Composite and Leaf classes. 
+<p></p>
+When <em>Composite</em> accepts a visitor (e.g. <em>composite.accept(Visitor)</em>), it notifies the visitor that it is entering a new branch by sending the visitor the message:
+<p></p>
+<PRE>
+	boolean visitEnter( <em>this</em> )
+<p></p>
+</PRE>
+The <em>this</em> argument is the <em>Composite</em> object itself. We can use <em>visitEnter</em> to process the composite or wait for <em>visitLeave</em> - after its children have been visited. The composite's <em>accept</em> implementation uses the answer from <em>visitEnter</em> to determine whether its children should accept this visitor. So, if <em>visitEnter</em> answers true, <em>accept</em> is invoked on each of its children or until one of the <em>accept</em> invocations answers <em>false</em>. This essentially works like a <em>do...while</em> loop. The first child accept that answers false causes traversal at that level to stop. We then give <em>accept</em> method of this composite to answer true or false. This result comes from the answer to <em>visitLeave</em>. The whole Composite <em>accept</em> implementation looks like the following: 
+<p></p>
+<PRE>
+	public boolean accept( Visitor v )
+	{
+	if ( v.<em>visitEnter</em>( this ) )  // enter this node?
+		m_children.doWhile( <em>&lt;each&gt;</em>.accept( v ) );
+<p></p>
+	return <em>visitLeave</em>( this );
+	}
+<p></p>
+</PRE>
+Remember that each Composite may itself be the child of another <em>Composite</em>. So, if <em>visitLeave</em> returns false, this would short-circuit visiting its sibling nodes. The Leaf implementation of <em>accept</em> is very simple. It just invokes <em>visit</em> on the passed Visitor with itself as the argument and uses the result for its return value:
+<p></p>
+<PRE>
+  boolean Leaf.accept( Visitor v )
+  {
+	return v.visit( this );
+  }
+<p></p>
+</PRE>
+Any time a call to <em>accept</em> answers false, it signals the parent's <em>accept</em> member to stop processing children at that level in the tree.
+<p></p>
+Once a parent node has called <em>accept</em> for each of its children, it will call <em>visitor.visitLeave</em>. This lets the visitor <a href="wiki?FunctorObject">FunctorObject</a> know it is done with this branch and proceeding to either a sibling or parent Component node at the same tree-depth as this node.  
+<p></p>
+<hr>
+<strong>Implementation</strong>
+<p></p>
+Consider the following interface for the Hierarchical Visitor: 
+<p></p>
+<PRE>
+	public interface Visitor
+	{
+	boolean visitEnter( Composite node ); // going into a branch
+	boolean visitLeave( Composite node ); // coming out
+	boolean visit( Leaf node );
+	}
+<p></p>
+</PRE>
+That's pretty much it. To make life a little easier I provide a <a href="wiki?NullObject">NullObject</a> (Default Implementation) visitor.
+<p></p>
+<p></p>
+<PRE>
+	public interface Visitor
+	{
+	.
+	.
+	.
+	public static class Default implements Visitor
+	{
+		public boolean visitEnter( Composite node ) {
+		return true;
+		}
+		public boolean visitLeave( Composite node ) {
+		return true;
+		}
+		public boolean visit( Leaf node ) {
+		return true;
+		}
+	}
+	}
+<p></p>
+</PRE>
+Now we just need to create the Composite structure. For details on this see <a href="wiki?CompositePattern">CompositePattern</a>. The only variation is the accept methods which both need to return a boolean. These members should be implemented as follows:
+<p></p>
+<PRE>
+	boolean Composite.accept( Visitor v )
+	{
+	if ( v.<em>visitEnter</em>( this ) )  // enter this node?
+	{
+		Iterator at = m_children.iterator();
+		while ( at.hasNext() )
+		if ( ! ((Component)at.next()).<em>accept</em>( v ) )
+			break;
+	}
+<p></p>
+	return v.<em>visitLeave</em>( this );
+	}
+<p></p>
+</PRE>
+And the leaf implementation: 
+<p></p>
+<PRE>
+	boolean accept( Visitor visitor )
+	{
+	return visitor.visit( this );
+	}
+<p></p>
+</PRE>
+<hr>
+<strong>Sample Code and Usage</strong>
+<p></p>
+In this example, the Composite node is a <em>Directory</em> and the Leaf node is a <em>File</em> object. We implement a Visitor that can construct the qualified path name for each <em>File</em> component. While this can be simply done using the <a href="wiki?HierarchicalVisitorPattern">HierarchicalVisitorPattern</a>, it is quite difficult to achieve with the traditional <a href="wiki?VisitorPattern">VisitorPattern</a>. Note that this example only shows the <em>'hierarchical navigation</em> features of the hierarchical visitor and does not use any of its conditional features. 
+<p></p>
+<PRE>
+ <em>/**</em>
+ <em> * Maintains a string that when accessed in the &quot;visit&quot;</em>
+ <em> * member will return the current qualified file name.</em>
+ <em> */</em>
+ public abstract 
+	class	<strong>F</strong><strong>ilenameQualifier</strong>
+	implements F<strong></strong>ileVisitor
+ {
+	static final String SEPCHAR = &quot;\\&quot;;  // path separator
+<p></p>
+	private m_sPath = &quot;&quot;;
+<p></p>
+	<em>// Entering a composite: Push its name on the Path</em>
+	public boolean <strong>visitEnter</strong>( Directory node )
+	{
+	 m_sPath += node.getName();
+	 m_sPath += SEPCHAR;  <em>// NOTE: Don't forget the separator!</em>
+	 return true;	 <em>// process leafs (i.e. files or subdirs)</em>
+	}
+<p></p>
+	<em>// Leaving a composite: Pop its name from the Path</em>
+	public boolean <strong>visitLeave</strong>( Directory node )
+	{
+	 m_sPath.resize( m_sPath.size() - node.getName().size() );
+	 return true;	 <em>// go to next sibling</em>
+	}
+<p></p>
+	<em>// Provide read-only access to the current qualifier</em>
+	String currentPath()
+	{
+	return m_sPath;
+	}
+ }
+<p></p>
+</PRE>
+We only added a protected member to access the current path for each call to <em>visit</em>. Because we are creating classes, we can extend them to add or refine behavior. For example, we can extend the qualifier to create a hierarchical listing of qualified file names: 
+<p></p>
+<PRE>
+ public 
+	class	F<strong></strong>ileListingVisitor
+	extends F<strong></strong>ilenameQualifier
+ {
+	private int m_nLevel;	<em>// Indent Level</em>
+<p></p>
+	public boolean <strong>visitEnter</strong>( Directory node )
+	{
+	 <em>super.visitEnter( node );</em>
+<p></p>
+	 println( node.getName() );
+	 m_nLevel++;	 <em>// increase indent level</em>
+	 return true;
+	}
+<p></p>
+	public boolean <strong>visitLeave</strong>( Directory node )
+	{
+	 <em>super.visitLeave( node );</em>
+<p></p>
+	 m_nLevel--;	 <em>// decrease indent level</em>
+	 return true;
+	}
+<p></p>
+	public boolean <strong>visit</strong>( File leaf )
+	{
+	 println( currentPath() + leaf.getName() );
+	 return true;
+	}
+<p></p>
+<p></p>
+	private void println( String s )
+	{
+	 int N = m_nLevel * TABSIZE;
+	 while ( N-- ) System.print( ' ' );
+	 System.println( s );;
+	}
+  }
+<p></p>
+</PRE>
+To use, you simply pass an instance of the F<strong></strong>ileListingVisitor to the <em>accept</em> member of any composite in the file system.
+<p></p>
+<PRE>
+	Directory dir = directoryAt( path );
+	dir.accept( new <strong>F</strong><strong>ileListingVisitor()</strong> );
+<p></p>
+</PRE>
+Here's an example of a composite hierarchy for this sample: 
+<p></p>
+<PRE>
+  interface F<strong></strong>ileSystemObject
+  {
+	String  getName();
+	boolean accept( Visitor v );
+  }
+<p></p>
+  class Directory implements F<strong></strong>ileSystemObject
+  {
+	private String	m_name;
+	private I<strong></strong>temArray m_contents = new I<strong></strong>temArray();
+<p></p>
+	public Directory( String name )
+	{
+	  m_name = name;
+	}
+<p></p>
+	public String getName()
+	{
+	  return m_name;
+	}
+<p></p>
+	public void add( F<strong></strong>ileSystemObject child )
+	{
+	  m_contents.add( child );
+	}
+	.
+	.
+	.
+	public boolean accept( Visitor v )
+	{
+	  if ( v.visitEnter( this ) )
+		m_contents.detect( new Block() {
+		  public boolean is( Object each ) {
+			return !((F<strong></strong>ileSystemObject)each).accept( v ); } } );
+<p></p>
+	  return v.visitLeave( this );
+	}
+  }
+<p></p>
+  class File implements F<strong></strong>ileSystemObject
+  {
+	private String m_name;
+<p></p>
+	public File( String name )
+	{
+	  m_name = name;
+	}
+<p></p>
+	public String getName()
+	{
+	  return m_name;
+	}
+<p></p>
+	public boolean accept( Visitor v )
+	{
+	  return v.visit( this );
+	}
+  }
+<p></p>
+</PRE>
+That's pretty much it. You add files to directories like so: 
+<p></p>
+<PRE>
+  Directory root = new Directory( &quot;root&quot; );
+  Directory temp  = new Directory( &quot;temp&quot; );
+<p></p>
+  temp.add( new File( &quot;foo.txt&quot; ) );
+  root.add( temp )
+  root.add( new File( &quot;bar.txt&quot; ) );
+<p></p>
+</PRE>
+This creates the following file structure: 
+<p></p>
+<PRE>
+  root
+	|
+	+--temp
+	|	|
+	|	+--foo.txt
+	|
+	+--bar.txt
+<p></p>
+</PRE>
+<hr>
+<strong>Sample Code for Filtered Processing</strong>
+<p></p>
+This example shows the extensibility of the Hierarchical Visitor. The following shows us building on the basic Hierarchical Visitor to create a new abstraction that allows us to add filter objects and processing objects to selectively process a composite.
+<p></p>
+First we define the interface for creating classes that filter nodes or operate on filtered nodes:
+<p></p>
+<PRE>
+	interface Filter
+	{
+	boolean canVisit( Composite node );
+	boolean canVisit( Leaf leaf );
+	}
+<p></p>
+	interface Operator extends C<strong></strong>lassicVisitor
+	{
+	void visit( Composite node );
+	void visit( Leaf leaf );
+	}
+<p></p>
+	class F<strong></strong>ilteredVisitor extends H<strong></strong>ierarchicalVisitor
+	{
+	Items m_filters;	<em>// one or more filter conditions</em>
+	Items m_operators;	<em>// one or more operators</em>
+<p></p>
+	<em>...</em>
+<p></p>
+	<em>// Add a filter</em>
+	public void add( Filter filter ) {
+		m_filters.add( filter );
+	}
+<p></p>
+	<em>// Add an operator</em>
+	public void add( Operator process ) {
+		m_operators.add( process );
+	}
+<p></p>
+	<em>...</em>
+<p></p>
+	<em>// Filter this entire Branch?</em>
+	public boolean <strong>visitEnter</strong>( Composite node )
+	{		
+		<em>// Return first that rejects this node</em>
+		Object rejected =
+		m_filters.detect( new Block() {
+			public boolean is( Filter each ) {
+			return <strong>!</strong>each.<strong>canVisit</strong>( node ); } } );
+<p></p>
+		return ( rejected == null );
+	}
+<p></p>
+	<em>// Visit non-rejected nodes</em>
+	public boolean visitLeave( Composite node )
+	{
+		m_operators.enum( new Block() {
+		public void run( Operator each ) {
+			each.<strong>visit</strong>( node ); } } );
+<p></p>
+		return true;
+	}
+<p></p>
+	<em>// Check reject state for each condition, process if not rejected</em>
+	public boolean visit( Leaf node )
+	{
+		<em>// Return first that rejects this leaf</em>
+		Object rejected =
+		m_filters.detect( new Block() {
+			public boolean is( Filter each ) {
+			return <strong>!</strong>each.<strong>canVisit</strong>( node ); } } );
+<p></p>
+		if ( rejected == null )  <em>// no one rejected</em>
+		m_operators.enum( new Block() {
+			public void run( Operator each ) {
+			each.<strong>visit</strong>( node ); } } );
+<p></p>
+		return true;		
+	}
+	}
+<p></p>
+</PRE>
+This allows you to aggregate various filters and operators into the Hierarchical Visitor.
+<p></p>
+<hr>
+<strong>Existing Uses</strong>
+<DL>
+<dt><a href="wiki?CppUtxOverview">CppUtxOverview</a><dd>A version of <a href="wiki?CppUnit">CppUnit</a> for large systems development
+<dt><a href="wiki?EclipseIde">EclipseIde</a><dd>The Java Development Tooling uses hierarchical vistors for traversing its AST. It makes use of both, entering and leaving visit methods (called beginVisit()/endVisit()) and controlled traversal via a boolean return.
+<dt>SPACE<dd>The <em>Security Platform Architecture for Composition and Extension</em> is a <a href="wiki?ProductLineArchitecture">ProductLineArchitecture</a> for create <em>Surveillance and Response</em> systems (such as Intrusion Detection Systems or File Integrity Checkers) from a set of <a href="wiki?CoreAssets">CoreAssets</a>. The <a href="wiki?HierarchicalVisitorPattern">HierarchicalVisitorPattern</a> is used throughout the system to provide system integrated from SPACE greater flexibility. Some example uses include:
+<dt><em>Permissions</em><dd>in SPACE a Permission can be a single permission or a logically named group of permissions. The hierarchical visitor allows <em>implies</em> methods to be written efficiently.
+<dt><em>Node Grouping</em><dd>nodes in the distributed system can be logically grouped together to ease the complexity of summarizing or administering a network of 10,000+ nodes/computers. You may have a group named <em>&quot;all-nodes&quot;</em> that contains the group called <em>&quot;saled-department&quot;</em>. This group might contain all the computers in the sales department. The <a href="wiki?HierarchicalVisitorPattern">HierarchicalVisitorPattern</a> is used to allow systems that are based on the SPACE <a href="wiki?ProductLineArchitecture">ProductLineArchitecture</a> to operate on nodes in unpredictable ways.
+<p></p>
+</DL>
+<hr>
+<strong>Related Patterns</strong>
+<UL>
+<li> <a href="wiki?VisitorPattern">VisitorPattern</a> 
+<li> <a href="wiki?CompositePattern">CompositePattern</a> 
+<li> <a href="wiki?InternalIterator">InternalIterator</a>
+<p></p>
+</UL>
+<em>-- <a href="wiki?RobertDiFalco">RobertDiFalco</a></em>
+<p></p>
+<strong>See also:</strong> <a href="wiki?HierarchicalVisitorDiscussion">HierarchicalVisitorDiscussion</a>
+<p></p>
+<hr>
+<a href="wiki?CategoryPattern">CategoryPattern</a> | <a href="wiki?CategoryBehavioralPatterns">CategoryBehavioralPatterns</a>
+<p></p>
+</div>
+</form>
+<hr>
+<a href="wiki?edit=HierarchicalVisitorPattern" rel="nofollow"><img src=/wiki.png style="border: none;"> EditText</a> of this page
+(last edited <a href=quickDiff?HierarchicalVisitorPattern rel="nofollow">March 3, 2005</a>)<br>
+<a href="wiki?FindPage">FindPage</a> by searching (or browse <a href=like rel="nofollow">LikePages</a> or take a <a href=tour rel="nofollow">VisualTour</a>)<br>
+<link rel="alternate" type="application/wiki" title="Edit this page!" href="wiki?edit=HierarchicalVisitorPattern"/>
+<link rel="edit" title="Edit this page" href="wiki?edit=HierarchicalVisitorPattern" />
+
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2377314-2";
+_udn="c2.com"; 
+urchinTracker();
+</script>
+
+</body>

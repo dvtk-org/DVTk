@@ -1,0 +1,65 @@
+Part of DVTK.dll - .NET class library providing DICOM test capabilities
+Copyright © 2001-2005
+Philips Medical Systems NL B.V., Agfa-Gevaert N.V.
+
+Developer Build Instructions
+
+These instructions guide the build of the DVTK component, subcomponents and library modules.
+
+The DVTK system consists of:
+Class Library       C#                                  DVTK
+Class Library       C#                                  DvtkData
+Dynamic Library     C++ Managed Extensions  Mixed-Mode  DVTKManagedCodeAdapter
+Various Static Libs C++
+
+Dependencies:
+DVTK                    ->  DvtkData, DVTKManagedCodeAdapter
+DvtkManagedCodeAdapter  ->  DvtkData, Various Static Libraries
+DvtkData                ->  None
+
+Important:
+Visual Studio 2003 has a (bug) problem when switching between build configurations <Debug|Release>.
+The build dependency between DvtkManagedCodeAdapter and DvtkData is not correctly updated.
+This may result in incorrect builds.
+
+Work around:
+This work around ensures that VS finds the correct dependencies during restart of VS.
+Either;
+    1)
+    Ensure deletion of all binaries of the old configuration. 
+    Binaries in bin, release and debug directories of DvtkData, DvtkManagedCodeAdapter and DVTK.
+    or;
+    2)
+    Build solution in new configuration. Then close VS. Restart VS. And build again.
+
+Fixes needed for building and running:
+
+http://support.microsoft.com/?id=814472
+Microsoft Knowledge Base Article - 814472 
+PRB: Linker Warnings When You Build Managed Extensions for C++ DLL Projects
+To fix this bug DVTK contains DVTK.Setup.Initialize() and DVTK.Setup.Terminate().
+See;
+ms-help://MS.VSCC.2003/MS.MSDNQTR.2003JUL.1033/vcmex/html/vcconConvertingManagedExtensionsForCProjectsFromPureIntermediateLanguageToMixedMode.htm
+
+http://support.microsoft.com/default.aspx?kbid=823071
+Microsoft Knowledge Base Article - 823071 
+FIX: The bool Type Does Not Marshal Correctly from Unmanaged Code
+A VS patch is required to fix this bug. Needed to correctly build the DVTKManagedCodeAdapter!
+
+The proper CRT (C-runtime) and MFC needs to be used with the DVTK component.
+http://support.microsoft.com/default.aspx?scid=kb;en-us;140584
+Microsoft Knowledge Base Article - 140584 
+HOWTO: Link with the Correct C Run-Time (CRT) Library
+See;
+ms-help://MS.VSCC.2003/MS.MSDNQTR.2003JUL.1033/vclib/html/_crt_c_run.2d.time_libraries.htm
+ms-help://MS.VSCC.2003/MS.MSDNQTR.2003JUL.1033/vccore/html/vcoriRedistributingMFCATLOLEDBTemplatesApplications.htm
+DVT currently makes use of redistributable dlls;
+    DVTK depends on redistributable dlls;
+        MFC71.dll
+        MSVCP71.dll
+        MSVCR71.dll
+    DVT depends on redistributable dlls;
+        AxInterop.SHDocVw.dll
+        Interop.SHDocVw.dll
+
+Good luck building the projects.

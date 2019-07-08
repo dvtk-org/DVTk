@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D9B73161-F820-4642-A688-9A2BF5CB2466}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DvtkLibrary</RootNamespace>
+    <AssemblyName>DvtkLibrary</AssemblyName>
+    <StartupObject>DvtkLibrary.DvtkLibrary</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <ProjectReference Include="..\DVTk Application Layer\DVTk Application Layer.csproj">
+      <Project>{6C70CAF0-D330-4F52-B6CE-71C70DC1600F}</Project>
+      <Name>ApplicationLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk Definition Query Library\DVTk Definition Query Library.csproj">
+      <Project>{9285FC6B-9F08-4BCA-85BC-681D22BF22D3}</Project>
+      <Name>Definition Query Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk Common Data Format\DVTk Common Data Format.csproj">
+      <Project>{38F9E2D9-BDA9-4D32-95FD-B779B03C32BD}</Project>
+      <Name>DvtkCommonDataFormat</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dvtk Comparator\DVTk Comparator.csproj">
+      <Project>{BE98BF56-A84E-43A4-847F-2AA3E551ADDD}</Project>
+      <Name>DvtkComparator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk Data\DVTk Data.csproj">
+      <Project>{7DF60C20-4034-49CC-9974-B8443A2BC192}</Project>
+      <Name>DvtkData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk Dicom Emulators\DVTk Dicom Emulators.csproj">
+      <Project>{397501B2-4AE8-4EDA-84BF-905417497B2F}</Project>
+      <Name>DvtkDicomEmulators</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk High Level Interface\DVTk High Level Interface.csproj">
+      <Project>{4B34D6B9-D185-4742-A204-70C490500754}</Project>
+      <Name>DvtkHighLevelInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk Hl7\DVTk Hl7.csproj">
+      <Project>{6AA55771-980C-45ED-9CCB-59C83C25815B}</Project>
+      <Name>DvtkHl7</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk Ihe Actors\DVTk Ihe Actors.csproj">
+      <Project>{DEDC169F-3FC4-4189-B9F0-169C8DEBC11A}</Project>
+      <Name>DvtkIheActors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk Information Entity\DVTk Information Entity.csproj">
+      <Project>{36BB69F0-A963-49D9-8626-E88A02FE0141}</Project>
+      <Name>DvtkInformationEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk Managed Code Adapter\DVTk Managed Code Adapter.vcproj">
+      <Project>{8E50A389-C478-4013-817D-8191C994B602}</Project>
+      <Name>DVTKManagedCodeAdapter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk Script Support\DVTk Script Support.csproj">
+      <Project>{D8170A29-9F92-4B3C-8A67-F93704653E8C}</Project>
+      <Name>DvtkScriptSupport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTK\DVTK.csproj">
+      <Project>{DBC39A1E-18CB-4809-81E0-47B1C899BBE0}</Project>
+      <Name>DVTK</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DvtkLibrary.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DvtkDicomUnicodeConversion, Version=2.4.1.2, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
+      <HintPath>..\DVTk Dicom Unicode Conversion\bin\Release\DvtkDicomUnicodeConversion.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <PostBuildEvent>ECHO Copying files from the Resources directory
+
+SET RESOURCES_DIR=
+SET DVTK_LIBRARY_DIR=
+IF EXIST "$(ProjectDir)..\..\..\Resources" SET  DVTK_LIBRARY_DIR=$(ProjectDir)..\..\..\
+IF EXIST "$(ProjectDir)..\..\..\..\..\Resources" SET  DVTK_LIBRARY_DIR=$(ProjectDir)..\..\..\..\..\
+
+SET RESOURCES_DIR=%25DVTK_LIBRARY_DIR%25Resources\
+ECHO DVTK_LIBRARY_DIR is "%25DVTK_LIBRARY_DIR%25"
+
+SET DESTINATION_DIR=
+IF EXIST "$(ProjectDir)..\..\..\builds" SET DESTINATION_DIR=$(ProjectDir)..\..\..\builds\$(ConfigurationName)
+IF EXIST "$(ProjectDir)..\..\..\..\..\Releases" SET DESTINATION_DIR=$(ProjectDir)..\..\..\$(ConfigurationName)
+ECHO DESTINATION_DIR is %25DESTINATION_DIR%25
+
+Copy "%25RESOURCES_DIR%25DVT_RESULTS.xslt" "%25DESTINATION_DIR%25"
+Copy "%25RESOURCES_DIR%25CharacterSets.dat" "%25DESTINATION_DIR%25"
+Copy "%25RESOURCES_DIR%25ImageDisplayFormat.dat" "%25DESTINATION_DIR%25"
+Copy "%25RESOURCES_DIR%25AllDimseCommands.def" "%25DESTINATION_DIR%25"
+Copy "%25RESOURCES_DIR%25Copying.lesser.rtf" "%25DESTINATION_DIR%25"
+Copy "%25RESOURCES_DIR%25Copying.rtf" "%25DESTINATION_DIR%25"
+Copy "%25RESOURCES_DIR%25Copying.rtf" "%25DESTINATION_DIR%25"
+Copy "%25DVTK_LIBRARY_DIR%25ChangeHistoryLibrary.txt" "%25DESTINATION_DIR%25"
+
+IF NOT EXIST "%25DESTINATION_DIR%25\CharacterSets" (
+mkdir "%25DESTINATION_DIR%25\CharacterSets"
+)
+
+xcopy /y "%25RESOURCES_DIR%25CharacterSets" "%25DESTINATION_DIR%25\CharacterSets"
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,50 @@
+## Example DVT Dicom Script
+## Copyright (c) 2001-2005
+## Philips Medical Systems NL B.V., Agfa-Gevaert N.V.
+
+##
+## Test Script for MOVE SOP Classes - SCU
+##
+
+SEND ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Patient Root Query/Retrieve Information Model - MOVE SOP Class",
+         "Explicit VR Big Endian",
+         "Explicit VR Little Endian",
+         "Implicit VR Little Endian")
+)
+
+RECEIVE ASSOCIATE-AC (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Patient Root Query/Retrieve Information Model - MOVE SOP Class",
+         0,
+         "Implicit VR Little Endian")
+)
+
+
+SEND C-MOVE-RQ "Patient Root Query/Retrieve - MOVE" (
+(0x00000002, "Patient Root Query/Retrieve Information Model - MOVE SOP Class")
+
+(0x00080052, "PATIENT")
+(0x00100020,LO,"SC-I1 ") # Patient ID)
+)
+
+RECEIVE C-MOVE-RSP
+RECEIVE C-MOVE-RSP
+RECEIVE C-MOVE-RSP
+RECEIVE C-MOVE-RSP
+RECEIVE C-MOVE-RSP
+RECEIVE C-MOVE-RSP
+RECEIVE C-MOVE-RSP
+RECEIVE C-MOVE-RSP
+
+
+RECEIVE C-MOVE-RSP (
+(0x00000002, "Patient Root Query/Retrieve Information Model - MOVE SOP Class")
+(0x00000900, 0x0000)
+)
+
+
+SEND RELEASE-RQ
+RECEIVE RELEASE-RP
+

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="us-ascii" standalone="yes"?>
+<Sessions>
+  <Session>.\mpps\scu\MPPS_SCU.ses</Session>
+  <Session>.\worklist\scu\WLM_SCU.ses</Session>
+</Sessions>

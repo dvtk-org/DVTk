@@ -1,0 +1,146 @@
+## 
+## DVT DICOMScript
+##
+## Name: script_test_warehouse_commands3.ds
+##
+## Test Suite Ref: 3.2.2.4.3
+## Test Case Ref:  #1, #2, #3
+##
+## Pre-conditions:
+##
+## Test Scenario:
+##     Test 1
+##     - Create 1 MR Image object
+##     - Set an attribute 
+##     - copy to attribute to same object
+##     - display contents
+##     Test 2
+##     - Create second MR object
+##     - Copy attribute from first object
+##     - display contents
+##     Test 3
+##     - copy non-existing attribute
+##     - display contents
+##     Test 4
+##     - delete attribute by setting tag only
+##     - display contents
+##
+## Expected Result:
+##
+## Post-conditions:
+##    -
+##
+
+##================================================================================
+## Test 1: Copy within object
+##================================================================================
+
+POPULATE OFF
+
+# Create and Set Objects For Test 1
+CREATE C-STORE-RQ SRC_STORE_RQ1 "MR Image" SRC_MR_IMG1
+
+SET "MR Image" SRC_MR_IMG1
+{
+(0x00080008,CS,"DERIVED")
+}
+
+COPY "MR Image" SRC_MR_IMG1 0x00080016 "MR Image" SRC_MR_IMG1 0x00080008
+
+ECHO ""
+ECHO "DISPLAY MR Image SRC_MR_IMG1"
+DISPLAY "MR Image" SRC_MR_IMG1 
+
+ECHO""
+
+ECHO "The object should contain 2 attributes:"
+ECHO "(0x00080008,CS,DERIVED)"
+ECHO "(0x00080016,CS,DERIVED)"
+
+ECHO""
+
+##================================================================================
+## Test 2: Copy to other object
+##================================================================================
+
+CREATE C-STORE-RQ SRC_STORE_RQ2 "MR Image" SRC_MR_IMG2
+
+COPY "MR Image" SRC_MR_IMG2 0x00080008 "MR Image" SRC_MR_IMG1 0x00080008
+
+ECHO ""
+ECHO "DISPLAY MR Image SRC_MR_IMG2"
+DISPLAY "MR Image" SRC_MR_IMG2
+
+ECHO "The object should contain 1 attribute:"
+ECHO "(0x00080008,CS,DERIVED)"
+
+ECHO ""
+
+##================================================================================
+## Test 3: Copy non-existing attribute
+##================================================================================
+
+ECHO ""
+COPY "MR Image" SRC_MR_IMG2 0x00080008 "MR Image" SRC_MR_IMG1 0x00080008
+COPY "MR Image" SRC_MR_IMG2 0x00080016 "MR Image" SRC_MR_IMG1 0x00080016
+
+ECHO ""
+ECHO "DISPLAY MR Image SRC_MR_IMG2"
+DISPLAY "MR Image" SRC_MR_IMG2
+
+ECHO "The object should contain 2 attribute:"
+ECHO "(0x00080008, CS, DERIVED)"
+ECHO "(0x00080016, CS, DERIVED)"
+
+ECHO ""
+
+ECHO "Delete attribute by copying non-existing tag"
+COPY "MR Image" SRC_MR_IMG2 0x00080016 "MR Image" SRC_MR_IMG1 0x00080018
+
+ECHO ""
+ECHO "DISPLAY MR Image SRC_MR_IMG2"
+DISPLAY "MR Image" SRC_MR_IMG2
+
+ECHO "The object should contain 1 attribute:"
+ECHO "(0x00080008, CS, DERIVED)"
+
+ECHO ""
+
+
+
+##================================================================================
+## Test 4: Delete attribute
+##================================================================================
+
+ECHO ""
+ECHO "DISPLAY MR Image SRC_MR_IMG1"
+DISPLAY "MR Image" SRC_MR_IMG1 
+
+ECHO "The object should contain 2 attributes:"
+ECHO "(0x00080008, CS, DERIVED)"
+ECHO "(0x00080016, CS, DERIVED)"
+
+ECHO "Delete attribute by setting tag only"
+SET "MR Image" SRC_MR_IMG1
+{
+(0x00080016)
+}
+
+ECHO ""
+
+ECHO ""
+ECHO "DISPLAY MR Image SRC_MR_IMG1"
+DISPLAY "MR Image" SRC_MR_IMG1 
+
+ECHO "The object should contain 1 attribute:"
+ECHO "(0x00080008, CS, DERIVED)"
+
+
+##
+## Script Result should be:
+## Validation: 0 error(s), 0 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 1 error(s), 0 warning(s)
+##
+
+

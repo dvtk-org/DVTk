@@ -1,0 +1,2052 @@
+=======================
+= DVTk Library 3.0.2 =
+=======================
+
+
+
+=
+= Solved problems for 3.0.2
+=
+
+<------------------------------------------------------------------------------>
+
+Date 25-10-2007, solved ticket 607
+
+Description:
+------------
+Improved wildcard matching (for Quey Retrieve and Modality Work List):
+- Dicom * and ? are now implemented correctly with regular expressions.
+- Also all wildcard matching for VR PN is now performed case insensitive. 
+
+<------------------------------------------------------------------------------>
+
+Date 14-2-2008, solved ticket 795
+
+Description:
+------------
+Problem in calculated length of the pixel data attribute has been solved.
+
+<------------------------------------------------------------------------------>
+
+Date 3-3-2008, solved ticket 812
+
+Description:
+------------
+Attributes with VR UN and undefined length are now decoded correctly.
+
+<------------------------------------------------------------------------------>
+
+Date 13-3-2008, solved ticket 805
+
+Description:
+------------
+Now only the TS (Transfer Syntax) defined in DICOM object is considered for 
+Association-Rq instead of the TS defined in the emulator session file.
+
+<------------------------------------------------------------------------------>
+
+Date 24-3-2008, solved ticket 787
+
+Description:
+------------
+Reading a DCM file containing Compressed 16-bit OB data produced wrong filename
+for PIX data - which was used for writting PIX data into saved DCM file.
+Filenames "B16_xxxx.PIX" and "B16Cxxxx.PIX" are now used.
+
+<------------------------------------------------------------------------------>
+
+Date 15-04-2008, Solved ticket 820
+
+Description:
+------------
+In c++ core libraries, the arrays defined for handling string attribute
+values and error/warning messages. Invalid string values of attributes may
+overflow the defined static arrays and cause runtime crash.
+
+The size of static array AttributeGroup library is increased. 
+Additionally, checked other static array size for proper handling of error/warning messages.
+
+<------------------------------------------------------------------------------>
+
+Date 05-05-2008, Solved ticket 894
+
+Description:
+------------
+DVTIHE Framework - It is now possible to set the value of the Specific Character Set in the
+C-FIND-RQ of the modality worklist query to any value defined in the script / application.
+The value of the Specific Character Set is not used as a query key but to define the
+character set used by corresponding text based attributes in the C-FIND-RQ.
+
+<------------------------------------------------------------------------------>
+
+Date 20-05-2008, Solved ticket 903
+
+Description:
+------------
+In validation core library, the first value type(i.e. Enumerated or Defined) was
+considered incase of multi-value/valuelist attributes.
+Now the fix has been made to take the type of each value/valuelist during validation.
+
+<------------------------------------------------------------------------------>
+
+Date 23-05-2008, Solved ticket 885
+
+Description:
+------------
+Build a check into the validation algorithm to ensure that the Private Recognition
+Code is present for any private attributes. An error is signalled for each private
+attribute that does not have a corresponding recognition code.
+
+<------------------------------------------------------------------------------>
+
+Date 12-06-2008, Solved ticket 734
+
+Description:
+------------
+HL7 message file reader: now handles multiple segment messages correctly.
+
+<------------------------------------------------------------------------------>
+
+Date 17-06-2008, Solved ticket 942
+
+Description:
+------------
+Added two new optional configuration parameters to the IHE Frameworkconfiguration.
+The first <OverwriteResults> is a boolean indicating whether or not the results
+files from the previous runs should be overwritten by the current run. The second
+<AutoValidate> is a boolean indicating whether or not the received messages should
+be validated or not.
+
+<------------------------------------------------------------------------------>
+
+Date 28-07-2008, solved tickets 425, 900 and 923 in one go.
+
+Description:
+------------
+When using the "Validate" methods in HLI,
+- The same DICOM/DUL Messages may now be validated multiple times.
+- Validating a DICOM Message, containing no Data Set, without supplying an IOD name now
+  also succeeds.
+
+<------------------------------------------------------------------------------>
+
+Date 18-08-2008, Solved ticket 974
+
+Description:
+------------
+Validation of the C-FIND-RSP Dataset for Modality Worklist now takes zero length return 
+keys sent in C-FIND-RQ Identifier and uses the definition of the C-FIND-RSP Dataset of
+the corresponding attribute to determine its presence - whether a type 1C should be
+present or not - message to user for manual validation.
+
+<------------------------------------------------------------------------------>
+
+Date 30-07-2008, Solved ticket 411
+
+Description:
+------------
+Now DVT throws the validation error for Additional attributes in command set.
+
+<------------------------------------------------------------------------------>
+
+Date 04-09-2008, Solved ticket 970
+
+Description:
+------------
+Fixed problem with the setting / encoding of the UNDEFINED item length from
+the DS script DEFINE-SQ-LENGTH OFF / ON command.
+
+<------------------------------------------------------------------------------>
+
+Date 16-12-2008, solved ticket 952
+
+Description:
+------------
+Improved code comments in the DVTkHighLevelInterface assembly.
+
+<------------------------------------------------------------------------------>
+
+Date 17-12-2008 Fixed PR 1108
+
+Description:
+------------
+Enhanced the validation of DICOMDIR by implementing seperate rules for attribute 
+Referenced File ID (0004,1500).
+
+<------------------------------------------------------------------------------>
+
+Date 12-01-2009, solved ticket 1118
+
+Description:
+------------
+Fixed bug when we strip the insignificant space character. Especially the case was 
+taken into consideration when we've only CS value containing space chr(length=1).
+
+<------------------------------------------------------------------------------>
+
+Date 15-01-2009, solved ticket 1122 & 1123
+
+Description:
+------------
+Fixed bug introduced due to recent changes in core libraries.
+
+<------------------------------------------------------------------------------>
+
+Date 23-01-2009, solved ticket 1079
+
+Description:
+------------
+Writing whole PDU Body to TCP/IP socket at the same time instead
+of single byte of PDU header each time.
+
+<------------------------------------------------------------------------------>
+
+Date 06-02-2009, solved ticket 1115
+
+Description:
+------------
+Implemented the solution for parsing the def file only when it's not parsed previously. 
+Checking the absolute path of def file and maintaining all the unique files list 
+per DVT instance.
+
+<------------------------------------------------------------------------------>
+
+Date 03-01-2009 to solve ticket 1113
+
+Description:
+------------
+Changed to read the environment variable if the variable is present in the session 
+file under Definition Directory or Definition files.
+
+<------------------------------------------------------------------------------>
+
+Date 03-03-2009 Fixed ticket 1147
+
+Description:
+------------
+Fixed bug in definition core library when definition file content is registered
+to definition singleton class.
+
+<------------------------------------------------------------------------------>
+
+Date 10-03-2009 Fixed ticket 1149
+
+Description:
+------------
+Fixed bug in decoding of a a compressed dataset so that the length of the OB data
+is maintained by a boolean indicating if the length was known or undefined. This is needed
+when exporting the dataset. The actual length of the data is maintained to know how much data to
+write.
+
+<------------------------------------------------------------------------------>
+
+Date 02-06-2009 Fixed ticket 1203 & 4
+
+Description:
+------------
+Added 1 to make pixel data length even in case of odd length and remove word
+"Compressed" from the error message.
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Implemented change requests for 3.0.2
+=
+
+<------------------------------------------------------------------------------>
+
+Date 24-10-2007
+
+Description:
+------------
+Improved Dynamic Compare functionality:
+- Added comments column in which textual conditions can be put.
+- Added type (e.g. name) definining how values should be compared with each other.
+- Option to be able to see flags used in compare results.
+- Option to be able to skip group length in compare results.
+- xml file made more compact.
+- "No values" now written in italic in compare results.
+
+<------------------------------------------------------------------------------>
+
+Date 04-04-2008
+
+Description:
+------------
+Improved IHE layer
+- Added message available event to allow users to subscribe to an event which
+indicates when a message is sent or received by an actor.
+- Added transaction available event to allow users to subscribe to an event which
+indicates when a transaction is sent or received by an actor.
+- Added bool return value on all Send...( ) methods.
+- Updated acquisition modality wrapper class in DVTIHECMD to expose new functionality.
+
+<------------------------------------------------------------------------------>
+
+Date 08-04-2008
+
+Description:
+------------
+Added argument to HLI DicomThread BeforeHandlingException and AfterHandlingException 
+methods - the System.Exception is passed. The methods have also been protected instead 
+of internal so that derived classes outside HLI can implement them.
+
+<------------------------------------------------------------------------------>
+
+Date 08-04-2008
+
+Description:
+------------
+Improved IHE layer
+- Added support for Storage Commitment N-ACTION and N-EVENT-REPORT on a single association.
+This is done by setting the field 
+<ActorOption1>DO_STORAGE_COMMITMENT_ON_SINGLE_ASSOCIATION</ActorOption1> for both the 
+AcquisitionModality to ImageManager and ImageManager to AcquisitionModality 
+<DicomPeerToPeerConfiguration> fields. Set it to any other value (including empty)
+to have the N-ACTION and N-EVENT-REPORT on two separate associations.
+
+<------------------------------------------------------------------------------>
+
+Date 22-04-2008
+
+Description:
+------------
+Improved exception handling in HLI.
+When sending or receiving of a Dicom or Dul message fails, an exception of type
+DicomProtocolMessageSendException or DicomProtocolMessageReceiveException is thrown.
+Both new exception classes have a property to get the return code indicating the
+source of the failure.
+
+<------------------------------------------------------------------------------>
+
+Date 23-04-2008
+
+Description:
+------------
+Made use of the new DicomProtocolMessageSendException and DicomProtocolMessageReceiveException
+in the IHE Framework to determine when communication has failed and return control to the
+IHE Framework user.
+
+<------------------------------------------------------------------------------>
+
+Date 05-05-2008, Solved ticket 895
+
+Description:
+------------
+Updated Acquisition Modality actor to support waiting for the N-EVENT-REPORT-RESPONSE from
+the Image Manager on calling the SendStorageCommitment method - the two arguments to the
+method which were defined some time ago are now implemented.
+
+<------------------------------------------------------------------------------>
+
+Date 04-06-2008
+
+Description:
+------------
+Added new solution for the DvtkIhe applications/framework.
+Added new setup project for the DvtkIhe applications/framework.
+Removed the DvtIhe and DvtIheCmd projects from the Dvt solution.
+
+<------------------------------------------------------------------------------>
+
+Date 29-07-2008, implemented ticket 966.
+
+Description:
+------------
+The HliForm class now contains an extra property Text, by which the Text (caption) of the HliForm 
+can be set. When the Text property is set to null or "", the caption displays the threads statusses 
+(original behaviour). When the Text property is set to a non-empty string, this string is displayed 
+in the caption of the HliForm.
+
+<------------------------------------------------------------------------------>
+
+Date 27-08-2008
+
+Description:
+------------
+IHE Framework - Image Display actor - added source code documentation. Added methods to access
+DICOM Store Data Directory so that the retrieved images can be accessed - also possible to
+delete the DICOM Store Data Directory contents.
+
+<------------------------------------------------------------------------------>
+
+Date 28-08-2008
+
+Description:
+------------
+Added method SetUiStatusText to the IheFramework class to allow the user to define the status
+text displayed as the title bar of the activity logging. This can now be set from within the
+VBScripts.
+
+Started work on archive comparison in the IheFramework.
+
+<------------------------------------------------------------------------------>
+
+Date 28-08-2008, ticket 819
+
+Description:
+------------
+Created a common Command Set definition file AllDimseCommands.def, to make sure that the VR's of all 
+possible command set attributes are know, even if no definition file is explicitly loaded.
+AllDimseCommands.def should always be loaded by the DVTk library, so make sure it is present in the application
+path of the executable making use of the DVTk library.
+
+<------------------------------------------------------------------------------>
+
+Date 02-09-2008
+
+Description:
+------------
+Added ImageDisplay Query / Retrieve scripts to IHE Framework - examples including
+how to compare archives.
+
+<------------------------------------------------------------------------------>
+
+Date 04-09-2008 Fixed ticket 970
+
+Description:
+------------
+Fixed Problem caused by two variables in the dcm_item.cpp class being mis-used. The 
+introducerLengthM variable should contain a fixed value of UNDEFINED_LENGTH and 
+the lenghM variable the actual item length if defined. These two variables were 
+not being used properly in the item decode method which then lead to corruption 
+when the item was re-encoded – due to READ from file (decode) and send over network (encode).
+
+<------------------------------------------------------------------------------>
+
+Date 07-11-2008 Added support for displaying CJK characters.
+
+Description:
+------------
+Added support for displaying the values of attributes in CJK "languages" using 
+a Unicode conversion. A <unicode> tag has been added
+to the XML results files produced for these values.
+
+<------------------------------------------------------------------------------>
+
+Date 28-01-2009 Updated IHE Actors assembly.
+
+Description:
+------------
+Updated actors searching for peer DicomServer by adding the ActorId of the first occurence
+of a given Actor Type to the search. This allows the events to be handled correctly.
+Changed the order in which worklist items are added to the worklist IOM. They are now inserted
+into location 0 instead of being added so that the last one added will appear first in the
+worklist query. This is required to ensure that the IHE DSS/OrderFiller HL7 updates work
+correctly.
+
+<------------------------------------------------------------------------------>
+
+Date 27-01-2009 CR 210
+
+Description:
+------------
+Added new directory records for DICOMDIR generation: SR Doc, Spectroscopy, Raw data, Waveform.
+
+<------------------------------------------------------------------------------>
+
+Date 25-02-2009 Updated IHE Actors assembly and others to support test scenario assertions.
+
+Description:
+------------
+Update the IHE Actors assembly to support the concept of test scenario assertions. Two assertions
+are implemented initially:
+1) AssertMessageCountBetweenActors
+2) AssertDicomAttributeValueBetweenActors
+
+Results are written to the results overview file.
+
+<------------------------------------------------------------------------------>
+ 
+Date 17-04-2009 CR 1181
+
+Description:
+------------
+Added a new interface for sending DICOM messages with presentation context ID.
+The new interface is tested with 4 different NUnit test cases.
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Backwards compatibility issues for 3.0.2
+=
+
+<------------------------------------------------------------------------------>
+
+Date 31-10-2007
+
+Description:
+------------
+For the DicomThread and MessageHandler class, Changed the access modifier for
+all Send and Receive methods to protected. This to enforce intended usage of 
+these methods.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+======================
+= DVTk Library 3.0.4 =
+======================
+
+
+
+=
+= Implemented change requests for 3.0.4
+=
+
+<------------------------------------------------------------------------------>
+
+Date 17-4-2009, solved ticket 1181
+
+Description:
+------------
+With the new UPS SOP classes (Unified Procedure Step – Push SOP Class, Unified Procedure Step – Watch SOP Class, 
+Unified Procedure Step – Pull SOP Class, Unified Procedure Step – Event SOP Class), fully specified in frozen 
+supplement 96, it is now possible to send a DICOM message with an affected or requested SOP Class UID attribute 
+that is different from the abstract syntax UID in an accepted presentation context.
+
+Sending of such a DICOM message will not work anymore, because the presentation context ID used to send the DICOM
+message is implicitly derived from the affected or requested SOP Class UID attribute value.
+
+The code has now been extended that an extra methods will become available to send a DICOM message with an extra 
+parameter, in which the presentation context ID is explicitly specified. In the High Level Interface, this new
+method is DicomThread.Send(DicomMessage dicomMessage, int presentationContextId).
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+======================
+= DVTk Library 3.0.6 =
+======================
+
+
+
+=
+= Solved problems for 3.0.6
+=
+
+<------------------------------------------------------------------------------>
+
+Date 27-5-2009, solved ticket 1218
+
+Description:
+------------
+Improved DicomThread.Validate methods.
+
+Because the ApplicationEntityName and ApplicationVersion were not set to DICOM 3.0, the logging reported that 
+no definition file could be used.
+
+As a fallback mechanism, the DICOM 3.0 definition file was used. 
+
+Improved the logging in HLI to make clear that this fallback mechanism has been used.
+
+<------------------------------------------------------------------------------>
+
+Date 9-6-2009, solved ticket 1231
+
+Description:
+------------
+The transfer syntax, File Meta Information Version and Implementation Class UID were always set to default 
+values (transfer syntax was always ELE) after reading a DicomFile using the HLI DicomFile class. Corrected 
+this: this will now only happen when creating a DicomFile from scratch with the HLI DicomFile class.
+
+<------------------------------------------------------------------------------>
+
+Date 1-6-2009, solved ticket 1205 
+
+Description:
+------------
+There is no VR column interchange in results. I analyzed the problem and found all these private 
+attributes exist in some definition files on the machine.
+When i executed here same scenario i couldn't find definitions of these private attributes and UN 
+is displayed in defVR column.But i improved the validation results as follows:
+1. Now displaying the length of all attributes as compared to zero displayed
+2. Displaying DCM VR in case Explicit VR data transfer.
+
+<------------------------------------------------------------------------------>
+
+Date 2-6-2009, solved ticket 1203 
+
+Description:
+------------
+Added 1 to make pixel data length even in case of odd length.
+
+<------------------------------------------------------------------------------>
+
+Date 2-6-2009, solved ticket 1204 
+
+Description:
+------------
+Removed "Compressed" word from the error message.
+
+<------------------------------------------------------------------------------>
+
+Date 5-6-2009, solved ticket 1186 
+
+Description:
+------------
+Fixed by handling FD values at higher layer. Instead of changing FD value to string, 
+now it's changed to Double in Managed Code adapter layer.
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Implemented change requests for 3.0.6
+=
+
+<------------------------------------------------------------------------------>
+
+Date 25-5-2009, implemented ticket 1211
+
+Description:
+------------
+The About dialog in the library, used by all DVTk based applications, has been
+improved with the following:
+- Display complete version number for non-Beta and non-stable versions.
+- Display copyright statement in about dialog.
+- Display library version number. 
+
+<------------------------------------------------------------------------------>
+
+Date 26-5-2009, implemented ticket 1210
+
+Description:
+------------
+Added the following properties to the DicomThreadOptions class:
+- public String LocalAeTitle
+- public String LocalImplementationClassUid
+- public String LocalImplementationVersionName
+- public System.UInt32 LocalMaximumLength
+- public System.UInt16 LocalPort
+- public String RemoteAeTitle
+- public String RemoteHostName
+- public String RemoteImplementationClassUid
+- public String RemoteImplementationVersionName
+- public UInt32 RemoteMaximumLength
+- public System.UInt16 RemotePort
+
+Because of these new properties, some existing properties have been marked obsolete:
+- public Int32 DvtPort
+- public Int32 SutPort
+- public System.String SutIpAddress
+- public String DvtAeTitle
+- public String SutAeTitle
+
+<------------------------------------------------------------------------------>
+
+Date 11-6-2009, implemented ticket 1232
+
+Description:
+------------
+Created new ConcurrentMessageIterator class in the HLI assembly. 
+
+This class implements a MessageIterator descendant that handles each single association in
+a different child DicomThread. Multiple associations may be handled concurrently: when
+a child DicomThread accepts an association, this instance almost immediately starts
+a new child DicomThread that starts listening to the same port.
+ 
+An instance of this class constructed from outside the HLI interface only contains an
+overview of all started child DicomThreads in the corresponding results files.
+ 
+A user of this class (outside the HLI interface) is only concerned with creating an instance
+of this class, calling the correct Initialize method, set the correct options, add MessageHandlers
+and/or override MessageHandler methods and calling the Start method.
+
+<------------------------------------------------------------------------------>
+
+Date 15-6-2009, implemented ticket 1233
+
+Description:
+------------
+Added the following three get properties to the AssociateRj class in the HLI assembly:
+- Reason
+- Result
+- Source 
+
+<------------------------------------------------------------------------------>
+
+Date 5-6-2009, solved ticket 1205
+
+Description:
+------------
+Implemented the CR by making encoded PC as part of DICOM message class in DVTk layer. 
+Added the property EncodedPCID in DICOM message class in DVTk and HLI layer.
+
+<------------------------------------------------------------------------------>
+
+Date 19-5-2009, solved ticket 1202
+
+Description:
+------------
+Implemented an extra method WaitForPendingDataInNetworkInputBuffer instead of extra 
+Receive methods with an extra timeout parameter, is to have a more clear software interface. 
+
+With this new method, it is now possible to implement synchronous storage commitment correctly.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+======================
+= DVTk Library 3.0.7 =
+======================
+
+
+
+=
+= Solved problems for 3.0.7
+=
+
+<------------------------------------------------------------------------------>
+
+Date 1-7-2009, solved ticket 1259
+
+Description:
+------------
+Added missing Send(DicomMessage dicomMessage, int presentationContextId) method to the HLI MessageHandler class.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+======================
+= DVTk Library 3.0.8 =
+======================
+
+
+
+=
+= Solved problems for 3.0.8
+=
+
+<------------------------------------------------------------------------------>
+
+Date 15-7-2009, ticket 1266
+
+Description:
+------------
+Corrected the max length of all the DICOM VRs from DICOM Std (PS 3.5-2008).
+Added NUnit test cases Ticket1266_1, Ticket1266_2, Ticket1266_3.
+
+<------------------------------------------------------------------------------>
+
+
+Date 20-7-2009, ticket 1256
+
+Description:
+------------
+The error text now makes clear if an exception during execution of a Visual Basic script is caused 
+by absence of the correct entry point or by an exception occuring after entering the entry point of 
+the Visual Basic script.
+
+<------------------------------------------------------------------------------>
+
+Date 20-7-2009, ticket 1261
+
+Description:
+------------
+Added the following two methods:
+- In the class Dvtk.Sessions.Session, the method
+public void WriteHtml(System.String htmlText, bool writeToSummary, bool writeToDetail)
+- In the class DvtkHighLevelInterface.Dicom.Threads.DicomThread, the method
+public void WriteHtml(String html, bool writeToSummary, bool writeToDetail)
+
+Changed the following two methods to only write to the detail results file and not to the
+summary results file anymore:
+- In the class Dvtk.Sessions.Session, the method
+public void WriteHtmlInformation(System.String htmlText)
+- In the class DvtkHighLevelInterface.Dicom.Threads.DicomThread, the method
+public void WriteHtmlInformation(String html) 
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+======================
+= DVTk Library 3.0.9 =
+======================
+
+
+
+=
+= Solved problems for 3.0.9
+=
+
+<------------------------------------------------------------------------------>
+
+Date 23-7-2009, ticket 1280
+
+Description:
+------------
+When in a C-FIND-RQ, an attribute with VR DT contained two '.', this was reported as
+a validation error. This is however allowed when performed range matching. Fixed this
+by implementing check in case of range value, this algorithm was missing during validation 
+of DT value.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+=======================
+= DVTk Library 3.0.10 =
+=======================
+
+
+
+=
+= Solved problems for 3.0.10
+=
+
+<------------------------------------------------------------------------------>
+
+Date 28-7-2009, ticket 1282
+
+Description:
+------------
+Matching is now also allowed, i.e. no validation error will be displayed, for the UPS SOP classes.
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Implemented change requests for 3.0.10
+=
+
+<------------------------------------------------------------------------------>
+
+Date 28-7-2009, ticket 1283
+
+Description:
+------------
+CalledAETitle and CallingAETitle properties have been added to the HLI AssociateRq class.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+=======================
+= DVTk Library 3.0.11 =
+=======================
+
+
+
+=
+= Solved problems for 3.0.11
+=
+
+<------------------------------------------------------------------------------>
+
+Date 29-7-2009, ticket 1284
+
+Description:
+------------
+Condition text wil now be displayed in the summary results for all attributes.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+=======================
+= DVTk Library 3.0.12 =
+=======================
+
+
+
+=
+= Implemented change requests for 3.0.12
+=
+
+<------------------------------------------------------------------------------>
+
+Date 28/08/2009, ticket 1286
+
+Description:
+------------
+Implemented the Check on Dimse Command for matching rules in the C++ validation library.
+
+<------------------------------------------------------------------------------>
+
+Date 10/09/2009, ticket 1304
+
+Description:
+------------
+Implemented the RemoteRole property in HLI(By Marco) and used in Storage SCP emulator
+for setting SUT role in case of storage commitment.
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Solved problems for 3.0.12
+=
+
+<------------------------------------------------------------------------------>
+
+Date 27/08/2009, ticket 1294
+
+Description:
+------------
+Fixed the PR as per DICOM std 2008 IS value range specified.
+
+<------------------------------------------------------------------------------>
+
+Date 10/09/2009, ticket 1307
+
+Description:
+------------
+I fixed the issue (if affected SOP class UID attribute (0000,0002) 
+is equal to the SOP class UID attribute (0008,0016)) by extra checking for DIMSE 
+command. Now this error will only displayed for C-STORE-RQ command.
+
+<------------------------------------------------------------------------------>
+
+Date 10/09/2009, ticket 1175
+
+Description:
+------------
+Fixed the PR in HLI for returning Waited time in WaitForPendingDataInNetworkInputBuffer()
+method. This is required in Async Storage commitment.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+=======================
+= DVTk Library 3.0.13 =
+=======================
+
+
+
+=
+= Implemented change requests for 3.0.13
+=
+
+<------------------------------------------------------------------------------>
+
+Date 11/09/2009, ticket 1304
+
+Description:
+------------
+Implemented the RemoteRole property in HLI and used in Storage SCP emulator
+for setting SUT role in case of storage commitment.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+=======================
+= DVTk Library 3.0.14 =
+=======================
+
+
+
+=
+= Solved problems for 3.0.14
+=
+
+<------------------------------------------------------------------------------>
+
+Date 11-9-2009, ticket 1308
+
+Description:
+------------
+Solved memory issue when performing media validation.
+
+<------------------------------------------------------------------------------>
+
+Date 11-9-2009, ticket 1309
+
+Description:
+------------
+Solved validation problem with VR=IS.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+=======================
+= DVTk Library 3.0.15 =
+=======================
+
+
+
+=
+= Implemented change requests for 3.0.15
+=
+
+<------------------------------------------------------------------------------>
+
+Date 30-9-2009, ticket 1310
+
+Description:
+------------
+Addded the possibility for instances of ConcurrentMessageIterator derived classes to
+also specify the results file name for the automatically created child DicomThreads in
+the constructor.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+=======================
+= DVTk Library 3.0.16 =
+=======================
+
+
+
+=
+= Solved problems for 3.0.16
+=
+
+<------------------------------------------------------------------------------>
+
+Date 7/10/2009, ticket 1315
+
+Description:
+------------
+The solution is implemented in DVTk library Web browser user control. One event 
+is exposed for updating Error and warning status in HTML page.
+Now application has to subscribe the event for enabling Error, Warning button in 
+case of browsing child thread result files. 
+
+<------------------------------------------------------------------------------>
+
+Date 8/10/2009, ticket 1152
+
+Description:
+------------
+The MWL information model query code is enhanced for all other levels e.g. Patient,
+Visit, Requested Proc. 
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Implemented change requests for 3.0.16
+=
+
+<------------------------------------------------------------------------------>
+
+Date 7-10-2009, ticket 1326
+
+Description:
+------------
+Added method "public void RemoveAllFiles()" to the 
+DvtkApplicationLayer.StoredFiles.FileGroup class.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+=======================
+= DVTk Library 3.0.17 =
+=======================
+
+
+
+=
+= Solved problems for 3.0.17
+=
+
+<------------------------------------------------------------------------------>
+
+Date 20-10-2009, ticket 1329
+
+Description:
+------------
+Extended the interface in HLI layer for adding datasets to information model.
+
+<------------------------------------------------------------------------------>
+
+Date 22-10-2009, ticket 1330
+
+Description:
+------------
+Implemented proper cleanup code of previous stream before constructing the new one in case of
+previous incomplete stream.
+Added one line of code in sniffer_session.cpp.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+=======================
+= DVTk Library 3.0.18 =
+=======================
+
+
+
+=
+= Solved problems for 3.0.18
+=
+
+<------------------------------------------------------------------------------>
+
+Date 05-11-2009, ticket 1338
+
+Description:
+------------
+In the Refresh QR models call, again info model is loaded by reading all temp stored 
+dcm files. Now added one property in DVTk information Entity library to deal with refreshing of models.
+
+<------------------------------------------------------------------------------>
+
+Date 06-11-2009, ticket 1339
+
+Description:
+------------
+Corrected the DVTk library implementation for Event ID attribute as follows:
+Event type ID =1 means successfull means only contain the Referenced SOP seq 0008,1199)
+Event type = 2 means "failure exist" Can contain both the 0008,1199 (optional) and the Failed seq (0008,1198) 
+
+<------------------------------------------------------------------------------>
+
+Date 10-11-2009, ticket 1341
+
+Description:
+------------
+Improved the SOP class user control for adding/deleting definition directory in listbox. 
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+=======================
+= DVTk Library 3.0.19 =
+=======================
+
+
+
+=
+= Solved problems for 3.0.19
+=
+
+<------------------------------------------------------------------------------>
+
+Date 19-11-2009, ticket 1350
+
+Description:
+------------
+Corrected the Max length allowed for TM as per DICOM Std 2008 PS3.5 Pg 29.
+
+<------------------------------------------------------------------------------>
+
+Date 19-11-2009, Ticket 1278
+
+Description:
+------------
+- Added a "set" property to the DataDirectory attribute in the Session.cs file in DVTk Assembly.
+- Modified the method SetAllProperties() in the Session.cs file in Application Layer Assembly.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+=======================
+= DVTk Library 3.0.20 =
+=======================
+
+
+
+=
+= Solved problems for 3.0.20
+=
+
+<------------------------------------------------------------------------------>
+
+Date 15-12-2009, ticket 1358
+
+Description:
+------------
+Implemented the pending data interface for TLS socket. 
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+======================
+= DVTk Library 3.1.1 =
+======================
+
+
+
+=
+= Solved problems for 3.1.1
+=
+
+<------------------------------------------------------------------------------>
+
+Date 16-12-2009, ticket 1361
+
+Description:
+------------
+Fixed the Null exception raised while we are not storing data temporarily
+for QR information model. 
+
+<------------------------------------------------------------------------------>
+
+Date 25-3-2010 , ticket 1386
+
+Description:
+------------
+Error Handling was not implemented for certain C-Store scenarios.Implemented the same by
+explicitly handling different C-STORE Responses and setting the status in the C-MOVE RSP
+accordingly.
+
+<------------------------------------------------------------------------------>
+
+Date 25-3-2010 , ticket 1387
+
+Description:
+------------
+Wild Card Matching was not being performed for certain attributes.Fixed the issue by adding 
+the attribute in question to the information model.
+
+<------------------------------------------------------------------------------>
+
+Date 7-4-2010, ticket 1397
+
+Description:
+------------
+The transfer syntax(and the other parts of the file header) was not being retrieved from the file during the C-MOVE operation.Fixed the issue by reading
+the file header along with the data set.The existing AddTo InformationModel method was overloaded.
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Implemented change requests for 3.1.1
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2010-03-25, ticket 1364
+
+Description:
+------------
+Made the DVTk library windows 64-bits compatible by forcing the managed code to
+allways be executed in 32 bits mode to match the 32 bits execution of the unmanaged code. 
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+======================
+= DVTk Library 3.1.2 =
+======================
+
+
+
+=
+= Solved problems for 3.1.2
+=
+
+<------------------------------------------------------------------------------>
+
+Date 3-6-2010, ticket 1413
+
+Description:
+------------
+Fixed an Exception that would show up in certain application scenarios. 
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+======================
+= DVTk Library 3.1.3 =
+======================
+
+
+
+=
+= Solved problems for 3.1.3
+=
+
+<------------------------------------------------------------------------------>
+
+Date 10-6-2010, ticket 1414
+
+Description:
+------------
+In a C-MOVE-RSP message the QR_SCP should include the number of completed sub-operation, 
+the number of failed sub-operations and the number of sub-operations with a warning.
+The total number of sub-operations should corresponds with the real number of moved objects.
+Fixed the issue  in the C-MOVE Handler.
+
+<------------------------------------------------------------------------------>
+
+Date 17-6-2010, ticket 1408
+
+Description:
+------------
+When the QR SCP sends an images as a response to a C-MOVE-RQ, for each image that has been send only 
+one of the counters "Number of Completed Sub-Operations", "Number of Failed Sub-Operations" and 
+"Number of Warning Sub-Operations" may be increased.For some C-STORE-RSP statuses the implementation is correct (e.g. status B000). For other C-STORE-RSP statuses the implementation is not correct (e.g. status A900). 
+Fixed the issue conditionally incrementing the counters in the C-MOVE Handler and sending only 2 C-STORE RSP statuses.
+
+<------------------------------------------------------------------------------>
+
+Date 1-7-2010, ticket 1415
+
+Description:
+------------
+Added removed overloaded DvtkData DicomMessage.Apply method.
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Implemented change requests for 3.1.3
+=
+
+<------------------------------------------------------------------------------>
+
+Date 22-6-2010, ticket 1416
+
+Description:
+------------
+In the High Level Interface assembly, AssociateRc and AssociateAc classes now 
+contain properties to get access to the DvtkData Application Context, Protocol 
+Version and User Information.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+=======================
+= DVTk Library 3.1.4  =
+=======================
+
+
+
+=
+= Implemented change requests for 3.1.4
+=
+
+<------------------------------------------------------------------------------>
+
+Date 06 July 2010, ticket 1268
+
+Description:
+------------
+Hide the visibility of AllDimseCommands.def file to the user.
+
+<------------------------------------------------------------------------------>
+
+Date 2010-7-1, ticket 1415
+
+Description:
+------------
+Added old signatures of DicomMessage.Apply i.e DicomMessage.Apply(CommandSet,DataSet)
+and DicomMessage.Apply(CommandSet) in the Dicom Message Class(part of DVTk Data).
+
+<------------------------------------------------------------------------------>
+
+Date 2010-7-6, ticket 1421
+
+Description:
+------------
+Added method public override void InsertItem(int oneBasedIndex, SequenceItem item)
+to HLI Attribute classes.
+
+<------------------------------------------------------------------------------>
+
+Date 2010-07-07, ticket 1422
+
+Description:
+------------
+Made the property DvtkHighLevelInterface.Common.Other.HighLevelInterface.TempFileCollection public.
+
+<------------------------------------------------------------------------------>
+Date 2010-07-30, ticket 1433
+
+Description:
+------------
+The issue has been resolved.The "Set" method for the AttributeValue now takes into consideration null values also.
+
+<------------------------------------------------------------------------------>
+
+Date 2010-09-20, ticket 1440
+
+Description:
+------------
+The implementation class UID attribute will now have the value of "1.2.826.0.1.3680043.2.1545".
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+=======================
+= DVTk Library 3.1.5. =
+=======================
+
+
+
+=
+= Solved problems for 3.1.5.
+=
+
+<------------------------------------------------------------------------------>
+
+Date , ticket 
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Implemented change requests for 3.1.5
+=
+
+<------------------------------------------------------------------------------>
+
+Date 28 July 2010, ticket #1379
+
+Description:
+------------
+To Show what patients are send. Ticket #1379
+
+<------------------------------------------------------------------------------>
+
+Date 2010-07-29, ticket 1296
+
+Description:
+------------
+Added the ResultsViewer class to the ApplicationLayer assembly, to be able to view
+the HTML results from within a VB test script without the need to use an external
+viewer.
+
+<------------------------------------------------------------------------------>
+
+Date 2010-09-06, ticket 1170
+
+Description:
+------------
+The QR Emulator was not returning responses to a C-FIND which had the Specfic Character set
+as one of the attributes.Modified the BaseInformationEntity to resolve the same.
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Backwards compatibility issues for 3.1.5
+=
+
+<------------------------------------------------------------------------------>
+
+
+Date 11 August 2010 , ticket #1369
+
+Description:
+------------
+-->New composite(Patient study series image) classes implemented the DVTk Information Entity
+-->New Information user control introduced in DVTk HighLevel interface.
+-->Functions to get Compositemodel implemented in the HLI--> Information Model classes
+<------------------------------------------------------------------------------>
+
+
+Date 11 October 2010 ,Ticket 1449-Case in-sensitive comparision of filenames
+
+Description:
+------------
+Case in-sensitive comparision of filenames implemented in Session.cpp
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+=======================
+= DVTk Library 3.1.6. =
+=======================
+
+
+
+=
+= Solved problems for 3.1.6.
+=
+
+<------------------------------------------------------------------------------>
+
+Date 23-11-2010	, ticket 857	
+
+Description:
+------------
+
+Added the "Get" property for the attributes in The DicomThreadUserOptionsControl in the HLI.
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Implemented change requests for 3.1.6.
+=
+
+<------------------------------------------------------------------------------>
+
+Date 22 Nov 2010 ,Ticket 1390- Move destinations should be selectable
+
+Description:
+-----------------
+Move destinations should be selectable..
+--> Generic AE title registration control implemented in the HLI
+
+<------------------------------------------------------------------------------>
+
+Date 30 Nov 2010 ,Ticket 1388- Case sensitive query options in QR SCP
+
+Description:
+-----------------
+Case sensitive query options in QR SCP
+--> enable/disable function case sensitivity of the info model is implemented in Base information entity
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+=======================
+= DVTk Library 3.1.8. =
+=======================
+
+
+
+=
+= Solved problems for 3.1.8
+=
+
+<------------------------------------------------------------------------------>
+
+Date 15-12-2010	, ticket 1457
+
+Description:
+------------
+MediaSession.Validate throws AccessViolationException.The signature of the existing Validate method has been modified. 
+The user must now pass 3 arguments to the the validate method.The new signature 
+is Validate(dicomFile,ValidationControlFlags, string dicomFileName). 
+
+<------------------------------------------------------------------------------>
+
+Date 15-12-2010	, ticket 1452
+
+Description:
+------------
+The UpdateErrorAndWarningCOunt method in the DicomThread class of the HLI has been updated.
+If one or more child thrads throw an error/warning, the corresponding message will be logged in the results.
+<------------------------------------------------------------------------------>
+
+
+
+
+
+=======================
+= DVTk Library 3.1.9.    =
+=======================
+
+
+
+=
+= Solved problems for 3.1.9.
+=
+
+<------------------------------------------------------------------------------>
+
+Date 23-2-2011	, ticket  1465	
+
+Description:
+------------
+Definition Files check now takes into account an older version of Definition Files also.
+
+<------------------------------------------------------------------------------>
+
+
+=
+= Implemented change requests for 3.1.9.
+=
+
+<------------------------------------------------------------------------------>
+
+Date , ticket 
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+
+
+=
+= Backwards compatibility issues for 3.1.9.
+=
+
+<------------------------------------------------------------------------------>
+
+Date 27-5-2011	1464	
+
+Description:
+------------
+DICOM editor control in library changed to support different file types
+
+<------------------------------------------------------------------------------>
+Date 27-5-2011	1509	
+
+Description:
+------------
+
+ticket 1509-Association RJ
+
+<------------------------------------------------------------------------------>
+Date 27-5-2011	1494	
+
+Description:
+------------
+
+ticket 1494-Duplicate attribute
+
+
+Date , ticket 
+
+Description:
+------------
+Date 08-07-2011	Missing series level attributes	
+
+Description:
+------------
+
+New classes implemented in the information entity, to support custom attributes.
+
+
+Date , ticket 
+
+Description:
+<------------------------------------------------------------------------------>
+
+
+Date , ticket 
+
+Description:
+------------
+Date 01-08-2011	Missing series level attributes	
+
+Description:
+------------
+
+Non dataset attributes added
+
+
+Date , ticket 
+
+Description:
+<------------------------------------------------------------------------------>
+
+=======================
+= DVTk Library 3.1.10=
+=======================
+
+
+
+=
+= Solved problems for ...
+=
+
+<------------------------------------------------------------------------------>
+
+Date 9-12-2011, ticket 1569
+
+Description:
+------------
+Definition file check not working on French system.The issue has been resolved.
+<------------------------------------------------------------------------------>
+
+
+
+=======================
+= DVTk Library 3.2.0.    =
+=======================
+
+
+
+=
+= Solved problems for 3.2.0.
+=
+
+<------------------------------------------------------------------------------>
+
+Date Jan 06,2011, ticket 1571 Log warning in case C-FIND-RQ contains private tags
+
+Description:
+------------
+Warning messages added for private tags in the HLI-MessageHandler
+<------------------------------------------------------------------------------>
+
+Date 10-12-2011 , ticket 1569
+
+Description:
+------------
+Definition file check not working on French system.The issue has been resolved.
+<------------------------------------------------------------------------------>
+
+
+
+
+
+=======================
+= DVTk Library ..3.2.1.    =
+=======================
+
+
+
+=
+= Solved problems for ...
+=
+
+<------------------------------------------------------------------------------>
+
+Date Jan 06,2011, ticket 1571 Log warning in case C-FIND-RQ contains private tags
+
+Description:
+------------
+Warning messages added for private tags in the HLI-MessageHandler
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Implemented change requests for .....
+=
+
+<------------------------------------------------------------------------------>
+
+Date , ticket 
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Backwards compatibility issues for ...
+=
+
+<------------------------------------------------------------------------------>
+
+Date , ticket 
+
+Description:
+------------
+=======================
+= DVTk Library ...3.2.2    =
+=======================
+
+
+
+=
+= Solved problems for ...
+=
+
+<------------------------------------------------------------------------------>
+
+Date 
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Implemented change requests for .....
+=
+
+<------------------------------------------------------------------------------>
+
+Date Feb 14,2012 , ticket 1496,QR_SCP emulator does not find responses on Series level.
+
+Description:Implemented SQ matching in library.
+------------
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Backwards compatibility issues for ...
+=
+
+<------------------------------------------------------------------------------>
+
+Date , ticket 
+
+Description:
+------------
+
+
+=======================
+= DVTk Library ..3.2.3.    =
+=======================
+
+
+
+=
+= Solved problems for ...
+=
+
+<------------------------------------------------------------------------------>
+
+
+Date 1-3-2012 , ticket 1575,1578 SQ matching integrated in RIS response	
+
+
+Description:The RIS worklist information model restructured and the SQ matching integrated
+------------
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Implemented change requests for .....
+=
+
+<------------------------------------------------------------------------------>
+
+Date , ticket 
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Backwards compatibility issues for ...
+=
+
+<------------------------------------------------------------------------------>
+
+Date , ticket 
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+
+
+=======================
+= DVTk Library ..3.2.4.    =
+=======================
+
+
+
+=
+= Solved problems for ...
+=
+
+<------------------------------------------------------------------------------>
+
+
+Date 04/04/2012, ticket 1586,1570
+
+
+Description:Windows7 Script problems
+------------
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+=======================
+= DVTk Library 5.0.0  =
+=======================
+
+
+
+=
+= Implemented change requests for 5.0.0
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2017-05-16 
+
+Description:
+------------
+- DVTk library compiled with Visual Studio 2010 (previously Visual Studio 2005)
+- DVTk library makes use of .NET Framework 4 (previously .NET Framework 2.0)
+
+<------------------------------------------------------------------------------>
+
+
+
+
+=======================
+= DVTk Library 5.0.1  =
+=======================
+
+
+
+=
+= Implemented change requests for 5.0.1
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2017-06-12
+
+Description:
+------------
+- Added a new property (USE-PRIVATE-MAPPING) to session files and interface of Session class. If set to false, enables handling of private attributes defined in Dicom definition files.
+
+<------------------------------------------------------------------------------>
+
+=======================
+= DVTk Library 5.1.0  =
+=======================
+
+
+
+=
+= Implemented support for the following transfer syntaxes:
+= MPEG2_HIGH_PROFILE_LEVEL                     "1.2.840.10008.1.2.4.101"
+= MPEG4_AVC_H_264_High_Profile41               "1.2.840.10008.1.2.4.102"
+= MPEG4_AVC_H_264_BD_compatible_High_Profile41 "1.2.840.10008.1.2.4.103"
+= MPEG4_AVC_H_264_High_Profile42For2D_Video    "1.2.840.10008.1.2.4.104"
+= MPEG4_AVC_H_264_High_Profile42For3D_Video    "1.2.840.10008.1.2.4.105"
+= MPEG4_AVC_H_264_Stereo_High_Profile42        "1.2.840.10008.1.2.4.106"
+= HEVC_H265_Main_Profile51                     "1.2.840.10008.1.2.4.107"
+= HEVC_H265_Main_10_Profile51                  "1.2.840.10008.1.2.4.108"
+= RFC_2557_MIME_ENCAPSULATION                  "1.2.840.10008.1.2.6.1"
+= XML_Encoding                                 "1.2.840.10008.1.2.6.2"
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2018-09-13
+
+Description:
+------------
+- The following transfer syntaxes are now available in the Dvtk library
+- MPEG2_HIGH_PROFILE_LEVEL                     "1.2.840.10008.1.2.4.101"
+- MPEG4_AVC_H_264_High_Profile41               "1.2.840.10008.1.2.4.102"
+- MPEG4_AVC_H_264_BD_compatible_High_Profile41 "1.2.840.10008.1.2.4.103"
+- MPEG4_AVC_H_264_High_Profile42For2D_Video    "1.2.840.10008.1.2.4.104"
+- MPEG4_AVC_H_264_High_Profile42For3D_Video    "1.2.840.10008.1.2.4.105"
+- MPEG4_AVC_H_264_Stereo_High_Profile42        "1.2.840.10008.1.2.4.106"
+- HEVC_H265_Main_Profile51                     "1.2.840.10008.1.2.4.107"
+- HEVC_H265_Main_10_Profile51                  "1.2.840.10008.1.2.4.108"
+- RFC_2557_MIME_ENCAPSULATION                  "1.2.840.10008.1.2.6.1"
+- XML_Encoding                                 "1.2.840.10008.1.2.6.2"
+
+<------------------------------------------------------------------------------>
+
+<------------------------------------------------------------------------------>
+
+=======================
+= DVTk Library 5.1.1  =
+=======================
+
+
+
+=
+= Implemented change requests for 5.1.1
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2019-03-12
+
+Description:
+------------
+- Added support for VR OV (Other Very Long)
+

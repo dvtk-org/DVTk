@@ -1,0 +1,106 @@
+##
+## DVT DICOMScript
+##
+## Name: abstract_scp.ds
+##
+## Test Suite Ref: 3.2.2.2.
+## Test Case Ref: 2
+##
+## Pre-conditions:
+##	No association.
+##
+## Test Scenario:
+##	Request association using Implicit VR Little Endian
+##	Transfer Syntax.
+##	Accept Transfer Syntax.
+##	Start Abstract Print Session using agreed Transfer
+##	Syntax.
+##	Release association after successful storage.
+##
+## Expected Result:
+## 	Validation: 0 error(s), 0 warning(s)
+## 	User Validation: 0 error(s), 0 warning(s)
+## 	General Error: 0 error(s), 0 warning(s)
+##
+## Post-conditions:
+##	No association.
+##
+RECEIVE ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Abstract Meta SOP Class", "Implicit VR Little Endian")
+)
+
+SEND ASSOCIATE-AC (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Abstract Meta SOP Class", 0, "Implicit VR Little Endian")
+)
+
+RECEIVE N-GET-RQ
+
+SEND N-GET-RSP "Printer" (
+(0x00000002, "Printer SOP Class")
+(0x00001000, "1.2.840.10008.5.1.1.17")
+
+(0x00080070, "DVT")
+(0x00081090, "DVT")
+(0x00181000, "123456")
+(0x00181020, "Version 2.0")
+(0x00181200, AUTOSET)
+(0x00181201, AUTOSET)
+(0x21100010, "NORMAL")
+(0x21100020, "NORMAL")
+(0x21100030, "dvt")
+)
+
+
+RECEIVE N-CREATE-RQ "Basic Film Session"
+
+SEND N-CREATE-RSP
+
+
+RECEIVE N-CREATE-RQ "Basic Film Box"
+
+SEND N-CREATE-RSP "Basic Film Box" (
+(0x20100510, SQ,
+>(0x00081150, "Basic Film Box SOP Class")
+>(0x00081155, "NEW:AbstractImageBoxUid1")
+,
+>(0x00081150, "Basic Film Box SOP Class")
+>(0x00081155, "NEW:AbstractImageBoxUid2")
+)
+)
+
+
+RECEIVE N-SET-RQ "Basic Film Box"
+
+SEND N-SET-RSP
+
+
+RECEIVE N-SET-RQ "Basic Film Box"
+
+SEND N-SET-RSP
+
+
+RECEIVE N-ACTION-RQ
+
+SEND N-ACTION-RSP (
+(0x00001008, 1)
+)
+
+
+RECEIVE N-DELETE-RQ
+
+SEND N-DELETE-RSP
+
+
+RECEIVE RELEASE-RQ
+
+SEND RELEASE-RP
+
+
+##
+## Script Result should be:
+## Validation: 0 error(s), 0 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 0 error(s), 0 warning(s)
+##

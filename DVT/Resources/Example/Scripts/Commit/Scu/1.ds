@@ -1,0 +1,99 @@
+## Example DVT Dicom Script
+
+##
+## SCU Storage Commitment DICOMScript: 1.ds
+##
+## Pre-conditions:
+##      - no association
+##
+## Test Scenario:
+##      - send association for Storage Commitment Push - Service Class
+##              - little endian implicit VR
+##      - expect accept association - Result/Reason = 0 - success
+##	- send N-ACTION-RQ Storage Commitment Push
+##	- expect N-ACTION-RSP - status = 0000 (success)
+##	- expect N-EVENT-REPORT-RQ Storage Commitment Push - Success
+##	- send N-EVENT-REPORT-RSP - status = 0000 (success)
+##	- send association release request
+##	- expect association release response
+##
+## Expected Result:
+##      - SCU signals Storage Commitment - SUCCESS
+##
+## Post-conditions:
+##      - no association
+##
+SEND ASSOCIATE-RQ (
+PRESENTATION-CONTEXT-ITEMS
+("Storage Commitment Push Model SOP Class", "Implicit VR Little Endian")
+)
+
+RECEIVE ASSOCIATE-AC (
+PRESENTATION-CONTEXT-ITEMS
+("Storage Commitment Push Model SOP Class", 0, "Implicit VR Little Endian")
+)
+
+
+SEND N-ACTION-RQ "Storage Commitment Push Model SOP Class" (
+(0x00000003, "Storage Commitment Push Model SOP Class")
+(0x00001001, "1.2.840.10008.1.20.1.1") # Well-known Instance UID
+(0x00001008, 1) # Request Storage Commitment
+
+(0x00081195, UI, "NEW:TransactionUID") # Transaction UID
+(0x00081199, SQ,
+>(0x00081150, UI, "1.2.840.10008.5.1.4.1.1.7") # Referenced SOP Class UID
+>(0x00081155, UI, "NEW:ImageInstanceUID1") # Referenced SOP Instance UID
+,
+>(0x00081150, UI, "1.2.840.10008.5.1.4.1.1.7") # Referenced SOP Class UID
+>(0x00081155, UI, "NEW:ImageInstanceUID2") # Referenced SOP Instance UID
+,
+>(0x00081150, UI, "1.2.840.10008.5.1.4.1.1.7") # Referenced SOP Class UID
+>(0x00081155, UI, "NEW:ImageInstanceUID3") # Referenced SOP Instance UID
+,
+>(0x00081150, UI, "1.2.840.10008.5.1.4.1.1.7") # Referenced SOP Class UID
+>(0x00081155, UI, "NEW:ImageInstanceUID4") # Referenced SOP Instance UID
+) # Referenced SOP Sequence
+(0x00081111,  SQ,
+>(0x00081150, UI, "1.2.840.10008.3.1.2.3.3") # Referenced SOP Class UID
+>(0x00081155, UI, "NEW:MppsUID") # Referenced SOP Instance UID
+) # Referenced Study Component Sequence
+)
+
+RECEIVE N-ACTION-RSP (
+(0x00000002, "Storage Commitment Push Model SOP Class")
+(0x00001000, "1.2.840.10008.1.20.1.1") # Well-known Instance UID
+(0x00000900, 0x0000)
+)
+
+
+RECEIVE N-EVENT-REPORT-RQ (
+(0x00000002, "Storage Commitment Push Model SOP Class")
+(0x00001000, "1.2.840.10008.1.20.1.1") # Well-known Instance UID
+(0x00001002, 1) # Storage Commitment Request Successful
+
+(0x00081195, UI, "TransactionUID") # Transaction UID
+(0x00080054, AE, "ARCHIVE") # Retrieve AE Title
+(0x00081199, SQ,
+>(0x00081150, UI, "1.2.840.10008.5.1.4.1.1.7") # Referenced SOP Class UID
+>(0x00081155, UI, "ImageInstanceUID1") # Referenced SOP Instance UID
+,
+>(0x00081150, UI, "1.2.840.10008.5.1.4.1.1.7") # Referenced SOP Class UID
+>(0x00081155, UI, "ImageInstanceUID2") # Referenced SOP Instance UID
+,
+>(0x00081150, UI, "1.2.840.10008.5.1.4.1.1.7") # Referenced SOP Class UID
+>(0x00081155, UI, "ImageInstanceUID3") # Referenced SOP Instance UID
+,
+>(0x00081150, UI, "1.2.840.10008.5.1.4.1.1.7") # Referenced SOP Class UID
+>(0x00081155, UI, "ImageInstanceUID4") # Referenced SOP Instance UID
+) # Referenced SOP Sequence
+)
+
+SEND N-EVENT-REPORT-RSP (
+(0x00000002, "Storage Commitment Push Model SOP Class")
+(0x00001000, "1.2.840.10008.1.20.1.1") # Well-known Instance UID
+(0x00000900, 0x0000)
+)
+
+
+SEND RELEASE-RQ
+RECEIVE RELEASE-RP

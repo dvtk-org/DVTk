@@ -1,0 +1,32 @@
+## Example DVT Dicom Script
+#
+#
+
+##
+## SCP Storage DICOMScript: assoc.ds
+##
+## Pre-conditions:
+##      - no association
+##
+## Test Scenario:
+##      - expect association for Storage Service Class
+##              - little endian implicit VR
+##      - accept association - Result/Reason = 0 - acceptance
+##              - little endian explicit VR
+##
+## Expected Result:
+##      - SCU signals successful association
+##
+## Post-conditions:
+##      - association established
+##
+RECEIVE ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Secondary Capture Image Storage SOP Class", "Implicit VR Little Endian")
+)
+
+SEND ASSOCIATE-AC (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Secondary Capture Image Storage SOP Class", 0, "Implicit VR Little Endian")
+)
+

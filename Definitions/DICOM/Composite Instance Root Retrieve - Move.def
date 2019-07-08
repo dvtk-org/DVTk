@@ -1,0 +1,108 @@
+#
+# Generated manually on: Wed March 23 2011 to support the testing of 
+# PS3.4(2009) "Instance and  FrameLevel Retrieve SOP Classes"        
+#
+
+DEFINE SYSTEM "DICOM" "3.0"
+"DICOM" "3.0"
+ENDDEFINE
+
+
+#
+# Definition of the Composite Instance Root Retrieve Information Model - MOVE SOP Class
+#
+DEFINE C-MOVE-RQ "Composite Instance Root Retrieve - MOVE"
+
+SOPCLASS "1.2.840.10008.5.1.4.1.2.4.2" "Composite Instance Root Retrieve Information Model - MOVE SOP Class"
+
+MODULE "Composite Instance Root Information Model" M
+(0x00080052,1,CS,1,E,"IMAGE"
+                   | "FRAME")          "Query/Retrieve Level"
+
+INCLUDEMACRO                           "Image level Composite Instance Root Information Model - MOVE SOP Class SCU" : VALUE 0x00080052="IMAGE"
+INCLUDEMACRO                           "Frame level Composite Instance Root Information Model - MOVE SOP Class SCU" : VALUE 0x00080052="FRAME"
+ENDDEFINE
+
+#
+# Definition of the Patient Root Query/Retrieve Information Model - MOVE SOP Class
+#
+DEFINE C-MOVE-RSP "Composite Instance Root Retrieve - MOVE"
+
+SOPCLASS "1.2.840.10008.5.1.4.1.2.4.2" "Composite Instance Root Retrieve Information Model - MOVE SOP Class"
+
+MODULE "Composite Instance Root Information Model" M
+(0x00080052,1,CS,1)                                 "Query/Retrieve Level"
+INCLUDEMACRO                                        "Image level Composite Instance Root Information Model - MOVE SOP Class SCP"
+INCLUDEMACRO                                        "Frame level Composite Instance Root Information Model - MOVE SOP Class SCP"
+ENDDEFINE
+
+#
+# Definition of the Composite Instance Root Query/Retrieve Information Model - MOVE SOP Class
+#
+DEFINE C-CANCEL-RQ "Composite Instance Root Retrieve - MOVE"
+
+SOPCLASS "1.2.840.10008.5.1.4.1.2.4.2" "Composite Instance Root Retrieve Information Model - MOVE SOP Class"
+ENDDEFINE
+
+################################################################################
+# MACRO DEFINITIONS
+################################################################################
+
+DEFINE MACRO "Image level Composite Instance Root Information Model - MOVE SOP Class SCU"
+(0x00080018,1,UI,1)                                 "SOP Instance UID"
+ENDDEFINE
+
+DEFINE MACRO "Frame level Composite Instance Root Information Model - MOVE SOP Class SCU"
+(0x00080018,1,UI,1)                                 "SOP Instance UID"
+(0x00081161,1,LO,1)                                 "Frame Number"
+(0x00081162,1,LO,1)                                 "Calculated Frame List"
+(0x00081163,1,FD,1)                                 "Time Range"
+ENDDEFINE
+
+DEFINE MACRO "Image level Composite Instance Root Information Model - MOVE SOP Class SCP"
+(0x00080018,1C,UI,1)                                "SOP Instance UID"        : "Only present in SCP response when requested."
+ENDDEFINE
+
+DEFINE MACRO "Frame level Composite Instance Root Information Model - MOVE SOP Class SCP"
+(0x00081161,1C,LO,1)                                "Frame Number"            : "Only present in SCP response when requested."
+ENDDEFINE
+
+################################################################################
+# COMMAND DEFINITIONS
+################################################################################
+
+
+DEFINE C-MOVE-RQ
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000002,1,UI,1)                                 "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x0021)                        "Command Field"
+(0x00000110,1,US,1)                                 "Message ID"
+(0x00000600,1,AE,1)                                 "Move Destination"
+(0x00000700,1,US,1,E,0x0000
+                   | 0x0001
+                   | 0x0002)                        "Priority"
+(0x00000800,1,US,1)                                 "Data Set Type"
+ENDDEFINE
+
+DEFINE C-MOVE-RSP
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000002,1,UI,1)                                 "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x8021)                        "Command Field"
+(0x00000120,1,US,1)                                 "Message ID Being Responded To"
+(0x00000800,1,US,1,E,0x0101)                        "Data Set Type"
+(0x00000900,1,US,1)                                 "Status"
+(0x00000901,3,AT,1:n)                               "Offending Element"
+(0x00000902,3,LO,1)                                 "Error Comment"
+(0x00000903,3,US,1)                                 "Error ID"
+(0x00001020,3,US,1)                                 "Number of Remaining Sub-operations"
+(0x00001021,3,US,1)                                 "Number of Complete Sub-operations"
+(0x00001022,3,US,1)                                 "Number of Failed Sub-operations"
+(0x00001023,3,US,1)                                 "Number of Warning Sub-operations"
+ENDDEFINE
+
+DEFINE C-CANCEL-RQ
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000100,1,US,1,E,0x0FFF)                        "Command Field"
+(0x00000120,1,US,1)                                 "Message ID Being Responded To"
+(0x00000800,1,US,1,E,0x0101)                        "Data Set Type"
+ENDDEFINE

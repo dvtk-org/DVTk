@@ -1,0 +1,41 @@
+##
+## DVT DICOMScript
+##
+## Name: acse_15_scp.ds
+##
+## Test Suite Ref: 3.2.2.3.
+## Test Case Ref: 1, 2, 5 
+##
+## Test Suite Ref: 3.2.6.1.
+## Test Case Ref: 1, 2
+##
+## Pre-conditions:
+##	No association.
+##
+## Test Scenario:
+##	Test use of string -> uid mapping.
+##	Test parsing of complete ACSE requests.
+##	Receive Associate Request - with no reference object.
+##	Send Abort Request - with all parameters defined.
+##
+## Expected Result:
+## 	Validation: 2 error(s), 0 warning(s)
+## 	User Validation: 0 error(s), 0 warning(s)
+## 	General Error: 1 error(s), 0 warning(s)
+##
+## Post-conditions:
+##	No association.
+##
+RECEIVE ASSOCIATE-RQ
+
+SEND ABORT-RQ (
+	SOURCE 0
+	REASON 0
+)
+
+##
+## Script Result should be:
+## Validation: 2 error(s), 0 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 0 error(s), 0 warning(s)
+##

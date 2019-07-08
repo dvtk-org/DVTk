@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EBCDD12E-4CDE-4DE7-BDA9-B41392F4AF12}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>DVTk Based Application.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>DICOMNetworkAnalyzer</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DICOMSniffer</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <DebugType>
+    </DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DVTK, Version=1.2.3.4, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DVTk_Library\DVTK.dll</HintPath>
+    </Reference>
+    <Reference Include="DvtkApplicationLayer, Version=1.2.3.4, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DVTk_Library\DvtkApplicationLayer.dll</HintPath>
+    </Reference>
+    <Reference Include="DvtkData, Version=1.2.3.4, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DVTk_Library\DvtkData.dll</HintPath>
+    </Reference>
+    <Reference Include="DvtkDicomUnicodeConversion, Version=2.3.0.5, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DVTk_Library\DvtkDicomUnicodeConversion.dll</HintPath>
+    </Reference>
+    <Reference Include="DvtkHighLevelInterface, Version=1.2.3.4, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DVTk_Library\DvtkHighLevelInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="DvtkInformationEntity, Version=1.2.3.4, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DVTk_Library\DvtkInformationEntity.dll</HintPath>
+    </Reference>
+    <Reference Include="DVTKManagedCodeAdapter, Version=1.2.3.4, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DVTk_Library\DVTKManagedCodeAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Source\Analysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\AssemblyInfo.cs" />
+    <Compile Include="Source\Association.cs" />
+    <Compile Include="Source\Const.cs" />
+    <Compile Include="Source\DataDictionary.cs" />
+    <Compile Include="Source\Device.cs" />
+    <Compile Include="Source\DICOMAnalyser.cs" />
+    <Compile Include="Source\DICOMSniffer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\DICOMUtility.cs" />
+    <Compile Include="Source\dotnetWinpCap.cs" />
+    <Compile Include="Source\HelperFunctions.cs" />
+    <Compile Include="Source\HLIThread.cs" />
+    <Compile Include="Source\PacketHeader.cs" />
+    <Compile Include="Source\PacketINTERNET.cs" />
+    <Compile Include="Source\PacketParser.cs" />
+    <Compile Include="Source\PacketTCP.cs" />
+    <Compile Include="Source\PDUOverview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\ServiceElementPDUs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\SnifferInterface.cs" />
+    <Compile Include="Source\SnifferObject.cs" />
+    <Compile Include="Source\TCPPacket.cs" />
+    <Compile Include="Source\TCPParser.cs" />
+    <Compile Include="Source\TCPState.cs" />
+    <Compile Include="Source\UserOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\VR.cs" />
+    <Compile Include="Source\WinPCap.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Source\Analysis.resx">
+      <DependentUpon>Analysis.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\DICOMSniffer.resx">
+      <DependentUpon>DICOMSniffer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\PDUOverview.resx">
+      <DependentUpon>PDUOverview.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\ServiceElementPDUs.resx">
+      <DependentUpon>ServiceElementPDUs.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\UserOptions.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UserOptions.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DVTk Based Application.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>SET LIBRARY_DIRECTORY=$(ProjectDir)..\DVTk_Library\Releases\5_0_0_0\$(ConfigurationName)
+REM SET LIBRARY_DIRECTORY=$(ProjectDir)..\DVTk_Library\Builds\$(ConfigurationName)
+
+IF NOT EXIST "%25LIBRARY_DIRECTORY%25" (
+ECHO Unable to find library directory "%25LIBRARY_DIRECTORY%25"
+EXIT -1
+)
+
+del /Q /S "$(ProjectDir)DVTk_Library\*.*"
+
+IF NOT EXIST "$(ProjectDir)DVTk_Library" (
+mkdir "$(ProjectDir)DVTk_Library"
+)
+
+xcopy /Y /E "%25LIBRARY_DIRECTORY%25" "$(ProjectDir)DVTk_Library"
+</PreBuildEvent>
+    <PostBuildEvent>Echo Creating directories and copying files to "$(TargetDir)".
+
+copy "$(ProjectDir)Resources\NetworkAnalyzer.ses" "$(TargetDir)"
+copy "$(ProjectDir)DVTk_Library\CharacterSets.dat" "$(TargetDir)"
+copy "$(ProjectDir)DVTk_Library\DVT_RESULTS.xslt" "$(TargetDir)"
+copy "$(ProjectDir)Resources\UserOptions.txt" "$(TargetDir)"
+copy "$(ProjectDir)Resources\Microsoft.mshtml.dll" "$(TargetDir)"
+
+IF NOT EXIST "$(TargetDir)Results" (
+mkdir "$(TargetDir)Results"
+)
+
+IF NOT EXIST "$(TargetDir)Dcm" (
+mkdir "$(TargetDir)DCM"
+)
+
+IF NOT EXIST "$(TargetDir)CharacterSets" (
+mkdir "$(TargetDir)CharacterSets"
+)
+xcopy /Y "$(ProjectDir)DVTk_Library\CharacterSets" "$(TargetDir)CharacterSets"
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>

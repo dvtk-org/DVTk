@@ -1,0 +1,59 @@
+## Example DVT Dicom Script
+## Copyright (c) 2001-2005
+## Philips Medical Systems NL B.V., Agfa-Gevaert N.V.
+
+##
+## Test Script for FIND SOP Classes - SCU
+##
+
+SEND ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+	("Patient Root Query/Retrieve Information Model - FIND SOP Class",
+         "Implicit VR Little Endian")
+)
+
+RECEIVE ASSOCIATE-AC (
+        PRESENTATION-CONTEXT-ITEMS
+	("Patient Root Query/Retrieve Information Model - FIND SOP Class",
+         0,
+         "Implicit VR Little Endian")
+)
+
+
+SEND C-FIND-RQ "Patient Root Query/Retrieve - FIND" (
+(0x00000002, "Patient Root Query/Retrieve Information Model - FIND SOP Class")
+
+(0x00080052, "PATIENT")
+(0x00100010, "O*")
+(0x00100020, "")
+)
+
+RECEIVE C-FIND-RSP "Patient Root Query/Retrieve - FIND" (
+(0x00000002, "Patient Root Query/Retrieve Information Model - FIND SOP Class")
+(0x00000900, 0xFF00)
+
+(0x00080052, "PATIENT")
+(0x00080054, "DVT")
+(0x00100010, "One^Secondary Capture Image")
+(0x00100020, "SC-I1")
+)
+
+RECEIVE C-FIND-RSP "Patient Root Query/Retrieve - FIND" (
+(0x00000002, "Patient Root Query/Retrieve Information Model - FIND SOP Class")
+(0x00000900, 0xFF00)
+)
+
+RECEIVE C-FIND-RSP "Patient Root Query/Retrieve - FIND" (
+(0x00000002, "Patient Root Query/Retrieve Information Model - FIND SOP Class")
+(0x00000900, 0xFF00)
+)
+
+RECEIVE C-FIND-RSP (
+(0x00000900, 0x0000)
+)
+
+
+SEND RELEASE-RQ
+
+RECEIVE RELEASE-RP
+

@@ -1,0 +1,55 @@
+## Example DVT Dicom Script
+## Copyright (c) 2001-2005
+## Philips Medical Systems NL B.V., Agfa-Gevaert N.V.
+
+##
+## Test Script for Worklist Management SOP Classes - SCU
+##
+
+SEND ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Modality Worklist Information Model - FIND SOP Class",
+         "Explicit VR Big Endian",
+         "Explicit VR Little Endian",
+         "Implicit VR Little Endian")
+)
+
+RECEIVE ASSOCIATE-AC (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Modality Worklist Information Model - FIND SOP Class",
+         0,
+         "Implicit VR Little Endian")
+        MAXIMUM-LENGTH-RECEIVED 4096
+)
+
+SEND C-FIND-RQ "Modality Worklist - FIND" (
+(0x00000002, "Modality Worklist Information Model - FIND SOP Class")
+
+(0x00100010, "") # Patient's Name
+(0x00100020, "") # Patient ID
+(0x0020000D, "") # Study Instance UID
+(0x00400100, SQ,
+#>(0x00400001, "DVT") # Scheduled Station AE Title
+#>(0x00400002, AUTOSET) # Scheduled Procedure Step Start Date
+#>(0x00080060, "CT") # CT Modality
+)
+)
+
+RECEIVE C-FIND-RSP "Modality Worklist - FIND" 
+
+RECEIVE C-FIND-RSP "Modality Worklist - FIND"
+RECEIVE C-FIND-RSP "Modality Worklist - FIND" 
+RECEIVE C-FIND-RSP "Modality Worklist - FIND" 
+RECEIVE C-FIND-RSP "Modality Worklist - FIND" 
+RECEIVE C-FIND-RSP "Modality Worklist - FIND" 
+RECEIVE C-FIND-RSP "Modality Worklist - FIND" 
+
+
+RECEIVE C-FIND-RSP (
+(0x00000900, 0x0000)
+)
+
+SEND RELEASE-RQ
+
+RECEIVE RELEASE-RP
+

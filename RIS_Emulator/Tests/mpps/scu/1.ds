@@ -1,0 +1,95 @@
+## Example DVT Dicom Script
+## Copyright (c) 2001-2005
+## Philips Medical Systems NL B.V., Agfa-Gevaert N.V.
+
+##
+## SCU MPPS DICOMScript: 1.ds
+##
+## Pre-conditions:
+##      - no association
+##
+## Test Scenario:
+##      - send association for Modality Performed Procedure Step Service Class
+##              - little endian implicit VR
+##      - expect accept association - Result/Reason = 0 - success
+##	- send N-CREATE-RQ Modality Performed Procedure Step - "IN PROGRESS"
+##	- expect N-CREATE-RSP - status = 0000 (success)
+##	- send association release request
+##	- expect association release response
+##
+## Expected Result:
+##      - SCU signals MPPS "IN PROGRESS"
+##
+## Post-conditions:
+##      - no association
+##
+SEND ASSOCIATE-RQ (
+PRESENTATION-CONTEXT-ITEMS
+("Modality Performed Procedure Step SOP Class", "Implicit VR Little Endian")
+)
+
+RECEIVE ASSOCIATE-AC (
+PRESENTATION-CONTEXT-ITEMS
+("Modality Performed Procedure Step SOP Class", 0, "Implicit VR Little Endian")
+)
+
+
+SEND N-CREATE-RQ "Modality Performed Procedure Step"(
+(0x00000002, "Modality Performed Procedure Step SOP Class")
+(0x00001000, "NEW:MppsUID")
+
+(0x00100010, "Doe^John") # Patient's Name
+(0x00100020, "P123456") # Patient ID
+(0x00100030, "19501123") # Patient's Birth Date
+(0x00100040, "M") # Patient's Sex"
+(0x00400270,SQ,
+>(0x0020000D, "NEW:StudyInstanceUID") # Study Instance UID
+>(0x00081110,SQ,
+ >(0x00081150, "1.2.840.10008.3.1.2.3.1") # Referenced SOP Class UID
+ >(0x00081155, "StudyInstanceUID") # Referenced SOP Instance UID
+ ) # Referenced Study Sequence
+>(0x00080050, "NEW:AccessionNumber") # Accession Number
+>(0x00401001, "NEW:RequestedProcedureID") # Requested Procedure ID
+>(0x00400007, "SPSD-1") # Scheduled Procedure Step Description
+>(0x00400009, "NEW:ScheduledProcedureStepID") # Scheduled Procedure Step ID
+>(0x00321060, "RPD-1") # Requested Procedure Description
+>(0x00400008, SQ,
+ >(0x00080100, SH, "SAIC-1") # Code Value
+ >(0x00080102, SH, "DVT" ) # Coding Scheme Designator
+ >(0x00080104, LO, "Scheduled Action Item Code 1") # Code Meaning
+ ) # Scheduled Action Item Code Sequence
+) # Scheduled Step Attribute Sequence
+(0x00400241, "AE_CR1") # Performed Station AE Title
+(0x00400242, "CR1") # Performed Station Name
+(0x00400243, "CR_ROOM1") # Performed Location
+(0x00400244, "TODAY") # Performed Procedure Step Start Date
+(0x00400245, "NOW") # Performed Procedure Step Start Time
+(0x00400250, "") # Performed Procedure Step End Date
+(0x00400251, "") # Performed Procedure Step End Time
+(0x00400253, "PPSID_1") # Performed Procedure Step ID
+(0x00400252, "IN PROGRESS") # Performed Procedure Step Status
+(0x00400254, "ARM-C") # Performed Procedure Step Description
+(0x00400255, "") # Performed Procedure Type Description
+(0x00400340,SQ,) # Performed Series Sequence
+(0x00081032,SQ,
+>(0x00080100, "PC-1") # Code Value
+>(0x00080102, "DVT") # Coding Scheme Designator
+>(0x00080104, "Procedure Code 1") # Code Meaning
+) # Procedure Code Sequence
+(0x00080060, "CR") # Modality
+(0x00200010, "RPID") # Study ID
+(0x00400260,SQ,
+>(0x00080100, "PAI-1") # Code Value
+>(0x00080102, "DVT") # Coding Scheme Designator
+>(0x00080104, "Performed Action Item 1") # Code Meaning
+) # Performed Action Item Sequence
+)
+
+RECEIVE N-CREATE-RSP(
+(0x00000002, "Modality Performed Procedure Step SOP Class")
+(0x00001000, "MppsUID")
+(0x00000900, 0x0000)
+)
+
+SEND RELEASE-RQ
+RECEIVE RELEASE-RP

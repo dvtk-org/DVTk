@@ -1,0 +1,62 @@
+## Example DVT Dicom Script
+## Copyright (c) 2001-2005
+## Philips Medical Systems NL B.V., Agfa-Gevaert N.V.
+
+##
+## SCU MPPS DICOMScript: 2.ds
+##
+## Pre-conditions:
+##      - no association
+##
+## Test Scenario:
+##      - send association for Modality Performed Procedure Step Service Class
+##              - little endian implicit VR
+##      - expect accept association - Result/Reason = 0 - success
+##	- send N-SET-RQ Modality Performed Procedure Step - "COMPLETED"
+##	- expect N-SET-RSP - status = 0000 (success)
+##	- send association release request
+##	- expect association release response
+##
+## Expected Result:
+##      - SCU signals MPPS "COMPLETED"
+##
+## Post-conditions:
+##      - no association
+##
+SEND ASSOCIATE-RQ (
+PRESENTATION-CONTEXT-ITEMS
+("Modality Performed Procedure Step SOP Class", "Implicit VR Little Endian")
+)
+
+RECEIVE ASSOCIATE-AC (
+PRESENTATION-CONTEXT-ITEMS
+("Modality Performed Procedure Step SOP Class", 0, "Implicit VR Little Endian")
+)
+
+
+SEND N-SET-RQ "Modality Performed Procedure Step"(
+(0x00000003, "Modality Performed Procedure Step SOP Class")
+(0x00001001, "MppsUID")
+
+(0x00400252, "COMPLETED") # Performed Procedure Step Status
+(0x00400254, "ARM-C") # Performed Procedure Step Description
+(0x00081032,SQ,
+>(0x00080100, "PC-1") # Code Value
+>(0x00080102, "DVT") # Coding Scheme Designator
+>(0x00080104, "Procedure Code 1") # Code Meaning
+) # Procedure Code Sequence
+(0x00400260,SQ,
+>(0x00080100, "PAI-1") # Code Value
+>(0x00080102, "DVT") # Coding Scheme Designator
+>(0x00080104, "Performed Action Item 1") # Code Meaning
+) # Performed Action Item Sequence
+)
+
+RECEIVE N-SET-RSP(
+(0x00000002, "Modality Performed Procedure Step SOP Class")
+(0x00001000, "MppsUID")
+(0x00000900, 0x0000)
+)
+
+SEND RELEASE-RQ
+RECEIVE RELEASE-RP

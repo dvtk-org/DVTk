@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>Attribute Group</ProjectName>
+    <ProjectGuid>{58A5B797-F08B-4837-96CF-FFBDB7CB3F02}</ProjectGuid>
+    <RootNamespace>AttributeGroup</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\Release\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AttributeGroup</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AttributeGroup</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>..\include;..\global;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_WINDOWS;NATIVE_ENDIAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile>.\Release/AttributeGroup.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>.\Release\AttributeGroup.lib</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\include;..\global;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_WINDOWS;NATIVE_ENDIAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\Debug/AttributeGroup.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <CompileAs>Default</CompileAs>
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>.\Debug\AttributeGroup.lib</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="attribute.cpp" />
+    <ClCompile Include="attribute_group.cpp" />
+    <ClCompile Include="base_string.cpp" />
+    <ClCompile Include="base_value.cpp" />
+    <ClCompile Include="ext_char_set_definition.cpp" />
+    <ClCompile Include="ext_char_set_file.cpp" />
+    <ClCompile Include="ext_char_set_lexer.cpp" />
+    <ClCompile Include="ext_char_set_parser.cpp" />
+    <ClCompile Include="ob_value_stream.cpp" />
+    <ClCompile Include="ob_value_stream_encode.cpp" />
+    <ClCompile Include="od_value_stream.cpp" />
+    <ClCompile Include="of_value_stream.cpp" />
+    <ClCompile Include="ol_value_stream.cpp" />
+    <ClCompile Include="other_value.cpp" />
+    <ClCompile Include="other_value_stream.cpp" />
+    <ClCompile Include="other_value_stream_encode.cpp" />
+    <ClCompile Include="ov_value_stream.cpp" />
+    <ClCompile Include="ow_value_stream.cpp" />
+    <ClCompile Include="specific_character_set.cpp" />
+    <ClCompile Include="value_ae.cpp" />
+    <ClCompile Include="value_as.cpp" />
+    <ClCompile Include="value_at.cpp" />
+    <ClCompile Include="value_cs.cpp" />
+    <ClCompile Include="value_da.cpp" />
+    <ClCompile Include="value_ds.cpp" />
+    <ClCompile Include="value_dt.cpp" />
+    <ClCompile Include="value_fd.cpp" />
+    <ClCompile Include="value_fl.cpp" />
+    <ClCompile Include="value_is.cpp" />
+    <ClCompile Include="value_list.cpp" />
+    <ClCompile Include="value_lo.cpp" />
+    <ClCompile Include="value_lt.cpp" />
+    <ClCompile Include="value_ob.cpp" />
+    <ClCompile Include="value_od.cpp" />
+    <ClCompile Include="value_of.cpp" />
+    <ClCompile Include="value_ol.cpp" />
+    <ClCompile Include="value_ov.cpp" />
+    <ClCompile Include="value_ow.cpp" />
+    <ClCompile Include="value_pn.cpp" />
+    <ClCompile Include="value_sh.cpp" />
+    <ClCompile Include="value_sl.cpp" />
+    <ClCompile Include="value_sq.cpp" />
+    <ClCompile Include="value_ss.cpp" />
+    <ClCompile Include="value_st.cpp" />
+    <ClCompile Include="value_tm.cpp" />
+    <ClCompile Include="value_uc.cpp" />
+    <ClCompile Include="value_ui.cpp" />
+    <ClCompile Include="value_ul.cpp" />
+    <ClCompile Include="value_un.cpp" />
+    <ClCompile Include="value_ur.cpp" />
+    <ClCompile Include="value_us.cpp" />
+    <ClCompile Include="value_ut.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="attribute.h" />
+    <ClInclude Include="attribute_group.h" />
+    <ClInclude Include="base_string.h" />
+    <ClInclude Include="base_value.h" />
+    <ClInclude Include="ext_char_set_definition.h" />
+    <ClInclude Include="ext_char_set_file.h" />
+    <ClInclude Include="ext_char_set_parser.cpp.h" />
+    <ClInclude Include="ob_value_stream.h" />
+    <ClInclude Include="od_value_stream.h" />
+    <ClInclude Include="of_value_stream.h" />
+    <ClInclude Include="ol_value_stream.h" />
+    <ClInclude Include="other_value.h" />
+    <ClInclude Include="other_value_stream.h" />
+    <ClInclude Include="ov_value_stream.h" />
+    <ClInclude Include="ow_value_stream.h" />
+    <ClInclude Include="specific_character_set.h" />
+    <ClInclude Include="value_ae.h" />
+    <ClInclude Include="value_as.h" />
+    <ClInclude Include="value_at.h" />
+    <ClInclude Include="value_cs.h" />
+    <ClInclude Include="value_da.h" />
+    <ClInclude Include="value_ds.h" />
+    <ClInclude Include="value_dt.h" />
+    <ClInclude Include="value_fd.h" />
+    <ClInclude Include="value_fl.h" />
+    <ClInclude Include="value_is.h" />
+    <ClInclude Include="value_list.h" />
+    <ClInclude Include="value_lo.h" />
+    <ClInclude Include="value_lt.h" />
+    <ClInclude Include="value_ob.h" />
+    <ClInclude Include="value_od.h" />
+    <ClInclude Include="value_of.h" />
+    <ClInclude Include="value_ol.h" />
+    <ClInclude Include="value_ov.h" />
+    <ClInclude Include="value_ow.h" />
+    <ClInclude Include="value_pn.h" />
+    <ClInclude Include="value_sh.h" />
+    <ClInclude Include="value_sl.h" />
+    <ClInclude Include="value_sq.h" />
+    <ClInclude Include="value_ss.h" />
+    <ClInclude Include="value_st.h" />
+    <ClInclude Include="value_tm.h" />
+    <ClInclude Include="value_uc.h" />
+    <ClInclude Include="value_ui.h" />
+    <ClInclude Include="value_ul.h" />
+    <ClInclude Include="value_un.h" />
+    <ClInclude Include="value_ur.h" />
+    <ClInclude Include="value_us.h" />
+    <ClInclude Include="value_ut.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ext_char_set_lexer.l">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Step on %(FullPath)</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\tools\div\l.bat "%(RootDir)%(Directory)" %(Filename)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Step on %(FullPath)</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\tools\div\l.bat "%(RootDir)%(Directory)" %(Filename)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(Filename).cpp;%(Outputs)</Outputs>
+      <FileType>Document</FileType>
+    </None>
+    <CustomBuild Include="ext_char_set_parser.y">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Step on %(FullPath)</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"%(RootDir)%(Directory)"createparserandlexer.bat %(RootDir)%(Directory) %(Filename)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).cpp;%(Filename).cpp.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Step on %(FullPath)</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"%(RootDir)%(Directory)"createparserandlexer.bat %(RootDir)%(Directory) %(Filename)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(Filename).cpp;%(Filename).cpp.h;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

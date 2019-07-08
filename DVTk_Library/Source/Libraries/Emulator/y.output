@@ -1,0 +1,297 @@
+
+Grammar
+rule 1    DefinitionGrammar -> DefinitionComponents
+rule 2    DefinitionComponents -> DefinitionChoice
+rule 3    DefinitionComponents -> DefinitionComponents DefinitionChoice
+rule 4    DefinitionChoice -> Definition
+rule 5    DefinitionChoice -> ImageDisplayFormatDef
+rule 6    DefinitionChoice -> AnnotationDisplayFormatIDDef
+rule 7    Definition -> BeginDefine SystemDef EndDefine
+rule 8    BeginDefine -> T_DEFINE
+rule 9    EndDefine -> T_ENDDEFINE
+rule 10   SystemDef -> T_SYSTEM SystemDefinition AEDefinition
+rule 11   SystemDefinition -> STRING STRING
+rule 12   AEDefinition -> STRING STRING
+rule 13   ImageDisplayFormatDef -> T_IMAGEDISPLAYFORMAT STRING INTEGER
+rule 14   AnnotationDisplayFormatIDDef -> T_ANNOTATIONDISPLAYFORMATID STRING INTEGER
+
+Terminals, with rules where they appear
+
+$ (-1)
+error (256)
+T_SYSTEM (258) 10
+T_DEFINE (259) 8
+T_ENDDEFINE (260) 9
+T_IMAGEDISPLAYFORMAT (261) 13
+T_ANNOTATIONDISPLAYFORMATID (262) 14
+STRING (263) 11 12 13 14
+INTEGER (264) 13 14
+
+Nonterminals, with rules where they appear
+
+DefinitionGrammar (10)
+    on left: 1
+DefinitionComponents (11)
+    on left: 2 3, on right: 1 3
+DefinitionChoice (12)
+    on left: 4 5 6, on right: 2 3
+Definition (13)
+    on left: 7, on right: 4
+BeginDefine (14)
+    on left: 8, on right: 7
+EndDefine (15)
+    on left: 9, on right: 7
+SystemDef (16)
+    on left: 10, on right: 7
+SystemDefinition (17)
+    on left: 11, on right: 10
+AEDefinition (18)
+    on left: 12, on right: 10
+ImageDisplayFormatDef (19)
+    on left: 13, on right: 5
+AnnotationDisplayFormatIDDef (20)
+    on left: 14, on right: 6
+
+
+state 0
+
+    T_DEFINE	shift, and go to state 1
+    T_IMAGEDISPLAYFORMAT	shift, and go to state 2
+    T_ANNOTATIONDISPLAYFORMATID	shift, and go to state 3
+
+    DefinitionGrammar	go to state 25
+    DefinitionComponents	go to state 4
+    DefinitionChoice	go to state 5
+    Definition	go to state 6
+    BeginDefine	go to state 7
+    ImageDisplayFormatDef	go to state 8
+    AnnotationDisplayFormatIDDef	go to state 9
+
+
+
+state 1
+
+    BeginDefine  ->  T_DEFINE .   (rule 8)
+
+    $default	reduce using rule 8 (BeginDefine)
+
+
+
+state 2
+
+    ImageDisplayFormatDef  ->  T_IMAGEDISPLAYFORMAT . STRING INTEGER   (rule 13)
+
+    STRING	shift, and go to state 10
+
+
+
+state 3
+
+    AnnotationDisplayFormatIDDef  ->  T_ANNOTATIONDISPLAYFORMATID . STRING INTEGER   (rule 14)
+
+    STRING	shift, and go to state 11
+
+
+
+state 4
+
+    DefinitionGrammar  ->  DefinitionComponents .   (rule 1)
+    DefinitionComponents  ->  DefinitionComponents . DefinitionChoice   (rule 3)
+
+    T_DEFINE	shift, and go to state 1
+    T_IMAGEDISPLAYFORMAT	shift, and go to state 2
+    T_ANNOTATIONDISPLAYFORMATID	shift, and go to state 3
+
+    $default	reduce using rule 1 (DefinitionGrammar)
+
+    DefinitionChoice	go to state 12
+    Definition	go to state 6
+    BeginDefine	go to state 7
+    ImageDisplayFormatDef	go to state 8
+    AnnotationDisplayFormatIDDef	go to state 9
+
+
+
+state 5
+
+    DefinitionComponents  ->  DefinitionChoice .   (rule 2)
+
+    $default	reduce using rule 2 (DefinitionComponents)
+
+
+
+state 6
+
+    DefinitionChoice  ->  Definition .   (rule 4)
+
+    $default	reduce using rule 4 (DefinitionChoice)
+
+
+
+state 7
+
+    Definition  ->  BeginDefine . SystemDef EndDefine   (rule 7)
+
+    T_SYSTEM	shift, and go to state 13
+
+    SystemDef	go to state 14
+
+
+
+state 8
+
+    DefinitionChoice  ->  ImageDisplayFormatDef .   (rule 5)
+
+    $default	reduce using rule 5 (DefinitionChoice)
+
+
+
+state 9
+
+    DefinitionChoice  ->  AnnotationDisplayFormatIDDef .   (rule 6)
+
+    $default	reduce using rule 6 (DefinitionChoice)
+
+
+
+state 10
+
+    ImageDisplayFormatDef  ->  T_IMAGEDISPLAYFORMAT STRING . INTEGER   (rule 13)
+
+    INTEGER	shift, and go to state 15
+
+
+
+state 11
+
+    AnnotationDisplayFormatIDDef  ->  T_ANNOTATIONDISPLAYFORMATID STRING . INTEGER   (rule 14)
+
+    INTEGER	shift, and go to state 16
+
+
+
+state 12
+
+    DefinitionComponents  ->  DefinitionComponents DefinitionChoice .   (rule 3)
+
+    $default	reduce using rule 3 (DefinitionComponents)
+
+
+
+state 13
+
+    SystemDef  ->  T_SYSTEM . SystemDefinition AEDefinition   (rule 10)
+
+    STRING	shift, and go to state 17
+
+    SystemDefinition	go to state 18
+
+
+
+state 14
+
+    Definition  ->  BeginDefine SystemDef . EndDefine   (rule 7)
+
+    T_ENDDEFINE	shift, and go to state 19
+
+    EndDefine	go to state 20
+
+
+
+state 15
+
+    ImageDisplayFormatDef  ->  T_IMAGEDISPLAYFORMAT STRING INTEGER .   (rule 13)
+
+    $default	reduce using rule 13 (ImageDisplayFormatDef)
+
+
+
+state 16
+
+    AnnotationDisplayFormatIDDef  ->  T_ANNOTATIONDISPLAYFORMATID STRING INTEGER .   (rule 14)
+
+    $default	reduce using rule 14 (AnnotationDisplayFormatIDDef)
+
+
+
+state 17
+
+    SystemDefinition  ->  STRING . STRING   (rule 11)
+
+    STRING	shift, and go to state 21
+
+
+
+state 18
+
+    SystemDef  ->  T_SYSTEM SystemDefinition . AEDefinition   (rule 10)
+
+    STRING	shift, and go to state 22
+
+    AEDefinition	go to state 23
+
+
+
+state 19
+
+    EndDefine  ->  T_ENDDEFINE .   (rule 9)
+
+    $default	reduce using rule 9 (EndDefine)
+
+
+
+state 20
+
+    Definition  ->  BeginDefine SystemDef EndDefine .   (rule 7)
+
+    $default	reduce using rule 7 (Definition)
+
+
+
+state 21
+
+    SystemDefinition  ->  STRING STRING .   (rule 11)
+
+    $default	reduce using rule 11 (SystemDefinition)
+
+
+
+state 22
+
+    AEDefinition  ->  STRING . STRING   (rule 12)
+
+    STRING	shift, and go to state 24
+
+
+
+state 23
+
+    SystemDef  ->  T_SYSTEM SystemDefinition AEDefinition .   (rule 10)
+
+    $default	reduce using rule 10 (SystemDef)
+
+
+
+state 24
+
+    AEDefinition  ->  STRING STRING .   (rule 12)
+
+    $default	reduce using rule 12 (AEDefinition)
+
+
+
+state 25
+
+    $   	go to state 26
+
+
+
+state 26
+
+    $   	go to state 27
+
+
+
+state 27
+
+    $default	accept

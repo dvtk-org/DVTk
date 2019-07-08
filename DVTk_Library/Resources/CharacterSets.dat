@@ -1,0 +1,173 @@
+#
+# Handmade definition file.
+# 1) Defines the character sets used for VR validation.
+#
+
+DEFINE SYSTEM "DICOM" "3.0"
+"DICOM" "3.0"
+ENDDEFINE
+
+
+###############################################################################
+#
+# Single Byte without code extensions
+#
+###############################################################################
+DEFINE CHARACTER_SET "Default repertoire" NO_CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "none", "", ESC "", "ISO-IR 6", "94", "G0", "ISO 646")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Unicode in UTF8" NO_CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO_IR 192", "", ESC "", "ISO-IR 192", "96", "G1", "ISO 192")
+CODE_ELEMENT ("SINGLE" ,"ISO_IR 192", "", ESC "", "ISO-IR 6",   "94", "G0", "ISO 646")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "GB18030" NO_CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "GB18030", "", ESC "", "GB18030", "96", "G1", "GB18030")
+CODE_ELEMENT ("SINGLE" ,"GB18030", "", ESC "", "ISO-IR 6",   "94", "G0", "ISO 646")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Latin alphabet No. 1" NO_CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO_IR 100", "", ESC "", "ISO-IR 100", "96", "G1", "Supplementary set of ISO 8859")
+CODE_ELEMENT ("SINGLE" ,"ISO_IR 100", "", ESC "", "ISO-IR 6",   "94", "G0", "ISO 646")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Latin alphabet No. 2" NO_CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO_IR 101", "", ESC "", "ISO-IR 101", "96", "G1", "Supplementary set of ISO 8859")
+CODE_ELEMENT ("SINGLE" ,"ISO_IR 101", "", ESC "", "ISO-IR 6",   "94", "G0", "ISO 646")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Latin alphabet No. 3" NO_CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO_IR 109", "", ESC "", "ISO-IR 101", "96", "G1", "Supplementary set of ISO 8859")
+CODE_ELEMENT ("SINGLE" ,"ISO_IR 109", "", ESC "", "ISO-IR 6",   "94", "G0", "ISO 646")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Latin alphabet No. 4" NO_CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO_IR 110", "", ESC "", "ISO-IR 110", "96", "G1", "Supplementary set of ISO 8859")
+CODE_ELEMENT ("SINGLE" ,"ISO_IR 110", "", ESC "", "ISO-IR 6",   "94", "G0", "ISO 646")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Cyrillic" NO_CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO_IR 114", "", ESC "", "ISO-IR 114", "96", "G1", "Supplementary set of ISO 8859")
+CODE_ELEMENT ("SINGLE" ,"ISO_IR 114", "", ESC "", "ISO-IR 6",   "94", "G0", "ISO 646")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Arabic" NO_CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO_IR 127", "", ESC "", "ISO-IR 127", "96", "G1", "Supplementary set of ISO 8859")
+CODE_ELEMENT ("SINGLE" ,"ISO_IR 127", "", ESC "", "ISO-IR 6",   "94", "G0", "ISO 646")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Greek" NO_CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO_IR 126", "", ESC "", "ISO-IR 126", "96", "G1", "Supplementary set of ISO 8859")
+CODE_ELEMENT ("SINGLE" ,"ISO_IR 126", "", ESC "", "ISO-IR 6",   "94", "G0", "ISO 646")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Hebrew" NO_CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO_IR 138", "", ESC "", "ISO-IR 138", "96", "G1", "Supplementary set of ISO 8859")
+CODE_ELEMENT ("SINGLE" ,"ISO_IR 138", "", ESC "", "ISO-IR 6",   "94", "G0", "ISO 646")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Latin alphabet No. 5" NO_CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO_IR 148", "", ESC "", "ISO-IR 148", "96", "G1", "Supplementary set of ISO 8859")
+CODE_ELEMENT ("SINGLE" ,"ISO_IR 148", "", ESC "", "ISO-IR 6",   "94", "G0", "ISO 646")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Japanese" NO_CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO_IR 13", "", ESC "", "ISO-IR 13", "94", "G1", "JIS X 0201: Katanaka")
+CODE_ELEMENT ("SINGLE" ,"ISO_IR 13", "", ESC "", "ISO-IR 14", "94", "G0", "JIS X 0201: Romaji")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Thai" NO_CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO_IR 166", "", ESC "", "ISO-IR 166", "88", "G1", "TIS 620-2533 (1990)")
+CODE_ELEMENT ("SINGLE" ,"ISO_IR 166", "", ESC "", "ISO-IR 6", "94", "G0", "ISO 646")
+ENDDEFINE
+
+###############################################################################
+#
+# Single Byte with code extensions
+#
+###############################################################################
+DEFINE CHARACTER_SET "Default repertoire" CODE_EXTENSIONS   
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 6",   "ISO 2022", ESC "02/08 04/02", "ISO-IR 6", "94", "G0", "ISO 646")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Latin alphabet No. 1" CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 100", "ISO 2022", ESC "02/13 04/01", "ISO-IR 100", "96", "G1", "Supplementary set of ISO 8859")
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 100", "ISO 2022", ESC "02/08 04/02", "ISO-IR 6",   "94", "G0", "ISO 646")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Latin alphabet No. 2" CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 101", "ISO 2022", ESC "02/13 04/02", "ISO-IR 101", "96", "G1", "Supplementary set of ISO 8859")
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 101", "ISO 2022", ESC "02/08 04/02", "ISO-IR 6",   "94", "G0", "ISO 646")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Latin alphabet No. 3" CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 109", "ISO 2022", ESC "02/13 04/03", "ISO-IR 109", "96", "G1", "Supplementary set of ISO 8859")
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 109", "ISO 2022", ESC "02/08 04/02", "ISO-IR 6",   "94", "G0", "ISO 646")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Latin alphabet No. 4" CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 110", "ISO 2022", ESC "02/13 04/04", "ISO-IR 110", "96", "G1", "Supplementary set of ISO 8859")
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 110", "ISO 2022", ESC "02/08 04/02", "ISO-IR 6",   "94", "G0", "ISO 646")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Cyrillic" CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 144", "ISO 2022", ESC "02/13 04/12", "ISO-IR 144", "96", "G1", "Supplementary set of ISO 8859")
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 144", "ISO 2022", ESC "02/08 04/02", "ISO-IR 6",   "94", "G0", "ISO 646")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Arabic" CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 127", "ISO 2022", ESC "02/13 04/07", "ISO-IR 127", "96", "G1", "Supplementary set of ISO 8859")
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 127", "ISO 2022", ESC "02/08 04/02", "ISO-IR 6",   "94", "G0", "ISO 646")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Greek" CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 126", "ISO 2022", ESC "02/13 04/06", "ISO-IR 126", "96", "G1", "Supplementary set of ISO 8859")
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 126", "ISO 2022", ESC "02/08 04/02", "ISO-IR 6",   "94", "G0", "ISO 646")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Hebrew" CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 138", "ISO 2022", ESC "02/13 04/08", "ISO-IR 138", "96", "G1", "Supplementary set of ISO 8859")
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 138", "ISO 2022", ESC "02/08 04/02", "ISO-IR 6",   "94", "G0", "ISO 646")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Latin alphabet No. 5" CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 148", "ISO 2022", ESC "02/13 04/13", "ISO-IR 148", "96", "G1", "Supplementary set of ISO 8859")
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 148", "ISO 2022", ESC "02/08 04/02", "ISO-IR 6",   "94", "G0", "ISO 646")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Japanese" CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 13", "ISO 2022", ESC "02/09 04/09", "ISO-IR 13", "94", "G1", "JIS X 0201: Katanaka")
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 13", "ISO 2022", ESC "02/08 04/10", "ISO-IR 14", "94", "G0", "JIS X 0201: Romaji")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Thai" CODE_EXTENSIONS 
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 166", "ISO 2022", ESC "02/13 05/04", "ISO-IR 166", "88", "G1", "TIS 620-2533 (1990)")
+CODE_ELEMENT ("SINGLE", "ISO 2022 IR 166", "ISO 2022", ESC "02/08 04/02", "ISO-IR 6", "94", "G0", "ISO 646")
+ENDDEFINE
+
+###############################################################################
+#
+# Multi Byte with code extensions
+#
+###############################################################################
+DEFINE CHARACTER_SET "Japanese" CODE_EXTENSIONS 
+CODE_ELEMENT ("MULTI", "ISO 2022 IR 87",  "ISO 2022", ESC "02/04 04/02",       "ISO-IR 87",  "94x94", "G0", "JIS X 0208: Kanji")
+CODE_ELEMENT ("MULTI", "ISO 2022 IR 159", "ISO 2022", ESC "02/04 02/08 04/04", "ISO-IR 159", "94x94", "G0", "JIS X 0212: Supplementary Kanji set")
+ENDDEFINE
+
+DEFINE CHARACTER_SET "Korean" CODE_EXTENSIONS 
+CODE_ELEMENT ("MULTI", "ISO 2022 IR 149", "ISO 2022", ESC "02/04 02/09 04/03", "ISO-IR 149", "94x94", "G1", "KS X 1001: Hangul and Hanja")
+ENDDEFINE
+
+###############################################################################
+#
+# Non-DICOM Standard Chinese Multi Byte with code extensions
+#
+###############################################################################
+DEFINE CHARACTER_SET "Chinese" CODE_EXTENSIONS 
+CODE_ELEMENT ("MULTI", "ISO 2022 GB2312", "ISO 2022", ESC "02/04 02/09 04/01", "GB2312EUC", "94x94", "G1", "Guo Biao 2312-80")
+CODE_ELEMENT ("MULTI", "ISO 2022 GBK",    "ISO 2022", ESC "02/04 02/09 04/01", "GBK",       "94x94", "G1", "Guo Biao 2312-80 with extensions")
+CODE_ELEMENT ("MULTI", "ISO 2022 B5",     "ISO 2022", ESC "02/04 02/09 07/13", "BIG5",      "94x94", "G1", "Chinese Big 5")
+ENDDEFINE
+

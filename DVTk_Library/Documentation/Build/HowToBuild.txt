@@ -1,0 +1,33 @@
+For building DVT, the DVT environment and some tools has to be installed first.
+
+The following steps are needed:
+- Install Microsoft Visual Studio 2003, with
+  Microsoft Visual C# .NET
+  Microsoft Visual C++ .NET
+
+- Install the compiler hotfix for visual studio
+  Microsoft Visual Studio .NET 2003 Hotfix (KB823071)
+  This hotfix is needed because:
+	When you call unmanaged code that returns a bool type value of false from managed code, the return value may appear as true
+	without this hotfix, executables are made, but the application does not work properly.
+  Search on internet: (823071 - FIX The bool Type Does Not Marshal Correctly from Unmanaged Code)
+  URL: http://support.microsoft.com/default.aspx?kbid=823071
+  This document describes how the resolution can be obtained.
+ 
+- Repair the Visual studio c++ bug in the debugger
+  BUG: Cannot Display std::string and std::wstring Variables Correctly In Visual C++ .NET Debugger
+  On Internet: http://support.microsoft.com/default.aspx?scid=kb;en-us;326616
+  See instructions in the EEStdString.cpp file.
+  \tools\VisualStudio.Net_Fix\EEStdString.cpp
+  \tools\VisualStudio.Net_Fix\EEStdString.dll
+
+- Get the sources/header/project files from the source forge archive.
+  Some tools like a GNU Bison parser and a lexer are included (They can be found on tools\div directory).
+  SED.EXE	GNU sed version 2.05    (ftp://ftp.gnu.org/gnu/sed/)
+  BISON.EXE	GNU Bison version 1.24	(ftp://ftp.gnu.org/gnu/bison/)
+  FLEX.EXE   	flex version 2.5.2.	(http://www.pement.org/sed/)
+  CYGWIN.DLL				(http://www.cygwin.com/)
+
+- Open the solutions file: source\solutions\dvt\Dvt.sln
+  and do a rebuild. All needed objects, dll's and executables are generated.
+ 

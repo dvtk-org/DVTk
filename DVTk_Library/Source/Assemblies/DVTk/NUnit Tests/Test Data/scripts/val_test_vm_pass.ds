@@ -1,0 +1,76 @@
+## 
+## DVT DICOMScript
+##
+## Name: val_test_vm_fail.ds
+##
+## Test Suite Ref: 3.2.11.3.4.9.2.2
+## Test Case Ref:
+##
+## Pre-conditions:
+##
+## Test Scenario:
+##    - a C-STORE-RQ command object and a dataset for the "Validation Test VM SOP Class"
+##      are created and values without errors are set
+##    - the objects are validated 
+##    - and deleted
+##
+## Expected Result:
+##    0 errors, 0 warnings with code as indicated in the script
+##
+## Post-conditions:
+##    -
+##
+
+CREATE C-STORE-RQ STORE_RQ1 "Validation Test VM SOP Class" RQ_VM1
+
+SET C-STORE-RQ STORE_RQ1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test VM SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, AUTOSET);
+}
+
+ECHO "================================================================================"
+ECHO "VM test 1: (all 'dataset' attributes must fail!)..."
+ECHO "Test runs against the following pre-defined VM's in ValidationTestVMSopClass.def"
+ECHO "  SS_10: VM = 1 "
+ECHO "  SS_20: VM = 2 "
+ECHO "  SS_30: VM = 2..5 "
+ECHO "  SS_40: VM = 1-n "
+ECHO "  SS_50: VM = 2-2n "
+ECHO "  SS_60: VM = 3-3n "
+ECHO "================================================================================"
+
+#Set number of values below lower ranges 
+SET "Validation Test VM SOP Class" RQ_VM1
+{
+(0x10240010, SS, 10);		
+(0x10240020, SS, 10, 20);		
+(0x10240030, SS, 10, 20, 30);		
+(0x10240040, SS, 10);		
+(0x10240050, SS, 10, 20, 30, 40);		
+(0x10240060, SS, 10, 20, 30, 40, 50, 60);	      
+}
+
+ECHO "================================================================================"
+ECHO "Test 1a: "
+ECHO "  All 'dataset' attributes should have correct number of values"
+ECHO "  (and value encoding!)"
+ECHO "================================================================================"
+VALIDATE C-STORE-RQ STORE_RQ1 "Validation Test VM SOP Class" RQ_VM1
+
+DELETE C-STORE-RQ STORE_RQ1
+DELETE "Validation Test VM SOP Class" RQ_VM1
+
+##
+## Script Result should be:
+## Validation: 0 error(s), 0 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 0 error(s), 0 warning(s)
+##
+
+

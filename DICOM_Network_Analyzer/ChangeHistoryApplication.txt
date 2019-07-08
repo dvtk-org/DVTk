@@ -1,0 +1,636 @@
+=============================================================
+= DICOM Network Analyzer 3.2.3, based on DVTk library 3.0.6 =
+=============================================================
+
+
+
+=
+= Solved problems for the versions up to and including 3.2.3
+=
+
+<------------------------------------------------------------------------------>
+
+Date 15-04-2008, solved ticket 818
+
+Description:
+------------
+In DVT validation library, it is not possible to validate a incomplete DICOM 
+byte stream. So i'm handling the validation exception in my application and 
+displaying message to the user in HTML result report.
+With this problem i improved Handle Incomplete Byte Stream method in application.
+
+Version: 3.1.0
+
+<------------------------------------------------------------------------------>
+
+Date 15-04-2008, solved ticket 814
+
+Description:
+------------
+Improved the UI of the application. Now user can't view the service element and 
+other tabs without selecting a dicom association from the list of available 
+DICOM association combo box.
+previously user was selecting Association and service elements tabs without
+processing of all the DICOM associations.
+
+Version: 3.1.0
+
+<------------------------------------------------------------------------------>
+
+Date 02-06-2008, solved ticket 604
+
+Description:
+------------
+fixed cross threading issue with DICOM Sniffer UI. 
+
+Version: 3.1.0
+
+<------------------------------------------------------------------------------>
+
+Date 02-06-2008, solved ticket 870-71
+
+Description:
+------------
+Fixed the bug for handling the empty objects list and for checking null 
+association handle. 
+
+Version: 3.1.0
+
+<------------------------------------------------------------------------------>
+
+Date 05-06-2008, solved ticket 873-76
+
+Description:
+------------
+Now the button will enabled till user starts the capturing and it will remain 
+disabled until capturing stopped.
+
+Version: 3.1.0
+
+<------------------------------------------------------------------------------>
+
+Date 05-06-2008, solved ticket 874-75
+
+Description:
+------------
+Provided the tooltip as soon as application starts up.
+
+Version: 3.1.0
+
+<------------------------------------------------------------------------------>
+
+Date 05-06-2008, solved ticket 876
+
+Description:
+------------
+Corrected the tooltip.
+
+Version: 3.1.0
+
+<------------------------------------------------------------------------------>
+
+Date 10-06-2008, solved ticket 418
+
+Description:
+------------
+Implemented time informations relative to First Association as suggested by user.
+
+Version: 3.1.0
+
+<------------------------------------------------------------------------------>
+
+Date 16-07-2008, solved ticket 447
+
+Description:
+------------
+Implemented the new validation method which consider the last message sent in 
+DVTk\ScriptSession.
+
+Version: 3.1.0
+
+<------------------------------------------------------------------------------>
+
+Date 17-07-2008, solved tickets 652,756,815,896 & 902
+
+Description:
+------------
+Incorporated the source code changes received from Dave Harvey for new winpcap
+library wrapper as compatible with WinPcap 4.x.
+
+Version: 3.1.0
+
+<------------------------------------------------------------------------------>
+
+Date 17/07/2008
+
+Description:
+------------
+1. Updated the Installer for WinPCap 4.0.2 installer.
+2. Included CRT merge module for VS2005 SP2.
+
+<------------------------------------------------------------------------------>
+
+Date 03/08/2008, Implemented PR 982
+
+The exceptions are raised from deep inner library and can't be caught for generic 
+dialup and VPN adapter. The solution is to filter out this adapter and it's not 
+available to user for selection.
+
+Version: 3.2.0.1
+
+<------------------------------------------------------------------------------>
+
+Date 04/08/2008, Implemented PR 983
+
+Introduced a small sleep to avoid undesired results for quick start/stop the capture.
+
+Version: 3.2.0.1
+
+<------------------------------------------------------------------------------>
+
+Date 04/08/2008, Implemented PR 984
+
+Fixed the bug related to combo box provided for entering IP1 value.
+
+Version: 3.2.0.1
+
+<------------------------------------------------------------------------------>
+
+Date 04/08/2008, Implemented PR 986
+
+I made IP Addresses controls read only when user starts capturing, rest of the 
+controls were already read only.
+
+Version: 3.2.0.1
+
+<------------------------------------------------------------------------------>
+
+Date 05/08/2008, Implemented PR 988
+
+I made read only the Captured Packets textbox, other open connection combobox is 
+already read only.
+
+Version: 3.2.0.1
+
+<------------------------------------------------------------------------------>
+
+Date 05/08/2008 & 24/10/2008, Implemented PR 989
+
+All the context menus are displayed, disabled/enabled correctly.
+Implemented the context menu for saving all DICOM messages contains data PDV.
+
+Version: 3.2.0.1 & 3.2.0.8
+
+<------------------------------------------------------------------------------>
+
+Date 05/08/2008, Implemented PR 990
+
+Fixed the bug for handling the empty objects list
+
+Version: 3.2.0.1
+
+<------------------------------------------------------------------------------>
+
+Date 05/08/2008, Implemented 995
+
+I aligned the menu items and toolbar buttons for capture start/stop.
+
+Version: 3.2.0.1
+
+<------------------------------------------------------------------------------>
+
+Date 06/08/2008, Implemented 996
+
+I checked and verified all the available definition files as present in definition 
+modules in archive and used by DVT.
+
+Version: 3.2.0.1
+
+<------------------------------------------------------------------------------>
+
+Date 06/08/2008, Implemented 998
+
+Fixed the bug related to combo box provided for entering IP1 value from config.xml.
+
+Version: 3.2.0.1
+
+<------------------------------------------------------------------------------>
+
+Date 18/08/2008, Fixed 992
+
+I desposed all the association objects , this should solve the problem of 
+unnecessary warnings at the time of closing sniffer tool.
+
+Version: 3.2.0.1
+
+<------------------------------------------------------------------------------>
+
+Date 18/08/2008, PR 1000
+
+This is fixed as part of changes in Web browser control.
+
+Version: 3.2.0.1
+
+<------------------------------------------------------------------------------>
+
+Date 25/08/2008, PR 987
+
+Displaying both Adapter name and description. So user can easily distinguish 
+different adapters with same names.
+
+Version: 3.2.0.1
+
+<------------------------------------------------------------------------------>
+
+Date 28/08/2008, PR 745,886
+
+Removed all relational QR def files from Sniffer installation.
+
+Version: 3.2.0.1
+
+<------------------------------------------------------------------------------>
+
+Date 28/08/2008, PR 404
+
+Displaying more detailed message to user in case of incomplete byte stream. 
+User can view the dumped log file for incorrect stream.
+
+Version: 3.2.0.1
+
+<------------------------------------------------------------------------------>
+
+Date 12/09/2008, PR 1026
+
+The Masked IP addresses are causing crash to filtering. Now i changed masked 
+text boxes to normal text boxes.
+
+Version: 3.2.0.3
+
+<------------------------------------------------------------------------------>
+
+Date 15/09/2008, PR 1033
+
+Disabling the filter instead of making it invisible.
+
+Version: 3.2.0.3
+
+<------------------------------------------------------------------------------>
+
+Date 15/09/2008, PR 1034
+
+Made Filter Interface invisible in Analyze Mode.
+
+Version: 3.2.0.3
+
+<------------------------------------------------------------------------------>
+
+Date 16/09/2008, PR 1035
+
+The error in filter was coming due to masked IP address text boxes which is now 
+reverted to normal text boxes.
+
+Version: 3.2.0.3
+
+<------------------------------------------------------------------------------>
+
+Date 17/09/2008, PR 1039
+
+The filter is disabled whenever we stop the capturing and enabled when start the 
+capturing in lower layer.
+
+Version: 3.2.0.3
+
+<------------------------------------------------------------------------------>
+
+Date 23/09/2008, PR 1055
+
+Changed the name of tab for user clarity.
+
+Version: 3.2.0.4
+
+<------------------------------------------------------------------------------>
+
+Date 26/09/2008, PR 1046
+
+Incorporated the changes sent by Dave for saving functionality. Also tested the 
+scenario for saving live communication and then opened saved cap file with DNA 
+and Merge DPM.
+
+Version: 3.2.0.4
+
+<------------------------------------------------------------------------------>
+
+Date 29/09/2008, PR 1047
+
+Changed the implementation so user can save sniffed communication in any number 
+of files before starting for new sniff session.
+
+Version: 3.2.0.4
+
+<------------------------------------------------------------------------------>
+
+Date 26/09/2008, PR 1048
+
+Previously the sniffed communication was cleaning up when user was switching 
+the mode. Now cleanup has been done when user starts sniffing again.
+
+Version: 3.2.0.4
+
+<------------------------------------------------------------------------------>
+
+Date 23/09/2008, PR 945
+
+We already made this consistent by creating a new tab for MPPS discontinued and 
+by changing the names of all MPPS tabs.
+
+Version: 3.2.0.3
+
+<------------------------------------------------------------------------------>
+
+Date 29/09/2008 PR 994
+
+Description:
+------------
+1. Solved conflict issues with WinPcap embedded installer.
+
+<------------------------------------------------------------------------------>
+
+Date 17/10/2008, PR 1060
+
+Applied the promiscous mode while opening network adapter for capturing the packets.
+
+Version: 3.2.0.6
+
+<------------------------------------------------------------------------------>
+
+Date 20/10/2008, PR 1061
+
+Implemented a new dispose algorithm which take care of cleaning up of all 
+unmanaged/managed resources.
+
+Version: 3.2.0.7
+
+<------------------------------------------------------------------------------>
+
+Date 17/10/2008, PR 1074
+
+Fixed the bug in XML reading for empty node.
+
+Version: 3.2.0.6
+
+<------------------------------------------------------------------------------>
+
+Date 16/10/2008, PR 1076
+
+I disabled all other icons and menu items to avoid user to click other features.
+
+Version: 3.2.0.6
+
+<------------------------------------------------------------------------------>
+
+Date 04/11/2008, PR 1084
+
+Updated web contents and DNA user manual.
+
+Version: 3.2.1.0
+
+<------------------------------------------------------------------------------>
+
+Date 04/11/2008, PR 1090
+
+Now i'm parsing the port value and displaying proper message for invalid entry. 
+
+Version: 3.2.1.0
+
+<------------------------------------------------------------------------------>
+
+Date 04/11/2008, PR 1091
+
+User should not able to view the previous analyzed data in capture mode so only 
+allowing user to view captured data in Analyze mode.
+
+Version: 3.2.1.0
+
+<------------------------------------------------------------------------------>
+
+Date 13/03/2009, PR 1094
+
+Fixed the context menu bug.
+
+Version: 3.2.2.1
+
+<------------------------------------------------------------------------------>
+
+Date 16/03/2009, PR 1111
+
+Avoiding the crash in case of jumbo frames and coming out graciously in case of 
+encountering jumbo frames in genuine DICOM association.
+
+Version: 3.2.2.1
+
+<------------------------------------------------------------------------------>
+
+Date 14/03/2009, PR 1114
+
+Fixed the threading issue which was terminating prematurely in case network delay.
+
+Version: 3.2.2.1
+
+<------------------------------------------------------------------------------>
+
+Date 19/05/2009, PR 999
+
+"Microsoft.mshtml.dll" is missing from Application folder so it was not working on 
+non-development machine. I added this as part of installer.
+
+Version: 3.2.2.1
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+=
+= Implemented change requests for the versions up to and including 3.2.3
+=
+
+<------------------------------------------------------------------------------>
+
+Date 03/08/2008, Implemented CR 985.
+
+Description:
+------------
+Changed the name of application to DICOM Network Analyzer and updated the user 
+manual and installer.
+
+<------------------------------------------------------------------------------>
+
+Date 03/11/2008, Implemented CR 1089.
+
+Description:
+------------
+Implemented numbering for all DICOM PDUs based on the order it received.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+==============================================================
+= DICOM Network Analyzer 3.2.5, based on DVTk library 3.0.16 =
+==============================================================
+
+
+
+=
+= Solved problems for 3.2.5
+=
+
+<------------------------------------------------------------------------------>
+
+Date 12/07/2009, ticket 1279
+
+Description:
+------------
+Changed the installer to solve a shortcoming in the current WinPCap implementation.
+All available NIC's are now displayed on a Windows Vista system. 
+
+<------------------------------------------------------------------------------>
+
+Date 07/10/2009, ticket 1325
+
+Description:
+------------
+Improved the code for verifying the IP addresses mentioned in filter through DNS. 
+Now if DNS is not configured on machine, DNA will start properly without displaying 
+any error messages.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+==============================================================
+= DICOM Network Analyzer 3.2.6, based on DVTk library 3.0.17 =
+==============================================================
+No changes in the application code.
+
+
+
+
+
+
+==============================================================
+= DICOM Network Analyzer 3.2.7, based on DVTk library 3.0.19 =
+==============================================================
+No changes in the application code.
+
+
+
+
+
+
+=============================================================
+= DICOM Network Analyzer 3.3.1, based on DVTk library 3.1.1 =
+=============================================================
+
+
+
+=
+= Solved problems for 3.3.1
+=
+
+<------------------------------------------------------------------------------>
+
+Date 26-3-2010, ticket 1373
+
+Description:
+------------
+DNA now also supports capturing of Jumbo ethernet frames: 
+the capture buffer has been increased from 1600 to 65536.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+===============================================================
+= DICOM Network Analyzer 3.3.1.2, based on DVTk library 3.1.4 =
+===============================================================
+This Alpha version will be created to check if the implementation for ticket 1432
+improves the capture capabilities op the DNA in combination with fast DICOM trafic.
+
+<------------------------------------------------------------------------------>
+
+Date 01-09-2010, ticket 1442
+
+Description:
+------------
+Invalid associations are filtered and only the valid associations are listed in
+the Association Combo Box.
+
+<------------------------------------------------------------------------------>
+
+Date 01-09-2010, ticket 1437
+
+Description:
+------------
+The C-FIND Summary results are now displayed correctly.
+
+<------------------------------------------------------------------------------>
+
+
+
+=========================================================
+= DICOM Network Analyzer 3.3.1.3, based on DVTk library 3.1.5 =
+=========================================================
+
+
+
+=
+= Solved problems for 3.3.1.3
+=
+
+<------------------------------------------------------------------------------>
+
+Date 25-10-2010	, ticket 1432		
+
+Description:
+------------
+The Application captures correctly when the Kernel Buffer is set to 100 MB.The Incomplete
+bytestream message is no longer displayed.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+=======================================================
+= DICOM Network Analyzer, based on DVTk library 5.0.0 =
+=======================================================
+
+
+
+=
+= Implemented change requests for 5.0.0
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2017-05-16 
+
+Description:
+------------
+- Application compiled with Visual Studio 2010 (previously Visual Studio 2005)
+- Application makes use of .NET Framework 4 (previously .NET Framework 2.0)
+- New application icon
+
+<------------------------------------------------------------------------------>

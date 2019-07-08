@@ -1,0 +1,26 @@
+##
+##  Pre-conditions:
+##       - no association
+## 
+##  Test Scenario:
+##       - expect association for Worklist Service Class
+##               - little endian implicit VR
+##       - accept association - Result/Reason = 0 - acceptance
+##               - little endian implicit VR
+## 
+##  Expected Result:
+##       - SCU signals successful association
+## 
+##  Post-conditions:
+##       - association established
+## 
+
+RECEIVE ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Modality Worklist FIND SOP Class", "Implicit VR Little Endian")
+)
+
+SEND ASSOCIATE-AC (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Modality Worklist FIND SOP Class", 0, "Implicit VR Little Endian")
+)

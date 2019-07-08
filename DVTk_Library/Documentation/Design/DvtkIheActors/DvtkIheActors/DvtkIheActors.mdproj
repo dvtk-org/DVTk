@@ -1,0 +1,30 @@
+"General"
+{
+"ProjectIdGuid" = "{19DE12AB-B371-4CAA-A44D-52133265F565}"
+"ShowAllFiles" = "T"
+}
+"Configurations"
+{
+    "Debug|Win32"
+    {
+    }
+    "Release|Win32"
+    {
+    }
+}
+"Folders"
+{
+}
+"Files"
+{
+    "Model1.mdx"
+    {
+    "ProjRelPath" = "T"
+    }
+}
+"ProjStartupServices"
+{
+}
+"Globals"
+{
+}

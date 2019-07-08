@@ -1,0 +1,12 @@
+## 
+## DICOMSuperScript: MWL_SCP.dss
+## 
+SCP_assoc.ds
+SCP_rqtoday.ds
+SCP_ASCII.ds
+SCP_JapaneseIR87.ds
+SCP_KoreanIR149.ds
+SCP_ChineseCNEXT.ds
+SCP_ChineseBig5.ds
+SCP_rsp.ds
+SCP_rel.ds

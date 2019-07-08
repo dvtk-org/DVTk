@@ -1,0 +1,223 @@
+
+
+Results File: - C:\src\rbusbrid_DVT20\ITP\dvt\DvtTestDICOMScripts\dvt\abstractstorage\scu\results\001_as_3_scu_ds_res.txt
+
+Test / Product Details: -
+
+Session: 1 - SCU Storage Abstract Syntax Tests
+Manufacturer: Manufacturer
+Model Name: Product Name
+Software Versions: Version 1.0
+Application Entity Name: DICOM
+Application Entity Version: 3.0
+Role: Acceptor
+DVT Version: 2.0.004
+DVT Implementation Version Name: dvt2.0
+Tested By: DVT
+Date: 20010901
+
+
+Definition File Root: C:\src\rbusbrid_DVT20\ITP\dvt\DvtTestDICOMScripts\dvt\definitions
+Definition Files: -
+SecondaryCaptureImageStorage.def
+FileMeta.def
+
+
+Executing DICOMScript: as_3_scu.ds
+##
+## DVT DICOMScript
+##
+## Name: as_1_scu.ds
+##
+## Test Suite Ref: 3.2.2.2.
+## Test Case Ref: 1
+##
+## Pre-conditions:
+##	No association.
+##
+## Test Scenario:
+##	Request association using Implicit VR Little Endian
+##	Transfer Syntax.
+##	Accept Transfer Syntax.
+##	Store Secondary Capture image using agreed Transfer
+##	Syntax.
+##	Release association after successful storage.
+##
+## Expected Result:
+##	0 errors, 0 warnings
+##
+## Post-conditions:
+##	No association.
+##
+
+INF TCP/IP - Connecting to remote host "localhost" using unsecure port number 104 ...
+
+
+<--- SEND ASSOCIATE-RQ (14:53:27)
+(type 0x1, length 197)
+  Protocol Version: 1
+  Called AE Title: 'CALLED_AE       '
+  Calling AE Title: 'CALLING_AE      '
+  Application Context SubItem (type 0x10, length 0x15=21)
+    UID: '1.2.840.10008.3.1.1.1' - DICOM Application Context Name
+  Presentation Context Request SubItem (type 0x20, length 0x36=54)
+    Presentation Context ID: 5
+    Abstract Syntax SubItem (type 0x30, length 0x19=25)
+      UID: '1.2.840.10008.5.1.4.1.1.7' - Secondary Capture Image Storage SOP Class
+    Transfer Syntax SubItem (type 0x40, length 0x11=17)
+      UID: '1.2.840.10008.1.2' - Implicit VR Little Endian
+  User Information SubItem (type 0x50, length 0x2A=42)
+    Maximum Length SubItem (type 0x51, length 0x4=4)
+      Maximum PDU Length: 0x4000=16384
+    Implementation Class UID SubItem (type 0x52, length 0x14=20)
+      UID: '100.118.116.2003.2.0'
+    Implementation Version Name SubItem (type 0x55, length 0x6=6)
+      Name: 'dvt2.0'
+
+---> RECEIVE ASSOCIATE-AC (14:53:27)
+(type 0x2, length 0xA8=168)
+  Protocol Version: 1
+  Called AE Title: 'CALLED_AE       '
+  Calling AE Title: 'CALLING_AE      '
+  Application Context SubItem (type 0x10, length 0x15=21)
+    UID: '1.2.840.10008.3.1.1.1' - DICOM Application Context Name
+  Presentation Context Accept SubItem (type 0x21, length 0x19=25)
+    Presentation Context ID: 5
+    Abstract Syntax SubItem (type 0x30, length 0x19=25)
+      UID: '1.2.840.10008.5.1.4.1.1.7' - Secondary Capture Image Storage SOP Class
+    Result/Reason: 0 - (acceptance)
+    Transfer Syntax SubItem (type 0x40, length 0x11=17)
+      UID: '1.2.840.10008.1.2' - Implicit VR Little Endian
+  User Information SubItem (type 0x50, length 0x2A=42)
+    Maximum Length SubItem (type 0x51, length 0x4=4)
+      Maximum PDU Length: 0x4000=16384
+    Implementation Class UID SubItem (type 0x52, length 0x14=20)
+      UID: '100.118.116.2003.2.0'
+    Implementation Version Name SubItem (type 0x55, length 0x6=6)
+      Name: 'dvt2.0'
+-----------------------------------------------------------------------------------------------------
+| VALIDATION RESULTS for Associate Accept
+-----------------------------------------------------------------------------------------------------
+PASSED: 0 error(s), 0 warning(s)
+-----------------------------------------------------------------------------------------------------
+
+<--- SEND C-STORE-RQ Secondary Capture Image (14:53:28)
+|====================================================================================================
+| C-STORE-RQ COMMAND Attributes
+|====================================================================================================
+|----------------------------------------------------------------------------------------------------
+|Tag            |VR  |Length|Value(s)                           |VM  |Name                           
+|----------------------------------------------------------------------------------------------------
+|(0000,0000)    |{UL}|[04]  |0x00000078=120                     |{1x}|Group 0000 Length              
+|(0000,0002)    |{UI}|[26]  |"1.2.840.10008.5.1.4.1.1.7"        |{1x}|Affected SOP Class UID         
+|(0000,0100)    |{US}|[02]  |0x0001=1                           |{1x}|Command Field                  
+|(0000,0110)    |{US}|[02]  |0x0003=3                           |{1x}|Message ID                     
+|(0000,0700)    |{US}|[02]  |0x0000=0                           |{1x}|Priority                       
+|(0000,0800)    |{US}|[02]  |0x0000=0                           |{1x}|Data Set Type                  
+|(0000,1000)    |{UI}|[38]  |"100.118.116.2003.2.0.1069854808.11|{1x}|Affected SOP Instance UID      
+|               |    |      |.13"                               |    |                               
+|----------------------------------------------------------------------------------------------------
+
+
+|====================================================================================================
+| Secondary Capture Image DATASET Attributes
+|====================================================================================================
+|----------------------------------------------------------------------------------------------------
+|Tag            |VR  |Length|Value(s)                           |VM  |Name                           
+|----------------------------------------------------------------------------------------------------
+|(0008,0016)    |{UI}|[26]  |"1.2.840.10008.5.1.4.1.1.7"        |{1x}|SOP Class UID                  
+|(0008,0018)    |{UI}|[38]  |"100.118.116.2003.2.0.1069854808.11|{1x}|SOP Instance UID               
+|               |    |      |.13"                               |    |                               
+|(0008,0020)    |{DA}|[08]  |"20031126"                         |{1x}|Study Date                     
+|(0008,0030)    |{TM}|[00]  |""                                 |{1x}|Study Time                     
+|(0008,0050)    |{SH}|[00]  |""                                 |{1x}|Accession Number               
+|(0008,0060)    |{CS}|[02]  |"OT"                               |{1x}|Modality                       
+|(0008,0064)    |{CS}|[02]  |"DV"                               |{1x}|Conversion Type                
+|(0008,0090)    |{PN}|[00]  |""                                 |{1x}|Referring Physician's Name     
+|(0010,0010)    |{PN}|[28]  |"One^Secondary Capture Image"      |{1x}|Patient's Name                 
+|(0010,0020)    |{LO}|[06]  |"SC-I1"                            |{1x}|Patient ID                     
+|(0010,0030)    |{DA}|[00]  |""                                 |{1x}|Patient's Birth Date           
+|(0010,0040)    |{CS}|[02]  |"O"                                |{1x}|Patient's Sex                  
+|(0020,000D)    |{UI}|[08]  |"1.001.1"                          |{1x}|Study Instance UID             
+|(0020,000E)    |{UI}|[38]  |"100.118.116.2003.2.0.1069854808.11|{1x}|Series Instance UID            
+|               |    |      |.15"                               |    |                               
+|(0020,0010)    |{SH}|[02]  |"1"                                |{1x}|Study ID                       
+|(0020,0011)    |{IS}|[02]  |"1"                                |{1x}|Series Number                  
+|(0020,0013)    |{IS}|[02]  |"1"                                |{1x}|Instance Number                
+|(0020,0020)    |{CS}|[00]  |""                                 |{1x}|Patient Orientation            
+|(0028,0002)    |{US}|[02]  |0x0001=1                           |{1x}|Samples per Pixel              
+|(0028,0004)    |{CS}|[12]  |"MONOCHROME2"                      |{1x}|Photometric Interpretation     
+|(0028,0010)    |{US}|[02]  |0x0010=16                          |{1x}|Rows                           
+|(0028,0011)    |{US}|[02]  |0x0010=16                          |{1x}|Columns                        
+|(0028,0100)    |{US}|[02]  |0x0008=8                           |{1x}|Bits Allocated                 
+|(0028,0101)    |{US}|[02]  |0x0008=8                           |{1x}|Bits Stored                    
+|(0028,0102)    |{US}|[02]  |0x0007=7                           |{1x}|High Bit                       
+|(0028,0103)    |{US}|[02]  |0x0000=0                           |{1x}|Pixel Representation           
+|(7FE0,0010)    |{OB}|[256] |Generated from: 16, 16, 0, 1, 1,   |{1x}|Pixel Data                     
+|               |    |      | 1, 1                              |    |                               
+|----------------------------------------------------------------------------------------------------
+
+
+---> RECEIVE C-STORE-RSP (14:53:28)
+
+INF Maximum length of Command DATA-TF PDU received (with pcId 5) is 0x8A=138
+|====================================================================================================
+| C-STORE-RSP COMMAND Attributes
+|====================================================================================================
+|----------------------------------------------------------------------------------------------------
+|Tag            |VR  |Length|Value(s)                           |VM  |Name                           
+|----------------------------------------------------------------------------------------------------
+|(0000,0000)    |{UL}|[04]  |0x00000078=120                     |{1x}|Group 0000 Length              
+|(0000,0002)    |{UI}|[26]  |"1.2.840.10008.5.1.4.1.1.7"        |{1x}|Affected SOP Class UID         
+|(0000,0100)    |{US}|[02]  |0x8001=32769                       |{1x}|Command Field                  
+|(0000,0120)    |{US}|[02]  |0x0003=3                           |{1x}|Message ID Being Responded To  
+|(0000,0800)    |{US}|[02]  |0x0101=257                         |{1x}|Data Set Type                  
+|(0000,0900)    |{US}|[02]  |0x0000=0                           |{1x}|Status                         
+|(0000,1000)    |{UI}|[38]  |"100.118.116.2003.2.0.1069854808.11|{1x}|Affected SOP Instance UID      
+|               |    |      |.13"                               |    |                               
+|----------------------------------------------------------------------------------------------------
+
+
+VALIDATE C-STORE-RSP
+
+
+
+
+-----------------------------------------------------------------------------------------------------
+VALIDATION OF THE MODULES
+-----------------------------------------------------------------------------------------------------
+Object: C-STORE-RSP----------------------------------------------------------------------------------|=====================================================================================================
+| "C-STORE-RSP" M 
+|=====================================================================================================
+|-----------------------------------------------------------------------------------------------------
+|V  |Tag            |VR|VT|P|Value(s)                            |Name/Results                        
+|-----------------------------------------------------------------------------------------------------
+|   |>(0000,0000)   |UL|1 |+|120                                 |Group 0000 Length                   
+|   |>(0000,0002)   |UI|1 |+|"1.2.840.10008.5.1.4.1.1.7"         |Affected SOP Class UID              
+|   |>(0000,0100)   |US|1 |+|32769                               |Command Field                       
+|   |>(0000,0120)   |US|1 |+|3                                   |Message ID Being Responded To       
+|   |>(0000,0800)   |US|1 |+|257                                 |Data Set Type                       
+|   |>(0000,0900)   |US|1 |+|0                                   |Status                              
+|   |>(0000,1000)   |UI|3 |+|"100.118.116.2003.2.0.1069854808.11 |Affected SOP Instance UID           
+|   |               |  |  | |.13"                                |                                    
+|-----------------------------------------------------------------------------------------------------
+
+
+
+<--- SEND RELEASE-RQ (14:53:30)
+(type 0x5, length 0x4=4)
+
+---> RECEIVE RELEASE-RP (14:53:30)
+INF Association open 3.46 seconds
+(type 0x6, length 0x4=4)
+-----------------------------------------------------------------------------------------------------
+| VALIDATION RESULTS for Release Response
+-----------------------------------------------------------------------------------------------------
+PASSED: 0 error(s), 0 warning(s)
+-----------------------------------------------------------------------------------------------------
+##
+## Script Result should be: 0 error(s), 0 warning(s)
+##
+
+PASSED: DICOMScript as_3_scu.ds : 0 error(s), 0 warning(s)
+

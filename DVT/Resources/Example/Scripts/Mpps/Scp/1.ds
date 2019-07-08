@@ -1,0 +1,51 @@
+## Example DVT Dicom Script
+#
+#
+
+##
+## SCP MPPS DICOMScript: 1.ds
+##
+## Pre-conditions:
+##      - no association
+##
+## Test Scenario:
+##      - expect association for Modality Performed Procedure Step Service Class
+##              - little endian implicit VR
+##      - RECEIVE accept association - Result/Reason = 0 - success
+##	- expect N-CREATE-RQ Modality Performed Procedure Step - "IN PROGRESS"
+##	- RECEIVE N-CREATE-RSP - status = 0000 (success)
+##	- expect association release request
+##	- RECEIVE association release response
+##
+## Expected Result:
+##      - SCU signals MPPS "IN PROGRESS"
+##
+## Post-conditions:
+##      - no association
+##
+RECEIVE ASSOCIATE-RQ (
+PRESENTATION-CONTEXT-ITEMS
+("Modality Performed Procedure Step SOP Class", "Implicit VR Little Endian")
+)
+
+SEND ASSOCIATE-AC (
+PRESENTATION-CONTEXT-ITEMS
+("Modality Performed Procedure Step SOP Class", 0, "Implicit VR Little Endian")
+)
+
+
+RECEIVE N-CREATE-RQ "Modality Performed Procedure Step SOP Class"(
+(0x00000002, "Modality Performed Procedure Step SOP Class")
+(0x00001000, "LABEL:MppsUID")
+
+(0x00400252, "IN PROGRESS") # Performed Procedure Step Status
+)
+
+SEND N-CREATE-RSP(
+(0x00000002, "Modality Performed Procedure Step SOP Class")
+(0x00001000, "MppsUID")
+(0x00000900, 0x0000)
+)
+
+RECEIVE RELEASE-RQ
+SEND RELEASE-RP

@@ -1,0 +1,2490 @@
+
+
+Terminals which are not used:
+
+   T_INCLUDEITEM
+
+
+
+Grammar
+rule 1    DefinitionGrammar -> DefinitionComponents
+rule 2    DefinitionComponents -> Definition
+rule 3    DefinitionComponents -> DefinitionComponents Definition
+rule 4    Definition -> Define
+rule 5    Definition -> error
+rule 6    Define -> BeginDefine Definitions EndDefine
+rule 7    BeginDefine -> T_DEFINE
+rule 8    EndDefine -> T_ENDDEFINE
+rule 9    Definitions -> SystemDef
+rule 10   Definitions -> MetaSopClassDef
+rule 11   Definitions -> CommandDef
+rule 12   Definitions -> CommandIodDef
+rule 13   Definitions -> ItemDef
+rule 14   Definitions -> MacroDef
+rule 15   SystemDef -> T_SYSTEM SystemDefinition AEDefinition
+rule 16   SystemDefinition -> SystemName SystemVersion
+rule 17   SystemName -> STRING
+rule 18   SystemVersion -> STRING
+rule 19   AEDefinition -> AEName AEVersion
+rule 20   AEName -> STRING
+rule 21   AEVersion -> STRING
+rule 22   MetaSopClassDef -> T_METASOPCLASS BeginMetaSopClassDef SopClassDefList
+rule 23   BeginMetaSopClassDef -> MetaSopClassUID MetaSopClassName
+rule 24   MetaSopClassUID -> STRING
+rule 25   MetaSopClassName -> STRING
+rule 26   SopClassDefList -> SopClassDef
+rule 27   SopClassDefList -> SopClassDefList SopClassDef
+rule 28   SopClassDef -> T_SOPCLASS SopClassUID SopClassName
+rule 29   SopClassUID -> STRING
+rule 30   SopClassName -> STRING
+rule 31   CommandDef -> DimseCmdDef AttributeDefList
+rule 32   DimseCmdDef -> DimseCmd
+rule 33   DimseCmd -> COMMANDFIELD
+rule 34   CommandIodDef -> DimseCmdDef IodName IodContentDef
+rule 35   IodName -> STRING
+rule 36   IodContentDef -> SopClassDefinition ModuleDefList
+rule 37   IodContentDef -> SopClassDefinition
+rule 38   SopClassDefinition -> SopClassDef
+rule 39   ModuleDefList -> ModuleDef
+rule 40   ModuleDefList -> ModuleDefList ModuleDef
+rule 41   ModuleDef -> ModuleNameDef AttributeDefList
+rule 42   ModuleDef -> ModuleNameDef
+rule 43   ModuleNameDef -> T_MODULE ModuleName ModuleUsage
+rule 44   ModuleNameDef -> T_MODULE
+rule 45   ModuleName -> STRING
+rule 46   ModuleUsage -> ModUsage ModuleCondition
+rule 47   ModUsage -> USAGE
+rule 48   ModuleCondition -> Condition
+rule 49   AttributeDefList -> AttributeDef
+rule 50   AttributeDefList -> AttributeDefList AttributeDef
+rule 51   AttributeDef -> '(' AttributeTagDef ',' AttributeType ',' AttributeValueDef ')' AttributeName AttributeCondition
+rule 52   AttributeDef -> MacroReference
+rule 53   AttributeTagDef -> AttributeTag
+rule 54   AttributeTag -> HEX
+rule 55   AttributeType -> INTEGER
+rule 56   AttributeType -> TYPE
+rule 57   AttributeName -> STRING
+rule 58   AttributeCondition -> Condition
+rule 59   AttributeValueDef -> SequenceValueDef
+rule 60   AttributeValueDef -> OtherValueDef
+rule 61   SequenceValueDef -> SequenceIntro ItemAttributeDefList
+rule 62   SequenceValueDef -> SequenceIntro
+rule 63   SequenceIntro -> T_SQ ',' AttributeVM ','
+rule 64   OtherValueDef -> AttributeVR ',' AttributeVM ValuesDef
+rule 65   ItemAttributeDefList -> ItemAttributeDef
+rule 66   ItemAttributeDefList -> ItemAttributeDefList ItemAttributeDef
+rule 67   ItemAttributeDef -> T_GREATER AttributeDef
+rule 68   AttributeVM -> INTEGER
+rule 69   AttributeVM -> INTEGER ':' INTEGER
+rule 70   AttributeVM -> INTEGER ':' 'n'
+rule 71   AttributeVM -> STRING
+rule 72   AttributeVM -> 'n'
+rule 73   AttributeVR -> VR
+rule 74   AttributeVR -> VR '/' VR
+rule 75   ValuesDef ->		/* empty */
+rule 76   ValuesDef -> ',' FirstValuesDef
+rule 77   ValuesDef -> ',' FirstValuesDef ',' OtherValuesDefList
+rule 78   FirstValuesDef -> ValueType ',' ValuesList
+rule 79   OtherValuesDefList -> OtherValuesDef
+rule 80   OtherValuesDefList -> OtherValuesDefList ',' OtherValuesDef
+rule 81   OtherValuesDef -> ValueType ',' ValuesList
+rule 82   OtherValuesDef -> ValuesList
+rule 83   ValueType -> VALUETYPE
+rule 84   ValuesList -> Value
+rule 85   ValuesList -> ValuesList '|' Value
+rule 86   Value -> STRING
+rule 87   Value -> HEX
+rule 88   Value -> INTEGER
+rule 89   ItemDef -> T_ITEM ItemName AttributeDefList
+rule 90   ItemName -> STRING
+rule 91   MacroDef -> MacroBegin AttributeDefList
+rule 92   MacroDef -> MacroBegin
+rule 93   MacroBegin -> T_MACRO MacroName
+rule 94   MacroBegin -> T_MACRO
+rule 95   MacroName -> STRING
+rule 96   MacroReference -> T_INCLUDEMACRO MacroName MacroCondition
+rule 97   MacroCondition -> Condition
+rule 98   Condition ->		/* empty */
+rule 99   Condition -> ':' STRING
+rule 100  Condition -> ':' CondExpr
+rule 101  Condition -> ':' T_WEAK '(' PrimaryCond ',' SecondaryCond ')'
+rule 102  PrimaryCond -> CondExpr
+rule 103  SecondaryCond -> CondExpr
+rule 104  CondExpr -> Expr
+rule 105  CondExpr -> CondExpr T_OR Expr
+rule 106  Expr -> SimpleExpr
+rule 107  Expr -> Expr T_AND SimpleExpr
+rule 108  SimpleExpr -> T_PRESENT AttributeTagAddress
+rule 109  SimpleExpr -> T_EMPTY AttributeTagAddress
+rule 110  SimpleExpr -> T_VALUE AttributeTagAddress ValueNr Operator CondValue
+rule 111  SimpleExpr -> T_NOT SimpleExpr
+rule 112  SimpleExpr -> '(' CondExpr ')'
+rule 113  SimpleExpr -> T_WARN '(' CondExpr ')'
+rule 114  SimpleExpr -> T_TRUE
+rule 115  SimpleExpr -> T_FALSE
+rule 116  ValueNr ->		/* empty */
+rule 117  ValueNr -> INTEGER
+rule 118  CondValue -> STRING
+rule 119  Operator -> T_EQUAL
+rule 120  Operator -> T_LESS
+rule 121  Operator -> T_GREATER
+rule 122  Operator -> T_LESS_OR_EQUAL
+rule 123  Operator -> T_GREATER_OR_EQUAL
+rule 124  AttributeTagAddress -> AttributeTag
+rule 125  AttributeTagAddress -> AttributeTagPath
+rule 126  AttributeTagPath -> AttributeTagHere AttributeTag
+rule 127  AttributeTagPath -> AttributeTagUpPath AttributeTag
+rule 128  AttributeTagPath -> AttributeTagDownPath AttributeTag
+rule 129  AttributeTagPath -> AttributeTagHere AttributeTagDownPath AttributeTag
+rule 130  AttributeTagPath -> AttributeTagUpPath AttributeTagDownPath AttributeTag
+rule 131  AttributeTagHere -> '.' '/'
+rule 132  AttributeTagUpPath -> AttributeTagUp
+rule 133  AttributeTagUpPath -> AttributeTagUpPath AttributeTagUp
+rule 134  AttributeTagUp -> '.' '.' '/'
+rule 135  AttributeTagDownPath -> AttributeTagDown
+rule 136  AttributeTagDownPath -> AttributeTagDownPath AttributeTagDown
+rule 137  AttributeTagDown -> AttributeTag '/'
+
+Terminals, with rules where they appear
+
+$ (-1)
+'(' (40) 51 101 112 113
+')' (41) 51 101 112 113
+',' (44) 51 63 64 76 77 78 80 81 101
+'.' (46) 131 134
+'/' (47) 74 131 134 137
+':' (58) 69 70 99 100 101
+'n' (110) 70 72
+'|' (124) 85
+error (256) 5
+T_SYSTEM (258) 15
+T_DEFINE (259) 7
+T_ENDDEFINE (260) 8
+T_METASOPCLASS (261) 22
+T_SOPCLASS (262) 28
+T_MODULE (263) 43 44
+T_ITEM (264) 89
+T_MACRO (265) 93 94
+T_INCLUDEITEM (266)
+T_INCLUDEMACRO (267) 96
+T_SQ (268) 63
+T_AND (269) 107
+T_OR (270) 105
+T_NOT (271) 111
+T_PRESENT (272) 108
+T_VALUE (273) 110
+T_EMPTY (274) 109
+T_TRUE (275) 114
+T_FALSE (276) 115
+T_EQUAL (277) 119
+T_LESS (278) 120
+T_GREATER (279) 67 121
+T_LESS_OR_EQUAL (280) 122
+T_GREATER_OR_EQUAL (281) 123
+T_WEAK (282) 101
+T_WARN (283) 113
+STRING (284) 17 18 20 21 24 25 29 30 35 45 57 71 86 90 95 99 118
+INTEGER (285) 55 68 69 70 88 117
+HEX (286) 54 87
+COMMANDFIELD (287) 33
+TYPE (288) 56
+USAGE (289) 47
+VALUETYPE (290) 83
+VR (291) 73 74
+
+Nonterminals, with rules where they appear
+
+DefinitionGrammar (45)
+    on left: 1
+DefinitionComponents (46)
+    on left: 2 3, on right: 1 3
+Definition (47)
+    on left: 4 5, on right: 2 3
+Define (48)
+    on left: 6, on right: 4
+BeginDefine (49)
+    on left: 7, on right: 6
+EndDefine (50)
+    on left: 8, on right: 6
+Definitions (51)
+    on left: 9 10 11 12 13 14, on right: 6
+SystemDef (52)
+    on left: 15, on right: 9
+SystemDefinition (53)
+    on left: 16, on right: 15
+SystemName (54)
+    on left: 17, on right: 16
+SystemVersion (55)
+    on left: 18, on right: 16
+AEDefinition (56)
+    on left: 19, on right: 15
+AEName (57)
+    on left: 20, on right: 19
+AEVersion (58)
+    on left: 21, on right: 19
+MetaSopClassDef (59)
+    on left: 22, on right: 10
+BeginMetaSopClassDef (60)
+    on left: 23, on right: 22
+MetaSopClassUID (61)
+    on left: 24, on right: 23
+MetaSopClassName (62)
+    on left: 25, on right: 23
+SopClassDefList (63)
+    on left: 26 27, on right: 22 27
+SopClassDef (64)
+    on left: 28, on right: 26 27 38
+SopClassUID (65)
+    on left: 29, on right: 28
+SopClassName (66)
+    on left: 30, on right: 28
+CommandDef (67)
+    on left: 31, on right: 11
+DimseCmdDef (68)
+    on left: 32, on right: 31 34
+DimseCmd (69)
+    on left: 33, on right: 32
+CommandIodDef (70)
+    on left: 34, on right: 12
+IodName (71)
+    on left: 35, on right: 34
+IodContentDef (72)
+    on left: 36 37, on right: 34
+SopClassDefinition (73)
+    on left: 38, on right: 36 37
+ModuleDefList (74)
+    on left: 39 40, on right: 36 40
+ModuleDef (75)
+    on left: 41 42, on right: 39 40
+ModuleNameDef (76)
+    on left: 43 44, on right: 41 42
+ModuleName (77)
+    on left: 45, on right: 43
+ModuleUsage (78)
+    on left: 46, on right: 43
+ModUsage (79)
+    on left: 47, on right: 46
+ModuleCondition (80)
+    on left: 48, on right: 46
+AttributeDefList (81)
+    on left: 49 50, on right: 31 41 50 89 91
+AttributeDef (82)
+    on left: 51 52, on right: 49 50 67
+AttributeTagDef (83)
+    on left: 53, on right: 51
+AttributeTag (84)
+    on left: 54, on right: 53 124 126 127 128 129 130 137
+AttributeType (85)
+    on left: 55 56, on right: 51
+AttributeName (86)
+    on left: 57, on right: 51
+AttributeCondition (87)
+    on left: 58, on right: 51
+AttributeValueDef (88)
+    on left: 59 60, on right: 51
+SequenceValueDef (89)
+    on left: 61 62, on right: 59
+SequenceIntro (90)
+    on left: 63, on right: 61 62
+OtherValueDef (91)
+    on left: 64, on right: 60
+ItemAttributeDefList (92)
+    on left: 65 66, on right: 61 66
+ItemAttributeDef (93)
+    on left: 67, on right: 65 66
+AttributeVM (94)
+    on left: 68 69 70 71 72, on right: 63 64
+AttributeVR (95)
+    on left: 73 74, on right: 64
+ValuesDef (96)
+    on left: 75 76 77, on right: 64
+FirstValuesDef (97)
+    on left: 78, on right: 76 77
+OtherValuesDefList (98)
+    on left: 79 80, on right: 77 80
+OtherValuesDef (99)
+    on left: 81 82, on right: 79 80
+ValueType (100)
+    on left: 83, on right: 78 81
+ValuesList (101)
+    on left: 84 85, on right: 78 81 82 85
+Value (102)
+    on left: 86 87 88, on right: 84 85
+ItemDef (103)
+    on left: 89, on right: 13
+ItemName (104)
+    on left: 90, on right: 89
+MacroDef (105)
+    on left: 91 92, on right: 14
+MacroBegin (106)
+    on left: 93 94, on right: 91 92
+MacroName (107)
+    on left: 95, on right: 93 96
+MacroReference (108)
+    on left: 96, on right: 52
+MacroCondition (109)
+    on left: 97, on right: 96
+Condition (110)
+    on left: 98 99 100 101, on right: 48 58 97
+PrimaryCond (111)
+    on left: 102, on right: 101
+SecondaryCond (112)
+    on left: 103, on right: 101
+CondExpr (113)
+    on left: 104 105, on right: 100 102 103 105 112 113
+Expr (114)
+    on left: 106 107, on right: 104 105 107
+SimpleExpr (115)
+    on left: 108 109 110 111 112 113 114 115, on right: 106 107 111
+ValueNr (116)
+    on left: 116 117, on right: 110
+CondValue (117)
+    on left: 118, on right: 110
+Operator (118)
+    on left: 119 120 121 122 123, on right: 110
+AttributeTagAddress (119)
+    on left: 124 125, on right: 108 109 110
+AttributeTagPath (120)
+    on left: 126 127 128 129 130, on right: 125
+AttributeTagHere (121)
+    on left: 131, on right: 126 129
+AttributeTagUpPath (122)
+    on left: 132 133, on right: 127 130 133
+AttributeTagUp (123)
+    on left: 134, on right: 132 133
+AttributeTagDownPath (124)
+    on left: 135 136, on right: 128 129 130 136
+AttributeTagDown (125)
+    on left: 137, on right: 135 136
+
+
+state 0
+
+    error	shift, and go to state 1
+    T_DEFINE	shift, and go to state 2
+
+    DefinitionGrammar	go to state 207
+    DefinitionComponents	go to state 3
+    Definition	go to state 4
+    Define	go to state 5
+    BeginDefine	go to state 6
+
+
+
+state 1
+
+    Definition  ->  error .   (rule 5)
+
+    $default	reduce using rule 5 (Definition)
+
+
+
+state 2
+
+    BeginDefine  ->  T_DEFINE .   (rule 7)
+
+    $default	reduce using rule 7 (BeginDefine)
+
+
+
+state 3
+
+    DefinitionGrammar  ->  DefinitionComponents .   (rule 1)
+    DefinitionComponents  ->  DefinitionComponents . Definition   (rule 3)
+
+    error	shift, and go to state 1
+    T_DEFINE	shift, and go to state 2
+
+    $   	reduce using rule 1 (DefinitionGrammar)
+
+    Definition	go to state 7
+    Define	go to state 5
+    BeginDefine	go to state 6
+
+
+
+state 4
+
+    DefinitionComponents  ->  Definition .   (rule 2)
+
+    $default	reduce using rule 2 (DefinitionComponents)
+
+
+
+state 5
+
+    Definition  ->  Define .   (rule 4)
+
+    $default	reduce using rule 4 (Definition)
+
+
+
+state 6
+
+    Define  ->  BeginDefine . Definitions EndDefine   (rule 6)
+
+    T_SYSTEM	shift, and go to state 8
+    T_METASOPCLASS	shift, and go to state 9
+    T_ITEM	shift, and go to state 10
+    T_MACRO	shift, and go to state 11
+    COMMANDFIELD	shift, and go to state 12
+
+    Definitions	go to state 13
+    SystemDef	go to state 14
+    MetaSopClassDef	go to state 15
+    CommandDef	go to state 16
+    DimseCmdDef	go to state 17
+    DimseCmd	go to state 18
+    CommandIodDef	go to state 19
+    ItemDef	go to state 20
+    MacroDef	go to state 21
+    MacroBegin	go to state 22
+
+
+
+state 7
+
+    DefinitionComponents  ->  DefinitionComponents Definition .   (rule 3)
+
+    $default	reduce using rule 3 (DefinitionComponents)
+
+
+
+state 8
+
+    SystemDef  ->  T_SYSTEM . SystemDefinition AEDefinition   (rule 15)
+
+    STRING	shift, and go to state 23
+
+    SystemDefinition	go to state 24
+    SystemName	go to state 25
+
+
+
+state 9
+
+    MetaSopClassDef  ->  T_METASOPCLASS . BeginMetaSopClassDef SopClassDefList   (rule 22)
+
+    STRING	shift, and go to state 26
+
+    BeginMetaSopClassDef	go to state 27
+    MetaSopClassUID	go to state 28
+
+
+
+state 10
+
+    ItemDef  ->  T_ITEM . ItemName AttributeDefList   (rule 89)
+
+    STRING	shift, and go to state 29
+
+    ItemName	go to state 30
+
+
+
+state 11
+
+    MacroBegin  ->  T_MACRO . MacroName   (rule 93)
+    MacroBegin  ->  T_MACRO .   (rule 94)
+
+    STRING	shift, and go to state 31
+
+    $default	reduce using rule 94 (MacroBegin)
+
+    MacroName	go to state 32
+
+
+
+state 12
+
+    DimseCmd  ->  COMMANDFIELD .   (rule 33)
+
+    $default	reduce using rule 33 (DimseCmd)
+
+
+
+state 13
+
+    Define  ->  BeginDefine Definitions . EndDefine   (rule 6)
+
+    T_ENDDEFINE	shift, and go to state 33
+
+    EndDefine	go to state 34
+
+
+
+state 14
+
+    Definitions  ->  SystemDef .   (rule 9)
+
+    $default	reduce using rule 9 (Definitions)
+
+
+
+state 15
+
+    Definitions  ->  MetaSopClassDef .   (rule 10)
+
+    $default	reduce using rule 10 (Definitions)
+
+
+
+state 16
+
+    Definitions  ->  CommandDef .   (rule 11)
+
+    $default	reduce using rule 11 (Definitions)
+
+
+
+state 17
+
+    CommandDef  ->  DimseCmdDef . AttributeDefList   (rule 31)
+    CommandIodDef  ->  DimseCmdDef . IodName IodContentDef   (rule 34)
+
+    T_INCLUDEMACRO	shift, and go to state 35
+    STRING	shift, and go to state 36
+    '(' 	shift, and go to state 37
+
+    IodName	go to state 38
+    AttributeDefList	go to state 39
+    AttributeDef	go to state 40
+    MacroReference	go to state 41
+
+
+
+state 18
+
+    DimseCmdDef  ->  DimseCmd .   (rule 32)
+
+    $default	reduce using rule 32 (DimseCmdDef)
+
+
+
+state 19
+
+    Definitions  ->  CommandIodDef .   (rule 12)
+
+    $default	reduce using rule 12 (Definitions)
+
+
+
+state 20
+
+    Definitions  ->  ItemDef .   (rule 13)
+
+    $default	reduce using rule 13 (Definitions)
+
+
+
+state 21
+
+    Definitions  ->  MacroDef .   (rule 14)
+
+    $default	reduce using rule 14 (Definitions)
+
+
+
+state 22
+
+    MacroDef  ->  MacroBegin . AttributeDefList   (rule 91)
+    MacroDef  ->  MacroBegin .   (rule 92)
+
+    T_INCLUDEMACRO	shift, and go to state 35
+    '(' 	shift, and go to state 37
+
+    $default	reduce using rule 92 (MacroDef)
+
+    AttributeDefList	go to state 42
+    AttributeDef	go to state 40
+    MacroReference	go to state 41
+
+
+
+state 23
+
+    SystemName  ->  STRING .   (rule 17)
+
+    $default	reduce using rule 17 (SystemName)
+
+
+
+state 24
+
+    SystemDef  ->  T_SYSTEM SystemDefinition . AEDefinition   (rule 15)
+
+    STRING	shift, and go to state 43
+
+    AEDefinition	go to state 44
+    AEName	go to state 45
+
+
+
+state 25
+
+    SystemDefinition  ->  SystemName . SystemVersion   (rule 16)
+
+    STRING	shift, and go to state 46
+
+    SystemVersion	go to state 47
+
+
+
+state 26
+
+    MetaSopClassUID  ->  STRING .   (rule 24)
+
+    $default	reduce using rule 24 (MetaSopClassUID)
+
+
+
+state 27
+
+    MetaSopClassDef  ->  T_METASOPCLASS BeginMetaSopClassDef . SopClassDefList   (rule 22)
+
+    T_SOPCLASS	shift, and go to state 48
+
+    SopClassDefList	go to state 49
+    SopClassDef	go to state 50
+
+
+
+state 28
+
+    BeginMetaSopClassDef  ->  MetaSopClassUID . MetaSopClassName   (rule 23)
+
+    STRING	shift, and go to state 51
+
+    MetaSopClassName	go to state 52
+
+
+
+state 29
+
+    ItemName  ->  STRING .   (rule 90)
+
+    $default	reduce using rule 90 (ItemName)
+
+
+
+state 30
+
+    ItemDef  ->  T_ITEM ItemName . AttributeDefList   (rule 89)
+
+    T_INCLUDEMACRO	shift, and go to state 35
+    '(' 	shift, and go to state 37
+
+    AttributeDefList	go to state 53
+    AttributeDef	go to state 40
+    MacroReference	go to state 41
+
+
+
+state 31
+
+    MacroName  ->  STRING .   (rule 95)
+
+    $default	reduce using rule 95 (MacroName)
+
+
+
+state 32
+
+    MacroBegin  ->  T_MACRO MacroName .   (rule 93)
+
+    $default	reduce using rule 93 (MacroBegin)
+
+
+
+state 33
+
+    EndDefine  ->  T_ENDDEFINE .   (rule 8)
+
+    $default	reduce using rule 8 (EndDefine)
+
+
+
+state 34
+
+    Define  ->  BeginDefine Definitions EndDefine .   (rule 6)
+
+    $default	reduce using rule 6 (Define)
+
+
+
+state 35
+
+    MacroReference  ->  T_INCLUDEMACRO . MacroName MacroCondition   (rule 96)
+
+    STRING	shift, and go to state 31
+
+    MacroName	go to state 54
+
+
+
+state 36
+
+    IodName  ->  STRING .   (rule 35)
+
+    $default	reduce using rule 35 (IodName)
+
+
+
+state 37
+
+    AttributeDef  ->  '(' . AttributeTagDef ',' AttributeType ',' AttributeValueDef ')' AttributeName AttributeCondition   (rule 51)
+
+    HEX 	shift, and go to state 55
+
+    AttributeTagDef	go to state 56
+    AttributeTag	go to state 57
+
+
+
+state 38
+
+    CommandIodDef  ->  DimseCmdDef IodName . IodContentDef   (rule 34)
+
+    T_SOPCLASS	shift, and go to state 48
+
+    SopClassDef	go to state 58
+    IodContentDef	go to state 59
+    SopClassDefinition	go to state 60
+
+
+
+state 39
+
+    CommandDef  ->  DimseCmdDef AttributeDefList .   (rule 31)
+    AttributeDefList  ->  AttributeDefList . AttributeDef   (rule 50)
+
+    T_INCLUDEMACRO	shift, and go to state 35
+    '(' 	shift, and go to state 37
+
+    $default	reduce using rule 31 (CommandDef)
+
+    AttributeDef	go to state 61
+    MacroReference	go to state 41
+
+
+
+state 40
+
+    AttributeDefList  ->  AttributeDef .   (rule 49)
+
+    $default	reduce using rule 49 (AttributeDefList)
+
+
+
+state 41
+
+    AttributeDef  ->  MacroReference .   (rule 52)
+
+    $default	reduce using rule 52 (AttributeDef)
+
+
+
+state 42
+
+    AttributeDefList  ->  AttributeDefList . AttributeDef   (rule 50)
+    MacroDef  ->  MacroBegin AttributeDefList .   (rule 91)
+
+    T_INCLUDEMACRO	shift, and go to state 35
+    '(' 	shift, and go to state 37
+
+    $default	reduce using rule 91 (MacroDef)
+
+    AttributeDef	go to state 61
+    MacroReference	go to state 41
+
+
+
+state 43
+
+    AEName  ->  STRING .   (rule 20)
+
+    $default	reduce using rule 20 (AEName)
+
+
+
+state 44
+
+    SystemDef  ->  T_SYSTEM SystemDefinition AEDefinition .   (rule 15)
+
+    $default	reduce using rule 15 (SystemDef)
+
+
+
+state 45
+
+    AEDefinition  ->  AEName . AEVersion   (rule 19)
+
+    STRING	shift, and go to state 62
+
+    AEVersion	go to state 63
+
+
+
+state 46
+
+    SystemVersion  ->  STRING .   (rule 18)
+
+    $default	reduce using rule 18 (SystemVersion)
+
+
+
+state 47
+
+    SystemDefinition  ->  SystemName SystemVersion .   (rule 16)
+
+    $default	reduce using rule 16 (SystemDefinition)
+
+
+
+state 48
+
+    SopClassDef  ->  T_SOPCLASS . SopClassUID SopClassName   (rule 28)
+
+    STRING	shift, and go to state 64
+
+    SopClassUID	go to state 65
+
+
+
+state 49
+
+    MetaSopClassDef  ->  T_METASOPCLASS BeginMetaSopClassDef SopClassDefList .   (rule 22)
+    SopClassDefList  ->  SopClassDefList . SopClassDef   (rule 27)
+
+    T_SOPCLASS	shift, and go to state 48
+
+    $default	reduce using rule 22 (MetaSopClassDef)
+
+    SopClassDef	go to state 66
+
+
+
+state 50
+
+    SopClassDefList  ->  SopClassDef .   (rule 26)
+
+    $default	reduce using rule 26 (SopClassDefList)
+
+
+
+state 51
+
+    MetaSopClassName  ->  STRING .   (rule 25)
+
+    $default	reduce using rule 25 (MetaSopClassName)
+
+
+
+state 52
+
+    BeginMetaSopClassDef  ->  MetaSopClassUID MetaSopClassName .   (rule 23)
+
+    $default	reduce using rule 23 (BeginMetaSopClassDef)
+
+
+
+state 53
+
+    AttributeDefList  ->  AttributeDefList . AttributeDef   (rule 50)
+    ItemDef  ->  T_ITEM ItemName AttributeDefList .   (rule 89)
+
+    T_INCLUDEMACRO	shift, and go to state 35
+    '(' 	shift, and go to state 37
+
+    $default	reduce using rule 89 (ItemDef)
+
+    AttributeDef	go to state 61
+    MacroReference	go to state 41
+
+
+
+state 54
+
+    MacroReference  ->  T_INCLUDEMACRO MacroName . MacroCondition   (rule 96)
+
+    ':' 	shift, and go to state 67
+
+    $default	reduce using rule 98 (Condition)
+
+    MacroCondition	go to state 68
+    Condition	go to state 69
+
+
+
+state 55
+
+    AttributeTag  ->  HEX .   (rule 54)
+
+    $default	reduce using rule 54 (AttributeTag)
+
+
+
+state 56
+
+    AttributeDef  ->  '(' AttributeTagDef . ',' AttributeType ',' AttributeValueDef ')' AttributeName AttributeCondition   (rule 51)
+
+    ',' 	shift, and go to state 70
+
+
+
+state 57
+
+    AttributeTagDef  ->  AttributeTag .   (rule 53)
+
+    $default	reduce using rule 53 (AttributeTagDef)
+
+
+
+state 58
+
+    SopClassDefinition  ->  SopClassDef .   (rule 38)
+
+    $default	reduce using rule 38 (SopClassDefinition)
+
+
+
+state 59
+
+    CommandIodDef  ->  DimseCmdDef IodName IodContentDef .   (rule 34)
+
+    $default	reduce using rule 34 (CommandIodDef)
+
+
+
+state 60
+
+    IodContentDef  ->  SopClassDefinition . ModuleDefList   (rule 36)
+    IodContentDef  ->  SopClassDefinition .   (rule 37)
+
+    T_MODULE	shift, and go to state 71
+
+    $default	reduce using rule 37 (IodContentDef)
+
+    ModuleDefList	go to state 72
+    ModuleDef	go to state 73
+    ModuleNameDef	go to state 74
+
+
+
+state 61
+
+    AttributeDefList  ->  AttributeDefList AttributeDef .   (rule 50)
+
+    $default	reduce using rule 50 (AttributeDefList)
+
+
+
+state 62
+
+    AEVersion  ->  STRING .   (rule 21)
+
+    $default	reduce using rule 21 (AEVersion)
+
+
+
+state 63
+
+    AEDefinition  ->  AEName AEVersion .   (rule 19)
+
+    $default	reduce using rule 19 (AEDefinition)
+
+
+
+state 64
+
+    SopClassUID  ->  STRING .   (rule 29)
+
+    $default	reduce using rule 29 (SopClassUID)
+
+
+
+state 65
+
+    SopClassDef  ->  T_SOPCLASS SopClassUID . SopClassName   (rule 28)
+
+    STRING	shift, and go to state 75
+
+    SopClassName	go to state 76
+
+
+
+state 66
+
+    SopClassDefList  ->  SopClassDefList SopClassDef .   (rule 27)
+
+    $default	reduce using rule 27 (SopClassDefList)
+
+
+
+state 67
+
+    Condition  ->  ':' . STRING   (rule 99)
+    Condition  ->  ':' . CondExpr   (rule 100)
+    Condition  ->  ':' . T_WEAK '(' PrimaryCond ',' SecondaryCond ')'   (rule 101)
+
+    T_NOT	shift, and go to state 77
+    T_PRESENT	shift, and go to state 78
+    T_VALUE	shift, and go to state 79
+    T_EMPTY	shift, and go to state 80
+    T_TRUE	shift, and go to state 81
+    T_FALSE	shift, and go to state 82
+    T_WEAK	shift, and go to state 83
+    T_WARN	shift, and go to state 84
+    STRING	shift, and go to state 85
+    '(' 	shift, and go to state 86
+
+    CondExpr	go to state 87
+    Expr	go to state 88
+    SimpleExpr	go to state 89
+
+
+
+state 68
+
+    MacroReference  ->  T_INCLUDEMACRO MacroName MacroCondition .   (rule 96)
+
+    $default	reduce using rule 96 (MacroReference)
+
+
+
+state 69
+
+    MacroCondition  ->  Condition .   (rule 97)
+
+    $default	reduce using rule 97 (MacroCondition)
+
+
+
+state 70
+
+    AttributeDef  ->  '(' AttributeTagDef ',' . AttributeType ',' AttributeValueDef ')' AttributeName AttributeCondition   (rule 51)
+
+    INTEGER	shift, and go to state 90
+    TYPE	shift, and go to state 91
+
+    AttributeType	go to state 92
+
+
+
+state 71
+
+    ModuleNameDef  ->  T_MODULE . ModuleName ModuleUsage   (rule 43)
+    ModuleNameDef  ->  T_MODULE .   (rule 44)
+
+    STRING	shift, and go to state 93
+
+    $default	reduce using rule 44 (ModuleNameDef)
+
+    ModuleName	go to state 94
+
+
+
+state 72
+
+    IodContentDef  ->  SopClassDefinition ModuleDefList .   (rule 36)
+    ModuleDefList  ->  ModuleDefList . ModuleDef   (rule 40)
+
+    T_MODULE	shift, and go to state 71
+
+    $default	reduce using rule 36 (IodContentDef)
+
+    ModuleDef	go to state 95
+    ModuleNameDef	go to state 74
+
+
+
+state 73
+
+    ModuleDefList  ->  ModuleDef .   (rule 39)
+
+    $default	reduce using rule 39 (ModuleDefList)
+
+
+
+state 74
+
+    ModuleDef  ->  ModuleNameDef . AttributeDefList   (rule 41)
+    ModuleDef  ->  ModuleNameDef .   (rule 42)
+
+    T_INCLUDEMACRO	shift, and go to state 35
+    '(' 	shift, and go to state 37
+
+    $default	reduce using rule 42 (ModuleDef)
+
+    AttributeDefList	go to state 96
+    AttributeDef	go to state 40
+    MacroReference	go to state 41
+
+
+
+state 75
+
+    SopClassName  ->  STRING .   (rule 30)
+
+    $default	reduce using rule 30 (SopClassName)
+
+
+
+state 76
+
+    SopClassDef  ->  T_SOPCLASS SopClassUID SopClassName .   (rule 28)
+
+    $default	reduce using rule 28 (SopClassDef)
+
+
+
+state 77
+
+    SimpleExpr  ->  T_NOT . SimpleExpr   (rule 111)
+
+    T_NOT	shift, and go to state 77
+    T_PRESENT	shift, and go to state 78
+    T_VALUE	shift, and go to state 79
+    T_EMPTY	shift, and go to state 80
+    T_TRUE	shift, and go to state 81
+    T_FALSE	shift, and go to state 82
+    T_WARN	shift, and go to state 84
+    '(' 	shift, and go to state 86
+
+    SimpleExpr	go to state 97
+
+
+
+state 78
+
+    SimpleExpr  ->  T_PRESENT . AttributeTagAddress   (rule 108)
+
+    HEX 	shift, and go to state 55
+    '.' 	shift, and go to state 98
+
+    AttributeTag	go to state 99
+    AttributeTagAddress	go to state 100
+    AttributeTagPath	go to state 101
+    AttributeTagHere	go to state 102
+    AttributeTagUpPath	go to state 103
+    AttributeTagUp	go to state 104
+    AttributeTagDownPath	go to state 105
+    AttributeTagDown	go to state 106
+
+
+
+state 79
+
+    SimpleExpr  ->  T_VALUE . AttributeTagAddress ValueNr Operator CondValue   (rule 110)
+
+    HEX 	shift, and go to state 55
+    '.' 	shift, and go to state 98
+
+    AttributeTag	go to state 99
+    AttributeTagAddress	go to state 107
+    AttributeTagPath	go to state 101
+    AttributeTagHere	go to state 102
+    AttributeTagUpPath	go to state 103
+    AttributeTagUp	go to state 104
+    AttributeTagDownPath	go to state 105
+    AttributeTagDown	go to state 106
+
+
+
+state 80
+
+    SimpleExpr  ->  T_EMPTY . AttributeTagAddress   (rule 109)
+
+    HEX 	shift, and go to state 55
+    '.' 	shift, and go to state 98
+
+    AttributeTag	go to state 99
+    AttributeTagAddress	go to state 108
+    AttributeTagPath	go to state 101
+    AttributeTagHere	go to state 102
+    AttributeTagUpPath	go to state 103
+    AttributeTagUp	go to state 104
+    AttributeTagDownPath	go to state 105
+    AttributeTagDown	go to state 106
+
+
+
+state 81
+
+    SimpleExpr  ->  T_TRUE .   (rule 114)
+
+    $default	reduce using rule 114 (SimpleExpr)
+
+
+
+state 82
+
+    SimpleExpr  ->  T_FALSE .   (rule 115)
+
+    $default	reduce using rule 115 (SimpleExpr)
+
+
+
+state 83
+
+    Condition  ->  ':' T_WEAK . '(' PrimaryCond ',' SecondaryCond ')'   (rule 101)
+
+    '(' 	shift, and go to state 109
+
+
+
+state 84
+
+    SimpleExpr  ->  T_WARN . '(' CondExpr ')'   (rule 113)
+
+    '(' 	shift, and go to state 110
+
+
+
+state 85
+
+    Condition  ->  ':' STRING .   (rule 99)
+
+    $default	reduce using rule 99 (Condition)
+
+
+
+state 86
+
+    SimpleExpr  ->  '(' . CondExpr ')'   (rule 112)
+
+    T_NOT	shift, and go to state 77
+    T_PRESENT	shift, and go to state 78
+    T_VALUE	shift, and go to state 79
+    T_EMPTY	shift, and go to state 80
+    T_TRUE	shift, and go to state 81
+    T_FALSE	shift, and go to state 82
+    T_WARN	shift, and go to state 84
+    '(' 	shift, and go to state 86
+
+    CondExpr	go to state 111
+    Expr	go to state 88
+    SimpleExpr	go to state 89
+
+
+
+state 87
+
+    Condition  ->  ':' CondExpr .   (rule 100)
+    CondExpr  ->  CondExpr . T_OR Expr   (rule 105)
+
+    T_OR	shift, and go to state 112
+
+    $default	reduce using rule 100 (Condition)
+
+
+
+state 88
+
+    CondExpr  ->  Expr .   (rule 104)
+    Expr  ->  Expr . T_AND SimpleExpr   (rule 107)
+
+    T_AND	shift, and go to state 113
+
+    $default	reduce using rule 104 (CondExpr)
+
+
+
+state 89
+
+    Expr  ->  SimpleExpr .   (rule 106)
+
+    $default	reduce using rule 106 (Expr)
+
+
+
+state 90
+
+    AttributeType  ->  INTEGER .   (rule 55)
+
+    $default	reduce using rule 55 (AttributeType)
+
+
+
+state 91
+
+    AttributeType  ->  TYPE .   (rule 56)
+
+    $default	reduce using rule 56 (AttributeType)
+
+
+
+state 92
+
+    AttributeDef  ->  '(' AttributeTagDef ',' AttributeType . ',' AttributeValueDef ')' AttributeName AttributeCondition   (rule 51)
+
+    ',' 	shift, and go to state 114
+
+
+
+state 93
+
+    ModuleName  ->  STRING .   (rule 45)
+
+    $default	reduce using rule 45 (ModuleName)
+
+
+
+state 94
+
+    ModuleNameDef  ->  T_MODULE ModuleName . ModuleUsage   (rule 43)
+
+    USAGE	shift, and go to state 115
+
+    ModuleUsage	go to state 116
+    ModUsage	go to state 117
+
+
+
+state 95
+
+    ModuleDefList  ->  ModuleDefList ModuleDef .   (rule 40)
+
+    $default	reduce using rule 40 (ModuleDefList)
+
+
+
+state 96
+
+    ModuleDef  ->  ModuleNameDef AttributeDefList .   (rule 41)
+    AttributeDefList  ->  AttributeDefList . AttributeDef   (rule 50)
+
+    T_INCLUDEMACRO	shift, and go to state 35
+    '(' 	shift, and go to state 37
+
+    $default	reduce using rule 41 (ModuleDef)
+
+    AttributeDef	go to state 61
+    MacroReference	go to state 41
+
+
+
+state 97
+
+    SimpleExpr  ->  T_NOT SimpleExpr .   (rule 111)
+
+    $default	reduce using rule 111 (SimpleExpr)
+
+
+
+state 98
+
+    AttributeTagHere  ->  '.' . '/'   (rule 131)
+    AttributeTagUp  ->  '.' . '.' '/'   (rule 134)
+
+    '/' 	shift, and go to state 118
+    '.' 	shift, and go to state 119
+
+
+
+state 99
+
+    AttributeTagAddress  ->  AttributeTag .   (rule 124)
+    AttributeTagDown  ->  AttributeTag . '/'   (rule 137)
+
+    '/' 	shift, and go to state 120
+
+    $default	reduce using rule 124 (AttributeTagAddress)
+
+
+
+state 100
+
+    SimpleExpr  ->  T_PRESENT AttributeTagAddress .   (rule 108)
+
+    $default	reduce using rule 108 (SimpleExpr)
+
+
+
+state 101
+
+    AttributeTagAddress  ->  AttributeTagPath .   (rule 125)
+
+    $default	reduce using rule 125 (AttributeTagAddress)
+
+
+
+state 102
+
+    AttributeTagPath  ->  AttributeTagHere . AttributeTag   (rule 126)
+    AttributeTagPath  ->  AttributeTagHere . AttributeTagDownPath AttributeTag   (rule 129)
+
+    HEX 	shift, and go to state 55
+
+    AttributeTag	go to state 121
+    AttributeTagDownPath	go to state 122
+    AttributeTagDown	go to state 106
+
+
+
+state 103
+
+    AttributeTagPath  ->  AttributeTagUpPath . AttributeTag   (rule 127)
+    AttributeTagPath  ->  AttributeTagUpPath . AttributeTagDownPath AttributeTag   (rule 130)
+    AttributeTagUpPath  ->  AttributeTagUpPath . AttributeTagUp   (rule 133)
+
+    HEX 	shift, and go to state 55
+    '.' 	shift, and go to state 123
+
+    AttributeTag	go to state 124
+    AttributeTagUp	go to state 125
+    AttributeTagDownPath	go to state 126
+    AttributeTagDown	go to state 106
+
+
+
+state 104
+
+    AttributeTagUpPath  ->  AttributeTagUp .   (rule 132)
+
+    $default	reduce using rule 132 (AttributeTagUpPath)
+
+
+
+state 105
+
+    AttributeTagPath  ->  AttributeTagDownPath . AttributeTag   (rule 128)
+    AttributeTagDownPath  ->  AttributeTagDownPath . AttributeTagDown   (rule 136)
+
+    HEX 	shift, and go to state 55
+
+    AttributeTag	go to state 127
+    AttributeTagDown	go to state 128
+
+
+
+state 106
+
+    AttributeTagDownPath  ->  AttributeTagDown .   (rule 135)
+
+    $default	reduce using rule 135 (AttributeTagDownPath)
+
+
+
+state 107
+
+    SimpleExpr  ->  T_VALUE AttributeTagAddress . ValueNr Operator CondValue   (rule 110)
+
+    INTEGER	shift, and go to state 129
+
+    $default	reduce using rule 116 (ValueNr)
+
+    ValueNr	go to state 130
+
+
+
+state 108
+
+    SimpleExpr  ->  T_EMPTY AttributeTagAddress .   (rule 109)
+
+    $default	reduce using rule 109 (SimpleExpr)
+
+
+
+state 109
+
+    Condition  ->  ':' T_WEAK '(' . PrimaryCond ',' SecondaryCond ')'   (rule 101)
+
+    T_NOT	shift, and go to state 77
+    T_PRESENT	shift, and go to state 78
+    T_VALUE	shift, and go to state 79
+    T_EMPTY	shift, and go to state 80
+    T_TRUE	shift, and go to state 81
+    T_FALSE	shift, and go to state 82
+    T_WARN	shift, and go to state 84
+    '(' 	shift, and go to state 86
+
+    PrimaryCond	go to state 131
+    CondExpr	go to state 132
+    Expr	go to state 88
+    SimpleExpr	go to state 89
+
+
+
+state 110
+
+    SimpleExpr  ->  T_WARN '(' . CondExpr ')'   (rule 113)
+
+    T_NOT	shift, and go to state 77
+    T_PRESENT	shift, and go to state 78
+    T_VALUE	shift, and go to state 79
+    T_EMPTY	shift, and go to state 80
+    T_TRUE	shift, and go to state 81
+    T_FALSE	shift, and go to state 82
+    T_WARN	shift, and go to state 84
+    '(' 	shift, and go to state 86
+
+    CondExpr	go to state 133
+    Expr	go to state 88
+    SimpleExpr	go to state 89
+
+
+
+state 111
+
+    CondExpr  ->  CondExpr . T_OR Expr   (rule 105)
+    SimpleExpr  ->  '(' CondExpr . ')'   (rule 112)
+
+    T_OR	shift, and go to state 112
+    ')' 	shift, and go to state 134
+
+
+
+state 112
+
+    CondExpr  ->  CondExpr T_OR . Expr   (rule 105)
+
+    T_NOT	shift, and go to state 77
+    T_PRESENT	shift, and go to state 78
+    T_VALUE	shift, and go to state 79
+    T_EMPTY	shift, and go to state 80
+    T_TRUE	shift, and go to state 81
+    T_FALSE	shift, and go to state 82
+    T_WARN	shift, and go to state 84
+    '(' 	shift, and go to state 86
+
+    Expr	go to state 135
+    SimpleExpr	go to state 89
+
+
+
+state 113
+
+    Expr  ->  Expr T_AND . SimpleExpr   (rule 107)
+
+    T_NOT	shift, and go to state 77
+    T_PRESENT	shift, and go to state 78
+    T_VALUE	shift, and go to state 79
+    T_EMPTY	shift, and go to state 80
+    T_TRUE	shift, and go to state 81
+    T_FALSE	shift, and go to state 82
+    T_WARN	shift, and go to state 84
+    '(' 	shift, and go to state 86
+
+    SimpleExpr	go to state 136
+
+
+
+state 114
+
+    AttributeDef  ->  '(' AttributeTagDef ',' AttributeType ',' . AttributeValueDef ')' AttributeName AttributeCondition   (rule 51)
+
+    T_SQ	shift, and go to state 137
+    VR  	shift, and go to state 138
+
+    AttributeValueDef	go to state 139
+    SequenceValueDef	go to state 140
+    SequenceIntro	go to state 141
+    OtherValueDef	go to state 142
+    AttributeVR	go to state 143
+
+
+
+state 115
+
+    ModUsage  ->  USAGE .   (rule 47)
+
+    $default	reduce using rule 47 (ModUsage)
+
+
+
+state 116
+
+    ModuleNameDef  ->  T_MODULE ModuleName ModuleUsage .   (rule 43)
+
+    $default	reduce using rule 43 (ModuleNameDef)
+
+
+
+state 117
+
+    ModuleUsage  ->  ModUsage . ModuleCondition   (rule 46)
+
+    ':' 	shift, and go to state 67
+
+    $default	reduce using rule 98 (Condition)
+
+    ModuleCondition	go to state 144
+    Condition	go to state 145
+
+
+
+state 118
+
+    AttributeTagHere  ->  '.' '/' .   (rule 131)
+
+    $default	reduce using rule 131 (AttributeTagHere)
+
+
+
+state 119
+
+    AttributeTagUp  ->  '.' '.' . '/'   (rule 134)
+
+    '/' 	shift, and go to state 146
+
+
+
+state 120
+
+    AttributeTagDown  ->  AttributeTag '/' .   (rule 137)
+
+    $default	reduce using rule 137 (AttributeTagDown)
+
+
+
+state 121
+
+    AttributeTagPath  ->  AttributeTagHere AttributeTag .   (rule 126)
+    AttributeTagDown  ->  AttributeTag . '/'   (rule 137)
+
+    '/' 	shift, and go to state 120
+
+    $default	reduce using rule 126 (AttributeTagPath)
+
+
+
+state 122
+
+    AttributeTagPath  ->  AttributeTagHere AttributeTagDownPath . AttributeTag   (rule 129)
+    AttributeTagDownPath  ->  AttributeTagDownPath . AttributeTagDown   (rule 136)
+
+    HEX 	shift, and go to state 55
+
+    AttributeTag	go to state 147
+    AttributeTagDown	go to state 128
+
+
+
+state 123
+
+    AttributeTagUp  ->  '.' . '.' '/'   (rule 134)
+
+    '.' 	shift, and go to state 119
+
+
+
+state 124
+
+    AttributeTagPath  ->  AttributeTagUpPath AttributeTag .   (rule 127)
+    AttributeTagDown  ->  AttributeTag . '/'   (rule 137)
+
+    '/' 	shift, and go to state 120
+
+    $default	reduce using rule 127 (AttributeTagPath)
+
+
+
+state 125
+
+    AttributeTagUpPath  ->  AttributeTagUpPath AttributeTagUp .   (rule 133)
+
+    $default	reduce using rule 133 (AttributeTagUpPath)
+
+
+
+state 126
+
+    AttributeTagPath  ->  AttributeTagUpPath AttributeTagDownPath . AttributeTag   (rule 130)
+    AttributeTagDownPath  ->  AttributeTagDownPath . AttributeTagDown   (rule 136)
+
+    HEX 	shift, and go to state 55
+
+    AttributeTag	go to state 148
+    AttributeTagDown	go to state 128
+
+
+
+state 127
+
+    AttributeTagPath  ->  AttributeTagDownPath AttributeTag .   (rule 128)
+    AttributeTagDown  ->  AttributeTag . '/'   (rule 137)
+
+    '/' 	shift, and go to state 120
+
+    $default	reduce using rule 128 (AttributeTagPath)
+
+
+
+state 128
+
+    AttributeTagDownPath  ->  AttributeTagDownPath AttributeTagDown .   (rule 136)
+
+    $default	reduce using rule 136 (AttributeTagDownPath)
+
+
+
+state 129
+
+    ValueNr  ->  INTEGER .   (rule 117)
+
+    $default	reduce using rule 117 (ValueNr)
+
+
+
+state 130
+
+    SimpleExpr  ->  T_VALUE AttributeTagAddress ValueNr . Operator CondValue   (rule 110)
+
+    T_EQUAL	shift, and go to state 149
+    T_LESS	shift, and go to state 150
+    T_GREATER	shift, and go to state 151
+    T_LESS_OR_EQUAL	shift, and go to state 152
+    T_GREATER_OR_EQUAL	shift, and go to state 153
+
+    Operator	go to state 154
+
+
+
+state 131
+
+    Condition  ->  ':' T_WEAK '(' PrimaryCond . ',' SecondaryCond ')'   (rule 101)
+
+    ',' 	shift, and go to state 155
+
+
+
+state 132
+
+    PrimaryCond  ->  CondExpr .   (rule 102)
+    CondExpr  ->  CondExpr . T_OR Expr   (rule 105)
+
+    T_OR	shift, and go to state 112
+
+    $default	reduce using rule 102 (PrimaryCond)
+
+
+
+state 133
+
+    CondExpr  ->  CondExpr . T_OR Expr   (rule 105)
+    SimpleExpr  ->  T_WARN '(' CondExpr . ')'   (rule 113)
+
+    T_OR	shift, and go to state 112
+    ')' 	shift, and go to state 156
+
+
+
+state 134
+
+    SimpleExpr  ->  '(' CondExpr ')' .   (rule 112)
+
+    $default	reduce using rule 112 (SimpleExpr)
+
+
+
+state 135
+
+    CondExpr  ->  CondExpr T_OR Expr .   (rule 105)
+    Expr  ->  Expr . T_AND SimpleExpr   (rule 107)
+
+    T_AND	shift, and go to state 113
+
+    $default	reduce using rule 105 (CondExpr)
+
+
+
+state 136
+
+    Expr  ->  Expr T_AND SimpleExpr .   (rule 107)
+
+    $default	reduce using rule 107 (Expr)
+
+
+
+state 137
+
+    SequenceIntro  ->  T_SQ . ',' AttributeVM ','   (rule 63)
+
+    ',' 	shift, and go to state 157
+
+
+
+state 138
+
+    AttributeVR  ->  VR .   (rule 73)
+    AttributeVR  ->  VR . '/' VR   (rule 74)
+
+    '/' 	shift, and go to state 158
+
+    $default	reduce using rule 73 (AttributeVR)
+
+
+
+state 139
+
+    AttributeDef  ->  '(' AttributeTagDef ',' AttributeType ',' AttributeValueDef . ')' AttributeName AttributeCondition   (rule 51)
+
+    ')' 	shift, and go to state 159
+
+
+
+state 140
+
+    AttributeValueDef  ->  SequenceValueDef .   (rule 59)
+
+    $default	reduce using rule 59 (AttributeValueDef)
+
+
+
+state 141
+
+    SequenceValueDef  ->  SequenceIntro . ItemAttributeDefList   (rule 61)
+    SequenceValueDef  ->  SequenceIntro .   (rule 62)
+
+    T_GREATER	shift, and go to state 160
+
+    $default	reduce using rule 62 (SequenceValueDef)
+
+    ItemAttributeDefList	go to state 161
+    ItemAttributeDef	go to state 162
+
+
+
+state 142
+
+    AttributeValueDef  ->  OtherValueDef .   (rule 60)
+
+    $default	reduce using rule 60 (AttributeValueDef)
+
+
+
+state 143
+
+    OtherValueDef  ->  AttributeVR . ',' AttributeVM ValuesDef   (rule 64)
+
+    ',' 	shift, and go to state 163
+
+
+
+state 144
+
+    ModuleUsage  ->  ModUsage ModuleCondition .   (rule 46)
+
+    $default	reduce using rule 46 (ModuleUsage)
+
+
+
+state 145
+
+    ModuleCondition  ->  Condition .   (rule 48)
+
+    $default	reduce using rule 48 (ModuleCondition)
+
+
+
+state 146
+
+    AttributeTagUp  ->  '.' '.' '/' .   (rule 134)
+
+    $default	reduce using rule 134 (AttributeTagUp)
+
+
+
+state 147
+
+    AttributeTagPath  ->  AttributeTagHere AttributeTagDownPath AttributeTag .   (rule 129)
+    AttributeTagDown  ->  AttributeTag . '/'   (rule 137)
+
+    '/' 	shift, and go to state 120
+
+    $default	reduce using rule 129 (AttributeTagPath)
+
+
+
+state 148
+
+    AttributeTagPath  ->  AttributeTagUpPath AttributeTagDownPath AttributeTag .   (rule 130)
+    AttributeTagDown  ->  AttributeTag . '/'   (rule 137)
+
+    '/' 	shift, and go to state 120
+
+    $default	reduce using rule 130 (AttributeTagPath)
+
+
+
+state 149
+
+    Operator  ->  T_EQUAL .   (rule 119)
+
+    $default	reduce using rule 119 (Operator)
+
+
+
+state 150
+
+    Operator  ->  T_LESS .   (rule 120)
+
+    $default	reduce using rule 120 (Operator)
+
+
+
+state 151
+
+    Operator  ->  T_GREATER .   (rule 121)
+
+    $default	reduce using rule 121 (Operator)
+
+
+
+state 152
+
+    Operator  ->  T_LESS_OR_EQUAL .   (rule 122)
+
+    $default	reduce using rule 122 (Operator)
+
+
+
+state 153
+
+    Operator  ->  T_GREATER_OR_EQUAL .   (rule 123)
+
+    $default	reduce using rule 123 (Operator)
+
+
+
+state 154
+
+    SimpleExpr  ->  T_VALUE AttributeTagAddress ValueNr Operator . CondValue   (rule 110)
+
+    STRING	shift, and go to state 164
+
+    CondValue	go to state 165
+
+
+
+state 155
+
+    Condition  ->  ':' T_WEAK '(' PrimaryCond ',' . SecondaryCond ')'   (rule 101)
+
+    T_NOT	shift, and go to state 77
+    T_PRESENT	shift, and go to state 78
+    T_VALUE	shift, and go to state 79
+    T_EMPTY	shift, and go to state 80
+    T_TRUE	shift, and go to state 81
+    T_FALSE	shift, and go to state 82
+    T_WARN	shift, and go to state 84
+    '(' 	shift, and go to state 86
+
+    SecondaryCond	go to state 166
+    CondExpr	go to state 167
+    Expr	go to state 88
+    SimpleExpr	go to state 89
+
+
+
+state 156
+
+    SimpleExpr  ->  T_WARN '(' CondExpr ')' .   (rule 113)
+
+    $default	reduce using rule 113 (SimpleExpr)
+
+
+
+state 157
+
+    SequenceIntro  ->  T_SQ ',' . AttributeVM ','   (rule 63)
+
+    STRING	shift, and go to state 168
+    INTEGER	shift, and go to state 169
+    'n' 	shift, and go to state 170
+
+    AttributeVM	go to state 171
+
+
+
+state 158
+
+    AttributeVR  ->  VR '/' . VR   (rule 74)
+
+    VR  	shift, and go to state 172
+
+
+
+state 159
+
+    AttributeDef  ->  '(' AttributeTagDef ',' AttributeType ',' AttributeValueDef ')' . AttributeName AttributeCondition   (rule 51)
+
+    STRING	shift, and go to state 173
+
+    AttributeName	go to state 174
+
+
+
+state 160
+
+    ItemAttributeDef  ->  T_GREATER . AttributeDef   (rule 67)
+
+    T_INCLUDEMACRO	shift, and go to state 35
+    '(' 	shift, and go to state 37
+
+    AttributeDef	go to state 175
+    MacroReference	go to state 41
+
+
+
+state 161
+
+    SequenceValueDef  ->  SequenceIntro ItemAttributeDefList .   (rule 61)
+    ItemAttributeDefList  ->  ItemAttributeDefList . ItemAttributeDef   (rule 66)
+
+    T_GREATER	shift, and go to state 160
+
+    $default	reduce using rule 61 (SequenceValueDef)
+
+    ItemAttributeDef	go to state 176
+
+
+
+state 162
+
+    ItemAttributeDefList  ->  ItemAttributeDef .   (rule 65)
+
+    $default	reduce using rule 65 (ItemAttributeDefList)
+
+
+
+state 163
+
+    OtherValueDef  ->  AttributeVR ',' . AttributeVM ValuesDef   (rule 64)
+
+    STRING	shift, and go to state 168
+    INTEGER	shift, and go to state 169
+    'n' 	shift, and go to state 170
+
+    AttributeVM	go to state 177
+
+
+
+state 164
+
+    CondValue  ->  STRING .   (rule 118)
+
+    $default	reduce using rule 118 (CondValue)
+
+
+
+state 165
+
+    SimpleExpr  ->  T_VALUE AttributeTagAddress ValueNr Operator CondValue .   (rule 110)
+
+    $default	reduce using rule 110 (SimpleExpr)
+
+
+
+state 166
+
+    Condition  ->  ':' T_WEAK '(' PrimaryCond ',' SecondaryCond . ')'   (rule 101)
+
+    ')' 	shift, and go to state 178
+
+
+
+state 167
+
+    SecondaryCond  ->  CondExpr .   (rule 103)
+    CondExpr  ->  CondExpr . T_OR Expr   (rule 105)
+
+    T_OR	shift, and go to state 112
+
+    $default	reduce using rule 103 (SecondaryCond)
+
+
+
+state 168
+
+    AttributeVM  ->  STRING .   (rule 71)
+
+    $default	reduce using rule 71 (AttributeVM)
+
+
+
+state 169
+
+    AttributeVM  ->  INTEGER .   (rule 68)
+    AttributeVM  ->  INTEGER . ':' INTEGER   (rule 69)
+    AttributeVM  ->  INTEGER . ':' 'n'   (rule 70)
+
+    ':' 	shift, and go to state 179
+
+    $default	reduce using rule 68 (AttributeVM)
+
+
+
+state 170
+
+    AttributeVM  ->  'n' .   (rule 72)
+
+    $default	reduce using rule 72 (AttributeVM)
+
+
+
+state 171
+
+    SequenceIntro  ->  T_SQ ',' AttributeVM . ','   (rule 63)
+
+    ',' 	shift, and go to state 180
+
+
+
+state 172
+
+    AttributeVR  ->  VR '/' VR .   (rule 74)
+
+    $default	reduce using rule 74 (AttributeVR)
+
+
+
+state 173
+
+    AttributeName  ->  STRING .   (rule 57)
+
+    $default	reduce using rule 57 (AttributeName)
+
+
+
+state 174
+
+    AttributeDef  ->  '(' AttributeTagDef ',' AttributeType ',' AttributeValueDef ')' AttributeName . AttributeCondition   (rule 51)
+
+    ':' 	shift, and go to state 67
+
+    $default	reduce using rule 98 (Condition)
+
+    AttributeCondition	go to state 181
+    Condition	go to state 182
+
+
+
+state 175
+
+    ItemAttributeDef  ->  T_GREATER AttributeDef .   (rule 67)
+
+    $default	reduce using rule 67 (ItemAttributeDef)
+
+
+
+state 176
+
+    ItemAttributeDefList  ->  ItemAttributeDefList ItemAttributeDef .   (rule 66)
+
+    $default	reduce using rule 66 (ItemAttributeDefList)
+
+
+
+state 177
+
+    OtherValueDef  ->  AttributeVR ',' AttributeVM . ValuesDef   (rule 64)
+
+    ',' 	shift, and go to state 183
+
+    $default	reduce using rule 75 (ValuesDef)
+
+    ValuesDef	go to state 184
+
+
+
+state 178
+
+    Condition  ->  ':' T_WEAK '(' PrimaryCond ',' SecondaryCond ')' .   (rule 101)
+
+    $default	reduce using rule 101 (Condition)
+
+
+
+state 179
+
+    AttributeVM  ->  INTEGER ':' . INTEGER   (rule 69)
+    AttributeVM  ->  INTEGER ':' . 'n'   (rule 70)
+
+    INTEGER	shift, and go to state 185
+    'n' 	shift, and go to state 186
+
+
+
+state 180
+
+    SequenceIntro  ->  T_SQ ',' AttributeVM ',' .   (rule 63)
+
+    $default	reduce using rule 63 (SequenceIntro)
+
+
+
+state 181
+
+    AttributeDef  ->  '(' AttributeTagDef ',' AttributeType ',' AttributeValueDef ')' AttributeName AttributeCondition .   (rule 51)
+
+    $default	reduce using rule 51 (AttributeDef)
+
+
+
+state 182
+
+    AttributeCondition  ->  Condition .   (rule 58)
+
+    $default	reduce using rule 58 (AttributeCondition)
+
+
+
+state 183
+
+    ValuesDef  ->  ',' . FirstValuesDef   (rule 76)
+    ValuesDef  ->  ',' . FirstValuesDef ',' OtherValuesDefList   (rule 77)
+
+    VALUETYPE	shift, and go to state 187
+
+    FirstValuesDef	go to state 188
+    ValueType	go to state 189
+
+
+
+state 184
+
+    OtherValueDef  ->  AttributeVR ',' AttributeVM ValuesDef .   (rule 64)
+
+    $default	reduce using rule 64 (OtherValueDef)
+
+
+
+state 185
+
+    AttributeVM  ->  INTEGER ':' INTEGER .   (rule 69)
+
+    $default	reduce using rule 69 (AttributeVM)
+
+
+
+state 186
+
+    AttributeVM  ->  INTEGER ':' 'n' .   (rule 70)
+
+    $default	reduce using rule 70 (AttributeVM)
+
+
+
+state 187
+
+    ValueType  ->  VALUETYPE .   (rule 83)
+
+    $default	reduce using rule 83 (ValueType)
+
+
+
+state 188
+
+    ValuesDef  ->  ',' FirstValuesDef .   (rule 76)
+    ValuesDef  ->  ',' FirstValuesDef . ',' OtherValuesDefList   (rule 77)
+
+    ',' 	shift, and go to state 190
+
+    $default	reduce using rule 76 (ValuesDef)
+
+
+
+state 189
+
+    FirstValuesDef  ->  ValueType . ',' ValuesList   (rule 78)
+
+    ',' 	shift, and go to state 191
+
+
+
+state 190
+
+    ValuesDef  ->  ',' FirstValuesDef ',' . OtherValuesDefList   (rule 77)
+
+    STRING	shift, and go to state 192
+    INTEGER	shift, and go to state 193
+    HEX 	shift, and go to state 194
+    VALUETYPE	shift, and go to state 187
+
+    OtherValuesDefList	go to state 195
+    OtherValuesDef	go to state 196
+    ValueType	go to state 197
+    ValuesList	go to state 198
+    Value	go to state 199
+
+
+
+state 191
+
+    FirstValuesDef  ->  ValueType ',' . ValuesList   (rule 78)
+
+    STRING	shift, and go to state 192
+    INTEGER	shift, and go to state 193
+    HEX 	shift, and go to state 194
+
+    ValuesList	go to state 200
+    Value	go to state 199
+
+
+
+state 192
+
+    Value  ->  STRING .   (rule 86)
+
+    $default	reduce using rule 86 (Value)
+
+
+
+state 193
+
+    Value  ->  INTEGER .   (rule 88)
+
+    $default	reduce using rule 88 (Value)
+
+
+
+state 194
+
+    Value  ->  HEX .   (rule 87)
+
+    $default	reduce using rule 87 (Value)
+
+
+
+state 195
+
+    ValuesDef  ->  ',' FirstValuesDef ',' OtherValuesDefList .   (rule 77)
+    OtherValuesDefList  ->  OtherValuesDefList . ',' OtherValuesDef   (rule 80)
+
+    ',' 	shift, and go to state 201
+
+    $default	reduce using rule 77 (ValuesDef)
+
+
+
+state 196
+
+    OtherValuesDefList  ->  OtherValuesDef .   (rule 79)
+
+    $default	reduce using rule 79 (OtherValuesDefList)
+
+
+
+state 197
+
+    OtherValuesDef  ->  ValueType . ',' ValuesList   (rule 81)
+
+    ',' 	shift, and go to state 202
+
+
+
+state 198
+
+    OtherValuesDef  ->  ValuesList .   (rule 82)
+    ValuesList  ->  ValuesList . '|' Value   (rule 85)
+
+    '|' 	shift, and go to state 203
+
+    $default	reduce using rule 82 (OtherValuesDef)
+
+
+
+state 199
+
+    ValuesList  ->  Value .   (rule 84)
+
+    $default	reduce using rule 84 (ValuesList)
+
+
+
+state 200
+
+    FirstValuesDef  ->  ValueType ',' ValuesList .   (rule 78)
+    ValuesList  ->  ValuesList . '|' Value   (rule 85)
+
+    '|' 	shift, and go to state 203
+
+    $default	reduce using rule 78 (FirstValuesDef)
+
+
+
+state 201
+
+    OtherValuesDefList  ->  OtherValuesDefList ',' . OtherValuesDef   (rule 80)
+
+    STRING	shift, and go to state 192
+    INTEGER	shift, and go to state 193
+    HEX 	shift, and go to state 194
+    VALUETYPE	shift, and go to state 187
+
+    OtherValuesDef	go to state 204
+    ValueType	go to state 197
+    ValuesList	go to state 198
+    Value	go to state 199
+
+
+
+state 202
+
+    OtherValuesDef  ->  ValueType ',' . ValuesList   (rule 81)
+
+    STRING	shift, and go to state 192
+    INTEGER	shift, and go to state 193
+    HEX 	shift, and go to state 194
+
+    ValuesList	go to state 205
+    Value	go to state 199
+
+
+
+state 203
+
+    ValuesList  ->  ValuesList '|' . Value   (rule 85)
+
+    STRING	shift, and go to state 192
+    INTEGER	shift, and go to state 193
+    HEX 	shift, and go to state 194
+
+    Value	go to state 206
+
+
+
+state 204
+
+    OtherValuesDefList  ->  OtherValuesDefList ',' OtherValuesDef .   (rule 80)
+
+    $default	reduce using rule 80 (OtherValuesDefList)
+
+
+
+state 205
+
+    OtherValuesDef  ->  ValueType ',' ValuesList .   (rule 81)
+    ValuesList  ->  ValuesList . '|' Value   (rule 85)
+
+    '|' 	shift, and go to state 203
+
+    $default	reduce using rule 81 (OtherValuesDef)
+
+
+
+state 206
+
+    ValuesList  ->  ValuesList '|' Value .   (rule 85)
+
+    $default	reduce using rule 85 (ValuesList)
+
+
+
+state 207
+
+    $   	go to state 208
+
+
+
+state 208
+
+    $   	go to state 209
+
+
+
+state 209
+
+    $default	accept

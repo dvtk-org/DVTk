@@ -1,0 +1,37 @@
+##
+## DVT DICOMSuperScript
+##
+## Name: acse_all_scp.dss
+##
+acse_1_scp.ds
+acse_1b_scp.ds
+acse_2_scp.ds
+acse_3_scp.ds
+acse_4_scp.ds
+acse_5_scp.ds
+acse_6_scp.ds
+acse_7_scp.ds
+acse_8_scp.ds
+acse_9_scp.ds
+acse_10_scp.ds
+acse_11_scp.ds
+acse_12_scp.ds
+acse_13_scp.ds
+acse_14_scp.ds
+acse_15_scp.ds
+acse_16_scp.ds
+acse_17_scp.ds
+acse_18_scp.ds
+acse_19_scp.ds
+acse_20_scp.ds
+acse_21_scp.ds
+acse_22_scp.ds
+acse_23_scp.ds
+acse_24_scp.ds
+
+##
+## SuperScript Result should be:
+## Validation: 144 error(s), 82 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 2 error(s), 0 warning(s)
+##

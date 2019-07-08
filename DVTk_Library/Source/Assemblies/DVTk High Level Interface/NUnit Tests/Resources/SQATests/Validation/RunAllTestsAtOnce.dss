@@ -1,0 +1,36 @@
+## 
+## DVT DICOMScript
+##
+## Name: test_validation.dss
+##
+## Test Suite Ref:
+## Test Case Ref:
+##
+## Pre-conditions:
+##
+## Test Scenario:
+##    - Executes different scripts which test the validation algorithm:
+##
+## Expected Result:
+##    The superscript should pass with x error(s) and y warning(s)
+##    The individual scripts should have a result as indicated by each script
+##
+## Post-conditions:
+##    -
+##
+val_test_vm_pass.ds
+val_test_vm_fail.ds
+val_test_vr_pass.ds
+val_test_vr_fail.ds
+val_test_ranges.ds
+val_test_conditions.ds
+val_test_ref.ds
+val_test_presence.ds
+val_test_sq_nesting.ds
+
+##
+## Script Result should be:
+## Validation: 310 error(s), 6 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 0 error(s), 0 warning(s)
+##

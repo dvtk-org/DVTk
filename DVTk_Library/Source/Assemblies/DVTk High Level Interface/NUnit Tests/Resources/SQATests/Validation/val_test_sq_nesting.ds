@@ -1,0 +1,356 @@
+## 
+## DVT DICOMScript
+##
+## Name: val_test_sq_nesting.ds
+##
+## Test Suite Ref: 3.2.2.4.4
+## Test Case Ref: #5
+##
+## Pre-conditions:
+##
+## Test Scenario:
+##    - Create (various) C-STORE-RQ command objects and datasets for the 
+##      "Validation Test SQ Nesting SOP Class" with diverse construction
+##    - the objects are validated 
+##    - and deleted
+##
+##
+## Expected Result:
+##    x errors, y warnings
+##
+## Post-conditions:
+##    -
+##
+
+##================================================================================
+## SQ Nesting test 1: Check SQ against definition
+##                    Different SQ configurations are tested against
+##                    their definition
+##================================================================================
+
+CREATE C-STORE-RQ SRC_CMD "Validation Test SQ Nesting SOP Class" SRC_DATASET
+
+SET C-STORE-RQ SRC_CMD 
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test SQ Nesting SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3");
+}
+
+CREATE "Test SQ SOP Class Item" SQ1ITEM1
+CREATE "Test SQ SOP Class Item" SQ2ITEM1
+CREATE "Test SQ SOP Class Item" SQ3ITEM1
+CREATE "Test SQ SOP Class Item" SQ3SQ1ITEM1
+CREATE "Test SQ SOP Class Item" SQ4ITEM1
+CREATE "Test SQ SOP Class Item" SQ4SQ1ITEM1
+CREATE "Test SQ SOP Class Item" SQ4SQ1SQ1ITEM1
+CREATE "Test SQ SOP Class Item" SQ5ITEM1
+CREATE "Test SQ SOP Class Item" SQ5SQ1ITEM1
+CREATE "Test SQ SOP Class Item" SQ5SQ1SQ1ITEM1
+CREATE "Test SQ SOP Class Item" SQ5SQ1SQ1SQ1ITEM1
+CREATE "Test SQ SOP Class Item" SQ6ITEM1
+
+# set single item
+SET "Test SQ SOP Class Item" SQ2ITEM1
+{
+(0x10220021, AE, "A AE");	  
+(0x10220022, AS, "001Y");
+(0x10220023, AT, 0x10220021);
+}
+
+# set double nested item
+SET "Test SQ SOP Class Item" SQ3SQ1ITEM1
+{
+(0x10220321, DA, "20010511");	        # "SQ03_SQ01_item_attr_321" 
+(0x10220322, DT, "20010511110700");	  # "SQ03_SQ01_item_attr_322" 
+}
+
+SET "Test SQ SOP Class Item" SQ3ITEM1
+{
+(0x10220031, CS, "CS");            # "SQ03_item_attr_31" 
+(0x10220032, SQ, "SQ3SQ1ITEM1");  
+}
+
+# set triple nested item
+SET "Test SQ SOP Class Item" SQ4SQ1SQ1ITEM1
+{
+(0x10224121, DA, "20010511");	          # "SQ04_SQ01_SQ01_item_attr_4121" 
+(0x10224122, DT, "20010511110700");	    # "SQ04_SQ01_SQ01_item_attr_4122" 
+}
+
+SET "Test SQ SOP Class Item" SQ4SQ1ITEM1
+{
+(0x10220411, DA, "20010511");	          # "SQ04_SQ01_item_attr_411" 
+(0x10220412, SQ, "SQ4SQ1SQ1ITEM1");	    # "SQ04_SQ01_item_attr_412" 
+}
+
+SET "Test SQ SOP Class Item" SQ4ITEM1
+{
+(0x10220041, SQ, "SQ4SQ1ITEM1");  
+}
+
+# set 4 double nested nested item 
+SET "Test SQ SOP Class Item" SQ5SQ1SQ1SQ1ITEM1
+{
+(0x10225121, DA, "20010511");	        # "SQ05_SQ01_SQ01_SQ01_item_attr_5121" 
+(0x10225122, DT, "20010511110700");	  # "SQ05_SQ01_SQ01_SQ01_item_attr_5122" 
+}
+
+SET "Test SQ SOP Class Item" SQ5SQ1SQ1ITEM1
+{
+(0x10225111, SQ, "SQ5SQ1SQ1SQ1ITEM1");	 # "SQ05_SQ01_item_attr_512" 
+}
+
+SET "Test SQ SOP Class Item" SQ5SQ1ITEM1
+{
+(0x10220511, SQ, "SQ5SQ1SQ1ITEM1");	  # "SQ05_SQ01_item_attr_512" 
+}
+
+SET "Test SQ SOP Class Item" SQ5ITEM1
+{
+(0x10220051, SQ, "SQ5SQ1ITEM1");  
+}
+
+
+# set single item with additional attribute 
+SET "Test SQ SOP Class Item" SQ6ITEM1
+{
+(0x10220061, AE, "A AE");	  
+(0x10220062, AS, "001Y");
+(0x10220063, AT, 0x10220021);
+}
+
+# set dataset 
+SET "Validation Test SQ Nesting SOP Class" SRC_DATASET
+{
+(0x10220001, SQ, "SQ1ITEM1");	# empty item 
+(0x10220002, SQ, "SQ2ITEM1"); # single item 
+(0x10220003, SQ, "SQ3ITEM1"); # double nested item 
+(0x10220004, SQ, "SQ4ITEM1"); # triple nested item 
+(0x10220005, SQ, "SQ5ITEM1"); # 4 double nested item 
+(0x10220006, SQ, "SQ6ITEM1"); # single item, additional attribute 
+(0x10221111, DS, "0.1");      # "attr_1" 
+}
+
+VALIDATE C-STORE-RQ SRC_CMD "Validation Test SQ Nesting SOP Class" SRC_DATASET
+
+ECHO ""
+##================================================================================
+##
+## Dataset result should be: 1 error(s), 4 warning(s)
+##
+##================================================================================
+
+#delete objects
+DELETE C-STORE-RQ SRC_CMD 
+DELETE "Validation Test SQ Nesting SOP Class" SRC_DATASET
+
+#*********************************************************************************
+
+##================================================================================
+## SQ Nesting test 2: Check SQ against definition & reference object
+##                    Different SQ configurations are tested against
+##                    their definition and a reference object
+##================================================================================
+
+CREATE C-STORE-RQ SRC_CMD "Validation Test SQ Nesting SOP Class" SRC_DATASET
+CREATE C-STORE-RQ REF_CMD "Validation Test SQ Nesting SOP Class" REF_DATASET
+
+SET C-STORE-RQ SRC_CMD 
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test SQ Nesting SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3");
+}
+
+SET C-STORE-RQ REF_CMD 
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test SQ Nesting SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3");
+}
+
+#
+# Empty Source Sequence & empty ref sequence
+# Error in source item
+# 
+CREATE "Test SQ SOP Class Item" SRC_SQ1ITEM1
+CREATE "Test SQ SOP Class Item" REF_SQ1ITEM1
+
+#
+# Sequence with single item
+# Error in source item
+# 
+CREATE "Test SQ SOP Class Item" SRC_SQ2ITEM1
+
+SET "Test SQ SOP Class Item" SRC_SQ2ITEM1
+{
+(0x10220021, AE, "A AE");	  
+(0x10220022, AS, "001Y", "002Y");
+(0x10220023, AT, 0x10220021);
+}
+
+CREATE "Test SQ SOP Class Item" REF_SQ2ITEM1
+
+SET "Test SQ SOP Class Item" REF_SQ2ITEM1
+{
+(0x10220021, AE, "A AE");	  
+(0x10220022, AS, "001Y", "003Y");
+(0x10220023, AT, 0x10220021);
+}
+
+#
+# Source sequence with 1 item
+# Reference sequence with 2 items
+# 
+CREATE "Test SQ SOP Class Item" SRC_SQ3ITEM1
+
+SET "Test SQ SOP Class Item" SRC_SQ3ITEM1
+{
+(0x10220021, AE, "A AE");	  
+(0x10220022, AS, "001Y", "002Y");
+(0x10220023, AT, 0x10220021);
+}
+
+CREATE "Test SQ SOP Class Item" REF_SQ3ITEM1
+
+SET "Test SQ SOP Class Item" REF_SQ3ITEM1
+{
+(0x10220021, AE, "A AE");	  
+(0x10220022, AS, "001Y", "003Y");
+(0x10220023, AT, 0x10220021);
+}
+
+CREATE "Test SQ SOP Class Item" REF_SQ3ITEM2
+
+SET "Test SQ SOP Class Item" REF_SQ3ITEM2
+{
+(0x10220021, AE, "A AE");	  
+(0x10220022, AS, "001Y", "003Y");
+(0x10220023, AT, 0x10220021);
+}
+
+#
+# Source sequence with 2 items
+# Reference sequence with 1 item
+# 
+CREATE "Test SQ SOP Class Item" SRC_SQ4ITEM1
+
+SET "Test SQ SOP Class Item" SRC_SQ4ITEM1
+{
+(0x10220021, AE, "A AE");	  
+(0x10220022, AS, "001Y", "002Y");
+(0x10220023, AT, 0x10220021);
+}
+
+CREATE "Test SQ SOP Class Item" SRC_SQ4ITEM2
+
+SET "Test SQ SOP Class Item" SRC_SQ4ITEM2
+{
+(0x10220021, AE, "A AE");	  
+(0x10220022, AS, "001Y", "003Y");
+(0x10220023, AT, 0x10220021);
+}
+
+CREATE "Test SQ SOP Class Item" REF_SQ4ITEM1
+
+SET "Test SQ SOP Class Item" REF_SQ4ITEM1
+{
+(0x10220021, AE, "A AE");	  
+(0x10220022, AS, "001Y", "003Y");
+(0x10220023, AT, 0x10220021);
+}
+
+#
+# Source sequence with 2 items
+# Reference sequence with 2 items
+# 
+CREATE "Test SQ SOP Class Item" SRC_SQ5ITEM1
+
+SET "Test SQ SOP Class Item" SRC_SQ5ITEM1
+{
+(0x10220021, AE, "A AE");	  
+(0x10220022, AS, "001Y", "002Y");
+(0x10220023, AT, 0x10220021);
+}
+
+CREATE "Test SQ SOP Class Item" SRC_SQ5ITEM2
+
+SET "Test SQ SOP Class Item" SRC_SQ5ITEM2
+{
+(0x10220021, AE, "A AE");	  
+(0x10220022, AS, "001Y", "003Y");
+(0x10220023, AT, 0x10220021);
+}
+
+CREATE "Test SQ SOP Class Item" REF_SQ5ITEM1
+
+SET "Test SQ SOP Class Item" REF_SQ5ITEM1
+{
+(0x10220021, AE, "A AE");	  
+(0x10220022, AS, "001Y", "003Y");
+(0x10220023, AT, 0x10220021);
+}
+
+CREATE "Test SQ SOP Class Item" REF_SQ5ITEM2
+
+SET "Test SQ SOP Class Item" REF_SQ5ITEM2
+{
+(0x10220021, AE, "A AE");	  
+(0x10220022, AS, "001Y", "003Y");
+(0x10220023, AT, 0x10220021);
+}
+
+# set dataset 
+
+SET "Validation Test SQ Nesting SOP Class" SRC_DATASET
+
+{
+(0x10220001, SQ, "SRC_SQ1ITEM1");	              # empty item 
+(0x10220002, SQ, "SRC_SQ2ITEM1");                 # single item with error
+(0x10220003, SQ, "SRC_SQ3ITEM1");                 # 1 src item , 2 ref items 
+(0x10220004, SQ, "SRC_SQ4ITEM1", "SRC_SQ4ITEM2"); # 2 src items, 1 ref item  
+(0x10220005, SQ, "SRC_SQ5ITEM1", "SRC_SQ5ITEM2"); # 2 src items, 2 ref items  
+(0x10221111, DS, "0.1");                          # "attr_1" 
+}
+
+# set dataset 
+SET "Validation Test SQ Nesting SOP Class" REF_DATASET
+{
+(0x10220001, SQ, "REF_SQ1ITEM1");                 # empty item 
+(0x10220002, SQ, "REF_SQ2ITEM1");                 # single item with error
+(0x10220003, SQ, "REF_SQ3ITEM1", "REF_SQ3ITEM1"); # 1 src item , 2 ref items 
+(0x10220004, SQ, "REF_SQ4ITEM1");                 # 2 src items, 1 ref item  
+(0x10220005, SQ, "REF_SQ5ITEM1", "REF_SQ5ITEM2"); # 2 src items, 2 ref items  
+(0x10221111, DS, "0.1");                          # "attr_1" 
+}
+
+VALIDATE C-STORE-RQ SRC_CMD "Validation Test SQ Nesting SOP Class" SRC_DATASET
+         C-STORE-RQ REF_CMD "Validation Test SQ Nesting SOP Class" REF_DATASET
+
+ECHO ""
+
+##
+## Script Result should be:
+## Validation: 14 error(s), 0 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 0 error(s), 0 warning(s)
+##
+
+#delete objects
+DELETE C-STORE-RQ SRC_CMD 
+DELETE "Validation Test SQ Nesting SOP Class" SRC_DATASET
+DELETE C-STORE-RQ REF_CMD 
+DELETE "Validation Test SQ Nesting SOP Class" REF_DATASET

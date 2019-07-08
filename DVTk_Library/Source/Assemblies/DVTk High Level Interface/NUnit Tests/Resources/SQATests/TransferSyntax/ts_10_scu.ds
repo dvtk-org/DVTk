@@ -1,0 +1,74 @@
+##
+## DVT DICOMScript
+##
+## Name: ts_10_scu.ds
+##
+## Test Suite Ref: 3.2.7.1.
+## Test Case Ref: 7
+##
+## Pre-conditions:
+##	No association.
+##
+## Test Scenario:
+##	Request association using JPEG Full Process 11 And 13
+##	Transfer Syntax.
+##	Accept Transfer Syntax.
+##	Store Secondary Capture image using agreed Transfer
+##	Syntax.
+##	Release association after successful storage.
+##
+## Expected Result:
+##	0 errors, 0 warnings
+##
+## Post-conditions:
+##	No association.
+##
+SEND ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Secondary Capture Image Storage SOP Class", "JPEG Full Process 11 And 13")
+)
+
+RECEIVE ASSOCIATE-AC (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Secondary Capture Image Storage SOP Class", 0, "JPEG Full Process 11 And 13")
+)
+
+SEND C-STORE-RQ "Secondary Capture Image" (
+ (0x00080016, UI, "Secondary Capture Image Storage SOP Class")  # SOP Class UID
+ (0x00080018, UI, "NEW:ImageInstanceUid")  # SOP Instance UID
+ (0x00080020, DA, AUTOSET)  # Study Date
+ (0x00080030, TM, "")  # Study Time
+ (0x00080050, SH, "")  # Accession Number
+ (0x00080060, CS, "OT")  # Modality
+ (0x00080064, CS, "DV")  # Conversion Type
+ (0x00080090, PN, "")  # Referring Physician's Name
+ (0x00100010, PN, "One^Secondary Capture Image")  # Patient's Name
+ (0x00100020, LO, "SC-I1")  # Patient ID
+ (0x00100030, DA, "")  # Patient's Birth Date
+ (0x00100040, CS, "O")  # Patient's Sex
+ (0x0020000D, UI, "NEW:StudyInstanceUid")  # Study Instance UID
+ (0x0020000E, UI, "NEW:SeriesInstanceUid")  # Series Instance UID
+ (0x00200010, SH, "1")  # Study ID
+ (0x00200011, IS, "1")  # Series Number
+ (0x00200013, IS, "1")  # Image Number
+ (0x00200020, CS, "")      #Patient Orientation
+ (0x00280002, US, 0x0001)  # Samples Per Pixel
+ (0x00280004, CS, "MONOCHROME2")  # Photometric Interpretation
+ (0x00280010, US, 16)  # Rows
+ (0x00280011, US, 16)  # Columns
+ (0x00280100, US, 0x0008)  # Bits Allocated
+ (0x00280101, US, 0x0008)  # Bits Stored
+ (0x00280102, US, 0x0007)  # High Bit
+ (0x00280103, US, 0x0000)  # Pixel Representation
+ (0x7FE00010, OB, "jpeglossless_bot.pix")  # Pixel Data
+)
+
+RECEIVE C-STORE-RSP
+
+SEND RELEASE-RQ
+
+RECEIVE RELEASE-RP
+
+##
+## Script Result should be: 0 error(s), 0 warning(s)
+##

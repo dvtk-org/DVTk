@@ -1,0 +1,183 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6AA55771-980C-45ED-9CCB-59C83C25815B}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>DvtkHl7</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\..\..\Resources\Strong Name Key\DVTk Key.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Dvtk.Hl7</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\DvtkHl7.XML</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>bin\Release\DvtkHl7.XML</DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\DVTk Data\DVTk Data.csproj">
+      <Name>DvtkData</Name>
+      <Project>{7DF60C20-4034-49CC-9974-B8443A2BC192}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Hl7Logger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Hl7Tag.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Hl7TagValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Messages\AckMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Messages\AdrMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Messages\AdtMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Messages\Hl7DirectoryReader.cs" />
+    <Compile Include="Messages\Hl7FileStream.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Messages\Hl7Message.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Messages\Hl7MessageDelimiters.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Messages\Hl7MessageFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Messages\Hl7Segment.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Messages\Hl7SegmentId.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Messages\Hl7Stream.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Messages\OrmMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Messages\OrrMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Messages\OruMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Messages\QryMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Profile\Hl7Profile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Profile\Hl7ProfileId.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Profile\Hl7ProfileStore.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Profile\Hl7ValidationContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Resources\Strong Name Key\DVTk Key.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>SET DESTINATION_DIR=
+IF EXIST "$(ProjectDir)..\..\..\builds" SET DESTINATION_DIR=$(ProjectDir)..\..\..\builds\$(ConfigurationName)
+IF EXIST "$(ProjectDir)..\..\..\..\..\Releases" SET DESTINATION_DIR=$(ProjectDir)..\..\..\$(ConfigurationName)
+ECHO DESTINATION_DIR is %25DESTINATION_DIR%25
+
+Copy "$(TargetPath)" "%25DESTINATION_DIR%25
+IF EXIST "$(TargetDir)$(TargetName).pdb" Copy "$(TargetDir)$(TargetName).pdb" "%25DESTINATION_DIR%25
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>

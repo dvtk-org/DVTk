@@ -1,0 +1,201 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{36BB69F0-A963-49D9-8626-E88A02FE0141}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>DvtkInformationEntity</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\..\..\Resources\Strong Name Key\DVTk Key.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Dvtk.Dicom.InformationEntity</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\DvtkInformationEntity.XML</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>bin\Release\DvtkInformationEntity.XML</DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\DVTk Data\DVTk Data.csproj">
+      <Name>DvtkData</Name>
+      <Project>{7DF60C20-4034-49CC-9974-B8443A2BC192}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTK\DVTK.csproj">
+      <Name>DVTK</Name>
+      <Project>{DBC39A1E-18CB-4809-81E0-47B1C899BBE0}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AttributeMatching\TMMatching.cs" />
+    <Compile Include="Bases\BaseInformationEntity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\BaseInformationEntityList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\BaseInformationModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\DataSetCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\ICommitInformationModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\IRetrieveInformationModel.cs" />
+    <Compile Include="Bases\TagType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\TagTypeList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CompositeInfoModel\BaseCompositeInformationEntity.cs" />
+    <Compile Include="CompositeInfoModel\Image.cs" />
+    <Compile Include="CompositeInfoModel\Patient.cs" />
+    <Compile Include="CompositeInfoModel\Series.cs" />
+    <Compile Include="CompositeInfoModel\Study.cs" />
+    <Compile Include="DefaultValues\DefaultValueManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="QueryRetrieve\InstanceInformationEntity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="QueryRetrieve\PatientInformationEntity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="QueryRetrieve\PatientRootInformationModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="QueryRetrieve\PatientStudyInformationEntity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="QueryRetrieve\PatientStudyOnlyInformationModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="QueryRetrieve\QueryRetrieveInformationModel.cs" />
+    <Compile Include="QueryRetrieve\SeriesInformationEntity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="QueryRetrieve\StudyInformationEntity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="QueryRetrieve\StudyRootInformationModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Worklist\ImagingServiceRequestInformationEntity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Worklist\ModalityWorklistInformationModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Worklist\PatientInformationEntity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Worklist\RequestedProcedureInformationEntity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Worklist\ScheduledProcedureStepInformationEntity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Worklist\VisitInformationEntity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Worklist\WorklistQueryDataset.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Resources\Strong Name Key\DVTk Key.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>SET DESTINATION_DIR=
+IF EXIST "$(ProjectDir)..\..\..\builds" SET DESTINATION_DIR=$(ProjectDir)..\..\..\builds\$(ConfigurationName)
+IF EXIST "$(ProjectDir)..\..\..\..\..\Releases" SET DESTINATION_DIR=$(ProjectDir)..\..\..\$(ConfigurationName)
+ECHO DESTINATION_DIR is %25DESTINATION_DIR%25
+
+Copy "$(TargetPath)" "%25DESTINATION_DIR%25
+IF EXIST "$(TargetDir)$(TargetName).pdb" Copy "$(TargetDir)$(TargetName).pdb" "%25DESTINATION_DIR%25
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>

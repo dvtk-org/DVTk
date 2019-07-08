@@ -1,0 +1,71 @@
+## 
+## DVT DICOMScript
+##
+## Name: script_test_delay.ds
+##
+## Test Suite Ref: 3.2.2.4.5, 3.2.2.4.19
+## Test Case Ref:
+##
+## Pre-conditions:
+##
+## Test Scenario:
+##    - Create various DICOM objects
+##    - Apply different commands
+##    - Delete commands
+##
+##
+## Expected Result:
+##
+## Post-conditions:
+##    -
+##
+
+
+##================================================================================
+## Warehouse Commands Test : IMPORT
+##     - Wait for association, 
+##     - IMPORT 2 objects
+##       There is a delay between the objects
+##
+##================================================================================
+
+
+RECEIVE ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+        ("MR Image Storage SOP Class", "Implicit VR Little Endian")
+)
+
+SEND ASSOCIATE-AC (
+        PRESENTATION-CONTEXT-ITEMS
+        ("MR Image Storage SOP Class", 0, "Implicit VR Little Endian")
+)
+
+IMPORT C-STORE-RQ CMD "MR Image" MRIMG
+
+SEND C-STORE-RSP (
+(0x00000900, US, 0x0000)
+)
+
+IMPORT C-STORE-RQ CMD "MR Image" MRIMG
+
+SEND C-STORE-RSP (
+(0x00000900, US, 0x0000)
+)
+
+
+RECEIVE RELEASE-RQ
+SEND RELEASE-RP
+
+ECHO ""
+ECHO "Display imported objects C-STORE-RQ CMD and MR Image MRIMG"
+DISPLAY C-STORE-RQ CMD 
+DISPLAY "MR Image" MRIMG
+
+ECHO ""
+##================================================================================
+##
+## Script result should be: 0 error(s), 0 warning(s)
+##
+##================================================================================
+
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="us-ascii" standalone="yes"?>
+<Sessions>
+<Session>.\commit\scp\Commit_SCP.ses</Session>
+<Session>.\commit\scu\Commit_SCU.ses</Session>
+<Session>.\mpps\scu\MPPS_SCU.ses</Session>
+<Session>.\mpps\scp\MPPS_SCP.ses</Session>
+<Session>.\print\scu\Print_SCU.ses</Session>
+<Session>.\print\scp\Print_SCP.ses</Session>
+<Session>.\query\scu\Query_SCU.ses</Session>
+<Session>.\query\scp\Query_SCP.ses</Session>
+<Session>.\report\scu\SR_SCU.ses</Session>
+<Session>.\report\scp\SR_SCP.ses</Session>
+<Session>.\retrieve\scu\Retrieve_SCU.ses</Session>
+<Session>.\retrieve\scp\Retrieve_SCP.ses</Session>
+<Session>.\verification\scu\ECHO_SCU.ses</Session>
+<Session>.\verification\scp\ECHO_SCP.ses</Session>
+<Session>.\worklist\scu\WLM_SCU.ses</Session>
+<Session>.\worklist\scp\WLM_SCP.ses</Session>
+<Session>.\storage\scp\Storage_SCP.ses</Session>
+<Session>.\storage\scu\Storage_SCU.ses</Session>
+</Sessions>

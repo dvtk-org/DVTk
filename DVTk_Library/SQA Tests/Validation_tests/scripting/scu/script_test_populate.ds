@@ -1,0 +1,77 @@
+## 
+## DVT DICOMScript
+##
+## Name: script_test_warehouse_commands.ds
+##
+## Test Suite Ref: 3.2.2.4.12
+## Test Case Ref:
+##
+## Pre-conditions:
+##
+## Test Scenario:
+##    - Create various DICOM objects
+##    - Apply different commands
+##    - Delete commands
+##
+##
+## Expected Result:
+##
+## Post-conditions:
+##    -
+##
+
+
+##================================================================================
+## Script command Test : POPULATE 
+##     - Create MR image object and storage command
+##     - Only type 2 attributes are set via the autopopulate command
+##     - Establish association
+##     - EXPORT MR Image object
+##     - Release Association
+##
+##================================================================================
+
+POPULATE ON
+
+# Create and Set Objects For Test 1
+CREATE C-STORE-RQ SRC_STORE_RQ1 "MR Image" SRC_MR_IMG1
+
+SET C-STORE-RQ SRC_STORE_RQ1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "1.2.840.10008.5.1.4.1.1.4");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, AUTOSET);
+}
+
+SEND ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+        ("MR Image Storage SOP Class", "Implicit VR Little Endian")
+)
+
+
+
+RECEIVE ASSOCIATE-AC (
+        PRESENTATION-CONTEXT-ITEMS
+        ("MR Image Storage SOP Class", 0, "Implicit VR Little Endian" )
+)
+
+EXPORT C-STORE-RQ SRC_STORE_RQ1 "MR Image" SRC_MR_IMG1
+
+RECEIVE C-STORE-RSP (
+(0x00000900, US, 0x0000)
+)
+
+SEND RELEASE-RQ
+RECEIVE RELEASE-RP
+
+##================================================================================
+##
+## Script result should be: 0 error(s), 0 warning(s)
+##
+##================================================================================
+
+

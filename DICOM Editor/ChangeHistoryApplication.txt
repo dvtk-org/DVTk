@@ -1,0 +1,360 @@
+===================================================
+= DICOM Editor 3.2.3, based on DVTk library 3.1.1 =
+===================================================
+
+
+
+=
+= Solved problems for the versions up to and including 3.2.3
+=
+
+<------------------------------------------------------------------------------>
+
+Date 12-06-2008, solved ticket 882
+
+Description:
+------------
+PR can't be reproduced with new build. It may be problem solved due to changes in
+DVTk core library.
+
+Version: 3.1.1.1
+
+<------------------------------------------------------------------------------>
+
+Date 28-07-2009, solved ticket 1154
+
+Description:
+------------
+Used the DataGridView control of .NET2.0. Used property for scrolling to previously 
+selected row in case of modification of DICOM file.
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Implemented change requests for the versions up to and including 3.2.3
+=
+<------------------------------------------------------------------------------>
+
+Date 31-07-2009, Implementeded ticket 1153
+
+Description:
+------------
+Implemented by providing the option in context menu and key shortcut F5. The find/search of a 
+particular attribute can be done through Attribute tag and attribute value.
+
+<------------------------------------------------------------------------------>
+
+Date 31-07-2009, Implementeded ticket 1229
+
+Description:
+------------
+Implemented by providing the user options by menu items to save DICOM File 
+as other uncompressed TS.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+===================================================
+= DICOM Editor 3.2.4, based on DVTk library 3.1.3 =
+===================================================
+
+
+
+=
+= Solved problems for 3.2.4
+=
+
+<------------------------------------------------------------------------------>
+
+Date 21-06-2010, ticket 1412 
+
+Description:
+-------------
+Fix for the ".dcm" appending issue in windows7
+
+<------------------------------------------------------------------------------>
+
+Date 1-07-2010, ticket 1419
+
+Description:
+-------------
+Fixed the issue by removing the hardcoded values in the GetItemNr method.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+===================================================
+= DICOM Editor 3.2.5, based on DVTk library 3.1.4 =
+===================================================
+
+
+=
+= Solved problems for 3.2.5.
+=
+
+<------------------------------------------------------------------------------>
+
+Date 23-07-2010, ticket 1428
+
+Description:
+-------------
+
+Fixed the issue.The sequence items are now correctly inserted.
+
+<------------------------------------------------------------------------------>
+
+Date 18-08-2010 , ticket #1436- DICOM Editor failed to load dcm files which is not having File meta info
+
+Description:
+------------
+Root Cause-When File meta information is not present, Editor do not create datagrid columns(Because Databinding will create column on demand). 
+So Editor is trying to hide some the columns without checking its availability.
+Fixed the issue. 
+<------------------------------------------------------------------------------>
+
+Date 23-07-2010, ticket 1459
+
+Description:
+-------------
+
+The user can now search for SQ attributes also.
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Implemented change requests for 3.2.5
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2010-07-07, ticket 1421
+
+Description:
+------------
+Removed existing copy sequence item functionality (with implicit pasting) and added the following functionality:
+- Copy Sequence Item
+- Paste Sequence Item
+- Insert Sequence Item Above
+- Insert Sequence Item Below
+
+<------------------------------------------------------------------------------>
+
+Date 7-9-2010, ticket 1441
+
+Description:
+------------
+
+Added a check box , which on being checked will enable the user to edit the File Meta Information.
+<------------------------------------------------------------------------------>
+
+
+
+
+===============================================
+= DICOM Editor 3.2.6., based on DVTk library 3.1.9. =
+===============================================
+
+
+
+=
+= Solved problems for 3.2.6.
+=
+
+<------------------------------------------------------------------------------>
+
+Date 20-12-2010, ticket 1459
+
+Description:
+------------
+The search feature will now enable the user to search for SQ attributes also.
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Implemented change requests for 3.2.6.
+=
+
+<------------------------------------------------------------------------------>
+Date 9-11-2010, ticket 1456
+
+Description:
+------------
+
+The user can now add attributes which have hexadecimal characters in the tag.
+<------------------------------------------------------------------------------>
+
+Date 03-03-2011, ticket 1461
+
+Description:
+------------
+
+It is now possible to copy paste a set of attributes in the DICOM Editor.
+
+<------------------------------------------------------------------------------>
+<------------------------------------------------------------------------------>
+
+Date 03-03-2011, ticket 1461
+
+Description:
+------------
+
+It is now possible to copy paste a set of attributes in the DICOM Editor.
+
+<------------------------------------------------------------------------------>
+<------------------------------------------------------------------------------>
+
+Date 03-03-2011, ticket 1507	
+
+Description:
+------------
+
+remember last path
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+
+===============================================
+= DICOM Editor ..., based on DVTk library ... =
+===============================================
+
+
+
+=
+= Solved problems for ...
+=
+
+<------------------------------------------------------------------------------>
+
+Date 11-10-2011, ticket 1539
+
+Description:
+------------
+THe user can now search an attribute using its Name.
+<------------------------------------------------------------------------------>
+
+
+
+
+
+=
+= Implemented change requests for .....
+=
+
+<------------------------------------------------------------------------------>
+
+Date , ticket 
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+===================================================
+= DICOM Editor 5.0.0, based on DVTk library 5.0.0 =
+===================================================
+
+
+
+=
+= Implemented change requests for 5.0.0
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2017-05-16 
+
+Description:
+------------
+- Application compiled with Visual Studio 2010 (previously Visual Studio 2005)
+- Application makes use of .NET Framework 4 (previously .NET Framework 2.0)
+
+<------------------------------------------------------------------------------>
+
+
+===================================================
+= DICOM Editor 5.0.1, based on DVTk library 5.0.1 =
+===================================================
+
+
+
+=
+= Implemented change requests for 5.0.1
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2017-06-12 
+
+Description:
+------------
+- Added a checkbox to the main screen for handling private attributes present in a definition file.
+
+<------------------------------------------------------------------------------>
+
+
+
+===================================================
+= DICOM Editor 5.0.1, based on DVTk library 5.0.2 =
+===================================================
+
+
+
+=
+= Implemented change requests for 5.0.2
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2017-06-16
+
+Description:
+------------
+- DICOM Editor now supports trial implementation IODs RT Physician Intent and RT Segment Annotation. To be able to use them 'Use Private Attribute Mapping' checkbox should be unchecked before loading the files.
+- The installation comes together with RT Physician Intent and RT Segment Annotation definition files.
+- Now the DVTk icon appears at add/remove programs page.
+
+<------------------------------------------------------------------------------>
+
+
+===================================================
+= DICOM Editor 5.0.3, based on DVTk library 5.1.1 =
+===================================================
+
+
+
+=
+= Implemented change requests for 5.1.1
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2019-03-12
+
+Description:
+------------
+- Built with DVTk library version 5.1.1 for support for OV value representation.
+
+<------------------------------------------------------------------------------>

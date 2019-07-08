@@ -1,0 +1,56 @@
+##
+## DVT DICOMScript
+##
+## Name: acse_1b_scu.ds
+##
+## Test Suite Ref: 3.2.2.3.
+## Test Case Ref: 1, 2, 3
+##
+## Test Suite Ref: 3.2.6.1.
+## Test Case Ref: 1, 2
+##
+## Pre-conditions:
+##	No association.
+##
+## Test Scenario:
+##	Send Associate Request - with various non-matching Presentation Syntaxes.
+##	Receive Associate Accept.
+##	Send Release Request.
+##	Receive Release Response.
+##
+## Expected Result:
+## 	Validation: 0 error(s), 0 warning(s)
+## 	User Validation: 0 error(s), 0 warning(s)
+## 	General Error: 0 error(s), 0 warning(s)
+##
+## Post-conditions:
+##	No association.
+##
+SEND ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+        ("1.2.3.4.5.1", "Implicit VR Little Endian",
+			"Explicit VR Little Endian",
+			"Explicit VR Big Endian")
+        ("1.2.3.4.5.2", "Implicit VR Little Endian",
+			"Explicit VR Little Endian")
+        ("1.2.3.4.5.3", "Implicit VR Little Endian")
+        ("1.2.3.4.5.4", "Implicit VR Little Endian")
+        ("1.2.3.4.5.5", "Implicit VR Little Endian")
+# 1.2.3.4.5.6 - missing
+        (221, "1.2.3.4.5.7", 0, 0, "Implicit VR Little Endian")
+        (223, "1.2.3.4.5.7", 0, 0, "Explicit VR Little Endian")
+        (225, "1.2.3.4.5.8", 0, 0, "Explicit VR Big Endian")
+)
+
+RECEIVE ASSOCIATE-AC
+
+SEND RELEASE-RQ
+
+RECEIVE RELEASE-RP
+
+##
+## Script Result should be:
+## Validation: 0 error(s), 0 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 0 error(s), 0 warning(s)
+##

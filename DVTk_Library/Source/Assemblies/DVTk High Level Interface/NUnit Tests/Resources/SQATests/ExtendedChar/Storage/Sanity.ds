@@ -1,0 +1,174 @@
+##
+##       DVT Extended Character Sanity Test
+##
+##       Patient: Secondary Capture Image
+##       Send to an DVT Store Emulator
+##
+
+## Send English (No Specific Character Set)
+SEND C-STORE-RQ "SC Image" (
+ (0x00080016, UI, "1.2.840.10008.5.1.4.1.1.7")  # SOP Class UID
+ (0x00080018, UI, "NEW:SopInstanceUid")  # SOP Instance UID
+ (0x00080020, DA, "19970917")  # Study Date
+ (0x00080030, TM, "")  # Study Time
+ (0x00080050, SH, "")  # Accession Number
+ (0x00080060, CS, "OT")  # Modality
+ (0x00080064, CS, "DV")  # Conversion Type
+ (0x00080070, LO, "") # Manufacturer
+ (0x00080081, ST, "Address Line 1(0D)(0A)Line 2(0D)(0A)City, State  21435-4321") # Institution Address
+ (0x00080090, PN, "")  # Referring Physician's Name
+ (0x00081030, LO, "This is a study description") # Study Description
+ (0x00100010, PN, "Doe^John^Q")  # Patient's Name
+ (0x00100020, LO, "English")  # Patient ID
+ (0x00100030, DA, "")  # Patient's Birth Date
+ (0x00100040, CS, "O")  # Patient's Sex
+ (0x00102180, SH, "Occupation") # Occupation
+ (0x00104000, LT, "These are patient comments(0D)(0A)They are on 2 lines") # Patient Comments
+ (0x00190100, UT, "This text can go on forever and ever(0D)(0A)and forever and ever(0D)(0A)and forever and ever(0D)(0A)and forever and ever(0D)(0A)and ...") # Private UT Test Tag
+ (0x0020000D, UI, "NEW:StudyInstanceUid")  # Study Instance UID
+ (0x0020000E, UI, "NEW:SeriesInstanceUid")  # Series Instance UID
+ (0x00200010, SH, "1")  # Study ID
+ (0x00200011, IS, "1")  # Series Number
+ (0x00200013, IS, "1")  # Image Number
+ (0x00200020, CS, "") # Patient Orientation
+ (0x00280002, US, 0x0001)  # Samples Per Pixel
+ (0x00280004, CS, "MONOCHROME2")  # Photometric Interpretation
+ (0x00280010, US, 512)  # Rows
+ (0x00280011, US, 512)  # Columns
+ (0x00280100, US, 0x0008)  # Bits Allocated
+ (0x00280101, US, 0x0008)  # Bits Stored
+ (0x00280102, US, 0x0007)  # High Bit
+ (0x00280103, US, 0x0000)  # Pixel Representation
+ (0x7FE00010, OB, 512)  # Pixel Data
+)
+
+RECEIVE C-STORE-RSP (
+(0x00000900, US, 0x0000)
+)
+
+## Send Japanese (IR 87)
+SEND C-STORE-RQ "SC Image" (
+ (0x00080005, CS, "","ISO 2022 IR 87")  # Specific Character Set
+ (0x00080016, UI, "1.2.840.10008.5.1.4.1.1.7")  # SOP Class UID
+ (0x00080018, UI, "NEW:SopInstanceUid")  # SOP Instance UID
+ (0x00080020, DA, "19970917")  # Study Date
+ (0x00080030, TM, "")  # Study Time
+ (0x00080050, SH, "")  # Accession Number
+ (0x00080060, CS, "OT")  # Modality
+ (0x00080064, CS, "DV")  # Conversion Type
+ (0x00080070, LO, "") # Manufacturer
+ (0x00080081, ST, "(1B)$B(3B)(33)(45)(44)(1B)(B Address Line 1(0D)(0A)Line 2(0D)(0A)City, State  (1B)$B(3B)(33)(45)(44)(1B)(B 21435-4321") # Institution Address
+ (0x00080090, PN, "")  # Referring Physician's Name
+ (0x00081030, LO, "This is a study description (1B)$B(3B)(33)(45)(44)(1B)(B") # Study Description
+ (0x00100010, PN, "Yamada^Tarou=(1B)$B(3B)(33)(45)(44)(1B)(B^(1B)$B(42)(40)(4F)(3A)(1B)(B=(1B)$B(24)(64)(24)(5E)(24)(40)(1B)(B^(1B)$B(24)(3F)(24)(6D)(24)(26)(1B)(B")  # Patient's Name
+ (0x00100020, LO, "Japanese IR 87")  # Patient ID
+ (0x00100030, DA, "")  # Patient's Birth Date
+ (0x00100040, CS, "O")  # Patient's Sex
+ (0x00102180, SH, "(1B)$B(3B)(33)(45)(44)(42)(40)(4F)(3A)(24)(64)(24)(5E)(1B)(BOccupation") # Occupation
+ (0x00104000, LT, "These are patient comments(0D)(0A)They are on 2 lines (1B)$B(3B)(33)(45)(44)(1B)(B") # Patient Comments
+ (0x00190100, UT, "This text can go on forever and ever(0D)(0A)and forever and ever(0D)(0A)and forever and ever(0D)(0A)and forever and ever(0D)(0A)and have Japanese text (1B)$B(3B)(33)(45)(44)(1B)(B ...") # Private UT Test Tag
+ (0x0020000D, UI, "NEW:StudyInstanceUid")  # Study Instance UID
+ (0x0020000E, UI, "NEW:SeriesInstanceUid")  # Series Instance UID
+ (0x00200010, SH, "1")  # Study ID
+ (0x00200011, IS, "1")  # Series Number
+ (0x00200013, IS, "1")  # Image Number
+ (0x00200020, CS, "") # Patient Orientation
+ (0x00280002, US, 0x0001)  # Samples Per Pixel
+ (0x00280004, CS, "MONOCHROME2")  # Photometric Interpretation
+ (0x00280010, US, 512)  # Rows
+ (0x00280011, US, 512)  # Columns
+ (0x00280100, US, 0x0008)  # Bits Allocated
+ (0x00280101, US, 0x0008)  # Bits Stored
+ (0x00280102, US, 0x0007)  # High Bit
+ (0x00280103, US, 0x0000)  # Pixel Representation
+ (0x7FE00010, OB, 512)  # Pixel Data
+)
+
+RECEIVE C-STORE-RSP (
+(0x00000900, US, 0x0000)
+)
+
+## Send Japanese (IR 13/87/159)
+SEND C-STORE-RQ "SC Image" (
+ (0x00080005, CS, "ISO 2022 IR 13","ISO 2022 IR 87","ISO 2022 IR 159")  # Specific Character Set
+ (0x00080016, UI, "1.2.840.10008.5.1.4.1.1.7")  # SOP Class UID
+ (0x00080018, UI, "NEW:SopInstanceUid")  # SOP Instance UID
+ (0x00080020, DA, "19970917")  # Study Date
+ (0x00080030, TM, "")  # Study Time
+ (0x00080050, SH, "")  # Accession Number
+ (0x00080060, CS, "OT")  # Modality
+ (0x00080064, CS, "DV")  # Conversion Type
+ (0x00080070, LO, "") # Manufacturer
+ (0x00080081, ST, "(1B)$B(3B)(33)(45)(44)(1B)(J Address Line 1(0D)(0A)Line 2 with Japanese 8-bit (D4)(CF)(C0)(DE)(0D)(0A)City, State  (1B)$B(3B)(33)(45)(44)(1B)(J 21435-4321") # Institution Address
+ (0x00080090, PN, "")  # Referring Physician's Name
+ (0x00081030, LO, "This (D4)(CF)(C0) is a study description (1B)$B(3B)(33)(45)(44)(1B)(J") # Study Description
+ (0x00100010, PN, "(D4)(CF)(C0)(DE)^(C0)(DB)(B3)=(1B)$B(3B)(33)(45)(44)(1B)(J^(1B)$B(42)(40)(4F)(3A)(1B)(J=(1B)$B(24)(64)(24)(5E)(24)(40)(1B)(J^(1B)$B(24)(3F)(24)(6D)(24)(26)(1B)(J")  # Patient's Name
+ (0x00100020, LO, "Japanese IR 13/87/159")  # Patient ID
+ (0x00100030, DA, "")  # Patient's Birth Date
+ (0x00100040, CS, "O")  # Patient's Sex
+ (0x00102180, SH, "(1B)$B(3B)(33)(45)(44)(42)(40)(4F)(3A)(24)(64)(1B)(J(D4)Occupation") # Occupation
+ (0x00104000, LT, "(CF) These are patient comments(0D)(0A)They are on 2 lines (1B)$B(3B)(33)(45)(44)(1B)(J") # Patient Comments
+ (0x00190100, UT, "This text can go on forever and ever(0D)(0A)and forever and ever(0D)(0A)and forever and ever(0D)(0A)and forever and ever in Japanese (D4)(CF)(C0)(DE) and English (0D)(0A)and have Japanese text (1B)$B(3B)(33)(45)(44)(1B)(J including JIS 212 - IR 159 - (1B)$(D(2A)(48)(2B)(21)(29)(30)(1B)(J ...") # Private UT Test Tag
+ (0x0020000D, UI, "NEW:StudyInstanceUid")  # Study Instance UID
+ (0x0020000E, UI, "NEW:SeriesInstanceUid")  # Series Instance UID
+ (0x00200010, SH, "1")  # Study ID
+ (0x00200011, IS, "1")  # Series Number
+ (0x00200013, IS, "1")  # Image Number
+ (0x00200020, CS, "") # Patient Orientation
+ (0x00280002, US, 0x0001)  # Samples Per Pixel
+ (0x00280004, CS, "MONOCHROME2")  # Photometric Interpretation
+ (0x00280010, US, 512)  # Rows
+ (0x00280011, US, 512)  # Columns
+ (0x00280100, US, 0x0008)  # Bits Allocated
+ (0x00280101, US, 0x0008)  # Bits Stored
+ (0x00280102, US, 0x0007)  # High Bit
+ (0x00280103, US, 0x0000)  # Pixel Representation
+ (0x7FE00010, OB, 512)  # Pixel Data
+)
+
+RECEIVE C-STORE-RSP (
+(0x00000900, US, 0x0000)
+)
+
+## Send Korean (IR 149)
+SEND C-STORE-RQ "SC Image" (
+ (0x00080005, CS, "","ISO 2022 IR 149")  # Specific Character Set
+ (0x00080016, UI, "1.2.840.10008.5.1.4.1.1.7")  # SOP Class UID
+ (0x00080018, UI, "NEW:SopInstanceUid")  # SOP Instance UID
+ (0x00080020, DA, "19970917")  # Study Date
+ (0x00080030, TM, "")  # Study Time
+ (0x00080050, SH, "")  # Accession Number
+ (0x00080060, CS, "OT")  # Modality
+ (0x00080064, CS, "DV")  # Conversion Type
+ (0x00080070, LO, "") # Manufacturer
+ (0x00080081, ST, "(1B)$)CAddress Line 1(0D)(0A)(1B)$)CLine 2 (D1)(CE)(D4)(D7)(0D)(0A)City, State  21435-4321") # Institution Address
+ (0x00080090, PN, "")  # Referring Physician's Name
+ (0x00081030, LO, "(1B)$)C(D1)(CE)(D4)(D7) This is a study description") # Study Description
+ (0x00100010, PN, "Hong^Gildong=(1B)$)C(FB)(F3)^(1B)$)C(D1)(CE)(D4)(D7)=(1B)$)C(C8)(AB)^(1B)$)C(B1)(E6)(B5)(BF)")  # Patient's Name
+ (0x00100020, LO, "Korean IR 149")  # Patient ID
+ (0x00100030, DA, "")  # Patient's Birth Date
+ (0x00100040, CS, "O")  # Patient's Sex
+ (0x00102180, SH, "(1B)$)C(D1)(CE)(D4)(D7)(D1)(CE)(D4)(D7)(D1)(CE)(D4)(D7)Occupation") # Occupation
+ (0x00104000, LT, "These are patient comments(0D)(0A)They are on 2 lines(1B)$)C(D1)(CE)(D4)(D7)") # Patient Comments
+ (0x00190100, UT, "This text can go on forever and ever(0D)(0A)and forever and ever(0D)(0A)and forever and ever(0D)(0A)and forever and ever(0D)(0A)and include Korean(1B)$)C (D1)(CE)(D4)(D7) and more English...") # Private UT Test Tag
+ (0x0020000D, UI, "NEW:StudyInstanceUid")  # Study Instance UID
+ (0x0020000E, UI, "NEW:SeriesInstanceUid")  # Series Instance UID
+ (0x00200010, SH, "1")  # Study ID
+ (0x00200011, IS, "1")  # Series Number
+ (0x00200013, IS, "1")  # Image Number
+ (0x00200020, CS, "") # Patient Orientation
+ (0x00280002, US, 0x0001)  # Samples Per Pixel
+ (0x00280004, CS, "MONOCHROME2")  # Photometric Interpretation
+ (0x00280010, US, 512)  # Rows
+ (0x00280011, US, 512)  # Columns
+ (0x00280100, US, 0x0008)  # Bits Allocated
+ (0x00280101, US, 0x0008)  # Bits Stored
+ (0x00280102, US, 0x0007)  # High Bit
+ (0x00280103, US, 0x0000)  # Pixel Representation
+ (0x7FE00010, OB, 512)  # Pixel Data
+)
+
+RECEIVE C-STORE-RSP (
+(0x00000900, US, 0x0000)
+)
+

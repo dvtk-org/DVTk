@@ -1,0 +1,3183 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DvtkDefinitionQueryLibrary</name>
+    </assembly>
+    <members>
+        <member name="T:Dvtk.Definition_Query_Library.DefinitionQueryLibrary">
+            <summary>
+            	Summary description for DefinitionQueryLibrary.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Definition_Query_Library.IXPathQueryInterface">
+            <summary>
+            The IXPathQueryInterface provides functions that allow an user to query
+            definition files by using XPath Queries.
+            The purpose of the interface is to provide users with a set of
+            functions that allow advanced custom queries.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Definition_Query_Library.ISimpleQueryInterface">
+            <summary>
+            	The ISimpleQueryInterface provides functions that allow an user to
+            	query definition files in a commando way. Each function covers a
+            	specific query. The purpose of the interface is to provide users
+            	with a set of simple functions that can easy be used to retrieve
+            	specific information from Xml Definition files.
+            </summary>
+        </member>
+        <member name="F:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.dqFileManager">
+            <summary>
+            	For managing Xml Definition files.
+            </summary>
+        </member>
+        <member name="F:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.dqQueryManager">
+            <summary>
+            	For managing pre-compiled XPath Expression queries.
+            </summary>
+        </member>
+        <member name="F:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.sopClassUID">
+            <summary>
+            	For the SOP Class UID used in queries.
+            </summary>
+        </member>
+        <member name="F:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.systemName">
+            <summary>
+            	For the System Name used in queries.
+            </summary>
+        </member>
+        <member name="F:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.queryDocument">
+            <summary>
+            	For the Xml Definition file that is used in the query.
+            </summary>
+        </member>
+        <member name="F:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.queryNavigator">
+            <summary>
+            	For the navigator used to execute the query against the
+            	queryDocument
+            </summary>
+        </member>
+        <member name="F:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.queryExpression">
+            <summary>
+            	For a cloned copy of the pre-compiled expression used in the
+            	Query.
+            </summary>
+        </member>
+        <member name="F:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.queryNodeIterator">
+            <summary>
+            	For iterating trough the result of the query.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.#ctor">
+            <summary>
+            	Constructor for the DefinitionQueryLibrary class.
+            </summary>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Create a new DefinitionQueryLibrary.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		dqLibrary = new DefinitionQueryLibrary();
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Create a new DefinitionQueryLibrary.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary
+            		dqLibrary = new DefinitionQueryLibrary()
+            	</code>
+            </example>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.LoadFile(System.String)">
+            <summary>
+            	Loads the Xml Definition file to make it available for
+            	executing XPath queries or Simple Query Functions.
+            </summary>
+            <param name="FileName">
+            	Full path to the Xml Definition File.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Load a Xml Definition File.
+            		
+            		DefinitionQueryLibrary sqLibrary;
+            		dqLibrary = new DefinitionQueryLibrary();
+            		
+            		dqLibrary.LoadFile(@"C:\example.xml");
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Load a Xml Definition File.
+            		
+            		Dim dqLibrary AS DefinitionQueryLibrary
+            		dqLibrary = new DefinitionQueryLibrary()
+            		
+            		dqLibrary.LoadFile(@"C:\example.xml")
+            	</code>
+            </example>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetLoadedFiles">
+            <summary>
+            	Provides a list of all the Xml Definition files that are
+            	currently loaded.
+            </summary>
+            <returns>
+            	An Array of strings containing the full path of all Xml
+            	Definition files.
+            </returns>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get Loaded Xml Definition files.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		Array myArray;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		dqLibrary.PreLoadFile(@"C:\example.xml");
+            		myArray = dqLibrary.GetLoadedFiles();
+            		
+            		foreach(string definitionFile in myArray)
+            		{
+            			System.Console.WriteLine(definitionFile);
+            		}
+            	</code>
+            </example>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.Query(System.String)">
+            <summary>
+            	Execute a XPath Query against the Xml Definition file with
+            	the SOP Class UID and System Name that are set as default.
+            </summary>
+            <param name="Expression">XPath compatible query.</param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Execute a raw XPath Query on the default
+            		// SOP Class and System Name.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		XPathNodeIterator myNodeIterator;
+            		string myExpression;
+            		string version;
+            		
+            		dqLibrary = new DefinitionQueryLibrary();
+            		
+            		// Set the default SOP Class UID and System Name.
+            		dqLibrary.SetDefaultSOPClassUID("1.2.3.4.55.145.9.2.1");
+            		dqLibrary.SetDefaultSystemName("DICOM");
+            		
+            		// Create an expression that queries for the System
+            		// Version.
+            		myExpression = "/System/@Version";
+            		
+            		myNodeIterator = dqLibrary.Query(myExpression);
+            		
+            		// Move to the result.
+            		myNodeIterator.MoveNext();
+            		myNodeIterator.Current.MoveToFirstAttribute();
+            		
+            		// Show the result.
+            		Console.WriteLine(myNodeIterator.Current.Value);
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Execute a raw XPath Query on the default
+            		' SOP Class and System Name.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary
+            		Dim myNodeIterator As XPathNodeIterator
+            		Dim myExpression As string
+            		Dim version As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary()
+            		
+            		' Set the default SOP Class UID and System Name.
+            		dqLibrary.SetDefaultSOPClassUID("1.2.3.4.55.145.9.2.1")
+            		dqLibrary.SetDefaultSystemName("DICOM")
+            		
+            		' Create an expression that queries for the System Version.
+            		myExpression = "/System/@Version"
+            		
+            		myNodeIterator = dqLibrary.Query(myExpression)
+            		
+            		' Move to the result.
+            		myNodeIterator.MoveNext()
+            		myNodeIterator.Current.MoveToFirstAttribute()
+            		
+            		' Show the result.
+            		Console.WriteLine(myNodeIterator.Current.Value)
+            	</code>
+            </example>
+            <returns>
+            	A XPathNodeIterator with the query results.
+            </returns>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the XPath query is invalid or the Xml
+            	Definition file is not loaded.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.Query(System.String,System.String)">
+            <summary>
+            	Execute a XPath Query against the Xml Definition file with
+            	the provided filename.
+            </summary>
+            <param name="Expression">XPath compatible query.</param>
+            <param name="FileName">
+            	Full path to the Xml Definition file. See also the example
+            	code.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Execute a raw XPath Query on the provided Xml
+            		// Definition file.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		XPathNodeIterator myNodeIterator;
+            		string myExpression;
+            		string version;
+            		
+            		dqLibrary = new DefinitionQueryLibrary();
+            		
+            		// Create an expression that queries for the System
+            		// Version.
+            		myExpression = "/System/@Version";
+            		
+            		myNodeIterator = dqLibrary.Query(myExpression, @"C:\example.xml");
+            		
+            		// Move to the result.
+            		myNodeIterator.MoveNext();
+            		myNodeIterator.Current.MoveToFirstAttribute();
+            		
+            		// Show the result.
+            		Console.WriteLine(myNodeIterator.Current.Value);
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Execute a raw XPath Query on the provided Xml
+            		' Definition file.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary
+            		Dim myNodeIterator As XPathNodeIterator
+            		Dim myExpression As string
+            		Dim version As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary()
+            		
+            		' Create an expression that queries for the System Version.
+            		myExpression = "/System/@Version"
+            		
+            		myNodeIterator = dqLibrary.Query(myExpression, @"C:\example.xml")
+            		
+            		' Move to the result.
+            		myNodeIterator.MoveNext()
+            		myNodeIterator.Current.MoveToFirstAttribute()
+            		
+            		' Show the result.
+            		Console.WriteLine(myNodeIterator.Current.Value)
+            	</code>
+            </example>
+            <returns>
+            	A XPathNodeIterator with the query results.
+            </returns>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the XPath query is invalid or the Xml
+            	Definition file is not loaded.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.Query(System.String,System.String,System.String)">
+            <summary>
+            	Execute a XPath Query against the Xml Definition file with
+            	the provided SOP Class UID and System Name.
+            </summary>
+            <param name="Expression">XPath compatible query.</param>
+            <param name="SOPClassUID">
+            	SOP Class UID of the Xml Definition file to run the query on.
+            	See also the example code.
+            </param>
+            <param name="SystemName">
+            	System Name of the Xml Definition file to run the query on. See
+            	also the example code.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Execute a raw XPath Query on the Xml Definition
+            		// file with the given SOP Class UID and System Name.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		XPathNodeIterator myNodeIterator;
+            		string myExpression;
+            		string version;
+            		
+            		dqLibrary = new DefinitionQueryLibrary();
+            		
+            		// Create an expression that queries for the System
+            		// Version.
+            		myExpression = "/System/@Version";
+            		
+            		myNodeIterator = dqLibrary.Query(myExpression, "1.2.545.877.144.9.2.1", "Dicom");
+            		
+            		// Move to the result.
+            		myNodeIterator.MoveNext();
+            		myNodeIterator.Current.MoveToFirstAttribute();
+            		
+            		// Show the result.
+            		Console.WriteLine(myNodeIterator.Current.Value);
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Execute a raw XPath Query on the Xml Definition
+            		' file with the given SOP Class UID and System Name.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary
+            		Dim myNodeIterator As XPathNodeIterator
+            		Dim myExpression As string
+            		Dim version As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary()
+            		
+            		' Create an expression that queries for the System Version.
+            		myExpression = "/System/@Version"
+            		
+            		myNodeIterator = dqLibrary.Query(myExpression, "1.2.545.877.144.9.2.1", "Dicom")
+            		
+            		' Move to the result.
+            		myNodeIterator.MoveNext()
+            		myNodeIterator.Current.MoveToFirstAttribute()
+            		
+            		' Show the result.
+            		Console.WriteLine(myNodeIterator.Current.Value)
+            	</code>
+            </example>
+            <returns>
+            	A XPathNodeIterator with the query results.
+            </returns>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the XPath query is invalid or the Xml
+            	Definition file is not loaded.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetSOPClassUID">
+            <summary>
+            	Gets the SOP Class UID that is used in a query functions.
+            </summary>
+            <returns>
+            	A string containing the SOP Class UID.
+            </returns>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the SOP Class UID.
+            		DefinitionQueryLibrary dqLibrary;
+            		string myUID;
+            		
+            		dqLibrary = new DefinitionQueryLibrary();
+            		myUID = dqLibrary.GetSOPClassUID();
+            		
+            		Console.WriteLine("The SOP Class UID is: " + myUID);
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the SOP Class UID.
+            		Dim dqLibrary As DefinitionQueryLibrary
+            		Dim myUID As string
+            		
+            		dqLibrary - new DefinitionQueryLibrary()
+            		myUID = dqLibrary.GetSOPClassUID()
+            		
+            		Console.WriteLine("The SOP Class UID is: " + myUID)
+            	</code>
+            </example>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.SetSOPClassUID(System.String)">
+            <summary>
+            	Sets the SOP Class UID that is used in query functions.
+            </summary>
+            <param name="SOPClassUID">
+            	SOP Class UID. See also the code example.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Set the SOP Class UID.
+            		DefinitionQueryLibrary dqLibrary;
+            		
+            		dqLibrary = new DefinitionQueryLirbary();
+            		dqLibrary.SetSOPClassUID("1.2.3.8.14.65.88.1.2");
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Set the SOP Class UID.
+            		Dim dqLibrary As DefinitionQueryLibrary
+            		
+            		dqLibrary = new DefinitionQueryLirbary()
+            		dqLibrary.SetSOPClassUID("1.2.3.8.14.65.88.1.2")
+            	</code>
+            </example>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetSystemName">
+            <summary>
+            	Gets the System Name that is used in query functions.
+            </summary>
+            <returns>
+            	A string containing the System Name.
+            </returns>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the System Name.
+            		DefinitionQueryLibrary dqLibrary;
+            		string mySystemName;
+            		
+            		dqLibrary = new DefinitionQueryLibrary();
+            		mySystemName = dqLibrary.GetSystemName();
+            		
+            		Console.WriteLine("The System Name is: " + myUID);
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the System Name.
+            		Dim dqLibrary As DefinitionQueryLibrary
+            		Dim mySystemName As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary()
+            		mySystemName = dqLibrary.GetSystemName()
+            		
+            		Console.WriteLine("The System Name is: " + myUID)
+            	</code>
+            </example>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.SetSystemName(System.String)">
+            <summary>
+            	Sets the System Name that is used in query functions.
+            </summary>
+            <param name="SystemName">
+            	System Name. See also the code example.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Set the System Name.
+            		DefinitionQueryLibrary dqLibrary;
+            		
+            		dqLibrary = new DefinitionQueryLirbary();
+            		dqLibrary.SetSystemName("DICOM");
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Set the System Name.
+            		Dim dqLibrary As DefinitionQueryLibrary
+            		
+            		dqLibrary = new DefinitionQueryLirbary()
+            		dqLibrary.SetSystemName("DICOM")
+            	</code>
+            </example>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetSystemVersion">
+            <summary>
+            	Get the System Version from the Xml Definition file with the
+            	SOP Class UID and System Name that are set.
+            </summary>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the System Version from the Xml Definition
+            		// file with the SOP Class UID and System Name that are
+            		// set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		string systemVersion;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		systemVersion = dqLibrary.GetSystemVersion();
+            		
+            		if (systemVersion != null)
+            		{
+            			Console.WriteLine("The System Version = " + systemVersion);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the System Version from the Xml Definition
+            		' file with the SOP Class UID and System Name that are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim systemVersion As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		systemVersion = dqLibrary.GetSystemVersion()
+            		
+            		if (systemVersion &lt;&gt; nothing) then
+            			Console.WriteLine("The System Version = " + systemVersion)
+            		end if
+            	</code>
+            </example>
+            <returns>
+            	A string containing the System Version. If for some reason no
+            	System Version was found, null will be returned.
+            </returns>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetApplicationName">
+            <summary>
+            	Get the Application Name from the Xml Definition file with the
+            	SOP Class UID and System Name that are set.
+            </summary>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the Application Name from the Xml
+            		// Definition file with the SOP Class UID and System Name
+            		// that are set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		string appplicationName;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		if (applicatioName != null)
+            		{
+            			applicationName = dqLibrary.GetApplicationName();
+            		}
+            		
+            		Console.WriteLine("The Application Name = " + applicationName);
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the Application Name from the Xml Definition
+            		' file with the SOP Class UID and System Name that are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim applicationName As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		applicationName = dqLibrary.GetApplicationName()
+            		
+            		if (applicationName &lt;&gt; nothing) then
+            			Console.WriteLine("The Application Name = " + applicationName)
+            		end if
+            	</code>
+            </example>
+            <returns>
+            	A string containing the Application Name. If for some reason no
+            	Application Name was found, null will be returned.
+            </returns>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAllDimseCommands">
+            <summary>
+            	Get all Dimse Commands for the Xml Definition file with the SOP
+            	Class UID and System Name that are set.
+            </summary>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get all Dimse Commands from the Xml Definition
+            		// file with the SOP Class UID and System Name that are
+            		// set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		StringCollection dimseCommands;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		dimseCommands = dqLibrary.GetAllDimseCommands();
+            		
+            		// Show all the results by iterating trough the array.
+            		foreach(string dimseCommand in dimseCommands)
+            		{
+            			Console.WriteLine("The Dimse Command = " + dimseCommand);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get all Dimse Commands from the Xml Definition
+            		' file with the SOP Class UID and System Name that are set
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim dimseCommands As StringCollection
+            		Dim dimseCommand As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		dimseCommands = dqLibrary.GetAllDimseCommands()
+            		
+            		// Show all the results by iterating trough the array.
+            		For Each dimseCommand in dimseCommands
+            			Console.WriteLine("The Dimse Command = " + dimseCommand)
+            		Next dimseCommand
+            	</code>
+            </example>
+            <returns>
+            	A StringCollection containing all the Dimse Commands as string.
+            </returns>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAllModules">
+            <summary>
+            	Get all Modules for the Xml Definition file with the SOP Class
+            	UID and System Name that are set.
+            </summary>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get all Modules from the Xml Definition file
+            		// with the SOP Class UID and System Name that are set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		StringCollection modules;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		modules = dqLibrary.GetAllModules();
+            		
+            		// Show all the results by iterating trough the array.
+            		foreach(string module in modules)
+            		{
+            			Console.WriteLine("The Module = " + module);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get all Modules from the Xml Definition file
+            		' with the SOP Class UID and System Name that are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim modules As StringCollection
+            		Dim module As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		modules = dqLibrary.GetAllModules()
+            		
+            		' Show all the results by iterating trough the array.
+            		For Each module in modules
+            			Console.WriteLine("The Module = " + module)
+            		Next module
+            	</code>
+            </example>
+            <returns>
+            	A StringCollection containing all the Modules as string.
+            </returns>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAllModules(System.String)">
+            <summary>
+            	Get all Modules for the specific <paramref name="DimseCommand">
+            	Dimse Command</paramref> for the Xml Definition file with the
+            	SOP Class UID and System Name that are set.
+            </summary>
+            <param name="DimseCommand">
+            	The Dimse Command. See also the example code.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get all Modules for the specific Dimse Command
+            		// from the Xml Definition file with the SOP Class UID and
+            		// System Name that are set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		StringCollection modules;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		modules = dqLibrary.GetAllModules("C-STORE-RQ");
+            		
+            		// Show all the results by iterating trough the array.
+            		foreach(string module in modules)
+            		{
+            			Console.WriteLine("The C-STORE-RQ Dimse Command has the Module = " + module);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get all Modules for the specific Dimse Command
+            		' from the Xml Definition file with the SOP Class UID and
+            		' System Name that are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim modules As StringCollection
+            		Dim module As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		modules = dqLibrary.GetAllModules("C-STORE-RQ")
+            		
+            		// Show all the results by iterating trough the array.
+            		For Each module in modules
+            			Console.WriteLine("The C-STORE-RQ Dimse Command has the Module = " + module)
+            		Next module
+            	</code>
+            </example>
+            <returns>
+            	A StringCollection containing all the Modules of the Dimse Command as
+            	string.
+            </returns>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetModuleUsage(System.String)">
+            <summary>
+            	Get the Usage information for the Module specified in
+            	<paramref name="ModuleName">ModuleName</paramref> from the Xml
+            	Definition file with the SOP Class UID and System Name that are
+            	set.
+            </summary>
+            <param name="ModuleName">
+            	The Module Name to get the Usage for. See also the example
+            	code.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the Module Usage for the specific Module
+            		// from the Xml Definition file with the SOP Class UID and
+            		// System Name that are set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		string usage;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		usage = dqLibrary.GetModuleUsage("Patient Module");
+            		
+            		// Show the result.
+            		if (usage != null)
+            		{
+            			Console.WriteLine("The Usage for the Patient Module = " + usage);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the Module Usage for the specific Module
+            		' from the Xml Definition file with the SOP Class UID and
+            		' System Name that are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim usage As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		usage = dqLibrary.GetModuleUsage("Patient Module")
+            		
+            		// Show the result.
+            		if (usage &lt;&gt; nothing) then
+            			Console.WriteLine("The Usage for the Patient Module = " + usage)
+            		end if
+            	</code>
+            </example>
+            <returns>
+            	A string containing the module usage. If the Module
+            	<paramref name="ModuleName">ModuleName</paramref> was not found
+            	null will be returned for Module Usage.
+            </returns>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAllAttributes(System.Boolean)">
+            <summary>
+            	Get all Attributes for the Xml Definition file with the SOP
+            	Class UID and System Name that are set. If the
+            	<paramref name="Subitems">Subitems</paramref> is set to True
+            	also subitems will be included.
+            </summary>
+            <param name="Subitems">
+            	Determines whether subitems are also included. See also the
+            	example code.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get all Attributes from the Xml Definition file
+            		// with the SOP Class UID and System Name that are set. Not
+            		// including subitems.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		StringCollection attributes;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		attributes = dqLibrary.GetAllAttributes(false);
+            		
+            		// Show all the results by iterating trough the array.
+            		foreach(string attribute in attributes)
+            		{
+            			Console.WriteLine("The Attribute = " + attribute);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get all Attributes from the Xml Definition file
+            		' with the SOP Class UID and System Name that are set. Not
+            		' including subitems.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim attributes As StringCollection
+            		Dim attribute As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		attributes = dqLibrary.GetAllAttributes(false)
+            		
+            		// Show all the results by iterating trough the array.
+            		For Each attribute in attributes
+            			Console.WriteLine("The Attribute = " + attribute)
+            		Next attribute
+            	</code>
+            </example>
+            <returns>
+            	A StringCollection containing all the Attributes as string. The
+            	format of the string will be like 0x012345678.
+            </returns>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAllAttributesInDimseCommand(System.String,System.Boolean)">
+            <summary>
+            	Get all Attributes for the specific Dimse Command for the Xml
+            	Definition file with the SOP Class UID and System Name that are
+            	set. This also includes attributes that are nested in
+            	sequences. If the <paramref name="Subitems">Subitems</paramref>
+            	is set to True also subitems will be included.
+            </summary>
+            <param name="DimseCommand">
+            	The Dimse Command containing the Attributes. See also the
+            	example code.
+            </param>
+            <param name="Subitems">
+            	Determines whether subitems are also included. See also the
+            	example code.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get all Attributes for the specific Dimse 
+            		// Command from the Xml Definition file with the SOP
+            		// Class UID and System Name that are set. Not including
+            		// subitems.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		StringCollection attributes;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		attributes = dqLibrary.GetAllAttributesInDimseCommand("C-STORE-RQ", false);
+            		
+            		// Show all the results by iterating trough the array.
+            		foreach(string attribute in attributes)
+            		{
+            			Console.WriteLine("The Attribute = " + attribute);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get all Attributes for the specific Dimse
+            		' Command from the Xml Definition file with the SOP Class
+            		' UID and System Name that are set. Not including subitems.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim attributes As StringCollection
+            		Dim attribute As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		attributes = dqLibrary.GetAllAttributesInDimseCommand("C-STORE-RQ", false)
+            		
+            		// Show all the results by iterating trough the array.
+            		For Each attribute in attributes
+            			Console.WriteLine("The Attribute = " + attribute)
+            		Next attribute
+            	</code>
+            </example>
+            <returns>
+            	A StringCollection containing all the Attributes as string. The
+            	format of the string will be like 0x012345678.
+            </returns>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAllAttributesInModule(System.String,System.Boolean)">
+            <summary>
+            	Get all Attributes for the specific Module for the Xml
+            	Definition file with the SOP Class UID and System Name that are
+            	set. This also includes attributes that are nested in
+            	sequences. If the <paramref name="Subitems">Subitems</paramref>
+            	is set to True also subitems will be included.
+            </summary>
+            <param name="Module">
+            	The Module containing the Attributes. See also the example
+            	code.
+            </param>
+            <param name="Subitems">
+            	Determines whether subitems are also included. See also the
+            	example code.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get all Attributes for the specific Module from
+            		// the Xml Definition file with the SOP Class UID and
+            		// System Name that are set. Not including subitems.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		StringCollection attributes;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		attributes = dqLibrary.GetAllAttributesInModule("Patient Module", false);
+            		
+            		// Show all the results by iterating trough the array.
+            		foreach(string attribute in attributes)
+            		{
+            			Console.WriteLine("The Attribute = " + attribute);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get all Attributes for the specific Module from
+            		' the Xml Definition file with the SOP Class UID and System
+            		' Name that are set. Not including subitems.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim attributes As StringCollection
+            		Dim attribute As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		attributes = dqLibrary.GetAllAttributesInModule("Patient Module", false)
+            		
+            		// Show all the results by iterating trough the array.
+            		For Each attribute in attributes
+            			Console.WriteLine("The Attribute = " + attribute)
+            		Next attribute
+            	</code>
+            </example>
+            <returns>
+            	A StringCollection containing all the Attributes as string. The
+            	format of the string will be like 0x012345678.
+            </returns>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAllAttributesInAttribute(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            	Get the Attributes in the <paramref name="Attribute">
+            	Attribute</paramref> using the SOP Class UID and System Name
+            	that are set. With <paramref name="Recursive">Recursive
+            	</paramref> it is also possible to look inside other
+            	Attributes. If the <paramref name="Subitems">Subitems
+            	</paramref> is set to True also subitems will be included.
+            </summary>
+            <param name="Attribute">
+            	Attribute or Attribute path to get the Enumerated Values for in
+            	the 0x12345678 or 0x10101010/0x20202020/0x30303030 format. See
+            	also the example code.
+            </param>
+            <param name="Recursive">
+            	If true the Attribute or Attribute path will also be searched
+            	inside other Attributes. If false the search will only take
+            	place direct at the top level.
+            </param>
+            <param name="Subitems">
+            	Determines whether subitems are also included. See also the
+            	example code.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the Attributes in the given Attribute
+            		// using the SOP Class UID and System Name that are set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		StringCollection attributes;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		// Single Attribute, look also inside other Attributes (Recursive)
+            		// and return all sub Attributes.
+            		attributes = dqLibrary.GetAllAttributesinAttribute("0x00101010", true, true);
+            		
+            		// Show the result.
+            		foreach (string attribute in attributes)
+            		{
+            			Console.WriteLine("The Attribute 0x00101010 contains Attribute = " + attribute);
+            		}
+            		
+            		// Attribute path, don't look inside other Attributes (Recursive)
+            		// but return all sub Attributes.
+            		attributes = dqLibrary.GetAllAttributesinAttribute("0x00101010/0x20205555", false, true);
+            		
+            		// Show the result.
+            		foreach (string attribute in attributes)
+            		{
+            			Console.WriteLine("The Attribute 0x20205555 contains Attribute = " + attribute);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the Attributes in the given Attribute
+            		' using the SOP Class UID and System Name that are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim attributes As StringCollection
+            		Dim attribute As String
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		' Single Attribute, look also inside other Attributes (Recursive)
+            		' and return all sub Attributes.
+            		attributes = dqLibrary.GetAllAttributesinAttribute("0x00101010", true, true)
+            		
+            		' Show the result.
+            		For Each attribute in attributes
+            			Console.WriteLine("The Attribute 0x00101010 contains Attribute = " + attribute)
+            		Next attribute
+            		
+            		' Attribute path, don't look inside other Attributes (Recursive)
+            		' but return all sub Attributes.
+            		attributes = dqLibrary.GetAllAttributesinAttribute("0x00101010/0x20205555", false, true)
+            		
+            		' Show the result.
+            		For Each attribute in attributes
+            			Console.WriteLine("The Attribute 0x20205555 contains Attribute = " + attribute)
+            		Next attribute
+            	</code>
+            </example>
+            <returns>
+            	Returns a StringCollection containing the Attributes as String.
+            </returns>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAttributeTree">
+            <summary>
+            	Get a list of all the Attributes as tree. See also the example
+            	code.
+            </summary>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the Attribute tree.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		StringCollection attributes;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		attributes = dqLibrary.GetAttributeTree();
+            		
+            		// Show the result.
+            		foreach (string attribute in attributes)
+            		{
+            			Console.WriteLine(attribute);
+            		}
+            		
+            		// This will output:
+            		//
+            		// 0x01234567
+            		// 0x01234567/0x15465478
+            		// 0x01234567/0x25478963
+            		// 0x01234567/0x65487632
+            		// 0x01234567/0x65487632/0x12547885
+            		// 0x01234567/0x65487632/0x12547896
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the Attribute tree.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim attributes As StringCollection
+            		Dim attribute As String
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		attributes = dqLibrary.GetAttributeTree()
+            		
+            		' Show the result.
+            		For Each attribute in attributes
+            			Console.WriteLine(attribute)
+            		Next attribute
+            		
+            		' This will output:
+            		'
+            		' 0x01234567
+            		' 0x01234567/0x15465478
+            		' 0x01234567/0x25478963
+            		' 0x01234567/0x65487632
+            		' 0x01234567/0x65487632/0x12547885
+            		' 0x01234567/0x65487632/0x12547896
+            	</code>
+            </example>
+            <returns>
+            	Returns a StringCollection containing the Attribute tree.
+            </returns>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAttributeType(System.String,System.Boolean)">
+            <summary>
+            	Get the Type for the <paramref name="Attribute">Attribute
+            	</paramref> using the SOP Class UID and System Name that are
+            	set. With <paramref name="Recursive">Recursive</paramref> it is
+            	also possible to look inside other Attributes.
+            </summary>
+            <param name="Attribute">
+            	Attribute or Attribute path to get the Type for in the 
+            	0x12345678 or 0x10101010/0x20202020/0x30303030 format. See also
+            	the example code.
+            </param>
+            <param name="Recursive">
+            	If true the Attribute or Attribute path will also be searched
+            	inside other Attributes. If false the search will only take
+            	place direct at the top level.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the Attribute Type for the given Attribute
+            		// using the SOP Class UID and System Name that are set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		string attributeType;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		// Single Attribute and look also inside other Attributes (Recursive).
+            		attributeType = dqLibrary.GetAttributeType("0x00101010", true);
+            		
+            		// Show the result.
+            		if (attributeType != null)
+            		{
+            			Console.WriteLine("The Attribute Type for Attribute 0x00101010 = " + attributeType);
+            		}
+            		
+            		// Attribute path but don't look inside other Attributes (Recursive).
+            		attributeType = dqLibrary.GetAttributeType("0x00101010/0x20205555", false);
+            		
+            		// Show the result.
+            		if (attributeType != null)
+            		{
+            			Console.WriteLine("The Attribute Type for Attribute 0x20205555 = " + attributeType);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the Attribute Type for the given Attribute
+            		' using the SOP Class UID and System Name that are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim attributeType As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		' Single Attribute and look also inside other Attributes (Recursive).
+            		attributeType = dqLibrary.GetAttributeType("0x00101010", true)
+            		
+            		' Show the result.
+            		if (attributeType &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute Type for Attribute 0x00101010 = " + attributeType)
+            		end if
+            		
+            		' Attribute path but don't look inside other Attributes (Recursive).
+            		attributeType = dqLibrary.GetAttributeType("0x00101010/0x20205555", false)
+            		
+            		' Show the result.
+            		if (attributeType &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute Type for Attribute 0x20205555 = " + attributeType)
+            		end if
+            	</code>
+            </example>
+            <returns>
+            	Returns a String containing the Type. If the
+            	<paramref name="Attribute">Attribute</paramref> is not found
+            	null wil be returned.
+            </returns>
+            <remarks>
+            	The function will always use the first matching Attribute.
+            </remarks>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAttributeVM(System.String,System.Boolean)">
+            <summary>
+            	Get the VM for the <paramref name="Attribute">Attribute
+            	</paramref> using the SOP Class UID and System Name that are
+            	set. With <paramref name="Recursive">Recursive</paramref> it is
+            	also possible to look inside other Attributes.
+            </summary>
+            <param name="Attribute">
+            	Attribute or Attribute path to get the VM for in the 
+            	0x12345678 or 0x10101010/0x20202020/0x30303030 format. See also
+            	the example code.
+            </param>
+            <param name="Recursive">
+            	If true the Attribute or Attribute path will also be searched
+            	inside other Attributes. If false the search will only take
+            	place direct at the top level.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the Attribute VM for the given Attribute
+            		// using the SOP Class UID and System Name that are set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		string attributeVM;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		// Single Attribute and look also inside other Attributes (Recursive).
+            		attributeVM = dqLibrary.GetAttributeVM("0x00101010", true);
+            		
+            		// Show the result.
+            		if (attributeVM != null)
+            		{
+            			Console.WriteLine("The Attribute VM for Attribute 0x00101010 = " + attributeVM);
+            		}
+            		
+            		// Attribute path but don't look inside other Attributes (Recursive).
+            		attributeVM = dqLibrary.GetAttributeVM("0x00101010/0x20205555", false);
+            		
+            		// Show the result.
+            		if (attributeVM != null)
+            		{
+            			Console.WriteLine("The Attribute VM for Attribute 0x20205555 = " + attributeVM);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the Attribute VM for the given Attribute
+            		' using the SOP Class UID and System Name that are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim attributeVM As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		' Single Attribute and look also inside other Attributes (Recursive).
+            		attributeVM = dqLibrary.GetAttributeVM("0x00101010", true)
+            		
+            		' Show the result.
+            		if (attributeVM &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute VM for Attribute 0x00101010 = " + attributeVM)
+            		end if
+            		
+            		' Attribute path but don't look inside other Attributes (Recursive).
+            		attributeVM = dqLibrary.GetAttributeVM("0x00101010/0x20205555", false)
+            		
+            		' Show the result.
+            		if (attributeVM &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute VM for Attribute 0x20205555 = " + attributeVM)
+            		end if
+            	</code>
+            </example>
+            <returns>
+            	Returns a String containing the VM. If the
+            	<paramref name="Attribute">Attribute</paramref> is not found
+            	null wil be returned.
+            </returns>
+            <remarks>
+            	The function will always use the first matching Attribute.
+            </remarks>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAttributeVR(System.String,System.Boolean)">
+            <summary>
+            	Get the VR for the <paramref name="Attribute">Attribute
+            	</paramref> using the SOP Class UID and System Name that are
+            	set. With <paramref name="Recursive">Recursive</paramref> it is
+            	also possible to look inside other Attributes.
+            </summary>
+            <param name="Attribute">
+            	Attribute or Attribute path to get the VR for in the 
+            	0x12345678 or 0x10101010/0x20202020/0x30303030 format. See also
+            	the example code.
+            </param>
+            <param name="Recursive">
+            	If true the Attribute or Attribute path will also be searched
+            	inside other Attributes. If false the search will only take
+            	place direct at the top level.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the Attribute VR for the given Attribute
+            		// using the SOP Class UID and System Name that are set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		string attributeVR;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		// Single Attribute and look also inside other Attributes (Recursive).
+            		attributeVR = dqLibrary.GetAttributeVR("0x00101010", true);
+            		
+            		// Show the result.
+            		if (attributeVR != null)
+            		{
+            			Console.WriteLine("The Attribute VR for Attribute 0x00101010 = " + attributeVR);
+            		}
+            		
+            		// Attribute path but don't look inside other Attributes (Recursive).
+            		attributeVR = dqLibrary.GetAttributeVR("0x00101010/0x20205555", false);
+            		
+            		// Show the result.
+            		if (attributeVR != null)
+            		{
+            			Console.WriteLine("The Attribute VR for Attribute 0x20205555 = " + attributeVR);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the Attribute VR for the given Attribute
+            		' using the SOP Class UID and System Name that are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim attributeVR As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		' Single Attribute and look also inside other Attributes (Recursive).
+            		attributeVR = dqLibrary.GetAttributeVR("0x00101010", true)
+            		
+            		' Show the result.
+            		if (attributeVR &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute VR for Attribute 0x00101010 = " + attributeVR)
+            		end if
+            		
+            		' Attribute path but don't look inside other Attributes (Recursive).
+            		attributeVR = dqLibrary.GetAttributeVR("0x00101010/0x20205555", false)
+            		
+            		' Show the result.
+            		if (attributeVR &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute VR for Attribute 0x20205555 = " + attributeVR)
+            		end if
+            	</code>
+            </example>
+            <returns>
+            	Returns a String containing the VR. If the
+            	<paramref name="Attribute">Attribute</paramref> is not found
+            	null wil be returned.
+            </returns>
+            <remarks>
+            	The function will always use the first matching Attribute.
+            </remarks>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAttributeCondition(System.String,System.Boolean)">
+            <summary>
+            	Get the Condition for the <paramref name="Attribute">Attribute
+            	</paramref> using the SOP Class UID and System Name that are
+            	set. With <paramref name="Recursive">Recursive</paramref> it is
+            	also possible to look inside other Attributes.
+            </summary>
+            <param name="Attribute">
+            	Attribute or Attribute path to get the Condition for in the 
+            	0x12345678 or 0x10101010/0x20202020/0x30303030 format. See also
+            	the example code.
+            </param>
+            <param name="Recursive">
+            	If true the Attribute or Attribute path will also be searched
+            	inside other Attributes. If false the search will only take
+            	place direct at the top level.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the Attribute Condition for the given
+            		// Attribute using the SOP Class UID and System Name that
+            		// are set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		string attributeCondition;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		// Single Attribute and look also inside other Attributes (Recursive).
+            		attributeCondition = dqLibrary.GetAttributeCondition("0x00101010", true);
+            		
+            		// Show the result.
+            		if (attributeCondition != null)
+            		{
+            			Console.WriteLine("The Attribute Condition for Attribute 0x00101010 = " + attributeCondition);
+            		}
+            		
+            		// Attribute path but don't look inside other Attributes (Recursive).
+            		attributeCondition = dqLibrary.GetAttributeCondition("0x00101010/0x20205555", false);
+            		
+            		// Show the result.
+            		if (attributeCondition != null)
+            		{
+            			Console.WriteLine("The Attribute Condition for Attribute 0x20205555 = " + attributeCondition);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the Attribute Condition for the given
+            		' Attribute using the SOP Class UID and System Name that
+            		' are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim attributeCondition As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		' Single Attribute and look also inside other Attributes (Recursive).
+            		attributeCondition = dqLibrary.GetAttributeCondition("0x00101010", true)
+            		
+            		' Show the result.
+            		if (attributeCondition &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute Condition for Attribute 0x00101010 = " + attributeCondition)
+            		end if
+            		
+            		' Attribute path but don't look inside other Attributes (Recursive).
+            		attributeCondition = dqLibrary.GetAttributeCondition("0x00101010/0x20205555", false)
+            		
+            		' Show the result.
+            		if (attributeCondition &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute Condition for Attribute 0x20205555 = " + attributeCondition)
+            		end if
+            	</code>
+            </example>
+            <returns>
+            	Returns a String containing the Condition. If the
+            	<paramref name="Attribute">Attribute</paramref> is not found
+            	or there is no Condition for the <paramref name="Attribute">
+            	Attribute</paramref> null wil be returned.
+            </returns>
+            <remarks>
+            	The function will always use the first matching Attribute.
+            </remarks>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAttributeComment(System.String,System.Boolean)">
+            <summary>
+            	Get the Comment for the <paramref name="Attribute">Attribute
+            	</paramref> using the SOP Class UID and System Name that are
+            	set. With <paramref name="Recursive">Recursive</paramref> it is
+            	also possible to look inside other Attributes.
+            </summary>
+            <param name="Attribute">
+            	Attribute or Attribute path to get the COmment for in the 
+            	0x12345678 or 0x10101010/0x20202020/0x30303030 format. See also
+            	the example code.
+            </param>
+            <param name="Recursive">
+            	If true the Attribute or Attribute path will also be searched
+            	inside other Attributes. If false the search will only take
+            	place direct at the top level.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the Attribute Comment for the given
+            		// Attribute using the SOP Class UID and System Name that
+            		// are set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		string attributeComment;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		// Single Attribute and look also inside other Attributes (Recursive).
+            		attributeComment = dqLibrary.GetAttributeComment("0x00101010", true);
+            		
+            		// Show the result.
+            		if (attributeComment != null)
+            		{
+            			Console.WriteLine("The Attribute Comment for Attribute 0x00101010 = " + attributeComment);
+            		}
+            		
+            		// Attribute path but don't look inside other Attributes (Recursive).
+            		attributeComment = dqLibrary.GetAttributeComment("0x00101010/0x20205555", false);
+            		
+            		// Show the result.
+            		if (attributeComment != null)
+            		{
+            			Console.WriteLine("The Attribute Comment for Attribute 0x20205555 = " + attributeComment);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the Attribute Comment for the given
+            		' Attribute using the SOP Class UID and System Name that
+            		' are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim attributeComment As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		' Single Attribute and look also inside other Attributes (Recursive).
+            		attributeComment = dqLibrary.GetAttributeComment("0x00101010", true)
+            		
+            		' Show the result.
+            		if (attributeComment &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute Comment for Attribute 0x00101010 = " + attributeComment)
+            		end if
+            		
+            		' Attribute path but don't look inside other Attributes (Recursive).
+            		attributeComment = dqLibrary.GetAttributeComment("0x00101010/0x20205555", false)
+            		
+            		' Show the result.
+            		if (attributeComment &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute Comment for Attribute 0x20205555 = " + attributeComment)
+            		end if
+            	</code>
+            </example>
+            <returns>
+            	Returns a String containing the Comment. If the
+            	<paramref name="Attribute">Attribute</paramref> is not found
+            	or there is no Comment for the <paramref name="Attribute">
+            	Attribute</paramref> null wil be returned.
+            </returns>
+            <remarks>
+            	The function will always use the first matching Attribute.
+            </remarks>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAttributeName(System.String,System.Boolean)">
+            <summary>
+            	Get the Name for the <paramref name="Attribute">Attribute
+            	</paramref> using the SOP Class UID and System Name that are
+            	set. With <paramref name="Recursive">Recursive</paramref> it is
+            	also possible to look inside other Attributes.
+            </summary>
+            <param name="Attribute">
+            	Attribute or Attribute path to get the Name for in the 
+            	0x12345678 or 0x10101010/0x20202020/0x30303030 format. See also
+            	the example code.
+            </param>
+            <param name="Recursive">
+            	If true the Attribute or Attribute path will also be searched
+            	inside other Attributes. If false the search will only take
+            	place direct at the top level.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the Attribute Name for the given
+            		// Attribute using the SOP Class UID and System Name that
+            		// are set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		string attributeName;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		// Single Attribute and look also inside other Attributes (Recursive).
+            		attributeName = dqLibrary.GetAttributeName("0x00101010", true);
+            		
+            		// Show the result.
+            		if (attributeName != null)
+            		{
+            			Console.WriteLine("The Attribute Name for Attribute 0x00101010 = " + attributeName);
+            		}
+            		
+            		// Attribute path but don't look inside other Attributes (Recursive).
+            		attributeName = dqLibrary.GetAttributeName("0x00101010/0x20205555", false);
+            		
+            		// Show the result.
+            		if (attributeName != null)
+            		{
+            			Console.WriteLine("The Attribute Name for Attribute 0x20205555 = " + attributeName);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the Attribute Name for the given
+            		' Attribute using the SOP Class UID and System Name that
+            		' are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim attributeName As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		' Single Attribute and look also inside other Attributes (Recursive).
+            		attributeName = dqLibrary.GetAttributeName("0x00101010", true)
+            		
+            		' Show the result.
+            		if (attributeName &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute Name for Attribute 0x00101010 = " + attributeName)
+            		end if
+            		
+            		' Attribute path but don't look inside other Attributes (Recursive).
+            		attributeName = dqLibrary.GetAttributeName("0x00101010/0x20205555", false)
+            		
+            		' Show the result.
+            		if (attributeName &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute Name for Attribute 0x20205555 = " + attributeName)
+            		end if
+            	</code>
+            </example>
+            <returns>
+            	Returns a String containing the Name. If the
+            	<paramref name="Attribute">Attribute</paramref> is not found
+            	null wil be returned.
+            </returns>
+            <remarks>
+            	The function will always use the first matching Attribute.
+            </remarks>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAttributeSource(System.String,System.Boolean)">
+            <summary>
+            	Get the Source for the <paramref name="Attribute">Attribute
+            	</paramref> using the SOP Class UID and System Name that are
+            	set. With <paramref name="Recursive">Recursive</paramref> it is
+            	also possible to look inside other Attributes.
+            </summary>
+            <param name="Attribute">
+            	Attribute or Attribute path to get the Source for in the 
+            	0x12345678 or 0x10101010/0x20202020/0x30303030 format. See also
+            	the example code.
+            </param>
+            <param name="Recursive">
+            	If true the Attribute or Attribute path will also be searched
+            	inside other Attributes. If false the search will only take
+            	place direct at the top level.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the Attribute Source for the given
+            		// Attribute using the SOP Class UID and System Name that
+            		// are set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		string attributeSource;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		// Single Attribute and look also inside other Attributes (Recursive).
+            		attributeSource = dqLibrary.GetAttributeSource("0x00101010", true);
+            		
+            		// Show the result.
+            		if (attributeSource != null)
+            		{
+            			Console.WriteLine("The Attribute Source for Attribute 0x00101010 = " + attributeSource);
+            		}
+            		
+            		// Attribute path but don't look inside other Attributes (Recursive).
+            		attributeSource = dqLibrary.GetAttributeSource("0x00101010/0x20205555", false);
+            		
+            		// Show the result.
+            		if (attributeSource != null)
+            		{
+            			Console.WriteLine("The Attribute Source for Attribute 0x20205555 = " + attributeSource);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the Attribute Source for the given
+            		' Attribute using the SOP Class UID and System Name that
+            		' are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim attributeSource As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		' Single Attribute and look also inside other Attributes (Recursive).
+            		attributeSource = dqLibrary.GetAttributeSource("0x00101010", true)
+            		
+            		' Show the result.
+            		if (attributeSource &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute Source for Attribute 0x00101010 = " + attributeSource)
+            		end if
+            		
+            		' Attribute path but don't look inside other Attributes (Recursive).
+            		attributeSource = dqLibrary.GetAttributeSource("0x00101010/0x20205555", false)
+            		
+            		' Show the result.
+            		if (attributeSource &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute Source for Attribute 0x20205555 = " + attributeSource)
+            		end if
+            	</code>
+            </example>
+            <returns>
+            	Returns a String containing the Source. If the
+            	<paramref name="Attribute">Attribute</paramref> is not found
+            	or there is no Source for the <paramref name="Attribute">
+            	Attribute</paramref> null wil be returned.
+            </returns>
+            <remarks>
+            	The function will always use the first matching Attribute.
+            </remarks>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAttributePresenceOfValue(System.String,System.Boolean)">
+            <summary>
+            	Get the Presence Of Value for the <paramref name="Attribute">
+            	Attribute</paramref> using the SOP Class UID and System Name
+            	that are set. With <paramref name="Recursive">Recursive
+            	</paramref> it is also possible to look inside other
+            	Attributes.
+            </summary>
+            <param name="Attribute">
+            	Attribute or Attribute path to get the Presence Of Value for in
+            	the 0x12345678 or 0x10101010/0x20202020/0x30303030 format. See
+            	also the example code.
+            </param>
+            <param name="Recursive">
+            	If true the Attribute or Attribute path will also be searched
+            	inside other Attributes. If false the search will only take
+            	place direct at the top level.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the Attribute Presence Of Value for the
+            		// given Attribute using the SOP Class UID and System Name
+            		// that are set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		string attributePresenceOfValue;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		// Single Attribute and look also inside other Attributes (Recursive).
+            		attributeSource = dqLibrary.GetAttributePresenceOfValue("0x00101010", true);
+            		
+            		// Show the result.
+            		if (attributePresenceOfValue != null)
+            		{
+            			Console.WriteLine("The Attribute Presence Of Value for Attribute 0x00101010 = " + attributePresenceOfValue);
+            		}
+            		
+            		// Attribute path but don't look inside other Attributes (Recursive).
+            		attributePresenceOfValue = dqLibrary.GetAttributePresenceOfValue("0x00101010/0x20205555", false);
+            		
+            		// Show the result.
+            		if (attributePresenceOfValue != null)
+            		{
+            			Console.WriteLine("The Attribute Presence Of Value for Attribute 0x20205555 = " + attributePresenceOfValue);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the Attribute Presence Of Value for the
+            		' given Attribute using the SOP Class UID and System Name
+            		' that are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim attributePresenceOfValue As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		' Single Attribute and look also inside other Attributes (Recursive).
+            		attributePresenceOfValue = dqLibrary.GetAttributePresenceOfValue("0x00101010", true)
+            		
+            		' Show the result.
+            		if (attributePresenceOfValue &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute Presence Of Value for Attribute 0x00101010 = " + attributePresenceOfValue)
+            		end if
+            		
+            		' Attribute path but don't look inside other Attributes (Recursive).
+            		attributePresenceOfValue = dqLibrary.GetAttributePresenceOfValue("0x00101010/0x20205555", false)
+            		
+            		' Show the result.
+            		if (attributePresenceOfValue &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute Presence Of Value for Attribute 0x20205555 = " + attributePresenceOfValue)
+            		end if
+            	</code>
+            </example>
+            <returns>
+            	Returns a String containing the Presence Of Value. If the
+            	<paramref name="Attribute">Attribute</paramref> is not found
+            	or there is no Presence Of Value for the
+            	<paramref name="Attribute">Attribute</paramref> null wil be
+            	returned.
+            </returns>
+            <remarks>
+            	The function will always use the first matching Attribute.
+            </remarks>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAttributeMatchingKey(System.String,System.Boolean)">
+            <summary>
+            	Get the Matching Key for the <paramref name="Attribute">
+            	Attribute</paramref> using the SOP Class UID and System Name
+            	that are set. With <paramref name="Recursive">Recursive
+            	</paramref> it is also possible to look inside other
+            	Attributes.
+            </summary>
+            <param name="Attribute">
+            	Attribute or Attribute path to get the Matching Key for in
+            	the 0x12345678 or 0x10101010/0x20202020/0x30303030 format. See
+            	also the example code.
+            </param>
+            <param name="Recursive">
+            	If true the Attribute or Attribute path will also be searched
+            	inside other Attributes. If false the search will only take
+            	place direct at the top level.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the Attribute Matching Key for the given
+            		// Attribute using the SOP Class UID and System Name that
+            		// are set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		string attributeMatchingKey;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		// Single Attribute and look also inside other Attributes (Recursive).
+            		attributeMatchingKey = dqLibrary.GetAttributeMatchingKey("0x00101010", true);
+            		
+            		// Show the result.
+            		if (attributeMatchingKey != null)
+            		{
+            			Console.WriteLine("The Attribute Matching Key for Attribute 0x00101010 = " + attributeMatchingKey);
+            		}
+            		
+            		// Attribute path but don't look inside other Attributes (Recursive).
+            		attributeMatchingKey = dqLibrary.GetAttributeMatchingKey("0x00101010/0x20205555", false);
+            		
+            		// Show the result.
+            		if (attributeMatchingKey != null)
+            		{
+            			Console.WriteLine("The Attribute Matching Key for Attribute 0x20205555 = " + attributeMatchingKey);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the Attribute Matching Key for the given
+            		' Attribute using the SOP Class UID and System Name that
+            		' are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim attributeMatchingKey As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		' Single Attribute and look also inside other Attributes (Recursive).
+            		attributeMatchingKey = dqLibrary.GetAttributeMatchingKey("0x00101010", true)
+            		
+            		' Show the result.
+            		if (attributeMatchingKey &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute Matching Key for Attribute 0x00101010 = " + attributeMatchingKey)
+            		end if
+            		
+            		' Attribute path but don't look inside other Attributes (Recursive).
+            		attributeMatchingKey = dqLibrary.GetAttributeMatchingKey("0x00101010/0x20205555", false)
+            		
+            		' Show the result.
+            		if (attributeMatchingKey &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute Matching Key for Attribute 0x20205555 = " + attributeMatchingKey)
+            		end if
+            	</code>
+            </example>
+            <returns>
+            	Returns a String containing the Matching Key. If the
+            	<paramref name="Attribute">Attribute</paramref> is not found
+            	or there is no Matching Key for the
+            	<paramref name="Attribute">Attribute</paramref> null wil be
+            	returned.
+            </returns>
+            <remarks>
+            	The function will always use the first matching Attribute.
+            </remarks>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAttributeReturnKey(System.String,System.Boolean)">
+            <summary>
+            	Get the Return Key for the <paramref name="Attribute">
+            	Attribute</paramref> using the SOP Class UID and System Name
+            	that are set. With <paramref name="Recursive">Recursive
+            	</paramref> it is also possible to look inside other
+            	Attributes.
+            </summary>
+            <param name="Attribute">
+            	Attribute or Attribute path to get the Return Key for in the
+            	0x12345678 or 0x10101010/0x20202020/0x30303030 format. See also
+            	the example code.
+            </param>
+            <param name="Recursive">
+            	If true the Attribute or Attribute path will also be searched
+            	inside other Attributes. If false the search will only take
+            	place direct at the top level.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the Attribute Return Key for the given
+            		// Attribute using the SOP Class UID and System Name that
+            		// are set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		string attributeReturnKey;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		// Single Attribute and look also inside other Attributes (Recursive).
+            		attributeReturnKey = dqLibrary.GetAttributeReturnKey("0x00101010", true);
+            		
+            		// Show the result.
+            		if (attributeReturnKey != null)
+            		{
+            			Console.WriteLine("The Attribute Return Key for Attribute 0x00101010 = " + attributeReturnKey);
+            		}
+            		
+            		// Attribute path but don't look inside other Attributes (Recursive).
+            		attributeReturnKey = dqLibrary.GetAttributeReturnKey("0x00101010/0x20205555", false);
+            		
+            		// Show the result.
+            		if (attributeReturnKey != null)
+            		{
+            			Console.WriteLine("The Attribute Return Key for Attribute 0x20205555 = " + attributeReturnKey);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the Attribute Return Key for the given
+            		' Attribute using the SOP Class UID and System Name that
+            		' are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim attributeReturnKey As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		' Single Attribute and look also inside other Attributes (Recursive).
+            		attributeReturnKey = dqLibrary.GetAttributeReturnKey("0x00101010", true)
+            		
+            		' Show the result.
+            		if (attributeReturnKey &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute Return Key for Attribute 0x00101010 = " + attributeReturnKey)
+            		end if
+            		
+            		' Attribute path but don't look inside other Attributes (Recursive).
+            		attributeReturnKey = dqLibrary.GetAttributeReturnKey("0x00101010/0x20205555", false)
+            		
+            		' Show the result.
+            		if (attributeReturnKey &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute Return Key for Attribute 0x20205555 = " + attributeReturnKey)
+            		end if
+            	</code>
+            </example>
+            <returns>
+            	Returns a String containing the Return Key. If the
+            	<paramref name="Attribute">Attribute</paramref> is not found
+            	or there is no Return Key for the
+            	<paramref name="Attribute">Attribute</paramref> null wil be
+            	returned.
+            </returns>
+            <remarks>
+            	The function will always use the first matching Attribute.
+            </remarks>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAttributeQueryKey(System.String,System.Boolean)">
+            <summary>
+            	Get the Query Key for the <paramref name="Attribute">
+            	Attribute</paramref> using the SOP Class UID and System Name
+            	that are set. With <paramref name="Recursive">Recursive
+            	</paramref> it is also possible to look inside other
+            	Attributes.
+            </summary>
+            <param name="Attribute">
+            	Attribute or Attribute path to get the Query Key for in the
+            	0x12345678 or 0x10101010/0x20202020/0x30303030 format. See also
+            	the example code.
+            </param>
+            <param name="Recursive">
+            	If true the Attribute or Attribute path will also be searched
+            	inside other Attributes. If false the search will only take
+            	place direct at the top level.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the Attribute Query Key for the given
+            		// Attribute using the SOP Class UID and System Name that
+            		// are set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		string attributeQueryKey;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		// Single Attribute and look also inside other Attributes (Recursive).
+            		attributeQueryKey = dqLibrary.GetAttributeQueryKey("0x00101010", true);
+            		
+            		// Show the result.
+            		if (attributeQueryKey != null)
+            		{
+            			Console.WriteLine("The Attribute Query Key for Attribute 0x00101010 = " + attributeQueryKey);
+            		}
+            		
+            		// Attribute path but don't look inside other Attributes (Recursive).
+            		attributeQueryKey = dqLibrary.GetAttributeQueryKey("0x00101010/0x20205555", false);
+            		
+            		// Show the result.
+            		if (attributeQueryKey != null)
+            		{
+            			Console.WriteLine("The Attribute Query Key for Attribute 0x20205555 = " + attributeQueryKey);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the Attribute Query Key for the given
+            		' Attribute using the SOP Class UID and System Name that
+            		' are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim attributeQueryKey As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		' Single Attribute and look also inside other Attributes (Recursive).
+            		attributeQueryKey = dqLibrary.GetAttributeQueryKey("0x00101010", true)
+            		
+            		' Show the result.
+            		if (attributeQueryKey &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute Query Key for Attribute 0x00101010 = " + attributeQueryKey)
+            		end if
+            		
+            		' Attribute path but don't look inside other Attributes (Recursive).
+            		attributeQueryKey = dqLibrary.GetAttributeQueryKey("0x00101010/0x20205555", false)
+            		
+            		' Show the result.
+            		if (attributeQueryKey &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute Query Key for Attribute 0x20205555 = " + attributeQueryKey)
+            		end if
+            	</code>
+            </example>
+            <returns>
+            	Returns a String containing the Query Key. If the
+            	<paramref name="Attribute">Attribute</paramref> is not found
+            	or there is no Query Key for the
+            	<paramref name="Attribute">Attribute</paramref> null wil be
+            	returned.
+            </returns>
+            <remarks>
+            	The function will always use the first matching Attribute.
+            </remarks>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAttributeDisplayedKey(System.String,System.Boolean)">
+            <summary>
+            	Get the Displayed Key for the <paramref name="Attribute">
+            	Attribute</paramref> using the SOP Class UID and System Name
+            	that are set. With <paramref name="Recursive">Recursive
+            	</paramref> it is also possible to look inside other
+            	Attributes.
+            </summary>
+            <param name="Attribute">
+            	Attribute or Attribute path to get the Displayed Key for in the
+            	0x12345678 or 0x10101010/0x20202020/0x30303030 format. See also
+            	the example code.
+            </param>
+            <param name="Recursive">
+            	If true the Attribute or Attribute path will also be searched
+            	inside other Attributes. If false the search will only take
+            	place direct at the top level.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the Attribute Displayed Key for the given
+            		// Attribute using the SOP Class UID and System Name that
+            		// are set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		string attributeDisplayedKey;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		// Single Attribute and look also inside other Attributes (Recursive).
+            		attributeDisplayedKey = dqLibrary.GetAttributeDisplayedKey("0x00101010", true);
+            		
+            		// Show the result.
+            		if (attributeDisplayedKey != null)
+            		{
+            			Console.WriteLine("The Attribute Displayed Key for Attribute 0x00101010 = " + attributeDisplayedKey);
+            		}
+            		
+            		// Attribute path but don't look inside other Attributes (Recursive).
+            		attributeDisplayedKey = dqLibrary.GetAttributeDisplayedKey("0x00101010/0x20205555", false);
+            		
+            		// Show the result.
+            		if (attributeDisplayedKey != null)
+            		{
+            			Console.WriteLine("The Attribute Displayed Key for Attribute 0x20205555 = " + attributeDisplayedKey);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the Attribute Displayed Key for the given
+            		' Attribute using the SOP Class UID and System Name that
+            		' are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim attributeDisplayedKey As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		' Single Attribute and look also inside other Attributes (Recursive).
+            		attributeDisplayedKey = dqLibrary.GetAttributeDisplayedKey("0x00101010", true)
+            		
+            		' Show the result.
+            		if (attributeDisplayedKey &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute Displayed Key for Attribute 0x00101010 = " + attributeDisplayedKey)
+            		end if
+            		
+            		' Attribute path but don't look inside other Attributes (Recursive).
+            		attributeDisplayedKey = dqLibrary.GetAttributeDisplayedKey("0x00101010/0x20205555", false)
+            		
+            		' Show the result.
+            		if (attributeDisplayedKey &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute Displayed Key for Attribute 0x20205555 = " + attributeDisplayedKey)
+            		end if
+            	</code>
+            </example>
+            <returns>
+            	Returns a String containing the Displayed Key. If the
+            	<paramref name="Attribute">Attribute</paramref> is not found
+            	or there is no Displayed Key for the
+            	<paramref name="Attribute">Attribute</paramref> null wil be
+            	returned.
+            </returns>
+            <remarks>
+            	The function will always use the first matching Attribute.
+            </remarks>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAttributeIOD(System.String,System.Boolean)">
+            <summary>
+            	Get the IOD for the <paramref name="Attribute">Attribute
+            	</paramref> using the SOP Class UID and System Name that are
+            	set. With <paramref name="Recursive">Recursive</paramref> it is
+            	also possible to look inside other Attributes.
+            </summary>
+            <param name="Attribute">
+            	Attribute or Attribute path to get the IOD for in the 
+            	0x12345678 or 0x10101010/0x20202020/0x30303030 format. See also
+            	the example code.
+            </param>
+            <param name="Recursive">
+            	If true the Attribute or Attribute path will also be searched
+            	inside other Attributes. If false the search will only take
+            	place direct at the top level.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the Attribute IOD for the given Attribute
+            		// using the SOP Class UID and System Name that are set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		string attributeIOD;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		// Single Attribute and look also inside other Attributes (Recursive).
+            		attributeIOD = dqLibrary.GetAttributeIOD("0x00101010", true);
+            		
+            		// Show the result.
+            		if (attributeIOD != null)
+            		{
+            			Console.WriteLine("The Attribute IOD for Attribute 0x00101010 = " + attributeIOD);
+            		}
+            		
+            		// Attribute path but don't look inside other Attributes (Recursive).
+            		attributeIOD = dqLibrary.GetAttributeIOD("0x00101010/0x20205555", false);
+            		
+            		// Show the result.
+            		if (attributeIOD != null)
+            		{
+            			Console.WriteLine("The Attribute IOD for Attribute 0x20205555 = " + attributeIOD);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the Attribute IOD for the given Attribute
+            		' using the SOP Class UID and System Name that are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim attributeIOD As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		' Single Attribute and look also inside other Attributes (Recursive).
+            		attributeIOD = dqLibrary.GetAttributeIOD("0x00101010", true)
+            		
+            		' Show the result.
+            		if (attributeIOD &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute IOD for Attribute 0x00101010 = " + attributeIOD)
+            		end if
+            		
+            		' Attribute path but don't look inside other Attributes (Recursive).
+            		attributeIOD = dqLibrary.GetAttributeIOD("0x00101010/0x20205555", false)
+            		
+            		' Show the result.
+            		if (attributeIOD &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute IOD for Attribute 0x20205555 = " + attributeIOD)
+            		end if
+            	</code>
+            </example>
+            <returns>
+            	Returns a String containing the IOD. If the
+            	<paramref name="Attribute">Attribute</paramref> is not found
+            	null wil be returned.
+            </returns>
+            <remarks>
+            	The function will always use the first matching Attribute.
+            </remarks>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAttributeTypeOfMatching(System.String,System.Boolean)">
+            <summary>
+            	Get the Type Of Matching for the <paramref name="Attribute">
+            	Attribute</paramref> using the SOP Class UID and System Name
+            	that are set. With <paramref name="Recursive">Recursive
+            	</paramref> it is also possible to look inside other
+            	Attributes.
+            </summary>
+            <param name="Attribute">
+            	Attribute or Attribute path to get the IOD for in the 
+            	0x12345678 or 0x10101010/0x20202020/0x30303030 format. See also
+            	the example code.
+            </param>
+            <param name="Recursive">
+            	If true the Attribute or Attribute path will also be searched
+            	inside other Attributes. If false the search will only take
+            	place direct at the top level.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the Attribute Type Of Matching for the
+            		// given Attribute using the SOP Class UID and System Name
+            		// that are set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		string attributeTypeOfMatching;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		// Single Attribute and look also inside other Attributes (Recursive).
+            		attributeTypeOfMatching = dqLibrary.GetAttributeTypeOfMatching("0x00101010", true);
+            		
+            		// Show the result.
+            		if (attributeTypeOfMatching != null)
+            		{
+            			Console.WriteLine("The Attribute Type Of Matching for Attribute 0x00101010 = " + attributeTypeOfMatching);
+            		}
+            		
+            		// Attribute path but don't look inside other Attributes (Recursive).
+            		attributeTypeOfMatching = dqLibrary.GetAttributeTypeOfMatching("0x00101010/0x20205555", false);
+            		
+            		// Show the result.
+            		if (attributeTypeOfMatching != null)
+            		{
+            			Console.WriteLine("The Attribute Type Of Matching for Attribute 0x20205555 = " + attributeTypeOfMatching);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the Attribute Tyoe Of Matching for the
+            		' given Attribute using the SOP Class UID and System Name
+            		' that are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim attributeTypeOfMatching As string
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		' Single Attribute and look also inside other Attributes (Recursive).
+            		attributeTypeOfMatching = dqLibrary.GetAttributeTypeOfMatching("0x00101010", true)
+            		
+            		' Show the result.
+            		if (attributeTypeOfMatching &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute Type Of Matching for Attribute 0x00101010 = " + attributeTypeOfMatching)
+            		end if
+            		
+            		' Attribute path but don't look inside other Attributes (Recursive).
+            		attributeTypeOfMatching = dqLibrary.GetAttributeTypeOfMatching("0x00101010/0x20205555", false)
+            		
+            		' Show the result.
+            		if (attributeTypeOfMatching &lt;&gt; nothing) then
+            			Console.WriteLine("The Attribute Type Of Matching for Attribute 0x20205555 = " + attributeTypeOfMatching)
+            		end if
+            	</code>
+            </example>
+            <returns>
+            	Returns a String containing the Type Of Matching. If the
+            	<paramref name="Attribute">Attribute</paramref> is not found
+            	null wil be returned.
+            </returns>
+            <remarks>
+            	The function will always use the first matching Attribute.
+            </remarks>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAttributeValues(System.String,System.Boolean)">
+            <summary>
+            	Get the Values (Defined and Enumerated) for the 
+            	<paramref name="Attribute">Attribute</paramref> using the SOP
+            	Class UID and System Name that are set. With
+            	<paramref name="Recursive">Recursive</paramref> it is also
+            	possible to look inside other Attributes.
+            </summary>
+            <param name="Attribute">
+            	Attribute or Attribute path to get the Values (Defined and
+            	Enumerated) for in the 0x12345678 or
+            	0x10101010/0x20202020/0x30303030 format. See also the example
+            	code.
+            </param>
+            <param name="Recursive">
+            	If true the Attribute or Attribute path will also be searched
+            	inside other Attributes. If false the search will only take
+            	place direct at the top level.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the Attribute Values for the given
+            		// Attribute using the SOP Class UID and System Name that
+            		// are set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		StringCollection values;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		// Single Attribute and look also inside other Attributes (Recursive).
+            		values = dqLibrary.GetAttributeValues("0x00101010", true);
+            		
+            		// Show the result.
+            		foreach (string value in values)
+            		{
+            			Console.WriteLine("The Value for Attribute 0x00101010 = " + value);
+            		}
+            		
+            		// Attribute path but don't look inside other Attributes (Recursive).
+            		values = dqLibrary.GetAttributeValues("0x00101010/0x20205555", false);
+            		
+            		// Show the result.
+            		foreach (string value in values)
+            		{
+            			Console.WriteLine("The Value for Attribute 0x20205555 = " + value);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the Attribute Values for the given
+            		' Attribute using the SOP Class UID and System Name that
+            		' are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim values As StringCollection
+            		Dim value As String
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		' Single Attribute and look also inside other Attributes (Recursive).
+            		values = dqLibrary.GetAttributeValues("0x00101010", true)
+            		
+            		' Show the result.
+            		For Each value in values
+            			Console.WriteLine("The Value for Attribute 0x00101010 = " + value)
+            		Next value
+            		
+            		' Attribute path but don't look inside other Attributes (Recursive).
+            		values = dqLibrary.GetAttributeValues("0x00101010/0x20205555", false)
+            		
+            		' Show the result.
+            		For Each value in values
+            			Console.WriteLine("The Value for Attribute 0x20205555 = " + value)
+            		Next value
+            	</code>
+            </example>
+            <returns>
+            	Returns a StringCollection containing the Values as String.
+            </returns>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAttributeDefinedValues(System.String,System.Boolean)">
+            <summary>
+            	Get the Defined Values for the <paramref name="Attribute">
+            	Attribute</paramref> using the SOP Class UID and System Name
+            	that are set. With <paramref name="Recursive">Recursive
+            	</paramref> it is also possible to look inside other
+            	Attributes.
+            </summary>
+            <param name="Attribute">
+            	Attribute or Attribute path to get the Defined Values for in
+            	the 0x12345678 or 0x10101010/0x20202020/0x30303030 format. See
+            	also the example code.
+            </param>
+            <param name="Recursive">
+            	If true the Attribute or Attribute path will also be searched
+            	inside other Attributes. If false the search will only take
+            	place direct at the top level.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the Attribute Defined Values for the given
+            		// Attribute using the SOP Class UID and System Name that
+            		// are set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		StringCollection definedValues;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		// Single Attribute and look also inside other Attributes (Recursive).
+            		definedValues = dqLibrary.GetAttributeDefinedValues("0x00101010", true);
+            		
+            		// Show the result.
+            		foreach (string definedValue in definedValues)
+            		{
+            			Console.WriteLine("The Defined Value for Attribute 0x00101010 = " + definedValue);
+            		}
+            		
+            		// Attribute path but don't look inside other Attributes (Recursive).
+            		definedValues = dqLibrary.GetAttributeDefinedValues("0x00101010/0x20205555", false);
+            		
+            		// Show the result.
+            		foreach (string definedValue in definedValues)
+            		{
+            			Console.WriteLine("The Defined Value for Attribute 0x20205555 = " + definedValue);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the Attribute Defined Values for the given
+            		' Attribute using the SOP Class UID and System Name that
+            		' are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim definedValues As StringCollection
+            		Dim definedValue As String
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		' Single Attribute and look also inside other Attributes (Recursive).
+            		definedValues = dqLibrary.GetAttributeDefinedValues("0x00101010", true)
+            		
+            		' Show the result.
+            		For Each definedValue in definedValues
+            			Console.WriteLine("The Defined Value for Attribute 0x00101010 = " + definedValue)
+            		Next definedValue
+            		
+            		' Attribute path but don't look inside other Attributes (Recursive).
+            		definedValues = dqLibrary.GetAttributeDefinedValues("0x00101010/0x20205555", false)
+            		
+            		' Show the result.
+            		For Each definedValue in definedValues
+            			Console.WriteLine("The Defined Value for Attribute 0x20205555 = " + definedValue)
+            		Next definedValue
+            	</code>
+            </example>
+            <returns>
+            	Returns a StringCollection containing the Defined Values as String.
+            </returns>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAttributeEnumeratedValues(System.String,System.Boolean)">
+            <summary>
+            	Get the Enumerated Values for the <paramref name="Attribute">
+            	Attribute</paramref> using the SOP Class UID and System Name
+            	that are set. With <paramref name="Recursive">Recursive
+            	</paramref> it is also possible to look inside other
+            	Attributes.
+            </summary>
+            <param name="Attribute">
+            	Attribute or Attribute path to get the Enumerated Values for in
+            	the 0x12345678 or 0x10101010/0x20202020/0x30303030 format. See
+            	also the example code.
+            </param>
+            <param name="Recursive">
+            	If true the Attribute or Attribute path will also be searched
+            	inside other Attributes. If false the search will only take
+            	place direct at the top level.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the Attribute Enumerated Values for the
+            		// given Attribute using the SOP Class UID and System Name
+            		// that are set.
+            		
+            		DefinitionQueryLibrary dqLibrary;
+            		StringCollection enumeratedValues;
+            		
+            		dqLibrary = new DefinitionQueryLibrary;
+            		
+            		// Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1");
+            		dqLibrary.SetSystemName("DICOM");
+            		
+            		// Single Attribute and look also inside other Attributes (Recursive).
+            		enumeratedValues = dqLibrary.GetAttributeEnumeratedValues("0x00101010", true);
+            		
+            		// Show the result.
+            		foreach (string enumeratedValue in enumeratedValues)
+            		{
+            			Console.WriteLine("The Enumerated Value for Attribute 0x00101010 = " + enumeratedValue);
+            		}
+            		
+            		// Attribute path but don't look inside other Attributes (Recursive).
+            		enumeratedValues = dqLibrary.GetAttributeEnumeratedValues("0x00101010/0x20205555", false);
+            		
+            		// Show the result.
+            		foreach (string enumeratedValue in enumeratedValues)
+            		{
+            			Console.WriteLine("The Enumerated Value for Attribute 0x20205555 = " + enumeratedValue);
+            		}
+            	</code>
+            	<b>VB.Net</b>
+            	<code>
+            		' Example: Get the Attribute Enumerated Values for the
+            		' given Attribute using the SOP Class UID and System Name
+            		' that are set.
+            		
+            		Dim dqLibrary As DefinitionQueryLibrary 
+            		Dim enumeratedValues As StringCollection
+            		Dim enumeratedValue As String
+            		
+            		dqLibrary = new DefinitionQueryLibrary
+            		
+            		' Set the SOP Class UID and System Name.
+            		dqLibrary.SetSOPClassUID("1.2.87.478.56.99.3.2.1")
+            		dqLibrary.SetSystemName("DICOM")
+            		
+            		' Single Attribute and look also inside other Attributes (Recursive).
+            		enumeratedValues = dqLibrary.GetAttributeEnumeratedValues("0x00101010", true)
+            		
+            		' Show the result.
+            		For Each enumeratedValue in enumeratedValues
+            			Console.WriteLine("The Enumerated Value for Attribute 0x00101010 = " + enumeratedValue)
+            		Next enumeratedValue
+            		
+            		' Attribute path but don't look inside other Attributes (Recursive).
+            		enumeratedValues = dqLibrary.GetAttributeEnumeratedValues("0x00101010/0x20205555", false)
+            		
+            		' Show the result.
+            		For Each enumeratedValue in enumeratedValues
+            			Console.WriteLine("The Enumerated Value for Attribute 0x20205555 = " + enumeratedValue)
+            		Next enumeratedValue
+            	</code>
+            </example>
+            <returns>
+            	Returns a StringCollection containing the Enumerated Values as String.
+            </returns>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the query can't be executed succesfully.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.parseAttributeParam(System.String)">
+            <summary>
+            	Parses an Attribute or Attribute path string into a XPath Query
+            	string. See also the example code.
+            </summary>
+            <param name="Attribute">
+            	Attribute or Attribute path to parse in the 0x12345678 or
+            	0x10101010/0x20202020/0x30303030 format.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example with a single Attribute.
+            		
+            		string query = "";
+            		string attribute = "0x10102020";
+            		
+            		query = parseAttributeParam(attribute);
+            		Console.WriteLine(query);
+            		// This will output: Attribute[Group='1010' and Element='2020']
+            	</code>
+            	<code>
+            		// Example with a Attribute path.
+            		
+            		string query = "";
+            		string attribute = "0x10102020/0x30304040/";
+            		
+            		query = parseAttributeParam(attribute);
+            		Console.WriteLine(query);
+            		// This will output: Attribute[Group='1010' and Element='2020']/Values/Sequence/Item/Attribute[Group='3030' and Element='4040']
+            	</code>
+            </example>
+            <exception cref="T:System.Exception">
+            	Throws an Exception of the Parameter can't be parsed.
+            </exception>
+            <returns>A string containing the XPath Query.</returns>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAttributeTree(System.String)">
+            <summary>
+            	Recursive support function for the public
+            	<see cref="M:Dvtk.Definition_Query_Library.DefinitionQueryLibrary.GetAttributeTree">GetAttributeTree()</see> function.
+            	This function will return for each top level Attribute a list
+            	of Attributes it includes in full Attribute Path notation. See
+            	also the example code.
+            </summary>
+            <param name="Attribute">
+            	Attribute or Attribute Path to look in for included Attributes
+            	in the 0x12345678 or 0x10101010/0x20202020/0x30303030 format.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		StringCollection myStringCollection;
+            		
+            		myStringCollection GetAttributeTree("0x01234567");
+            		foreach (string attribute in myStringCollection)
+            		{
+            			Console.WriteLine(attribute);
+            		}
+            		
+            		// This will output:
+            		//
+            		// 0x01234567
+            		// 0x01234567/0x15465478
+            		// 0x01234567/0x25478963
+            		// 0x01234567/0x65487632
+            		// 0x01234567/0x65487632/0x12547885
+            		// 0x01234567/0x65487632/0x12547896
+            	</code>
+            </example>
+            <returns>
+            	A StringCollection containing the Attribute and Attributes
+            	included.
+            </returns>
+        </member>
+        <member name="T:Dvtk.Definition_Query_Library.FileManager">
+            <summary>
+            	The FileManager manages the loading and  unloading of definition
+            	files. It ensures that definition files are only loaded once. It
+            	provides access to definition files by using their full path name
+            	or by SOP Class UID.
+            </summary>
+        </member>
+        <member name="F:Dvtk.Definition_Query_Library.FileManager.fileHashTable">
+            <summary>
+            	Holds the XPathDocument instances of the Xml Definition file
+            	with as key the full path and filename to the Xml Definition
+            	file.
+            </summary>
+        </member>
+        <member name="F:Dvtk.Definition_Query_Library.FileManager.mappingHashTable">
+            <summary>
+            	Holds a mapping between the Xlm Definition filename that is
+            	used as key in the
+            	<see cref="F:Dvtk.Definition_Query_Library.FileManager.fileHashTable">
+            	fileHashTable</see> and the combination of SOP Class UID and
+            	System Name. The mapping table is needed for selecting Xml
+            	Definition files by filename and a combination of SOP Class UID
+            	ans System Name.
+            	The key combination is created with the
+            	<see cref="M:Dvtk.Definition_Query_Library.FileManager.createKey(System.String,System.String)">
+            	createKey</see> function.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.FileManager.#ctor">
+            <summary>
+            	Constructor for the 
+            	<see cref="T:Dvtk.Definition_Query_Library.FileManager">FileManager
+            	</see>class.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.FileManager.GetFile(System.String)">
+            <summary>
+            	Get the XPathDocument Instance for the Xml Definition file
+            	specified in the <paramref name="FileName">FileName</paramref>.
+            </summary>
+            <param name="FileName">
+            	Full path to the Xml Definition File. See also the example
+            	code.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the XPathDocument instance for a specific
+            		// Xml Definition file by providing the full file path to
+            		// the Xml Definition file.
+            		
+            		FileManager myFileManager = new FileManager();
+            		XPathDocument myDoc;
+            		myDoc = myFileManager.GetFile(@"C:\example.xml");
+            	</code>
+            </example>
+            <returns>
+            	An XPathDocument instance of the Xml Definition file.
+            </returns>
+            <exception cref="T:System.Exception">
+            	If the Xml Definition file is not loaded an Exception will be
+            	thrown.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.FileManager.GetFile(System.String,System.String)">
+            <summary>
+            	Get the XPathDocument Instance for the Xml Definition file
+            	with SOP Class UID <see cref="P:SOPCLassUID">SOPClassUID</see>
+            	and with System Name <see cref="P:SystemName">SystemName</see>.
+            </summary>
+            <param name="SOPClassUID">
+            	Contains the SOP Class UID of the Xml Definition file. See also
+            	the example code.
+            </param>
+            <param name="SystemName">
+            	Contains the System Name of the Xml Definition file. See also
+            	the example code.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get the XPathDocument instance for a specific
+            		// Xml Definition file by providing the SOP Class UID and
+            		// System Name.
+            		
+            		FileManager myFileManager = new FileManager();
+            		XPathDocument myDoc;
+            		myDoc = myFileManager.GetFile("1.2.8.5.4.6.88.154", "DICOM");
+            	</code>
+            </example>
+            <returns>
+            	A XPathDocument instance of the Xml Definition file.
+            </returns>
+            <exception cref="T:System.Exception">
+            	If the Xml Definition file is not loaded an Exception will be
+            	thrown.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.FileManager.PreLoadFile(System.String)">
+            <summary>
+            	Creates a XPathDocument instance for the Xml Definition file.
+            	This can be used to preload definition files. If the file has
+            	already been loaded it will be ignored.
+            </summary>
+            <param name="FileName">Full path to the XML File</param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Preload a Xml Definition File.
+            		
+            		FileManager myFileManager = new FileManager();
+            		myFileManager.PreLoadFile(@"C:\example.xml");
+            	</code>
+            </example>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.FileManager.GetLoadedFiles">
+            <summary>
+            	Provides a list of all the Xml Definition files that are
+            	currently loaded.
+            </summary>
+            <returns>
+            	An Array of strings containing the full path of all Xml
+            	Definition files.
+            </returns>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get Loaded Xml Definition files.
+            		
+            		FileManager myFileManager = new FileManager();
+            		Array myArray;
+            		
+            		myFileManager.PreLoadFile(@"C:\example.xml");
+            		myArray = myFileManager.GetLoadedFiles();
+            		
+            		foreach(string definitionFile in myArray)
+            		{
+            			System.Console.WriteLine(definitionFile);
+            		}
+            	</code>
+            </example>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.FileManager.loadFile(System.String)">
+            <summary>
+            	Create a XPathDocument instance of the Xml Definition file in
+            	FileName. Add the XPathDocument instance to the
+            	<see cref="F:Dvtk.Definition_Query_Library.FileManager.fileHashTable">
+            	fileHashTable</see>.
+            	Query the Xml Definition file for the SOP Class UID and System
+            	Name and create a mapping key of it with the
+            	<see cref="M:Dvtk.Definition_Query_Library.FileManager.createKey(System.String,System.String)">
+            	createKey</see> function. Add the createKey to the
+            	<see cref="F:Dvtk.Definition_Query_Library.FileManager.mappingHashTable">
+            	mappingHashTable</see>.
+            </summary>
+            <param name="FileName">
+            	Full path to the Xml Definition File. See also the example
+            	code.
+            </param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Load Xml Definition File.
+            		loadFile("C:\example.xml");
+            	</code>
+            </example>
+            <remarks>
+            	This function will filter out the &lt;Macro&gt; and &lt;/Macro&gt;
+            	attributes from the Xml File.
+            </remarks>
+            <exception cref="T:System.Exception">
+            	If the Xml Definition file is incorrect or doesn't contain a
+            	SOP Class UID or System Name an Exception is thrown.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.FileManager.createKey(System.String,System.String)">
+            <summary>
+            	Creates a key for the <see cref="F:Dvtk.Definition_Query_Library.FileManager.fileHashTable">fileHashTable</see>
+            	to identify Xml Definition files. The key will consist of the
+            	SOPClassUID and SystemName.
+            </summary>
+            <param name="SOPClassUID">
+            	The UID of the SOP Class. See also the example code.
+            </param>
+            <param name="SystemName">
+            	The System Name. See also the example code.
+            </param>
+            <returns>
+            	A string forming the key to identify the Xml Definition file.
+            </returns>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Create a key.
+            		
+            		string myFileKey;
+            		myFileKey = createKey("1.2.4.5.6.11.4.88.654.45", "MySystemName");
+            	</code>
+            </example>
+            <remarks>
+            	Always use this function to create keys for the
+            	<see cref="F:Dvtk.Definition_Query_Library.FileManager.fileHashTable">fileHashTable</see>
+            	to ensure correct keys trough out the entire application.
+            </remarks>
+        </member>
+        <member name="T:Dvtk.Definition_Query_Library.QueryManager">
+            <summary>
+            	Class manages the list of all pre-compiled XPath queries.
+            </summary>
+            <remarks>
+            	Only static queries are  handled by this class. Dynamic query
+            	support may be added later using the library from the XMLMVP
+            	project. See http://www.mvpxml.org for the project website and the
+            	blog postings of Daniel Cazzulino at
+            	http://clariusconsulting.net/blogs/kzu/archive/2003/10/07/82.aspx.
+            </remarks>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.QueryManager.#ctor">
+            <summary>
+            	Constructor for the
+            	<see cref="T:Dvtk.Definition_Query_Library.QueryManager">QueryManager
+            	</see>class.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.QueryManager.GetQuery(System.String)">
+            <summary>
+            	Get the XPathExpression instance containing the pre-compiled
+            	query for the QueryKey.
+            </summary>
+            <param name="QueryKey">A string identifying the query.</param>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		// Example: Get a specific pre-compiled query expression.
+            		
+            		QueryManager myQueryManager;
+            		XPathExpression myExpression;
+            		
+            		myQueryManager = new QueryManager;
+            		myExpression = myQueryManager.GetQuery("myQueryKeyName");
+            	</code>
+            </example>
+            <returns>
+            	A XPathExpression containing the pre-compiled query expression.
+            </returns>
+            <exception cref="T:System.Exception">
+            	Throws an Exception if the QueryKey can't be found.
+            </exception>
+        </member>
+        <member name="M:Dvtk.Definition_Query_Library.QueryManager.initQueryTable">
+            <summary>
+            	Fills the
+            	<see cref="F:Dvtk.Definition_Query_Library.QueryManager.queryHashTable">
+            	queryHashTable</see> with pre-compiled queries.
+            </summary>
+            <example>
+            	<b>C#</b>
+            	<code>
+            		initQueryTable();
+            	</code>
+            </example>
+        </member>
+    </members>
+</doc>

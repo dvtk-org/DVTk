@@ -1,0 +1,36 @@
+## Example DVT Dicom Script
+#
+#
+
+##
+## SCU Storage DICOMScript: 1.ds
+##
+## Pre-conditions:
+##      - no association
+##
+## Test Scenario:
+##      - send association for SEconadry Capture Storage Service Class
+##              - little endian implicit VR
+##      - expect accept association - Result/Reason = 3 - abstract syntax not
+##                                      supported (provider rejection)
+##
+## Expected Result:
+##      - SCU signals failure to make association 
+##
+## Post-conditions:
+##      - no association
+##
+SEND ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Secondary Capture Image Storage SOP Class", "Implicit VR Little Endian")
+)
+
+RECEIVE ASSOCIATE-AC (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Secondary Capture Image Storage SOP Class", 3)
+)
+
+SEND RELEASE-RQ
+
+RECEIVE RELEASE-RP
+

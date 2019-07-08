@@ -1,0 +1,120 @@
+# Example DVT Dicom Script
+
+
+
+SEND ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+        ("1.2.840.10008.5.1.4.1.1.88.11", "1.2.840.10008.1.2")
+)
+
+RECEIVE ASSOCIATE-AC (
+        PRESENTATION-CONTEXT-ITEMS
+        ("1.2.840.10008.5.1.4.1.1.88.11", 0, "1.2.840.10008.1.2" )
+)
+
+SEND C-STORE-RQ "Basic Text SR SOP Class" (
+#command attributes
+(0x00000002, UI, "1.2.840.10008.5.1.4.1.1.88.11")     # sop class uid
+(0x00000100, US, 0x0001)	                      # command id
+(0x00000110, US, 1)	                              # message id
+(0x00000700, US, 0x0001 )	                      # dataset
+
+#dataset attributes
+(0x00080012, DA, AUTOSET)                          # Instance Creation Date
+(0x00080013, TM, AUTOSET)                            # Instance Creation Time
+(0x00080014, UI, AUTOSET)                             # Instance Creator UID
+(0x00080016, UI, "1.2.840.10008.5.1.4.1.1.88.11")     # SOP Class UID
+(0x00080018, UI, AUTOSET)                             # SOP Instance UID
+(0x00080020, DA, "")                                  # Study Date
+(0x00080023, DA, AUTOSET)                          # Content Date
+(0x00080030, TM, "")                                  # Study Time
+(0x00080033, TM, AUTOSET)                            # Content Time
+(0x00080050, SH, "")                                  # Accession Number
+(0x00080060, CS, "SR")                                # Modality
+(0x00080070, LO, "")                                  # Manufacturer
+(0x00080090, PN, "Omeone S.^^^M. D.")                 # Referring Physician's Name
+(0x00081030, LO, "DVT Structured Reporting Examples") # Study Description
+(0x00081111, SQ, "")                                  # Referenced Study Component Sequence
+(0x00100010, PN, "Oorme P. ")                         # Patient's Name
+(0x00100020, LO, "")                                  # Patient ID
+(0x00100030, DA, "19720220")                          # Patient's Birth Date
+(0x00100040, CS, "M ")                                # Patient's Sex
+(0x0020000D, UI, AUTOSET)                             # Study Instance UID
+(0x0020000E, UI, AUTOSET)                             # Series Instance UID
+(0x00200010, SH, "")                                  # Study ID
+(0x00200011, IS, "1 ")                                # Series Number
+(0x00200013, IS, "1 ")                                # Instance Number
+(0x0040A040, CS, "CONTAINER ")                        # Value Type
+(0x0040A043, SQ,                                      # Concept Name Code Sequence
+ >(0x00080100, SH, "C0")                                # Code Value
+ >(0x00080102, SH, "DVT ")                              # Coding Scheme Designator
+ >(0x00080104, LO, "Structured Report")                 # Code Meaning
+ >(0x0008010C, UI, "1.2.3.4.5.6.7.8.9.0.1")             # Private Coding Scheme Creator UID
+) 
+(0x0040A050, CS, "SEPARATE")                          # Continuity Of Content
+(0x0040A372, SQ, "")                                  # Performed Procedure Code Sequence
+(0x0040A491, CS, "PARTIAL ")                          # Completion Flag
+(0x0040A493, CS, "UNVERIFIED")                        # Verification Flag
+(0x0040A730, SQ,                                      # End of Content Sequence 
+ >(0x0040A010, CS, "HAS OBS CONTEXT ")                  # Relationship Type
+ >(0x0040A040, CS, "PNAME ")                            # Value Type
+ >(0x0040A043, SQ,                                      # Concept Name Code Sequence
+  >(0x00080100, SH, "C1")                                 # Code Value
+  >(0x00080102, SH, "DVT ")                               # Coding Scheme Designator
+  >(0x00080104, LO, "Observations")                       # Code Meaning
+  >(0x0008010C, UI, "1.2.3.4.5.6.7.8.9.0.1")              # Private Coding Scheme Creator UID
+  )                                                 
+ >(0x0040A123, PN, "Foundit I.")                        # Person Name
+ ,
+ >(0x0040A010, CS, "CONTAINS")                          # Relationship Type
+ >(0x0040A040, CS, "TEXT")                              # Value Type
+ >(0x0040A043, SQ,                                      # Concept Name Code Sequence 
+  >(0x00080100, SH, "C9")                                 # Code Value
+  >(0x00080102, SH, "DVT ")                               # Coding Scheme Designator
+  >(0x00080104, LO, "Nose")                               # Code Meaning
+  >(0x0008010C, UI, "1.2.3.4.5.6.7.8.9.0.1")              # Private Coding Scheme Creator UID
+  ) 
+ >(0x0040A160, UT, "Swollen, with a curve.")            # Text Value
+ ,
+ >(0x0040A010, CS, "CONTAINS")                          # Relationship Type
+ >(0x0040A040, CS, "TEXT")                              # Value Type
+ >(0x0040A043, SQ,                                      # Concept Name Code Sequence
+  >(0x00080100, SH, "C2")                                 # Code Value
+  >(0x00080102, SH, "DVT ")                               # Coding Scheme Designator
+  >(0x00080104, LO, "Conclusion")                         # Code Meaning
+  >(0x0008010C, UI, "1.2.3.4.5.6.7.8.9.0.1")              # Private Coding Scheme Creator UID
+  ) 
+ >(0x0040A160, UT, "Broken")                            # Text Value
+ ,
+ >(0x0040A010, CS, "CONTAINS")                          # Relationship Type
+ >(0x0040A040, CS, "TEXT")                              # Value Type
+ >(0x0040A043, SQ,                                      # Concept Name Code Sequence 
+  >(0x00080100, SH, "C10 ")                               # Code Value
+  >(0x00080102, SH, "DVT ")                               # Coding Scheme Designator
+  >(0x00080104, LO, "Chin ")                              # Code Meaning
+  >(0x0008010C, UI, "1.2.3.4.5.6.7.8.9.0.1")              # Private Coding Scheme Creator UID
+  ) 
+ >(0x0040A160, UT, "Flat.")                             # Text Value
+ ,
+ >(0x0040A010, CS, "CONTAINS")                          # Relationship Type
+ >(0x0040A040, CS, "TEXT")                              # Value Type
+ >(0x0040A043, SQ,                                      # Concept Name Code Sequence
+  >(0x00080100, SH, "C2")                                 # Code Value
+  >(0x00080102, SH, "DVT ")                               # Coding Scheme Designator
+  >(0x00080104, LO, "Conclusion")                         # Code Meaning
+  >(0x0008010C, UI, "1.2.3.4.5.6.7.8.9.0.1")              # Private Coding Scheme Creator UID
+  ) 
+ >(0x0040A160, UT, "No damage. ")                       # Text Value
+) # End of Content Sequence
+)
+
+RECEIVE C-STORE-RSP (
+(0x00000900, US, 0x0000)
+)
+
+SEND RELEASE-RQ
+RECEIVE RELEASE-RP
+
+
+
+

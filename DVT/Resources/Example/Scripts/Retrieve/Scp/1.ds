@@ -1,0 +1,34 @@
+## Example DVT Dicom Script
+#
+#
+
+##
+## SCP Retrieve DICOMScript: 1.ds
+##
+## Pre-conditions:
+##      - no association
+##
+## Test Scenario:
+##      - expect association for Retrieve Service Class
+##              - little endian implicit VR
+##      - reject association - Result = 1 - rejected permanent
+##                             Source = 1 - DICOM UL service-user
+##                             Reason/Diag = 3 - calling AE title
+##                                               not recognised
+##
+## Expected Result:
+##      - SCU signals failure to make association 
+##
+## Post-conditions:
+##      - no association
+##
+RECEIVE ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Patient Root QR Information Model - MOVE SOP Class", "Implicit VR Little Endian")
+)
+
+SEND ASSOCIATE-RJ (
+        RESULT 1
+        SOURCE 1
+        REASON 3
+)

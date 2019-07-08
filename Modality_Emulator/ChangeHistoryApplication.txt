@@ -1,0 +1,328 @@
+===========================
+= Modality Emulator 3.1.1 =
+===========================
+
+
+=
+= Solved problems
+=
+<------------------------------------------------------------------------------>
+
+Date 17-07-2008 Fixed PR 960
+
+Description:
+------------
+This issue is fixed as part of IHE layer changes, now emulator is storing images 
+successfully without MPPS with Dummy patient selected as worklist response.
+
+<------------------------------------------------------------------------------>
+
+Date 18-07-2008 Fixed PR 914
+
+Description:
+------------
+Implemented Sleep timer of 1 sec between user actions. Now user can see the 
+changes in status.
+
+<------------------------------------------------------------------------------>
+
+Date 18-07-2008 Fixed PR 923
+
+Description:
+------------
+This issue is fixed by Marco as part of HLI layer changes.
+
+
+
+
+
+
+<------------------------------------------------------------------------------>
+
+Date 21-07-2008 Fixed PR 926
+
+Description:
+------------
+Implemented the Storage commit configuration on "Configure Remote Systems" tab. 
+Now user can send sync storage commit on IP Address/port other than store IP Address/port. 
+
+<------------------------------------------------------------------------------>
+
+Date 07-07-2008 Fixed PR 968
+
+Description:
+------------
+The implementation has been changed as follows.
+When an empty worklist is retrieved or communication with the RIS fails(DICOM Echo fails):
+- Display the messages on UI as hint and in front of button that no matches have 
+been received or that communication fails 
+
+<------------------------------------------------------------------------------>
+
+Date 21-07-2008 Fixed PR 924
+
+Description:
+------------
+Checked and fixed all issues related to Data. 
+
+<------------------------------------------------------------------------------>
+
+Date 20-08-2008 Fixed PR 1006
+
+Description:
+------------
+Implemented the proper warnings for empty port numbers.
+
+<------------------------------------------------------------------------------>
+
+Date 20-08-2008 Fixed PR 1004
+
+Description:
+------------
+Improved the workflow. Now after Echo fail, user will get message on UI "User can 
+request dummy patient by pressing 'Request Worklist' button" and no dummy patient 
+dialog will popup.
+
+<------------------------------------------------------------------------------>
+
+Date 28-08-2008 Fixed PR 1005
+
+Description:
+------------
+Displaying below message to user if he changes config when emulator is already started.
+"Restart the emulator to take effect configuration changes by pressing Stop button."
+
+<------------------------------------------------------------------------------>
+
+Date 10-09-2008 PR 1021
+
+Description:
+------------
+I fixed the bug in installer of the tool. The result folder was not creating always.
+
+<------------------------------------------------------------------------------>
+
+Date 11-09-2008 Fixed PR 1031
+
+Description:
+------------
+I replaced Masked TextBoxes for entering IP Addresses by normal Textboxes.
+
+Date 12-09-2008
+
+Fixed the problem in MWL response dialog box. If user selects a patient, it was 
+returning DIALOG Result as CANCEL instead of OK.
+
+<------------------------------------------------------------------------------>
+
+Date 15-09-2008 Fixed PR 1040
+
+Description:
+------------
+Changed the implementation version name to "ModalityEmulator" of length 16.
+
+<------------------------------------------------------------------------------>
+
+Date 19-09-2008 Fixed PR 1042
+
+Description:
+------------
+I created a new tab for MPPS Discontinued message. Also changed the name of MPPS 
+create tab to make things more clear. "
+
+<------------------------------------------------------------------------------>
+
+=
+= Implemented change requests
+=
+
+<------------------------------------------------------------------------------>
+
+Date 09-07-2008 Fixed CR 962
+
+Description:
+------------
+I implemented the CR by removing temp files on exit, not only when stop is used.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+
+
+
+====================================================
+= Modality Emulator 3.1.2., based on DVTk library 3.1.9. =
+====================================================
+
+
+
+=
+= Solved problems for 3.1.2.
+=
+
+<------------------------------------------------------------------------------>
+
+Date , ticket 
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+
+====================================================
+= Modality Emulator 3.1.3., based on DVTk library 3.1.9. =
+====================================================
+
+
+
+=
+= Solved problems for 3.1.3.
+=
+
+<------------------------------------------------------------------------------>
+
+Date , ticket 
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+
+====================================================
+= Modality Emulator 3.1.4., based on DVTk library 3.1.9. =
+====================================================
+
+
+
+=
+= Solved problems for 3.1.4.
+=
+
+<------------------------------------------------------------------------------>
+Micrsoft.mshtml.dll is now a part of the installer.
+<------------------------------------------------------------------------------>
+
+
+
+====================================================
+= Modality Emulator 3.1.5..., based on DVTk library 3.2.4... =
+====================================================
+
+
+
+=
+= Solved problems for ...
+=
+
+<------------------------------------------------------------------------------>
+
+Date 04-04-2011 , ticket 1508,1536,1537 
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Implemented change requests for .....
+=
+
+<------------------------------------------------------------------------------>
+
+Date , ticket 
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+====================================================
+= Modality Emulator 3.1.6, based on DVTk library 3.4.1
+====================================================
+
+
+
+=
+= Solved problems for MPPS
+=
+
+<------------------------------------------------------------------------------>
+
+Date 08-11-2016
+
+Description: Updated fuctionality to have the correct mapping during MPPS
+------------
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Implemented change requests for .....
+=
+
+<------------------------------------------------------------------------------>
+
+Date , ticket 
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+====================================================
+= Modality Emulator ..., based on DVTk library ... =
+====================================================
+
+
+
+=
+= Solved problems for ...
+=
+
+<------------------------------------------------------------------------------>
+
+Date , ticket 
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Implemented change requests for .....
+=
+
+<------------------------------------------------------------------------------>
+
+Date , ticket 
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+
+

@@ -1,0 +1,6 @@
+# Example DVT Dicom Script
+
+assoc.ds
+DO 6 2.ds
+rel.ds
+

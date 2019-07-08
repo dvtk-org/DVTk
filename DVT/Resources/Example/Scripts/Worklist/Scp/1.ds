@@ -1,0 +1,87 @@
+## Example DVT Dicom Script
+##
+## Test Script for Worklist Management SOP Classes - SCP
+##
+
+RECEIVE ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Modality Worklist Information Model - FIND SOP Class",
+         "Explicit VR Big Endian",
+         "Explicit VR Little Endian",
+         "Implicit VR Little Endian")
+)
+
+SEND ASSOCIATE-AC (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Modality Worklist Information Model - FIND SOP Class",
+         0,
+         "Implicit VR Little Endian")
+        MAXIMUM-LENGTH-RECEIVED 4096
+)
+
+
+RECEIVE C-FIND-RQ "Modality Worklist Information Model - FIND SOP Class" (
+(0x00000002, "Modality Worklist Information Model - FIND SOP Class")
+
+(0x00100010, "*") # Patient's Name
+(0x00100020, "") # Patient ID
+(0x0020000D, "") # Study Instance UID
+(0x00400100, SQ,
+>(0x00400001, "DVT") # Scheduled Station AE Title
+>(0x00400002, AUTOSET) # Scheduled Procedure Step Start Date
+>(0x00080060, "CT") # CT Modality
+)
+)
+
+SEND C-FIND-RSP "Modality Worklist Information Model - FIND SOP Class" (
+(0x00000002, "Modality Worklist Information Model - FIND SOP Class")
+(0x00000900, 0xFF00)
+
+(0x00100010, "One^Secondary Capture Image")
+(0x00100020, "SC-I1")
+(0x0020000D, "NEW:StudyInstanceUid1")
+(0x00400100, SQ,
+>(0x00400001, "DVT")
+>(0x00400002, AUTOSET)
+>(0x00080060, "CT")
+)
+)
+
+
+SEND C-FIND-RSP "Modality Worklist Information Model - FIND SOP Class" (
+(0x00000002, "Modality Worklist Information Model - FIND SOP Class")
+(0x00000900, 0xFF00)
+
+(0x00100010, "Two^Secondary Capture Image")
+(0x00100020, "SC-I2")
+(0x0020000D, "NEW:StudyInstanceUid2")
+(0x00400100, SQ,
+>(0x00400001, "DVT")
+>(0x00400002, AUTOSET)
+>(0x00080060, "CT")
+)
+)
+
+SEND C-FIND-RSP "Modality Worklist Information Model - FIND SOP Class" (
+(0x00000002, "Modality Worklist Information Model - FIND SOP Class")
+(0x00000900, 0xFF00)
+
+(0x00100010, "Three^Secondary Capture Image")
+(0x00100020, "SC-I3")
+(0x0020000D, "NEW:StudyInstanceUid3")
+(0x00400100, SQ,
+>(0x00400001, "DVT")
+>(0x00400002, AUTOSET)
+>(0x00080060, "CT")
+)
+)
+
+SEND C-FIND-RSP (
+(0x00000900, 0x0000)
+)
+
+
+RECEIVE RELEASE-RQ
+
+SEND RELEASE-RP
+

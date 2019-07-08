@@ -1,0 +1,83 @@
+##
+##       DVT Test the extended character lengths
+##
+##       Patient: Secondary Capture
+##       Run to DVT Store Emulator
+##
+
+## Send values that are OK
+SEND C-STORE-RQ "SC Image" (
+ (0x00080005, CS, "","ISO 2022 IR 87")  # Specific Character Set
+ (0x00080016, UI, "1.2.840.10008.5.1.4.1.1.7")  # SOP Class UID
+ (0x00080018, UI, "NEW:SopInstanceUid")  # SOP Instance UID
+ (0x00080020, DA, "19970917")  # Study Date
+ (0x00080030, TM, "")  # Study Time
+ (0x00080050, SH, "")  # Accession Number
+ (0x00080060, CS, "OT")  # Modality
+ (0x00080064, CS, "DV")  # Conversion Type
+ (0x00080070, LO, "") # Manufacturer
+##1234567890123456789012345678901234567890123456789012345678901234
+ (0x00080090, PN, "This long name ^should pass^ validation ^because no part ^of it =is over 64 characters.  All parts are exactly 64 characters(1B)$B(3B)(33)(45)(44)(42)(40)(4F)(3A)(1B)(B=but two parts are over 64 bytes due to Japanese characters(1B)$B(3B)(33)(45)(44)(1B)(B^(1B)$B(42)(40)(4F)(3A)(1B)(B")  # Referring Physician's Name
+ (0x00100010, PN, "This long name ^should pass^ validation ^because no part ^of it =is over 64 characters.  All parts are exactly 64 characters(1B)$B(3B)(33)(45)(44)(42)(40)(4F)(3A)(1B)(B=but two parts are over 64 bytes due to Japanese characters(1B)$B(3B)(33)(45)(44)(1B)(B^(1B)$B(42)(40)(4F)(3A)(1B)(B")  # Patient's Name
+ (0x00100020, LO, "This is 64 characters in length but more than 64 bytes 2 Jap. (1B)$B(3B)(33)(45)(44)(1B)(B")  # Patient ID 
+ (0x00100030, DA, "")  # Patient's Birth Date
+ (0x00100040, CS, "O")  # Patient's Sex
+ (0x0020000D, UI, "NEW:StudyInstanceUid")  # Study Instance UID
+ (0x0020000E, UI, "NEW:SeriesInstanceUid")  # Series Instance UID
+ (0x00200010, SH, "1")  # Study ID
+ (0x00200011, IS, "1")  # Series Number
+ (0x00200013, IS, "1")  # Image Number
+ (0x00200020, CS, "") # Patient Orientation
+ (0x00280002, US, 0x0001)  # Samples Per Pixel
+ (0x00280004, CS, "MONOCHROME2")  # Photometric Interpretation
+ (0x00280010, US, 512)  # Rows
+ (0x00280011, US, 512)  # Columns
+ (0x00280100, US, 0x0008)  # Bits Allocated
+ (0x00280101, US, 0x0008)  # Bits Stored
+ (0x00280102, US, 0x0007)  # High Bit
+ (0x00280103, US, 0x0000)  # Pixel Representation
+ (0x7FE00010, OB, 512)  # Pixel Data
+)
+
+RECEIVE C-STORE-RSP (
+(0x00000900, US, 0x0000)
+)
+
+## Send values that are too long
+SEND C-STORE-RQ "SC Image" (
+ (0x00080005, CS, "","ISO 2022 IR 87")  # Specific Character Set
+ (0x00080016, UI, "1.2.840.10008.5.1.4.1.1.7")  # SOP Class UID
+ (0x00080018, UI, "NEW:SopInstanceUid")  # SOP Instance UID
+ (0x00080020, DA, "19970917")  # Study Date
+ (0x00080030, TM, "")  # Study Time
+ (0x00080050, SH, "")  # Accession Number
+ (0x00080060, CS, "OT")  # Modality
+ (0x00080064, CS, "DV")  # Conversion Type
+ (0x00080070, LO, "") # Manufacturer
+##1234567890123456789012345678901234567890123456789012345678901234
+ (0x00080090, PN, "This name ^should fail^ validation ^because the first part ^of it=is 65 characters.  The other parts are exactly 64 characters(1B)$B(3B)(33)(45)(44)(42)(40)(1B)(B=but two parts are over 64 bytes due to Japanese characters(1B)$B(3B)(33)(45)(44)(1B)(B^(1B)$B(42)(40)(4F)(3A)(1B)(B")  # Referring Physician's Name
+(0x00100010, PN, "This long name ^should fail^ validation. ^The first 2 parts ^are=exactly 64 characters. The last part is more than 64 bytes (1B)$B(3B)(33)(45)(44)(42)(40)(4F)(3A)(1B)(B=this part is 65 characters and 65 bytes.     (No Japanese chars)")  # Patient's Name
+ (0x00100020, LO, "This is 65 characters in length but more than 64 bytes 2 Jap.. (1B)$B(3B)(33)(45)(44)(1B)(B")  # Patient ID 
+ (0x00100030, DA, "")  # Patient's Birth Date
+ (0x00100040, CS, "O")  # Patient's Sex
+ (0x0020000D, UI, "NEW:StudyInstanceUid")  # Study Instance UID
+ (0x0020000E, UI, "NEW:SeriesInstanceUid")  # Series Instance UID
+ (0x00200010, SH, "1")  # Study ID
+ (0x00200011, IS, "1")  # Series Number
+ (0x00200013, IS, "1")  # Image Number
+ (0x00200020, CS, "") # Patient Orientation
+ (0x00280002, US, 0x0001)  # Samples Per Pixel
+ (0x00280004, CS, "MONOCHROME2")  # Photometric Interpretation
+ (0x00280010, US, 512)  # Rows
+ (0x00280011, US, 512)  # Columns
+ (0x00280100, US, 0x0008)  # Bits Allocated
+ (0x00280101, US, 0x0008)  # Bits Stored
+ (0x00280102, US, 0x0007)  # High Bit
+ (0x00280103, US, 0x0000)  # Pixel Representation
+ (0x7FE00010, OB, 512)  # Pixel Data
+)
+
+RECEIVE C-STORE-RSP (
+(0x00000900, US, 0x0000)
+)
+

@@ -1,0 +1,163 @@
+##
+## DVT DICOMScript
+##
+## Name: grayscale_scu.ds
+##
+## Test Suite Ref: 3.2.2.2.
+## Test Case Ref: 2
+##
+## Pre-conditions:
+##	No association.
+##
+## Test Scenario:
+##	Request association using Implicit VR Little Endian
+##	Transfer Syntax.
+##	Accept Transfer Syntax.
+##	Start Grayscale Print Session using agreed Transfer
+##	Syntax.
+##	Release association after successful storage.
+##
+## Expected Result:
+## 	Validation: 0 error(s), 0 warning(s)
+## 	User Validation: 0 error(s), 0 warning(s)
+## 	General Error: 0 error(s), 0 warning(s)
+##
+## Post-conditions:
+##	No association.
+##
+SEND ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Basic Grayscale Print Management Meta SOP Class", "Implicit VR Little Endian")
+)
+
+RECEIVE ASSOCIATE-AC (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Basic Grayscale Print Management Meta SOP Class", 0, "Implicit VR Little Endian")
+)
+
+SEND N-GET-RQ (
+(0x00000003, "Printer SOP Class")
+(0x00001001, "1.2.840.10008.5.1.1.17")
+(0x00001005, 0x00080070,
+             0x00081090,
+             0x00181000,
+             0x00181020,
+             0x00181200,
+             0x00181201,
+             0x21100010,
+             0x21100020,
+             0x21100030)
+)
+
+RECEIVE N-GET-RSP "Printer"
+
+SEND N-CREATE-RQ "Basic Film Session" (
+(0x00000002, "Basic Film Session SOP Class")
+(0x00001000, "NEW:BasicFilmSessionInstanceUid")
+
+(0x20000010, "1")
+(0x20000020, "LOW")
+(0x20000030, "BLUE FILM")
+(0x20000040, "PROCESSOR")
+)
+
+RECEIVE N-CREATE-RSP
+
+SEND N-CREATE-RQ "Basic Film Box" (
+(0x00000002, "Basic Film Box SOP Class")
+(0x00001000, "NEW:BasicFilmBoxInstanceUid")
+
+(0x20100010, "STANDARD\\1,2")
+(0x20100040, "PORTRAIT")
+(0x20100050, "8INX10IN")
+(0x20100060, "CUBIC")
+(0x20100100, "BLACK")
+(0x20100110, "BLACK")
+(0x20100120, 10)
+(0x20100130, 350)
+(0x20100140, "NO")
+(0x20100500, SQ,
+>(0x00081150, "Basic Film Session SOP Class")
+>(0x00081155, "BasicFilmSessionInstanceUid")
+)
+)
+
+RECEIVE N-CREATE-RSP "Basic Film Box" (
+(0x20100510, SQ,
+ >(0x00081150, "Basic Film Box SOP Class")
+ >(0x00081155, "LABEL:ImageBoxId1")
+ ,
+ >(0x00081150, "Basic Film Box SOP Class")
+ >(0x00081155, "LABEL:ImageBoxId2")
+ )
+)
+
+SEND N-SET-RQ "Basic Grayscale Image Box" (
+(0x00000003, "Basic Grayscale Image Box SOP Class")
+(0x00001001, "ImageBoxId1")
+
+(0x20100060, "REPLICATE")
+(0x20200010, 1)
+(0x20200020, "NORMAL")
+(0x20200110, SQ,
+>(0x00280002, 1)
+>(0x00280004, "MONOCHROME1")
+>(0x00280010, 512)
+>(0x00280011, 512)
+>(0x00280100, 8)
+>(0x00280101, 8)
+>(0x00280102, 7)
+>(0x00280103, 0)
+>(0x7FE00010, OB, 512) # explicitly state OB as VR
+)
+)
+
+RECEIVE N-SET-RSP
+
+SEND N-SET-RQ "Basic Grayscale Image Box" (
+(0x00000003, "Basic Grayscale Image Box SOP Class")
+(0x00001001, "ImageBoxId2")
+
+(0x20100060, "REPLICATE")
+(0x20200010, 2)
+(0x20200020, "NORMAL")
+(0x20200110, SQ,
+>(0x00280002, 1)
+>(0x00280004, "MONOCHROME1")
+>(0x00280010, 512)
+>(0x00280011, 512)
+>(0x00280100, 8)
+>(0x00280101, 8)
+>(0x00280102, 7)
+>(0x00280103, 0)
+>(0x7FE00010, OB, 512) # explicitly state OB as VR
+)
+)
+
+RECEIVE N-SET-RSP
+
+SEND N-ACTION-RQ (
+(0x00000003, "Basic Film Box SOP Class")
+(0x00001001, "BasicFilmBoxInstanceUid")
+(0x00001008, 1)
+)
+
+RECEIVE N-ACTION-RSP
+
+SEND N-DELETE-RQ (
+(0x00000003, "Basic Film Box SOP Class")
+(0x00001001, "BasicFilmBoxInstanceUid")
+)
+RECEIVE N-DELETE-RSP
+
+SEND RELEASE-RQ
+
+RECEIVE RELEASE-RP
+
+
+##
+## Script Result should be:
+## Validation: 0 error(s), 0 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 0 error(s), 0 warning(s)
+##

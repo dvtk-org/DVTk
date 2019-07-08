@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storage SCP Emulator", "Storage SCP Emulator.csproj", "{C0523A72-EF82-4CB9-A4FD-51CBF764C95D}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Storage SCP Emulator Setup", "Storage SCP Emulator Setup.vdproj", "{F0270064-79A2-428E-B0E9-528265CA7A76}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C0523A72-EF82-4CB9-A4FD-51CBF764C95D}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{C0523A72-EF82-4CB9-A4FD-51CBF764C95D}.Debug|Any CPU.Build.0 = Debug|x86
+		{C0523A72-EF82-4CB9-A4FD-51CBF764C95D}.Release|Any CPU.ActiveCfg = Release|x86
+		{C0523A72-EF82-4CB9-A4FD-51CBF764C95D}.Release|Any CPU.Build.0 = Release|x86
+		{F0270064-79A2-428E-B0E9-528265CA7A76}.Debug|Any CPU.ActiveCfg = Debug
+		{F0270064-79A2-428E-B0E9-528265CA7A76}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

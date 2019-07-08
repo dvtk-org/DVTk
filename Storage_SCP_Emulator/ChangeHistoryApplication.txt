@@ -1,0 +1,590 @@
+==============================================================
+= Storage SCP Emulator 3.2.0.6, based on DVTk library 3.0.15 =
+==============================================================
+
+
+
+=
+= Solved problems for the versions up to and including 3.2.0.6
+=
+
+<------------------------------------------------------------------------------>
+
+Date 12/05/2009
+
+Description:
+------------
+
+Fixed PR 542 - Storage SCP emulator crashes
+The tool is migrated to HLI layer and it implements the robust thread framework 
+to avoid this kind of threading issues.
+
+<------------------------------------------------------------------------------>
+
+Date 12/05/2009
+
+Description:
+------------
+Fixed PR 611 - Storage commitment does not work in Storage SCP emulator
+Now SCP can listen on seperate ports for Storage and Storage commitment. The tool 
+is migrated to HLI layer and it implements the robust thread framework to handle 
+this request.
+
+<------------------------------------------------------------------------------>
+
+Date 12/05/2009
+
+Description:
+------------
+Fixed PR 878 - DVTk Storage SCP emulator reports error when application is closed
+The tool is migrated to HLI layer and it implements the robust thread framework to 
+handle this request.
+
+<------------------------------------------------------------------------------>
+
+Date 14/05/2009
+
+Description:
+------------
+Fixed PR 884 - dvt crash during import to emulator
+
+I checked the data by exporting it to Storage SCP emulator tool from SCU emulator and 
+it's working fine. I checked the data and found 1I00003.dcm is corrupt and couldn't 
+read by storage SCU. We can find the error by validating it by DVT media session.
+
+<------------------------------------------------------------------------------>
+
+Date 12/05/2009
+
+Description:
+------------
+Fixed PR 935 - DVTk Storage SCP emulator reports error when PDU size is increased
+
+This issue is solved by changing the type of MaxPDULengthReceived from UShort to UInt. 
+Now it can contain the value upto 32 byte.
+
+<------------------------------------------------------------------------------>
+
+Date 12/05/2009
+
+Description:
+------------
+Fixed PR 978 - Storage Commit with SCP emulator 3.0.0
+
+The tool is migrated to HLI layer and it implements the robust thread framework to 
+avoid this kind of threading issues. User can configure different ports for storage 
+and Storage committment in the application. 
+
+<------------------------------------------------------------------------------>
+
+Date 26/05/2009
+
+Description:
+------------
+Fixed PR 1087 -	SCP emulator not supporting Async Storage - Commit emulation
+
+The SCP emulator is already behaving as mentioned in scenario.
+
+<------------------------------------------------------------------------------>
+
+Date 19/05/2009
+
+Description:
+------------
+Fixed PR 1098 -	DICOM Storage SCP Emulator - Quick Go To Error- and Warning-Button don't work
+
+“Microsoft.mshtml.dll” was missing from the Application folder. I added this to installer.
+
+<------------------------------------------------------------------------------>
+
+Date 21/05/2009
+
+Description:
+------------
+Fixed PR 1175 -	Storage Commitment Delay in Storage SCP emulator
+
+The SCP emulator is already behaving as mentioned in scenario.
+
+<------------------------------------------------------------------------------>
+
+Date 10/6/2009
+
+Description:
+------------
+Fixed PR 1217 -	Crash in DICOM Thread in HLI
+
+Used the SendAssociateRp() method as suggested. Implemented clear code and removed 
+inconsistent parts in source. 
+
+<------------------------------------------------------------------------------>
+
+Date 
+
+Description:
+------------
+Fixed PR 1218 -	Validation error in HLI
+
+<------------------------------------------------------------------------------>
+
+Date 
+
+Description:
+------------
+Fixed PR 1232 -	Concurrent thread starting in HLI
+
+<------------------------------------------------------------------------------>
+
+Date 
+
+Description:
+------------
+Fixed PR 1233 -	Provide reason for Association rejection in Assoc-Rj message
+
+<------------------------------------------------------------------------------>
+
+Date 
+
+Description:
+------------
+Fixed PR 1234 -	Pixel data attribute value is always "DATA NOT STORED"
+Setting wrong option for Storage Mode. When I set "AsMedia" it worked properly.
+
+<------------------------------------------------------------------------------>
+
+Date 08/07/2009
+
+Description:
+------------
+PR 1263 - Fixed the problem of setting Remote AE title, IP Address in Storage 
+thread options in case of listening on same port for storage and storage commit. 
+
+<------------------------------------------------------------------------------>
+
+Date 09/07/2009
+
+Description:
+------------
+Fixed PR 1264 -	Cleaning up the temp DCM files generated during creation of info 
+model for storage commit when emulator is stopped.
+
+<------------------------------------------------------------------------------>
+
+Date 09/07/2009
+
+Description:
+------------
+Fixed PR 1265 -	Corrected the logging message and displayed as info.
+
+<------------------------------------------------------------------------------>
+
+Date 1-10-2009, ticket 1310
+
+Description:
+------------
+A configuration that was saved, could not be loaded (recently introduced bug). 
+Solved this.
+
+<------------------------------------------------------------------------------>
+
+Date 1-10-2009, ticket 1270
+
+Description:
+------------
+When no presentation contexts could be accepted, an ASSOCIATE-RJ was sent by the
+emulator. Changed this to sending back an ASSOCIATE-AC, in which no presentation
+context is accepted to make it DICOM compliant.
+
+<------------------------------------------------------------------------------>
+
+=
+= Implemented change requests for the versions up to and including 3.2.0.6
+=
+
+<------------------------------------------------------------------------------>
+
+Date 16/07/2009
+
+Description:
+------------
+New implementation is as follows:
+- In the Store Config tab, added a new transfer syntax button for the storage association.
+- In the Store Commitment Config tab, added a new transfer syntax button for the storage 
+commitment association (N-ACTION). Only made the 3 uncompressed transfer syntaxes available.
+- Removed the TS toolbar button.
+- Made sure that when storage and storage commitment is configured on the same port, 
+that the transfer syntaxes from both tabs are combined correctly.
+
+<------------------------------------------------------------------------------>
+
+Date 1-10-2009, ticket 1310
+
+Description:
+------------
+- For all files that are stored by the emulator (validation results and received DICOM messages),
+  the user can now specify if and which files need to be removed when the application is closed.
+- By default, validation results, received DICOM messages and configurations are now stored under
+  the "My Documents" folder.
+- Removed the question to back up results files because the improved management of stored files is
+  now in place.
+- Improved the identifier names and results file names. In the results files, the start date and time
+  of an emulator run is now incorporated.
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Backwards compatibility issues for the versions up to and including 3.2.0.6
+=
+
+<------------------------------------------------------------------------------>
+
+Date 17/06/2009 
+
+Description:
+------------
+1. Removed the Aborting emulation functionality b'coz now tool is based on HLI
+instead of DVTk layer. In HLI, if you abort the thread immaturely it may cause
+instability and provide undesired results.
+
+2. Removed the Accept duplicate image checkbox. Currently the information model
+accepts duplicate images by default and never reject the C-Store.
+
+3. Removed logging options from UI b'coz anyway we've detailed logging from HLI Activity
+logging user control.
+
+4. Implements the new functionality of user selection for supported SOP classes
+through SOP class user control.
+
+5. Now overview and detailed validation results display per association is available through HLI
+which far better than previous result display.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+============================================================
+= Storage SCP Emulator 3.2.1, based on DVTk library 3.0.16 =
+============================================================
+
+
+
+=
+= Solved problems for 3.2.1
+=
+
+<------------------------------------------------------------------------------>
+
+Date 7-10-2009, ticket 1326
+
+Description:
+------------
+Added removed "clear" functionality for all received DICOM messages.
+
+<------------------------------------------------------------------------------>
+
+Date 5-10-2009, ticket 1316
+
+Description:
+------------
+Modified the DICOMDIR creation functionality with new Store Files user control 
+and directory structure. 
+
+<------------------------------------------------------------------------------>
+
+Date 5-10-2009, ticket 1317
+
+Description:
+------------
+The bug fixed for default uncompressed transfer syntaxes. During transfer syntax 
+merging for Store and commit, the selected TS list was modifying. 
+
+<------------------------------------------------------------------------------>
+
+Date 5-10-2009, ticket 1318
+
+Description:
+------------
+Removed the dependency of Result folder created by installer and adhering to new 
+Store Files functionality. 
+
+<------------------------------------------------------------------------------>
+
+Date 5-10-2009, ticket 1320
+
+Description:
+------------
+Updated the user manual for Store Files functionality user control. 
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+============================================================
+= Storage SCP Emulator 3.2.2, based on DVTk library 3.0.17 =
+============================================================
+
+
+
+=
+= Solved problems for 3.2.2
+=
+
+<------------------------------------------------------------------------------>
+
+Date 21-10-2009, ticket 1328
+
+Description:
+------------
+Temporary files are not written anymore in the application folder, but written to
+a temp folder and removed afterwards.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+============================================================
+= Storage SCP Emulator 3.2.3, based on DVTk library 3.0.18 =
+============================================================
+
+
+
+=
+= Solved problems for 3.2.3
+=
+
+<------------------------------------------------------------------------------>
+
+Date 7-11-2009, ticket 1337 & 1342
+
+Description:
+------------
+Fixed the configuration problem in case of listening on same port for both Storage 
+& Storage commit.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+============================================================
+= Storage SCP Emulator 3.2.4, based on DVTk library 3.0.18 =
+============================================================
+
+
+
+=
+= Solved problems for 3.2.4
+=
+
+Date 12-11-2009, ticket 1343
+
+Description:
+------------
+Removing the storage.idx file when user wants to "Remove all received DICOM Messages". 
+
+<------------------------------------------------------------------------------>
+
+Date 12-11-2009, ticket 1345
+
+Description:
+------------
+Fixed this issue by explicitly copying Called & calling AE Titles from Assoc-Rq in 
+AssocReq handler of DICOM Thread.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+============================================================
+= Storage SCP Emulator 3.2.5, based on DVTk library 3.0.19 =
+============================================================
+
+
+
+=
+= Solved problems for 3.2.5
+=
+
+<------------------------------------------------------------------------------>
+
+Date 20-11-2009, ticket 1345
+
+Description:
+------------
+Now also made it work when Storage and Storage Commitment are configured on the same port.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+===========================================================
+= Storage SCP Emulator 3.2.6, based on DVTk library 3.1.1 =
+===========================================================
+
+
+
+=
+= Solved problems for 3.2.6
+=
+
+<------------------------------------------------------------------------------>
+
+Date 26-05-2010
+
+Description:
+------------
+N-ACTION-RSP is now sent before creating the information model to solve a time-out problem with SUTS.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+============================================================
+= Storage SCP Emulator 3.2.9., based on DVTk library 3.1.9 =
+============================================================
+
+
+
+=
+= Solved problems for 3.2.9
+=
+
+<------------------------------------------------------------------------------>
+
+Date 11-10-2011, ticket 1517
+
+Description:
+------------
+THe emulator will not reject associations if the required SOP classes are not supported by it(or definition files are unselected).
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+===========================================================
+= Storage SCP Emulator 5.0.0, based on DVTk library 5.0.0 =
+===========================================================
+
+
+
+=
+= Implemented change requests for 5.0.0
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2017-05-16 
+
+Description:
+------------
+- Application compiled with Visual Studio 2010 (previously Visual Studio 2005)
+- Application makes use of .NET Framework 4 (previously .NET Framework 2.0)
+- New application icon
+
+<------------------------------------------------------------------------------>
+
+
+
+===========================================================
+= Storage SCP Emulator 5.0.1, based on DVTk library 5.0.0 =
+===========================================================
+
+
+
+=
+= Fixed a bug
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2017-05-16 
+
+Description:
+------------
+- Fixed a bug regarding creating DICOMDIR
+
+<------------------------------------------------------------------------------>
+
+===========================================================
+= Storage SCP Emulator 5.1.0, based on DVTk library 5.1.0 =
+===========================================================
+
+
+
+=
+= Implemented support for the following transfer syntaxes:
+= MPEG2_HIGH_PROFILE_LEVEL                     "1.2.840.10008.1.2.4.101"
+= MPEG4_AVC_H_264_High_Profile41               "1.2.840.10008.1.2.4.102"
+= MPEG4_AVC_H_264_BD_compatible_High_Profile41 "1.2.840.10008.1.2.4.103"
+= MPEG4_AVC_H_264_High_Profile42For2D_Video    "1.2.840.10008.1.2.4.104"
+= MPEG4_AVC_H_264_High_Profile42For3D_Video    "1.2.840.10008.1.2.4.105"
+= MPEG4_AVC_H_264_Stereo_High_Profile42        "1.2.840.10008.1.2.4.106"
+= HEVC_H265_Main_Profile51                     "1.2.840.10008.1.2.4.107"
+= HEVC_H265_Main_10_Profile51                  "1.2.840.10008.1.2.4.108"
+= RFC_2557_MIME_ENCAPSULATION                  "1.2.840.10008.1.2.6.1"
+= XML_Encoding                                 "1.2.840.10008.1.2.6.2"
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2018-09-13
+
+Description:
+------------
+- The following transfer syntaxes are now available in the Dvtk library
+- MPEG2_HIGH_PROFILE_LEVEL                     "1.2.840.10008.1.2.4.101"
+- MPEG4_AVC_H_264_High_Profile41               "1.2.840.10008.1.2.4.102"
+- MPEG4_AVC_H_264_BD_compatible_High_Profile41 "1.2.840.10008.1.2.4.103"
+- MPEG4_AVC_H_264_High_Profile42For2D_Video    "1.2.840.10008.1.2.4.104"
+- MPEG4_AVC_H_264_High_Profile42For3D_Video    "1.2.840.10008.1.2.4.105"
+- MPEG4_AVC_H_264_Stereo_High_Profile42        "1.2.840.10008.1.2.4.106"
+- HEVC_H265_Main_Profile51                     "1.2.840.10008.1.2.4.107"
+- HEVC_H265_Main_10_Profile51                  "1.2.840.10008.1.2.4.108"
+- RFC_2557_MIME_ENCAPSULATION                  "1.2.840.10008.1.2.6.1"
+- XML_Encoding                                 "1.2.840.10008.1.2.6.2"
+
+<------------------------------------------------------------------------------>
+
+
+===========================================================
+= Storage SCP Emulator 5.1.1, based on DVTk library 5.1.1 =
+===========================================================
+
+
+
+=
+= Implemented change requests for 5.1.0
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2019-03-12
+
+Description:
+------------
+- Added support for VR OV (Other Very Long)
+
+<------------------------------------------------------------------------------>

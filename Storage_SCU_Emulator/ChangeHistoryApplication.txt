@@ -1,0 +1,449 @@
+============================================================
+= Storage SCU Emulator 3.2.1, based on DVTk library 3.0.16 =
+============================================================
+
+
+
+=
+= Solved problems for the versions up to and including 3.2.1
+=
+
+<------------------------------------------------------------------------------>
+
+Date 05/05/2009
+
+Description:
+------------
+
+Fixed PR 800 - Endinvoke error by Storage SCU Emulator
+The tool is migrated to HLI layer and it implements the robust thread framework 
+to avoid this kind of threading issues.
+
+<------------------------------------------------------------------------------>
+
+Date 05/05/2009
+
+Description:
+------------
+Fixed PR 1067 - Images exported in wrong order by Storage SCU emulator
+Used sorting mechanism of ArrayList for logical ordering of file names before exporting it to SCP.
+
+<------------------------------------------------------------------------------>
+
+Date 04/05/2009
+
+Description:
+------------
+Fixed PR 1109 - scu emulator not working with PR. object.
+Now Storage SCU emulator is implemented using HLI and sending of reference image and PR 
+objects in DICOMDIR is implemented in C# code.
+
+<------------------------------------------------------------------------------>
+
+Date 04/05/2009
+
+Description:
+------------
+Fixed PR 1125 - Storage SCU Emulator - Special feature using DICOM Echo
+
+This is based on HLI thread framework instead of DVTk layer. Now this threading issue is resolved
+
+<------------------------------------------------------------------------------>
+
+Date 08/06/2009
+
+Description:
+------------
+Fixed PR 1210 - Hard coded implementation class UID
+
+<------------------------------------------------------------------------------>
+
+Date 08/06/2009
+
+Description:
+------------
+Fixed PR 1231 - Transfersyntax always ELE after reading DICOM file
+
+<------------------------------------------------------------------------------>
+
+Date 18/06/2009
+
+Description:
+------------
+Fixed PR 1240 - Possible to loose unsaved settings
+
+Now saving user configured values as session parameters in session files used for storage 
+and commit operations before running and exiting the emulators.
+
+<------------------------------------------------------------------------------>
+
+Date 19/06/2009
+
+Description:
+------------
+Fixed PR 1241 - Asynchronous storage commitment problem
+
+Implemented the commit scp in storage scu emulator based on ConcurrentMessageIterator. 
+The supported Transfer syntax list made it as Static b'coz it was re-setting the list.
+
+<------------------------------------------------------------------------------>
+
+Date 17/07/2009
+
+Description:
+------------
+Fixed PR 1273 - Corrected the SCP behaviour in case of SCU sends DICOMDIR for Accepting
+prposed PCs. Provided more user logging in SCU.
+
+<------------------------------------------------------------------------------>
+
+Date 7/09/2009
+
+Description:
+------------
+Fixed PR 1289 - Corrected the SCP behaviour in case of SCU sends DICOMDIR for Accepting
+prposed PCs. Provided more user logging in SCU.
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Implemented change requests for the versions up to and including 3.2.1
+=
+
+<------------------------------------------------------------------------------>
+
+Date 
+
+Description:
+------------
+1202 - Add a new interface for receiving DICOM messages with timeout
+
+<------------------------------------------------------------------------------>
+
+Date 1-10-2009, ticket 1310
+
+Description:
+------------
+- For all files that are stored by the emulator (validation results),
+  the user can now specify if and which files need to be removed when the application 
+  is closed.
+
+<------------------------------------------------------------------------------>
+
+Date 7-10-2009, ticket 1321
+
+Description:
+------------
+Implemented the Cancel Export feature by stopping the background thread and thread manager. 
+
+<------------------------------------------------------------------------------>
+
+Date 9-10-2009, ticket 1322
+
+Description:
+------------
+- Added a check box in the "Storage Config" tab to enable/disable storage commitment. 
+Default storage commitent is enabled.
+- When Storage commitment is disabled:
+1. The "Storage Commitment Config" is not accessable anymore by making it invisible.
+2. The Storage commitment button in the toolbar is disabled.
+- When Storage commitment is enabled:
+1. The "Storage Commitment Config" is visible.
+2. The Storage commitment button in the toolbar is enabled.
+
+<------------------------------------------------------------------------------>
+
+=
+= Backwards compatibility issues
+=
+
+<------------------------------------------------------------------------------>
+
+Date 22/10/2009 
+
+Description:
+------------
+1. Added a groupbox for selecting nr. of associations. This functionality provides
+exporting of selected images in one association or multiple associations(one image 
+per association).
+
+2. Now overview and detailed validation results display per association is available through HLI
+which far better than previous result display.
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+============================================================
+= Storage SCU Emulator 3.2.2, based on DVTk library 3.0.17 =
+============================================================
+
+
+
+=
+= Solved problems for 3.2.2
+=
+
+<------------------------------------------------------------------------------>
+
+Date 22-10-2009, ticket 1329
+
+Description:
+------------
+Changed the logic for overview thread starting/stopping. Now the overview thread and 
+afterwards start it again, we should create a new instance of the overview thread.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+============================================================
+= Storage SCU Emulator 3.2.3, based on DVTk library 3.0.18 =
+============================================================
+
+
+
+=
+= Solved problems for 3.2.3
+=
+
+<------------------------------------------------------------------------------>
+
+Date 10-11-2009, ticket 1329
+
+Description:
+------------
+Futher improved code to solve this ticket.
+Provided synchronization for threads from thread manager.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+============================================================
+= Storage SCU Emulator 3.2.4, based on DVTk library 3.0.19 =
+============================================================
+
+<------------------------------------------------------------------------------>
+
+Date 30-11-2009, ticket 1354
+
+Description:
+------------
+Implemented the FileGroups.RemoveFiles() in form closing event for file cleanup
+functionality.
+
+<------------------------------------------------------------------------------>
+
+
+Date 30-11-2009, ticket 1355
+
+Description:
+------------
+Corrected the buttons enabling and disabling w.r.t. various actions for storage
+and commit operations.
+
+<------------------------------------------------------------------------------>
+
+Date 25-5-201, ticket 1363 & Ticket 1402
+
+Description:
+------------
+The Export of a DICOMDIR present on a physical Media was failing.Fixed the issue by setting
+the value of Environment.CurrentDirectory to the ResultsDirectory.Henceforth, the Environment.CurrentDirectory
+will point to the Results Directory whenever a DICOM Object is being exported.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+===========================================================
+= Storage SCU Emulator 3.2.5, based on DVTk library 3.1.1 =
+===========================================================
+No changes in the application code.
+
+
+
+
+
+
+=======================================================
+= Storage SCU Emulator 3.2.6 , based on DVTk library 3.1.9. =
+=======================================================
+
+
+
+=
+= Solved problems for 3.2.6.
+=
+
+<------------------------------------------------------------------------------>
+
+Date Sep 23,2010 , ticket 1446 
+
+Description:Storage Commitment infromation in activity log
+------------
+
+<------------------------------------------------------------------------------>
+
+
+=======================================================
+= Storage SCU Emulator 3.2.7 , based on DVTk library 3.1.9. =
+=======================================================
+
+
+
+=
+= Solved problems for 3.2.7.
+=
+
+<------------------------------------------------------------------------------>
+
+
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+
+
+
+===========================================================
+= Storage SCU Emulator 3.2.8, based on DVTk library 3.2.0 =
+===========================================================
+
+
+
+=
+= Solved problems for 3.2.8.
+=
+
+<------------------------------------------------------------------------------>
+
+Date Jan 06,2012, ticket 1563 Storage SCU emulator does use the Transfer syntax of the object.
+
+Description:
+------------
+Issue fixed
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Implemented change requests for 3.2.8.
+=
+
+<------------------------------------------------------------------------------>
+
+Date Jan 06,2012 , Transfer syntax conversion
+
+Description:
+------------
+Transfersyntax conversion between ELE,ILE,and EBE  implemented using DCMTK converter.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+===========================================================
+= Storage SCU Emulator 5.0.0, based on DVTk library 5.0.0 =
+===========================================================
+
+
+
+=
+= Implemented change requests for 5.0.0
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2017-05-16 
+
+Description:
+------------
+- Application compiled with Visual Studio 2010 (previously Visual Studio 2005)
+- Application makes use of .NET Framework 4 (previously .NET Framework 2.0)
+- New application icon
+
+<------------------------------------------------------------------------------>
+
+
+===========================================================
+= Storage SCU Emulator 5.1.0, based on DVTk library 5.1.0 =
+===========================================================
+
+
+
+=
+= Implemented support for the following transfer syntaxes:
+= MPEG2_HIGH_PROFILE_LEVEL                     "1.2.840.10008.1.2.4.101"
+= MPEG4_AVC_H_264_High_Profile41               "1.2.840.10008.1.2.4.102"
+= MPEG4_AVC_H_264_BD_compatible_High_Profile41 "1.2.840.10008.1.2.4.103"
+= MPEG4_AVC_H_264_High_Profile42For2D_Video    "1.2.840.10008.1.2.4.104"
+= MPEG4_AVC_H_264_High_Profile42For3D_Video    "1.2.840.10008.1.2.4.105"
+= MPEG4_AVC_H_264_Stereo_High_Profile42        "1.2.840.10008.1.2.4.106"
+= HEVC_H265_Main_Profile51                     "1.2.840.10008.1.2.4.107"
+= HEVC_H265_Main_10_Profile51                  "1.2.840.10008.1.2.4.108"
+= RFC_2557_MIME_ENCAPSULATION                  "1.2.840.10008.1.2.6.1"
+= XML_Encoding                                 "1.2.840.10008.1.2.6.2"
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2018-09-13
+
+Description:
+------------
+- The following transfer syntaxes are now available in the Dvtk library
+- MPEG2_HIGH_PROFILE_LEVEL                     "1.2.840.10008.1.2.4.101"
+- MPEG4_AVC_H_264_High_Profile41               "1.2.840.10008.1.2.4.102"
+- MPEG4_AVC_H_264_BD_compatible_High_Profile41 "1.2.840.10008.1.2.4.103"
+- MPEG4_AVC_H_264_High_Profile42For2D_Video    "1.2.840.10008.1.2.4.104"
+- MPEG4_AVC_H_264_High_Profile42For3D_Video    "1.2.840.10008.1.2.4.105"
+- MPEG4_AVC_H_264_Stereo_High_Profile42        "1.2.840.10008.1.2.4.106"
+- HEVC_H265_Main_Profile51                     "1.2.840.10008.1.2.4.107"
+- HEVC_H265_Main_10_Profile51                  "1.2.840.10008.1.2.4.108"
+- RFC_2557_MIME_ENCAPSULATION                  "1.2.840.10008.1.2.6.1"
+- XML_Encoding                                 "1.2.840.10008.1.2.6.2"
+
+<------------------------------------------------------------------------------>
+
+
+===========================================================
+= Storage SCU Emulator 5.1.1, based on DVTk library 5.1.1 =
+===========================================================
+
+
+
+=
+= Implemented change requests for 5.1.0
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2019-03-12
+
+Description:
+------------
+- Added support for VR OV (Other Very Long)
+
+<------------------------------------------------------------------------------>

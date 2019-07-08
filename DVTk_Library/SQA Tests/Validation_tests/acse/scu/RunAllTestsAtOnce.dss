@@ -1,0 +1,61 @@
+##
+## DVT DICOMSuperScript
+##
+## Name: acse_all_scu.dss
+##
+acse_1_scu.ds
+delay_1_second.ds
+acse_1b_scu.ds
+delay_1_second.ds
+acse_2_scu.ds
+delay_1_second.ds
+acse_3_scu.ds
+delay_1_second.ds
+acse_4_scu.ds
+delay_1_second.ds
+acse_5_scu.ds
+delay_1_second.ds
+acse_6_scu.ds
+delay_1_second.ds
+acse_7_scu.ds
+delay_1_second.ds
+acse_8_scu.ds
+delay_1_second.ds
+acse_9_scu.ds
+delay_1_second.ds
+acse_10_scu.ds
+delay_1_second.ds
+acse_11_scu.ds
+delay_1_second.ds
+acse_12_scu.ds
+delay_1_second.ds
+acse_13_scu.ds
+delay_1_second.ds
+acse_14_scu.ds
+delay_1_second.ds
+acse_15_scu.ds
+delay_1_second.ds
+acse_16_scu.ds
+delay_1_second.ds
+acse_17_scu.ds
+delay_1_second.ds
+acse_18_scu.ds
+delay_1_second.ds
+acse_19_scu.ds
+delay_1_second.ds
+acse_20_scu.ds
+delay_1_second.ds
+acse_21_scu.ds
+delay_1_second.ds
+acse_22_scu.ds
+delay_1_second.ds
+acse_23_scu.ds
+delay_1_second.ds
+acse_24_scu.ds
+
+##
+## SuperScript Result should be:
+## Validation: 103 error(s), 10 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 0 error(s), 0 warning(s)
+##

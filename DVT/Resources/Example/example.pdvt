@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="us-ascii" standalone="yes"?>
+<Sessions>
+<Session>.\scripts\commit\scp\Commit_SCP.ses</Session>
+<Session>.\scripts\commit\scu\Commit_SCU.ses</Session>
+<Session>.\scripts\mpps\scu\MPPS_SCU.ses</Session>
+<Session>.\scripts\mpps\scp\MPPS_SCP.ses</Session>
+<Session>.\scripts\print\scu\Print_SCU.ses</Session>
+<Session>.\scripts\print\scp\Print_SCP.ses</Session>
+<Session>.\scripts\query\scu\Query_SCU.ses</Session>
+<Session>.\scripts\query\scp\Query_SCP.ses</Session>
+<Session>.\scripts\report\scu\SR_SCU.ses</Session>
+<Session>.\scripts\report\scp\SR_SCP.ses</Session>
+<Session>.\scripts\retrieve\scu\Retrieve_SCU.ses</Session>
+<Session>.\scripts\retrieve\scp\Retrieve_SCP.ses</Session>
+<Session>.\scripts\verification\scu\ECHO_SCU.ses</Session>
+<Session>.\scripts\verification\scp\ECHO_SCP.ses</Session>
+<Session>.\scripts\worklist\scu\WLM_SCU.ses</Session>
+<Session>.\scripts\worklist\scp\WLM_SCP.ses</Session>
+<Session>.\scripts\storage\scp\Storage_SCP.ses</Session>
+<Session>.\scripts\storage\scu\Storage_SCU.ses</Session>
+<Session>.\media\Media.ses</Session>
+<Session>.\emulators\emulator_1\Emulator_1.ses</Session>
+<Session>.\emulators\emulator_2\emulator_2.ses</Session>
+</Sessions>

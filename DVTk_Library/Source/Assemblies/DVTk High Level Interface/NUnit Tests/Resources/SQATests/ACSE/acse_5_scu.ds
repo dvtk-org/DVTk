@@ -1,0 +1,81 @@
+##
+## DVT DICOMScript
+##
+## Name: acse_5_scu.ds
+##
+## Test Suite Ref: 3.2.2.3.
+## Test Case Ref: 1, 2
+##
+## Test Suite Ref: 3.2.6.1.
+## Test Case Ref: 1, 2
+##
+## Pre-conditions:
+##	No association.
+##
+## Test Scenario:
+##	Test use of string -> uid mapping.
+##	Test parsing of complete ACSE requests.
+##	Send Associate Request - with all parameters defined with illegal values.
+##	Receive Associate Accept.
+##	Send Release Request.
+##	Receive Release Response.
+##
+## Expected Result:
+## 	Validation: 3 error(s), 3 warning(s)
+## 	User Validation: 0 error(s), 0 warning(s)
+## 	General Error: 1 error(s), 0 warning(s)
+##
+## Post-conditions:
+##	No association.
+##
+SEND ASSOCIATE-RQ (
+	PROTOCOL-VERSION 0
+
+	CALLED-AE-TITLE "                "
+
+	CALLING-AE-TITLE "                "
+
+	APPLICATION-CONTEXT-NAME "Illegal.1.2.840.10008.3.1.1.1"
+
+        PRESENTATION-CONTEXT-ITEMS
+        ("Secondary Capture Image Storage SOP Class", "Implicit VR Illegal Endian")
+	("Illegal Computed Radiography Image Storage SOP Class", "Illegal.1.2.840.10008.1.2")
+        ("CT Image Storage SOP Class", "Implicit VR Illegal Endian",
+				       "Explicit VR Illegal Endian")
+	("MR Image Storage SOP Class", "Illegal.1.2.840.10008.1.2",
+				       "Illegal.1.2.840.10008.1.2.1",
+				       "Illegal.1.2.840.10008.1.2.2")
+#       Nuclear Medicine Image Storage SOP Class
+	("1.2.840.10008.5.1.4.1.1.20", "Illegal.1.2.840.10008.1.2")
+
+	MAXIMUM-LENGTH-RECEIVED 0
+
+	IMPLEMENTATION-CLASS-UID "Illegal.1.22.333.4444.55555.666666"
+
+	IMPLEMENTATION-VERSION-NAME "Illegal"
+
+	SOP-CLASS-EXTENDED-NEGOTIATION
+	("Secondary Capture Image Storage SOP Class", 0, 1, 2, 3, 4, 5)
+#       Nuclear Medicine Image Storage SOP Class
+	("1.2.840.10008.5.1.4.1.1.20", 0, 1, 2, 3)
+
+	SCPSCU-ROLE-SELECTION
+	("Secondary Capture Image Storage SOP Class", 100, 100)
+#       Nuclear Medicine Image Storage SOP Class
+	("1.2.840.10008.5.1.4.1.1.20", 100, 100)
+
+	ASYNCHRONOUS-OPERATIONS-WINDOW 100 100
+)
+
+RECEIVE ASSOCIATE-AC
+
+SEND RELEASE-RQ
+
+RECEIVE RELEASE-RP
+
+##
+## Script Result should be:
+## Validation: 3 error(s), 3 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 1 error(s), 0 warning(s)
+##

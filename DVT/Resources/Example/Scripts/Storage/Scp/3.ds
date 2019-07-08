@@ -1,0 +1,50 @@
+## Example DVT Dicom Script
+
+##
+## SCP Storage DICOMScript: 3.ds
+##
+## Pre-conditions:
+##      - no association
+##
+## Test Scenario:
+##      - establish Association
+##      - C-STORE-RQ Image IOD
+##      - C-STORE-RSP should indicate "Out of Resources" - A700
+##      - release Association
+##
+## Expected Result:
+##      - SCU signals unsuccessful storage
+##
+## Post-conditions:
+##      - no association
+##
+
+##
+## Establish an Association
+##
+RECEIVE ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Secondary Capture Image Storage SOP Class", "Implicit VR Little Endian")
+)
+
+SEND ASSOCIATE-AC (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Secondary Capture Image Storage SOP Class", 0, "Implicit VR Little Endian" )
+)
+
+##
+## Receive Image and simulate Disk Full
+##
+RECEIVE C-STORE-RQ "Secondary Capture Image Storage SOP Class"
+
+SEND C-STORE-RSP (
+(0x00000900, 0xA700)
+(0x00000902, "Refused: Out of Resources")
+)
+
+##
+## Release the Association
+##
+RECEIVE RELEASE-RQ
+
+SEND RELEASE-RP

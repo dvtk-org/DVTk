@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D799C70B-4AF2-4DCA-A0A0-5C68FBC6CCE2}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>DVTk Based Application.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>DICOM Compare</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DicomCompare</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>DCMCompare.MainThread</StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DVTK, Version=1.2.3.4, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DVTk_Library\DVTK.dll</HintPath>
+    </Reference>
+    <Reference Include="DvtkApplicationLayer, Version=1.2.3.4, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DVTk_Library\DvtkApplicationLayer.dll</HintPath>
+    </Reference>
+    <Reference Include="DvtkData, Version=1.2.3.4, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DVTk_Library\DvtkData.dll</HintPath>
+    </Reference>
+    <Reference Include="DvtkDicomUnicodeConversion, Version=2.3.0.5, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DVTk_Library\DvtkDicomUnicodeConversion.dll</HintPath>
+    </Reference>
+    <Reference Include="DvtkHighLevelInterface, Version=1.2.3.4, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DVTk_Library\DvtkHighLevelInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="DvtkHl7, Version=1.2.3.4, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DVTk_Library\DvtkHl7.dll</HintPath>
+    </Reference>
+    <Reference Include="DVTKManagedCodeAdapter, Version=1.2.3.4, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DVTk_Library\DVTKManagedCodeAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Source\AddAttribute.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\AddSeqItemAttr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\AssemblyInfo.cs" />
+    <Compile Include="Source\DCMCompare.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\ScriptSession.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Source\AddAttribute.resx">
+      <DependentUpon>AddAttribute.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\AddSeqItemAttr.resx">
+      <DependentUpon>AddSeqItemAttr.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\DCMCompare.resx">
+      <DependentUpon>DCMCompare.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DVTk Based Application.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>SET LIBRARY_DIRECTORY=$(ProjectDir)..\DVTk_Library\Releases\5_0_0_0\$(ConfigurationName)
+REM SET LIBRARY_DIRECTORY=$(ProjectDir)..\DVTk_Library\Builds\$(ConfigurationName)
+
+IF NOT EXIST "%25LIBRARY_DIRECTORY%25" (
+ECHO Unable to find library directory "%25LIBRARY_DIRECTORY%25"
+EXIT -1
+)
+
+del /Q /S "$(ProjectDir)DVTk_Library\*.*"
+
+IF NOT EXIST "$(ProjectDir)DVTk_Library" (
+mkdir "$(ProjectDir)DVTk_Library"
+)
+
+xcopy /Y /E "%25LIBRARY_DIRECTORY%25" "$(ProjectDir)DVTk_Library"
+</PreBuildEvent>
+    <PostBuildEvent>Echo Copying files to "$(TargetDir)".
+copy "$(ProjectDir)Dvtk_Library\DVT_RESULTS.xslt" "$(TargetDir)"
+copy "$(ProjectDir)Resources\Script.ses" "$(TargetDir)"
+copy "$(ProjectDir)Resources\FilteredAttributes.txt" "$(TargetDir)"
+copy "$(ProjectDir)Resources\Microsoft.mshtml.dll" "$(TargetDir)"
+
+IF NOT EXIST "$(TargetDir)Results" (
+mkdir "$(TargetDir)Results"
+)
+
+IF NOT EXIST "$(TargetDir)Definitions" (
+mkdir "$(TargetDir)Definitions"
+)
+
+IF NOT EXIST "$(TargetDir)CharacterSets" (
+mkdir "$(TargetDir)CharacterSets"
+)
+xcopy /Y "$(ProjectDir)DVTk_Library\CharacterSets" "$(TargetDir)CharacterSets"
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>

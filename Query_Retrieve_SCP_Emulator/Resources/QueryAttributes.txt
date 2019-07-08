@@ -1,0 +1,33 @@
+## This is the text file to add custom optional attributes in the information model.###
+## Add the attributes in the same format Ex. 0010,0010 ##
+## Add # before attribute to unselect a attribute from information model##
+## Add ## after the attribute to add comments##
+## One attribute per line##
+##Add the attribute between the corresponding entity and end of the entity##
+## Please do not change the format of the file##
+##Please do not add anything after end of document##
+
+------->Patient Information Entity<-------
+
+---------End of Patient---------
+____________________________________________________
+
+------->Study Information Entity<-------
+
+---------End of Study---------
+____________________________________________________
+
+------->Series Information Entity<-------
+
+---------End of Series---------
+____________________________________________________
+
+------->Instance information Entity<-------
+
+---------End of Instance---------
+____________________________________________________
+
+------->Patient-study Information Entity<-------
+
+---------End of Patient-study---------
+---------End of Document---------

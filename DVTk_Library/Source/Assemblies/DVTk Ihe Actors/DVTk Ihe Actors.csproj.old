@@ -1,0 +1,461 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DEDC169F-3FC4-4189-B9F0-169C8DEBC11A}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>DvtkIheActors</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\..\..\Resources\Strong Name Key\DVTk Key.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Dvtk.IheActors</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\DvtkIheActors.XML</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>bin\Release\DvtkIheActors.XML</DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Name>System.Web.Services</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\DVTk Common Data Format\DVTk Common Data Format.csproj">
+      <Name>DvtkCommonDataFormat</Name>
+      <Project>{38F9E2D9-BDA9-4D32-95FD-B779B03C32BD}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dvtk Comparator\DVTk Comparator.csproj">
+      <Name>DvtkComparator</Name>
+      <Project>{BE98BF56-A84E-43A4-847F-2AA3E551ADDD}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk Data\DVTk Data.csproj">
+      <Name>DvtkData</Name>
+      <Project>{7DF60C20-4034-49CC-9974-B8443A2BC192}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk Dicom Emulators\DVTk Dicom Emulators.csproj">
+      <Name>DvtkDicomEmulators</Name>
+      <Project>{397501B2-4AE8-4EDA-84BF-905417497B2F}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk High Level Interface\DVTk High Level Interface.csproj">
+      <Name>DvtkHighLevelInterface</Name>
+      <Project>{4B34D6B9-D185-4742-A204-70C490500754}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk Hl7\DVTk Hl7.csproj">
+      <Name>DvtkHl7</Name>
+      <Project>{6AA55771-980C-45ED-9CCB-59C83C25815B}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk Information Entity\DVTk Information Entity.csproj">
+      <Name>DvtkInformationEntity</Name>
+      <Project>{36BB69F0-A963-49D9-8626-E88A02FE0141}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk Managed Code Adapter\DVTk Managed Code Adapter.vcproj">
+      <Name>DVTKManagedCodeAdapter</Name>
+      <Project>{8E50A389-C478-4013-817D-8191C994B602}</Project>
+      <Package>{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTK\DVTK.csproj">
+      <Name>DVTK</Name>
+      <Project>{DBC39A1E-18CB-4809-81E0-47B1C899BBE0}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Actors\AcquisitionModalityActor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\ActorCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\ActorConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\ActorConfigCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\ActorsTransaction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\ActorsTransactionCondition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\ActorsTransactionLog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\AdtPatientRegistrationActor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\CommunicationBetweenActorsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Actors\DescriptionValueWritable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\DssOrderFillerActor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\EvidenceCreatorActor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\ImageArchiveActor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\ImageDisplayActor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\ImageManagerActor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\Interfaces\IAcquisitionModalityActor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\Interfaces\IAdtPatientRegistrationActor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\Interfaces\IDssOrderFillerActor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\Interfaces\IEvidenceCreatorActor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\Interfaces\IImageDisplayActor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\Interfaces\IImageManagerActor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\Interfaces\IOrderPlacerActor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\Interfaces\IPpsManagerActor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\OrderPlacerActor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\PpsManagerActor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\PrintComposerActor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Actors\PrintServerActor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\ActorConnection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\ActorConnectionCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\ActorName.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\ActorNameCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\ActorNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\BaseActor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\BaseClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\BaseMessage.cs" />
+    <Compile Include="Bases\BasePeerToPeerConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\BasePeerToPeerConfigCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\BaseServer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\BaseTransaction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\BaseTrigger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\ClientServerFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\CommonConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\CommunicationNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\IBaseDevice.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\IClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\IServer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\MapWorklistItemToStorageDirectory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\MessageAvailableEventArgs.cs" />
+    <Compile Include="Bases\RootedBaseDirectory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\Semaphore.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\ToActorNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\TransactionAvailableEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\TransactionNumber.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\TriggerCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\TriggerQueue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\FileSemaphore.cs" />
+    <Compile Include="Framework\StoreDataDirectory.cs" />
+    <Compile Include="Dicom\DicomClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\DicomConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\DicomMppsClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\DicomMppsServer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\DicomPrintClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\DicomPrintServer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\DicomQueryItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\DicomQueryItemCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\DicomQueryRetrieveClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\DicomQueryRetrieveServer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\DicomScu.cs" />
+    <Compile Include="Dicom\DicomServer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\DicomStorageClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\DicomStorageCommitClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\DicomStorageCommitmentScu.cs" />
+    <Compile Include="Dicom\DicomStorageCommitServer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\DicomStorageServer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\DicomTransaction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\DicomTrigger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\DicomTriggerItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\DicomTriggerItemCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\DicomWorklistClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\DicomWorklistServer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\IheFramework.cs" />
+    <Compile Include="Framework\IheFrameworkConfig.cs" />
+    <Compile Include="Framework\Interfaces\IIheFramework.cs" />
+    <Compile Include="Hl7\Hl7Client.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Hl7\Hl7Config.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Hl7\Hl7Mllp.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Hl7\Hl7QueryServer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Hl7\Hl7Server.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Hl7\Hl7ThreadForHl7Client.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Hl7\Hl7ThreadForHl7Server.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Hl7\Hl7Transaction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Hl7\Hl7Trigger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Hl7\WebService\NistMessageGeneration.cs">
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="Hl7\WebService\NistMessageValidation.cs">
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="Hl7\WebService\NistWebServiceClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Hl7\WebService\NistXmlResultsParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IntegrationProfiles\IntegrationProfile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterfaces\Console.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterfaces\Form.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterfaces\IActorUserInterface.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterfaces\IIheFrameworkUserInterface.cs" />
+    <Compile Include="UserInterfaces\UserControlActivityLogging.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Content Include="Actors\Communication left to right.gif" />
+    <EmbeddedResource Include="Actors\CommunicationBetweenActorsForm.resx">
+      <DependentUpon>CommunicationBetweenActorsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterfaces\UserControlActivityLogging.resx">
+      <DependentUpon>UserControlActivityLogging.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Resources\Strong Name Key\DVTk Key.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>SET DESTINATION_DIR=
+IF EXIST "$(ProjectDir)..\..\..\builds" SET DESTINATION_DIR=$(ProjectDir)..\..\..\builds\$(ConfigurationName)
+IF EXIST "$(ProjectDir)..\..\..\..\..\Releases" SET DESTINATION_DIR=$(ProjectDir)..\..\..\$(ConfigurationName)
+ECHO DESTINATION_DIR is %25DESTINATION_DIR%25
+
+Copy "$(TargetPath)" "%25DESTINATION_DIR%25
+IF EXIST "$(TargetDir)$(TargetName).pdb" Copy "$(TargetDir)$(TargetName).pdb" "%25DESTINATION_DIR%25
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>

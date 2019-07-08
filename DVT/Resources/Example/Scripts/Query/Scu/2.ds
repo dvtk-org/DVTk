@@ -1,0 +1,254 @@
+## Example DVT Dicom Script
+#
+#
+
+##
+## Test Script for FIND SOP Classes - SCU
+##
+
+SEND ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+	("Patient Root QR Information Model - FIND SOP Class",
+         "Implicit VR Little Endian")
+)
+
+RECEIVE ASSOCIATE-AC (
+        PRESENTATION-CONTEXT-ITEMS
+	("Patient Root QR Information Model - FIND SOP Class",
+         0,
+         "Implicit VR Little Endian")
+)
+
+
+SEND C-FIND-RQ "Patient Root QR Information Model - FIND SOP Class" (
+(0x00000002, "Patient Root QR Information Model - FIND SOP Class")
+
+(0x00080052, "PATIENT")
+(0x00100010, "O*")
+(0x00100020, "")
+)
+
+RECEIVE C-FIND-RSP "Patient Root QR Information Model - FIND SOP Class" (
+(0x00000002, "Patient Root QR Information Model - FIND SOP Class")
+(0x00000900, 0xFF00)
+
+(0x00080052, "PATIENT")
+(0x00080054, "DVT")
+(0x00100010, "One^Secondary Capture Image")
+(0x00100020, "SC-I1")
+)
+
+RECEIVE C-FIND-RSP (
+(0x00000900, 0x0000)
+)
+
+
+SEND C-FIND-RQ "Patient Root QR Information Model - FIND SOP Class" (
+(0x00000002, "Patient Root QR Information Model - FIND SOP Class")
+
+(0x00080052, "STUDY")
+(0x00100020, "SC-I1")
+(0x0020000D, "")
+(0x00200010, "")
+)
+
+RECEIVE C-FIND-RSP "Patient Root QR Information Model - FIND SOP Class" (
+(0x00000002, "Patient Root QR Information Model - FIND SOP Class")
+(0x00000900, 0xFF00)
+
+(0x00080052, "STUDY")
+(0x00080054, "DVT")
+(0x00100020, "SC-I1")
+(0x0020000D, "LABEL:StudyInstanceUid1")
+(0x00200010, "1")
+)
+
+RECEIVE C-FIND-RSP (
+(0x00000900, 0x0000)
+)
+
+
+SEND C-FIND-RQ "Patient Root QR Information Model - FIND SOP Class" (
+(0x00000002, "Patient Root QR Information Model - FIND SOP Class")
+
+(0x00080052, "SERIES")
+(0x00100020, "SC-I1")
+(0x0020000D, "StudyInstanceUid1")
+(0x0020000E, "")
+(0x00080060, "")
+(0x00200011, "")
+)
+
+RECEIVE C-FIND-RSP "Patient Root QR Information Model - FIND SOP Class" (
+(0x00000002, "Patient Root QR Information Model - FIND SOP Class")
+(0x00000900, 0xFF00)
+
+(0x00080052, "SERIES")
+(0x00080054, "DVT")
+(0x00100020, "SC-I1")
+(0x0020000D, "StudyInstanceUid1")
+(0x0020000E, "LABEL:SeriesInstanceUid1")
+(0x00080060, "OT")
+(0x00200011, "1")
+)
+
+RECEIVE C-FIND-RSP "Patient Root QR Information Model - FIND SOP Class" (
+(0x00000002, "Patient Root QR Information Model - FIND SOP Class")
+(0x00000900, 0xFF00)
+
+(0x00080052, "SERIES")
+(0x00080054, "DVT")
+(0x00100020, "SC-I1")
+(0x0020000D, "StudyInstanceUid1")
+(0x0020000E, "LABEL:SeriesInstanceUid2")
+(0x00080060, "OT")
+(0x00200011, "2")
+)
+
+RECEIVE C-FIND-RSP "Patient Root QR Information Model - FIND SOP Class" (
+(0x00000002, "Patient Root QR Information Model - FIND SOP Class")
+(0x00000900, 0xFF00)
+
+(0x00080052, "SERIES")
+(0x00080054, "DVT")
+(0x00100020, "SC-I1")
+(0x0020000D, "StudyInstanceUid1")
+(0x0020000E, "LABEL:SeriesInstanceUid3")
+(0x00080060, "OT")
+(0x00200011, "3")
+)
+
+RECEIVE C-FIND-RSP (
+(0x00000900, 0x0000)
+)
+
+
+SEND C-FIND-RQ "Patient Root QR Information Model - FIND SOP Class" (
+(0x00000002, "Patient Root QR Information Model - FIND SOP Class")
+
+(0x00080052, "IMAGE")
+(0x00100020, "SC-I1")
+(0x0020000D, "StudyInstanceUid1")
+(0x0020000E, "SeriesInstanceUid1")
+(0x00080018, "")
+(0x00200013, "")
+)
+
+RECEIVE C-FIND-RSP "Patient Root QR Information Model - FIND SOP Class" (
+(0x00000002, "Patient Root QR Information Model - FIND SOP Class")
+(0x00000900, 0xFF00)
+
+(0x00080052, "IMAGE")
+(0x00080054, "DVT")
+(0x00100020, "SC-I1")
+(0x0020000D, "StudyInstanceUid1")
+(0x0020000E, "SeriesInstanceUid1")
+(0x00080018, "LABEL:ImageInstanceUid1")
+(0x00200013, "1")
+)
+
+RECEIVE C-FIND-RSP (
+(0x00000900, 0x0000)
+)
+
+
+SEND C-FIND-RQ "Patient Root QR Information Model - FIND SOP Class" (
+(0x00000002, "Patient Root QR Information Model - FIND SOP Class")
+
+(0x00080052, "IMAGE")
+(0x00100020, "SC-I1")
+(0x0020000D, "StudyInstanceUid1")
+(0x0020000E, "SeriesInstanceUid2")
+(0x00080018, "")
+(0x00200013, "")
+)
+
+RECEIVE C-FIND-RSP "Patient Root QR Information Model - FIND SOP Class" (
+(0x00000002, "Patient Root QR Information Model - FIND SOP Class")
+(0x00000900, 0xFF00)
+
+(0x00080052, "IMAGE")
+(0x00080054, "DVT")
+(0x00100020, "SC-I1")
+(0x0020000D, "StudyInstanceUid1")
+(0x0020000E, "SeriesInstanceUid2")
+(0x00080018, "LABEL:ImageInstanceUid1")
+(0x00200013, "1")
+)
+
+RECEIVE C-FIND-RSP "Patient Root QR Information Model - FIND SOP Class" (
+(0x00000002, "Patient Root QR Information Model - FIND SOP Class")
+(0x00000900, 0xFF00)
+
+(0x00080052, "IMAGE")
+(0x00080054, "DVT")
+(0x00100020, "SC-I1")
+(0x0020000D, "StudyInstanceUid1")
+(0x0020000E, "SeriesInstanceUid2")
+(0x00080018, "LABEL:ImageInstanceUid2")
+(0x00200013, "2")
+)
+
+RECEIVE C-FIND-RSP (
+(0x00000900, 0x0000)
+)
+
+SEND C-FIND-RQ "Patient Root QR Information Model - FIND SOP Class" (
+(0x00000002, "Patient Root QR Information Model - FIND SOP Class")
+
+(0x00080052, "IMAGE")
+(0x00100020, "SC-I1")
+(0x0020000D, "StudyInstanceUid1")
+(0x0020000E, "SeriesInstanceUid3")
+(0x00080018, "")
+(0x00200013, "")
+)
+
+RECEIVE C-FIND-RSP "Patient Root QR Information Model - FIND SOP Class" (
+(0x00000002, "Patient Root QR Information Model - FIND SOP Class")
+(0x00000900, 0xFF00)
+
+(0x00080052, "IMAGE")
+(0x00080054, "DVT")
+(0x00100020, "SC-I1")
+(0x0020000D, "StudyInstanceUid1")
+(0x0020000E, "SeriesInstanceUid3")
+(0x00080018, "LABEL:ImageInstanceUid1")
+(0x00200013, "1")
+)
+
+RECEIVE C-FIND-RSP "Patient Root QR Information Model - FIND SOP Class" (
+(0x00000002, "Patient Root QR Information Model - FIND SOP Class")
+(0x00000900, 0xFF00)
+
+(0x00080052, "IMAGE")
+(0x00080054, "DVT")
+(0x00100020, "SC-I1")
+(0x0020000D, "StudyInstanceUid1")
+(0x0020000E, "SeriesInstanceUid3")
+(0x00080018, "LABEL:ImageInstanceUid2")
+(0x00200013, "2")
+)
+
+RECEIVE C-FIND-RSP "Patient Root QR Information Model - FIND SOP Class" (
+(0x00000002, "Patient Root QR Information Model - FIND SOP Class")
+(0x00000900, 0xFF00)
+
+(0x00080052, "IMAGE")
+(0x00080054, "DVT")
+(0x00100020, "SC-I1")
+(0x0020000D, "StudyInstanceUid1")
+(0x0020000E, "SeriesInstanceUid3")
+(0x00080018, "LABEL:ImageInstanceUid3")
+(0x00200013, "3")
+)
+
+RECEIVE C-FIND-RSP (
+(0x00000900, 0x0000)
+)
+
+
+SEND RELEASE-RQ
+
+RECEIVE RELEASE-RP
+

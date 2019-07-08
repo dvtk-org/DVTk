@@ -1,0 +1,815 @@
+==========================================
+= DVT 2.4.4, based on DVTk library 3.0.2 =
+==========================================
+
+
+
+=
+= Solved problems for 2.4.4
+=
+
+<------------------------------------------------------------------------------>
+
+Date 01-08-2007, ticket 676
+
+Description:
+------------
+Solved following problem:
+Ignoring error in this result file leads to ignore this error in all results.
+
+<------------------------------------------------------------------------------>
+
+Date 06-09-2007, ticket 674
+
+Description:
+------------
+Solved following problem:
+The report always shows failed even when errors ignored
+
+<------------------------------------------------------------------------------>
+
+Date 06-09-2007, ticket 675
+
+Description:
+------------
+Solved following problem:
+"Ignore in this result file" doesn't work.
+
+<------------------------------------------------------------------------------>
+
+Date 12-09-2007, ticket 709
+
+Description:
+------------
+Solved following problem:
+Exception during Select All SOP Classes.
+
+<------------------------------------------------------------------------------>
+
+Date 14-09-2007, ticket 723
+
+Description:
+------------
+Solved following problem:
+Manual added errors are not included in report.
+
+<------------------------------------------------------------------------------>
+
+Date 14-01-2008, ticket 785
+
+Description:
+------------
+Solved following problem:
+Results Manager Issue Details are not forwarded to report.
+
+<------------------------------------------------------------------------------>
+
+Date 14-01-2008, ticket 783
+
+Description:
+------------
+Solved following problem:
+Results Manager looses saved data.
+
+<------------------------------------------------------------------------------>
+
+Date 22-05-2008, ticket 678
+
+Description:
+------------
+Fixed problem with find functionality.
+
+<------------------------------------------------------------------------------>
+
+Date 05-06-2008, ticket 934
+
+Description:
+------------
+Fixed PR 934. The temporary array were overflowing in scripting library. 
+.NET2.0 compiler is more stricter than .NET1.1 so it was throwing runtime errors 
+for all unusal values as set by test script. 
+
+<------------------------------------------------------------------------------>
+
+Date 05-06-2008 Release DVT Alpha version 2.4.0.1
+
+Description:
+------------
+1. Added merge module Microsoft_VC80_CRT_x86.msm for patch VS2005 SP2.
+2. Added 2 files 'DVTk-Logo-Transparant.png' & 'dvtStartScreen.html' for DVT
+startup screen as part of implementation of CR929.
+
+<------------------------------------------------------------------------------>
+
+Date 15-07-2008, ticket 869
+
+Description:
+------------
+Improved the exception handling and now displaying proper messages to user for 
+errors in session files. 
+
+<------------------------------------------------------------------------------>
+
+Date 22-07-2008, ticket 515
+
+Description:
+------------
+Provided user with a warning message if user tries to enter the value btw (1 and 512)
+for MaxSizePDU in both case of DVT and SUT. 
+Please note zero is allowed.
+
+<------------------------------------------------------------------------------>
+
+Date 22-07-2008, ticket 284
+
+Description:
+------------
+The value changed event is handled properly for Numeric Up Down control so if user
+moves the cursor over Numeric control it's not causing any changes in session.
+
+<------------------------------------------------------------------------------>
+
+Date 22-07-2008, ticket 512
+
+Description:
+------------
+Improved DVT closing mechanism using a new boolean which stores user response 
+from the dialog displayed to user during session closure.
+
+<------------------------------------------------------------------------------>
+
+Date 23-07-2008 Fixed PR 915
+
+Description:
+------------
+Re-setting the presentation counter for a new association everytime. So counter 
+will start from 1 everytime for new association in same application. 
+
+<------------------------------------------------------------------------------>
+
+Date 31-07-2008, ticket 479
+
+Description:
+------------
+MinSize of the Splitter was more than start location of splitter so it was behaving 
+strangely. Fixed the MinSize equal to Location and it's working properly.
+
+<------------------------------------------------------------------------------>
+Date 04-08-2008, ticket 781
+
+Description:
+------------
+A flag added to control the text displayed . The design is changed to display 
+password character as '*' and dialog displayed at the center. 
+
+<------------------------------------------------------------------------------>
+Date 04-08-2008, ticket 782
+
+Description:
+------------
+A check to get password if security is enabled is added. solved in UserControlSession 
+v-1.1.2.29 and ScriptSession1.1.2.27. 
+
+<------------------------------------------------------------------------------>
+
+Date 20-08-2008, ticket 401
+
+Description:
+------------
+Solved following problem:
+If the result path contains a # DVT will only show raw XML data without applying the xml style sheet.
+Solved this by not allowing the # character in the result directory path.
+
+<------------------------------------------------------------------------------>
+
+Date 12-09-2008, ticket 1003
+
+Description:
+------------
+Corrected the printer status in DVT UI as NORMAL, WARNING and FAILURE. It was 
+ERROR instead of FAILURE so string comparison was failing during selection of Printer 
+status in DVT UI.
+
+<------------------------------------------------------------------------------>
+
+Date 19-09-2008, ticket 939
+
+Description:
+------------
+Solved the following problem:
+When the web browser moves to the previous screen the selection on the left does not change to the 
+previous page. 
+
+<------------------------------------------------------------------------------>
+Date 22-09-2008, ticket 1050
+
+Description:
+------------
+Solved the folowing problem:
+Navigation in result files is not working with Navigate button on tool bar.
+
+<------------------------------------------------------------------------------>
+
+Date 26-09-2008, ticket 1052
+
+Description:
+------------
+Validation of the new password entered is done and the new password is stored.
+
+<------------------------------------------------------------------------------>
+
+Date 26-09-2008, ticket 1051
+
+Description:
+------------
+The superscripts were moving to the previous/next page on back/forward respectively 
+and moving back to the current page. This looping back is removed, navigation button 
+on the tool bar move the page to previous or next.
+
+<------------------------------------------------------------------------------>
+
+Date 24-11-2008, ticket 1096
+
+Description:
+------------
+
+Solved the problem that no password is asked for, for a password protected certificate.
+Solved this in the following way:
+When a .pfx file for DVT private credentials with password is imported a pop up is 
+displayed to enter the password. Untill the valid password is not entered the .pfx file 
+will not be imported.
+
+<------------------------------------------------------------------------------>
+
+Date 19-12-2008, ticket 1106
+
+Description:
+------------
+Removed the dependency of MSXML2 by using System.Xml .NET library.
+
+<------------------------------------------------------------------------------>
+
+Date 12-02-2009, ticket 1133
+
+Description:
+------------
+Solved the following problem:
+DVT allows adding a session without opening a project.
+
+Solved this as follows:
+The context menu options for Adding existing/new sessions will available only when project is created.
+
+<------------------------------------------------------------------------------>
+
+Date 13-02-2009, ticket 1135
+
+Description:
+------------
+Fixed the bug for setting secure socket enabled boolean.
+
+<------------------------------------------------------------------------------>
+
+Date 06-02-2009, ticket 1128
+
+Description:
+------------
+Solved the following problem:
+Not able to save changes after adding existing or new session to project.
+
+<------------------------------------------------------------------------------>
+
+Date 19-02-2009, ticket 939
+
+Description:
+------------
+Solved the following problem:
+DVT does not show the HTML description in some cases.
+
+<------------------------------------------------------------------------------>
+Date 24-02-2009, ticket 1096
+
+Description:
+------------
+Improved validation and fault handling of certificates.
+
+<------------------------------------------------------------------------------>
+
+Date 16-03-2009, ticket 1158
+
+Description:
+------------
+Corrected the style sheet used in report generation. 
+
+<------------------------------------------------------------------------------>
+
+Date 17-03-2009, ticket 1163,1165
+
+Description:
+------------
+Corrected the style sheet for anchor and bold font. 
+
+<------------------------------------------------------------------------------>
+
+Date 17-03-2009, ticket 1164
+
+Description:
+------------
+Corrected typo in association results text. 
+
+<------------------------------------------------------------------------------>
+
+Date 18-03-2009, ticket 1168
+
+Description:
+------------
+Improved the result manager and report generation functionality by skipping
+corrupt XML files and display the file problem to the user.
+
+<------------------------------------------------------------------------------>
+
+
+
+=
+= Implemented change requests for 2.4.4
+=
+
+<------------------------------------------------------------------------------>
+
+Date 02-06-2008, ticket 929
+
+Description:
+------------
+Implemented CR 929. Now DVT startup screen will be a HTML page containing DVTk logo."
+
+<------------------------------------------------------------------------------>
+
+Date 14-11-2008, ticket CR 634
+
+Description:
+------------
+Created possibility for determining which dll's are loaded by the VB interpreter by
+using an new .xml configuration file.
+   
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+==========================================
+= DVT 2.4.6, based on DVTk library 3.0.2 =
+==========================================
+
+
+
+=
+= Solved problems for 2.4.6
+=
+
+<------------------------------------------------------------------------------>
+
+Date 12-5-2009, ticket 1178
+
+Description:
+------------
+UI navigation problem was present with scripts with same name and html description.
+This has been solved by limiting the navigation history of the web control used.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+==========================================
+= DVT 2.5.0, based on DVTk library 3.0.4 =
+==========================================
+No changes in the application code compared to DVT 2.4.6. The only difference is that
+DVT 2.4.6 is based on DVTk Library 3.0.2 and DVT 2.5.0 is based on DVTk Library 3.0.4
+because of the need to support the new UPS SOP classes.
+
+
+
+
+
+
+==========================================
+= DVT 2.5.1, based on DVTk library 3.0.7 =
+==========================================
+No changes in the application code compared to DVT 2.5.0. The only difference is that
+DVT 2.5.0 is based on DVTk Library 3.0.4 and DVT 2.5.1 is based on DVTk Library 3.0.7
+
+
+
+
+
+
+==========================================
+= DVT 2.5.2, based on DVTk library 3.0.8 =
+==========================================
+No changes in the application code compared to DVT 2.5.1. The only difference is that
+DVT 2.5.1 is based on DVTk Library 3.0.7 and DVT 2.5.2 is based on DVTk Library 3.0.8
+
+
+
+
+
+
+==========================================
+= DVT 2.5.3, based on DVTk library 3.0.9 =
+==========================================
+No changes in the application code compared to DVT 2.5.2. The only difference is that
+DVT 2.5.2 is based on DVTk Library 3.0.8 and DVT 2.5.3 is based on DVTk Library 3.0.9
+
+
+
+
+
+
+===========================================
+= DVT 2.5.4, based on DVTk library 3.0.11 =
+===========================================
+
+
+
+=
+= Solved problems for 2.5.4
+=
+
+<------------------------------------------------------------------------------>
+
+Date 29-7-2009, ticket 1284
+
+Description:
+------------
+Display condition text in summary results option in UI now implemented correctly.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+===========================================
+= DVT 2.5.5, based on DVTk library 3.0.12 =
+===========================================
+No changes in the application code compared to DVT 2.5.4. The only difference is that
+DVT 2.5.4 is based on DVTk Library 3.0.11 and DVT 2.5.5 is based on DVTk Library 3.0.12
+
+
+
+
+
+
+===========================================
+= DVT 2.5.6, based on DVTk library 3.0.14 =
+===========================================
+No changes in the application code compared to DVT 2.5.5. The only difference is that
+DVT 2.5.5 is based on DVTk Library 3.0.12 and DVT 2.5.6 is based on DVTk Library 3.0.14
+
+
+
+
+
+
+===========================================
+= DVT 2.5.6, based on DVTk library 3.0.19 =
+===========================================
+
+=
+= Solved problems for 2.5.6
+=
+
+
+<------------------------------------------------------------------------------>
+
+Date 19-11-2009, ticket 1201
+
+Description:
+-------------
+
+Solved the problem of Validation results being reset after toggling tabs.
+
+<------------------------------------------------------------------------------>
+
+Date 19-11-2009, ticket 1278 CR 1278
+
+Description:
+-------------
+
+Implemented the functionality to set/change the data directory by adding a new row in the Session Info Tab.
+
+<------------------------------------------------------------------------------>
+
+Date 19-11-2009, ticket 1148 CR 1148
+
+Description:
+-------------
+
+Implemented the mechanism to validate a media directory.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+============================================
+= DVT 2.6.1., based on DVTk library 3.1.1. =
+============================================
+No changes in the application code compared to DVT 2.5.6. The only difference is that
+DVT 2.5.6 is based on DVTk Library 3.0.19 and DVT 2.6.1 is based on DVTk Library 3.1.1.
+
+
+
+
+
+
+============================================
+= DVT 2.6.2., based on DVTk library 3.1.2. =
+============================================
+No changes in the application code compared to DVT 2.6.1. The only difference is that
+DVT 2.1.1 is based on DVTk Library 3.1.1 and DVT 2.6.2 is based on DVTk Library 3.1.2.
+
+
+
+
+
+
+==========================================
+= DVT 2.6.4, based on DVTk library 3.1.4 =
+==========================================
+
+
+
+=
+= Solved problems for 2.6.4
+=
+
+<------------------------------------------------------------------------------>
+
+Date 21-06-2010, ticket 1412 
+
+Description:
+-------------
+
+Fix for the ".dcm" appending issue in windows7
+
+<------------------------------------------------------------------------------>
+
+Date 06 July 2010, ticket 1268
+
+Description:
+------------
+Fix has made to hide the visibility of AllDimseCommands.def file to the user.
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+
+======================================
+= DVT 2.6.5, based on DVTk library 3.1.6 =
+======================================
+
+
+
+=
+= Solved problems for 2.6.5.
+=
+
+<------------------------------------------------------------------------------>
+
+Date , ticket 
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+======================================
+= DVT 2.6.6., based on DVTk library 3.1.9. =
+======================================
+
+
+
+=
+= Solved problems for ...
+=
+
+<------------------------------------------------------------------------------>
+
+Date , ticket 
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+
+
+
+======================================
+= DVT 2.6.7., based on DVTk library 3.2.0. =
+======================================
+
+
+
+=
+= Solved problems for ...
+=
+
+<------------------------------------------------------------------------------>
+
+Date , ticket 
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+
+===========================================
+= DVT 2.6.8, based on DVTk library 3.2.4. =
+===========================================
+
+
+
+=
+= Solved problems for 2.6.8
+=
+
+<------------------------------------------------------------------------------>
+
+Date Apr 04,2012, ticket 1586,1570
+
+Description:
+------------
+
+<------------------------------------------------------------------------------>
+
+
+
+
+
+
+==========================================
+= DVT 5.0.0, based on DVTk library 5.0.0 =
+==========================================
+
+
+
+=
+= Implemented change requests for 5.0.0
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2017-05-16 
+
+Description:
+------------
+- Application compiled with Visual Studio 2010 (previously Visual Studio 2005)
+- Application makes use of .NET Framework 4 (previously .NET Framework 2.0)
+- New application icon
+
+<------------------------------------------------------------------------------>
+
+
+
+==========================================
+= DVT 5.0.1, based on DVTk library 5.0.1 =
+==========================================
+
+
+
+=
+= Implemented change requests for 5.0.1
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2017-06-14
+
+Description:
+------------
+- Based on DVTk Library v5.0.1 which provides an option to be able to handle private attributes if they are defined in a DICOM definition file.
+- New property in session files: USE-PRIVATE-MAPPING. If set to false, private attributes that are defined in DICOM definition files are handled like normal attributes.
+
+<------------------------------------------------------------------------------>
+
+
+
+==========================================
+= DVT 5.0.2, based on DVTk library 5.0.1 =
+==========================================
+
+
+
+=
+= Implemented change requests for 5.0.2
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2017-06-30
+
+Description:
+------------
+- Performance improvement: Now writing text to Activity Log takes much less time.
+
+<------------------------------------------------------------------------------>
+
+
+
+==========================================
+= DVT 5.0.3, based on DVTk library 5.0.2 =
+==========================================
+
+
+
+=
+= Implemented change requests for 5.0.3
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2018-03-12
+
+Description:
+------------
+- Link to downloading DICOM definition files in the installer is updated.
+
+<------------------------------------------------------------------------------>
+
+==========================================
+= DVT 5.1.0, based on DVTk library 5.1.0 =
+==========================================
+
+
+
+=
+= Implemented support for the following transfer syntaxes:
+= MPEG2_HIGH_PROFILE_LEVEL                     "1.2.840.10008.1.2.4.101"
+= MPEG4_AVC_H_264_High_Profile41               "1.2.840.10008.1.2.4.102"
+= MPEG4_AVC_H_264_BD_compatible_High_Profile41 "1.2.840.10008.1.2.4.103"
+= MPEG4_AVC_H_264_High_Profile42For2D_Video    "1.2.840.10008.1.2.4.104"
+= MPEG4_AVC_H_264_High_Profile42For3D_Video    "1.2.840.10008.1.2.4.105"
+= MPEG4_AVC_H_264_Stereo_High_Profile42        "1.2.840.10008.1.2.4.106"
+= HEVC_H265_Main_Profile51                     "1.2.840.10008.1.2.4.107"
+= HEVC_H265_Main_10_Profile51                  "1.2.840.10008.1.2.4.108"
+= RFC_2557_MIME_ENCAPSULATION                  "1.2.840.10008.1.2.6.1"
+= XML_Encoding                                 "1.2.840.10008.1.2.6.2"
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2018-09-13
+
+Description:
+------------
+- The following transfer syntaxes are now available in the Dvtk library
+- MPEG2_HIGH_PROFILE_LEVEL                     "1.2.840.10008.1.2.4.101"
+- MPEG4_AVC_H_264_High_Profile41               "1.2.840.10008.1.2.4.102"
+- MPEG4_AVC_H_264_BD_compatible_High_Profile41 "1.2.840.10008.1.2.4.103"
+- MPEG4_AVC_H_264_High_Profile42For2D_Video    "1.2.840.10008.1.2.4.104"
+- MPEG4_AVC_H_264_High_Profile42For3D_Video    "1.2.840.10008.1.2.4.105"
+- MPEG4_AVC_H_264_Stereo_High_Profile42        "1.2.840.10008.1.2.4.106"
+- HEVC_H265_Main_Profile51                     "1.2.840.10008.1.2.4.107"
+- HEVC_H265_Main_10_Profile51                  "1.2.840.10008.1.2.4.108"
+- RFC_2557_MIME_ENCAPSULATION                  "1.2.840.10008.1.2.6.1"
+- XML_Encoding                                 "1.2.840.10008.1.2.6.2"
+
+<------------------------------------------------------------------------------>
+
+
+==========================================
+= DVT 5.1.1, based on DVTk library 5.1.1 =
+==========================================
+
+
+
+=
+= Implemented change requests for 5.1.1
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2019-03-12
+
+Description:
+------------
+- Added support for VR OV (Other Very Long)
+
+
+<------------------------------------------------------------------------------>

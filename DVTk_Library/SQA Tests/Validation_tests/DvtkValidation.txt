@@ -1,0 +1,101 @@
+' This file contains the validation scripts for Dvtk.
+'
+' When using one script (.dss or .ds), use the following 8 items on one line, using the '|' as a separator:
+' - Full Session file name
+' - Script file name
+' - expectedNrOfGeneralErrors
+' - expectedNrOfGeneralWarnings
+' - expectedNrOfUserErrors
+' - expectedNrOfUserWarnings
+' - expectedNrOfValidationErrors
+' - expectedNrOfValidationWarnings
+'
+' When using a script pair (.dss or .ds), use the following 16 items on one line, using the '|' as a separator:
+' - Full Session file name for script 1
+' - Script file name for script 1
+' - expectedNrOfGeneralErrors for script 1
+' - expectedNrOfGeneralWarnings for script 1
+' - expectedNrOfUserErrors for script 1
+' - expectedNrOfUserWarnings for script 1
+' - expectedNrOfValidationErrors for script 1
+' - expectedNrOfValidationWarnings for script 1
+' - Full Session file name for script 2
+' - Script file name for script 2
+' - expectedNrOfGeneralErrors for script 2
+' - expectedNrOfGeneralWarnings for script 2
+' - expectedNrOfUserErrors for script 2
+' - expectedNrOfUserWarnings for script 2
+' - expectedNrOfValidationErrors for script 2
+' - expectedNrOfValidationWarnings for script 2
+'
+'
+..\Validation_tests\validation\test_validation.ses|val_test_vr_fail.ds|0|0|0|0|94|2
+..\Validation_tests\validation\test_validation.ses|val_test_vr_pass.ds|0|0|0|0|2|0
+..\Validation_tests\validation\test_validation.ses|val_test_vm_fail.ds|0|0|0|0|12|0
+..\Validation_tests\validation\test_validation.ses|val_test_vm_pass.ds|0|0|0|0|0|0
+..\Validation_tests\validation\test_validation.ses|val_test_sq_nesting.ds|0|0|0|0|14|0
+..\Validation_tests\validation\test_validation.ses|val_test_ref.ds|0|0|0|0|74|0
+..\Validation_tests\validation\test_validation.ses|val_test_ranges.ds|0|0|0|0|22|23
+..\Validation_tests\validation\test_validation.ses|val_test_presence.ds|0|0|0|0|39|0
+..\Validation_tests\validation\test_validation.ses|val_test_conditions.ds|0|0|0|0|25|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_1_scp.ds|0|0|0|0|0|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_1_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_2_scp.ds|0|0|0|0|0|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_2_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_3_scp.ds|0|0|0|0|0|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_3_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_4_scp.ds|0|0|0|0|1|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_4_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_5_scp.ds|0|0|0|0|1|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_5_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_6_scp.ds|0|0|0|0|1|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_6_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_7_scp.ds|0|0|0|0|1|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_7_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_8_scp.ds|0|0|0|0|1|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_8_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_9_scp.ds|0|0|0|0|1|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_9_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_10_scp.ds|0|0|0|0|1|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_10_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_11_scp.ds|0|0|0|0|1|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_11_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_12_scp.ds|0|0|0|0|1|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_12_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_13_scp.ds|0|0|0|0|1|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_13_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_14_scp.ds|0|0|0|0|1|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_14_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_15_scp.ds|0|0|0|0|1|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_15_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_16_scp.ds|0|0|0|0|1|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_16_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_17_scp.ds|0|0|0|0|1|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_17_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_18_scp.ds|0|0|0|0|1|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_18_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_19_scp.ds|0|0|0|0|1|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_19_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_20_scp.ds|0|0|0|0|1|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_20_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_21_scp.ds|0|0|0|0|1|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_21_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_22_scp.ds|0|0|0|0|1|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_22_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_23_scp.ds|0|0|0|0|1|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_23_scu.ds|0|0|0|0|0|0
+..\Validation_tests\transfersyntax\scp\ts_SCP.ses|ts_24_scp.ds|0|0|0|0|1|0|..\Validation_tests\transfersyntax\scu\ts_SCU.ses|ts_24_scu.ds|0|0|0|0|0|0
+..\Validation_tests\scripting\test_DICOMScriptLanguage.ses|script_test_warehouse_commands4.ds|0|0|0|0|0|0
+..\Validation_tests\scripting\test_DICOMScriptLanguage.ses|script_test_warehouse_commands3.ds|1|0|0|0|0|0
+..\Validation_tests\scripting\test_DICOMScriptLanguage.ses|script_test_warehouse_commands2.ds|2|0|0|0|0|0
+..\Validation_tests\scripting\test_DICOMScriptLanguage.ses|script_test_warehouse_commands1.ds|1|0|0|0|0|0
+..\Validation_tests\scripting\scp\test_DICOMScriptLanguage_scp.ses|script_test_delay.ds|0|0|0|0|0|0|..\Validation_tests\scripting\scu\test_DICOMScriptLanguage_scu.ses|script_test_delay.ds|0|0|0|0|0|0
+..\Validation_tests\scripting\scp\test_DICOMScriptLanguage_scp.ses|script_test_import.ds|0|0|0|0|0|0|..\Validation_tests\scripting\scu\test_DICOMScriptLanguage_scu.ses|script_test_export.ds|0|0|0|0|0|0
+..\Validation_tests\scripting\scp\test_DICOMScriptLanguage_scp.ses|script_test_receive.ds|0|0|0|0|0|0|..\Validation_tests\scripting\scu\test_DICOMScriptLanguage_scu.ses|script_test_send.ds|0|0|0|0|0|0
+..\Validation_tests\scripting\scp\test_DICOMScriptLanguage_scp.ses|script_test_populate.ds|0|0|0|0|0|0|..\Validation_tests\scripting\scu\test_DICOMScriptLanguage_scu.ses|script_test_populate.ds|0|0|0|0|0|0
+'..\Validation_tests\scripting\scp\test_DICOMScriptLanguage_scp.ses|script_test_system.ds|0|0|0|0|1|0|..\Validation_tests\scripting\scu\test_DICOMScriptLanguage_scu.ses|script_test_system.ds|0|0|0|0|0|1
+..\Validation_tests\media\media.ses|media_create_dicomdir.ds|0|0|0|0|0|0
+..\Validation_tests\media\media.ses|media_test_read.ds|0|0|0|0|0|0
+' not the ..\Validation_tests\extendedchar\storage tests
+..\Validation_tests\extendedchar\worklist\SCU_MWL.ses|SCU.ds|0|0|0|0|4|2|..\Validation_tests\extendedchar\worklist\SCP_MWL.ses|SCP_MWL.dss|0|0|0|0|0|0
+..\Validation_tests\acse\scp\acse_scp.ses|acse_1_scp.ds|0|0|0|0|0|0|..\Validation_tests\acse\scu\acse_scu.ses|acse_1_scu.ds|0|0|0|0|0|0
+..\Validation_tests\acse\scp\acse_scp.ses|acse_2_scp.ds|0|0|0|0|0|0|..\Validation_tests\acse\scu\acse_scu.ses|acse_2_scu.ds|0|0|0|0|0|0
+..\Validation_tests\acse\scp\acse_scp.ses|acse_3_scp.ds|0|0|0|0|13|10|..\Validation_tests\acse\scu\acse_scu.ses|acse_3_scu.ds|0|0|0|0|18|0
+..\Validation_tests\acse\scp\acse_scp.ses|acse_4_scp.ds|0|0|0|0|2|0|..\Validation_tests\acse\scu\acse_scu.ses|acse_4_scu.ds|0|0|0|0|2|0
+..\Validation_tests\acse\scp\acse_scp.ses|acse_5_scp.ds|1|0|0|0|25|1|..\Validation_tests\acse\scu\acse_scu.ses|acse_5_scu.ds|0|0|0|0|3|3
+..\Validation_tests\acse\scp\acse_scp.ses|acse_6_scp.ds|1|0|0|0|10|0|..\Validation_tests\acse\scu\acse_scu.ses|acse_6_scu.ds|0|0|0|0|3|1
+..\Validation_tests\acse\scp\acse_scp.ses|acse_7_scp.ds|0|0|0|0|2|0|..\Validation_tests\acse\scu\acse_scu.ses|acse_7_scu.ds|0|0|0|0|21|1
+..\Validation_tests\acse\scp\acse_scp.ses|acse_8_scp.ds|0|0|0|0|2|0|..\Validation_tests\acse\scu\acse_scu.ses|acse_8_scu.ds|0|0|0|0|9|0
+..\Validation_tests\acse\scp\acse_scp.ses|acse_9_scp.ds|0|0|0|0|0|0|..\Validation_tests\acse\scu\acse_scu.ses|acse_9_scu.ds|0|0|0|0|0|0
+..\Validation_tests\acse\scp\acse_scp.ses|acse_10_scp.ds|0|0|0|0|13|10|..\Validation_tests\acse\scu\acse_scu.ses|acse_10_scu.ds|0|0|0|0|3|0
+..\Validation_tests\acse\scp\acse_scp.ses|acse_11_scp.ds|0|0|0|0|2|0|..\Validation_tests\acse\scu\acse_scu.ses|acse_11_scu.ds|0|0|0|0|0|0
+..\Validation_tests\acse\scp\acse_scp.ses|acse_12_scp.ds|0|0|0|0|2|0|..\Validation_tests\acse\scu\acse_scu.ses|acse_12_scu.ds|0|0|0|0|6|0
+..\Validation_tests\acse\scp\acse_scp.ses|acse_13_scp.ds|0|0|0|0|0|0|..\Validation_tests\acse\scu\acse_scu.ses|acse_13_scu.ds|0|0|0|0|0|0
+..\Validation_tests\acse\scp\acse_scp.ses|acse_14_scp.ds|0|0|0|0|13|10|..\Validation_tests\acse\scu\acse_scu.ses|acse_14_scu.ds|0|0|0|0|2|0
+..\Validation_tests\acse\scp\acse_scp.ses|acse_15_scp.ds|0|0|0|0|2|0|..\Validation_tests\acse\scu\acse_scu.ses|acse_15_scu.ds|0|0|0|0|0|0
+..\Validation_tests\acse\scp\acse_scp.ses|acse_16_scp.ds|0|0|0|0|0|0|..\Validation_tests\acse\scu\acse_scu.ses|acse_16_scu.ds|0|0|0|0|4|0
+..\Validation_tests\acse\scp\acse_scp.ses|acse_17_scp.ds|0|0|0|0|0|0|..\Validation_tests\acse\scu\acse_scu.ses|acse_17_scu.ds|0|0|0|0|0|0
+..\Validation_tests\acse\scp\acse_scp.ses|acse_18_scp.ds|0|0|0|0|15|10|..\Validation_tests\acse\scu\acse_scu.ses|acse_18_scu.ds|0|0|0|0|18|0
+..\Validation_tests\acse\scp\acse_scp.ses|acse_19_scp.ds|0|0|0|0|2|0|..\Validation_tests\acse\scu\acse_scu.ses|acse_19_scu.ds|0|0|0|0|2|0
+..\Validation_tests\acse\scp\acse_scp.ses|acse_20_scp.ds|0|0|0|0|29|1|..\Validation_tests\acse\scu\acse_scu.ses|acse_20_scu.ds|0|0|0|0|22|0
+..\Validation_tests\abstractprint\scu\grayscale_scu.ses|grayscale_scu.ds|0|0|0|0|2|0|..\Validation_tests\abstractprint\scp\grayscale_scp.ses|abstract_scp.ds|0|0|0|0|0|0
+..\Validation_tests\abstractprint\scu\color_scu.ses|color_scu.ds|0|0|0|0|2|0|..\Validation_tests\abstractprint\scp\color_scp.ses|abstract_scp.ds|0|0|0|0|0|0
+..\Validation_tests\abstractstorage\scu\sc_and_cr_scu.ses|sc_scu.ds|0|0|0|0|0|0|..\Validation_tests\abstractstorage\scp\sc_scp.ses|abstract_scp.ds|0|0|0|0|0|0
+..\Validation_tests\abstractstorage\scu\sc_and_cr_scu.ses|cr_scu.ds|0|0|0|0|0|0|..\Validation_tests\abstractstorage\scp\cr_scp.ses|abstract_scp.ds|0|0|0|0|3|0

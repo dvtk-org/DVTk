@@ -1,0 +1,98 @@
+##
+## DVT DICOMScript
+##
+## Name: acse_23_scp.ds
+##
+## Test Suite Ref: 3.2.2.3.
+## Test Case Ref: 1, 2, 5
+##
+## Test Suite Ref: 3.2.6.1.
+## Test Case Ref: 1, 2
+##
+## Pre-conditions:
+##	No association.
+##
+## Test Scenario:
+##	Backward compatiblity for VTS - not explicitly supported in DVT.
+##	Test use of string -> uid mapping.
+##	Test parsing of complete ACSE requests.
+##	Create Associate Request.
+##	Create Abort Request.
+##      Set Associate Request - with all parameters defined.
+##	Set Abort Request - with all parametere defined.
+##	Receive Associate Request.
+##	Send Abort Request.
+##	Delete Associate Request.
+##	Delete Abort Request.
+##
+## Expected Result:
+## 	Validation: 0 error(s), 0 warning(s)
+## 	User Validation: 0 error(s), 0 warning(s)
+## 	General Error: 0 error(s), 0 warning(s)
+##
+## Post-conditions:
+##	No association.
+##
+CREATE ASSOCIATE-RQ
+
+CREATE ABORT-RQ
+
+SET ASSOCIATE-RQ (
+	PROTOCOL-VERSION 1
+
+	CALLED-AE-TITLE "TEST_CALLED"
+
+	CALLING-AE-TITLE "TEST_CALLING"
+
+	APPLICATION-CONTEXT-NAME "1.2.840.10008.3.1.1.1"
+
+        PRESENTATION-CONTEXT-ITEMS
+        ("Secondary Capture Image Storage SOP Class", "Implicit VR Little Endian")
+	("Computed Radiography Image Storage SOP Class", "1.2.840.10008.1.2")
+        ("CT Image Storage SOP Class", "Implicit VR Little Endian",
+				       "Explicit VR Little Endian",
+				       "Explicit VR Big Endian")
+	("MR Image Storage SOP Class", "1.2.840.10008.1.2",
+				       "1.2.840.10008.1.2.1",
+				       "1.2.840.10008.1.2.2")
+#       Nuclear Medicine Image Storage SOP Class
+	("1.2.840.10008.5.1.4.1.1.20", "1.2.840.10008.1.2")
+
+	MAXIMUM-LENGTH-RECEIVED 65536
+
+	IMPLEMENTATION-CLASS-UID "1.22.333.4444.55555.666666"
+
+	IMPLEMENTATION-VERSION-NAME "TestDVT"
+
+	SOP-CLASS-EXTENDED-NEGOTIATION
+	("Secondary Capture Image Storage SOP Class", 0, 1, 2, 3, 4, 5)
+#       Nuclear Medicine Image Storage SOP Class
+	("1.2.840.10008.5.1.4.1.1.20", 0, 1, 2, 3)
+
+	SCPSCU-ROLE-SELECTION
+	("Secondary Capture Image Storage SOP Class", 0, 0)
+#       Nuclear Medicine Image Storage SOP Class
+	("1.2.840.10008.5.1.4.1.1.20", 1, 1)
+
+	ASYNCHRONOUS-OPERATIONS-WINDOW 0 0
+)
+
+SET ABORT-RQ (
+	SOURCE 0
+	REASON 0
+)
+
+RECEIVE ASSOCIATE-RQ
+
+SEND ABORT-RQ
+
+#DELETE ASSOCIATE-RQ
+
+#DELETE ABORT-RQ
+
+##
+## Script Result should be:
+## Validation: 0 error(s), 0 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 0 error(s), 0 warning(s)
+##

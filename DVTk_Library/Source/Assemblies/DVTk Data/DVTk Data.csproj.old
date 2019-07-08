@@ -1,0 +1,171 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7DF60C20-4034-49CC-9974-B8443A2BC192}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>DvtkData</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\..\..\Resources\Strong Name Key\DVTk Key.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DvtkData</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>DvtkData.xml</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>bin\Release\DvtkData.xml</DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActivityDataClasses.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DicomComparatorResults.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DimseDataClasses.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DimseValidationDataClasses.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DocumentationNameSpaceSummaries.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DulDataClasses.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DulValidationDataClasses.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IDvtToXml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MediaDataClasses.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NullSafeCollectionBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Results.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TagValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TagValueCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="ArchitecturalViewOfTheDeploymentModel.gif" />
+    <None Include="ArchitecturalViewOfTheDesignModel.gif" />
+    <None Include="..\..\..\Resources\Strong Name Key\DVTk Key.snk" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="FunctionalBreakDown.gif" />
+    <None Include="RootPage.html" />
+    <None Include="ValidationProcess.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DVTk Dicom Unicode Conversion\DVTk Dicom Unicode Conversion.csproj">
+      <Project>{7EB8141D-851B-478A-9950-D04C96008DC0}</Project>
+      <Name>DvtkDicomUnicodeConversion</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>Echo Copying help rootpage and gifs to "$(TargetDir)".
+copy "$(ProjectDir)RootPage.html" "$(TargetDir)"
+copy "$(ProjectDir)ArchitecturalViewOfTheDesignModel.gif" "$(TargetDir)"
+copy "$(ProjectDir)ArchitecturalViewOfTheDeploymentModel.gif" "$(TargetDir)"
+copy "$(ProjectDir)FunctionalBreakDown.gif" "$(TargetDir)"
+copy "$(ProjectDir)ValidationProcess.gif" "$(TargetDir)"
+
+SET DESTINATION_DIR=
+IF EXIST "$(ProjectDir)..\..\..\builds" SET DESTINATION_DIR=$(ProjectDir)..\..\..\builds\$(ConfigurationName)
+IF EXIST "$(ProjectDir)..\..\..\..\..\Releases" SET DESTINATION_DIR=$(ProjectDir)..\..\..\$(ConfigurationName)
+ECHO DESTINATION_DIR is %25DESTINATION_DIR%25
+
+Copy "$(TargetPath)" "%25DESTINATION_DIR%25
+IF EXIST "$(TargetDir)$(TargetName).pdb" Copy "$(TargetDir)$(TargetName).pdb" "%25DESTINATION_DIR%25
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>

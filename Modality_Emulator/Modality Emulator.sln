@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modality Emulator", "Modality Emulator.csproj", "{3EEB6B32-16A8-4BBB-A393-4FE658305931}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Modality Emulator Setup", "Modality Emulator Setup.vdproj", "{B56631B5-A25E-484F-9FE5-D99A456DD2F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3EEB6B32-16A8-4BBB-A393-4FE658305931}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{3EEB6B32-16A8-4BBB-A393-4FE658305931}.Debug|Any CPU.Build.0 = Debug|x86
+		{3EEB6B32-16A8-4BBB-A393-4FE658305931}.Release|Any CPU.ActiveCfg = Release|x86
+		{3EEB6B32-16A8-4BBB-A393-4FE658305931}.Release|Any CPU.Build.0 = Release|x86
+		{B56631B5-A25E-484F-9FE5-D99A456DD2F9}.Debug|Any CPU.ActiveCfg = Debug
+		{B56631B5-A25E-484F-9FE5-D99A456DD2F9}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

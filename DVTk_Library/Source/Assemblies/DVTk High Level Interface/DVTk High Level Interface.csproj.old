@@ -1,0 +1,572 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4B34D6B9-D185-4742-A204-70C490500754}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>DvtkHighLevelInterface</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\..\..\Resources\Strong Name Key\DVTk Key.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DvtkHighLevelInterface</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>DvtkHighLevelInterface.xml</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>bin\Release\DvtkHighLevelInterface.XML</DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Management">
+      <Name>System.Management</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+    </COMReference>
+    <ProjectReference Include="..\DVTk Common Data Format\DVTk Common Data Format.csproj">
+      <Name>DvtkCommonDataFormat</Name>
+      <Project>{38F9E2D9-BDA9-4D32-95FD-B779B03C32BD}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dvtk Comparator\DVTk Comparator.csproj">
+      <Name>DvtkComparator</Name>
+      <Project>{BE98BF56-A84E-43A4-847F-2AA3E551ADDD}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk Data\DVTk Data.csproj">
+      <Name>DvtkData</Name>
+      <Project>{7DF60C20-4034-49CC-9974-B8443A2BC192}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk Hl7\DVTk Hl7.csproj">
+      <Name>DvtkHl7</Name>
+      <Project>{6AA55771-980C-45ED-9CCB-59C83C25815B}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk Information Entity\DVTk Information Entity.csproj">
+      <Name>DvtkInformationEntity</Name>
+      <Project>{36BB69F0-A963-49D9-8626-E88A02FE0141}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTK\DVTK.csproj">
+      <Name>DVTK</Name>
+      <Project>{DBC39A1E-18CB-4809-81E0-47B1C899BBE0}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Common\Other\Dvt.ico" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Common\Compare\AttributeBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\AttributeCollectionBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\AttributeCollections.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\AttributeList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\AttributeTypes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\CompareBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\CompareResults.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\CompareRule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\CompareRules.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\DicomAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\DicomAttributeCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\DynamicCompare.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\FlagsBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\FlagsConvertor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\FlagsDicomAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\FlagsHl7Attribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\GeneratorDynamicCompare.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\GeneratorStaticDicomCompare.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\Hl7Attribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\Hl7AttributeCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\StaticDicomCompare.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\ValidationRuleBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\ValidationRuleDicomAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\ValidationRuleHl7Attribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Compare\ValueTypes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Messages\Message.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Messages\MessageCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Other\Condition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Other\ConditionAnd.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Other\ConditionFalse.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Other\ConditionNot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Other\ConditionOr.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Other\ConditionTrue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Other\GenericBooleanExpression.cs" />
+    <Compile Include="Common\Other\GenericBooleanExpressionAnd.cs" />
+    <Compile Include="Common\Other\GenericBooleanExpressionNot.cs" />
+    <Compile Include="Common\Other\GenericBooleanExpressionOr.cs" />
+    <Compile Include="Common\Other\GenericCollection.cs" />
+    <Compile Include="Common\Other\GenericPair.cs" />
+    <Compile Include="Common\Other\HighLevelInterface.cs" />
+    <Compile Include="Common\Other\HliException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Other\Obsolete\Compare.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Other\Obsolete\CompareBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Other\Obsolete\CompareFlags.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Other\Obsolete\CompareResults.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Other\Obsolete\DicomAttributeFlags.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Other\Obsolete\DicomAttributesToValidate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Other\Obsolete\DicomAttributeToValidate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Other\Obsolete\DynamicCompare.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Other\Obsolete\GeneratorDynamicCompare.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Other\Obsolete\GeneratorStaticCompare.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Other\Obsolete\StaticCompare.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Other\Obsolete\ValidationRuleDicomAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Other\Obsolete\ValidationRuleList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Other\Table.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Other\ThreeStateBoolean.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Threads\Thread.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Threads\ThreadCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Threads\ThreadManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Threads\ThreadOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Threads\ThreadState.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\UserInterfaces\HliConsole.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\UserInterfaces\HliForm.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\UserInterfaces\HliInternalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\UserInterfaces\IThreadUserInterface.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\UserInterfaces\UserControlActivityLogging.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Comparator\Comparator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Files\DicomDir.cs" />
+    <Compile Include="Dicom\Files\DicomFile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Files\DirectoryRecord.cs" />
+    <Compile Include="Dicom\Files\FileMetaInformation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Messages\Abort.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Messages\AssociateAc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Messages\AssociateRj.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Messages\AssociateRq.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Messages\DicomMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Messages\DicomMessageCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Messages\DicomProtocolMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Messages\DicomProtocolMessageCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Messages\DulMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Messages\DulMessageCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Messages\ReleaseRp.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Messages\ReleaseRq.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Other\Attribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Other\AttributeCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Other\AttributeSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Other\BooleanExpressionDataSetContainsAttribute.cs" />
+    <Compile Include="Dicom\Other\BooleanExpressionDataSet.cs" />
+    <Compile Include="Dicom\Other\BooleanExpressionTwoDataSets.cs" />
+    <Compile Include="Dicom\Other\BooleanExpressionTwoDataSetsMapsAttributes.cs" />
+    <Compile Include="Dicom\Other\CommandSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Other\DataSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Other\DataSetCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Other\DICOMPeer.cs" />
+    <Compile Include="Dicom\Other\DicomProtocolMessageReceiveException.cs" />
+    <Compile Include="Dicom\Other\DicomProtocolMessageSendException.cs" />
+    <Compile Include="Dicom\Other\InvalidAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Other\PresentationContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Other\PresentationContextCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Other\SequenceItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Other\SetParametersSingleAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Other\SopClasses.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Other\Tag.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Other\TagSequence.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Other\TransferSyntaxes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Other\UID.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Other\ValidAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Other\Values.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Threads\AssociateRequestMessageHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Threads\ConcurrentMessageIterator.cs" />
+    <Compile Include="Dicom\Threads\ConcurrentSCP.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Threads\DicomThread.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Threads\DicomThreadOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Threads\DicomThreadTriggerLoop.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Threads\InboundDicomMessageFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Threads\InboundDicomMessageFilterSetAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Threads\MessageHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Threads\MessageIterator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Threads\OutboundDicomMessageFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Threads\OutboundDicomMessageFilterSetAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Threads\SCP.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\Threads\SCU.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dicom\UserInterfaces\AERegistrationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dicom\UserInterfaces\AERegistrationControl.Designer.cs">
+      <DependentUpon>AERegistrationControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dicom\UserInterfaces\DicomThreadOptionsUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HL7\Messages\Hl7ProtocolMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HL7\Messages\Hl7ProtocolMessageCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HL7\Threads\Hl7Thread.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HL7\Threads\Hl7ThreadOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InformationModel\BaseInformationModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InformationModel\GenerateTriggers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InformationModel\ICommitInformationModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InformationModel\InformationModelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InformationModel\InformationModelControl.Designer.cs">
+      <DependentUpon>InformationModelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InformationModel\IRetrieveInformationModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InformationModel\ModalityWorklistInformationModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InformationModel\QueryRetrieveInformationModel.cs.cs" />
+    <Compile Include="InformationModel\QueryRetrieveInformationModels.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InformationModel\QueryRetrievePatientRootInformationModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InformationModel\QueryRetrievePatientStudyOnlyInformationModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InformationModel\QueryRetrieveStudyRootInformationModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InformationModel\ReferencedSopItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InformationModel\ReferencedSopItemCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Common\UserInterfaces\HliInternalForm.resx">
+      <DependentUpon>HliInternalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\UserInterfaces\UserControlActivityLogging.resx">
+      <DependentUpon>UserControlActivityLogging.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dicom\UserInterfaces\AERegistrationControl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AERegistrationControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dicom\UserInterfaces\DicomThreadOptionsUserControl.resx">
+      <DependentUpon>DicomThreadOptionsUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InformationModel\InformationModelControl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>InformationModelControl.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Resources\Strong Name Key\DVTk Key.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>SET DESTINATION_DIR=
+IF EXIST "$(ProjectDir)..\..\..\builds" SET DESTINATION_DIR=$(ProjectDir)..\..\..\builds\$(ConfigurationName)
+IF EXIST "$(ProjectDir)..\..\..\..\..\Releases" SET DESTINATION_DIR=$(ProjectDir)..\..\..\$(ConfigurationName)
+ECHO DESTINATION_DIR is %25DESTINATION_DIR%25
+
+Copy "$(TargetPath)" "%25DESTINATION_DIR%25
+IF EXIST "$(TargetDir)$(TargetName).pdb" Copy "$(TargetDir)$(TargetName).pdb" "%25DESTINATION_DIR%25
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>

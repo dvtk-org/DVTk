@@ -1,0 +1,188 @@
+## 
+## DVT DICOMScript
+##
+## Name: val_test_ref.ds
+##
+## Test Suite Ref: 3.2.11.3.4.9.3
+## Test Case Ref:
+##
+## Pre-conditions:
+##
+## Test Scenario:
+##    - Create (various) C-STORE-RQ command and dataset object to compare them
+##      The "Validation Test Ranges SOP Class is used.
+##    - the objects are validated 
+##    - and deleted
+##
+## Expected Result:
+##    64 errors, 0 warnings
+##
+## Post-conditions:
+##    -
+##
+
+
+##================================================================================
+## Reference object test 1: Compare an object against a reference object
+## All dataset attributes present have different values => so Errors!"
+## Note: For testing rules regarding a reference object 
+##       the Validation Test Ranges SOP Class is used
+##================================================================================
+
+# Create and set objects
+CREATE C-STORE-RQ SRC_CMD1 "Validation Test Ranges SOP Class" SRC_DATASET1
+CREATE C-STORE-RQ REF_CMD1 "Validation Test Ranges SOP Class" REF_DATASET1
+
+SET C-STORE-RQ SRC_CMD1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Ranges SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Ranges SOP Class" SRC_DATASET1
+{
+(0x10000003, AE, "ENUM 1", "DEFINED 2");
+(0x10020003, AS, "001Y", "003Y");
+(0x10040003, AT, 0x00010002, 0x00020001);
+(0x10060003, CS, "ENUM 2", "DEFINED 1");
+(0x10080003, DA, "19990102", "19990202");
+(0x100A0003, DS, "1.03", "-202");
+(0x100C0003, DT, "19990103", "19990203");
+(0x100E0003, FL, "1.010000", "-2.020000");
+(0x10100003, FD, "1.020000", "-2.030000");
+(0x10120003, IS, "102", "-201");
+(0x10140003, LO, "ENUM 2", "DEFINED 3");
+(0x10160003, LT, "ENUM");
+(0x10160004, LT, "DEFINED");
+(0x101C0003, PN, "ENUM 3", "DEFINED 1");
+(0x101E0003, SH, "ENUM 1", "DEFINED 3");
+(0x10200003, SL, 103, -202);
+(0x10240003, SS, 101, -203);
+(0x10260003, ST, "ENUM");
+(0x10260004, ST, "DEFINED");
+(0x10280003, TM, "1003", "2002");
+(0x102A0003, UI, "1.0.3", "2.0.1");
+(0x102C0003, UL, 102, 201);
+(0x102E0003, US, 103, 202);
+(0x10300003, UT, "ENUM");
+(0x10300004, UT, "DEFINED");
+}
+
+SET C-STORE-RQ REF_CMD1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Ranges SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Ranges SOP Class" REF_DATASET1 
+{
+(0x10000003, AE, "ENUM 2", "DEFINED 1");
+(0x10020003, AS, "002Y", "002Y");
+(0x10040003, AT, 0x00010001, 0x00020002);
+(0x10060003, CS, "ENUM 1", "DEFINED 2");
+(0x10080003, DA, "19990103", "19990201");
+(0x100A0003, DS, "1.01", "-203");
+(0x100C0003, DT, "19990101", "19990202");
+(0x100E0003, FL, "1.020000", "-2.010000");
+(0x10100003, FD, "1.030000", "-2.020000");
+(0x10120003, IS, "103", "-202");
+(0x10140003, LO, "ENUM 1", "DEFINED 2");
+(0x10160003, LT, "DOGS");
+(0x10160004, LT, "DEFAULT");
+(0x101C0003, PN, "ENUM 2", "DEFINED 2");
+(0x101E0003, SH, "ENUM 3", "DEFINED 2");
+(0x10200003, SL, 101, -201);
+(0x10240003, SS, 102, -202);
+(0x10260003, ST, "DOGS");
+(0x10260004, ST, "DEFAULT");
+(0x10280003, TM, "1001", "2003");
+(0x102A0003, UI, "1.0.1", "2.0.2");
+(0x102C0003, UL, 101, 203);
+(0x102E0003, US, 102, 201);
+(0x10300003, UT, "DOGS");
+(0x10300004, UT, "DEFAULT");
+}
+
+# Go for it
+VALIDATE C-STORE-RQ SRC_CMD1 "Validation Test Ranges SOP Class" SRC_DATASET1 
+         C-STORE-RQ REF_CMD1 "Validation Test Ranges SOP Class" REF_DATASET1
+
+
+
+#********************************************************************************
+
+##================================================================================
+## Reference object test 2: Compare an object against a reference object
+## - All dataset attributes present have different Value Multiplicity (VM)
+## - Attributes with VR = ST,LT,UT are missing in the reference object
+## Note: For testing rules regarding a reference object 
+##       the Validation Test Ranges SOP Class is used
+##       The source object from test 1 is being reused
+##================================================================================
+
+
+# Create and set objects
+CREATE C-STORE-RQ REF_CMD2 "Validation Test Ranges SOP Class" REF_DATASET2
+
+SET C-STORE-RQ REF_CMD2
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Ranges SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, UL, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Ranges SOP Class" REF_DATASET2
+{
+(0x10000003, AE, "Liesje leerde Lotte lopen langs de lange lindenlaan"); 
+(0x10020003, AS, "Liesje leerde Lotte lopen langs de lange lindenlaan");
+(0x10040003, AT, 0x00010001);
+(0x10060003, CS, "Liesje leerde Lotte lopen langs de lange lindenlaan");
+(0x10080003, DA, "Liesje leerde Lotte lopen langs de lange lindenlaan");
+(0x100A0003, DS, "Liesje leerde Lotte lopen langs de lange lindenlaan");
+(0x100C0003, DT, "Liesje leerde Lotte lopen langs de lange lindenlaan");
+(0x100E0003, FL, "1.020000");
+(0x10100003, FD, "1.030000");
+(0x10120003, IS, "Liesje leerde Lotte lopen langs de lange lindenlaan");
+(0x10140003, LO, "Liesje leerde Lotte lopen langs de lange lindenlaan");
+(0x10160003, PN, "Liesje leerde Lotte lopen langs de lange lindenlaan");
+(0x10160004, SH, "Liesje leerde Lotte lopen langs de lange lindenlaan");
+(0x101C0003, SL, 101);
+(0x101E0003, SS, 102);
+(0x10200003, TM, "Liesje leerde Lotte lopen langs de lange lindenlaan");
+(0x10240003, UI, "Liesje leerde Lotte lopen langs de lange lindenlaan");
+(0x10260003, UL, 101);
+(0x10260004, US, 102);
+}
+
+# Go for it
+VALIDATE C-STORE-RQ SRC_CMD1 "Validation Test Ranges SOP Class" SRC_DATASET1 
+         C-STORE-RQ REF_CMD2 "Validation Test Ranges SOP Class" REF_DATASET2
+
+# Delete objects
+DELETE C-STORE-RQ SRC_CMD1 
+DELETE "Validation Test Ranges SOP Class" SRC_DATASET1
+DELETE C-STORE-RQ REF_CMD1 
+DELETE "Validation Test Ranges SOP Class" REF_DATASET1
+DELETE C-STORE-RQ REF_CMD2 
+DELETE "Validation Test Ranges SOP Class" REF_DATASET2
+
+##
+## Script Result should be:
+## Validation: 74 error(s), 0 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 0 error(s), 0 warning(s)
+##

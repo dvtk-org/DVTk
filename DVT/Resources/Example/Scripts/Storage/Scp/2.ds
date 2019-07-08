@@ -1,0 +1,23 @@
+## Example DVT Dicom Script
+##
+## SCP Storage DICOMScript: 2.ds
+##
+## Pre-conditions:
+##      - existing Association
+##
+## Test Scenario:
+##      - expect C-STORE-RQ for Storage Service Class
+##      - return C-STORE-RSP indicating successful storage
+##
+## Expected Result:
+##      - SCU signals successful storage
+##
+## Post-conditions:
+##      - existing Association
+##
+
+RECEIVE C-STORE-RQ "Secondary Capture Image Storage SOP Class"
+
+SEND C-STORE-RSP (
+(0x00000900, 0x0000)
+)

@@ -1,0 +1,109 @@
+## Example DVT Dicom Script
+#
+#
+
+##
+## Test Script for MOVE SOP Classes - SCU
+##
+
+SEND ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Patient Root QR Information Model - MOVE SOP Class",
+         "Explicit VR Big Endian",
+         "Explicit VR Little Endian",
+         "Implicit VR Little Endian")
+)
+
+RECEIVE ASSOCIATE-AC (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Patient Root QR Information Model - MOVE SOP Class",
+         0,
+         "Implicit VR Little Endian")
+)
+
+
+SEND C-MOVE-RQ "Patient Root QR Information Model - MOVE SOP Class" (
+(0x00000002, "Patient Root QR Information Model - MOVE SOP Class")
+(0x00000600, "DVT") 
+
+(0x00080052, "IMAGE")
+(0x00100020, "SC-I3")
+(0x0020000D, "NEW:StudyInstanceUid1")
+(0x0020000E, "NEW:SeriesInstanceUid1")
+(0x00080018, "NEW:ImageInstanceUid1")
+)
+
+RECEIVE C-MOVE-RSP (
+(0x00000002, "Patient Root QR Information Model - MOVE SOP Class")
+(0x00000900, 0x0000)
+)
+
+
+SEND C-MOVE-RQ "Patient Root QR Information Model - MOVE SOP Class" (
+(0x00000002, "Patient Root QR Information Model - MOVE SOP Class")
+(0x00000600, "DVT") 
+
+(0x00080052, "IMAGE")
+(0x00100020, "SC-I3")
+(0x0020000D, "StudyInstanceUid1")
+(0x0020000E, "SeriesInstanceUid1")
+(0x00080018, "NEW:ImageInstanceUid2")
+)
+
+RECEIVE C-MOVE-RSP (
+(0x00000002, "Patient Root QR Information Model - MOVE SOP Class")
+(0x00000900, 0x0000)
+)
+
+SEND C-MOVE-RQ "Patient Root QR Information Model - MOVE SOP Class" (
+(0x00000002, "Patient Root QR Information Model - MOVE SOP Class")
+(0x00000600, "DVT") 
+
+(0x00080052, "IMAGE")
+(0x00100020, "SC-I3")
+(0x0020000D, "StudyInstanceUid1")
+(0x0020000E, "NEW:SeriesInstanceUid2")
+(0x00080018, "NEW:ImageInstanceUid1")
+)
+
+RECEIVE C-MOVE-RSP (
+(0x00000002, "Patient Root QR Information Model - MOVE SOP Class")
+(0x00000900, 0x0000)
+)
+
+SEND C-MOVE-RQ "Patient Root QR Information Model - MOVE SOP Class" (
+(0x00000002, "Patient Root QR Information Model - MOVE SOP Class")
+(0x00000600, "DVT") 
+
+(0x00080052, "IMAGE")
+(0x00100020, "SC-I3")
+(0x0020000D, "StudyInstanceUid1")
+(0x0020000E, "SeriesInstanceUid2")
+(0x00080018, "NEW:ImageInstanceUid2")
+)
+
+RECEIVE C-MOVE-RSP (
+(0x00000002, "Patient Root QR Information Model - MOVE SOP Class")
+(0x00000900, 0x0000)
+)
+
+SEND C-MOVE-RQ "Patient Root QR Information Model - MOVE SOP Class" (
+(0x00000002, "Patient Root QR Information Model - MOVE SOP Class")
+(0x00000600, "DVT") 
+
+(0x00080052, "IMAGE")
+(0x00100020, "SC-I3")
+(0x0020000D, "StudyInstanceUid1")
+(0x0020000E, "SeriesInstanceUid2")
+(0x00080018, "NEW:ImageInstanceUid3")
+)
+
+RECEIVE C-MOVE-RSP (
+(0x00000002, "Patient Root QR Information Model - MOVE SOP Class")
+(0x00000900, 0x0000)
+)
+
+
+SEND RELEASE-RQ
+RECEIVE RELEASE-RP
+

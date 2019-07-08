@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVTk Ihe Actors - NUnit Tests", "NUnit Tests\DVTk Ihe Actors - NUnit Tests.csproj", "{27FD53B9-EA7D-448D-B34D-6434B9B50295}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVTk Ihe Actors", "DVTk Ihe Actors.csproj", "{DEDC169F-3FC4-4189-B9F0-169C8DEBC11A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{27FD53B9-EA7D-448D-B34D-6434B9B50295}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{27FD53B9-EA7D-448D-B34D-6434B9B50295}.Debug|Any CPU.Build.0 = Debug|x86
+		{27FD53B9-EA7D-448D-B34D-6434B9B50295}.Release|Any CPU.ActiveCfg = Release|x86
+		{27FD53B9-EA7D-448D-B34D-6434B9B50295}.Release|Any CPU.Build.0 = Release|x86
+		{DEDC169F-3FC4-4189-B9F0-169C8DEBC11A}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{DEDC169F-3FC4-4189-B9F0-169C8DEBC11A}.Debug|Any CPU.Build.0 = Debug|x86
+		{DEDC169F-3FC4-4189-B9F0-169C8DEBC11A}.Release|Any CPU.ActiveCfg = Release|x86
+		{DEDC169F-3FC4-4189-B9F0-169C8DEBC11A}.Release|Any CPU.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

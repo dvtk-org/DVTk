@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storage SCU Emulator", "Storage SCU Emulator.csproj", "{431BB8A2-80C8-4C5A-81C4-A51BBCF852DA}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Storage SCU Emulator Setup", "Storage SCU Emulator Setup.vdproj", "{A8329D0C-76BD-4ED1-B552-BDD461DAEC9D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{431BB8A2-80C8-4C5A-81C4-A51BBCF852DA}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{431BB8A2-80C8-4C5A-81C4-A51BBCF852DA}.Debug|Any CPU.Build.0 = Debug|x86
+		{431BB8A2-80C8-4C5A-81C4-A51BBCF852DA}.Release|Any CPU.ActiveCfg = Release|x86
+		{431BB8A2-80C8-4C5A-81C4-A51BBCF852DA}.Release|Any CPU.Build.0 = Release|x86
+		{A8329D0C-76BD-4ED1-B552-BDD461DAEC9D}.Debug|Any CPU.ActiveCfg = Debug
+		{A8329D0C-76BD-4ED1-B552-BDD461DAEC9D}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

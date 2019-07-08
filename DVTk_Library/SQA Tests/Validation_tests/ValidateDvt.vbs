@@ -1,0 +1,1 @@
+Dummy .vbs file to be able to display the results.

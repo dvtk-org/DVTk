@@ -1,0 +1,65 @@
+##
+## Test Script for Worklist Management SOP Classes - SCU
+##
+
+SEND ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Modality Worklist FIND SOP Class",
+         "Implicit VR Little Endian")
+)
+
+RECEIVE ASSOCIATE-AC (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Modality Worklist FIND SOP Class",
+         0,
+         "Implicit VR Little Endian")
+)
+
+
+SEND C-FIND-RQ "Modality Worklist FIND" (
+(0x00000002, "Modality Worklist FIND SOP Class")
+
+(0x00100010, "*") # Patient's Name
+(0x00100020, "") # Patient ID
+(0x0020000D, "") # Study Instance UID
+(0x00400100, SQ,
+>(0x00400001, "CALLINGAETITLE") # Scheduled Station AE Title
+>(0x00400002, "TODAY") # Scheduled Procedure Step Start Date
+>(0x00080060, "CT") # CT Modality
+)
+)
+
+RECEIVE C-FIND-RSP "Modality Worklist FIND" (
+(0x00000002, "Modality Worklist FIND SOP Class")
+(0x00000900, 0xFF00)
+)
+
+RECEIVE C-FIND-RSP "Modality Worklist FIND" (
+(0x00000002, "Modality Worklist FIND SOP Class")
+(0x00000900, 0xFF00)
+)
+
+RECEIVE C-FIND-RSP "Modality Worklist FIND" (
+(0x00000002, "Modality Worklist FIND SOP Class")
+(0x00000900, 0xFF00)
+)
+
+RECEIVE C-FIND-RSP "Modality Worklist FIND" (
+(0x00000002, "Modality Worklist FIND SOP Class")
+(0x00000900, 0xFF00)
+)
+
+RECEIVE C-FIND-RSP "Modality Worklist FIND" (
+(0x00000002, "Modality Worklist FIND SOP Class")
+(0x00000900, 0xFF00)
+)
+
+RECEIVE C-FIND-RSP (
+(0x00000900, 0x0000)
+)
+
+
+SEND RELEASE-RQ
+
+RECEIVE RELEASE-RP
+

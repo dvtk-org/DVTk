@@ -1,0 +1,111 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{226921D5-F9C5-4441-A92D-495D296685FA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DvtkHighLevelInterface___NUnit_Tests</RootNamespace>
+    <AssemblyName>DvtkHighLevelInterface - NUnit Tests</AssemblyName>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Resources\NUnit\bin\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dicom\Messages\AssociateRq_NUnit.cs" />
+    <Compile Include="Dicom\Other\BooleanExpressionsDataSet_NUnit.cs" />
+    <Compile Include="Dicom\Threads\ConcurrentMessageIterator_NUnit.cs" />
+    <Compile Include="Dicom\Threads\DicomThreadOptions_NUnit.cs" />
+    <Compile Include="InformationModel\QueryRetrievePatientRootInformationModel_NUnit.cs" />
+    <Compile Include="InformationModel\QueryRetrievePatientStudyOnlyInformationModel_NUnit.cs" />
+    <Compile Include="InformationModel\QueryRetrieveStudyRootInformationModel_NUnit.cs" />
+    <Compile Include="NUnit\Config.cs" />
+    <Compile Include="NUnit\Paths.cs" />
+    <Compile Include="Common\Compare\AttributeCollections_NUnit.cs" />
+    <Compile Include="Common\Compare\CompareBase_NUnit.cs" />
+    <Compile Include="Common\Compare\CompareResults_NUnit.cs" />
+    <Compile Include="Common\Compare\CompareRule_NUnit.cs" />
+    <Compile Include="Common\UserInterfaces\HliForm_NUnit.cs" />
+    <Compile Include="Dicom\Files\DicomFile_NUnit.cs" />
+    <Compile Include="Dicom\Files\FileMetaInformation_NUnit.cs" />
+    <Compile Include="Dicom\Messages\DicomMessage_NUnit.cs" />
+    <Compile Include="Dicom\Other\DataSet_NUnit.cs" />
+    <Compile Include="Dicom\Threads\DicomThread_NUnit.cs" />
+    <Compile Include="InformationModel\ModalityWorklistInformationModel_NUnit.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQATests\SQATests_NUnit.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DVTk Data\DVTk Data.csproj">
+      <Project>{7DF60C20-4034-49CC-9974-B8443A2BC192}</Project>
+      <Name>DVTk Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DVTk Hl7\DVTk Hl7.csproj">
+      <Project>{6AA55771-980C-45ED-9CCB-59C83C25815B}</Project>
+      <Name>DVTk Hl7</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DVTk\DVTk.csproj">
+      <Project>{DBC39A1E-18CB-4809-81E0-47B1C899BBE0}</Project>
+      <Name>DVTk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk High Level Interface.csproj">
+      <Project>{4B34D6B9-D185-4742-A204-70C490500754}</Project>
+      <Name>DVTk High Level Interface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>IF NOT EXIST "$(TargetDir)CharacterSets" (
+mkdir "$(TargetDir)CharacterSets"
+)
+xcopy /Y "$(ProjectDir)..\..\..\..\Resources\CharacterSets" "$(TargetDir)CharacterSets"
+copy "$(ProjectDir)..\..\..\..\Resources\CharacterSets.dat" "$(TargetDir)"
+copy "$(ProjectDir)..\..\..\..\Resources\AllDimseCommands.def" "$(TargetDir)"
+copy "$(ProjectDir)..\..\..\..\Resources\ssleay32.dll" "$(TargetDir)"
+copy "$(ProjectDir)..\..\..\..\Resources\libeay32.dll" "$(TargetDir)"</PostBuildEvent>
+  </PropertyGroup>
+</Project>

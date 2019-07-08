@@ -1,0 +1,79 @@
+################################################################################
+# Definition File: ValidationTestConditionsSopClass.def
+#
+# Description    : Generated manually for testing the validation algorithm
+#                  regarding Conditions
+#
+# Note           : No specific system has been defined
+#
+################################################################################
+
+DEFINE SYSTEM "DICOM" "3.0"
+"DICOM" "3.0"
+ENDDEFINE
+
+
+#
+# Definition of the Validation Test Conditions SOP Class
+#
+DEFINE C-STORE-RQ "Validation Test Conditions SOP Class"
+
+SOPCLASS "1.3.46.670589.17.2.42.2" "Validation Test Conditions SOP Class"
+
+MODULE "Test Module Conditions" M
+(0x102E0003,3,US,1:n)   "US_03"
+(0x102E0004,3,US,1:n)	"US_04"
+(0x102E0005,3,US,1:n)	"US_05"
+(0x101E0001,1C,SH,1)	"SH_01" : PRESENT 0x102E0003
+(0x101E0002,1C,SH,2)	"SH_02" : EMPTY 0x102E0005
+(0x101E0003,1C,SH,1:n)	"SH_03" : NOT EMPTY 0x102E0003
+(0x101E0004,2C,SH,1:n)	"SH_04" : VALUE 0x101E0002 1 = "Value 1" AND VALUE 0x101E0002 2 = "Value 2"
+(0x101E0005,2C,SH,1:n)	"SH_05" : VALUE 0x102E0003 1 = "10" AND VALUE 0x102E0003 1 > "5" AND VALUE 0x102E0003 1 < "15" AND VALUE 0x102E0003 1 >= "10" AND VALUE 0x102E0003 1 <= "10"
+(0x101E0006,2C,SH,1:n)	"SH_06" : VALUE 0x102E0004 2 = "15" OR VALUE 0x102E0004 1 = "5" AND VALUE 0x102E0004 2 = "10" 
+(0x101E0007,3C,SH,1:n)	"SH_07" : VALUE 0x102E0004 1 = "5" AND VALUE 0x102E0004 2 = "10" OR VALUE 0x102E0004 2 = "15"
+(0x101E0008,3C,SH,1:n)	"SH_08" : (VALUE 0x102E0004 1 = "5" AND VALUE 0x102E0004 2 = "10") OR VALUE 0x102E0004 2 = "15"
+(0x101E0009,3C,SH,1:n)	"SH_09" : VALUE 0x102E0004 1 = "5" AND (VALUE 0x102E0004 2 = "10" OR VALUE 0x102E0004 2 = "15")
+
+MODULE "Test Module AE" C : PRESENT 0x10000003
+(0x10000001,1,AE,1)	"AE_01"
+(0x10000002,2,AE,2)	"AE_02"
+(0x10000003,3,AE,1:n)	"AE_03"
+(0x10000004,3,AE,1:n)	"AE_04"
+(0x10000005,3,AE,1:n)	"AE_05"
+(0x10000006,3,AE,1:n)	"AE_06"
+(0x10000007,3,AE,1:n)	"AE_07"
+(0x10000008,3,AE,1:n)	"AE_08"
+(0x10000009,3,AE,1:n)	"AE_09"
+
+ENDDEFINE
+
+
+#
+# Commands applicable for the Validation Test Conditions SOP Class
+#
+DEFINE C-STORE-RQ
+(0x00000000,1,UL,1)	     "Group 0000 Length"
+(0x00000002,1,UI,1)	     "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x0001) "Command Field"
+(0x00000110,1,US,1)	     "Message ID"
+(0x00000700,1,US,1,E,0x0000
+                   | 0x0001
+                   | 0x0002) "Priority"
+(0x00000800,1,US,1)	     "Data Set Type"
+(0x00001000,1,UI,1)	     "Affected SOP Instance UID"
+(0x00001030,3,AE,1)	     "Move Originator AE Title"
+(0x00001031,3,US,1)	     "Move Originator Message ID"
+ENDDEFINE
+
+DEFINE C-STORE-RSP
+(0x00000000,1,UL,1)	      "Group 0000 Length"
+(0x00000002,1,UI,1)	      "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x8001)  "Command Field"
+(0x00000120,1,US,1)	      "Message ID Being Responded To"
+(0x00000800,1,US,1)           "Data Set Type"
+(0x00000900,1,US,1)	      "Status"
+(0x00000901,3,AT,1:n)	      "Offending Element"
+(0x00000902,3,LO,1)	      "Error Comment"
+(0x00000903,3,US,1)	      "Error ID"
+(0x00001000,1,UI,1)	      "Affected SOP Instance UID"
+ENDDEFINE

@@ -1,0 +1,48 @@
+##
+## DVT DICOMScript
+##
+## Name: ts_8_scp.ds
+##
+## Test Suite Ref: 3.2.7.1.
+## Test Case Ref: 5
+##
+## Pre-conditions:
+##	No association.
+##
+## Test Scenario:
+##	Request association using JPEG Spectral Process 7 And 9
+##	Transfer Syntax.
+##	Accept Transfer Syntax.
+##	Store Abstract image using agreed Transfer
+##	Syntax.
+##	Release association after successful storage.
+##
+## Expected Result:
+##	0 errors, 0 warnings
+##
+## Post-conditions:
+##	No association.
+##
+RECEIVE ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Abstract Storage SOP Class", "JPEG Spectral Process 7 And 9")
+)
+
+SEND ASSOCIATE-AC (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Abstract Storage SOP Class", 0, "JPEG Spectral Process 7 And 9")
+)
+
+RECEIVE C-STORE-RQ "Abstract Storage IOD"
+
+SEND C-STORE-RSP (
+(0x00000900, 0x0000)
+)
+
+RECEIVE RELEASE-RQ
+
+SEND RELEASE-RP
+
+##
+## Script Result should be: 1 error(s), 0 warning(s)
+##

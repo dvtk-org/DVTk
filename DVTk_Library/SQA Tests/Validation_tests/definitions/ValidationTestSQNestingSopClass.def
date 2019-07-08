@@ -1,0 +1,82 @@
+################################################################################
+# Definition File: ValidationTestSQNestingSopClass.def
+#
+# Description    : Generated manually for testing the validation algorithm
+#                  regarding Defined/Enumerated Values and Ranges
+#
+# Note           : No specific system has been defined
+#
+################################################################################
+
+DEFINE SYSTEM "DICOM" "3.0"
+"DICOM" "3.0"
+ENDDEFINE
+
+#
+# Definition of the Validation Test SQ Nesting SOP Class
+#
+DEFINE C-STORE-RQ "Validation Test SQ Nesting SOP Class"
+
+SOPCLASS "1.3.46.670589.17.2.42.5" "Validation Test SQ Nesting SOP Class"
+
+MODULE "Test Module SQ" M
+(0x10220001,1,SQ,1,
+)                          "SQ_01" 
+
+(0x10220002,2,SQ,2,
+>(0x10220021,1,AE,1)	   "SQ_02 item_attr_21"
+>(0x10220022,2,AS,1)	   "SQ_02 item_attr_22"
+>(0x10220023,3,AT,1:n)	   "SQ_02 item_attr_23"
+)                          "SQ_02"
+
+(0x10220003,1,SQ,1,
+>(0x10220031,1,CS,1)       "SQ_03_item_attr_31"
+>(0x10220032,3,SQ,1,
+ >(0x10220321,1,DA,1)	   "SQ_03_item_attr_321"
+ >(0x10220322,1,DT,1)	   "SQ_03_item_attr_322"
+ )                         "SQ_03_SQ_01" 
+)                          "SQ_03"
+
+(0x10221111,1,DS,1)        "attr_1"
+(0x10220004,1C,SQ,1,
+>(0x10220041,1,SQ,1,
+ >(0x10220411,1,DA,1)	   "SQ_04_item_attr_411"
+ >(0x10220412,1,SQ,1,
+  )	                   "SQ_04_item_attr_412"
+ )                         "SQ_04_SQ_01"
+)                          "SQ_04" : PRESENT 0x10221111
+
+ENDDEFINE
+
+#
+# Commands applicable for the Validation Test SQ Nesting SOP Class
+#
+
+DEFINE C-STORE-RQ
+(0x00000000,1,UL,1)	     "Group 0000 Length"
+(0x00000002,1,UI,1)	     "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x0001) "Command Field"
+(0x00000110,1,US,1)	     "Message ID"
+(0x00000700,1,US,1,E,0x0000
+                   | 0x0001
+                   | 0x0002) "Priority"
+(0x00000800,1,US,1)	     "Data Set Type"
+(0x00001000,1,UI,1)	     "Affected SOP Instance UID"
+(0x00001030,3,AE,1)	     "Move Originator AE Title"
+(0x00001031,3,US,1)	     "Move Originator Message ID"
+ENDDEFINE
+
+
+DEFINE C-STORE-RSP
+(0x00000000,1,UL,1)	      "Group 0000 Length"
+(0x00000002,1,UI,1)	      "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x8001)  "Command Field"
+(0x00000120,1,US,1)	      "Message ID Being Responded To"
+(0x00000800,1,US,1)           "Data Set Type"
+(0x00000900,1,US,1)	      "Status"
+(0x00000901,3,AT,1:n)	      "Offending Element"
+(0x00000902,3,LO,1)	      "Error Comment"
+(0x00000903,3,US,1)	      "Error ID"
+(0x00001000,1,UI,1)	      "Affected SOP Instance UID"
+ENDDEFINE
+

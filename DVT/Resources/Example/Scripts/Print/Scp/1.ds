@@ -1,0 +1,34 @@
+## Example DVT Dicom Script
+#
+#
+
+##
+## SCP Print DICOMScript: 1.ds
+##
+## Pre-conditions:
+##      - no association
+##
+## Test Scenario:
+##      - expect association for Print Service Class
+##              - little endian implicit VR
+##      - reject association - Result = 1 - rejected permanent
+##                             Source = 1 - DICOM UL service-user
+##                             Reason/Diag = 2 - application context
+##                                               name not supported
+##
+## Expected Result:
+##      - SCU signals failure to make association 
+##
+## Post-conditions:
+##      - no association
+##
+RECEIVE ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Abstract Meta SOP Class", "Implicit VR Little Endian")
+)
+
+SEND ASSOCIATE-RJ (
+        RESULT 1
+        SOURCE 1
+        REASON 2
+)

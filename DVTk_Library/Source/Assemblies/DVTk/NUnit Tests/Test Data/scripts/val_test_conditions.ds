@@ -1,0 +1,164 @@
+## 
+## DVT DICOMScript
+##
+## Name: val_test_conditions.ds
+##
+## Test Suite Ref: 3.2.11.3.4.2
+## Test Case Ref : Test Case #1
+##                 Test Case #2
+##
+## Test Suite Ref: 3.2.11.3.4.4
+##
+## Pre-conditions:
+##
+## Test Scenario:
+##    - Create (various) C-STORE-RQ command objects and datasets for the 
+##      "Validation Test conditions SOP Class" with known errors.
+##    - the objects are validated 
+##    - and deleted
+##
+##
+## Expected Result:
+##    25 errors, 0 warnings
+##
+## Post-conditions:
+##    -
+##
+
+##================================================================================
+## Conditions Test 1: All SH_xx attributes must fail with an error:
+## SH_01 .. SH_05 and SH_09: Attributes are present but condition is FALSE!... 
+## SH_06 .. SH_08: Attributes are NOT present but condition is TRUE!... 
+##================================================================================
+
+# Create and Set Objects For Test 1
+CREATE C-STORE-RQ COND_STORE_RQ1 "Validation Test Conditions SOP Class" RQ_COND1
+
+SET C-STORE-RQ COND_STORE_RQ1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Conditions SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, AUTOSET);
+}
+
+# Checking AND/OR and braces evaluation 
+
+SET "Validation Test Conditions SOP Class" RQ_COND1
+{
+(0x102E0005, US, 10);	   # Cond. for SH_01 .. SH_05 must fail 
+(0x102E0004, US, 1, 15);  	
+(0x101E0001, SH, "Value"); # Cond. for SH_01 .. SH_05 must fail 
+(0x101E0002, SH, "Value A", "Value B");
+(0x101E0003, SH, "Value"); 
+(0x101E0004, SH, "Value");
+(0x101E0005, SH, "Value");
+(0x101E0009, SH, "Value");
+}
+
+# Validate object(s) for test 1
+VALIDATE C-STORE-RQ COND_STORE_RQ1 "Validation Test Conditions SOP Class" RQ_COND1
+
+# Delete objects for Test 1
+DELETE C-STORE-RQ COND_STORE_RQ1
+DELETE "Validation Test Conditions SOP Class" RQ_COND1
+
+#********************************************************************************
+
+##================================================================================
+## Conditions Test 2: All SH_xx attributes must fail with an Error
+## SH_01 .. SH_09: Attributes are present but condition is FALSE!... 
+## ALLTHOUGH The module AE is ABSENT (no AE_03 tag), but EA_01 and AE_02 are present. 
+## These attributes are therefor mentioned as additional (WARNINGS)!... 
+## ================================================================================
+
+# Create and Set Objects For Test 2
+CREATE C-STORE-RQ COND_STORE_RQ2 "Validation Test Conditions SOP Class" RQ_COND2
+
+SET C-STORE-RQ COND_STORE_RQ2
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Conditions SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, AUTOSET);
+}
+
+SET "Validation Test Conditions SOP Class" RQ_COND2
+{
+(0x10000001, AE, "AE string 1"); # module attributes present, but module AE condition is false (present AE_03) 
+(0x10000002, AE, "");
+(0x101E0001, SH, "Value"); # all SH_0x attributtes are present while conditions fail 
+(0x101E0002, SH, "Value A", "Value B");
+(0x101E0003, SH, "Value"); 
+(0x101E0004, SH, "Value");
+(0x101E0005, SH, "Value");
+(0x101E0006, SH, "Value");
+(0x101E0007, SH, "Value");
+(0x101E0008, SH, "Value");
+(0x101E0009, SH, "Value");
+(0x102E0004, US, 10, 50); 
+(0x102E0005, US, 10);
+
+}
+
+# Validate objects for test 2
+VALIDATE C-STORE-RQ COND_STORE_RQ2 "Validation Test Conditions SOP Class" RQ_COND2
+
+# Delete objects for Test 2
+DELETE C-STORE-RQ COND_STORE_RQ2
+DELETE "Validation Test Conditions SOP Class" RQ_COND2
+
+#********************************************************************************
+
+##================================================================================
+## Conditions Test 3: All SH_xx attributes must fail with an Error
+## SH_02: Attribute is present but condition is FALSE!... 
+## Other SH_0x: Attributes are NOT present but condition is TRUE!... 
+## The module AE is Present (EA_03 is present), but the mandatory attributes
+## of the module (VT = 1 or 2) are not. Therefor AE_01 and AE_02 have an error
+## because these mandatory attributes of the module are misssing !... 
+## ================================================================================
+
+# Create and Set Objects For Test 3
+CREATE C-STORE-RQ COND_STORE_RQ3 "Validation Test Conditions SOP Class" RQ_COND3
+
+SET C-STORE-RQ COND_STORE_RQ3
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Conditions SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, AUTOSET);
+}
+
+SET "Validation Test Conditions SOP Class" RQ_COND3
+{
+(0x102E0003, US, 10); 
+(0x102E0004, US, 5, 10); # all US_04 releated conditions TRUE 
+(0x102E0005, US, 10);
+(0x101E0002, SH, "Value 1", "Value 2");
+(0x10000003, AE, "AE string 3"); # no other module attributes present, but module AE condition is true (present AE_03) 
+}
+
+# Validate objects for test 3
+VALIDATE C-STORE-RQ COND_STORE_RQ3 "Validation Test Conditions SOP Class" RQ_COND3
+
+# Delete objects for Test 3
+DELETE C-STORE-RQ COND_STORE_RQ3
+DELETE "Validation Test Conditions SOP Class" RQ_COND3
+
+##
+## Script Result should be:
+## Validation: 25 error(s), 0 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 0 error(s), 0 warning(s)
+##
+

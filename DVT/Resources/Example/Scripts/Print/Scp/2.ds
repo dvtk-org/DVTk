@@ -1,0 +1,118 @@
+## Example DVT Dicom Script
+#
+#
+
+##
+## SCP Print DICOMScript: 2.ds
+##
+## Pre-conditions:
+##      - no association
+##
+## Test Scenario:
+##      - expect association for Print Service Class
+##              - big endian explicit VR
+##              - little endian explicit VR
+##              - little endian implicit VR
+##      - accept association - Result/Reason = 0 - acceptance
+##              - big endian explicit VR
+##      - expect N-GET-RQ Printer
+##      - return N-GET-RSP - STATUS = 0000 - SUCCESS
+##      - expect N-CREATE-RQ Basic Film Session
+##      - return N-CREATE-RSP - STATUS = 0000 - SUCCESS
+##      - expect N-CREATE-RQ Basic Film Box
+##      - return N-CREATE-RSP - STATUS = 0000 - SUCCESS
+##      - expect N-SET-RQ Basic Image Box
+##      - return N-SET-RSP - STATUS = 0000 - SUCCESS
+##      - expect N-SET-RQ Basic Image Box
+##      - return N-SET-RSP - STATUS = 0000 - SUCCESS
+##      - expect N-ACTION-RQ Basic Film Box
+##      - return N-ACTION-RSP - STATUS = 0000 - SUCCESS
+##      - expect N-DELETE-RQ Basic Film Session
+##      - return N-DELETE-RSP - STATUS = 0000 - SUCCESS
+##      - expect release association request
+##      - return release association response
+##
+## Expected Result:
+##      - SCP signals successful print
+##
+## Post-conditions:
+##      - no association - film being printed
+##
+RECEIVE ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+#        ("Abstract Meta SOP Class",
+("Basic Grayscale Print Management Meta SOP Class",
+                "Explicit VR Big Endian",
+                "Explicit VR Little Endian",
+                "Implicit VR Little Endian")
+)
+
+SEND ASSOCIATE-AC (
+        PRESENTATION-CONTEXT-ITEMS
+#        ("Abstract Meta SOP Class",
+("Basic Grayscale Print Management Meta SOP Class",
+                0, "Explicit VR Big Endian")
+)
+
+
+RECEIVE N-GET-RQ
+
+SEND N-GET-RSP "Printer" (
+(0x00000002, "Printer SOP Class")
+(0x00001000, "1.2.840.10008.5.1.1.17")
+
+(0x00080070, "DVT")
+(0x00081090, "DVT")
+(0x00181000, "123456")
+(0x00181020, "Version 2.0")
+(0x00181200, AUTOSET)
+(0x00181201, AUTOSET)
+(0x21100010, "NORMAL")
+(0x21100030, "dvt")
+)
+
+
+RECEIVE N-CREATE-RQ "Basic Film Session"
+
+SEND N-CREATE-RSP
+
+
+RECEIVE N-CREATE-RQ "Basic Film Box"
+
+SEND N-CREATE-RSP "Basic Film Box" (
+(0x20100510, SQ,
+>(0x00081150, "Basic Grayscale Image Box SOP Class")
+>(0x00081155, "1.2.3.4.5.6.1.11")
+,
+>(0x00081150, "Basic Grayscale Image Box SOP Class")
+>(0x00081155, "1.2.3.4.5.6.1.12")
+)
+)
+
+
+RECEIVE N-SET-RQ "Basic Grayscale Image Box"
+
+SEND N-SET-RSP
+
+
+RECEIVE N-SET-RQ "Basic Grayscale Image Box"
+
+SEND N-SET-RSP
+
+
+RECEIVE N-ACTION-RQ
+
+SEND N-ACTION-RSP (
+(0x00001008, 1)
+)
+
+
+RECEIVE N-DELETE-RQ
+
+SEND N-DELETE-RSP
+
+
+RECEIVE RELEASE-RQ
+
+SEND RELEASE-RP
+

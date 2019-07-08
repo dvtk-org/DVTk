@@ -1,0 +1,44 @@
+## Example DVT Dicom Script
+#
+#
+
+##
+## SCP Verification DICOMScript: 1.ds
+##
+## Pre-conditions:
+##      - no association
+##
+## Test Scenario:
+##      - expect association for Verification Service Class
+##              - little endian implicit VR
+##      - accept association - Result/Reason = 0 - acceptance
+##              - little endian implicit VR
+##      - expect C-ECHO-RQ
+##      - return C-ECHO-RSP - STATUS = 0000 - OK
+##      - expect release association request
+##      - return release association response
+##
+## Expected Result:
+##      - SCU signals successful verification
+##
+## Post-conditions:
+##      - no association
+##
+RECEIVE ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Verification SOP Class", "Implicit VR Little Endian")
+)
+
+SEND ASSOCIATE-AC (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Verification SOP Class", 0, "Implicit VR Little Endian" )
+)
+
+RECEIVE C-ECHO-RQ
+
+SEND C-ECHO-RSP
+
+RECEIVE RELEASE-RQ
+
+SEND RELEASE-RP
+
