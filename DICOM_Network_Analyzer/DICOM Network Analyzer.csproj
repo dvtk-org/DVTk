@@ -196,7 +196,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>SET LIBRARY_DIRECTORY=$(ProjectDir)..\DVTk_Library\Releases\5_0_0_0\$(ConfigurationName)
+    <PreBuildEvent>SET LIBRARY_DIRECTORY=$(ProjectDir)..\DVTk_Library\Releases\5_1_0_0\$(ConfigurationName)
 REM SET LIBRARY_DIRECTORY=$(ProjectDir)..\DVTk_Library\Builds\$(ConfigurationName)
 
 IF NOT EXIST "%25LIBRARY_DIRECTORY%25" (

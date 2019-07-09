@@ -21,6 +21,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace Sniffer
 {
@@ -140,6 +141,9 @@ namespace Sniffer
         [DllImport("wpcap.dll")]
         private static extern IntPtr pcap_open_offline(string fname, StringBuilder errbuf);
 
+        [DllImport("kernel32.dll")]
+        static extern IntPtr LoadLibrary(string dllName);
+
         [System.Runtime.InteropServices.DllImport("Kernel32")]
         private extern static Boolean CloseHandle(IntPtr handle);
 
@@ -241,6 +245,12 @@ namespace Sniffer
             StringBuilder err = new StringBuilder(256);
 
             IntPtr head = IntPtr.Zero;
+
+            if (LoadLibrary("wpcap.dll") == IntPtr.Zero)
+            {
+                MessageBox.Show(null, "WinPcap is missing, please download the full installer (https://www.dvtk.org/downloads/) to install the network analyzer with WInPcap installation.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
 
             if (pcap_findalldevs(ref tmpptr, err) == -1)
             {
