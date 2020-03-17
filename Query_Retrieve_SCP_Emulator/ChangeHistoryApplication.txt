@@ -529,3 +529,15 @@ Description:
 - New application icon
 
 <------------------------------------------------------------------------------>
+
+
+
+
+
+
+==================================================================
+= Query Retrieve SCP Emulator 5.1.1, based on DVTk library 5.1.1 =
+==================================================================
+No changes in the application code compared to Query Retrieve SCP Emulator 5.0.0. 
+The only difference is that this new version is based on DVTk Library 5.1.1.
+
