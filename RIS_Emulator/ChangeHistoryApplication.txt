@@ -222,13 +222,6 @@ Description:
 
 <------------------------------------------------------------------------------>
 
-Date 
-
-Description:
-------------
-
-<------------------------------------------------------------------------------>
-
 Date 30-1-2012 , ticket 1556
 
 Description:
@@ -239,15 +232,27 @@ THe file dialog will now go the path where the user last chose the datasets.
 
 
 
+
+
+====================================================
+= RIS Emulator 5.1.1, based on DVTk library 5.1.1 =
+====================================================
+
+
+
 =
-= Implemented change requests for .....
+= Solved problems for 5.1.1
 =
 
 <------------------------------------------------------------------------------>
 
-Date , ticket 
+Date 17 March 2020, ticket DVT-148
 
 Description:
 ------------
+When installing the RIS Emulator, besides a valid Modality Worklist DICOM meta file,
+also Storage DICOM files were installed (which is not correct input). The last ones 
+have been removed from the installer.
 
 <------------------------------------------------------------------------------>
+
