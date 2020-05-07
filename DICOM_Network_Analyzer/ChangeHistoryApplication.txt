@@ -634,3 +634,31 @@ Description:
 - New application icon
 
 <------------------------------------------------------------------------------>
+
+
+
+
+
+
+=============================================================
+= DICOM Network Analyzer 5.1.1, based on DVTk library 5.1.1 =
+=============================================================
+
+
+
+=
+= Solved problems for 5.1.1
+=
+
+<------------------------------------------------------------------------------>
+
+Date 7 May 2020, ticket DVT-151
+
+Description:
+------------
+Replace WinPCap driver with Npcap driver:
+- WinPCap driver does not seem to work anymore after Windows update.
+- Instead the Npcap driver need to be installed seperately, which can be found on https://nmap.org/npcap/
+- The Npcap driver cannot be included in the DICOM Network Analyzer installer because of the licensing of the Npcap driver
+
+<------------------------------------------------------------------------------>

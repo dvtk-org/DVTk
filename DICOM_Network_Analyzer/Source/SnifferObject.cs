@@ -70,10 +70,14 @@ namespace Sniffer
 
             // Find only Devices which can be used for capturing
             ArrayList allDevices = dotnetWinpCap.FindAllDevs();
-            foreach (Device dev in allDevices)
+
+            if (allDevices != null)
             {
-                if (dev.Netmask != null)
-                    deviceList.Add(dev);
+                foreach (Device dev in allDevices)
+                {
+                    if (dev.Netmask != null)
+                        deviceList.Add(dev);
+                }
             }
         }
 

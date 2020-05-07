@@ -248,7 +248,7 @@ namespace Sniffer
 
             if (LoadLibrary("wpcap.dll") == IntPtr.Zero)
             {
-                MessageBox.Show(null, "WinPcap is missing, please download the full installer (https://www.dvtk.org/downloads/) to install the network analyzer with WInPcap installation.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(null, "Please install the Npcap driver, which can be found on https://nmap.org/npcap/ .", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
 

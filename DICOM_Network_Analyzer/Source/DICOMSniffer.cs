@@ -1536,7 +1536,7 @@ namespace SnifferUI
 			catch (Exception except) 
 			{
                 string msg = string.Format("Error:{0}\n", except.Message);
-				MessageBox.Show(this, "Please install the WinPcap4.x.\n" +msg, "Error",MessageBoxButtons.OK, MessageBoxIcon.Error );
+                MessageBox.Show(this, "Please install the Npcap driver, which can be found on https://nmap.org/npcap/ .\n" + msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				this.Close();
 				return;
 			}			
@@ -1549,7 +1549,7 @@ namespace SnifferUI
 			}
 			else
 			{
-				string msg = "No network adapter(driver) detected on the machine.\nPlease install the WinPcap4.x.\r\n";
+                string msg = "No network adapter(driver) detected on the machine.\nPlease install the Npcap driver, which can be found on https://nmap.org/npcap/ .\r\n";
 				MessageBox.Show(this, msg, "Warning",MessageBoxButtons.OK, MessageBoxIcon.Warning );
 				this.Close();
 				return;
