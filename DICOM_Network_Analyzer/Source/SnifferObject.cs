@@ -1,6 +1,6 @@
 // ------------------------------------------------------
 // DVTk - The Healthcare Validation Toolkit (www.dvtk.org)
-// Copyright © 2009 DVTk
+// Copyright ï¿½ 2009 DVTk
 // ------------------------------------------------------
 // This file is part of DVTk.
 //
@@ -76,7 +76,9 @@ namespace Sniffer
                 foreach (Device dev in allDevices)
                 {
                     if (dev.Netmask != null)
+                    {
                         deviceList.Add(dev);
+                    }
                 }
             }
         }

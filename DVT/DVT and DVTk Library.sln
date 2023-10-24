@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32106.194
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVT", "DVT.csproj", "{8FA290A2-E942-439B-BEF6-19E46091612F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{ED78A4EA-F738-46A0-8B08-1C14C032DBB6} = {ED78A4EA-F738-46A0-8B08-1C14C032DBB6}
@@ -47,33 +49,33 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DVTK Managed Code Adapter",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVTk Script Support", "..\DVTk_Library\Source\Assemblies\DVTk Script Support\DVTk Script Support.csproj", "{D8170A29-9F92-4B3C-8A67-F93704653E8C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Attribute Group", "..\DVTk_Library\Source\Libraries\AttributeGroup\AttributeGroup.vcproj", "{58A5B797-F08B-4837-96CF-FFBDB7CB3F02}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Attribute Group", "..\DVTk_Library\Source\Libraries\AttributeGroup\AttributeGroup.vcxproj", "{58A5B797-F08B-4837-96CF-FFBDB7CB3F02}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Condition", "..\DVTk_Library\Source\Libraries\Condition\Condition.vcproj", "{A7855BD5-03C1-4711-9F44-81D94A4F0F5C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Condition", "..\DVTk_Library\Source\Libraries\Condition\Condition.vcxproj", "{A7855BD5-03C1-4711-9F44-81D94A4F0F5C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Definition", "..\DVTk_Library\Source\Libraries\Definition\Definition.vcproj", "{DADE89C9-2D7F-4582-BF44-FA656E9E556D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Definition", "..\DVTk_Library\Source\Libraries\Definition\Definition.vcxproj", "{DADE89C9-2D7F-4582-BF44-FA656E9E556D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Dicom", "..\DVTk_Library\Source\Libraries\Dicom\Dicom.vcproj", "{FE81B2F3-B574-46AB-A109-8B5A169450C2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Dicom", "..\DVTk_Library\Source\Libraries\Dicom\Dicom.vcxproj", "{FE81B2F3-B574-46AB-A109-8B5A169450C2}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Emulator", "..\DVTk_Library\Source\Libraries\Emulator\Emulator.vcproj", "{56D4BCA8-6C2A-4D84-803D-E11FFA8DA9BE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Emulator", "..\DVTk_Library\Source\Libraries\Emulator\Emulator.vcxproj", "{56D4BCA8-6C2A-4D84-803D-E11FFA8DA9BE}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Log", "..\DVTk_Library\Source\Libraries\Log\Log.vcproj", "{B715244C-8258-46D6-B37E-1B85510FCB72}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Log", "..\DVTk_Library\Source\Libraries\Log\Log.vcxproj", "{B715244C-8258-46D6-B37E-1B85510FCB72}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Media", "..\DVTk_Library\Source\Libraries\Media\Media.vcproj", "{A113B569-82A2-4B52-B60A-4797D12D6FBD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Media", "..\DVTk_Library\Source\Libraries\Media\Media.vcxproj", "{A113B569-82A2-4B52-B60A-4797D12D6FBD}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Network", "..\DVTk_Library\Source\Libraries\Network\Network.vcproj", "{D3340271-CCBC-428A-B417-4C92F3ED907B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Network", "..\DVTk_Library\Source\Libraries\Network\Network.vcxproj", "{D3340271-CCBC-428A-B417-4C92F3ED907B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Relation", "..\DVTk_Library\Source\Libraries\Relation\Relation.vcproj", "{AC685071-AAEA-4DBF-9E09-E648F49F8F5B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Relation", "..\DVTk_Library\Source\Libraries\Relation\Relation.vcxproj", "{AC685071-AAEA-4DBF-9E09-E648F49F8F5B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Scripting", "..\DVTk_Library\Source\Libraries\Scripting\Scripting.vcproj", "{9B01E6D4-F4BD-4CAC-94C7-76037DF6634A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Scripting", "..\DVTk_Library\Source\Libraries\Scripting\Scripting.vcxproj", "{9B01E6D4-F4BD-4CAC-94C7-76037DF6634A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Session", "..\DVTk_Library\Source\Libraries\Session\Session.vcproj", "{C4CBABF1-059C-41CC-B97B-1E046FDE9FED}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Session", "..\DVTk_Library\Source\Libraries\Session\Session.vcxproj", "{C4CBABF1-059C-41CC-B97B-1E046FDE9FED}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Utility", "..\DVTk_Library\Source\Libraries\Utility\Utility.vcproj", "{33D7A88E-00EB-4149-8233-26CFFC6987E1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Utility", "..\DVTk_Library\Source\Libraries\Utility\Utility.vcxproj", "{33D7A88E-00EB-4149-8233-26CFFC6987E1}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Validation", "..\DVTk_Library\Source\Libraries\Validation\Validation.vcproj", "{DB46B436-C9F8-445A-A820-FCDBF2BD7079}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Validation", "..\DVTk_Library\Source\Libraries\Validation\Validation.vcxproj", "{DB46B436-C9F8-445A-A820-FCDBF2BD7079}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Warehouse", "..\DVTk_Library\Source\Libraries\Warehouse\Warehouse.vcproj", "{0A055C47-2A70-4845-968E-EB5E64DECA2D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Warehouse", "..\DVTk_Library\Source\Libraries\Warehouse\Warehouse.vcxproj", "{0A055C47-2A70-4845-968E-EB5E64DECA2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -426,5 +428,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {76125964-25CB-43B5-8CC7-493F8E5DC11D}
 	EndGlobalSection
 EndGlobal

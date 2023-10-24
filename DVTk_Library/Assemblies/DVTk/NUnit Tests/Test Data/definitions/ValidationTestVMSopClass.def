@@ -1,0 +1,79 @@
+###############################################################################
+#
+# Definition File: ValidationTestVMSopClass.def
+#
+# Description    : Generated manually for testing the validation algorithm
+#                  regarding Value Multiplicity
+#
+# Note           : No specific system has been defined
+#
+################################################################################
+
+DEFINE SYSTEM "DICOM" "3.0"
+"DICOM" "3.0"
+ENDDEFINE
+
+#
+# Definition of the Validation Test VM SOP Class
+#
+
+DEFINE C-STORE-RQ "Validation Test VM SOP Class"
+
+SOPCLASS "1.3.46.670589.17.2.42.4" "Validation Test VM SOP Class"
+
+MODULE "Test Module VM" M
+(0x10240010,1,SS,1)		"SS_10"
+(0x10240020,1,SS,2)		"SS_20"
+(0x10240030,1,SS,2:5)	"SS_30"
+(0x10240040,1,SS,1:n)	"SS_40"
+(0x10240050,1,SS,2:2n)	"SS_50"
+(0x10240060,1,SS,3:3n)	"SS_60"
+
+ENDDEFINE
+
+#
+# Definition of the Validation Test VM SOP Class
+#
+
+DEFINE C-STORE-RSP "Validation Test VM SOP Class"
+
+SOPCLASS "1.3.46.670589.17.2.42.4" "Validation Test VM SOP Class"
+
+ENDDEFINE
+
+
+#
+# Commands applicable for the Validation Test VM SOP Class
+#
+
+DEFINE C-STORE-RQ
+(0x00000000,1,UL,1)	         "Group 0000 Length"
+(0x00000002,1,UI,1)	         "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x0001) 	 "Command Field"
+(0x00000110,1,US,1)	         "Message ID"
+(0x00000700,1,US,1,E,0x0000
+                   | 0x0001
+                   | 0x0002) 	 "Priority"
+(0x00000800,1,US,1)	         "Data Set Type"
+(0x00001000,1,UI,1)	         "Affected SOP Instance UID"
+(0x00001030,3,AE,1)		 "Move Originator AE Title"
+(0x00001031,3,US,1)		 "Move Originator Message ID"
+ENDDEFINE
+
+DEFINE C-STORE-RSP
+(0x00000000,1,UL,1)	          "Group 0000 Length"
+(0x00000002,1,UI,1)	          "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x8001)  	  "Command Field"
+(0x00000120,1,US,1)	          "Message ID Being Responded To"
+(0x00000800,1,US,1)           	  "Data Set Type"
+(0x00000900,1,US,1)	          "Status"
+(0x00000901,3,AT,1:n)	      	  "Offending Element"
+(0x00000902,3,LO,1)	          "Error Comment"
+(0x00000903,3,US,1)	          "Error ID"
+(0x00001000,1,UI,1)	          "Affected SOP Instance UID"
+ENDDEFINE
+
+
+
+
+

@@ -1,0 +1,34 @@
+## 
+## DVT DICOMScript
+##
+## Name: script_test_system.ds
+##
+## Test Suite Ref:
+## Test Case Ref:
+##
+## Pre-conditions:
+##
+## Test Scenario:
+##    - Run script script_test_import.ds with test_DICOMScriptLanguage_scp.ses
+##      to receive a MR image object
+##    - Use SYSTEM command to create a directory "CREATED_VIA_SYSTEM"
+##    - Use CONFIRM command after existence of the created directory has been verified
+##    - Use SYSTEM command to remove the directory CREATED_VIA_SYSTEM"
+##    - Use CONFIRM command after existence of the created directory has been verified
+##
+##
+## Expected Result:
+##
+## Post-conditions:
+##    -
+##
+
+SYSTEM "mkdir CREATED_VIA_SYSTEM"
+
+#CONFIRM
+
+SYSTEM "rmdir CREATED_VIA_SYSTEM"
+
+#CONFIRM
+
+

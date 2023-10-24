@@ -1,0 +1,772 @@
+## 
+## DVT DICOMScript
+##
+## Name: val_test_presence.ds
+##
+## Test Suite Ref: 3.2.11.3.4.9.2.5
+## Test Case Ref:  #1, #2
+##
+## Pre-conditions:
+##
+## Test Scenario:
+##    - Create (various) C-STORE-RQ command objects and datasets for the 
+##      "Validation Test Ranges SOP Class" with known errors.
+##    - the objects are validated 
+##    - and deleted
+##
+##
+## Expected Result:
+##    39 errors, 0 warnings
+##
+## Post-conditions:
+##    -
+##
+
+
+##================================================================================
+## Presence test 1: Check attribute presence
+##                  - no reference object
+##                  - attributes are not present in the source object
+##                  - conditions are false
+##================================================================================
+
+# Create and set objects
+CREATE C-STORE-RQ SRC_CMD1 "Validation Test Presence SOP Class" SRC_DATASET1
+
+SET C-STORE-RQ SRC_CMD1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Presence SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Presence SOP Class" SRC_DATASET1
+{
+}
+
+# Go for it
+VALIDATE C-STORE-RQ SRC_CMD1 "Validation Test Ranges SOP Class" SRC_DATASET1 
+
+ECHO ""
+##================================================================================
+##
+## Dataset result should be: 2 error(s), 0 warning(s)
+##
+##================================================================================
+
+#Delete objects
+DELETE C-STORE-RQ SRC_CMD1
+DELETE "Validation Test Ranges SOP Class" SRC_DATASET1 
+
+#*********************************************************************************
+
+##================================================================================
+## Presence test 2: Check attribute presence
+##                  - no reference object
+##                  - attributes are present in the source object
+##                  - conditions are false
+##================================================================================
+
+# Create and set objects
+CREATE C-STORE-RQ SRC_CMD1 "Validation Test Presence SOP Class" SRC_DATASET1
+
+SET C-STORE-RQ SRC_CMD1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Presence SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Presence SOP Class" SRC_DATASET1
+{
+(0x10000001,AE, "PRESENT")
+(0x1C000001,AE, "PRESENT")
+(0x20000001,AE, "PRESENT")
+(0x2C000001,AE, "PRESENT")
+(0x30000001,AE, "PRESENT")
+(0x3C000001,AE, "PRESENT")
+}
+
+# Go for it
+VALIDATE C-STORE-RQ SRC_CMD1 "Validation Test Ranges SOP Class" SRC_DATASET1 
+
+ECHO ""
+##================================================================================
+##
+## Dataset result should be: 3 error(s), 0 warning(s)
+##
+##================================================================================
+
+#Delete objects
+DELETE C-STORE-RQ SRC_CMD1
+DELETE "Validation Test Ranges SOP Class" SRC_DATASET1 
+
+#*********************************************************************************
+
+##================================================================================
+## Presence test 3: Check attribute presence
+##                  - no reference object
+##                  - attributes are not present in the source object
+##                  - conditions are true
+##================================================================================
+
+# Create and set objects
+CREATE C-STORE-RQ SRC_CMD1 "Validation Test Presence SOP Class" SRC_DATASET1
+
+SET C-STORE-RQ SRC_CMD1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Presence SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Presence SOP Class" SRC_DATASET1
+{
+(0x10000000, US, 0)  #present to force conditions to be true
+}
+
+# Go for it
+VALIDATE C-STORE-RQ SRC_CMD1 "Validation Test Ranges SOP Class" SRC_DATASET1 
+
+ECHO ""
+##================================================================================
+##
+## Dataset result should be: 4 error(s), 0 warning(s)
+##
+##================================================================================
+
+#Delete objects
+DELETE C-STORE-RQ SRC_CMD1
+DELETE "Validation Test Ranges SOP Class" SRC_DATASET1 
+
+#*********************************************************************************
+
+##================================================================================
+## Presence test 4: Check attribute presence
+##                  - no reference object
+##                  - attributes are present in the source object
+##                  - conditions are true
+##================================================================================
+
+# Create and set objects
+CREATE C-STORE-RQ SRC_CMD1 "Validation Test Presence SOP Class" SRC_DATASET1
+
+SET C-STORE-RQ SRC_CMD1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Presence SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Presence SOP Class" SRC_DATASET1
+{
+(0x10000000, US, 0)  #present to force conditions to be true
+(0x10000001,AE, "PRESENT")
+(0x1C000001,AE, "PRESENT")
+(0x20000001,AE, "PRESENT")
+(0x2C000001,AE, "PRESENT")
+(0x30000001,AE, "PRESENT")
+(0x3C000001,AE, "PRESENT")
+}
+
+# Go for it
+VALIDATE C-STORE-RQ SRC_CMD1 "Validation Test Ranges SOP Class" SRC_DATASET1 
+
+ECHO ""
+##================================================================================
+##
+## Dataset result should be: 0 error(s), 0 warning(s)
+##
+##================================================================================
+
+#Delete objects
+DELETE C-STORE-RQ SRC_CMD1
+DELETE "Validation Test Ranges SOP Class" SRC_DATASET1 
+
+
+#*********************************************************************************
+#*********************************************************************************
+
+##================================================================================
+## Presence test 5: Check attribute presence
+##                  - There is areference object
+##                  - attributes are not present in the source object
+##                  - attributes are not present in the reference object
+##                  - conditions are false
+##================================================================================
+
+# Create and set objects
+CREATE C-STORE-RQ SRC_CMD1 "Validation Test Presence SOP Class" SRC_DATASET1
+CREATE C-STORE-RQ REF_CMD1 "Validation Test Presence SOP Class" REF_DATASET1
+
+
+SET C-STORE-RQ SRC_CMD1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Presence SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Presence SOP Class" SRC_DATASET1
+{
+}
+
+SET C-STORE-RQ REF_CMD1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Presence SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Presence SOP Class" REF_DATASET1
+{
+}
+
+
+# Go for it
+VALIDATE C-STORE-RQ SRC_CMD1 "Validation Test Ranges SOP Class" SRC_DATASET1 
+         C-STORE-RQ REF_CMD1 "Validation Test Ranges SOP Class" REF_DATASET1 
+
+
+ECHO ""
+##================================================================================
+##
+## Dataset result should be: 2 error(s), 0 warning(s)
+##
+##================================================================================
+
+#Delete objects
+DELETE C-STORE-RQ SRC_CMD1
+DELETE "Validation Test Ranges SOP Class" SRC_DATASET1 
+DELETE C-STORE-RQ REF_CMD1
+DELETE "Validation Test Ranges SOP Class" REF_DATASET1 
+
+
+#*********************************************************************************
+
+##================================================================================
+## Presence test 6: Check attribute presence
+##                  - There is a reference object
+##                  - attributes are not in the source object
+##                  - attributes are present in the reference object
+##                  - conditions are false
+##================================================================================
+
+# Create and set objects
+CREATE C-STORE-RQ SRC_CMD1 "Validation Test Presence SOP Class" SRC_DATASET1
+CREATE C-STORE-RQ REF_CMD1 "Validation Test Presence SOP Class" REF_DATASET1
+
+SET C-STORE-RQ SRC_CMD1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Presence SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Presence SOP Class" SRC_DATASET1
+{
+}
+
+SET C-STORE-RQ REF_CMD1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Presence SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Presence SOP Class" REF_DATASET1
+{
+(0x10000001,AE, "PRESENT")
+(0x1C000001,AE, "PRESENT")
+(0x20000001,AE, "PRESENT")
+(0x2C000001,AE, "PRESENT")
+(0x30000001,AE, "PRESENT")
+(0x3C000001,AE, "PRESENT")
+}
+
+
+# Go for it
+VALIDATE C-STORE-RQ SRC_CMD1 "Validation Test Ranges SOP Class" SRC_DATASET1 
+         C-STORE-RQ REF_CMD1 "Validation Test Presence SOP Class" REF_DATASET1
+
+ECHO ""
+##================================================================================
+##
+## Dataset result should be: 8 error(s), 0 warning(s)
+##
+##================================================================================
+
+#Delete objects
+DELETE C-STORE-RQ SRC_CMD1
+DELETE "Validation Test Ranges SOP Class" SRC_DATASET1 
+DELETE C-STORE-RQ REF_CMD1
+DELETE "Validation Test Ranges SOP Class" REF_DATASET1 
+
+#*********************************************************************************
+
+#*********************************************************************************
+
+##================================================================================
+## Presence test 7: Check attribute presence
+##                  - There is a reference object
+##                  - attributes are present in the source object
+##                  - attributes are not present in the reference object
+##                  - conditions are false
+##================================================================================
+
+# Create and set objects
+CREATE C-STORE-RQ SRC_CMD1 "Validation Test Presence SOP Class" SRC_DATASET1
+CREATE C-STORE-RQ REF_CMD1 "Validation Test Presence SOP Class" REF_DATASET1
+
+SET C-STORE-RQ SRC_CMD1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Presence SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Presence SOP Class" SRC_DATASET1
+{
+(0x10000001,AE, "PRESENT")
+(0x1C000001,AE, "PRESENT")
+(0x20000001,AE, "PRESENT")
+(0x2C000001,AE, "PRESENT")
+(0x30000001,AE, "PRESENT")
+(0x3C000001,AE, "PRESENT")
+}
+
+SET C-STORE-RQ REF_CMD1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Presence SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Presence SOP Class" REF_DATASET1
+{
+}
+
+
+# Go for it
+VALIDATE C-STORE-RQ SRC_CMD1 "Validation Test Ranges SOP Class" SRC_DATASET1 
+         C-STORE-RQ REF_CMD1 "Validation Test Presence SOP Class" REF_DATASET1
+
+ECHO ""
+##================================================================================
+##
+## Dataset result should be: 3 error(s), 0 warning(s)
+##
+##================================================================================
+
+#Delete objects
+DELETE C-STORE-RQ SRC_CMD1
+DELETE "Validation Test Ranges SOP Class" SRC_DATASET1 
+DELETE C-STORE-RQ REF_CMD1
+DELETE "Validation Test Ranges SOP Class" REF_DATASET1 
+
+#*********************************************************************************
+
+#*********************************************************************************
+
+##================================================================================
+## Presence test 8: Check attribute presence
+##                  - There is a reference object
+##                  - attributes are present in the source object
+##                  - attributes are present in the reference object
+##                  - conditions are false
+##================================================================================
+
+# Create and set objects
+CREATE C-STORE-RQ SRC_CMD1 "Validation Test Presence SOP Class" SRC_DATASET1
+CREATE C-STORE-RQ REF_CMD1 "Validation Test Presence SOP Class" REF_DATASET1
+
+SET C-STORE-RQ SRC_CMD1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Presence SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Presence SOP Class" SRC_DATASET1
+{
+(0x10000001,AE, "PRESENT")
+(0x1C000001,AE, "PRESENT")
+(0x20000001,AE, "PRESENT")
+(0x2C000001,AE, "PRESENT")
+(0x30000001,AE, "PRESENT")
+(0x3C000001,AE, "PRESENT")
+}
+
+SET C-STORE-RQ REF_CMD1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Presence SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Presence SOP Class" REF_DATASET1
+{
+(0x10000001,AE, "PRESENT")
+(0x1C000001,AE, "PRESENT")
+(0x20000001,AE, "PRESENT")
+(0x2C000001,AE, "PRESENT")
+(0x30000001,AE, "PRESENT")
+(0x3C000001,AE, "PRESENT")
+}
+
+
+# Go for it
+VALIDATE C-STORE-RQ SRC_CMD1 "Validation Test Ranges SOP Class" SRC_DATASET1 
+         C-STORE-RQ REF_CMD1 "Validation Test Presence SOP Class" REF_DATASET1
+
+ECHO ""
+##================================================================================
+##
+## Dataset result should be: 3 error(s), 0 warning(s)
+##
+##================================================================================
+
+#Delete objects
+DELETE C-STORE-RQ SRC_CMD1
+DELETE "Validation Test Ranges SOP Class" SRC_DATASET1 
+DELETE C-STORE-RQ REF_CMD1
+DELETE "Validation Test Ranges SOP Class" REF_DATASET1 
+
+#*********************************************************************************
+
+##================================================================================
+## Presence test 9: Check attribute presence
+##                  - There is a reference object
+##                  - attributes are not present in the source object
+##                  - attributes are not present in the reference object
+##                  - conditions are true
+##================================================================================
+
+# Create and set objects
+CREATE C-STORE-RQ SRC_CMD1 "Validation Test Presence SOP Class" SRC_DATASET1
+CREATE C-STORE-RQ REF_CMD1 "Validation Test Presence SOP Class" REF_DATASET1
+
+
+SET C-STORE-RQ SRC_CMD1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Presence SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Presence SOP Class" SRC_DATASET1
+{
+(0x10000000, US, 0)  #present to force conditions to be true
+}
+
+SET C-STORE-RQ REF_CMD1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Presence SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Presence SOP Class" REF_DATASET1
+{
+}
+
+
+# Go for it
+VALIDATE C-STORE-RQ SRC_CMD1 "Validation Test Ranges SOP Class" SRC_DATASET1 
+         C-STORE-RQ REF_CMD1 "Validation Test Ranges SOP Class" REF_DATASET1 
+
+
+ECHO ""
+##================================================================================
+##
+## Dataset result should be: 4 error(s), 0 warning(s)
+##
+##================================================================================
+
+#Delete objects
+DELETE C-STORE-RQ SRC_CMD1
+DELETE "Validation Test Ranges SOP Class" SRC_DATASET1 
+DELETE C-STORE-RQ REF_CMD1
+DELETE "Validation Test Ranges SOP Class" REF_DATASET1 
+
+
+#*********************************************************************************
+
+##================================================================================
+## Presence test 10: Check attribute presence
+##                  - There is a reference object
+##                  - attributes are not in the source object
+##                  - attributes are present in the reference object
+##                  - conditions are true
+##================================================================================
+
+# Create and set objects
+CREATE C-STORE-RQ SRC_CMD1 "Validation Test Presence SOP Class" SRC_DATASET1
+CREATE C-STORE-RQ REF_CMD1 "Validation Test Presence SOP Class" REF_DATASET1
+
+SET C-STORE-RQ SRC_CMD1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Presence SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Presence SOP Class" SRC_DATASET1
+{
+(0x10000000, US, 0)  #present to force conditions to be true
+}
+
+SET C-STORE-RQ REF_CMD1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Presence SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Presence SOP Class" REF_DATASET1
+{
+(0x10000000, US, 0)  #present to force conditions to be true
+(0x10000001,AE, "PRESENT")
+(0x1C000001,AE, "PRESENT")
+(0x20000001,AE, "PRESENT")
+(0x2C000001,AE, "PRESENT")
+(0x30000001,AE, "PRESENT")
+(0x3C000001,AE, "PRESENT")
+}
+
+
+# Go for it
+VALIDATE C-STORE-RQ SRC_CMD1 "Validation Test Ranges SOP Class" SRC_DATASET1 
+         C-STORE-RQ REF_CMD1 "Validation Test Presence SOP Class" REF_DATASET1
+
+ECHO ""
+##================================================================================
+##
+## Dataset result should be: 10 error(s), 0 warning(s)
+##
+##================================================================================
+
+#Delete objects
+DELETE C-STORE-RQ SRC_CMD1
+DELETE "Validation Test Ranges SOP Class" SRC_DATASET1 
+DELETE C-STORE-RQ REF_CMD1
+DELETE "Validation Test Ranges SOP Class" REF_DATASET1 
+
+#*********************************************************************************
+
+#*********************************************************************************
+
+##================================================================================
+## Presence test 11: Check attribute presence
+##                  - There is a reference object
+##                  - attributes are present in the source object
+##                  - attributes are not present in the reference object
+##                  - conditions are true
+##================================================================================
+
+# Create and set objects
+CREATE C-STORE-RQ SRC_CMD1 "Validation Test Presence SOP Class" SRC_DATASET1
+CREATE C-STORE-RQ REF_CMD1 "Validation Test Presence SOP Class" REF_DATASET1
+
+SET C-STORE-RQ SRC_CMD1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Presence SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Presence SOP Class" SRC_DATASET1
+{
+(0x10000000, US, 0)  #present to force conditions to be true
+(0x10000001,AE, "PRESENT")
+(0x1C000001,AE, "PRESENT")
+(0x20000001,AE, "PRESENT")
+(0x2C000001,AE, "PRESENT")
+(0x30000001,AE, "PRESENT")
+(0x3C000001,AE, "PRESENT")
+}
+
+SET C-STORE-RQ REF_CMD1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Presence SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Presence SOP Class" REF_DATASET1
+{
+}
+
+
+# Go for it
+VALIDATE C-STORE-RQ SRC_CMD1 "Validation Test Ranges SOP Class" SRC_DATASET1 
+         C-STORE-RQ REF_CMD1 "Validation Test Presence SOP Class" REF_DATASET1
+
+ECHO ""
+##================================================================================
+##
+## Dataset result should be: 0 error(s), 0 warning(s)
+##
+##================================================================================
+
+#Delete objects
+DELETE C-STORE-RQ SRC_CMD1
+DELETE "Validation Test Ranges SOP Class" SRC_DATASET1 
+DELETE C-STORE-RQ REF_CMD1
+DELETE "Validation Test Ranges SOP Class" REF_DATASET1 
+
+#*********************************************************************************
+
+#*********************************************************************************
+
+##================================================================================
+## Presence test 12: Check attribute presence
+##                  - There is a reference object
+##                  - attributes are present in the source object
+##                  - attributes are present in the reference object
+##                  - conditions are true
+##================================================================================
+
+# Create and set objects
+CREATE C-STORE-RQ SRC_CMD1 "Validation Test Presence SOP Class" SRC_DATASET1
+CREATE C-STORE-RQ REF_CMD1 "Validation Test Presence SOP Class" REF_DATASET1
+
+SET C-STORE-RQ SRC_CMD1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Presence SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Presence SOP Class" SRC_DATASET1
+{
+(0x10000000, US, 0)  #present to force conditions to be true
+(0x10000001, AE, "PRESENT")
+(0x1C000001, AE, "PRESENT")
+(0x20000001, AE, "PRESENT")
+(0x2C000001, AE, "PRESENT")
+(0x30000001, AE, "PRESENT")
+(0x3C000001, AE, "PRESENT")
+(0x88888888, AE, "PRESENT") #present to test rule D_PRESENCE_4
+}
+
+SET C-STORE-RQ REF_CMD1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Presence SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, "1.2.3.4");
+}
+
+SET "Validation Test Presence SOP Class" REF_DATASET1
+{
+(0x10000000, US, 0)  #present to force conditions to be true
+(0x10000001, AE, "PRESENT")
+(0x1C000001, AE, "PRESENT")
+(0x20000001, AE, "PRESENT")
+(0x2C000001, AE, "PRESENT")
+(0x30000001, AE, "PRESENT")
+(0x3C000001, AE, "PRESENT")
+}
+
+
+# Go for it
+VALIDATE C-STORE-RQ SRC_CMD1 "Validation Test Ranges SOP Class" SRC_DATASET1 
+         C-STORE-RQ REF_CMD1 "Validation Test Presence SOP Class" REF_DATASET1
+
+ECHO ""
+
+##
+## Script Result should be:
+## Validation: 39 error(s), 0 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 0 error(s), 0 warning(s)
+##
+
+#Delete objects
+DELETE C-STORE-RQ SRC_CMD1
+DELETE "Validation Test Ranges SOP Class" SRC_DATASET1 
+DELETE C-STORE-RQ REF_CMD1
+DELETE "Validation Test Ranges SOP Class" REF_DATASET1 
+
+#*********************************************************************************
+

@@ -1,0 +1,1971 @@
+
+
+Terminals which are not used:
+
+   T_TLS_VERSION
+
+
+
+Grammar
+rule 1    Language ->		/* empty */
+rule 2    Language -> LanguageGrammar
+rule 3    LanguageGrammar -> LanguageComponents
+rule 4    LanguageGrammar -> LanguageGrammar LanguageComponents
+rule 5    LanguageComponents -> Session
+rule 6    Session -> BeginSession SessionContentList EndSession
+rule 7    BeginSession -> T_SESSION
+rule 8    EndSession -> T_ENDSESSION
+rule 9    SessionContentList -> SessionContent
+rule 10   SessionContentList -> SessionContentList SessionContent
+rule 11   SessionContent -> T_SESSION_FILE_VERSION INTEGER
+rule 12   SessionContent -> T_SESSION_TYPE SESSION_TYPE
+rule 13   SessionContent -> T_SESSION_TITLE STRING
+rule 14   SessionContent -> T_SESSION_ID INTEGER
+rule 15   SessionContent -> T_MANUFACT STRING
+rule 16   SessionContent -> T_MODEL STRING
+rule 17   SessionContent -> T_SOFTWARE STRING
+rule 18   SessionContent -> T_APPL_ENTITY_NAME STRING
+rule 19   SessionContent -> T_APPL_ENTITY_VERSION STRING
+rule 20   SessionContent -> T_TESTED STRING
+rule 21   SessionContent -> T_DATE STRING
+rule 22   SessionContent -> T_PRODUCT_ROLE_ACCEPTOR TRUE_OR_FALSE
+rule 23   SessionContent -> T_PRODUCT_ROLE_REQUESTOR TRUE_OR_FALSE
+rule 24   SessionContent -> T_CALLED_AE STRING
+rule 25   SessionContent -> T_CALLING_AE STRING
+rule 26   SessionContent -> T_MAX_LEN INTEGER
+rule 27   SessionContent -> T_IMPL_CLASS STRING
+rule 28   SessionContent -> T_IMPL_VER STRING
+rule 29   SessionContent -> T_REMOTE_HOST_NAME STRING
+rule 30   SessionContent -> T_PORT INTEGER
+rule 31   SessionContent -> T_REMOTE_PORT INTEGER
+rule 32   SessionContent -> T_LOCAL_PORT INTEGER
+rule 33   SessionContent -> T_SOCKET_TIMEOUT INTEGER
+rule 34   SessionContent -> T_SUT_AE STRING
+rule 35   SessionContent -> T_SUT_MAX_LEN INTEGER
+rule 36   SessionContent -> T_SUT_IMPL_CLASS STRING
+rule 37   SessionContent -> T_SUT_IMPL_VER STRING
+rule 38   SessionContent -> T_SUT_HOSTNAME STRING
+rule 39   SessionContent -> T_SUT_PORT INTEGER
+rule 40   SessionContent -> T_SUT_ROLE SUT_ROLE
+rule 41   SessionContent -> T_DVT_AE STRING
+rule 42   SessionContent -> T_DVT_MAX_LEN INTEGER
+rule 43   SessionContent -> T_DVT_IMPL_CLASS STRING
+rule 44   SessionContent -> T_DVT_IMPL_VER STRING
+rule 45   SessionContent -> T_DVT_PORT INTEGER
+rule 46   SessionContent -> T_DVT_SOCKET_TIMEOUT INTEGER
+rule 47   SessionContent -> T_USE_SECURE_SOCKETS TRUE_OR_FALSE
+rule 48   SessionContent -> T_MAX_TLS_VERSION STRING
+rule 49   SessionContent -> T_MIN_TLS_VERSION STRING
+rule 50   SessionContent -> T_CHECK_REMOTE_CERTIFICATE TRUE_OR_FALSE
+rule 51   SessionContent -> T_CIPHER_LIST STRING
+rule 52   SessionContent -> T_CACHE_TLS_SESSIONS TRUE_OR_FALSE
+rule 53   SessionContent -> T_TLS_CACHE_TIMEOUT INTEGER
+rule 54   SessionContent -> T_DELAY INTEGER
+rule 55   SessionContent -> T_CREDENTIALS_FILENAME STRING
+rule 56   SessionContent -> T_CERTIFICATE_FILENAME STRING
+rule 57   SessionContent -> T_VAL_RES TRUE_OR_FALSE
+rule 58   SessionContent -> T_DIMSE_MSG TRUE_OR_FALSE
+rule 59   SessionContent -> T_ACSE_MSG TRUE_OR_FALSE
+rule 60   SessionContent -> T_PDU_DUMP TRUE_OR_FALSE
+rule 61   SessionContent -> T_LABEL_DUMP TRUE_OR_FALSE
+rule 62   SessionContent -> T_IMAGE_SAVE TRUE_OR_FALSE
+rule 63   SessionContent -> T_DEF_SQ_LENGTH TRUE_OR_FALSE
+rule 64   SessionContent -> T_ADD_GROUP_LENGTH TRUE_OR_FALSE
+rule 65   SessionContent -> T_CONTINUE TRUE_OR_FALSE
+rule 66   SessionContent -> T_SUPPORTED_TRANSFER_SYNTAX STRING
+rule 67   SessionContent -> T_FORMAT TRUE_OR_FALSE
+rule 68   SessionContent -> T_STORAGE_MODE STORAGE_MODE
+rule 69   SessionContent -> T_STRICT TRUE_OR_FALSE
+rule 70   SessionContent -> T_DETAILED_RESULTS TRUE_OR_FALSE
+rule 71   SessionContent -> T_SUMMARY_RESULTS TRUE_OR_FALSE
+rule 72   SessionContent -> T_INCLUDE_TYPE3_NOTPRESENT TRUE_OR_FALSE
+rule 73   SessionContent -> T_DUMP_ATTR_REFFILE TRUE_OR_FALSE
+rule 74   SessionContent -> T_PRIVATE_MAPPING TRUE_OR_FALSE
+rule 75   SessionContent -> T_AUTO_TYPE TRUE_OR_FALSE
+rule 76   SessionContent -> T_AUTO_CREATE TRUE_OR_FALSE
+rule 77   SessionContent -> T_ENSURE_EVEN_ATTRIBUTE_VALUE_LENGTH TRUE_OR_FALSE
+rule 78   SessionContent -> T_LOG_ERROR TRUE_OR_FALSE
+rule 79   SessionContent -> T_LOG_WARNING TRUE_OR_FALSE
+rule 80   SessionContent -> T_LOG_INFO TRUE_OR_FALSE
+rule 81   SessionContent -> T_LOG_RELATION TRUE_OR_FALSE
+rule 82   SessionContent -> T_LOG_DEBUG TRUE_OR_FALSE
+rule 83   SessionContent -> T_LOG_DICOM LOG_LEVEL
+rule 84   SessionContent -> T_DICOM_VAL_RES LOG_LEVEL
+rule 85   SessionContent -> T_LOG_ACSE LOG_LEVEL
+rule 86   SessionContent -> T_LOG_SCP_THREAD TRUE_OR_FALSE
+rule 87   SessionContent -> T_DULP_STATE TRUE_OR_FALSE
+rule 88   SessionContent -> T_ACSE_VAL_RES LOG_LEVEL
+rule 89   SessionContent -> T_DEFINITION_DIRECTORY STRING
+rule 90   SessionContent -> T_DATA_DIRECTORY STRING
+rule 91   SessionContent -> T_UN_VR_DEF_LOOKUP TRUE_OR_FALSE
+rule 92   SessionContent -> T_DEFINITION_ROOT STRING
+rule 93   SessionContent -> T_DEFINITION STRING
+rule 94   SessionContent -> T_DICOMSCRIPT_ROOT STRING
+rule 95   SessionContent -> T_DICOMSCRIPT STRING
+rule 96   SessionContent -> T_RESULTS_ROOT STRING
+rule 97   SessionContent -> T_DESCRIPTION_DIRECTORY STRING
+rule 98   SessionContent -> T_APPEND_TO_FILE TRUE_OR_FALSE
+rule 99   SessionContent -> T_INCLUDE_PATH STRING
+
+Terminals, with rules where they appear
+
+$ (-1)
+error (256)
+T_SESSION (258) 7
+T_ENDSESSION (259) 8
+T_SESSION_FILE_VERSION (260) 11
+T_SESSION_TYPE (261) 12
+T_SESSION_TITLE (262) 13
+T_SESSION_ID (263) 14
+T_MANUFACT (264) 15
+T_MODEL (265) 16
+T_SOFTWARE (266) 17
+T_TESTED (267) 20
+T_DATE (268) 21
+T_APPL_ENTITY_NAME (269) 18
+T_APPL_ENTITY_VERSION (270) 19
+T_PRODUCT_ROLE_ACCEPTOR (271) 22
+T_PRODUCT_ROLE_REQUESTOR (272) 23
+T_CALLED_AE (273) 24
+T_CALLING_AE (274) 25
+T_MAX_LEN (275) 26
+T_IMPL_CLASS (276) 27
+T_IMPL_VER (277) 28
+T_REMOTE_HOST_NAME (278) 29
+T_PORT (279) 30
+T_REMOTE_PORT (280) 31
+T_LOCAL_PORT (281) 32
+T_SOCKET_TIMEOUT (282) 33
+T_USE_SECURE_SOCKETS (283) 47
+T_TLS_VERSION (284)
+T_MAX_TLS_VERSION (285) 48
+T_MIN_TLS_VERSION (286) 49
+T_CHECK_REMOTE_CERTIFICATE (287) 50
+T_CIPHER_LIST (288) 51
+T_CACHE_TLS_SESSIONS (289) 52
+T_TLS_CACHE_TIMEOUT (290) 53
+T_DELAY (291) 54
+T_CREDENTIALS_FILENAME (292) 55
+T_CERTIFICATE_FILENAME (293) 56
+T_VAL_RES (294) 57
+T_DIMSE_MSG (295) 58
+T_ACSE_MSG (296) 59
+T_PDU_DUMP (297) 60
+T_LABEL_DUMP (298) 61
+T_IMAGE_SAVE (299) 62
+T_STORAGE_MODE (300) 68
+T_DEF_SQ_LENGTH (301) 63
+T_ADD_GROUP_LENGTH (302) 64
+T_SUPPORTED_TRANSFER_SYNTAX (303) 66
+T_FORMAT (304) 67
+T_STRICT (305) 69
+T_DATA_DIRECTORY (306) 90
+T_UN_VR_DEF_LOOKUP (307) 91
+T_AUTO_TYPE (308) 75
+T_AUTO_CREATE (309) 76
+T_DEFINITION_DIRECTORY (310) 89
+T_DEFINITION_ROOT (311) 92
+T_DEFINITION (312) 93
+T_DICOMSCRIPT_ROOT (313) 94
+T_DICOMSCRIPT (314) 95
+T_LOG_ERROR (315) 78
+T_LOG_WARNING (316) 79
+T_LOG_INFO (317) 80
+T_LOG_RELATION (318) 81
+T_LOG_DEBUG (319) 82
+T_LOG_ACSE (320) 85
+T_LOG_DICOM (321) 83
+T_LOG_SCP_THREAD (322) 86
+T_DULP_STATE (323) 87
+T_CONTINUE (324) 65
+T_DICOM_VAL_RES (325) 84
+T_ACSE_VAL_RES (326) 88
+T_RESULTS_ROOT (327) 96
+T_DESCRIPTION_DIRECTORY (328) 97
+T_APPEND_TO_FILE (329) 98
+T_INCLUDE_PATH (330) 99
+TRUE_OR_FALSE (331) 22 23 47 50 52 57 58 59 60 61 62 63 64 65 67 69
+    70 71 72 73 74 75 76 77 78 79 80 81 82 86 87 91 98
+INTEGER (332) 11 14 26 30 31 32 33 35 39 42 45 46 53 54
+STRING (333) 13 15 16 17 18 19 20 21 24 25 27 28 29 34 36 37 38 41
+    43 44 48 49 51 55 56 66 89 90 92 93 94 95 96 97 99
+LOG_LEVEL (334) 83 84 85 88
+SESSION_TYPE (335) 12
+STORAGE_MODE (336) 68
+SUT_ROLE (337) 40
+T_ENSURE_EVEN_ATTRIBUTE_VALUE_LENGTH (338) 77
+T_SUT_AE (339) 34
+T_SUT_MAX_LEN (340) 35
+T_SUT_IMPL_CLASS (341) 36
+T_SUT_IMPL_VER (342) 37
+T_SUT_HOSTNAME (343) 38
+T_SUT_PORT (344) 39
+T_SUT_ROLE (345) 40
+T_DVT_AE (346) 41
+T_DVT_MAX_LEN (347) 42
+T_DVT_IMPL_CLASS (348) 43
+T_DVT_IMPL_VER (349) 44
+T_DVT_PORT (350) 45
+T_DVT_SOCKET_TIMEOUT (351) 46
+T_DETAILED_RESULTS (352) 70
+T_SUMMARY_RESULTS (353) 71
+T_INCLUDE_TYPE3_NOTPRESENT (354) 72
+T_DUMP_ATTR_REFFILE (355) 73
+T_PRIVATE_MAPPING (356) 74
+
+Nonterminals, with rules where they appear
+
+Language (102)
+    on left: 1 2
+LanguageGrammar (103)
+    on left: 3 4, on right: 2 4
+LanguageComponents (104)
+    on left: 5, on right: 3 4
+Session (105)
+    on left: 6, on right: 5
+BeginSession (106)
+    on left: 7, on right: 6
+EndSession (107)
+    on left: 8, on right: 6
+SessionContentList (108)
+    on left: 9 10, on right: 6 10
+SessionContent (109)
+    on left: 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28
+    29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49
+    50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70
+    71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91
+    92 93 94 95 96 97 98 99, on right: 9 10
+
+
+state 0
+
+    T_SESSION	shift, and go to state 1
+
+    $default	reduce using rule 1 (Language)
+
+    Language	go to state 190
+    LanguageGrammar	go to state 2
+    LanguageComponents	go to state 3
+    Session	go to state 4
+    BeginSession	go to state 5
+
+
+
+state 1
+
+    BeginSession  ->  T_SESSION .   (rule 7)
+
+    $default	reduce using rule 7 (BeginSession)
+
+
+
+state 2
+
+    Language  ->  LanguageGrammar .   (rule 2)
+    LanguageGrammar  ->  LanguageGrammar . LanguageComponents   (rule 4)
+
+    T_SESSION	shift, and go to state 1
+
+    $default	reduce using rule 2 (Language)
+
+    LanguageComponents	go to state 6
+    Session	go to state 4
+    BeginSession	go to state 5
+
+
+
+state 3
+
+    LanguageGrammar  ->  LanguageComponents .   (rule 3)
+
+    $default	reduce using rule 3 (LanguageGrammar)
+
+
+
+state 4
+
+    LanguageComponents  ->  Session .   (rule 5)
+
+    $default	reduce using rule 5 (LanguageComponents)
+
+
+
+state 5
+
+    Session  ->  BeginSession . SessionContentList EndSession   (rule 6)
+
+    T_SESSION_FILE_VERSION	shift, and go to state 7
+    T_SESSION_TYPE	shift, and go to state 8
+    T_SESSION_TITLE	shift, and go to state 9
+    T_SESSION_ID	shift, and go to state 10
+    T_MANUFACT	shift, and go to state 11
+    T_MODEL	shift, and go to state 12
+    T_SOFTWARE	shift, and go to state 13
+    T_TESTED	shift, and go to state 14
+    T_DATE	shift, and go to state 15
+    T_APPL_ENTITY_NAME	shift, and go to state 16
+    T_APPL_ENTITY_VERSION	shift, and go to state 17
+    T_PRODUCT_ROLE_ACCEPTOR	shift, and go to state 18
+    T_PRODUCT_ROLE_REQUESTOR	shift, and go to state 19
+    T_CALLED_AE	shift, and go to state 20
+    T_CALLING_AE	shift, and go to state 21
+    T_MAX_LEN	shift, and go to state 22
+    T_IMPL_CLASS	shift, and go to state 23
+    T_IMPL_VER	shift, and go to state 24
+    T_REMOTE_HOST_NAME	shift, and go to state 25
+    T_PORT	shift, and go to state 26
+    T_REMOTE_PORT	shift, and go to state 27
+    T_LOCAL_PORT	shift, and go to state 28
+    T_SOCKET_TIMEOUT	shift, and go to state 29
+    T_USE_SECURE_SOCKETS	shift, and go to state 30
+    T_MAX_TLS_VERSION	shift, and go to state 31
+    T_MIN_TLS_VERSION	shift, and go to state 32
+    T_CHECK_REMOTE_CERTIFICATE	shift, and go to state 33
+    T_CIPHER_LIST	shift, and go to state 34
+    T_CACHE_TLS_SESSIONS	shift, and go to state 35
+    T_TLS_CACHE_TIMEOUT	shift, and go to state 36
+    T_DELAY	shift, and go to state 37
+    T_CREDENTIALS_FILENAME	shift, and go to state 38
+    T_CERTIFICATE_FILENAME	shift, and go to state 39
+    T_VAL_RES	shift, and go to state 40
+    T_DIMSE_MSG	shift, and go to state 41
+    T_ACSE_MSG	shift, and go to state 42
+    T_PDU_DUMP	shift, and go to state 43
+    T_LABEL_DUMP	shift, and go to state 44
+    T_IMAGE_SAVE	shift, and go to state 45
+    T_STORAGE_MODE	shift, and go to state 46
+    T_DEF_SQ_LENGTH	shift, and go to state 47
+    T_ADD_GROUP_LENGTH	shift, and go to state 48
+    T_SUPPORTED_TRANSFER_SYNTAX	shift, and go to state 49
+    T_FORMAT	shift, and go to state 50
+    T_STRICT	shift, and go to state 51
+    T_DATA_DIRECTORY	shift, and go to state 52
+    T_UN_VR_DEF_LOOKUP	shift, and go to state 53
+    T_AUTO_TYPE	shift, and go to state 54
+    T_AUTO_CREATE	shift, and go to state 55
+    T_DEFINITION_DIRECTORY	shift, and go to state 56
+    T_DEFINITION_ROOT	shift, and go to state 57
+    T_DEFINITION	shift, and go to state 58
+    T_DICOMSCRIPT_ROOT	shift, and go to state 59
+    T_DICOMSCRIPT	shift, and go to state 60
+    T_LOG_ERROR	shift, and go to state 61
+    T_LOG_WARNING	shift, and go to state 62
+    T_LOG_INFO	shift, and go to state 63
+    T_LOG_RELATION	shift, and go to state 64
+    T_LOG_DEBUG	shift, and go to state 65
+    T_LOG_ACSE	shift, and go to state 66
+    T_LOG_DICOM	shift, and go to state 67
+    T_LOG_SCP_THREAD	shift, and go to state 68
+    T_DULP_STATE	shift, and go to state 69
+    T_CONTINUE	shift, and go to state 70
+    T_DICOM_VAL_RES	shift, and go to state 71
+    T_ACSE_VAL_RES	shift, and go to state 72
+    T_RESULTS_ROOT	shift, and go to state 73
+    T_DESCRIPTION_DIRECTORY	shift, and go to state 74
+    T_APPEND_TO_FILE	shift, and go to state 75
+    T_INCLUDE_PATH	shift, and go to state 76
+    T_ENSURE_EVEN_ATTRIBUTE_VALUE_LENGTH	shift, and go to state 77
+    T_SUT_AE	shift, and go to state 78
+    T_SUT_MAX_LEN	shift, and go to state 79
+    T_SUT_IMPL_CLASS	shift, and go to state 80
+    T_SUT_IMPL_VER	shift, and go to state 81
+    T_SUT_HOSTNAME	shift, and go to state 82
+    T_SUT_PORT	shift, and go to state 83
+    T_SUT_ROLE	shift, and go to state 84
+    T_DVT_AE	shift, and go to state 85
+    T_DVT_MAX_LEN	shift, and go to state 86
+    T_DVT_IMPL_CLASS	shift, and go to state 87
+    T_DVT_IMPL_VER	shift, and go to state 88
+    T_DVT_PORT	shift, and go to state 89
+    T_DVT_SOCKET_TIMEOUT	shift, and go to state 90
+    T_DETAILED_RESULTS	shift, and go to state 91
+    T_SUMMARY_RESULTS	shift, and go to state 92
+    T_INCLUDE_TYPE3_NOTPRESENT	shift, and go to state 93
+    T_DUMP_ATTR_REFFILE	shift, and go to state 94
+    T_PRIVATE_MAPPING	shift, and go to state 95
+
+    SessionContentList	go to state 96
+    SessionContent	go to state 97
+
+
+
+state 6
+
+    LanguageGrammar  ->  LanguageGrammar LanguageComponents .   (rule 4)
+
+    $default	reduce using rule 4 (LanguageGrammar)
+
+
+
+state 7
+
+    SessionContent  ->  T_SESSION_FILE_VERSION . INTEGER   (rule 11)
+
+    INTEGER	shift, and go to state 98
+
+
+
+state 8
+
+    SessionContent  ->  T_SESSION_TYPE . SESSION_TYPE   (rule 12)
+
+    SESSION_TYPE	shift, and go to state 99
+
+
+
+state 9
+
+    SessionContent  ->  T_SESSION_TITLE . STRING   (rule 13)
+
+    STRING	shift, and go to state 100
+
+
+
+state 10
+
+    SessionContent  ->  T_SESSION_ID . INTEGER   (rule 14)
+
+    INTEGER	shift, and go to state 101
+
+
+
+state 11
+
+    SessionContent  ->  T_MANUFACT . STRING   (rule 15)
+
+    STRING	shift, and go to state 102
+
+
+
+state 12
+
+    SessionContent  ->  T_MODEL . STRING   (rule 16)
+
+    STRING	shift, and go to state 103
+
+
+
+state 13
+
+    SessionContent  ->  T_SOFTWARE . STRING   (rule 17)
+
+    STRING	shift, and go to state 104
+
+
+
+state 14
+
+    SessionContent  ->  T_TESTED . STRING   (rule 20)
+
+    STRING	shift, and go to state 105
+
+
+
+state 15
+
+    SessionContent  ->  T_DATE . STRING   (rule 21)
+
+    STRING	shift, and go to state 106
+
+
+
+state 16
+
+    SessionContent  ->  T_APPL_ENTITY_NAME . STRING   (rule 18)
+
+    STRING	shift, and go to state 107
+
+
+
+state 17
+
+    SessionContent  ->  T_APPL_ENTITY_VERSION . STRING   (rule 19)
+
+    STRING	shift, and go to state 108
+
+
+
+state 18
+
+    SessionContent  ->  T_PRODUCT_ROLE_ACCEPTOR . TRUE_OR_FALSE   (rule 22)
+
+    TRUE_OR_FALSE	shift, and go to state 109
+
+
+
+state 19
+
+    SessionContent  ->  T_PRODUCT_ROLE_REQUESTOR . TRUE_OR_FALSE   (rule 23)
+
+    TRUE_OR_FALSE	shift, and go to state 110
+
+
+
+state 20
+
+    SessionContent  ->  T_CALLED_AE . STRING   (rule 24)
+
+    STRING	shift, and go to state 111
+
+
+
+state 21
+
+    SessionContent  ->  T_CALLING_AE . STRING   (rule 25)
+
+    STRING	shift, and go to state 112
+
+
+
+state 22
+
+    SessionContent  ->  T_MAX_LEN . INTEGER   (rule 26)
+
+    INTEGER	shift, and go to state 113
+
+
+
+state 23
+
+    SessionContent  ->  T_IMPL_CLASS . STRING   (rule 27)
+
+    STRING	shift, and go to state 114
+
+
+
+state 24
+
+    SessionContent  ->  T_IMPL_VER . STRING   (rule 28)
+
+    STRING	shift, and go to state 115
+
+
+
+state 25
+
+    SessionContent  ->  T_REMOTE_HOST_NAME . STRING   (rule 29)
+
+    STRING	shift, and go to state 116
+
+
+
+state 26
+
+    SessionContent  ->  T_PORT . INTEGER   (rule 30)
+
+    INTEGER	shift, and go to state 117
+
+
+
+state 27
+
+    SessionContent  ->  T_REMOTE_PORT . INTEGER   (rule 31)
+
+    INTEGER	shift, and go to state 118
+
+
+
+state 28
+
+    SessionContent  ->  T_LOCAL_PORT . INTEGER   (rule 32)
+
+    INTEGER	shift, and go to state 119
+
+
+
+state 29
+
+    SessionContent  ->  T_SOCKET_TIMEOUT . INTEGER   (rule 33)
+
+    INTEGER	shift, and go to state 120
+
+
+
+state 30
+
+    SessionContent  ->  T_USE_SECURE_SOCKETS . TRUE_OR_FALSE   (rule 47)
+
+    TRUE_OR_FALSE	shift, and go to state 121
+
+
+
+state 31
+
+    SessionContent  ->  T_MAX_TLS_VERSION . STRING   (rule 48)
+
+    STRING	shift, and go to state 122
+
+
+
+state 32
+
+    SessionContent  ->  T_MIN_TLS_VERSION . STRING   (rule 49)
+
+    STRING	shift, and go to state 123
+
+
+
+state 33
+
+    SessionContent  ->  T_CHECK_REMOTE_CERTIFICATE . TRUE_OR_FALSE   (rule 50)
+
+    TRUE_OR_FALSE	shift, and go to state 124
+
+
+
+state 34
+
+    SessionContent  ->  T_CIPHER_LIST . STRING   (rule 51)
+
+    STRING	shift, and go to state 125
+
+
+
+state 35
+
+    SessionContent  ->  T_CACHE_TLS_SESSIONS . TRUE_OR_FALSE   (rule 52)
+
+    TRUE_OR_FALSE	shift, and go to state 126
+
+
+
+state 36
+
+    SessionContent  ->  T_TLS_CACHE_TIMEOUT . INTEGER   (rule 53)
+
+    INTEGER	shift, and go to state 127
+
+
+
+state 37
+
+    SessionContent  ->  T_DELAY . INTEGER   (rule 54)
+
+    INTEGER	shift, and go to state 128
+
+
+
+state 38
+
+    SessionContent  ->  T_CREDENTIALS_FILENAME . STRING   (rule 55)
+
+    STRING	shift, and go to state 129
+
+
+
+state 39
+
+    SessionContent  ->  T_CERTIFICATE_FILENAME . STRING   (rule 56)
+
+    STRING	shift, and go to state 130
+
+
+
+state 40
+
+    SessionContent  ->  T_VAL_RES . TRUE_OR_FALSE   (rule 57)
+
+    TRUE_OR_FALSE	shift, and go to state 131
+
+
+
+state 41
+
+    SessionContent  ->  T_DIMSE_MSG . TRUE_OR_FALSE   (rule 58)
+
+    TRUE_OR_FALSE	shift, and go to state 132
+
+
+
+state 42
+
+    SessionContent  ->  T_ACSE_MSG . TRUE_OR_FALSE   (rule 59)
+
+    TRUE_OR_FALSE	shift, and go to state 133
+
+
+
+state 43
+
+    SessionContent  ->  T_PDU_DUMP . TRUE_OR_FALSE   (rule 60)
+
+    TRUE_OR_FALSE	shift, and go to state 134
+
+
+
+state 44
+
+    SessionContent  ->  T_LABEL_DUMP . TRUE_OR_FALSE   (rule 61)
+
+    TRUE_OR_FALSE	shift, and go to state 135
+
+
+
+state 45
+
+    SessionContent  ->  T_IMAGE_SAVE . TRUE_OR_FALSE   (rule 62)
+
+    TRUE_OR_FALSE	shift, and go to state 136
+
+
+
+state 46
+
+    SessionContent  ->  T_STORAGE_MODE . STORAGE_MODE   (rule 68)
+
+    STORAGE_MODE	shift, and go to state 137
+
+
+
+state 47
+
+    SessionContent  ->  T_DEF_SQ_LENGTH . TRUE_OR_FALSE   (rule 63)
+
+    TRUE_OR_FALSE	shift, and go to state 138
+
+
+
+state 48
+
+    SessionContent  ->  T_ADD_GROUP_LENGTH . TRUE_OR_FALSE   (rule 64)
+
+    TRUE_OR_FALSE	shift, and go to state 139
+
+
+
+state 49
+
+    SessionContent  ->  T_SUPPORTED_TRANSFER_SYNTAX . STRING   (rule 66)
+
+    STRING	shift, and go to state 140
+
+
+
+state 50
+
+    SessionContent  ->  T_FORMAT . TRUE_OR_FALSE   (rule 67)
+
+    TRUE_OR_FALSE	shift, and go to state 141
+
+
+
+state 51
+
+    SessionContent  ->  T_STRICT . TRUE_OR_FALSE   (rule 69)
+
+    TRUE_OR_FALSE	shift, and go to state 142
+
+
+
+state 52
+
+    SessionContent  ->  T_DATA_DIRECTORY . STRING   (rule 90)
+
+    STRING	shift, and go to state 143
+
+
+
+state 53
+
+    SessionContent  ->  T_UN_VR_DEF_LOOKUP . TRUE_OR_FALSE   (rule 91)
+
+    TRUE_OR_FALSE	shift, and go to state 144
+
+
+
+state 54
+
+    SessionContent  ->  T_AUTO_TYPE . TRUE_OR_FALSE   (rule 75)
+
+    TRUE_OR_FALSE	shift, and go to state 145
+
+
+
+state 55
+
+    SessionContent  ->  T_AUTO_CREATE . TRUE_OR_FALSE   (rule 76)
+
+    TRUE_OR_FALSE	shift, and go to state 146
+
+
+
+state 56
+
+    SessionContent  ->  T_DEFINITION_DIRECTORY . STRING   (rule 89)
+
+    STRING	shift, and go to state 147
+
+
+
+state 57
+
+    SessionContent  ->  T_DEFINITION_ROOT . STRING   (rule 92)
+
+    STRING	shift, and go to state 148
+
+
+
+state 58
+
+    SessionContent  ->  T_DEFINITION . STRING   (rule 93)
+
+    STRING	shift, and go to state 149
+
+
+
+state 59
+
+    SessionContent  ->  T_DICOMSCRIPT_ROOT . STRING   (rule 94)
+
+    STRING	shift, and go to state 150
+
+
+
+state 60
+
+    SessionContent  ->  T_DICOMSCRIPT . STRING   (rule 95)
+
+    STRING	shift, and go to state 151
+
+
+
+state 61
+
+    SessionContent  ->  T_LOG_ERROR . TRUE_OR_FALSE   (rule 78)
+
+    TRUE_OR_FALSE	shift, and go to state 152
+
+
+
+state 62
+
+    SessionContent  ->  T_LOG_WARNING . TRUE_OR_FALSE   (rule 79)
+
+    TRUE_OR_FALSE	shift, and go to state 153
+
+
+
+state 63
+
+    SessionContent  ->  T_LOG_INFO . TRUE_OR_FALSE   (rule 80)
+
+    TRUE_OR_FALSE	shift, and go to state 154
+
+
+
+state 64
+
+    SessionContent  ->  T_LOG_RELATION . TRUE_OR_FALSE   (rule 81)
+
+    TRUE_OR_FALSE	shift, and go to state 155
+
+
+
+state 65
+
+    SessionContent  ->  T_LOG_DEBUG . TRUE_OR_FALSE   (rule 82)
+
+    TRUE_OR_FALSE	shift, and go to state 156
+
+
+
+state 66
+
+    SessionContent  ->  T_LOG_ACSE . LOG_LEVEL   (rule 85)
+
+    LOG_LEVEL	shift, and go to state 157
+
+
+
+state 67
+
+    SessionContent  ->  T_LOG_DICOM . LOG_LEVEL   (rule 83)
+
+    LOG_LEVEL	shift, and go to state 158
+
+
+
+state 68
+
+    SessionContent  ->  T_LOG_SCP_THREAD . TRUE_OR_FALSE   (rule 86)
+
+    TRUE_OR_FALSE	shift, and go to state 159
+
+
+
+state 69
+
+    SessionContent  ->  T_DULP_STATE . TRUE_OR_FALSE   (rule 87)
+
+    TRUE_OR_FALSE	shift, and go to state 160
+
+
+
+state 70
+
+    SessionContent  ->  T_CONTINUE . TRUE_OR_FALSE   (rule 65)
+
+    TRUE_OR_FALSE	shift, and go to state 161
+
+
+
+state 71
+
+    SessionContent  ->  T_DICOM_VAL_RES . LOG_LEVEL   (rule 84)
+
+    LOG_LEVEL	shift, and go to state 162
+
+
+
+state 72
+
+    SessionContent  ->  T_ACSE_VAL_RES . LOG_LEVEL   (rule 88)
+
+    LOG_LEVEL	shift, and go to state 163
+
+
+
+state 73
+
+    SessionContent  ->  T_RESULTS_ROOT . STRING   (rule 96)
+
+    STRING	shift, and go to state 164
+
+
+
+state 74
+
+    SessionContent  ->  T_DESCRIPTION_DIRECTORY . STRING   (rule 97)
+
+    STRING	shift, and go to state 165
+
+
+
+state 75
+
+    SessionContent  ->  T_APPEND_TO_FILE . TRUE_OR_FALSE   (rule 98)
+
+    TRUE_OR_FALSE	shift, and go to state 166
+
+
+
+state 76
+
+    SessionContent  ->  T_INCLUDE_PATH . STRING   (rule 99)
+
+    STRING	shift, and go to state 167
+
+
+
+state 77
+
+    SessionContent  ->  T_ENSURE_EVEN_ATTRIBUTE_VALUE_LENGTH . TRUE_OR_FALSE   (rule 77)
+
+    TRUE_OR_FALSE	shift, and go to state 168
+
+
+
+state 78
+
+    SessionContent  ->  T_SUT_AE . STRING   (rule 34)
+
+    STRING	shift, and go to state 169
+
+
+
+state 79
+
+    SessionContent  ->  T_SUT_MAX_LEN . INTEGER   (rule 35)
+
+    INTEGER	shift, and go to state 170
+
+
+
+state 80
+
+    SessionContent  ->  T_SUT_IMPL_CLASS . STRING   (rule 36)
+
+    STRING	shift, and go to state 171
+
+
+
+state 81
+
+    SessionContent  ->  T_SUT_IMPL_VER . STRING   (rule 37)
+
+    STRING	shift, and go to state 172
+
+
+
+state 82
+
+    SessionContent  ->  T_SUT_HOSTNAME . STRING   (rule 38)
+
+    STRING	shift, and go to state 173
+
+
+
+state 83
+
+    SessionContent  ->  T_SUT_PORT . INTEGER   (rule 39)
+
+    INTEGER	shift, and go to state 174
+
+
+
+state 84
+
+    SessionContent  ->  T_SUT_ROLE . SUT_ROLE   (rule 40)
+
+    SUT_ROLE	shift, and go to state 175
+
+
+
+state 85
+
+    SessionContent  ->  T_DVT_AE . STRING   (rule 41)
+
+    STRING	shift, and go to state 176
+
+
+
+state 86
+
+    SessionContent  ->  T_DVT_MAX_LEN . INTEGER   (rule 42)
+
+    INTEGER	shift, and go to state 177
+
+
+
+state 87
+
+    SessionContent  ->  T_DVT_IMPL_CLASS . STRING   (rule 43)
+
+    STRING	shift, and go to state 178
+
+
+
+state 88
+
+    SessionContent  ->  T_DVT_IMPL_VER . STRING   (rule 44)
+
+    STRING	shift, and go to state 179
+
+
+
+state 89
+
+    SessionContent  ->  T_DVT_PORT . INTEGER   (rule 45)
+
+    INTEGER	shift, and go to state 180
+
+
+
+state 90
+
+    SessionContent  ->  T_DVT_SOCKET_TIMEOUT . INTEGER   (rule 46)
+
+    INTEGER	shift, and go to state 181
+
+
+
+state 91
+
+    SessionContent  ->  T_DETAILED_RESULTS . TRUE_OR_FALSE   (rule 70)
+
+    TRUE_OR_FALSE	shift, and go to state 182
+
+
+
+state 92
+
+    SessionContent  ->  T_SUMMARY_RESULTS . TRUE_OR_FALSE   (rule 71)
+
+    TRUE_OR_FALSE	shift, and go to state 183
+
+
+
+state 93
+
+    SessionContent  ->  T_INCLUDE_TYPE3_NOTPRESENT . TRUE_OR_FALSE   (rule 72)
+
+    TRUE_OR_FALSE	shift, and go to state 184
+
+
+
+state 94
+
+    SessionContent  ->  T_DUMP_ATTR_REFFILE . TRUE_OR_FALSE   (rule 73)
+
+    TRUE_OR_FALSE	shift, and go to state 185
+
+
+
+state 95
+
+    SessionContent  ->  T_PRIVATE_MAPPING . TRUE_OR_FALSE   (rule 74)
+
+    TRUE_OR_FALSE	shift, and go to state 186
+
+
+
+state 96
+
+    Session  ->  BeginSession SessionContentList . EndSession   (rule 6)
+    SessionContentList  ->  SessionContentList . SessionContent   (rule 10)
+
+    T_ENDSESSION	shift, and go to state 187
+    T_SESSION_FILE_VERSION	shift, and go to state 7
+    T_SESSION_TYPE	shift, and go to state 8
+    T_SESSION_TITLE	shift, and go to state 9
+    T_SESSION_ID	shift, and go to state 10
+    T_MANUFACT	shift, and go to state 11
+    T_MODEL	shift, and go to state 12
+    T_SOFTWARE	shift, and go to state 13
+    T_TESTED	shift, and go to state 14
+    T_DATE	shift, and go to state 15
+    T_APPL_ENTITY_NAME	shift, and go to state 16
+    T_APPL_ENTITY_VERSION	shift, and go to state 17
+    T_PRODUCT_ROLE_ACCEPTOR	shift, and go to state 18
+    T_PRODUCT_ROLE_REQUESTOR	shift, and go to state 19
+    T_CALLED_AE	shift, and go to state 20
+    T_CALLING_AE	shift, and go to state 21
+    T_MAX_LEN	shift, and go to state 22
+    T_IMPL_CLASS	shift, and go to state 23
+    T_IMPL_VER	shift, and go to state 24
+    T_REMOTE_HOST_NAME	shift, and go to state 25
+    T_PORT	shift, and go to state 26
+    T_REMOTE_PORT	shift, and go to state 27
+    T_LOCAL_PORT	shift, and go to state 28
+    T_SOCKET_TIMEOUT	shift, and go to state 29
+    T_USE_SECURE_SOCKETS	shift, and go to state 30
+    T_MAX_TLS_VERSION	shift, and go to state 31
+    T_MIN_TLS_VERSION	shift, and go to state 32
+    T_CHECK_REMOTE_CERTIFICATE	shift, and go to state 33
+    T_CIPHER_LIST	shift, and go to state 34
+    T_CACHE_TLS_SESSIONS	shift, and go to state 35
+    T_TLS_CACHE_TIMEOUT	shift, and go to state 36
+    T_DELAY	shift, and go to state 37
+    T_CREDENTIALS_FILENAME	shift, and go to state 38
+    T_CERTIFICATE_FILENAME	shift, and go to state 39
+    T_VAL_RES	shift, and go to state 40
+    T_DIMSE_MSG	shift, and go to state 41
+    T_ACSE_MSG	shift, and go to state 42
+    T_PDU_DUMP	shift, and go to state 43
+    T_LABEL_DUMP	shift, and go to state 44
+    T_IMAGE_SAVE	shift, and go to state 45
+    T_STORAGE_MODE	shift, and go to state 46
+    T_DEF_SQ_LENGTH	shift, and go to state 47
+    T_ADD_GROUP_LENGTH	shift, and go to state 48
+    T_SUPPORTED_TRANSFER_SYNTAX	shift, and go to state 49
+    T_FORMAT	shift, and go to state 50
+    T_STRICT	shift, and go to state 51
+    T_DATA_DIRECTORY	shift, and go to state 52
+    T_UN_VR_DEF_LOOKUP	shift, and go to state 53
+    T_AUTO_TYPE	shift, and go to state 54
+    T_AUTO_CREATE	shift, and go to state 55
+    T_DEFINITION_DIRECTORY	shift, and go to state 56
+    T_DEFINITION_ROOT	shift, and go to state 57
+    T_DEFINITION	shift, and go to state 58
+    T_DICOMSCRIPT_ROOT	shift, and go to state 59
+    T_DICOMSCRIPT	shift, and go to state 60
+    T_LOG_ERROR	shift, and go to state 61
+    T_LOG_WARNING	shift, and go to state 62
+    T_LOG_INFO	shift, and go to state 63
+    T_LOG_RELATION	shift, and go to state 64
+    T_LOG_DEBUG	shift, and go to state 65
+    T_LOG_ACSE	shift, and go to state 66
+    T_LOG_DICOM	shift, and go to state 67
+    T_LOG_SCP_THREAD	shift, and go to state 68
+    T_DULP_STATE	shift, and go to state 69
+    T_CONTINUE	shift, and go to state 70
+    T_DICOM_VAL_RES	shift, and go to state 71
+    T_ACSE_VAL_RES	shift, and go to state 72
+    T_RESULTS_ROOT	shift, and go to state 73
+    T_DESCRIPTION_DIRECTORY	shift, and go to state 74
+    T_APPEND_TO_FILE	shift, and go to state 75
+    T_INCLUDE_PATH	shift, and go to state 76
+    T_ENSURE_EVEN_ATTRIBUTE_VALUE_LENGTH	shift, and go to state 77
+    T_SUT_AE	shift, and go to state 78
+    T_SUT_MAX_LEN	shift, and go to state 79
+    T_SUT_IMPL_CLASS	shift, and go to state 80
+    T_SUT_IMPL_VER	shift, and go to state 81
+    T_SUT_HOSTNAME	shift, and go to state 82
+    T_SUT_PORT	shift, and go to state 83
+    T_SUT_ROLE	shift, and go to state 84
+    T_DVT_AE	shift, and go to state 85
+    T_DVT_MAX_LEN	shift, and go to state 86
+    T_DVT_IMPL_CLASS	shift, and go to state 87
+    T_DVT_IMPL_VER	shift, and go to state 88
+    T_DVT_PORT	shift, and go to state 89
+    T_DVT_SOCKET_TIMEOUT	shift, and go to state 90
+    T_DETAILED_RESULTS	shift, and go to state 91
+    T_SUMMARY_RESULTS	shift, and go to state 92
+    T_INCLUDE_TYPE3_NOTPRESENT	shift, and go to state 93
+    T_DUMP_ATTR_REFFILE	shift, and go to state 94
+    T_PRIVATE_MAPPING	shift, and go to state 95
+
+    EndSession	go to state 188
+    SessionContent	go to state 189
+
+
+
+state 97
+
+    SessionContentList  ->  SessionContent .   (rule 9)
+
+    $default	reduce using rule 9 (SessionContentList)
+
+
+
+state 98
+
+    SessionContent  ->  T_SESSION_FILE_VERSION INTEGER .   (rule 11)
+
+    $default	reduce using rule 11 (SessionContent)
+
+
+
+state 99
+
+    SessionContent  ->  T_SESSION_TYPE SESSION_TYPE .   (rule 12)
+
+    $default	reduce using rule 12 (SessionContent)
+
+
+
+state 100
+
+    SessionContent  ->  T_SESSION_TITLE STRING .   (rule 13)
+
+    $default	reduce using rule 13 (SessionContent)
+
+
+
+state 101
+
+    SessionContent  ->  T_SESSION_ID INTEGER .   (rule 14)
+
+    $default	reduce using rule 14 (SessionContent)
+
+
+
+state 102
+
+    SessionContent  ->  T_MANUFACT STRING .   (rule 15)
+
+    $default	reduce using rule 15 (SessionContent)
+
+
+
+state 103
+
+    SessionContent  ->  T_MODEL STRING .   (rule 16)
+
+    $default	reduce using rule 16 (SessionContent)
+
+
+
+state 104
+
+    SessionContent  ->  T_SOFTWARE STRING .   (rule 17)
+
+    $default	reduce using rule 17 (SessionContent)
+
+
+
+state 105
+
+    SessionContent  ->  T_TESTED STRING .   (rule 20)
+
+    $default	reduce using rule 20 (SessionContent)
+
+
+
+state 106
+
+    SessionContent  ->  T_DATE STRING .   (rule 21)
+
+    $default	reduce using rule 21 (SessionContent)
+
+
+
+state 107
+
+    SessionContent  ->  T_APPL_ENTITY_NAME STRING .   (rule 18)
+
+    $default	reduce using rule 18 (SessionContent)
+
+
+
+state 108
+
+    SessionContent  ->  T_APPL_ENTITY_VERSION STRING .   (rule 19)
+
+    $default	reduce using rule 19 (SessionContent)
+
+
+
+state 109
+
+    SessionContent  ->  T_PRODUCT_ROLE_ACCEPTOR TRUE_OR_FALSE .   (rule 22)
+
+    $default	reduce using rule 22 (SessionContent)
+
+
+
+state 110
+
+    SessionContent  ->  T_PRODUCT_ROLE_REQUESTOR TRUE_OR_FALSE .   (rule 23)
+
+    $default	reduce using rule 23 (SessionContent)
+
+
+
+state 111
+
+    SessionContent  ->  T_CALLED_AE STRING .   (rule 24)
+
+    $default	reduce using rule 24 (SessionContent)
+
+
+
+state 112
+
+    SessionContent  ->  T_CALLING_AE STRING .   (rule 25)
+
+    $default	reduce using rule 25 (SessionContent)
+
+
+
+state 113
+
+    SessionContent  ->  T_MAX_LEN INTEGER .   (rule 26)
+
+    $default	reduce using rule 26 (SessionContent)
+
+
+
+state 114
+
+    SessionContent  ->  T_IMPL_CLASS STRING .   (rule 27)
+
+    $default	reduce using rule 27 (SessionContent)
+
+
+
+state 115
+
+    SessionContent  ->  T_IMPL_VER STRING .   (rule 28)
+
+    $default	reduce using rule 28 (SessionContent)
+
+
+
+state 116
+
+    SessionContent  ->  T_REMOTE_HOST_NAME STRING .   (rule 29)
+
+    $default	reduce using rule 29 (SessionContent)
+
+
+
+state 117
+
+    SessionContent  ->  T_PORT INTEGER .   (rule 30)
+
+    $default	reduce using rule 30 (SessionContent)
+
+
+
+state 118
+
+    SessionContent  ->  T_REMOTE_PORT INTEGER .   (rule 31)
+
+    $default	reduce using rule 31 (SessionContent)
+
+
+
+state 119
+
+    SessionContent  ->  T_LOCAL_PORT INTEGER .   (rule 32)
+
+    $default	reduce using rule 32 (SessionContent)
+
+
+
+state 120
+
+    SessionContent  ->  T_SOCKET_TIMEOUT INTEGER .   (rule 33)
+
+    $default	reduce using rule 33 (SessionContent)
+
+
+
+state 121
+
+    SessionContent  ->  T_USE_SECURE_SOCKETS TRUE_OR_FALSE .   (rule 47)
+
+    $default	reduce using rule 47 (SessionContent)
+
+
+
+state 122
+
+    SessionContent  ->  T_MAX_TLS_VERSION STRING .   (rule 48)
+
+    $default	reduce using rule 48 (SessionContent)
+
+
+
+state 123
+
+    SessionContent  ->  T_MIN_TLS_VERSION STRING .   (rule 49)
+
+    $default	reduce using rule 49 (SessionContent)
+
+
+
+state 124
+
+    SessionContent  ->  T_CHECK_REMOTE_CERTIFICATE TRUE_OR_FALSE .   (rule 50)
+
+    $default	reduce using rule 50 (SessionContent)
+
+
+
+state 125
+
+    SessionContent  ->  T_CIPHER_LIST STRING .   (rule 51)
+
+    $default	reduce using rule 51 (SessionContent)
+
+
+
+state 126
+
+    SessionContent  ->  T_CACHE_TLS_SESSIONS TRUE_OR_FALSE .   (rule 52)
+
+    $default	reduce using rule 52 (SessionContent)
+
+
+
+state 127
+
+    SessionContent  ->  T_TLS_CACHE_TIMEOUT INTEGER .   (rule 53)
+
+    $default	reduce using rule 53 (SessionContent)
+
+
+
+state 128
+
+    SessionContent  ->  T_DELAY INTEGER .   (rule 54)
+
+    $default	reduce using rule 54 (SessionContent)
+
+
+
+state 129
+
+    SessionContent  ->  T_CREDENTIALS_FILENAME STRING .   (rule 55)
+
+    $default	reduce using rule 55 (SessionContent)
+
+
+
+state 130
+
+    SessionContent  ->  T_CERTIFICATE_FILENAME STRING .   (rule 56)
+
+    $default	reduce using rule 56 (SessionContent)
+
+
+
+state 131
+
+    SessionContent  ->  T_VAL_RES TRUE_OR_FALSE .   (rule 57)
+
+    $default	reduce using rule 57 (SessionContent)
+
+
+
+state 132
+
+    SessionContent  ->  T_DIMSE_MSG TRUE_OR_FALSE .   (rule 58)
+
+    $default	reduce using rule 58 (SessionContent)
+
+
+
+state 133
+
+    SessionContent  ->  T_ACSE_MSG TRUE_OR_FALSE .   (rule 59)
+
+    $default	reduce using rule 59 (SessionContent)
+
+
+
+state 134
+
+    SessionContent  ->  T_PDU_DUMP TRUE_OR_FALSE .   (rule 60)
+
+    $default	reduce using rule 60 (SessionContent)
+
+
+
+state 135
+
+    SessionContent  ->  T_LABEL_DUMP TRUE_OR_FALSE .   (rule 61)
+
+    $default	reduce using rule 61 (SessionContent)
+
+
+
+state 136
+
+    SessionContent  ->  T_IMAGE_SAVE TRUE_OR_FALSE .   (rule 62)
+
+    $default	reduce using rule 62 (SessionContent)
+
+
+
+state 137
+
+    SessionContent  ->  T_STORAGE_MODE STORAGE_MODE .   (rule 68)
+
+    $default	reduce using rule 68 (SessionContent)
+
+
+
+state 138
+
+    SessionContent  ->  T_DEF_SQ_LENGTH TRUE_OR_FALSE .   (rule 63)
+
+    $default	reduce using rule 63 (SessionContent)
+
+
+
+state 139
+
+    SessionContent  ->  T_ADD_GROUP_LENGTH TRUE_OR_FALSE .   (rule 64)
+
+    $default	reduce using rule 64 (SessionContent)
+
+
+
+state 140
+
+    SessionContent  ->  T_SUPPORTED_TRANSFER_SYNTAX STRING .   (rule 66)
+
+    $default	reduce using rule 66 (SessionContent)
+
+
+
+state 141
+
+    SessionContent  ->  T_FORMAT TRUE_OR_FALSE .   (rule 67)
+
+    $default	reduce using rule 67 (SessionContent)
+
+
+
+state 142
+
+    SessionContent  ->  T_STRICT TRUE_OR_FALSE .   (rule 69)
+
+    $default	reduce using rule 69 (SessionContent)
+
+
+
+state 143
+
+    SessionContent  ->  T_DATA_DIRECTORY STRING .   (rule 90)
+
+    $default	reduce using rule 90 (SessionContent)
+
+
+
+state 144
+
+    SessionContent  ->  T_UN_VR_DEF_LOOKUP TRUE_OR_FALSE .   (rule 91)
+
+    $default	reduce using rule 91 (SessionContent)
+
+
+
+state 145
+
+    SessionContent  ->  T_AUTO_TYPE TRUE_OR_FALSE .   (rule 75)
+
+    $default	reduce using rule 75 (SessionContent)
+
+
+
+state 146
+
+    SessionContent  ->  T_AUTO_CREATE TRUE_OR_FALSE .   (rule 76)
+
+    $default	reduce using rule 76 (SessionContent)
+
+
+
+state 147
+
+    SessionContent  ->  T_DEFINITION_DIRECTORY STRING .   (rule 89)
+
+    $default	reduce using rule 89 (SessionContent)
+
+
+
+state 148
+
+    SessionContent  ->  T_DEFINITION_ROOT STRING .   (rule 92)
+
+    $default	reduce using rule 92 (SessionContent)
+
+
+
+state 149
+
+    SessionContent  ->  T_DEFINITION STRING .   (rule 93)
+
+    $default	reduce using rule 93 (SessionContent)
+
+
+
+state 150
+
+    SessionContent  ->  T_DICOMSCRIPT_ROOT STRING .   (rule 94)
+
+    $default	reduce using rule 94 (SessionContent)
+
+
+
+state 151
+
+    SessionContent  ->  T_DICOMSCRIPT STRING .   (rule 95)
+
+    $default	reduce using rule 95 (SessionContent)
+
+
+
+state 152
+
+    SessionContent  ->  T_LOG_ERROR TRUE_OR_FALSE .   (rule 78)
+
+    $default	reduce using rule 78 (SessionContent)
+
+
+
+state 153
+
+    SessionContent  ->  T_LOG_WARNING TRUE_OR_FALSE .   (rule 79)
+
+    $default	reduce using rule 79 (SessionContent)
+
+
+
+state 154
+
+    SessionContent  ->  T_LOG_INFO TRUE_OR_FALSE .   (rule 80)
+
+    $default	reduce using rule 80 (SessionContent)
+
+
+
+state 155
+
+    SessionContent  ->  T_LOG_RELATION TRUE_OR_FALSE .   (rule 81)
+
+    $default	reduce using rule 81 (SessionContent)
+
+
+
+state 156
+
+    SessionContent  ->  T_LOG_DEBUG TRUE_OR_FALSE .   (rule 82)
+
+    $default	reduce using rule 82 (SessionContent)
+
+
+
+state 157
+
+    SessionContent  ->  T_LOG_ACSE LOG_LEVEL .   (rule 85)
+
+    $default	reduce using rule 85 (SessionContent)
+
+
+
+state 158
+
+    SessionContent  ->  T_LOG_DICOM LOG_LEVEL .   (rule 83)
+
+    $default	reduce using rule 83 (SessionContent)
+
+
+
+state 159
+
+    SessionContent  ->  T_LOG_SCP_THREAD TRUE_OR_FALSE .   (rule 86)
+
+    $default	reduce using rule 86 (SessionContent)
+
+
+
+state 160
+
+    SessionContent  ->  T_DULP_STATE TRUE_OR_FALSE .   (rule 87)
+
+    $default	reduce using rule 87 (SessionContent)
+
+
+
+state 161
+
+    SessionContent  ->  T_CONTINUE TRUE_OR_FALSE .   (rule 65)
+
+    $default	reduce using rule 65 (SessionContent)
+
+
+
+state 162
+
+    SessionContent  ->  T_DICOM_VAL_RES LOG_LEVEL .   (rule 84)
+
+    $default	reduce using rule 84 (SessionContent)
+
+
+
+state 163
+
+    SessionContent  ->  T_ACSE_VAL_RES LOG_LEVEL .   (rule 88)
+
+    $default	reduce using rule 88 (SessionContent)
+
+
+
+state 164
+
+    SessionContent  ->  T_RESULTS_ROOT STRING .   (rule 96)
+
+    $default	reduce using rule 96 (SessionContent)
+
+
+
+state 165
+
+    SessionContent  ->  T_DESCRIPTION_DIRECTORY STRING .   (rule 97)
+
+    $default	reduce using rule 97 (SessionContent)
+
+
+
+state 166
+
+    SessionContent  ->  T_APPEND_TO_FILE TRUE_OR_FALSE .   (rule 98)
+
+    $default	reduce using rule 98 (SessionContent)
+
+
+
+state 167
+
+    SessionContent  ->  T_INCLUDE_PATH STRING .   (rule 99)
+
+    $default	reduce using rule 99 (SessionContent)
+
+
+
+state 168
+
+    SessionContent  ->  T_ENSURE_EVEN_ATTRIBUTE_VALUE_LENGTH TRUE_OR_FALSE .   (rule 77)
+
+    $default	reduce using rule 77 (SessionContent)
+
+
+
+state 169
+
+    SessionContent  ->  T_SUT_AE STRING .   (rule 34)
+
+    $default	reduce using rule 34 (SessionContent)
+
+
+
+state 170
+
+    SessionContent  ->  T_SUT_MAX_LEN INTEGER .   (rule 35)
+
+    $default	reduce using rule 35 (SessionContent)
+
+
+
+state 171
+
+    SessionContent  ->  T_SUT_IMPL_CLASS STRING .   (rule 36)
+
+    $default	reduce using rule 36 (SessionContent)
+
+
+
+state 172
+
+    SessionContent  ->  T_SUT_IMPL_VER STRING .   (rule 37)
+
+    $default	reduce using rule 37 (SessionContent)
+
+
+
+state 173
+
+    SessionContent  ->  T_SUT_HOSTNAME STRING .   (rule 38)
+
+    $default	reduce using rule 38 (SessionContent)
+
+
+
+state 174
+
+    SessionContent  ->  T_SUT_PORT INTEGER .   (rule 39)
+
+    $default	reduce using rule 39 (SessionContent)
+
+
+
+state 175
+
+    SessionContent  ->  T_SUT_ROLE SUT_ROLE .   (rule 40)
+
+    $default	reduce using rule 40 (SessionContent)
+
+
+
+state 176
+
+    SessionContent  ->  T_DVT_AE STRING .   (rule 41)
+
+    $default	reduce using rule 41 (SessionContent)
+
+
+
+state 177
+
+    SessionContent  ->  T_DVT_MAX_LEN INTEGER .   (rule 42)
+
+    $default	reduce using rule 42 (SessionContent)
+
+
+
+state 178
+
+    SessionContent  ->  T_DVT_IMPL_CLASS STRING .   (rule 43)
+
+    $default	reduce using rule 43 (SessionContent)
+
+
+
+state 179
+
+    SessionContent  ->  T_DVT_IMPL_VER STRING .   (rule 44)
+
+    $default	reduce using rule 44 (SessionContent)
+
+
+
+state 180
+
+    SessionContent  ->  T_DVT_PORT INTEGER .   (rule 45)
+
+    $default	reduce using rule 45 (SessionContent)
+
+
+
+state 181
+
+    SessionContent  ->  T_DVT_SOCKET_TIMEOUT INTEGER .   (rule 46)
+
+    $default	reduce using rule 46 (SessionContent)
+
+
+
+state 182
+
+    SessionContent  ->  T_DETAILED_RESULTS TRUE_OR_FALSE .   (rule 70)
+
+    $default	reduce using rule 70 (SessionContent)
+
+
+
+state 183
+
+    SessionContent  ->  T_SUMMARY_RESULTS TRUE_OR_FALSE .   (rule 71)
+
+    $default	reduce using rule 71 (SessionContent)
+
+
+
+state 184
+
+    SessionContent  ->  T_INCLUDE_TYPE3_NOTPRESENT TRUE_OR_FALSE .   (rule 72)
+
+    $default	reduce using rule 72 (SessionContent)
+
+
+
+state 185
+
+    SessionContent  ->  T_DUMP_ATTR_REFFILE TRUE_OR_FALSE .   (rule 73)
+
+    $default	reduce using rule 73 (SessionContent)
+
+
+
+state 186
+
+    SessionContent  ->  T_PRIVATE_MAPPING TRUE_OR_FALSE .   (rule 74)
+
+    $default	reduce using rule 74 (SessionContent)
+
+
+
+state 187
+
+    EndSession  ->  T_ENDSESSION .   (rule 8)
+
+    $default	reduce using rule 8 (EndSession)
+
+
+
+state 188
+
+    Session  ->  BeginSession SessionContentList EndSession .   (rule 6)
+
+    $default	reduce using rule 6 (Session)
+
+
+
+state 189
+
+    SessionContentList  ->  SessionContentList SessionContent .   (rule 10)
+
+    $default	reduce using rule 10 (SessionContentList)
+
+
+
+state 190
+
+    $   	go to state 191
+
+
+
+state 191
+
+    $   	go to state 192
+
+
+
+state 192
+
+    $default	accept

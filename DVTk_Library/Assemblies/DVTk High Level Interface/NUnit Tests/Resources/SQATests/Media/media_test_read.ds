@@ -1,0 +1,47 @@
+## 
+## DVT DICOMScript
+##
+## Name: media_test_read.ds
+##
+## Test Suite Ref: 3.2.2.4.13
+## Test Case Ref : #1, #2, #3, #4 
+##
+## Pre-conditions:
+##
+## Test Scenario:
+##    Test 1: READ a secondary capture media file with fmi
+##            and display it's contents
+##    Test 2: READ a ... media file with fmi with unknown attributes
+##            and display it's contents
+##
+##
+## Expected Result:
+##    0 errors, 0 warnings
+##
+## Post-conditions:
+##    -
+##
+
+ECHO ""
+
+## Test 1
+ECHO "Reading file .\\SC_IMAGE_FMI.dcm"
+READ ".\\SC_IMAGE_FMI.dcm" "Secondary Capture Image" SCIMG1
+DISPLAY "Secondary Capture Image" SCIMG1
+
+ECHO ""
+
+#******************************************************************************
+
+ECHO ""
+
+## Test 2
+
+ECHO "Reading file .\\FMI_IOD.dcm"
+READ ".\\FMI_IOD.dcm" "Secondary Capture Image" SCIMG2
+DISPLAY "Secondary Capture Image" SCIMG2
+
+ECHO ""
+##
+## Script Result should be: 0 error(s), 0 warning(s)
+##

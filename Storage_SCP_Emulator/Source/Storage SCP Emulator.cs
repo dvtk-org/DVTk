@@ -109,6 +109,30 @@ namespace StorageSCPEmulator
 		private System.Windows.Forms.Label labelEcho;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label labelMaxTlsVersion;
+        private System.Windows.Forms.Label labelMinTlsVersion;
+        private System.Windows.Forms.CheckBox checkBoxSecurity;
+        private System.Windows.Forms.GroupBox groupBoxSecurity;
+        private System.Windows.Forms.ComboBox comboboxMaxTlsVersion;
+        private System.Windows.Forms.ComboBox comboboxMinTlsVersion;
+        private System.Windows.Forms.Label labelCertificate;
+        private System.Windows.Forms.TextBox textBoxCertificate;
+        private System.Windows.Forms.Button buttonCertificate;
+        private System.Windows.Forms.Label labelCredential;
+        private System.Windows.Forms.TextBox textBoxCredential;
+        private System.Windows.Forms.Button buttonCredential;
+        private System.Windows.Forms.Label labelMaxTlsVersionCommit;
+        private System.Windows.Forms.Label labelMinTlsVersionCommit;
+        private System.Windows.Forms.GroupBox groupBoxSecurityCommit;
+        private System.Windows.Forms.ComboBox comboboxMaxTlsVersionCommit;
+        private System.Windows.Forms.ComboBox comboboxMinTlsVersionCommit;
+        private System.Windows.Forms.Label labelCertificateCommit;
+        private System.Windows.Forms.TextBox textBoxCertificateCommit;
+        private System.Windows.Forms.Button buttonCertificateCommit;
+        private System.Windows.Forms.Label labelCredentialCommit;
+        private System.Windows.Forms.TextBox textBoxCredentialCommit;
+        private System.Windows.Forms.Button buttonCredentialCommit;
+        private System.Windows.Forms.CheckBox checkBoxSecurityCommit;
         private TabPage tabPageSopClass;
         private SopClassesUserControl sopClassesUserControlStoreSCP;
         private ToolBarButton toolBarButtonValidation;
@@ -221,11 +245,55 @@ namespace StorageSCPEmulator
             storageSCPDicomThread = new SCP();
             storageSCPDicomThread.Initialize(this.threadManager);
             this.storageOptions = storageSCPDicomThread.Options;
+            this.storageOptions.LoadFromFile(Path.Combine(documentsRootPath, "StorageSCPEmulator.ses"));
             this.storageOptions.Identifier = "Storage SCP";
             this.storageOptions.AttachChildsToUserInterfaces = true;
             this.storageOptions.StorageMode = Dvtk.Sessions.StorageMode.AsMedia;
             this.storageOptions.LogThreadStartingAndStoppingInParent = false;
             this.storageOptions.LogWaitingForCompletionChildThreads = false;
+
+            if (this.storageOptions.DvtkScriptSession.SecuritySettings.SecureSocketsEnabled == true)
+            {
+                checkBoxSecurity.Checked = true;
+                groupBoxSecurity.Enabled = true;
+            }
+            else
+            {
+                checkBoxSecurity.Checked = false;
+                groupBoxSecurity.Enabled = false;
+            }
+            switch (this.storageOptions.DvtkScriptSession.SecuritySettings.MaxTlsVersionFlags)
+            {
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_0:
+                    comboboxMaxTlsVersion.SelectedIndex = 0;
+                    break;
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_1:
+                    comboboxMaxTlsVersion.SelectedIndex = 1;
+                    break;
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_2:
+                    comboboxMaxTlsVersion.SelectedIndex = 2;
+                    break;
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_3:
+                    comboboxMaxTlsVersion.SelectedIndex = 3;
+                    break;
+            }
+            switch (this.storageOptions.DvtkScriptSession.SecuritySettings.MinTlsVersionFlags)
+            {
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_0:
+                    comboboxMinTlsVersion.SelectedIndex = 0;
+                    break;
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_1:
+                    comboboxMinTlsVersion.SelectedIndex = 1;
+                    break;
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_2:
+                    comboboxMinTlsVersion.SelectedIndex = 2;
+                    break;
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_3:
+                    comboboxMinTlsVersion.SelectedIndex = 3;
+                    break;
+            }
+            this.textBoxCertificate.Text = this.storageOptions.DvtkScriptSession.SecuritySettings.CertificateFileName;
+            this.textBoxCredential.Text = this.storageOptions.DvtkScriptSession.SecuritySettings.CredentialsFileName;
 
             //
             // Construct the Storage DicomOptions implicitly by constructing a DicomThread.
@@ -233,11 +301,54 @@ namespace StorageSCPEmulator
             storageCommitSCPDicomThread = new SCP();
             storageCommitSCPDicomThread.Initialize(this.threadManager);
             this.storageCommitOptions = storageCommitSCPDicomThread.Options;
+            this.storageCommitOptions.LoadFromFile(Path.Combine(documentsRootPath, "CommitSCPEmulator.ses"));
             this.storageCommitOptions.Identifier = "Storage Commit SCP";
             this.storageCommitOptions.AttachChildsToUserInterfaces = true;
             this.storageCommitOptions.StorageMode = Dvtk.Sessions.StorageMode.NoStorage;
             this.storageCommitOptions.LogThreadStartingAndStoppingInParent = false;
             this.storageCommitOptions.LogWaitingForCompletionChildThreads = false;
+            if (this.storageCommitOptions.DvtkScriptSession.SecuritySettings.SecureSocketsEnabled == true)
+            {
+                checkBoxSecurityCommit.Checked = true;
+                groupBoxSecurityCommit.Enabled = true;
+            }
+            else
+            {
+                checkBoxSecurityCommit.Checked = false;
+                groupBoxSecurityCommit.Enabled = false;
+            }
+            switch (this.storageCommitOptions.DvtkScriptSession.SecuritySettings.MaxTlsVersionFlags)
+            {
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_0:
+                    comboboxMaxTlsVersionCommit.SelectedIndex = 0;
+                    break;
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_1:
+                    comboboxMaxTlsVersionCommit.SelectedIndex = 1;
+                    break;
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_2:
+                    comboboxMaxTlsVersionCommit.SelectedIndex = 2;
+                    break;
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_3:
+                    comboboxMaxTlsVersionCommit.SelectedIndex = 3;
+                    break;
+            }
+            switch (this.storageCommitOptions.DvtkScriptSession.SecuritySettings.MinTlsVersionFlags)
+            {
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_0:
+                    comboboxMinTlsVersionCommit.SelectedIndex = 0;
+                    break;
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_1:
+                    comboboxMinTlsVersionCommit.SelectedIndex = 1;
+                    break;
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_2:
+                    comboboxMinTlsVersionCommit.SelectedIndex = 2;
+                    break;
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_3:
+                    comboboxMinTlsVersionCommit.SelectedIndex = 3;
+                    break;
+            }
+            this.textBoxCertificateCommit.Text = this.storageCommitOptions.DvtkScriptSession.SecuritySettings.CertificateFileName;
+            this.textBoxCredentialCommit.Text = this.storageCommitOptions.DvtkScriptSession.SecuritySettings.CredentialsFileName;
 
             this.threadsStateChangeEventHandler = new ThreadManager.ThreadsStateChangeEventHandler(this.HandleThreadsStateChangeEvent);
 		}
@@ -340,6 +451,30 @@ namespace StorageSCPEmulator
             this.dvtkWebBrowserSCPEmulator = new DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew();
             this.tabPageLogging = new System.Windows.Forms.TabPage();
             this.userControlActivityLogging = new DvtkHighLevelInterface.Common.UserInterfaces.UserControlActivityLogging();
+            this.checkBoxSecurity = new System.Windows.Forms.CheckBox();
+            this.labelMaxTlsVersion = new System.Windows.Forms.Label();
+            this.labelMinTlsVersion = new System.Windows.Forms.Label();
+            this.groupBoxSecurity = new System.Windows.Forms.GroupBox();
+            this.comboboxMaxTlsVersion = new System.Windows.Forms.ComboBox();
+            this.comboboxMinTlsVersion = new System.Windows.Forms.ComboBox();
+            this.labelCertificate = new System.Windows.Forms.Label();
+            this.textBoxCertificate = new System.Windows.Forms.TextBox();
+            this.buttonCertificate = new System.Windows.Forms.Button();
+            this.labelCredential = new System.Windows.Forms.Label();
+            this.textBoxCredential = new System.Windows.Forms.TextBox();
+            this.buttonCredential = new System.Windows.Forms.Button();
+            this.checkBoxSecurityCommit = new System.Windows.Forms.CheckBox();
+            this.labelMaxTlsVersionCommit = new System.Windows.Forms.Label();
+            this.labelMinTlsVersionCommit = new System.Windows.Forms.Label();
+            this.groupBoxSecurityCommit = new System.Windows.Forms.GroupBox();
+            this.comboboxMaxTlsVersionCommit = new System.Windows.Forms.ComboBox();
+            this.comboboxMinTlsVersionCommit = new System.Windows.Forms.ComboBox();
+            this.labelCertificateCommit = new System.Windows.Forms.Label();
+            this.textBoxCertificateCommit = new System.Windows.Forms.TextBox();
+            this.buttonCertificateCommit = new System.Windows.Forms.Button();
+            this.labelCredentialCommit = new System.Windows.Forms.Label();
+            this.textBoxCredentialCommit = new System.Windows.Forms.TextBox();
+            this.buttonCredentialCommit = new System.Windows.Forms.Button();
             this.tabControlStorageSCP.SuspendLayout();
             this.tabPageStorageSCPConfig.SuspendLayout();
             this.panelSCPSettings.SuspendLayout();
@@ -611,6 +746,8 @@ namespace StorageSCPEmulator
             this.panelSCPSettings.Controls.Add(this.textBoxSCPAETitle);
             this.panelSCPSettings.Controls.Add(this.label4);
             this.panelSCPSettings.Controls.Add(this.label2);
+            this.panelSCPSettings.Controls.Add(this.checkBoxSecurity);
+            this.panelSCPSettings.Controls.Add(this.groupBoxSecurity);
             this.panelSCPSettings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelSCPSettings.Location = new System.Drawing.Point(0, 0);
             this.panelSCPSettings.Name = "panelSCPSettings";
@@ -773,6 +910,8 @@ namespace StorageSCPEmulator
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.groupBox2);
+            this.panel1.Controls.Add(this.checkBoxSecurityCommit);
+            this.panel1.Controls.Add(this.groupBoxSecurityCommit);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -1032,6 +1171,251 @@ namespace StorageSCPEmulator
             this.userControlActivityLogging.Size = new System.Drawing.Size(786, 519);
             this.userControlActivityLogging.TabIndex = 0;
             // 
+            // groupBoxSecurity
+            // 
+            this.groupBoxSecurity.Controls.Add(this.labelMaxTlsVersion);
+            this.groupBoxSecurity.Controls.Add(this.labelMinTlsVersion);
+            this.groupBoxSecurity.Controls.Add(this.comboboxMaxTlsVersion);
+            this.groupBoxSecurity.Controls.Add(this.comboboxMinTlsVersion);
+            this.groupBoxSecurity.Controls.Add(this.labelCertificate);
+            this.groupBoxSecurity.Controls.Add(this.textBoxCertificate);
+            this.groupBoxSecurity.Controls.Add(this.buttonCertificate);
+            this.groupBoxSecurity.Controls.Add(this.labelCredential);
+            this.groupBoxSecurity.Controls.Add(this.textBoxCredential);
+            this.groupBoxSecurity.Controls.Add(this.buttonCredential);
+            this.groupBoxSecurity.Enabled = false;
+            this.groupBoxSecurity.Location = new System.Drawing.Point(0, 275);
+            this.groupBoxSecurity.Name = "groupBoxSecurity";
+            this.groupBoxSecurity.Size = new System.Drawing.Size(600, 75);
+            this.groupBoxSecurity.TabStop = false;
+            this.groupBoxSecurity.Text = "Security Options ";
+            // 
+            // checkBoxSecurity
+            // 
+            this.checkBoxSecurity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxSecurity.Location = new System.Drawing.Point(8, 250);
+            this.checkBoxSecurity.Name = "checkBoxSecurity";
+            this.checkBoxSecurity.Size = new System.Drawing.Size(136, 24);
+            this.checkBoxSecurity.TabIndex = 8;
+            this.checkBoxSecurity.Text = "Secure Connection";
+            this.checkBoxSecurity.CheckedChanged += new System.EventHandler(this.checkBoxSecurity_CheckedChanged);
+            // 
+            // labelMaxTlsVersion
+            // 
+            this.labelMaxTlsVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMaxTlsVersion.Location = new System.Drawing.Point(8, 25);
+            this.labelMaxTlsVersion.Name = "labelMaxTlsVersion";
+            this.labelMaxTlsVersion.Size = new System.Drawing.Size(110, 24);
+            this.labelMaxTlsVersion.TabIndex = 20;
+            this.labelMaxTlsVersion.Text = "Max TLS Version: ";
+            // 
+            // labelMinTlsVersion
+            // 
+            this.labelMinTlsVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMinTlsVersion.Location = new System.Drawing.Point(8, 50);
+            this.labelMinTlsVersion.Name = "labelMinTlsVersion";
+            this.labelMinTlsVersion.Size = new System.Drawing.Size(110, 24);
+            this.labelMinTlsVersion.TabIndex = 21;
+            this.labelMinTlsVersion.Text = "Min TLS Version: ";
+            // 
+            // comboboxMaxTlsVersion
+            // 
+            this.comboboxMaxTlsVersion.FormattingEnabled = true;
+            this.comboboxMaxTlsVersion.Items.AddRange(new object[] {
+            "TLS1.0",
+            "TLS1.1",
+            "TLS1.2",
+            "TLS1.3"});
+            this.comboboxMaxTlsVersion.Location = new System.Drawing.Point(125, 25);
+            this.comboboxMaxTlsVersion.Size = new System.Drawing.Size(100, 28);
+            this.comboboxMaxTlsVersion.SelectedIndexChanged += new System.EventHandler(this.comboboxMaxTlsVersion_SelectedIndexChanged);
+
+            // 
+            // comboboxMinTlsVersion
+            // 
+            this.comboboxMinTlsVersion.FormattingEnabled = true;
+            this.comboboxMinTlsVersion.Items.AddRange(new object[] {
+            "TLS1.0",
+            "TLS1.1",
+            "TLS1.2",
+            "TLS1.3"});
+            this.comboboxMinTlsVersion.Location = new System.Drawing.Point(125, 50);
+            this.comboboxMinTlsVersion.Size = new System.Drawing.Size(100, 28);
+            this.comboboxMinTlsVersion.SelectedIndexChanged += new System.EventHandler(this.comboboxMinTlsVersion_SelectedIndexChanged);
+            // 
+            // labelcertificate
+            // 
+            this.labelCertificate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCertificate.Location = new System.Drawing.Point(230, 25);
+            this.labelCertificate.Name = "labelCertificate";
+            this.labelCertificate.Size = new System.Drawing.Size(80, 24);
+            this.labelCertificate.Text = "Certificate: ";
+            // 
+            // labelcredential
+            // 
+            this.labelCredential.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCredential.Location = new System.Drawing.Point(230, 50);
+            this.labelCredential.Name = "labelCredential";
+            this.labelCredential.Size = new System.Drawing.Size(80, 24);
+            this.labelCredential.Text = "Credential: ";
+            // 
+            // textboxcertificate
+            // 
+            this.textBoxCertificate.Location = new System.Drawing.Point(320, 25);
+            this.textBoxCertificate.Name = "textBoxCertificate";
+            this.textBoxCertificate.ReadOnly = true;
+            this.textBoxCertificate.Size = new System.Drawing.Size(180, 28);
+            // 
+            // textboxcertificate
+            // 
+            this.textBoxCredential.Location = new System.Drawing.Point(320, 50);
+            this.textBoxCredential.Name = "textBoxCredential";
+            this.textBoxCredential.ReadOnly = true;
+            this.textBoxCredential.Size = new System.Drawing.Size(180, 28);
+            // 
+            // buttonCertificate
+            // 
+            this.buttonCertificate.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonCertificate.Location = new System.Drawing.Point(510, 25);
+            this.buttonCertificate.Name = "buttonCertificate";
+            this.buttonCertificate.Size = new System.Drawing.Size(75, 20);
+            this.buttonCertificate.Text = "Browse";
+            this.buttonCertificate.UseVisualStyleBackColor = true;
+            this.buttonCertificate.Click += new System.EventHandler(this.buttonCertificate_Click);
+            // 
+            // buttonCredential
+            // 
+            this.buttonCredential.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonCredential.Location = new System.Drawing.Point(510, 50);
+            this.buttonCredential.Name = "buttonCredential";
+            this.buttonCredential.Size = new System.Drawing.Size(75, 20);
+            this.buttonCredential.Text = "Browse";
+            this.buttonCredential.UseVisualStyleBackColor = true;
+            this.buttonCredential.Click += new System.EventHandler(this.buttonCredential_Click);
+
+            // 
+            // groupBoxSecurityCommit
+            // 
+            this.groupBoxSecurityCommit.Controls.Add(this.labelMaxTlsVersionCommit);
+            this.groupBoxSecurityCommit.Controls.Add(this.labelMinTlsVersionCommit);
+            this.groupBoxSecurityCommit.Controls.Add(this.comboboxMaxTlsVersionCommit);
+            this.groupBoxSecurityCommit.Controls.Add(this.comboboxMinTlsVersionCommit);
+            this.groupBoxSecurityCommit.Controls.Add(this.labelCertificateCommit);
+            this.groupBoxSecurityCommit.Controls.Add(this.textBoxCertificateCommit);
+            this.groupBoxSecurityCommit.Controls.Add(this.buttonCertificateCommit);
+            this.groupBoxSecurityCommit.Controls.Add(this.labelCredentialCommit);
+            this.groupBoxSecurityCommit.Controls.Add(this.textBoxCredentialCommit);
+            this.groupBoxSecurityCommit.Controls.Add(this.buttonCredentialCommit);
+            this.groupBoxSecurityCommit.Enabled = false;
+            this.groupBoxSecurityCommit.Location = new System.Drawing.Point(0, 460);
+            this.groupBoxSecurityCommit.Name = "groupBoxSecurity";
+            this.groupBoxSecurityCommit.Size = new System.Drawing.Size(600, 75);
+            this.groupBoxSecurityCommit.TabStop = false;
+            this.groupBoxSecurityCommit.Text = "Security Options ";
+            // 
+            // checkBoxSecurityCommit
+            // 
+            this.checkBoxSecurityCommit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxSecurityCommit.Location = new System.Drawing.Point(8, 430);
+            this.checkBoxSecurityCommit.Name = "checkBoxSecurity";
+            this.checkBoxSecurityCommit.Size = new System.Drawing.Size(136, 24);
+            this.checkBoxSecurityCommit.TabIndex = 8;
+            this.checkBoxSecurityCommit.Text = "Secure Connection";
+            this.checkBoxSecurityCommit.CheckedChanged += new System.EventHandler(this.checkBoxSecurityCommit_CheckedChanged);
+            // 
+            // labelMaxTlsVersionCommit
+            // 
+            this.labelMaxTlsVersionCommit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMaxTlsVersionCommit.Location = new System.Drawing.Point(8, 25);
+            this.labelMaxTlsVersionCommit.Name = "labelMaxTlsVersion";
+            this.labelMaxTlsVersionCommit.Size = new System.Drawing.Size(110, 24);
+            this.labelMaxTlsVersionCommit.TabIndex = 20;
+            this.labelMaxTlsVersionCommit.Text = "Max TLS Version: ";
+            // 
+            // labelMinTlsVersionCommit
+            // 
+            this.labelMinTlsVersionCommit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMinTlsVersionCommit.Location = new System.Drawing.Point(8, 50);
+            this.labelMinTlsVersionCommit.Name = "labelMinTlsVersion";
+            this.labelMinTlsVersionCommit.Size = new System.Drawing.Size(110, 24);
+            this.labelMinTlsVersionCommit.TabIndex = 21;
+            this.labelMinTlsVersionCommit.Text = "Min TLS Version: ";
+            // 
+            // comboboxMaxTlsVersionCommit
+            // 
+            this.comboboxMaxTlsVersionCommit.FormattingEnabled = true;
+            this.comboboxMaxTlsVersionCommit.Items.AddRange(new object[] {
+            "TLS1.0",
+            "TLS1.1",
+            "TLS1.2",
+            "TLS1.3"});
+            this.comboboxMaxTlsVersionCommit.Location = new System.Drawing.Point(125, 25);
+            this.comboboxMaxTlsVersionCommit.Size = new System.Drawing.Size(100, 28);
+            this.comboboxMaxTlsVersionCommit.SelectedIndexChanged += new System.EventHandler(this.comboboxMaxTlsVersionCommit_SelectedIndexChanged);
+
+            // 
+            // comboboxMinTlsVersionCommit
+            // 
+            this.comboboxMinTlsVersionCommit.FormattingEnabled = true;
+            this.comboboxMinTlsVersionCommit.Items.AddRange(new object[] {
+            "TLS1.0",
+            "TLS1.1",
+            "TLS1.2",
+            "TLS1.3"});
+            this.comboboxMinTlsVersionCommit.Location = new System.Drawing.Point(125, 50);
+            this.comboboxMinTlsVersionCommit.Size = new System.Drawing.Size(100, 28);
+            this.comboboxMinTlsVersionCommit.SelectedIndexChanged += new System.EventHandler(this.comboboxMinTlsVersionCommit_SelectedIndexChanged);
+            // 
+            // labelcertificateCommit
+            // 
+            this.labelCertificateCommit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCertificateCommit.Location = new System.Drawing.Point(230, 25);
+            this.labelCertificateCommit.Name = "labelCertificate";
+            this.labelCertificateCommit.Size = new System.Drawing.Size(80, 24);
+            this.labelCertificateCommit.Text = "Certificate: ";
+            // 
+            // labelcredentialCommit
+            // 
+            this.labelCredentialCommit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCredentialCommit.Location = new System.Drawing.Point(230, 50);
+            this.labelCredentialCommit.Name = "labelCredential";
+            this.labelCredentialCommit.Size = new System.Drawing.Size(80, 24);
+            this.labelCredentialCommit.Text = "Credential: ";
+            // 
+            // textboxcertificateCommit
+            // 
+            this.textBoxCertificateCommit.Location = new System.Drawing.Point(320, 25);
+            this.textBoxCertificateCommit.Name = "textBoxCertificate";
+            this.textBoxCertificateCommit.ReadOnly = true;
+            this.textBoxCertificateCommit.Size = new System.Drawing.Size(180, 28);
+            // 
+            // textboxcertificateCommit
+            // 
+            this.textBoxCredentialCommit.Location = new System.Drawing.Point(320, 50);
+            this.textBoxCredentialCommit.Name = "textBoxCredential";
+            this.textBoxCredentialCommit.ReadOnly = true;
+            this.textBoxCredentialCommit.Size = new System.Drawing.Size(180, 28);
+            // 
+            // buttonCertificateCommit
+            // 
+            this.buttonCertificateCommit.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonCertificateCommit.Location = new System.Drawing.Point(510, 25);
+            this.buttonCertificateCommit.Name = "buttonCertificate";
+            this.buttonCertificateCommit.Size = new System.Drawing.Size(75, 20);
+            this.buttonCertificateCommit.Text = "Browse";
+            this.buttonCertificateCommit.UseVisualStyleBackColor = true;
+            this.buttonCertificateCommit.Click += new System.EventHandler(this.buttonCertificateCommit_Click);
+            // 
+            // buttonCredentialCommit
+            // 
+            this.buttonCredentialCommit.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonCredentialCommit.Location = new System.Drawing.Point(510, 50);
+            this.buttonCredentialCommit.Name = "buttonCredential";
+            this.buttonCredentialCommit.Size = new System.Drawing.Size(75, 20);
+            this.buttonCredentialCommit.Text = "Browse";
+            this.buttonCredentialCommit.UseVisualStyleBackColor = true;
+            this.buttonCredentialCommit.Click += new System.EventHandler(this.buttonCredentialCommit_Click);
+            // 
             // StorageSCPEmulator
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -1062,8 +1446,9 @@ namespace StorageSCPEmulator
             this.tabPageLogging.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
+            this.Size = new System.Drawing.Size(794, 650);
 
-		}
+        }
 		#endregion
 
 		/// <summary>
@@ -1660,6 +2045,283 @@ namespace StorageSCPEmulator
 			else{}
 		}
 
+        private void checkBoxSecurity_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (checkBoxSecurity.Checked)
+            {
+                this.storageOptions.DvtkScriptSession.SecuritySettings.SecureSocketsEnabled = true;
+                this.groupBoxSecurity.Enabled = true;
+            }
+            else
+            {
+                this.storageOptions.DvtkScriptSession.SecuritySettings.SecureSocketsEnabled = false;
+                this.groupBoxSecurity.Enabled = false;
+            }
+        }
+
+        private void checkBoxSecurityCommit_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (checkBoxSecurityCommit.Checked)
+            {
+                this.storageCommitOptions.DvtkScriptSession.SecuritySettings.SecureSocketsEnabled = true;
+                this.groupBoxSecurityCommit.Enabled = true;
+            }
+            else
+            {
+                this.storageCommitOptions.DvtkScriptSession.SecuritySettings.SecureSocketsEnabled = false;
+                this.groupBoxSecurityCommit.Enabled = false;
+            }
+        }
+
+        private void comboboxMaxTlsVersion_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            Dvtk.Sessions.ISecuritySettings theISecuritySettings = this.storageOptions.DvtkScriptSession.SecuritySettings;
+
+
+            switch (comboboxMaxTlsVersion.SelectedIndex)
+            {
+                case 0:
+                    updateMaxTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_0, theISecuritySettings);
+                    break;
+                case 1:
+                    updateMaxTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_1, theISecuritySettings);
+                    break;
+                case 2:
+                    updateMaxTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_2, theISecuritySettings);
+                    break;
+                case 3:
+                    updateMaxTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_3, theISecuritySettings);
+                    break;
+            }
+        }
+
+        private void updateMaxTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags theVersionFlag, Dvtk.Sessions.ISecuritySettings theISecuritySettings)
+        {
+            Dvtk.Sessions.TlsVersionFlags currentMaxVersion = theISecuritySettings.MaxTlsVersionFlags;
+            Dvtk.Sessions.TlsVersionFlags currentMinVersion = theISecuritySettings.MinTlsVersionFlags;
+            if (theVersionFlag < currentMinVersion)
+            {
+                comboboxMaxTlsVersion.SelectedIndex = (int)currentMaxVersion;
+                MessageBox.Show("Max version cannot be smaller than Min version.");
+            }
+            else
+            {
+                theISecuritySettings.MaxTlsVersionFlags = theVersionFlag;
+            }
+        }
+
+        private void comboboxMinTlsVersion_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            Dvtk.Sessions.ISecuritySettings theISecuritySettings = this.storageOptions.DvtkScriptSession.SecuritySettings;
+
+            switch (comboboxMinTlsVersion.SelectedIndex)
+            {
+                case 0:
+                    updateMinTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_0, theISecuritySettings);
+                    break;
+                case 1:
+                    updateMinTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_1, theISecuritySettings);
+                    break;
+                case 2:
+                    updateMinTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_2, theISecuritySettings);
+                    break;
+                case 3:
+                    updateMinTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_3, theISecuritySettings);
+                    break;
+            }
+        }
+
+        private void updateMinTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags theVersionFlag, Dvtk.Sessions.ISecuritySettings theISecuritySettings)
+        {
+            Dvtk.Sessions.TlsVersionFlags currentMaxVersion = theISecuritySettings.MaxTlsVersionFlags;
+            Dvtk.Sessions.TlsVersionFlags currentMinVersion = theISecuritySettings.MinTlsVersionFlags;
+            if (theVersionFlag > currentMaxVersion)
+            {
+                comboboxMinTlsVersion.SelectedIndex = (int)currentMinVersion;
+                MessageBox.Show("Min version cannot be bigger than Max version.");
+            }
+            else
+            {
+                theISecuritySettings.MinTlsVersionFlags = theVersionFlag;
+            }
+        }
+
+        private void updateMaxTlsVersionFlagCommit(Dvtk.Sessions.TlsVersionFlags theVersionFlag, Dvtk.Sessions.ISecuritySettings theISecuritySettings)
+        {
+            Dvtk.Sessions.TlsVersionFlags currentMaxVersion = theISecuritySettings.MaxTlsVersionFlags;
+            Dvtk.Sessions.TlsVersionFlags currentMinVersion = theISecuritySettings.MinTlsVersionFlags;
+            if (theVersionFlag < currentMinVersion)
+            {
+                comboboxMaxTlsVersionCommit.SelectedIndex = (int)currentMaxVersion;
+                MessageBox.Show("Max version cannot be smaller than Min version.");
+            }
+            else
+            {
+                theISecuritySettings.MaxTlsVersionFlags = theVersionFlag;
+            }
+        }
+
+        private void updateMinTlsVersionFlagCommit(Dvtk.Sessions.TlsVersionFlags theVersionFlag, Dvtk.Sessions.ISecuritySettings theISecuritySettings)
+        {
+            Dvtk.Sessions.TlsVersionFlags currentMaxVersion = theISecuritySettings.MaxTlsVersionFlags;
+            Dvtk.Sessions.TlsVersionFlags currentMinVersion = theISecuritySettings.MinTlsVersionFlags;
+            if (theVersionFlag > currentMaxVersion)
+            {
+                comboboxMinTlsVersionCommit.SelectedIndex = (int)currentMinVersion;
+                MessageBox.Show("Min version cannot be bigger than Max version.");
+            }
+            else
+            {
+                theISecuritySettings.MinTlsVersionFlags = theVersionFlag;
+            }
+        }
+
+        private void comboboxMaxTlsVersionCommit_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            Dvtk.Sessions.ISecuritySettings theISecuritySettings = this.storageCommitOptions.DvtkScriptSession.SecuritySettings;
+
+
+            switch (comboboxMaxTlsVersionCommit.SelectedIndex)
+            {
+                case 0:
+                    updateMaxTlsVersionFlagCommit(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_0, theISecuritySettings);
+                    break;
+                case 1:
+                    updateMaxTlsVersionFlagCommit(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_1, theISecuritySettings);
+                    break;
+                case 2:
+                    updateMaxTlsVersionFlagCommit(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_2, theISecuritySettings);
+                    break;
+                case 3:
+                    updateMaxTlsVersionFlagCommit(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_3, theISecuritySettings);
+                    break;
+            }
+        }
+
+        private void comboboxMinTlsVersionCommit_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            Dvtk.Sessions.ISecuritySettings theISecuritySettings = this.storageCommitOptions.DvtkScriptSession.SecuritySettings;
+
+            switch (comboboxMinTlsVersionCommit.SelectedIndex)
+            {
+                case 0:
+                    updateMinTlsVersionFlagCommit(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_0, theISecuritySettings);
+                    break;
+                case 1:
+                    updateMinTlsVersionFlagCommit(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_1, theISecuritySettings);
+                    break;
+                case 2:
+                    updateMinTlsVersionFlagCommit(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_2, theISecuritySettings);
+                    break;
+                case 3:
+                    updateMinTlsVersionFlagCommit(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_3, theISecuritySettings);
+                    break;
+            }
+        }
+
+        private void buttonCertificate_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog theOpenFileDialog = new OpenFileDialog();
+
+            theOpenFileDialog.Filter = "PEM Certificate files (*.pem;*.cer)|*.pem;*.cer";
+
+            theOpenFileDialog.Title = "Select the file containing the SUT Public Keys (certificates)";
+
+            theOpenFileDialog.CheckFileExists = false;
+
+            // Only if the current file exists, set this file in the file browser.
+            if (textBoxCertificate.Text != "")
+            {
+                if (File.Exists(textBoxCertificate.Text))
+                {
+                    theOpenFileDialog.FileName = textBoxCertificate.Text;
+                }
+            }
+
+            if (theOpenFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                textBoxCertificate.Text = theOpenFileDialog.FileName;
+                this.storageOptions.DvtkScriptSession.SecuritySettings.CertificateFileName = theOpenFileDialog.FileName;
+            }
+        }
+
+        private void buttonCertificateCommit_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog theOpenFileDialog = new OpenFileDialog();
+
+            theOpenFileDialog.Filter = "PEM Certificate files (*.pem;*.cer)|*.pem;*.cer";
+
+            theOpenFileDialog.Title = "Select the file containing the SUT Public Keys (certificates)";
+
+            theOpenFileDialog.CheckFileExists = false;
+
+            // Only if the current file exists, set this file in the file browser.
+            if (textBoxCertificateCommit.Text != "")
+            {
+                if (File.Exists(textBoxCertificateCommit.Text))
+                {
+                    theOpenFileDialog.FileName = textBoxCertificateCommit.Text;
+                }
+            }
+
+            if (theOpenFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                textBoxCertificateCommit.Text = theOpenFileDialog.FileName;
+                this.storageCommitOptions.DvtkScriptSession.SecuritySettings.CertificateFileName = theOpenFileDialog.FileName;
+            }
+        }
+
+        private void buttonCredential_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog theOpenFileDialog = new OpenFileDialog();
+
+            theOpenFileDialog.Filter = "PEM Certificate files (*.pem;*.cer)|*.pem;*.cer";
+
+            theOpenFileDialog.Title = "Select the file containing the DVT Private Keys (credentials)";
+
+            theOpenFileDialog.CheckFileExists = false;
+
+            // Only if the current file exists, set this file in the file browser.
+            if (textBoxCredential.Text != "")
+            {
+                if (File.Exists(textBoxCredential.Text))
+                {
+                    theOpenFileDialog.FileName = textBoxCredential.Text;
+                }
+            }
+
+            if (theOpenFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                textBoxCredential.Text = theOpenFileDialog.FileName;
+                this.storageOptions.DvtkScriptSession.SecuritySettings.CredentialsFileName = theOpenFileDialog.FileName;
+            }
+        }
+
+        private void buttonCredentialCommit_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog theOpenFileDialog = new OpenFileDialog();
+
+            theOpenFileDialog.Filter = "PEM Certificate files (*.pem;*.cer)|*.pem;*.cer";
+
+            theOpenFileDialog.Title = "Select the file containing the DVT Private Keys (credentials)";
+
+            theOpenFileDialog.CheckFileExists = false;
+
+            // Only if the current file exists, set this file in the file browser.
+            if (textBoxCredentialCommit.Text != "")
+            {
+                if (File.Exists(textBoxCredentialCommit.Text))
+                {
+                    theOpenFileDialog.FileName = textBoxCredentialCommit.Text;
+                }
+            }
+
+            if (theOpenFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                textBoxCredentialCommit.Text = theOpenFileDialog.FileName;
+                this.storageCommitOptions.DvtkScriptSession.SecuritySettings.CredentialsFileName = theOpenFileDialog.FileName;
+            }
+        }
         private void buttonSpecifyTS_Click(object sender, EventArgs e)
         {
             SelectTransferSyntaxesForm theSelectTransferSyntaxesForm = new SelectTransferSyntaxesForm();

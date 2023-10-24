@@ -1,0 +1,362 @@
+################################################################################
+# Definition File: ValidationTestVRSopClass.def
+#
+# Description    : Generated manually for testing the validation algorithm
+#                  regarding Value Representation & Encoding
+#
+# Note           : No specific system has been defined
+#
+################################################################################
+
+DEFINE SYSTEM "DICOM" "3.0"
+"DICOM" "3.0"
+ENDDEFINE
+
+#
+# Definition of the Validation Test VR SOP Class
+#
+DEFINE C-STORE-RSP "Validation Test VR SOP Class"
+
+SOPCLASS "1.3.46.670589.17.2.42.1" "Validation Test VR SOP Class"
+
+ENDDEFINE
+
+#
+# Definition of the Test VR SOP Class
+#
+DEFINE C-STORE-RQ "Validation Test VR SOP Class"
+
+SOPCLASS "1.3.46.670589.17.2.42.1" "Validation Test VR SOP Class"
+
+MODULE "Test Module VR" C
+(0x00080005,3,CS,1:n)  "Specific Character Set"
+
+MODULE "Test Module AE" C
+(0x10000001,1,AE,1)	"AE_01"
+(0x10000002,2,AE,2)	"AE_02"
+(0x10000003,3,AE,1:n)	"AE_03"
+(0x10000004,3,AE,1:n)	"AE_04"
+(0x10000005,3,AE,1:n)	"AE_05"
+(0x10000006,3,AE,1:n)	"AE_06"
+(0x10000007,3,AE,1:n)	"AE_07"
+(0x10000008,3,AE,1:n)	"AE_08"
+(0x10000009,3,AE,1:n)	"AE_09"
+
+MODULE "Test Module AS" C
+(0x10020001,1,AS,1)	"AS_01"
+(0x10020002,2,AS,2)	"AS_02"
+(0x10020003,3,AS,1:n)	"AS_03"
+(0x10020004,3,AS,1:n)	"AS_04"
+(0x10020005,3,AS,1:n)	"AS_05"
+(0x10020006,3,AS,1:n)	"AS_06"
+(0x10020007,3,AS,1:n)	"AS_07"
+(0x10020008,3,AS,1:n)	"AS_08"
+(0x10020009,3,AS,1:n)	"AS_09"
+
+MODULE "Test Module AT" C
+(0x10040001,1,AT,1)	"AT_01"
+(0x10040002,2,AT,2)	"AT_02"
+(0x10040003,3,AT,1:n)	"AT_03"
+(0x10040004,3,AT,1:n)	"AT_04"
+(0x10040005,3,AT,1:n)	"AT_05"
+(0x10040006,3,AT,1:n)	"AT_06"
+(0x10040007,3,AT,1:n)	"AT_07"
+(0x10040008,3,AT,1:n)	"AT_08"
+(0x10040009,3,AT,1:n)	"AT_09"
+
+MODULE "Test Module CS" C
+(0x10060001,1,CS,1)	"CS_01"
+(0x10060002,2,CS,2)	"CS_02"
+(0x10060003,3,CS,1:n)	"CS_03"
+(0x10060004,3,CS,1:n)	"CS_04"
+(0x10060005,3,CS,1:n)	"CS_05"
+(0x10060006,3,CS,1:n)	"CS_06"
+(0x10060007,3,CS,1:n)	"CS_07"
+(0x10060008,3,CS,1:n)	"CS_08"
+(0x10060009,3,CS,1:n)	"CS_09"
+
+MODULE "Test Module DA" C
+(0x10080001,1,DA,1)	"DA_01"
+(0x10080002,2,DA,2)	"DA_02"
+(0x10080003,3,DA,1:n)	"DA_03"
+(0x10080004,3,DA,1:n)	"DA_04"
+(0x10080005,3,DA,1:n)	"DA_05"
+(0x10080006,3,DA,1:n)	"DA_06"
+(0x10080007,3,DA,1:n)	"DA_07"
+(0x10080008,3,DA,1:n)	"DA_08"
+(0x10080009,3,DA,1:n)	"DA_09"
+
+MODULE "Test Module DS" C
+(0x100A0001,1,DS,1)	"DS_01"
+(0x100A0002,2,DS,2)	"DS_02"
+(0x100A0003,3,DS,1:n)	"DS_03"
+(0x100A0004,3,DS,1:n)	"DS_04"
+(0x100A0005,3,DS,1:n)	"DS_05"
+(0x100A0006,3,DS,1:n)	"DS_06"
+(0x100A0007,3,DS,1:n)	"DS_07"
+(0x100A0008,3,DS,1:n)	"DS_08"
+(0x100A0009,3,DS,1:n)	"DS_09"
+
+MODULE "Test Module DT" C
+(0x100C0001,1,DT,1)	"DT_01"
+(0x100C0002,2,DT,2)	"DT_02"
+(0x100C0003,3,DT,1:n)	"DT_03"
+(0x100C0004,3,DT,1:n)	"DT_04"
+(0x100C0005,3,DT,1:n)	"DT_05"
+(0x100C0006,3,DT,1:n)	"DT_06"
+(0x100C0007,3,DT,1:n)	"DT_07"
+(0x100C0008,3,DT,1:n)	"DT_08"
+(0x100C0009,3,DT,1:n)	"DT_09"
+(0x100C0010,3,DT,1:n)	"DT_10"
+
+MODULE "Test Module FL" C
+(0x100E0001,1,FL,1)	"FL_01"
+(0x100E0002,2,FL,2)	"FL_02"
+(0x100E0003,3,FL,1:n)	"FL_03"
+(0x100E0004,3,FL,1:n)	"FL_04"
+(0x100E0005,3,FL,1:n)	"FL_05"
+(0x100E0006,3,FL,1:n)	"FL_06"
+(0x100E0007,3,FL,1:n)	"FL_07"
+(0x100E0008,3,FL,1:n)	"FL_08"
+(0x100E0009,3,FL,1:n)	"FL_09"
+
+MODULE "Test Module FD" C
+(0x10100001,1,FD,1)	"FD_01"
+(0x10100002,2,FD,2)	"FD_02"
+(0x10100003,3,FD,1:n)	"FD_03"
+(0x10100004,3,FD,1:n)	"FD_04"
+(0x10100005,3,FD,1:n)	"FD_05"
+(0x10100006,3,FD,1:n)	"FD_06"
+(0x10100007,3,FD,1:n)	"FD_07"
+(0x10100008,3,FD,1:n)	"FD_08"
+(0x10100009,3,FD,1:n)	"FD_09"
+
+MODULE "Test Module IS" C
+(0x10120001,1,IS,1)	"IS_01"
+(0x10120002,2,IS,2)	"IS_02"
+(0x10120003,3,IS,1:n)	"IS_03"
+(0x10120004,3,IS,1:n)	"IS_04"
+(0x10120005,3,IS,1:n)	"IS_05"
+(0x10120006,3,IS,1:n)	"IS_06"
+(0x10120007,3,IS,1:n)	"IS_07"
+(0x10120008,3,IS,1:n)	"IS_08"
+(0x10120009,3,IS,1:n)	"IS_09"
+
+MODULE "Test Module LO" C
+(0x10140001,1,LO,1)	"LO_01"
+(0x10140002,2,LO,2)	"LO_02"
+(0x10140003,3,LO,1:n)	"LO_03"
+(0x10140004,3,LO,1:n)	"LO_04"
+(0x10140005,3,LO,1:n)	"LO_05"
+(0x10140006,3,LO,1:n)	"LO_06"
+(0x10140007,3,LO,1:n)	"LO_07"
+(0x10140008,3,LO,1:n)	"LO_08"
+(0x10140009,3,LO,1:n)	"LO_09"
+
+MODULE "Test Module LT" C
+(0x10160001,1,LT,1)	"LT_01"
+(0x10160002,2,LT,2)	"LT_02"
+(0x10160003,3,LT,1:n)	"LT_03"
+(0x10160004,3,LT,1:n)	"LT_04"
+(0x10160005,3,LT,1:n)	"LT_05"
+(0x10160006,3,LT,1:n)	"LT_06"
+(0x10160007,3,LT,1:n)	"LT_07"
+(0x10160008,3,LT,1:n)	"LT_08"
+(0x10160009,3,LT,1:n)	"LT_09"
+
+MODULE "Test Module OB" C
+(0x10180001,1,OB,1)	"OB_01"
+(0x10180002,2,OB,2)	"OB_02"
+(0x10180003,3,OB,1:n)	"OB_03"
+(0x10180004,3,OB,1:n)	"OB_04"
+(0x10180005,3,OB,1:n)	"OB_05"
+(0x10180006,3,OB,1:n)	"OB_06"
+(0x10180007,3,OB,1:n)	"OB_07"
+(0x10180008,3,OB,1:n)	"OB_08"
+(0x10180009,3,OB,1:n)	"OB_09"
+
+MODULE "Test Module OW" C
+(0x101A0001,1,OW,1)	"OW_01"
+(0x101A0002,2,OW,2)	"OW_02"
+(0x101A0003,3,OW,1:n)	"OW_03"
+(0x101A0004,3,OW,1:n)	"OW_04"
+(0x101A0005,3,OW,1:n)	"OW_05"
+(0x101A0006,3,OW,1:n)	"OW_06"
+(0x101A0007,3,OW,1:n)	"OW_07"
+(0x101A0008,3,OW,1:n)	"OW_08"
+(0x101A0009,3,OW,1:n)	"OW_09"
+
+MODULE "Test Module PN" C
+(0x101C0001,1,PN,1)	"PN_01"
+(0x101C0002,2,PN,2)	"PN_02"
+(0x101C0003,3,PN,1:n)	"PN_03"
+(0x101C0004,3,PN,1:n)	"PN_04"
+(0x101C0005,3,PN,1:n)	"PN_05"
+(0x101C0006,3,PN,1:n)	"PN_06"
+(0x101C0007,3,PN,1:n)	"PN_07"
+(0x101C0008,3,PN,1:n)	"PN_08"
+(0x101C0009,3,PN,1:n)	"PN_09"
+
+MODULE "Test Module SH" C
+(0x101E0001,1,SH,1)	"SH_01"
+(0x101E0002,2,SH,2)	"SH_02"
+(0x101E0003,3,SH,1:n)	"SH_03"
+(0x101E0004,3,SH,1:n)	"SH_04"
+(0x101E0005,3,SH,1:n)	"SH_05"
+(0x101E0006,3,SH,1:n)	"SH_06"
+(0x101E0007,3,SH,1:n)	"SH_07"
+(0x101E0008,3,SH,1:n)	"SH_08"
+(0x101E0009,3,SH,1:n)	"SH_09"
+
+MODULE "Test Module SL" C
+(0x10200001,1,SL,1)	"SL_01"
+(0x10200002,2,SL,2)	"SL_02"
+(0x10200003,3,SL,1:n)	"SL_03"
+(0x10200004,3,SL,1:n)	"SL_04"
+(0x10200005,3,SL,1:n)	"SL_05"
+(0x10200006,3,SL,1:n)	"SL_06"
+(0x10200007,3,SL,1:n)	"SL_07"
+(0x10200008,3,SL,1:n)	"SL_08"
+(0x10200009,3,SL,1:n)	"SL_09"
+
+
+#MODULE "Test Module SQ" C
+(0x10220001,1,SQ,1,
+)		"SQ_01"
+(0x10220002,2,SQ,2,
+)		"SQ_02"
+(0x10220003,3,SQ,1:n,
+)	"SQ_03"
+(0x10220004,3,SQ,1:n,
+)	"SQ_04"
+(0x10220005,3,SQ,1:n,
+)	"SQ_05"
+(0x10220006,3,SQ,1:n,
+)	"SQ_06"
+(0x10220007,3,SQ,1:n,
+)	"SQ_07"
+(0x10220008,3,SQ,1:n,
+)	"SQ_08"
+(0x10220009,3,SQ,1:n,
+)	"SQ_09"
+
+MODULE "Test Module SS" C
+(0x10240001,1,SS,1)	"SS_01"
+(0x10240002,2,SS,2)	"SS_02"
+(0x10240003,3,SS,1:n)	"SS_03"
+(0x10240004,3,SS,1:n)	"SS_04"
+(0x10240005,3,SS,1:n)	"SS_05"
+(0x10240006,3,SS,1:n)	"SS_06"
+(0x10240007,3,SS,1:n)	"SS_07"
+(0x10240008,3,SS,1:n)	"SS_08"
+(0x10240009,3,SS,1:n)	"SS_09"
+
+MODULE "Test Module ST" C
+(0x10260001,1,ST,1)	"ST_01"
+(0x10260002,2,ST,2)	"ST_02"
+(0x10260003,3,ST,1:n)	"ST_03"
+(0x10260004,3,ST,1:n)	"ST_04"
+(0x10260005,3,ST,1:n)	"ST_05"
+(0x10260006,3,ST,1:n)	"ST_06"
+(0x10260007,3,ST,1:n)	"ST_07"
+(0x10260008,3,ST,1:n)	"ST_08"
+(0x10260009,3,ST,1:n)	"ST_09"
+
+MODULE "Test Module TM" C
+(0x10280001,1,TM,1)	"TM_01"
+(0x10280002,2,TM,2)	"TM_02"
+(0x10280003,3,TM,1:n)	"TM_03"
+(0x10280004,3,TM,1:n)	"TM_04"
+(0x10280005,3,TM,1:n)	"TM_05"
+(0x10280006,3,TM,1:n)	"TM_06"
+(0x10280007,3,TM,1:n)	"TM_07"
+(0x10280008,3,TM,1:n)	"TM_08"
+(0x10280009,3,TM,1:n)	"TM_09"
+
+MODULE "Test Module UI" C
+(0x102A0001,1,UI,1)	"UI_01"
+(0x102A0002,2,UI,2)	"UI_02"
+(0x102A0003,3,UI,1:n)	"UI_03"
+(0x102A0004,3,UI,1:n)	"UI_04"
+(0x102A0005,3,UI,1:n)	"UI_05"
+(0x102A0006,3,UI,1:n)	"UI_06"
+(0x102A0007,3,UI,1:n)	"UI_07"
+(0x102A0008,3,UI,1:n)	"UI_08"
+(0x102A0009,3,UI,1:n)	"UI_09"
+
+MODULE "Test Module UL" C
+(0x102C0001,1,UL,1)	"UL_01"
+(0x102C0002,2,UL,2)	"UL_02"
+(0x102C0003,3,UL,1:n)	"UL_03"
+(0x102C0004,3,UL,1:n)	"UL_04"
+(0x102C0005,3,UL,1:n)	"UL_05"
+(0x102C0006,3,UL,1:n)	"UL_06"
+(0x102C0007,3,UL,1:n)	"UL_07"
+(0x102C0008,3,UL,1:n)	"UL_08"
+(0x102C0009,3,UL,1:n)	"UL_09"
+
+MODULE "Test Module US" C
+(0x102E0001,1,US,1)	"US_01"
+(0x102E0002,2,US,2)	"US_02"
+(0x102E0003,3,US,1:n)	"US_03"
+(0x102E0004,3,US,1:n)	"US_04"
+(0x102E0005,3,US,1:n)	"US_05"
+(0x102E0006,3,US,1:n)	"US_06"
+(0x102E0007,3,US,1:n)	"US_07"
+(0x102E0008,3,US,1:n)	"US_08"
+(0x102E0009,3,US,1:n)	"US_09"
+
+MODULE "Test Module UT" C
+(0x10300001,1,UT,1)	"UT_01"
+(0x10300002,2,UT,2)	"UT_02"
+(0x10300003,3,UT,1:n)	"UT_03"
+(0x10300004,3,UT,1:n)	"UT_04"
+(0x10300005,3,UT,1:n)	"UT_05"
+(0x10300006,3,UT,1:n)	"UT_06"
+(0x10300007,3,UT,1:n)	"UT_07"
+(0x10300008,3,UT,1:n)	"UT_08"
+(0x10300009,3,UT,1:n)	"UT_09"
+ENDDEFINE
+
+#
+# Definition of the Validation Test VR SOP Class
+#
+DEFINE C-STORE-RSP "Validation Test VR SOP Class"
+
+SOPCLASS "1.3.46.670589.17.2.42.1" "Validation Test VR SOP Class"
+
+ENDDEFINE
+
+
+#
+# Commands applicable for the Validation VR SOP Class
+#
+DEFINE C-STORE-RQ
+(0x00000000,1,UL,1)	     "Group 0000 Length"
+(0x00000002,1,UI,1)	     "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x0001) "Command Field"
+(0x00000110,1,US,1)	     "Message ID"
+(0x00000700,1,US,1,E,0x0000
+                   | 0x0001
+                   | 0x0002) "Priority"
+(0x00000800,1,US,1)	     "Data Set Type"
+(0x00001000,1,UI,1)	     "Affected SOP Instance UID"
+(0x00001030,3,AE,1)	     "Move Originator AE Title"
+(0x00001031,3,US,1)	     "Move Originator Message ID"
+ENDDEFINE
+
+DEFINE C-STORE-RSP
+(0x00000000,1,UL,1)	      "Group 0000 Length"
+(0x00000002,1,UI,1)	      "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x8001)  "Command Field"
+(0x00000120,1,US,1)	      "Message ID Being Responded To"
+(0x00000800,1,US,1)           "Data Set Type"
+(0x00000900,1,US,1)	      "Status"
+(0x00000901,3,AT,1:n)	      "Offending Element"
+(0x00000902,3,LO,1)	      "Error Comment"
+(0x00000903,3,US,1)	      "Error ID"
+(0x00001000,1,UI,1)	      "Affected SOP Instance UID"
+ENDDEFINE
+
+
+

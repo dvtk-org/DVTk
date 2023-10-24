@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DICOM Editor", "DICOM Editor.csproj", "{A32952BD-837D-4710-A488-B495BFBEE297}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DICOM Editor Setup", "DICOM Editor Setup.vdproj", "{6EA91E9E-9A3F-4F9E-BD51-03F981FFBDC7}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DICOM Editor Setup", "DICOM Editor Setup.vdproj", "{9AA34795-A9CD-4E7D-B656-23C3326546A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,8 +14,10 @@ Global
 		{A32952BD-837D-4710-A488-B495BFBEE297}.Debug|Any CPU.Build.0 = Debug|x86
 		{A32952BD-837D-4710-A488-B495BFBEE297}.Release|Any CPU.ActiveCfg = Release|x86
 		{A32952BD-837D-4710-A488-B495BFBEE297}.Release|Any CPU.Build.0 = Release|x86
-		{6EA91E9E-9A3F-4F9E-BD51-03F981FFBDC7}.Debug|Any CPU.ActiveCfg = Debug
-		{6EA91E9E-9A3F-4F9E-BD51-03F981FFBDC7}.Release|Any CPU.ActiveCfg = Release
+		{9AA34795-A9CD-4E7D-B656-23C3326546A3}.Debug|Any CPU.ActiveCfg = Debug
+		{9AA34795-A9CD-4E7D-B656-23C3326546A3}.Debug|Any CPU.Build.0 = Debug
+		{9AA34795-A9CD-4E7D-B656-23C3326546A3}.Release|Any CPU.ActiveCfg = Release
+		{9AA34795-A9CD-4E7D-B656-23C3326546A3}.Release|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

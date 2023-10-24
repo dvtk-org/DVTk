@@ -6,7 +6,8 @@ setlocal
 : Arguments
 set InputDir=%1
 set InputName=%2
-path=%path%;..\..\..\tools\div
+PATH=%PATH%;%cd%;%cd%\..\..\Tools\DIV
+
 
 echo Input directory : %InputDir%
 echo Input name      : %InputName%

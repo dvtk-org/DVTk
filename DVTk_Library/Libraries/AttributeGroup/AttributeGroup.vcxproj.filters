@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{942aea0e-69d9-4173-8313-3425415d81a1}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{23e80d9b-267a-4d1b-b038-56777ce43def}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="attribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="attribute_group.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="base_string.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="base_value.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ext_char_set_definition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ext_char_set_file.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ext_char_set_lexer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ext_char_set_parser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ob_value_stream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ob_value_stream_encode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="od_value_stream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="of_value_stream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ol_value_stream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="other_value.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="other_value_stream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="other_value_stream_encode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ow_value_stream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="specific_character_set.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_ae.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_as.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_at.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_cs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_da.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_ds.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_dt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_fd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_fl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_is.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_list.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_lo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_lt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_ob.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_od.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_of.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_ol.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_ow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_pn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_sh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_sl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_sq.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_ss.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_st.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_tm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_uc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_ui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_ul.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_un.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_ur.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_us.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_ut.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="value_ov.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ov_value_stream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="attribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="attribute_group.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="base_string.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="base_value.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ext_char_set_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ext_char_set_file.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ext_char_set_parser.cpp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ob_value_stream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="od_value_stream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="of_value_stream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ol_value_stream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="other_value.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="other_value_stream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ow_value_stream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="specific_character_set.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_ae.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_as.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_at.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_cs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_da.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_ds.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_dt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_fd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_fl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_is.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_lo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_lt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_ob.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_od.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_of.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_ol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_ow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_pn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_sh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_sl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_sq.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_ss.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_st.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_tm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_uc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_ui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_ul.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_un.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_ur.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_us.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_ut.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="value_ov.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ov_value_stream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="ext_char_set_parser.y" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ext_char_set_lexer.l" />
+  </ItemGroup>
+</Project>

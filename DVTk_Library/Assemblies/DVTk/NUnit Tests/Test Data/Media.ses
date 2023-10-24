@@ -1,0 +1,75 @@
+# Example DVT Dicom Script
+# Copyright (c) 2001-2005
+# Philips Medical Systems NL B.V., Agfa-Gevaert N.V.
+
+SESSION
+
+SESSION-TYPE media
+SESSION-FILE-VERSION 2
+
+# Product Test Session Properties
+SESSION-TITLE "Media Session"
+SESSION-ID 001
+MANUFACTURER "Manufacturer"
+MODEL-NAME "Product Name"
+SOFTWARE-VERSIONS "Version 1.2"
+APPLICATION-ENTITY-NAME "DICOM"
+APPLICATION-ENTITY-VERSION "3.0"
+TESTED-BY "DVT"
+DATE "20050131"
+
+# Test Session Properties
+LOG-ERROR true
+LOG-WARNING true
+LOG-INFO true
+LOG-RELATION false
+LOG-DEBUG false
+PDU-DUMP false
+STORAGE-MODE as-media
+DETAILED-VALIDATION-RESULTS true
+SUMMARY-VALIDATION-RESULTS true
+INCLUDE-TYPE-3-NOTPRESENT-INRESULTS false
+
+# Definitions
+DEFINITION-DIRECTORY "C:\Program Files\DVT\definitions\"
+DEFINITION "BasicCardiacECGWaveformStorage.def"
+DEFINITION "Secondary Capture Image Storage.def"
+DEFINITION "Computed Radiography Image Storage.def"
+DEFINITION "CT Image Storage.def"
+DEFINITION "MR Image Storage.def"
+DEFINITION "Multi-frame Grayscale Byte Seconday Capture Image Storage.def"
+DEFINITION "Multi-frame Grayscale Word Seconday Capture Image Storage.def"
+DEFINITION "Multi-frame Single Bit Secondary Capture Image Storage.def"
+DEFINITION "Multi-frame True Color Secondary Capture Image Storage.def"
+DEFINITION "Nuclear Medicine Image Storage.def"
+DEFINITION "Positron Emission Tomography Image Storage.def"
+DEFINITION "RT Beams Treatment Record Storage.def"
+DEFINITION "RT Brachy Treatment Record Storage.def"
+DEFINITION "RT Dose Storage.def"
+DEFINITION "RT Image Storage.def"
+DEFINITION "RT Plan Storage.def"
+DEFINITION "RT Structure Set Storage.def"
+DEFINITION "RT Treatment Summary Record Storage.def"
+DEFINITION "Softcopy Presentation State Storage.def"
+DEFINITION "Ultrasound Image Storage.def"
+DEFINITION "Ultrasound Multi-frame Image Storage.def"
+DEFINITION "VL Endoscopic Image Storage.def"
+DEFINITION "VL Microscopic Image Storage.def"
+DEFINITION "VL Photographic Image Storage.def"
+DEFINITION "VL Slide-Coordinates Microscopic Image Storage.def"
+DEFINITION "X-Ray Angiographic Image Storage.def"
+DEFINITION "X-Ray Radiofluoroscopic Image Storage.def"
+DEFINITION "File Meta.def"
+DEFINITION "Media Storage Directory.def"
+DEFINITION "Dicom Dir Special.def"
+DEFINITION "Comprehensive SR.def"
+DEFINITION "Allotherattributes.def"
+
+# Results
+RESULTS-ROOT ".\results\"
+APPEND-TO-RESULTS-FILE false
+
+# DICOMScript Description Directory
+DESCRIPTION-DIRECTORY ".\html\"
+
+ENDSESSION

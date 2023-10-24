@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6C70CAF0-D330-4F52-B6CE-71C70DC1600F}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>DvtkApplicationLayer</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\..\Resources\Strong Name Key\DVTk Key.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DvtkApplicationLayer</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>true</SignAssembly>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>$(SolutionDir)\bin\$(Configuration)</OutputPath>
+    <DocumentationFile>$(SolutionDir)\bin\$(Configuration)\DvtkApplicationLayer.xml</DocumentationFile>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>$(SolutionDir)\bin\$(Configuration)</OutputPath>
+    <DocumentationFile>$(SolutionDir)\bin\$(Configuration)\DvtkApplicationLayer.xml</DocumentationFile>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>$(SolutionDir)\bin\$(Configuration)</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>$(SolutionDir)\bin\$(Configuration)</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DvtkScriptSupport, Version=1.7.7.1, Culture=neutral, PublicKeyToken=5166403a8245d5cb">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Debug\DvtkScriptSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic">
+      <Name>Microsoft.VisualBasic</Name>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic.Compatibility">
+      <Name>Microsoft.VisualBasic.Compatibility</Name>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Management.Instrumentation" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <COMReference Include="MSHTML">
+      <Guid>{3050F1C5-98B5-11CF-BB82-00AA00BDCE0B}</Guid>
+      <VersionMajor>4</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseInput.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CustomExceptionHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DefinitionFile.cs" />
+    <Compile Include="DefinitionFilesChecker.cs" />
+    <Compile Include="DicomScript.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Emulator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EmulatorInput.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EmulatorSession.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MediaFile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MediaInput.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MediaSession.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PartOfSession.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PathUtils.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PrintScpEmulator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Project.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Results.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ScriptInput.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ScriptSession.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SecuritySettings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Session.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SessionManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="StorageScpEmulator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="StorageSCUEmulator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="StoredFiles\ApplicationConfigurableFileGroup.cs" />
+    <Compile Include="StoredFiles\FileGroup.cs" />
+    <Compile Include="StoredFiles\FileGroupConfiguratorUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StoredFiles\FileGroupConfiguratorUserControl.Designer.cs">
+      <DependentUpon>FileGroupConfiguratorUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StoredFiles\FileGroups.cs" />
+    <Compile Include="StoredFiles\FileGroupsConfiguratorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StoredFiles\FileGroupsConfiguratorForm.Designer.cs">
+      <DependentUpon>FileGroupsConfiguratorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StoredFiles\PixFileGroup.cs" />
+    <Compile Include="StoredFiles\ReceivedDicomMessagesFileGroup.cs" />
+    <Compile Include="StoredFiles\RemoveMode.cs" />
+    <Compile Include="StoredFiles\ValidationResultsFileGroup.cs" />
+    <Compile Include="StoredFiles\UserConfigurableFileGroup.cs" />
+    <Compile Include="UserInterfaces\AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterfaces\AddAttribute.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterfaces\Banner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterfaces\CustomExceptionHandlerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterfaces\DICOMEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterfaces\DvtkWebBrowserNew.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterfaces\InputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterfaces\InputFormDropDownListEntry.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterfaces\InputFormEntry.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterfaces\InputFormTextBoxEntry.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterfaces\InputFormValueAndRepresentation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterfaces\ResultsViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterfaces\ResultsViewer.Designer.cs">
+      <DependentUpon>ResultsViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterfaces\SelectTransferSyntaxesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterfaces\SOPClassUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VersionChecker.cs" />
+    <Compile Include="VisualBasicScript.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StoredFiles\FileGroupConfiguratorUserControl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FileGroupConfiguratorUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StoredFiles\FileGroupsConfiguratorForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FileGroupsConfiguratorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterfaces\AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterfaces\AddAttribute.resx">
+      <DependentUpon>AddAttribute.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterfaces\Banner.resx">
+      <DependentUpon>Banner.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterfaces\CustomExceptionHandlerForm.resx">
+      <DependentUpon>CustomExceptionHandlerForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterfaces\DICOMEditor.resx">
+      <DependentUpon>DICOMEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterfaces\DvtkWebBrowserNew.resx">
+      <DependentUpon>DvtkWebBrowserNew.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterfaces\InputForm.resx">
+      <DependentUpon>InputForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterfaces\ResultsViewer.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ResultsViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterfaces\SelectTransferSyntaxesForm.resx">
+      <DependentUpon>SelectTransferSyntaxesForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterfaces\SOPClassUserControl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SOPClassUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Resources\Strong Name Key\DVTk Key.snk">
+      <Link>DVTk Key.snk</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DVTk Data\DVTk Data.csproj">
+      <Project>{7df60c20-4034-49cc-9974-b8443a2bc192}</Project>
+      <Name>DVTk Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk High Level Interface\DVTk High Level Interface.csproj">
+      <Project>{4b34d6b9-d185-4742-a204-70c490500754}</Project>
+      <Name>DVTk High Level Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk Information Entity\DVTk Information Entity.csproj">
+      <Project>{36bb69f0-a963-49d9-8626-e88a02fe0141}</Project>
+      <Name>DVTk Information Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTkManagedCodeAdapter\DVTkManagedCodeAdapter.vcxproj">
+      <Project>{8e50a389-c478-4013-817d-8191c994b602}</Project>
+      <Name>DVTKManagedCodeAdapter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk\DVTk.csproj">
+      <Project>{dbc39a1e-18cb-4809-81e0-47b1c899bbe0}</Project>
+      <Name>DVTk</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+			SET DESTINATION_DIR=
+			IF EXIST "$(ProjectDir)..\..\..\builds" SET DESTINATION_DIR=$(ProjectDir)..\..\..\builds\$(ConfigurationName)
+			IF EXIST "$(ProjectDir)..\..\..\..\..\Releases" SET DESTINATION_DIR=$(ProjectDir)..\..\..\$(ConfigurationName)
+			ECHO DESTINATION_DIR is %25DESTINATION_DIR%25
+
+			Copy "$(TargetPath)" "%25DESTINATION_DIR%25
+			IF EXIST "$(TargetDir)$(TargetName).pdb" Copy "$(TargetDir)$(TargetName).pdb" "%25DESTINATION_DIR%25
+		</PostBuildEvent>
+  </PropertyGroup>
+</Project>

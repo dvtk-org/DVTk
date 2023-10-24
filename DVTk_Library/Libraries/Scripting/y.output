@@ -1,0 +1,5751 @@
+State 73 contains 1 shift/reduce conflict.
+
+Grammar
+rule 1    Language ->		/* empty */
+rule 2    Language -> LanguageGrammar
+rule 3    LanguageGrammar -> LanguageComponents
+rule 4    LanguageGrammar -> LanguageGrammar LanguageComponents
+rule 5    LanguageComponents -> LanguageSpecifier
+rule 6    LanguageComponents -> ResetCommand
+rule 7    LanguageComponents -> CompareCommand
+rule 8    LanguageComponents -> ConfirmCommand
+rule 9    LanguageComponents -> CopyCommand
+rule 10   LanguageComponents -> CreateCommand
+rule 11   LanguageComponents -> DelayCommand
+rule 12   LanguageComponents -> DeleteCommand
+rule 13   LanguageComponents -> DisplayCommand
+rule 14   LanguageComponents -> EchoCommand
+rule 15   LanguageComponents -> ExportCommand
+rule 16   LanguageComponents -> ImportCommand
+rule 17   LanguageComponents -> PopulateCommand
+rule 18   LanguageComponents -> ReadCommand
+rule 19   LanguageComponents -> ReceiveCommand
+rule 20   LanguageComponents -> RoleCommand
+rule 21   LanguageComponents -> SendCommand
+rule 22   LanguageComponents -> SetCommand
+rule 23   LanguageComponents -> SystemCommand
+rule 24   LanguageComponents -> TimeCommand
+rule 25   LanguageComponents -> ValidateCommand
+rule 26   LanguageComponents -> VerboseCommand
+rule 27   LanguageComponents -> WriteCommand
+rule 28   LanguageComponents -> ApplicationEntityFlagCommand
+rule 29   LanguageComponents -> ValidationFlagCommand
+rule 30   LanguageComponents -> DefineSqLengthFlagCommand
+rule 31   LanguageComponents -> AddGroupLengthFlagCommand
+rule 32   LanguageComponents -> StrictValidationFlagCommand
+rule 33   LanguageSpecifier -> T_LANGUAGE STRING
+rule 34   ResetCommand -> T_RESET T_ALL
+rule 35   ResetCommand -> T_RESET T_WAREHOUSE
+rule 36   ResetCommand -> T_RESET T_ASSOCIATION
+rule 37   ResetCommand -> T_RESET T_RELATION
+rule 38   ResetCommand -> T_RESET T_EXECUTION_CONTEXT
+rule 39   CompareCommand -> T_COMPARE ObjectRef1 TagRef1 ObjectRef2 TagRef2
+rule 40   CompareCommand -> T_COMPARE_NOT ObjectRef1 TagRef1 ObjectRef2 TagRef2
+rule 41   ConfirmCommand -> T_CONFIRM
+rule 42   CopyCommand -> T_COPY ObjectRef1 TagRef1 ObjectRef2 TagRef2
+rule 43   CreateCommand -> T_CREATE CreateList
+rule 44   DelayCommand -> T_DELAY INTEGER
+rule 45   DeleteCommand -> T_DELETE DeleteList
+rule 46   DisplayCommand -> DisplayTagList
+rule 47   DisplayCommand -> T_DISPLAY ObjectRef1
+rule 48   DisplayCommand -> T_DISPLAY T_WAREHOUSE
+rule 49   EchoCommand -> T_ECHO STRING
+rule 50   ExportCommand -> T_EXPORT ExportList
+rule 51   ExportList -> ExportAcseObject
+rule 52   ExportList -> ExportDimseObjects
+rule 53   ExportAcseObject -> AssociateRq
+rule 54   ExportAcseObject -> AssociateAc
+rule 55   ExportAcseObject -> AssociateRj
+rule 56   ExportAcseObject -> ReleaseRq
+rule 57   ExportAcseObject -> ReleaseRp
+rule 58   ExportAcseObject -> AbortRq
+rule 59   ExportDimseObjects -> DimseCmd CommandIdentifier
+rule 60   ExportDimseObjects -> DimseCmd CommandIdentifier IomIod DatasetIdentifier
+rule 61   ExportDimseObjects -> DimseCmd CommandIdentifier IomIod DatasetIdentifier T_PRES_CTX PresentationContextId
+rule 62   ImportCommand -> T_IMPORT ImportList
+rule 63   ImportList -> DimseCmd CommandIdentifier
+rule 64   ImportList -> DimseCmd CommandIdentifier IomIod DatasetIdentifier
+rule 65   PopulateCommand -> T_POPULATE T_ON
+rule 66   PopulateCommand -> T_POPULATE T_OFF
+rule 67   ReadCommand -> T_READ ReadList
+rule 68   ReceiveCommand -> T_RECEIVE ReceiveList
+rule 69   RoleCommand -> T_ROLE USERPROVIDER
+rule 70   SendCommand -> T_SEND SendList
+rule 71   SetCommand -> T_SET SetList
+rule 72   SystemCommand -> T_SYSTEM STRING
+rule 73   TimeCommand -> T_TIME
+rule 74   ValidateCommand -> T_VALIDATE ValidateList
+rule 75   VerboseCommand -> T_VERBOSE T_ON
+rule 76   VerboseCommand -> T_VERBOSE T_OFF
+rule 77   WriteCommand -> T_WRITE WriteList
+rule 78   ApplicationEntityFlagCommand -> T_APPL_ENTITY STRING STRING
+rule 79   ValidationFlagCommand -> T_VALIDATION VALIDATIONFLAG
+rule 80   DefineSqLengthFlagCommand -> T_DEF_SQ_LENGTH T_ON
+rule 81   DefineSqLengthFlagCommand -> T_DEF_SQ_LENGTH T_OFF
+rule 82   AddGroupLengthFlagCommand -> T_ADD_GROUP_LENGTH T_ON
+rule 83   AddGroupLengthFlagCommand -> T_ADD_GROUP_LENGTH T_OFF
+rule 84   StrictValidationFlagCommand -> T_STRICT T_ON
+rule 85   StrictValidationFlagCommand -> T_STRICT T_OFF
+rule 86   CreateList -> Acse
+rule 87   CreateList -> Sop
+rule 88   CreateList -> Dataset
+rule 89   CreateList -> Dataset T_DEFINED_LENGTH
+rule 90   CreateList -> SequenceRef Dataset
+rule 91   CreateList -> Filehead
+rule 92   CreateList -> Filetail
+rule 93   DeleteList -> Acse
+rule 94   DeleteList -> Command
+rule 95   DeleteList -> Dataset
+rule 96   DeleteList -> T_FILEHEAD
+rule 97   DeleteList -> T_FILETAIL
+rule 98   DisplayTagList -> T_DISPLAY ObjectRef1 TagRef
+rule 99   DisplayTagList -> DisplayTagList TagRef
+rule 100  ReadList -> STRING Dataset
+rule 101  ReadList -> STRING HEXADECIMAL
+rule 102  ReceiveList -> AcseContents
+rule 103  ReceiveList -> SopList
+rule 104  SendList -> AcseContents
+rule 105  SendList -> SopContents
+rule 106  SendList -> SopContents T_PRES_CTX PresentationContextId
+rule 107  PresentationContextId -> T_OPEN_BRACKET HEXADECIMAL T_CLOSE_BRACKET
+rule 108  PresentationContextId -> T_OPEN_BRACKET INTEGER T_CLOSE_BRACKET
+rule 109  SetList -> AcseContents
+rule 110  SetList -> CommandContents
+rule 111  SetList -> DatasetContents
+rule 112  SetList -> FileheadContents
+rule 113  SetList -> FiletailContents
+rule 114  ValidateList -> SourceSopRef ReferenceSopList
+rule 115  SourceSopRef -> DimseCmd CommandIdentifier
+rule 116  SourceSopRef -> DimseCmd CommandIdentifier IomIod DatasetIdentifier
+rule 117  ReferenceSopList ->		/* empty */
+rule 118  ReferenceSopList -> ReferenceSopRef
+rule 119  ReferenceSopList -> ReferenceSopList T_OR ReferenceSopRef
+rule 120  ReferenceSopRef -> DimseCmd CommandIdentifier
+rule 121  ReferenceSopRef -> DimseCmd CommandIdentifier IomIod DatasetIdentifier
+rule 122  SopList ->		/* empty */
+rule 123  SopList -> SopContents
+rule 124  SopList -> SopList T_OR SopContents
+rule 125  SopList -> SopList T_AND SopContents
+rule 126  WriteList -> STRING T_FILEHEAD
+rule 127  WriteList -> STRING T_FILETAIL
+rule 128  WriteList -> STRING Dataset
+rule 129  Acse -> AssociateRq
+rule 130  Acse -> AssociateAc
+rule 131  Acse -> AssociateRj
+rule 132  Acse -> ReleaseRq
+rule 133  Acse -> ReleaseRp
+rule 134  Acse -> AbortRq
+rule 135  AcseContents -> AssociateRqContents
+rule 136  AcseContents -> AssociateAcContents
+rule 137  AcseContents -> AssociateRjContents
+rule 138  AcseContents -> ReleaseRqContents
+rule 139  AcseContents -> ReleaseRpContents
+rule 140  AcseContents -> AbortRqContents
+rule 141  AssociateRqContents -> AssociateRq
+rule 142  AssociateRqContents -> AssociateRq T_OPEN_BRACKET AssociateRqParameterList T_CLOSE_BRACKET
+rule 143  AssociateRqParameterList -> AssociateRqParameter
+rule 144  AssociateRqParameterList -> AssociateRqParameterList AssociateRqParameter
+rule 145  AssociateRqParameter -> T_PROT_VER INTEGER
+rule 146  AssociateRqParameter -> T_CALLED_AE STRING
+rule 147  AssociateRqParameter -> T_CALLING_AE STRING
+rule 148  AssociateRqParameter -> T_APPL_CTX STRING
+rule 149  AssociateRqParameter -> T_PRES_CTX AssociateRqPresCtxList
+rule 150  AssociateRqParameter -> T_MAX_LEN INTEGER
+rule 151  AssociateRqParameter -> T_IMPL_CLASS STRING
+rule 152  AssociateRqParameter -> T_IMPL_VER STRING
+rule 153  AssociateRqParameter -> T_SOP_EXTEND_NEG SopClassExtendedList
+rule 154  AssociateRqParameter -> T_SCPSCU_ROLE ScpScuRoleList
+rule 155  AssociateRqParameter -> T_ASYNC_WINDOW INTEGER INTEGER
+rule 156  AssociateRqParameter -> T_USER_ID_NEG UserIdentityNegotiation
+rule 157  AssociateRqPresCtxList -> AssociateRqPresCtx
+rule 158  AssociateRqPresCtxList -> AssociateRqPresCtxList AssociateRqPresCtx
+rule 159  AssociateRqPresCtxList -> AssociateRqPresCtxList ',' AssociateRqPresCtx
+rule 160  AssociateRqPresCtx -> RqPresCtx
+rule 161  AssociateRqPresCtx -> VtsRqPresCtx
+rule 162  RqPresCtx -> T_OPEN_BRACKET STRING ',' RqTransferSyntaxList T_CLOSE_BRACKET
+rule 163  VtsRqPresCtx -> T_OPEN_BRACKET INTEGER ',' STRING ',' INTEGER ',' INTEGER ',' RqTransferSyntaxList T_CLOSE_BRACKET
+rule 164  RqTransferSyntaxList -> TransferSyntax
+rule 165  RqTransferSyntaxList -> RqTransferSyntaxList ',' TransferSyntax
+rule 166  TransferSyntax -> STRING
+rule 167  SopClassExtendedList -> SopClassExtended
+rule 168  SopClassExtendedList -> SopClassExtendedList SopClassExtended
+rule 169  SopClassExtended -> T_OPEN_BRACKET STRING ',' ApplicationInfoList T_CLOSE_BRACKET
+rule 170  ApplicationInfoList -> ApplicationInfoByte
+rule 171  ApplicationInfoList -> ApplicationInfoList ',' ApplicationInfoByte
+rule 172  ApplicationInfoByte -> INTEGER
+rule 173  ScpScuRoleList -> ScpScuRole
+rule 174  ScpScuRoleList -> ScpScuRoleList ScpScuRole
+rule 175  ScpScuRole -> T_OPEN_BRACKET STRING ',' INTEGER ',' INTEGER T_CLOSE_BRACKET
+rule 176  UserIdentityNegotiation -> INTEGER INTEGER STRING
+rule 177  UserIdentityNegotiation -> INTEGER INTEGER STRING STRING
+rule 178  UserIdentityNegotiation -> STRING
+rule 179  AssociateAcContents -> AssociateAc
+rule 180  AssociateAcContents -> AssociateAc T_OPEN_BRACKET AssociateAcParameterList T_CLOSE_BRACKET
+rule 181  AssociateAcParameterList -> AssociateAcParameter
+rule 182  AssociateAcParameterList -> AssociateAcParameterList AssociateAcParameter
+rule 183  AssociateAcParameter -> T_PROT_VER INTEGER
+rule 184  AssociateAcParameter -> T_CALLED_AE STRING
+rule 185  AssociateAcParameter -> T_CALLING_AE STRING
+rule 186  AssociateAcParameter -> T_APPL_CTX STRING
+rule 187  AssociateAcParameter -> T_PRES_CTX AssociateAcPresCtxList
+rule 188  AssociateAcParameter -> T_MAX_LEN INTEGER
+rule 189  AssociateAcParameter -> T_IMPL_CLASS STRING
+rule 190  AssociateAcParameter -> T_IMPL_VER STRING
+rule 191  AssociateAcParameter -> T_SOP_EXTEND_NEG SopClassExtendedList
+rule 192  AssociateAcParameter -> T_SCPSCU_ROLE ScpScuRoleList
+rule 193  AssociateAcParameter -> T_ASYNC_WINDOW INTEGER INTEGER
+rule 194  AssociateAcPresCtxList -> AssociateAcPresCtx
+rule 195  AssociateAcPresCtxList -> AssociateAcPresCtxList AssociateAcPresCtx
+rule 196  AssociateAcPresCtxList -> AssociateAcPresCtxList ',' AssociateAcPresCtx
+rule 197  AssociateAcPresCtx -> AcPresCtx
+rule 198  AssociateAcPresCtx -> VtsAcPresCtx
+rule 199  AcPresCtx -> T_OPEN_BRACKET STRING ',' INTEGER AcTransferSyntax T_CLOSE_BRACKET
+rule 200  AcTransferSyntax ->		/* empty */
+rule 201  AcTransferSyntax -> ',' TransferSyntax
+rule 202  VtsAcPresCtx -> T_OPEN_BRACKET INTEGER ',' INTEGER ',' STRING MoreAcPresentationContext T_CLOSE_BRACKET
+rule 203  MoreAcPresentationContext ->		/* empty */
+rule 204  MoreAcPresentationContext -> ',' INTEGER ',' INTEGER ',' TransferSyntax
+rule 205  AssociateRjContents -> AssociateRj
+rule 206  AssociateRjContents -> AssociateRj T_OPEN_BRACKET AssociateRjParameterList T_CLOSE_BRACKET
+rule 207  AssociateRjParameterList -> AssociateRjParameter
+rule 208  AssociateRjParameterList -> AssociateRjParameterList AssociateRjParameter
+rule 209  AssociateRjParameter -> T_RESULT INTEGER
+rule 210  AssociateRjParameter -> T_SOURCE INTEGER
+rule 211  AssociateRjParameter -> T_REASON INTEGER
+rule 212  ReleaseRqContents -> ReleaseRq
+rule 213  ReleaseRpContents -> ReleaseRp
+rule 214  AbortRqContents -> AbortRq
+rule 215  AbortRqContents -> AbortRq T_OPEN_BRACKET AbortRqParameterList T_CLOSE_BRACKET
+rule 216  AbortRqParameterList -> AbortRqParameter
+rule 217  AbortRqParameterList -> AbortRqParameterList AbortRqParameter
+rule 218  AbortRqParameter -> T_SOURCE INTEGER
+rule 219  AbortRqParameter -> T_REASON INTEGER
+rule 220  AssociateRq -> T_ASSOCIATE_RQ
+rule 221  AssociateAc -> T_ASSOCIATE_AC
+rule 222  AssociateRj -> T_ASSOCIATE_RJ
+rule 223  ReleaseRq -> T_RELEASE_RQ
+rule 224  ReleaseRp -> T_RELEASE_RP
+rule 225  AbortRq -> T_ABORT_RQ
+rule 226  Sop -> Command
+rule 227  Sop -> Command Dataset
+rule 228  SopContents -> CommandContents
+rule 229  SopContents -> Command DatasetContents
+rule 230  CommandContents -> Command
+rule 231  CommandContents -> CommandRef T_OPEN_BRACKET T_CLOSE_BRACKET
+rule 232  CommandContents -> CommandRef T_OPEN_BRACKET AttributeList T_CLOSE_BRACKET
+rule 233  Command -> DimseCmd
+rule 234  Command -> DimseCmd CommandIdentifier
+rule 235  DimseCmd -> COMMANDFIELD
+rule 236  CommandIdentifier -> IDENTIFIER
+rule 237  CommandRef -> Command
+rule 238  DatasetContents -> Dataset
+rule 239  DatasetContents -> DatasetRef T_OPEN_BRACKET T_CLOSE_BRACKET
+rule 240  DatasetContents -> DatasetRef T_OPEN_BRACKET AttributeList T_CLOSE_BRACKET
+rule 241  DatasetRef -> Dataset
+rule 242  Dataset -> IomIod
+rule 243  Dataset -> IomIod DatasetIdentifier
+rule 244  IomIod -> IodName
+rule 245  IomIod -> IomLevel IodName
+rule 246  IomLevel -> IOMLEVEL
+rule 247  IodName -> STRING
+rule 248  DatasetIdentifier -> IDENTIFIER
+rule 249  DatasetIdentifier -> STRING
+rule 250  AttributeList -> Attribute
+rule 251  AttributeList -> AttributeList Attribute
+rule 252  Attribute -> T_OPEN_BRACKET AttributeIdentification ',' AttributeValue T_CLOSE_BRACKET
+rule 253  Attribute -> T_OPEN_BRACKET TagRef T_CLOSE_BRACKET
+rule 254  AttributeIdentification -> AttributeTag
+rule 255  AttributeTag -> HEXADECIMAL
+rule 256  AttributeValue -> SequenceValue
+rule 257  AttributeValue -> OtherValue
+rule 258  SequenceValue -> SequenceVR ',' ItemList
+rule 259  SequenceVR -> T_SQ
+rule 260  SequenceVR -> '[' T_SQ ']'
+rule 261  ItemList -> ItemByReferenceList
+rule 262  ItemList -> ItemByValueList
+rule 263  ItemByReferenceList -> ItemByReference
+rule 264  ItemByReferenceList -> ItemByReferenceList ',' ItemByReference
+rule 265  ItemByReference -> STRING
+rule 266  ItemByValueList -> ItemByValue
+rule 267  ItemByValueList -> ItemByValueList ',' ItemByValue
+rule 268  ItemByValue ->		/* empty */
+rule 269  ItemByValue -> ItemAttributeList
+rule 270  ItemAttributeList -> ItemAttribute
+rule 271  ItemAttributeList -> ItemAttributeList ItemAttribute
+rule 272  ItemAttribute -> '>' Attribute
+rule 273  OtherValue -> OptionalVR Values
+rule 274  OptionalVR ->		/* empty */
+rule 275  OptionalVR -> AttributeVR ','
+rule 276  AttributeVR -> VR
+rule 277  AttributeVR -> '[' VR ']'
+rule 278  AttributeVR -> T_OPEN_BRACKET VR T_CLOSE_BRACKET
+rule 279  AttributeVR -> T_OPEN_BRACKET '[' VR ']' T_CLOSE_BRACKET
+rule 280  AttributeVR -> T_OPEN_BRACKET VR '?' T_CLOSE_BRACKET
+rule 281  AttributeVR -> T_OPEN_BRACKET '[' VR ']' '?' T_CLOSE_BRACKET
+rule 282  Values ->		/* empty */
+rule 283  Values -> VMList
+rule 284  VMList -> Value
+rule 285  VMList -> VMList ',' Value
+rule 286  Value -> STRING
+rule 287  Value -> HEXADECIMAL
+rule 288  Value -> INTEGER
+rule 289  Value -> T_AUTOSET
+rule 290  TagRef1 -> TagRef
+rule 291  TagRef2 -> TagRef
+rule 292  TagRef -> AttributeTag
+rule 293  TagRef -> STRING
+rule 294  ObjectRef1 -> Command
+rule 295  ObjectRef1 -> Dataset
+rule 296  ObjectRef2 -> Command
+rule 297  ObjectRef2 -> Dataset
+rule 298  SequenceRef -> T_OPEN_BRACKET Dataset TagRef ItemNumber T_CLOSE_BRACKET
+rule 299  SequenceRef -> T_OPEN_BRACKET SequenceRef TagRef ItemNumber T_CLOSE_BRACKET
+rule 300  ItemNumber ->		/* empty */
+rule 301  ItemNumber -> '[' INTEGER ']'
+rule 302  FileheadContents -> Filehead
+rule 303  FileheadContents -> Filehead T_OPEN_BRACKET FileheadParameterList T_CLOSE_BRACKET
+rule 304  Filehead -> T_FILEHEAD
+rule 305  FileheadParameterList -> FileheadParameter
+rule 306  FileheadParameterList -> FileheadParameterList FileheadParameter
+rule 307  FileheadParameter -> FilePreamble
+rule 308  FileheadParameter -> DicomPrefix
+rule 309  FileheadParameter -> FileTransferSyntax
+rule 310  FilePreamble -> T_FILE_PREAMBLE STRING
+rule 311  DicomPrefix -> T_DICOM_PREFIX STRING
+rule 312  FileTransferSyntax -> T_TRANSFER_SYNTAX TransferSyntax
+rule 313  FiletailContents -> Filetail
+rule 314  FiletailContents -> Filetail T_OPEN_BRACKET FiletailParameterList T_CLOSE_BRACKET
+rule 315  Filetail -> T_FILETAIL
+rule 316  FiletailParameterList -> FiletailParameter
+rule 317  FiletailParameterList -> FiletailParameterList FiletailParameter
+rule 318  FiletailParameter -> DatasetTrailingPadding
+rule 319  FiletailParameter -> SectorSize
+rule 320  FiletailParameter -> PaddingValue
+rule 321  DatasetTrailingPadding -> T_DATASET_TRAILING_PADDING T_YES
+rule 322  DatasetTrailingPadding -> T_DATASET_TRAILING_PADDING T_NO
+rule 323  SectorSize -> T_SECTOR_SIZE INTEGER
+rule 324  PaddingValue -> T_PADDING_VALUE INTEGER
+
+Terminals, with rules where they appear
+
+$ (-1)
+',' (44) 159 162 163 165 169 171 175 196 199 201 202 204 252 258 264
+    267 275 285
+'>' (62) 272
+'?' (63) 280 281
+'[' (91) 260 277 279 281 301
+']' (93) 260 277 279 281 301
+error (256)
+T_LANGUAGE (258) 33
+T_RESET (259) 34 35 36 37 38
+T_ALL (260) 34
+T_WAREHOUSE (261) 35 48
+T_ASSOCIATION (262) 36
+T_RELATION (263) 37
+T_EXECUTION_CONTEXT (264) 38
+T_COMPARE (265) 39
+T_COMPARE_NOT (266) 40
+T_CONFIRM (267) 41
+T_COPY (268) 42
+T_CREATE (269) 43
+T_DELAY (270) 44
+T_DELETE (271) 45
+T_DISPLAY (272) 47 48 98
+T_ECHO (273) 49
+T_POPULATE (274) 65 66
+T_READ (275) 67
+T_RECEIVE (276) 68
+T_ROLE (277) 69
+T_SEND (278) 70
+T_SET (279) 71
+T_SYSTEM (280) 72
+T_TIME (281) 73
+T_VALIDATE (282) 74
+T_VERBOSE (283) 75 76
+T_WRITE (284) 77
+T_IMPORT (285) 62
+T_EXPORT (286) 50
+T_VALIDATION (287) 79
+T_DEF_SQ_LENGTH (288) 80 81
+T_ADD_GROUP_LENGTH (289) 82 83
+T_STRICT (290) 84 85
+T_APPL_ENTITY (291) 78
+T_ASSOCIATE_RQ (292) 220
+T_ASSOCIATE_AC (293) 221
+T_ASSOCIATE_RJ (294) 222
+T_RELEASE_RQ (295) 223
+T_RELEASE_RP (296) 224
+T_ABORT_RQ (297) 225
+T_PROT_VER (298) 145 183
+T_CALLED_AE (299) 146 184
+T_CALLING_AE (300) 147 185
+T_APPL_CTX (301) 148 186
+T_PRES_CTX (302) 61 106 149 187
+T_MAX_LEN (303) 150 188
+T_IMPL_CLASS (304) 151 189
+T_IMPL_VER (305) 152 190
+T_SOP_EXTEND_NEG (306) 153 191
+T_SCPSCU_ROLE (307) 154 192
+T_ASYNC_WINDOW (308) 155 193
+T_USER_ID_NEG (309) 156
+T_RESULT (310) 209
+T_SOURCE (311) 210 218
+T_REASON (312) 211 219
+T_DEFINED_LENGTH (313) 89
+T_AUTOSET (314) 289
+T_FILEHEAD (315) 96 126 304
+T_FILETAIL (316) 97 127 315
+T_FILE_PREAMBLE (317) 310
+T_DICOM_PREFIX (318) 311
+T_TRANSFER_SYNTAX (319) 312
+T_DATASET_TRAILING_PADDING (320) 321 322
+T_SECTOR_SIZE (321) 323
+T_PADDING_VALUE (322) 324
+T_SQ (323) 259 260
+T_OPEN_BRACKET (324) 107 108 142 162 163 169 175 180 199 202 206 215
+    231 232 239 240 252 253 278 279 280 281 298 299 303 314
+T_CLOSE_BRACKET (325) 107 108 142 162 163 169 175 180 199 202 206 215
+    231 232 239 240 252 253 278 279 280 281 298 299 303 314
+T_YES (326) 321
+T_NO (327) 322
+T_ON (328) 65 75 80 82 84
+T_OFF (329) 66 76 81 83 85
+T_OR (330) 119 124
+T_AND (331) 125
+COMMANDFIELD (332) 235
+HEXADECIMAL (333) 101 107 255 287
+IDENTIFIER (334) 236 248
+INTEGER (335) 44 108 145 150 155 163 172 175 176 177 183 188 193 199
+    202 204 209 210 211 218 219 288 301 323 324
+VALIDATIONFLAG (336) 79
+IOMLEVEL (337) 246
+STRING (338) 33 49 72 78 100 101 126 127 128 146 147 148 151 152 162
+    163 166 169 175 176 177 178 184 185 186 189 190 199 202 247 249
+    265 286 293 310 311
+USERPROVIDER (339) 69
+VR (340) 276 277 278 279 280 281
+
+Nonterminals, with rules where they appear
+
+Language (91)
+    on left: 1 2
+LanguageGrammar (92)
+    on left: 3 4, on right: 2 4
+LanguageComponents (93)
+    on left: 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
+    25 26 27 28 29 30 31 32, on right: 3 4
+LanguageSpecifier (94)
+    on left: 33, on right: 5
+ResetCommand (95)
+    on left: 34 35 36 37 38, on right: 6
+CompareCommand (96)
+    on left: 39 40, on right: 7
+ConfirmCommand (97)
+    on left: 41, on right: 8
+CopyCommand (98)
+    on left: 42, on right: 9
+CreateCommand (99)
+    on left: 43, on right: 10
+DelayCommand (100)
+    on left: 44, on right: 11
+DeleteCommand (101)
+    on left: 45, on right: 12
+DisplayCommand (102)
+    on left: 46 47 48, on right: 13
+EchoCommand (103)
+    on left: 49, on right: 14
+ExportCommand (104)
+    on left: 50, on right: 15
+ExportList (105)
+    on left: 51 52, on right: 50
+ExportAcseObject (106)
+    on left: 53 54 55 56 57 58, on right: 51
+ExportDimseObjects (107)
+    on left: 59 60 61, on right: 52
+ImportCommand (108)
+    on left: 62, on right: 16
+ImportList (109)
+    on left: 63 64, on right: 62
+PopulateCommand (110)
+    on left: 65 66, on right: 17
+ReadCommand (111)
+    on left: 67, on right: 18
+ReceiveCommand (112)
+    on left: 68, on right: 19
+RoleCommand (113)
+    on left: 69, on right: 20
+SendCommand (114)
+    on left: 70, on right: 21
+SetCommand (115)
+    on left: 71, on right: 22
+SystemCommand (116)
+    on left: 72, on right: 23
+TimeCommand (117)
+    on left: 73, on right: 24
+ValidateCommand (118)
+    on left: 74, on right: 25
+VerboseCommand (119)
+    on left: 75 76, on right: 26
+WriteCommand (120)
+    on left: 77, on right: 27
+ApplicationEntityFlagCommand (121)
+    on left: 78, on right: 28
+ValidationFlagCommand (122)
+    on left: 79, on right: 29
+DefineSqLengthFlagCommand (123)
+    on left: 80 81, on right: 30
+AddGroupLengthFlagCommand (124)
+    on left: 82 83, on right: 31
+StrictValidationFlagCommand (125)
+    on left: 84 85, on right: 32
+CreateList (126)
+    on left: 86 87 88 89 90 91 92, on right: 43
+DeleteList (127)
+    on left: 93 94 95 96 97, on right: 45
+DisplayTagList (128)
+    on left: 98 99, on right: 46 99
+ReadList (129)
+    on left: 100 101, on right: 67
+ReceiveList (130)
+    on left: 102 103, on right: 68
+SendList (131)
+    on left: 104 105 106, on right: 70
+PresentationContextId (132)
+    on left: 107 108, on right: 61 106
+SetList (133)
+    on left: 109 110 111 112 113, on right: 71
+ValidateList (134)
+    on left: 114, on right: 74
+SourceSopRef (135)
+    on left: 115 116, on right: 114
+ReferenceSopList (136)
+    on left: 117 118 119, on right: 114 119
+ReferenceSopRef (137)
+    on left: 120 121, on right: 118 119
+SopList (138)
+    on left: 122 123 124 125, on right: 103 124 125
+WriteList (139)
+    on left: 126 127 128, on right: 77
+Acse (140)
+    on left: 129 130 131 132 133 134, on right: 86 93
+AcseContents (141)
+    on left: 135 136 137 138 139 140, on right: 102 104 109
+AssociateRqContents (142)
+    on left: 141 142, on right: 135
+AssociateRqParameterList (143)
+    on left: 143 144, on right: 142 144
+AssociateRqParameter (144)
+    on left: 145 146 147 148 149 150 151 152 153 154 155 156,
+    on right: 143 144
+AssociateRqPresCtxList (145)
+    on left: 157 158 159, on right: 149 158 159
+AssociateRqPresCtx (146)
+    on left: 160 161, on right: 157 158 159
+RqPresCtx (147)
+    on left: 162, on right: 160
+VtsRqPresCtx (148)
+    on left: 163, on right: 161
+RqTransferSyntaxList (149)
+    on left: 164 165, on right: 162 163 165
+TransferSyntax (150)
+    on left: 166, on right: 164 165 201 204 312
+SopClassExtendedList (151)
+    on left: 167 168, on right: 153 168 191
+SopClassExtended (152)
+    on left: 169, on right: 167 168
+ApplicationInfoList (153)
+    on left: 170 171, on right: 169 171
+ApplicationInfoByte (154)
+    on left: 172, on right: 170 171
+ScpScuRoleList (155)
+    on left: 173 174, on right: 154 174 192
+ScpScuRole (156)
+    on left: 175, on right: 173 174
+UserIdentityNegotiation (157)
+    on left: 176 177 178, on right: 156
+AssociateAcContents (158)
+    on left: 179 180, on right: 136
+AssociateAcParameterList (159)
+    on left: 181 182, on right: 180 182
+AssociateAcParameter (160)
+    on left: 183 184 185 186 187 188 189 190 191 192 193,
+    on right: 181 182
+AssociateAcPresCtxList (161)
+    on left: 194 195 196, on right: 187 195 196
+AssociateAcPresCtx (162)
+    on left: 197 198, on right: 194 195 196
+AcPresCtx (163)
+    on left: 199, on right: 197
+AcTransferSyntax (164)
+    on left: 200 201, on right: 199
+VtsAcPresCtx (165)
+    on left: 202, on right: 198
+MoreAcPresentationContext (166)
+    on left: 203 204, on right: 202
+AssociateRjContents (167)
+    on left: 205 206, on right: 137
+AssociateRjParameterList (168)
+    on left: 207 208, on right: 206 208
+AssociateRjParameter (169)
+    on left: 209 210 211, on right: 207 208
+ReleaseRqContents (170)
+    on left: 212, on right: 138
+ReleaseRpContents (171)
+    on left: 213, on right: 139
+AbortRqContents (172)
+    on left: 214 215, on right: 140
+AbortRqParameterList (173)
+    on left: 216 217, on right: 215 217
+AbortRqParameter (174)
+    on left: 218 219, on right: 216 217
+AssociateRq (175)
+    on left: 220, on right: 53 129 141 142
+AssociateAc (176)
+    on left: 221, on right: 54 130 179 180
+AssociateRj (177)
+    on left: 222, on right: 55 131 205 206
+ReleaseRq (178)
+    on left: 223, on right: 56 132 212
+ReleaseRp (179)
+    on left: 224, on right: 57 133 213
+AbortRq (180)
+    on left: 225, on right: 58 134 214 215
+Sop (181)
+    on left: 226 227, on right: 87
+SopContents (182)
+    on left: 228 229, on right: 105 106 123 124 125
+CommandContents (183)
+    on left: 230 231 232, on right: 110 228
+Command (184)
+    on left: 233 234, on right: 94 226 227 229 230 237 294 296
+DimseCmd (185)
+    on left: 235, on right: 59 60 61 63 64 115 116 120 121 233 234
+CommandIdentifier (186)
+    on left: 236, on right: 59 60 61 63 64 115 116 120 121 234
+CommandRef (187)
+    on left: 237, on right: 231 232
+DatasetContents (188)
+    on left: 238 239 240, on right: 111 229
+DatasetRef (189)
+    on left: 241, on right: 239 240
+Dataset (190)
+    on left: 242 243, on right: 88 89 90 95 100 128 227 238 241 295
+    297 298
+IomIod (191)
+    on left: 244 245, on right: 60 61 64 116 121 242 243
+IomLevel (192)
+    on left: 246, on right: 245
+IodName (193)
+    on left: 247, on right: 244 245
+DatasetIdentifier (194)
+    on left: 248 249, on right: 60 61 64 116 121 243
+AttributeList (195)
+    on left: 250 251, on right: 232 240 251
+Attribute (196)
+    on left: 252 253, on right: 250 251 272
+AttributeIdentification (197)
+    on left: 254, on right: 252
+AttributeTag (198)
+    on left: 255, on right: 254 292
+AttributeValue (199)
+    on left: 256 257, on right: 252
+SequenceValue (200)
+    on left: 258, on right: 256
+SequenceVR (201)
+    on left: 259 260, on right: 258
+ItemList (202)
+    on left: 261 262, on right: 258
+ItemByReferenceList (203)
+    on left: 263 264, on right: 261 264
+ItemByReference (204)
+    on left: 265, on right: 263 264
+ItemByValueList (205)
+    on left: 266 267, on right: 262 267
+ItemByValue (206)
+    on left: 268 269, on right: 266 267
+ItemAttributeList (207)
+    on left: 270 271, on right: 269 271
+ItemAttribute (208)
+    on left: 272, on right: 270 271
+OtherValue (209)
+    on left: 273, on right: 257
+OptionalVR (210)
+    on left: 274 275, on right: 273
+AttributeVR (211)
+    on left: 276 277 278 279 280 281, on right: 275
+Values (212)
+    on left: 282 283, on right: 273
+VMList (213)
+    on left: 284 285, on right: 283 285
+Value (214)
+    on left: 286 287 288 289, on right: 284 285
+TagRef1 (215)
+    on left: 290, on right: 39 40 42
+TagRef2 (216)
+    on left: 291, on right: 39 40 42
+TagRef (217)
+    on left: 292 293, on right: 98 99 253 290 291 298 299
+ObjectRef1 (218)
+    on left: 294 295, on right: 39 40 42 47 98
+ObjectRef2 (219)
+    on left: 296 297, on right: 39 40 42
+SequenceRef (220)
+    on left: 298 299, on right: 90 299
+ItemNumber (221)
+    on left: 300 301, on right: 298 299
+FileheadContents (222)
+    on left: 302 303, on right: 112
+Filehead (223)
+    on left: 304, on right: 91 302 303
+FileheadParameterList (224)
+    on left: 305 306, on right: 303 306
+FileheadParameter (225)
+    on left: 307 308 309, on right: 305 306
+FilePreamble (226)
+    on left: 310, on right: 307
+DicomPrefix (227)
+    on left: 311, on right: 308
+FileTransferSyntax (228)
+    on left: 312, on right: 309
+FiletailContents (229)
+    on left: 313 314, on right: 113
+Filetail (230)
+    on left: 315, on right: 92 313 314
+FiletailParameterList (231)
+    on left: 316 317, on right: 314 317
+FiletailParameter (232)
+    on left: 318 319 320, on right: 316 317
+DatasetTrailingPadding (233)
+    on left: 321 322, on right: 318
+SectorSize (234)
+    on left: 323, on right: 319
+PaddingValue (235)
+    on left: 324, on right: 320
+
+
+state 0
+
+    T_LANGUAGE	shift, and go to state 1
+    T_RESET	shift, and go to state 2
+    T_COMPARE	shift, and go to state 3
+    T_COMPARE_NOT	shift, and go to state 4
+    T_CONFIRM	shift, and go to state 5
+    T_COPY	shift, and go to state 6
+    T_CREATE	shift, and go to state 7
+    T_DELAY	shift, and go to state 8
+    T_DELETE	shift, and go to state 9
+    T_DISPLAY	shift, and go to state 10
+    T_ECHO	shift, and go to state 11
+    T_POPULATE	shift, and go to state 12
+    T_READ	shift, and go to state 13
+    T_RECEIVE	shift, and go to state 14
+    T_ROLE	shift, and go to state 15
+    T_SEND	shift, and go to state 16
+    T_SET	shift, and go to state 17
+    T_SYSTEM	shift, and go to state 18
+    T_TIME	shift, and go to state 19
+    T_VALIDATE	shift, and go to state 20
+    T_VERBOSE	shift, and go to state 21
+    T_WRITE	shift, and go to state 22
+    T_IMPORT	shift, and go to state 23
+    T_EXPORT	shift, and go to state 24
+    T_VALIDATION	shift, and go to state 25
+    T_DEF_SQ_LENGTH	shift, and go to state 26
+    T_ADD_GROUP_LENGTH	shift, and go to state 27
+    T_STRICT	shift, and go to state 28
+    T_APPL_ENTITY	shift, and go to state 29
+
+    $default	reduce using rule 1 (Language)
+
+    Language	go to state 505
+    LanguageGrammar	go to state 30
+    LanguageComponents	go to state 31
+    LanguageSpecifier	go to state 32
+    ResetCommand	go to state 33
+    CompareCommand	go to state 34
+    ConfirmCommand	go to state 35
+    CopyCommand	go to state 36
+    CreateCommand	go to state 37
+    DelayCommand	go to state 38
+    DeleteCommand	go to state 39
+    DisplayCommand	go to state 40
+    EchoCommand	go to state 41
+    ExportCommand	go to state 42
+    ImportCommand	go to state 43
+    PopulateCommand	go to state 44
+    ReadCommand	go to state 45
+    ReceiveCommand	go to state 46
+    RoleCommand	go to state 47
+    SendCommand	go to state 48
+    SetCommand	go to state 49
+    SystemCommand	go to state 50
+    TimeCommand	go to state 51
+    ValidateCommand	go to state 52
+    VerboseCommand	go to state 53
+    WriteCommand	go to state 54
+    ApplicationEntityFlagCommand	go to state 55
+    ValidationFlagCommand	go to state 56
+    DefineSqLengthFlagCommand	go to state 57
+    AddGroupLengthFlagCommand	go to state 58
+    StrictValidationFlagCommand	go to state 59
+    DisplayTagList	go to state 60
+
+
+
+state 1
+
+    LanguageSpecifier  ->  T_LANGUAGE . STRING   (rule 33)
+
+    STRING	shift, and go to state 61
+
+
+
+state 2
+
+    ResetCommand  ->  T_RESET . T_ALL   (rule 34)
+    ResetCommand  ->  T_RESET . T_WAREHOUSE   (rule 35)
+    ResetCommand  ->  T_RESET . T_ASSOCIATION   (rule 36)
+    ResetCommand  ->  T_RESET . T_RELATION   (rule 37)
+    ResetCommand  ->  T_RESET . T_EXECUTION_CONTEXT   (rule 38)
+
+    T_ALL	shift, and go to state 62
+    T_WAREHOUSE	shift, and go to state 63
+    T_ASSOCIATION	shift, and go to state 64
+    T_RELATION	shift, and go to state 65
+    T_EXECUTION_CONTEXT	shift, and go to state 66
+
+
+
+state 3
+
+    CompareCommand  ->  T_COMPARE . ObjectRef1 TagRef1 ObjectRef2 TagRef2   (rule 39)
+
+    COMMANDFIELD	shift, and go to state 67
+    IOMLEVEL	shift, and go to state 68
+    STRING	shift, and go to state 69
+
+    Command	go to state 70
+    DimseCmd	go to state 71
+    Dataset	go to state 72
+    IomIod	go to state 73
+    IomLevel	go to state 74
+    IodName	go to state 75
+    ObjectRef1	go to state 76
+
+
+
+state 4
+
+    CompareCommand  ->  T_COMPARE_NOT . ObjectRef1 TagRef1 ObjectRef2 TagRef2   (rule 40)
+
+    COMMANDFIELD	shift, and go to state 67
+    IOMLEVEL	shift, and go to state 68
+    STRING	shift, and go to state 69
+
+    Command	go to state 70
+    DimseCmd	go to state 71
+    Dataset	go to state 72
+    IomIod	go to state 73
+    IomLevel	go to state 74
+    IodName	go to state 75
+    ObjectRef1	go to state 77
+
+
+
+state 5
+
+    ConfirmCommand  ->  T_CONFIRM .   (rule 41)
+
+    $default	reduce using rule 41 (ConfirmCommand)
+
+
+
+state 6
+
+    CopyCommand  ->  T_COPY . ObjectRef1 TagRef1 ObjectRef2 TagRef2   (rule 42)
+
+    COMMANDFIELD	shift, and go to state 67
+    IOMLEVEL	shift, and go to state 68
+    STRING	shift, and go to state 69
+
+    Command	go to state 70
+    DimseCmd	go to state 71
+    Dataset	go to state 72
+    IomIod	go to state 73
+    IomLevel	go to state 74
+    IodName	go to state 75
+    ObjectRef1	go to state 78
+
+
+
+state 7
+
+    CreateCommand  ->  T_CREATE . CreateList   (rule 43)
+
+    T_ASSOCIATE_RQ	shift, and go to state 79
+    T_ASSOCIATE_AC	shift, and go to state 80
+    T_ASSOCIATE_RJ	shift, and go to state 81
+    T_RELEASE_RQ	shift, and go to state 82
+    T_RELEASE_RP	shift, and go to state 83
+    T_ABORT_RQ	shift, and go to state 84
+    T_FILEHEAD	shift, and go to state 85
+    T_FILETAIL	shift, and go to state 86
+    T_OPEN_BRACKET	shift, and go to state 87
+    COMMANDFIELD	shift, and go to state 67
+    IOMLEVEL	shift, and go to state 68
+    STRING	shift, and go to state 69
+
+    CreateList	go to state 88
+    Acse	go to state 89
+    AssociateRq	go to state 90
+    AssociateAc	go to state 91
+    AssociateRj	go to state 92
+    ReleaseRq	go to state 93
+    ReleaseRp	go to state 94
+    AbortRq	go to state 95
+    Sop 	go to state 96
+    Command	go to state 97
+    DimseCmd	go to state 71
+    Dataset	go to state 98
+    IomIod	go to state 73
+    IomLevel	go to state 74
+    IodName	go to state 75
+    SequenceRef	go to state 99
+    Filehead	go to state 100
+    Filetail	go to state 101
+
+
+
+state 8
+
+    DelayCommand  ->  T_DELAY . INTEGER   (rule 44)
+
+    INTEGER	shift, and go to state 102
+
+
+
+state 9
+
+    DeleteCommand  ->  T_DELETE . DeleteList   (rule 45)
+
+    T_ASSOCIATE_RQ	shift, and go to state 79
+    T_ASSOCIATE_AC	shift, and go to state 80
+    T_ASSOCIATE_RJ	shift, and go to state 81
+    T_RELEASE_RQ	shift, and go to state 82
+    T_RELEASE_RP	shift, and go to state 83
+    T_ABORT_RQ	shift, and go to state 84
+    T_FILEHEAD	shift, and go to state 103
+    T_FILETAIL	shift, and go to state 104
+    COMMANDFIELD	shift, and go to state 67
+    IOMLEVEL	shift, and go to state 68
+    STRING	shift, and go to state 69
+
+    DeleteList	go to state 105
+    Acse	go to state 106
+    AssociateRq	go to state 90
+    AssociateAc	go to state 91
+    AssociateRj	go to state 92
+    ReleaseRq	go to state 93
+    ReleaseRp	go to state 94
+    AbortRq	go to state 95
+    Command	go to state 107
+    DimseCmd	go to state 71
+    Dataset	go to state 108
+    IomIod	go to state 73
+    IomLevel	go to state 74
+    IodName	go to state 75
+
+
+
+state 10
+
+    DisplayCommand  ->  T_DISPLAY . ObjectRef1   (rule 47)
+    DisplayCommand  ->  T_DISPLAY . T_WAREHOUSE   (rule 48)
+    DisplayTagList  ->  T_DISPLAY . ObjectRef1 TagRef   (rule 98)
+
+    T_WAREHOUSE	shift, and go to state 109
+    COMMANDFIELD	shift, and go to state 67
+    IOMLEVEL	shift, and go to state 68
+    STRING	shift, and go to state 69
+
+    Command	go to state 70
+    DimseCmd	go to state 71
+    Dataset	go to state 72
+    IomIod	go to state 73
+    IomLevel	go to state 74
+    IodName	go to state 75
+    ObjectRef1	go to state 110
+
+
+
+state 11
+
+    EchoCommand  ->  T_ECHO . STRING   (rule 49)
+
+    STRING	shift, and go to state 111
+
+
+
+state 12
+
+    PopulateCommand  ->  T_POPULATE . T_ON   (rule 65)
+    PopulateCommand  ->  T_POPULATE . T_OFF   (rule 66)
+
+    T_ON	shift, and go to state 112
+    T_OFF	shift, and go to state 113
+
+
+
+state 13
+
+    ReadCommand  ->  T_READ . ReadList   (rule 67)
+
+    STRING	shift, and go to state 114
+
+    ReadList	go to state 115
+
+
+
+state 14
+
+    ReceiveCommand  ->  T_RECEIVE . ReceiveList   (rule 68)
+
+    T_ASSOCIATE_RQ	shift, and go to state 79
+    T_ASSOCIATE_AC	shift, and go to state 80
+    T_ASSOCIATE_RJ	shift, and go to state 81
+    T_RELEASE_RQ	shift, and go to state 82
+    T_RELEASE_RP	shift, and go to state 83
+    T_ABORT_RQ	shift, and go to state 84
+    COMMANDFIELD	shift, and go to state 67
+
+    $default	reduce using rule 122 (SopList)
+
+    ReceiveList	go to state 116
+    SopList	go to state 117
+    AcseContents	go to state 118
+    AssociateRqContents	go to state 119
+    AssociateAcContents	go to state 120
+    AssociateRjContents	go to state 121
+    ReleaseRqContents	go to state 122
+    ReleaseRpContents	go to state 123
+    AbortRqContents	go to state 124
+    AssociateRq	go to state 125
+    AssociateAc	go to state 126
+    AssociateRj	go to state 127
+    ReleaseRq	go to state 128
+    ReleaseRp	go to state 129
+    AbortRq	go to state 130
+    SopContents	go to state 131
+    CommandContents	go to state 132
+    Command	go to state 133
+    DimseCmd	go to state 71
+    CommandRef	go to state 134
+
+
+
+state 15
+
+    RoleCommand  ->  T_ROLE . USERPROVIDER   (rule 69)
+
+    USERPROVIDER	shift, and go to state 135
+
+
+
+state 16
+
+    SendCommand  ->  T_SEND . SendList   (rule 70)
+
+    T_ASSOCIATE_RQ	shift, and go to state 79
+    T_ASSOCIATE_AC	shift, and go to state 80
+    T_ASSOCIATE_RJ	shift, and go to state 81
+    T_RELEASE_RQ	shift, and go to state 82
+    T_RELEASE_RP	shift, and go to state 83
+    T_ABORT_RQ	shift, and go to state 84
+    COMMANDFIELD	shift, and go to state 67
+
+    SendList	go to state 136
+    AcseContents	go to state 137
+    AssociateRqContents	go to state 119
+    AssociateAcContents	go to state 120
+    AssociateRjContents	go to state 121
+    ReleaseRqContents	go to state 122
+    ReleaseRpContents	go to state 123
+    AbortRqContents	go to state 124
+    AssociateRq	go to state 125
+    AssociateAc	go to state 126
+    AssociateRj	go to state 127
+    ReleaseRq	go to state 128
+    ReleaseRp	go to state 129
+    AbortRq	go to state 130
+    SopContents	go to state 138
+    CommandContents	go to state 132
+    Command	go to state 133
+    DimseCmd	go to state 71
+    CommandRef	go to state 134
+
+
+
+state 17
+
+    SetCommand  ->  T_SET . SetList   (rule 71)
+
+    T_ASSOCIATE_RQ	shift, and go to state 79
+    T_ASSOCIATE_AC	shift, and go to state 80
+    T_ASSOCIATE_RJ	shift, and go to state 81
+    T_RELEASE_RQ	shift, and go to state 82
+    T_RELEASE_RP	shift, and go to state 83
+    T_ABORT_RQ	shift, and go to state 84
+    T_FILEHEAD	shift, and go to state 85
+    T_FILETAIL	shift, and go to state 86
+    COMMANDFIELD	shift, and go to state 67
+    IOMLEVEL	shift, and go to state 68
+    STRING	shift, and go to state 69
+
+    SetList	go to state 139
+    AcseContents	go to state 140
+    AssociateRqContents	go to state 119
+    AssociateAcContents	go to state 120
+    AssociateRjContents	go to state 121
+    ReleaseRqContents	go to state 122
+    ReleaseRpContents	go to state 123
+    AbortRqContents	go to state 124
+    AssociateRq	go to state 125
+    AssociateAc	go to state 126
+    AssociateRj	go to state 127
+    ReleaseRq	go to state 128
+    ReleaseRp	go to state 129
+    AbortRq	go to state 130
+    CommandContents	go to state 141
+    Command	go to state 142
+    DimseCmd	go to state 71
+    CommandRef	go to state 134
+    DatasetContents	go to state 143
+    DatasetRef	go to state 144
+    Dataset	go to state 145
+    IomIod	go to state 73
+    IomLevel	go to state 74
+    IodName	go to state 75
+    FileheadContents	go to state 146
+    Filehead	go to state 147
+    FiletailContents	go to state 148
+    Filetail	go to state 149
+
+
+
+state 18
+
+    SystemCommand  ->  T_SYSTEM . STRING   (rule 72)
+
+    STRING	shift, and go to state 150
+
+
+
+state 19
+
+    TimeCommand  ->  T_TIME .   (rule 73)
+
+    $default	reduce using rule 73 (TimeCommand)
+
+
+
+state 20
+
+    ValidateCommand  ->  T_VALIDATE . ValidateList   (rule 74)
+
+    COMMANDFIELD	shift, and go to state 67
+
+    ValidateList	go to state 151
+    SourceSopRef	go to state 152
+    DimseCmd	go to state 153
+
+
+
+state 21
+
+    VerboseCommand  ->  T_VERBOSE . T_ON   (rule 75)
+    VerboseCommand  ->  T_VERBOSE . T_OFF   (rule 76)
+
+    T_ON	shift, and go to state 154
+    T_OFF	shift, and go to state 155
+
+
+
+state 22
+
+    WriteCommand  ->  T_WRITE . WriteList   (rule 77)
+
+    STRING	shift, and go to state 156
+
+    WriteList	go to state 157
+
+
+
+state 23
+
+    ImportCommand  ->  T_IMPORT . ImportList   (rule 62)
+
+    COMMANDFIELD	shift, and go to state 67
+
+    ImportList	go to state 158
+    DimseCmd	go to state 159
+
+
+
+state 24
+
+    ExportCommand  ->  T_EXPORT . ExportList   (rule 50)
+
+    T_ASSOCIATE_RQ	shift, and go to state 79
+    T_ASSOCIATE_AC	shift, and go to state 80
+    T_ASSOCIATE_RJ	shift, and go to state 81
+    T_RELEASE_RQ	shift, and go to state 82
+    T_RELEASE_RP	shift, and go to state 83
+    T_ABORT_RQ	shift, and go to state 84
+    COMMANDFIELD	shift, and go to state 67
+
+    ExportList	go to state 160
+    ExportAcseObject	go to state 161
+    ExportDimseObjects	go to state 162
+    AssociateRq	go to state 163
+    AssociateAc	go to state 164
+    AssociateRj	go to state 165
+    ReleaseRq	go to state 166
+    ReleaseRp	go to state 167
+    AbortRq	go to state 168
+    DimseCmd	go to state 169
+
+
+
+state 25
+
+    ValidationFlagCommand  ->  T_VALIDATION . VALIDATIONFLAG   (rule 79)
+
+    VALIDATIONFLAG	shift, and go to state 170
+
+
+
+state 26
+
+    DefineSqLengthFlagCommand  ->  T_DEF_SQ_LENGTH . T_ON   (rule 80)
+    DefineSqLengthFlagCommand  ->  T_DEF_SQ_LENGTH . T_OFF   (rule 81)
+
+    T_ON	shift, and go to state 171
+    T_OFF	shift, and go to state 172
+
+
+
+state 27
+
+    AddGroupLengthFlagCommand  ->  T_ADD_GROUP_LENGTH . T_ON   (rule 82)
+    AddGroupLengthFlagCommand  ->  T_ADD_GROUP_LENGTH . T_OFF   (rule 83)
+
+    T_ON	shift, and go to state 173
+    T_OFF	shift, and go to state 174
+
+
+
+state 28
+
+    StrictValidationFlagCommand  ->  T_STRICT . T_ON   (rule 84)
+    StrictValidationFlagCommand  ->  T_STRICT . T_OFF   (rule 85)
+
+    T_ON	shift, and go to state 175
+    T_OFF	shift, and go to state 176
+
+
+
+state 29
+
+    ApplicationEntityFlagCommand  ->  T_APPL_ENTITY . STRING STRING   (rule 78)
+
+    STRING	shift, and go to state 177
+
+
+
+state 30
+
+    Language  ->  LanguageGrammar .   (rule 2)
+    LanguageGrammar  ->  LanguageGrammar . LanguageComponents   (rule 4)
+
+    T_LANGUAGE	shift, and go to state 1
+    T_RESET	shift, and go to state 2
+    T_COMPARE	shift, and go to state 3
+    T_COMPARE_NOT	shift, and go to state 4
+    T_CONFIRM	shift, and go to state 5
+    T_COPY	shift, and go to state 6
+    T_CREATE	shift, and go to state 7
+    T_DELAY	shift, and go to state 8
+    T_DELETE	shift, and go to state 9
+    T_DISPLAY	shift, and go to state 10
+    T_ECHO	shift, and go to state 11
+    T_POPULATE	shift, and go to state 12
+    T_READ	shift, and go to state 13
+    T_RECEIVE	shift, and go to state 14
+    T_ROLE	shift, and go to state 15
+    T_SEND	shift, and go to state 16
+    T_SET	shift, and go to state 17
+    T_SYSTEM	shift, and go to state 18
+    T_TIME	shift, and go to state 19
+    T_VALIDATE	shift, and go to state 20
+    T_VERBOSE	shift, and go to state 21
+    T_WRITE	shift, and go to state 22
+    T_IMPORT	shift, and go to state 23
+    T_EXPORT	shift, and go to state 24
+    T_VALIDATION	shift, and go to state 25
+    T_DEF_SQ_LENGTH	shift, and go to state 26
+    T_ADD_GROUP_LENGTH	shift, and go to state 27
+    T_STRICT	shift, and go to state 28
+    T_APPL_ENTITY	shift, and go to state 29
+
+    $default	reduce using rule 2 (Language)
+
+    LanguageComponents	go to state 178
+    LanguageSpecifier	go to state 32
+    ResetCommand	go to state 33
+    CompareCommand	go to state 34
+    ConfirmCommand	go to state 35
+    CopyCommand	go to state 36
+    CreateCommand	go to state 37
+    DelayCommand	go to state 38
+    DeleteCommand	go to state 39
+    DisplayCommand	go to state 40
+    EchoCommand	go to state 41
+    ExportCommand	go to state 42
+    ImportCommand	go to state 43
+    PopulateCommand	go to state 44
+    ReadCommand	go to state 45
+    ReceiveCommand	go to state 46
+    RoleCommand	go to state 47
+    SendCommand	go to state 48
+    SetCommand	go to state 49
+    SystemCommand	go to state 50
+    TimeCommand	go to state 51
+    ValidateCommand	go to state 52
+    VerboseCommand	go to state 53
+    WriteCommand	go to state 54
+    ApplicationEntityFlagCommand	go to state 55
+    ValidationFlagCommand	go to state 56
+    DefineSqLengthFlagCommand	go to state 57
+    AddGroupLengthFlagCommand	go to state 58
+    StrictValidationFlagCommand	go to state 59
+    DisplayTagList	go to state 60
+
+
+
+state 31
+
+    LanguageGrammar  ->  LanguageComponents .   (rule 3)
+
+    $default	reduce using rule 3 (LanguageGrammar)
+
+
+
+state 32
+
+    LanguageComponents  ->  LanguageSpecifier .   (rule 5)
+
+    $default	reduce using rule 5 (LanguageComponents)
+
+
+
+state 33
+
+    LanguageComponents  ->  ResetCommand .   (rule 6)
+
+    $default	reduce using rule 6 (LanguageComponents)
+
+
+
+state 34
+
+    LanguageComponents  ->  CompareCommand .   (rule 7)
+
+    $default	reduce using rule 7 (LanguageComponents)
+
+
+
+state 35
+
+    LanguageComponents  ->  ConfirmCommand .   (rule 8)
+
+    $default	reduce using rule 8 (LanguageComponents)
+
+
+
+state 36
+
+    LanguageComponents  ->  CopyCommand .   (rule 9)
+
+    $default	reduce using rule 9 (LanguageComponents)
+
+
+
+state 37
+
+    LanguageComponents  ->  CreateCommand .   (rule 10)
+
+    $default	reduce using rule 10 (LanguageComponents)
+
+
+
+state 38
+
+    LanguageComponents  ->  DelayCommand .   (rule 11)
+
+    $default	reduce using rule 11 (LanguageComponents)
+
+
+
+state 39
+
+    LanguageComponents  ->  DeleteCommand .   (rule 12)
+
+    $default	reduce using rule 12 (LanguageComponents)
+
+
+
+state 40
+
+    LanguageComponents  ->  DisplayCommand .   (rule 13)
+
+    $default	reduce using rule 13 (LanguageComponents)
+
+
+
+state 41
+
+    LanguageComponents  ->  EchoCommand .   (rule 14)
+
+    $default	reduce using rule 14 (LanguageComponents)
+
+
+
+state 42
+
+    LanguageComponents  ->  ExportCommand .   (rule 15)
+
+    $default	reduce using rule 15 (LanguageComponents)
+
+
+
+state 43
+
+    LanguageComponents  ->  ImportCommand .   (rule 16)
+
+    $default	reduce using rule 16 (LanguageComponents)
+
+
+
+state 44
+
+    LanguageComponents  ->  PopulateCommand .   (rule 17)
+
+    $default	reduce using rule 17 (LanguageComponents)
+
+
+
+state 45
+
+    LanguageComponents  ->  ReadCommand .   (rule 18)
+
+    $default	reduce using rule 18 (LanguageComponents)
+
+
+
+state 46
+
+    LanguageComponents  ->  ReceiveCommand .   (rule 19)
+
+    $default	reduce using rule 19 (LanguageComponents)
+
+
+
+state 47
+
+    LanguageComponents  ->  RoleCommand .   (rule 20)
+
+    $default	reduce using rule 20 (LanguageComponents)
+
+
+
+state 48
+
+    LanguageComponents  ->  SendCommand .   (rule 21)
+
+    $default	reduce using rule 21 (LanguageComponents)
+
+
+
+state 49
+
+    LanguageComponents  ->  SetCommand .   (rule 22)
+
+    $default	reduce using rule 22 (LanguageComponents)
+
+
+
+state 50
+
+    LanguageComponents  ->  SystemCommand .   (rule 23)
+
+    $default	reduce using rule 23 (LanguageComponents)
+
+
+
+state 51
+
+    LanguageComponents  ->  TimeCommand .   (rule 24)
+
+    $default	reduce using rule 24 (LanguageComponents)
+
+
+
+state 52
+
+    LanguageComponents  ->  ValidateCommand .   (rule 25)
+
+    $default	reduce using rule 25 (LanguageComponents)
+
+
+
+state 53
+
+    LanguageComponents  ->  VerboseCommand .   (rule 26)
+
+    $default	reduce using rule 26 (LanguageComponents)
+
+
+
+state 54
+
+    LanguageComponents  ->  WriteCommand .   (rule 27)
+
+    $default	reduce using rule 27 (LanguageComponents)
+
+
+
+state 55
+
+    LanguageComponents  ->  ApplicationEntityFlagCommand .   (rule 28)
+
+    $default	reduce using rule 28 (LanguageComponents)
+
+
+
+state 56
+
+    LanguageComponents  ->  ValidationFlagCommand .   (rule 29)
+
+    $default	reduce using rule 29 (LanguageComponents)
+
+
+
+state 57
+
+    LanguageComponents  ->  DefineSqLengthFlagCommand .   (rule 30)
+
+    $default	reduce using rule 30 (LanguageComponents)
+
+
+
+state 58
+
+    LanguageComponents  ->  AddGroupLengthFlagCommand .   (rule 31)
+
+    $default	reduce using rule 31 (LanguageComponents)
+
+
+
+state 59
+
+    LanguageComponents  ->  StrictValidationFlagCommand .   (rule 32)
+
+    $default	reduce using rule 32 (LanguageComponents)
+
+
+
+state 60
+
+    DisplayCommand  ->  DisplayTagList .   (rule 46)
+    DisplayTagList  ->  DisplayTagList . TagRef   (rule 99)
+
+    HEXADECIMAL	shift, and go to state 179
+    STRING	shift, and go to state 180
+
+    $default	reduce using rule 46 (DisplayCommand)
+
+    AttributeTag	go to state 181
+    TagRef	go to state 182
+
+
+
+state 61
+
+    LanguageSpecifier  ->  T_LANGUAGE STRING .   (rule 33)
+
+    $default	reduce using rule 33 (LanguageSpecifier)
+
+
+
+state 62
+
+    ResetCommand  ->  T_RESET T_ALL .   (rule 34)
+
+    $default	reduce using rule 34 (ResetCommand)
+
+
+
+state 63
+
+    ResetCommand  ->  T_RESET T_WAREHOUSE .   (rule 35)
+
+    $default	reduce using rule 35 (ResetCommand)
+
+
+
+state 64
+
+    ResetCommand  ->  T_RESET T_ASSOCIATION .   (rule 36)
+
+    $default	reduce using rule 36 (ResetCommand)
+
+
+
+state 65
+
+    ResetCommand  ->  T_RESET T_RELATION .   (rule 37)
+
+    $default	reduce using rule 37 (ResetCommand)
+
+
+
+state 66
+
+    ResetCommand  ->  T_RESET T_EXECUTION_CONTEXT .   (rule 38)
+
+    $default	reduce using rule 38 (ResetCommand)
+
+
+
+state 67
+
+    DimseCmd  ->  COMMANDFIELD .   (rule 235)
+
+    $default	reduce using rule 235 (DimseCmd)
+
+
+
+state 68
+
+    IomLevel  ->  IOMLEVEL .   (rule 246)
+
+    $default	reduce using rule 246 (IomLevel)
+
+
+
+state 69
+
+    IodName  ->  STRING .   (rule 247)
+
+    $default	reduce using rule 247 (IodName)
+
+
+
+state 70
+
+    ObjectRef1  ->  Command .   (rule 294)
+
+    $default	reduce using rule 294 (ObjectRef1)
+
+
+
+state 71
+
+    Command  ->  DimseCmd .   (rule 233)
+    Command  ->  DimseCmd . CommandIdentifier   (rule 234)
+
+    IDENTIFIER	shift, and go to state 183
+
+    $default	reduce using rule 233 (Command)
+
+    CommandIdentifier	go to state 184
+
+
+
+state 72
+
+    ObjectRef1  ->  Dataset .   (rule 295)
+
+    $default	reduce using rule 295 (ObjectRef1)
+
+
+
+state 73
+
+    Dataset  ->  IomIod .   (rule 242)
+    Dataset  ->  IomIod . DatasetIdentifier   (rule 243)
+
+    IDENTIFIER	shift, and go to state 185
+    STRING	shift, and go to state 186
+
+    STRING	[reduce using rule 242 (Dataset)]
+    $default	reduce using rule 242 (Dataset)
+
+    DatasetIdentifier	go to state 187
+
+
+
+state 74
+
+    IomIod  ->  IomLevel . IodName   (rule 245)
+
+    STRING	shift, and go to state 69
+
+    IodName	go to state 188
+
+
+
+state 75
+
+    IomIod  ->  IodName .   (rule 244)
+
+    $default	reduce using rule 244 (IomIod)
+
+
+
+state 76
+
+    CompareCommand  ->  T_COMPARE ObjectRef1 . TagRef1 ObjectRef2 TagRef2   (rule 39)
+
+    HEXADECIMAL	shift, and go to state 179
+    STRING	shift, and go to state 180
+
+    AttributeTag	go to state 181
+    TagRef1	go to state 189
+    TagRef	go to state 190
+
+
+
+state 77
+
+    CompareCommand  ->  T_COMPARE_NOT ObjectRef1 . TagRef1 ObjectRef2 TagRef2   (rule 40)
+
+    HEXADECIMAL	shift, and go to state 179
+    STRING	shift, and go to state 180
+
+    AttributeTag	go to state 181
+    TagRef1	go to state 191
+    TagRef	go to state 190
+
+
+
+state 78
+
+    CopyCommand  ->  T_COPY ObjectRef1 . TagRef1 ObjectRef2 TagRef2   (rule 42)
+
+    HEXADECIMAL	shift, and go to state 179
+    STRING	shift, and go to state 180
+
+    AttributeTag	go to state 181
+    TagRef1	go to state 192
+    TagRef	go to state 190
+
+
+
+state 79
+
+    AssociateRq  ->  T_ASSOCIATE_RQ .   (rule 220)
+
+    $default	reduce using rule 220 (AssociateRq)
+
+
+
+state 80
+
+    AssociateAc  ->  T_ASSOCIATE_AC .   (rule 221)
+
+    $default	reduce using rule 221 (AssociateAc)
+
+
+
+state 81
+
+    AssociateRj  ->  T_ASSOCIATE_RJ .   (rule 222)
+
+    $default	reduce using rule 222 (AssociateRj)
+
+
+
+state 82
+
+    ReleaseRq  ->  T_RELEASE_RQ .   (rule 223)
+
+    $default	reduce using rule 223 (ReleaseRq)
+
+
+
+state 83
+
+    ReleaseRp  ->  T_RELEASE_RP .   (rule 224)
+
+    $default	reduce using rule 224 (ReleaseRp)
+
+
+
+state 84
+
+    AbortRq  ->  T_ABORT_RQ .   (rule 225)
+
+    $default	reduce using rule 225 (AbortRq)
+
+
+
+state 85
+
+    Filehead  ->  T_FILEHEAD .   (rule 304)
+
+    $default	reduce using rule 304 (Filehead)
+
+
+
+state 86
+
+    Filetail  ->  T_FILETAIL .   (rule 315)
+
+    $default	reduce using rule 315 (Filetail)
+
+
+
+state 87
+
+    SequenceRef  ->  T_OPEN_BRACKET . Dataset TagRef ItemNumber T_CLOSE_BRACKET   (rule 298)
+    SequenceRef  ->  T_OPEN_BRACKET . SequenceRef TagRef ItemNumber T_CLOSE_BRACKET   (rule 299)
+
+    T_OPEN_BRACKET	shift, and go to state 87
+    IOMLEVEL	shift, and go to state 68
+    STRING	shift, and go to state 69
+
+    Dataset	go to state 193
+    IomIod	go to state 73
+    IomLevel	go to state 74
+    IodName	go to state 75
+    SequenceRef	go to state 194
+
+
+
+state 88
+
+    CreateCommand  ->  T_CREATE CreateList .   (rule 43)
+
+    $default	reduce using rule 43 (CreateCommand)
+
+
+
+state 89
+
+    CreateList  ->  Acse .   (rule 86)
+
+    $default	reduce using rule 86 (CreateList)
+
+
+
+state 90
+
+    Acse  ->  AssociateRq .   (rule 129)
+
+    $default	reduce using rule 129 (Acse)
+
+
+
+state 91
+
+    Acse  ->  AssociateAc .   (rule 130)
+
+    $default	reduce using rule 130 (Acse)
+
+
+
+state 92
+
+    Acse  ->  AssociateRj .   (rule 131)
+
+    $default	reduce using rule 131 (Acse)
+
+
+
+state 93
+
+    Acse  ->  ReleaseRq .   (rule 132)
+
+    $default	reduce using rule 132 (Acse)
+
+
+
+state 94
+
+    Acse  ->  ReleaseRp .   (rule 133)
+
+    $default	reduce using rule 133 (Acse)
+
+
+
+state 95
+
+    Acse  ->  AbortRq .   (rule 134)
+
+    $default	reduce using rule 134 (Acse)
+
+
+
+state 96
+
+    CreateList  ->  Sop .   (rule 87)
+
+    $default	reduce using rule 87 (CreateList)
+
+
+
+state 97
+
+    Sop  ->  Command .   (rule 226)
+    Sop  ->  Command . Dataset   (rule 227)
+
+    IOMLEVEL	shift, and go to state 68
+    STRING	shift, and go to state 69
+
+    $default	reduce using rule 226 (Sop)
+
+    Dataset	go to state 195
+    IomIod	go to state 73
+    IomLevel	go to state 74
+    IodName	go to state 75
+
+
+
+state 98
+
+    CreateList  ->  Dataset .   (rule 88)
+    CreateList  ->  Dataset . T_DEFINED_LENGTH   (rule 89)
+
+    T_DEFINED_LENGTH	shift, and go to state 196
+
+    $default	reduce using rule 88 (CreateList)
+
+
+
+state 99
+
+    CreateList  ->  SequenceRef . Dataset   (rule 90)
+
+    IOMLEVEL	shift, and go to state 68
+    STRING	shift, and go to state 69
+
+    Dataset	go to state 197
+    IomIod	go to state 73
+    IomLevel	go to state 74
+    IodName	go to state 75
+
+
+
+state 100
+
+    CreateList  ->  Filehead .   (rule 91)
+
+    $default	reduce using rule 91 (CreateList)
+
+
+
+state 101
+
+    CreateList  ->  Filetail .   (rule 92)
+
+    $default	reduce using rule 92 (CreateList)
+
+
+
+state 102
+
+    DelayCommand  ->  T_DELAY INTEGER .   (rule 44)
+
+    $default	reduce using rule 44 (DelayCommand)
+
+
+
+state 103
+
+    DeleteList  ->  T_FILEHEAD .   (rule 96)
+
+    $default	reduce using rule 96 (DeleteList)
+
+
+
+state 104
+
+    DeleteList  ->  T_FILETAIL .   (rule 97)
+
+    $default	reduce using rule 97 (DeleteList)
+
+
+
+state 105
+
+    DeleteCommand  ->  T_DELETE DeleteList .   (rule 45)
+
+    $default	reduce using rule 45 (DeleteCommand)
+
+
+
+state 106
+
+    DeleteList  ->  Acse .   (rule 93)
+
+    $default	reduce using rule 93 (DeleteList)
+
+
+
+state 107
+
+    DeleteList  ->  Command .   (rule 94)
+
+    $default	reduce using rule 94 (DeleteList)
+
+
+
+state 108
+
+    DeleteList  ->  Dataset .   (rule 95)
+
+    $default	reduce using rule 95 (DeleteList)
+
+
+
+state 109
+
+    DisplayCommand  ->  T_DISPLAY T_WAREHOUSE .   (rule 48)
+
+    $default	reduce using rule 48 (DisplayCommand)
+
+
+
+state 110
+
+    DisplayCommand  ->  T_DISPLAY ObjectRef1 .   (rule 47)
+    DisplayTagList  ->  T_DISPLAY ObjectRef1 . TagRef   (rule 98)
+
+    HEXADECIMAL	shift, and go to state 179
+    STRING	shift, and go to state 180
+
+    $default	reduce using rule 47 (DisplayCommand)
+
+    AttributeTag	go to state 181
+    TagRef	go to state 198
+
+
+
+state 111
+
+    EchoCommand  ->  T_ECHO STRING .   (rule 49)
+
+    $default	reduce using rule 49 (EchoCommand)
+
+
+
+state 112
+
+    PopulateCommand  ->  T_POPULATE T_ON .   (rule 65)
+
+    $default	reduce using rule 65 (PopulateCommand)
+
+
+
+state 113
+
+    PopulateCommand  ->  T_POPULATE T_OFF .   (rule 66)
+
+    $default	reduce using rule 66 (PopulateCommand)
+
+
+
+state 114
+
+    ReadList  ->  STRING . Dataset   (rule 100)
+    ReadList  ->  STRING . HEXADECIMAL   (rule 101)
+
+    HEXADECIMAL	shift, and go to state 199
+    IOMLEVEL	shift, and go to state 68
+    STRING	shift, and go to state 69
+
+    Dataset	go to state 200
+    IomIod	go to state 73
+    IomLevel	go to state 74
+    IodName	go to state 75
+
+
+
+state 115
+
+    ReadCommand  ->  T_READ ReadList .   (rule 67)
+
+    $default	reduce using rule 67 (ReadCommand)
+
+
+
+state 116
+
+    ReceiveCommand  ->  T_RECEIVE ReceiveList .   (rule 68)
+
+    $default	reduce using rule 68 (ReceiveCommand)
+
+
+
+state 117
+
+    ReceiveList  ->  SopList .   (rule 103)
+    SopList  ->  SopList . T_OR SopContents   (rule 124)
+    SopList  ->  SopList . T_AND SopContents   (rule 125)
+
+    T_OR	shift, and go to state 201
+    T_AND	shift, and go to state 202
+
+    $default	reduce using rule 103 (ReceiveList)
+
+
+
+state 118
+
+    ReceiveList  ->  AcseContents .   (rule 102)
+
+    $default	reduce using rule 102 (ReceiveList)
+
+
+
+state 119
+
+    AcseContents  ->  AssociateRqContents .   (rule 135)
+
+    $default	reduce using rule 135 (AcseContents)
+
+
+
+state 120
+
+    AcseContents  ->  AssociateAcContents .   (rule 136)
+
+    $default	reduce using rule 136 (AcseContents)
+
+
+
+state 121
+
+    AcseContents  ->  AssociateRjContents .   (rule 137)
+
+    $default	reduce using rule 137 (AcseContents)
+
+
+
+state 122
+
+    AcseContents  ->  ReleaseRqContents .   (rule 138)
+
+    $default	reduce using rule 138 (AcseContents)
+
+
+
+state 123
+
+    AcseContents  ->  ReleaseRpContents .   (rule 139)
+
+    $default	reduce using rule 139 (AcseContents)
+
+
+
+state 124
+
+    AcseContents  ->  AbortRqContents .   (rule 140)
+
+    $default	reduce using rule 140 (AcseContents)
+
+
+
+state 125
+
+    AssociateRqContents  ->  AssociateRq .   (rule 141)
+    AssociateRqContents  ->  AssociateRq . T_OPEN_BRACKET AssociateRqParameterList T_CLOSE_BRACKET   (rule 142)
+
+    T_OPEN_BRACKET	shift, and go to state 203
+
+    $default	reduce using rule 141 (AssociateRqContents)
+
+
+
+state 126
+
+    AssociateAcContents  ->  AssociateAc .   (rule 179)
+    AssociateAcContents  ->  AssociateAc . T_OPEN_BRACKET AssociateAcParameterList T_CLOSE_BRACKET   (rule 180)
+
+    T_OPEN_BRACKET	shift, and go to state 204
+
+    $default	reduce using rule 179 (AssociateAcContents)
+
+
+
+state 127
+
+    AssociateRjContents  ->  AssociateRj .   (rule 205)
+    AssociateRjContents  ->  AssociateRj . T_OPEN_BRACKET AssociateRjParameterList T_CLOSE_BRACKET   (rule 206)
+
+    T_OPEN_BRACKET	shift, and go to state 205
+
+    $default	reduce using rule 205 (AssociateRjContents)
+
+
+
+state 128
+
+    ReleaseRqContents  ->  ReleaseRq .   (rule 212)
+
+    $default	reduce using rule 212 (ReleaseRqContents)
+
+
+
+state 129
+
+    ReleaseRpContents  ->  ReleaseRp .   (rule 213)
+
+    $default	reduce using rule 213 (ReleaseRpContents)
+
+
+
+state 130
+
+    AbortRqContents  ->  AbortRq .   (rule 214)
+    AbortRqContents  ->  AbortRq . T_OPEN_BRACKET AbortRqParameterList T_CLOSE_BRACKET   (rule 215)
+
+    T_OPEN_BRACKET	shift, and go to state 206
+
+    $default	reduce using rule 214 (AbortRqContents)
+
+
+
+state 131
+
+    SopList  ->  SopContents .   (rule 123)
+
+    $default	reduce using rule 123 (SopList)
+
+
+
+state 132
+
+    SopContents  ->  CommandContents .   (rule 228)
+
+    $default	reduce using rule 228 (SopContents)
+
+
+
+state 133
+
+    SopContents  ->  Command . DatasetContents   (rule 229)
+    CommandContents  ->  Command .   (rule 230)
+    CommandRef  ->  Command .   (rule 237)
+
+    IOMLEVEL	shift, and go to state 68
+    STRING	shift, and go to state 69
+
+    T_OPEN_BRACKET	reduce using rule 237 (CommandRef)
+    $default	reduce using rule 230 (CommandContents)
+
+    DatasetContents	go to state 207
+    DatasetRef	go to state 144
+    Dataset	go to state 145
+    IomIod	go to state 73
+    IomLevel	go to state 74
+    IodName	go to state 75
+
+
+
+state 134
+
+    CommandContents  ->  CommandRef . T_OPEN_BRACKET T_CLOSE_BRACKET   (rule 231)
+    CommandContents  ->  CommandRef . T_OPEN_BRACKET AttributeList T_CLOSE_BRACKET   (rule 232)
+
+    T_OPEN_BRACKET	shift, and go to state 208
+
+
+
+state 135
+
+    RoleCommand  ->  T_ROLE USERPROVIDER .   (rule 69)
+
+    $default	reduce using rule 69 (RoleCommand)
+
+
+
+state 136
+
+    SendCommand  ->  T_SEND SendList .   (rule 70)
+
+    $default	reduce using rule 70 (SendCommand)
+
+
+
+state 137
+
+    SendList  ->  AcseContents .   (rule 104)
+
+    $default	reduce using rule 104 (SendList)
+
+
+
+state 138
+
+    SendList  ->  SopContents .   (rule 105)
+    SendList  ->  SopContents . T_PRES_CTX PresentationContextId   (rule 106)
+
+    T_PRES_CTX	shift, and go to state 209
+
+    $default	reduce using rule 105 (SendList)
+
+
+
+state 139
+
+    SetCommand  ->  T_SET SetList .   (rule 71)
+
+    $default	reduce using rule 71 (SetCommand)
+
+
+
+state 140
+
+    SetList  ->  AcseContents .   (rule 109)
+
+    $default	reduce using rule 109 (SetList)
+
+
+
+state 141
+
+    SetList  ->  CommandContents .   (rule 110)
+
+    $default	reduce using rule 110 (SetList)
+
+
+
+state 142
+
+    CommandContents  ->  Command .   (rule 230)
+    CommandRef  ->  Command .   (rule 237)
+
+    T_OPEN_BRACKET	reduce using rule 237 (CommandRef)
+    $default	reduce using rule 230 (CommandContents)
+
+
+
+state 143
+
+    SetList  ->  DatasetContents .   (rule 111)
+
+    $default	reduce using rule 111 (SetList)
+
+
+
+state 144
+
+    DatasetContents  ->  DatasetRef . T_OPEN_BRACKET T_CLOSE_BRACKET   (rule 239)
+    DatasetContents  ->  DatasetRef . T_OPEN_BRACKET AttributeList T_CLOSE_BRACKET   (rule 240)
+
+    T_OPEN_BRACKET	shift, and go to state 210
+
+
+
+state 145
+
+    DatasetContents  ->  Dataset .   (rule 238)
+    DatasetRef  ->  Dataset .   (rule 241)
+
+    T_OPEN_BRACKET	reduce using rule 241 (DatasetRef)
+    $default	reduce using rule 238 (DatasetContents)
+
+
+
+state 146
+
+    SetList  ->  FileheadContents .   (rule 112)
+
+    $default	reduce using rule 112 (SetList)
+
+
+
+state 147
+
+    FileheadContents  ->  Filehead .   (rule 302)
+    FileheadContents  ->  Filehead . T_OPEN_BRACKET FileheadParameterList T_CLOSE_BRACKET   (rule 303)
+
+    T_OPEN_BRACKET	shift, and go to state 211
+
+    $default	reduce using rule 302 (FileheadContents)
+
+
+
+state 148
+
+    SetList  ->  FiletailContents .   (rule 113)
+
+    $default	reduce using rule 113 (SetList)
+
+
+
+state 149
+
+    FiletailContents  ->  Filetail .   (rule 313)
+    FiletailContents  ->  Filetail . T_OPEN_BRACKET FiletailParameterList T_CLOSE_BRACKET   (rule 314)
+
+    T_OPEN_BRACKET	shift, and go to state 212
+
+    $default	reduce using rule 313 (FiletailContents)
+
+
+
+state 150
+
+    SystemCommand  ->  T_SYSTEM STRING .   (rule 72)
+
+    $default	reduce using rule 72 (SystemCommand)
+
+
+
+state 151
+
+    ValidateCommand  ->  T_VALIDATE ValidateList .   (rule 74)
+
+    $default	reduce using rule 74 (ValidateCommand)
+
+
+
+state 152
+
+    ValidateList  ->  SourceSopRef . ReferenceSopList   (rule 114)
+
+    COMMANDFIELD	shift, and go to state 67
+
+    $default	reduce using rule 117 (ReferenceSopList)
+
+    ReferenceSopList	go to state 213
+    ReferenceSopRef	go to state 214
+    DimseCmd	go to state 215
+
+
+
+state 153
+
+    SourceSopRef  ->  DimseCmd . CommandIdentifier   (rule 115)
+    SourceSopRef  ->  DimseCmd . CommandIdentifier IomIod DatasetIdentifier   (rule 116)
+
+    IDENTIFIER	shift, and go to state 183
+
+    CommandIdentifier	go to state 216
+
+
+
+state 154
+
+    VerboseCommand  ->  T_VERBOSE T_ON .   (rule 75)
+
+    $default	reduce using rule 75 (VerboseCommand)
+
+
+
+state 155
+
+    VerboseCommand  ->  T_VERBOSE T_OFF .   (rule 76)
+
+    $default	reduce using rule 76 (VerboseCommand)
+
+
+
+state 156
+
+    WriteList  ->  STRING . T_FILEHEAD   (rule 126)
+    WriteList  ->  STRING . T_FILETAIL   (rule 127)
+    WriteList  ->  STRING . Dataset   (rule 128)
+
+    T_FILEHEAD	shift, and go to state 217
+    T_FILETAIL	shift, and go to state 218
+    IOMLEVEL	shift, and go to state 68
+    STRING	shift, and go to state 69
+
+    Dataset	go to state 219
+    IomIod	go to state 73
+    IomLevel	go to state 74
+    IodName	go to state 75
+
+
+
+state 157
+
+    WriteCommand  ->  T_WRITE WriteList .   (rule 77)
+
+    $default	reduce using rule 77 (WriteCommand)
+
+
+
+state 158
+
+    ImportCommand  ->  T_IMPORT ImportList .   (rule 62)
+
+    $default	reduce using rule 62 (ImportCommand)
+
+
+
+state 159
+
+    ImportList  ->  DimseCmd . CommandIdentifier   (rule 63)
+    ImportList  ->  DimseCmd . CommandIdentifier IomIod DatasetIdentifier   (rule 64)
+
+    IDENTIFIER	shift, and go to state 183
+
+    CommandIdentifier	go to state 220
+
+
+
+state 160
+
+    ExportCommand  ->  T_EXPORT ExportList .   (rule 50)
+
+    $default	reduce using rule 50 (ExportCommand)
+
+
+
+state 161
+
+    ExportList  ->  ExportAcseObject .   (rule 51)
+
+    $default	reduce using rule 51 (ExportList)
+
+
+
+state 162
+
+    ExportList  ->  ExportDimseObjects .   (rule 52)
+
+    $default	reduce using rule 52 (ExportList)
+
+
+
+state 163
+
+    ExportAcseObject  ->  AssociateRq .   (rule 53)
+
+    $default	reduce using rule 53 (ExportAcseObject)
+
+
+
+state 164
+
+    ExportAcseObject  ->  AssociateAc .   (rule 54)
+
+    $default	reduce using rule 54 (ExportAcseObject)
+
+
+
+state 165
+
+    ExportAcseObject  ->  AssociateRj .   (rule 55)
+
+    $default	reduce using rule 55 (ExportAcseObject)
+
+
+
+state 166
+
+    ExportAcseObject  ->  ReleaseRq .   (rule 56)
+
+    $default	reduce using rule 56 (ExportAcseObject)
+
+
+
+state 167
+
+    ExportAcseObject  ->  ReleaseRp .   (rule 57)
+
+    $default	reduce using rule 57 (ExportAcseObject)
+
+
+
+state 168
+
+    ExportAcseObject  ->  AbortRq .   (rule 58)
+
+    $default	reduce using rule 58 (ExportAcseObject)
+
+
+
+state 169
+
+    ExportDimseObjects  ->  DimseCmd . CommandIdentifier   (rule 59)
+    ExportDimseObjects  ->  DimseCmd . CommandIdentifier IomIod DatasetIdentifier   (rule 60)
+    ExportDimseObjects  ->  DimseCmd . CommandIdentifier IomIod DatasetIdentifier T_PRES_CTX PresentationContextId   (rule 61)
+
+    IDENTIFIER	shift, and go to state 183
+
+    CommandIdentifier	go to state 221
+
+
+
+state 170
+
+    ValidationFlagCommand  ->  T_VALIDATION VALIDATIONFLAG .   (rule 79)
+
+    $default	reduce using rule 79 (ValidationFlagCommand)
+
+
+
+state 171
+
+    DefineSqLengthFlagCommand  ->  T_DEF_SQ_LENGTH T_ON .   (rule 80)
+
+    $default	reduce using rule 80 (DefineSqLengthFlagCommand)
+
+
+
+state 172
+
+    DefineSqLengthFlagCommand  ->  T_DEF_SQ_LENGTH T_OFF .   (rule 81)
+
+    $default	reduce using rule 81 (DefineSqLengthFlagCommand)
+
+
+
+state 173
+
+    AddGroupLengthFlagCommand  ->  T_ADD_GROUP_LENGTH T_ON .   (rule 82)
+
+    $default	reduce using rule 82 (AddGroupLengthFlagCommand)
+
+
+
+state 174
+
+    AddGroupLengthFlagCommand  ->  T_ADD_GROUP_LENGTH T_OFF .   (rule 83)
+
+    $default	reduce using rule 83 (AddGroupLengthFlagCommand)
+
+
+
+state 175
+
+    StrictValidationFlagCommand  ->  T_STRICT T_ON .   (rule 84)
+
+    $default	reduce using rule 84 (StrictValidationFlagCommand)
+
+
+
+state 176
+
+    StrictValidationFlagCommand  ->  T_STRICT T_OFF .   (rule 85)
+
+    $default	reduce using rule 85 (StrictValidationFlagCommand)
+
+
+
+state 177
+
+    ApplicationEntityFlagCommand  ->  T_APPL_ENTITY STRING . STRING   (rule 78)
+
+    STRING	shift, and go to state 222
+
+
+
+state 178
+
+    LanguageGrammar  ->  LanguageGrammar LanguageComponents .   (rule 4)
+
+    $default	reduce using rule 4 (LanguageGrammar)
+
+
+
+state 179
+
+    AttributeTag  ->  HEXADECIMAL .   (rule 255)
+
+    $default	reduce using rule 255 (AttributeTag)
+
+
+
+state 180
+
+    TagRef  ->  STRING .   (rule 293)
+
+    $default	reduce using rule 293 (TagRef)
+
+
+
+state 181
+
+    TagRef  ->  AttributeTag .   (rule 292)
+
+    $default	reduce using rule 292 (TagRef)
+
+
+
+state 182
+
+    DisplayTagList  ->  DisplayTagList TagRef .   (rule 99)
+
+    $default	reduce using rule 99 (DisplayTagList)
+
+
+
+state 183
+
+    CommandIdentifier  ->  IDENTIFIER .   (rule 236)
+
+    $default	reduce using rule 236 (CommandIdentifier)
+
+
+
+state 184
+
+    Command  ->  DimseCmd CommandIdentifier .   (rule 234)
+
+    $default	reduce using rule 234 (Command)
+
+
+
+state 185
+
+    DatasetIdentifier  ->  IDENTIFIER .   (rule 248)
+
+    $default	reduce using rule 248 (DatasetIdentifier)
+
+
+
+state 186
+
+    DatasetIdentifier  ->  STRING .   (rule 249)
+
+    $default	reduce using rule 249 (DatasetIdentifier)
+
+
+
+state 187
+
+    Dataset  ->  IomIod DatasetIdentifier .   (rule 243)
+
+    $default	reduce using rule 243 (Dataset)
+
+
+
+state 188
+
+    IomIod  ->  IomLevel IodName .   (rule 245)
+
+    $default	reduce using rule 245 (IomIod)
+
+
+
+state 189
+
+    CompareCommand  ->  T_COMPARE ObjectRef1 TagRef1 . ObjectRef2 TagRef2   (rule 39)
+
+    COMMANDFIELD	shift, and go to state 67
+    IOMLEVEL	shift, and go to state 68
+    STRING	shift, and go to state 69
+
+    Command	go to state 223
+    DimseCmd	go to state 71
+    Dataset	go to state 224
+    IomIod	go to state 73
+    IomLevel	go to state 74
+    IodName	go to state 75
+    ObjectRef2	go to state 225
+
+
+
+state 190
+
+    TagRef1  ->  TagRef .   (rule 290)
+
+    $default	reduce using rule 290 (TagRef1)
+
+
+
+state 191
+
+    CompareCommand  ->  T_COMPARE_NOT ObjectRef1 TagRef1 . ObjectRef2 TagRef2   (rule 40)
+
+    COMMANDFIELD	shift, and go to state 67
+    IOMLEVEL	shift, and go to state 68
+    STRING	shift, and go to state 69
+
+    Command	go to state 223
+    DimseCmd	go to state 71
+    Dataset	go to state 224
+    IomIod	go to state 73
+    IomLevel	go to state 74
+    IodName	go to state 75
+    ObjectRef2	go to state 226
+
+
+
+state 192
+
+    CopyCommand  ->  T_COPY ObjectRef1 TagRef1 . ObjectRef2 TagRef2   (rule 42)
+
+    COMMANDFIELD	shift, and go to state 67
+    IOMLEVEL	shift, and go to state 68
+    STRING	shift, and go to state 69
+
+    Command	go to state 223
+    DimseCmd	go to state 71
+    Dataset	go to state 224
+    IomIod	go to state 73
+    IomLevel	go to state 74
+    IodName	go to state 75
+    ObjectRef2	go to state 227
+
+
+
+state 193
+
+    SequenceRef  ->  T_OPEN_BRACKET Dataset . TagRef ItemNumber T_CLOSE_BRACKET   (rule 298)
+
+    HEXADECIMAL	shift, and go to state 179
+    STRING	shift, and go to state 180
+
+    AttributeTag	go to state 181
+    TagRef	go to state 228
+
+
+
+state 194
+
+    SequenceRef  ->  T_OPEN_BRACKET SequenceRef . TagRef ItemNumber T_CLOSE_BRACKET   (rule 299)
+
+    HEXADECIMAL	shift, and go to state 179
+    STRING	shift, and go to state 180
+
+    AttributeTag	go to state 181
+    TagRef	go to state 229
+
+
+
+state 195
+
+    Sop  ->  Command Dataset .   (rule 227)
+
+    $default	reduce using rule 227 (Sop)
+
+
+
+state 196
+
+    CreateList  ->  Dataset T_DEFINED_LENGTH .   (rule 89)
+
+    $default	reduce using rule 89 (CreateList)
+
+
+
+state 197
+
+    CreateList  ->  SequenceRef Dataset .   (rule 90)
+
+    $default	reduce using rule 90 (CreateList)
+
+
+
+state 198
+
+    DisplayTagList  ->  T_DISPLAY ObjectRef1 TagRef .   (rule 98)
+
+    $default	reduce using rule 98 (DisplayTagList)
+
+
+
+state 199
+
+    ReadList  ->  STRING HEXADECIMAL .   (rule 101)
+
+    $default	reduce using rule 101 (ReadList)
+
+
+
+state 200
+
+    ReadList  ->  STRING Dataset .   (rule 100)
+
+    $default	reduce using rule 100 (ReadList)
+
+
+
+state 201
+
+    SopList  ->  SopList T_OR . SopContents   (rule 124)
+
+    COMMANDFIELD	shift, and go to state 67
+
+    SopContents	go to state 230
+    CommandContents	go to state 132
+    Command	go to state 133
+    DimseCmd	go to state 71
+    CommandRef	go to state 134
+
+
+
+state 202
+
+    SopList  ->  SopList T_AND . SopContents   (rule 125)
+
+    COMMANDFIELD	shift, and go to state 67
+
+    SopContents	go to state 231
+    CommandContents	go to state 132
+    Command	go to state 133
+    DimseCmd	go to state 71
+    CommandRef	go to state 134
+
+
+
+state 203
+
+    AssociateRqContents  ->  AssociateRq T_OPEN_BRACKET . AssociateRqParameterList T_CLOSE_BRACKET   (rule 142)
+
+    T_PROT_VER	shift, and go to state 232
+    T_CALLED_AE	shift, and go to state 233
+    T_CALLING_AE	shift, and go to state 234
+    T_APPL_CTX	shift, and go to state 235
+    T_PRES_CTX	shift, and go to state 236
+    T_MAX_LEN	shift, and go to state 237
+    T_IMPL_CLASS	shift, and go to state 238
+    T_IMPL_VER	shift, and go to state 239
+    T_SOP_EXTEND_NEG	shift, and go to state 240
+    T_SCPSCU_ROLE	shift, and go to state 241
+    T_ASYNC_WINDOW	shift, and go to state 242
+    T_USER_ID_NEG	shift, and go to state 243
+
+    AssociateRqParameterList	go to state 244
+    AssociateRqParameter	go to state 245
+
+
+
+state 204
+
+    AssociateAcContents  ->  AssociateAc T_OPEN_BRACKET . AssociateAcParameterList T_CLOSE_BRACKET   (rule 180)
+
+    T_PROT_VER	shift, and go to state 246
+    T_CALLED_AE	shift, and go to state 247
+    T_CALLING_AE	shift, and go to state 248
+    T_APPL_CTX	shift, and go to state 249
+    T_PRES_CTX	shift, and go to state 250
+    T_MAX_LEN	shift, and go to state 251
+    T_IMPL_CLASS	shift, and go to state 252
+    T_IMPL_VER	shift, and go to state 253
+    T_SOP_EXTEND_NEG	shift, and go to state 254
+    T_SCPSCU_ROLE	shift, and go to state 255
+    T_ASYNC_WINDOW	shift, and go to state 256
+
+    AssociateAcParameterList	go to state 257
+    AssociateAcParameter	go to state 258
+
+
+
+state 205
+
+    AssociateRjContents  ->  AssociateRj T_OPEN_BRACKET . AssociateRjParameterList T_CLOSE_BRACKET   (rule 206)
+
+    T_RESULT	shift, and go to state 259
+    T_SOURCE	shift, and go to state 260
+    T_REASON	shift, and go to state 261
+
+    AssociateRjParameterList	go to state 262
+    AssociateRjParameter	go to state 263
+
+
+
+state 206
+
+    AbortRqContents  ->  AbortRq T_OPEN_BRACKET . AbortRqParameterList T_CLOSE_BRACKET   (rule 215)
+
+    T_SOURCE	shift, and go to state 264
+    T_REASON	shift, and go to state 265
+
+    AbortRqParameterList	go to state 266
+    AbortRqParameter	go to state 267
+
+
+
+state 207
+
+    SopContents  ->  Command DatasetContents .   (rule 229)
+
+    $default	reduce using rule 229 (SopContents)
+
+
+
+state 208
+
+    CommandContents  ->  CommandRef T_OPEN_BRACKET . T_CLOSE_BRACKET   (rule 231)
+    CommandContents  ->  CommandRef T_OPEN_BRACKET . AttributeList T_CLOSE_BRACKET   (rule 232)
+
+    T_OPEN_BRACKET	shift, and go to state 268
+    T_CLOSE_BRACKET	shift, and go to state 269
+
+    AttributeList	go to state 270
+    Attribute	go to state 271
+
+
+
+state 209
+
+    SendList  ->  SopContents T_PRES_CTX . PresentationContextId   (rule 106)
+
+    T_OPEN_BRACKET	shift, and go to state 272
+
+    PresentationContextId	go to state 273
+
+
+
+state 210
+
+    DatasetContents  ->  DatasetRef T_OPEN_BRACKET . T_CLOSE_BRACKET   (rule 239)
+    DatasetContents  ->  DatasetRef T_OPEN_BRACKET . AttributeList T_CLOSE_BRACKET   (rule 240)
+
+    T_OPEN_BRACKET	shift, and go to state 268
+    T_CLOSE_BRACKET	shift, and go to state 274
+
+    AttributeList	go to state 275
+    Attribute	go to state 271
+
+
+
+state 211
+
+    FileheadContents  ->  Filehead T_OPEN_BRACKET . FileheadParameterList T_CLOSE_BRACKET   (rule 303)
+
+    T_FILE_PREAMBLE	shift, and go to state 276
+    T_DICOM_PREFIX	shift, and go to state 277
+    T_TRANSFER_SYNTAX	shift, and go to state 278
+
+    FileheadParameterList	go to state 279
+    FileheadParameter	go to state 280
+    FilePreamble	go to state 281
+    DicomPrefix	go to state 282
+    FileTransferSyntax	go to state 283
+
+
+
+state 212
+
+    FiletailContents  ->  Filetail T_OPEN_BRACKET . FiletailParameterList T_CLOSE_BRACKET   (rule 314)
+
+    T_DATASET_TRAILING_PADDING	shift, and go to state 284
+    T_SECTOR_SIZE	shift, and go to state 285
+    T_PADDING_VALUE	shift, and go to state 286
+
+    FiletailParameterList	go to state 287
+    FiletailParameter	go to state 288
+    DatasetTrailingPadding	go to state 289
+    SectorSize	go to state 290
+    PaddingValue	go to state 291
+
+
+
+state 213
+
+    ValidateList  ->  SourceSopRef ReferenceSopList .   (rule 114)
+    ReferenceSopList  ->  ReferenceSopList . T_OR ReferenceSopRef   (rule 119)
+
+    T_OR	shift, and go to state 292
+
+    $default	reduce using rule 114 (ValidateList)
+
+
+
+state 214
+
+    ReferenceSopList  ->  ReferenceSopRef .   (rule 118)
+
+    $default	reduce using rule 118 (ReferenceSopList)
+
+
+
+state 215
+
+    ReferenceSopRef  ->  DimseCmd . CommandIdentifier   (rule 120)
+    ReferenceSopRef  ->  DimseCmd . CommandIdentifier IomIod DatasetIdentifier   (rule 121)
+
+    IDENTIFIER	shift, and go to state 183
+
+    CommandIdentifier	go to state 293
+
+
+
+state 216
+
+    SourceSopRef  ->  DimseCmd CommandIdentifier .   (rule 115)
+    SourceSopRef  ->  DimseCmd CommandIdentifier . IomIod DatasetIdentifier   (rule 116)
+
+    IOMLEVEL	shift, and go to state 68
+    STRING	shift, and go to state 69
+
+    $default	reduce using rule 115 (SourceSopRef)
+
+    IomIod	go to state 294
+    IomLevel	go to state 74
+    IodName	go to state 75
+
+
+
+state 217
+
+    WriteList  ->  STRING T_FILEHEAD .   (rule 126)
+
+    $default	reduce using rule 126 (WriteList)
+
+
+
+state 218
+
+    WriteList  ->  STRING T_FILETAIL .   (rule 127)
+
+    $default	reduce using rule 127 (WriteList)
+
+
+
+state 219
+
+    WriteList  ->  STRING Dataset .   (rule 128)
+
+    $default	reduce using rule 128 (WriteList)
+
+
+
+state 220
+
+    ImportList  ->  DimseCmd CommandIdentifier .   (rule 63)
+    ImportList  ->  DimseCmd CommandIdentifier . IomIod DatasetIdentifier   (rule 64)
+
+    IOMLEVEL	shift, and go to state 68
+    STRING	shift, and go to state 69
+
+    $default	reduce using rule 63 (ImportList)
+
+    IomIod	go to state 295
+    IomLevel	go to state 74
+    IodName	go to state 75
+
+
+
+state 221
+
+    ExportDimseObjects  ->  DimseCmd CommandIdentifier .   (rule 59)
+    ExportDimseObjects  ->  DimseCmd CommandIdentifier . IomIod DatasetIdentifier   (rule 60)
+    ExportDimseObjects  ->  DimseCmd CommandIdentifier . IomIod DatasetIdentifier T_PRES_CTX PresentationContextId   (rule 61)
+
+    IOMLEVEL	shift, and go to state 68
+    STRING	shift, and go to state 69
+
+    $default	reduce using rule 59 (ExportDimseObjects)
+
+    IomIod	go to state 296
+    IomLevel	go to state 74
+    IodName	go to state 75
+
+
+
+state 222
+
+    ApplicationEntityFlagCommand  ->  T_APPL_ENTITY STRING STRING .   (rule 78)
+
+    $default	reduce using rule 78 (ApplicationEntityFlagCommand)
+
+
+
+state 223
+
+    ObjectRef2  ->  Command .   (rule 296)
+
+    $default	reduce using rule 296 (ObjectRef2)
+
+
+
+state 224
+
+    ObjectRef2  ->  Dataset .   (rule 297)
+
+    $default	reduce using rule 297 (ObjectRef2)
+
+
+
+state 225
+
+    CompareCommand  ->  T_COMPARE ObjectRef1 TagRef1 ObjectRef2 . TagRef2   (rule 39)
+
+    HEXADECIMAL	shift, and go to state 179
+    STRING	shift, and go to state 180
+
+    AttributeTag	go to state 181
+    TagRef2	go to state 297
+    TagRef	go to state 298
+
+
+
+state 226
+
+    CompareCommand  ->  T_COMPARE_NOT ObjectRef1 TagRef1 ObjectRef2 . TagRef2   (rule 40)
+
+    HEXADECIMAL	shift, and go to state 179
+    STRING	shift, and go to state 180
+
+    AttributeTag	go to state 181
+    TagRef2	go to state 299
+    TagRef	go to state 298
+
+
+
+state 227
+
+    CopyCommand  ->  T_COPY ObjectRef1 TagRef1 ObjectRef2 . TagRef2   (rule 42)
+
+    HEXADECIMAL	shift, and go to state 179
+    STRING	shift, and go to state 180
+
+    AttributeTag	go to state 181
+    TagRef2	go to state 300
+    TagRef	go to state 298
+
+
+
+state 228
+
+    SequenceRef  ->  T_OPEN_BRACKET Dataset TagRef . ItemNumber T_CLOSE_BRACKET   (rule 298)
+
+    '[' 	shift, and go to state 301
+
+    $default	reduce using rule 300 (ItemNumber)
+
+    ItemNumber	go to state 302
+
+
+
+state 229
+
+    SequenceRef  ->  T_OPEN_BRACKET SequenceRef TagRef . ItemNumber T_CLOSE_BRACKET   (rule 299)
+
+    '[' 	shift, and go to state 301
+
+    $default	reduce using rule 300 (ItemNumber)
+
+    ItemNumber	go to state 303
+
+
+
+state 230
+
+    SopList  ->  SopList T_OR SopContents .   (rule 124)
+
+    $default	reduce using rule 124 (SopList)
+
+
+
+state 231
+
+    SopList  ->  SopList T_AND SopContents .   (rule 125)
+
+    $default	reduce using rule 125 (SopList)
+
+
+
+state 232
+
+    AssociateRqParameter  ->  T_PROT_VER . INTEGER   (rule 145)
+
+    INTEGER	shift, and go to state 304
+
+
+
+state 233
+
+    AssociateRqParameter  ->  T_CALLED_AE . STRING   (rule 146)
+
+    STRING	shift, and go to state 305
+
+
+
+state 234
+
+    AssociateRqParameter  ->  T_CALLING_AE . STRING   (rule 147)
+
+    STRING	shift, and go to state 306
+
+
+
+state 235
+
+    AssociateRqParameter  ->  T_APPL_CTX . STRING   (rule 148)
+
+    STRING	shift, and go to state 307
+
+
+
+state 236
+
+    AssociateRqParameter  ->  T_PRES_CTX . AssociateRqPresCtxList   (rule 149)
+
+    T_OPEN_BRACKET	shift, and go to state 308
+
+    AssociateRqPresCtxList	go to state 309
+    AssociateRqPresCtx	go to state 310
+    RqPresCtx	go to state 311
+    VtsRqPresCtx	go to state 312
+
+
+
+state 237
+
+    AssociateRqParameter  ->  T_MAX_LEN . INTEGER   (rule 150)
+
+    INTEGER	shift, and go to state 313
+
+
+
+state 238
+
+    AssociateRqParameter  ->  T_IMPL_CLASS . STRING   (rule 151)
+
+    STRING	shift, and go to state 314
+
+
+
+state 239
+
+    AssociateRqParameter  ->  T_IMPL_VER . STRING   (rule 152)
+
+    STRING	shift, and go to state 315
+
+
+
+state 240
+
+    AssociateRqParameter  ->  T_SOP_EXTEND_NEG . SopClassExtendedList   (rule 153)
+
+    T_OPEN_BRACKET	shift, and go to state 316
+
+    SopClassExtendedList	go to state 317
+    SopClassExtended	go to state 318
+
+
+
+state 241
+
+    AssociateRqParameter  ->  T_SCPSCU_ROLE . ScpScuRoleList   (rule 154)
+
+    T_OPEN_BRACKET	shift, and go to state 319
+
+    ScpScuRoleList	go to state 320
+    ScpScuRole	go to state 321
+
+
+
+state 242
+
+    AssociateRqParameter  ->  T_ASYNC_WINDOW . INTEGER INTEGER   (rule 155)
+
+    INTEGER	shift, and go to state 322
+
+
+
+state 243
+
+    AssociateRqParameter  ->  T_USER_ID_NEG . UserIdentityNegotiation   (rule 156)
+
+    INTEGER	shift, and go to state 323
+    STRING	shift, and go to state 324
+
+    UserIdentityNegotiation	go to state 325
+
+
+
+state 244
+
+    AssociateRqContents  ->  AssociateRq T_OPEN_BRACKET AssociateRqParameterList . T_CLOSE_BRACKET   (rule 142)
+    AssociateRqParameterList  ->  AssociateRqParameterList . AssociateRqParameter   (rule 144)
+
+    T_PROT_VER	shift, and go to state 232
+    T_CALLED_AE	shift, and go to state 233
+    T_CALLING_AE	shift, and go to state 234
+    T_APPL_CTX	shift, and go to state 235
+    T_PRES_CTX	shift, and go to state 236
+    T_MAX_LEN	shift, and go to state 237
+    T_IMPL_CLASS	shift, and go to state 238
+    T_IMPL_VER	shift, and go to state 239
+    T_SOP_EXTEND_NEG	shift, and go to state 240
+    T_SCPSCU_ROLE	shift, and go to state 241
+    T_ASYNC_WINDOW	shift, and go to state 242
+    T_USER_ID_NEG	shift, and go to state 243
+    T_CLOSE_BRACKET	shift, and go to state 326
+
+    AssociateRqParameter	go to state 327
+
+
+
+state 245
+
+    AssociateRqParameterList  ->  AssociateRqParameter .   (rule 143)
+
+    $default	reduce using rule 143 (AssociateRqParameterList)
+
+
+
+state 246
+
+    AssociateAcParameter  ->  T_PROT_VER . INTEGER   (rule 183)
+
+    INTEGER	shift, and go to state 328
+
+
+
+state 247
+
+    AssociateAcParameter  ->  T_CALLED_AE . STRING   (rule 184)
+
+    STRING	shift, and go to state 329
+
+
+
+state 248
+
+    AssociateAcParameter  ->  T_CALLING_AE . STRING   (rule 185)
+
+    STRING	shift, and go to state 330
+
+
+
+state 249
+
+    AssociateAcParameter  ->  T_APPL_CTX . STRING   (rule 186)
+
+    STRING	shift, and go to state 331
+
+
+
+state 250
+
+    AssociateAcParameter  ->  T_PRES_CTX . AssociateAcPresCtxList   (rule 187)
+
+    T_OPEN_BRACKET	shift, and go to state 332
+
+    AssociateAcPresCtxList	go to state 333
+    AssociateAcPresCtx	go to state 334
+    AcPresCtx	go to state 335
+    VtsAcPresCtx	go to state 336
+
+
+
+state 251
+
+    AssociateAcParameter  ->  T_MAX_LEN . INTEGER   (rule 188)
+
+    INTEGER	shift, and go to state 337
+
+
+
+state 252
+
+    AssociateAcParameter  ->  T_IMPL_CLASS . STRING   (rule 189)
+
+    STRING	shift, and go to state 338
+
+
+
+state 253
+
+    AssociateAcParameter  ->  T_IMPL_VER . STRING   (rule 190)
+
+    STRING	shift, and go to state 339
+
+
+
+state 254
+
+    AssociateAcParameter  ->  T_SOP_EXTEND_NEG . SopClassExtendedList   (rule 191)
+
+    T_OPEN_BRACKET	shift, and go to state 316
+
+    SopClassExtendedList	go to state 340
+    SopClassExtended	go to state 318
+
+
+
+state 255
+
+    AssociateAcParameter  ->  T_SCPSCU_ROLE . ScpScuRoleList   (rule 192)
+
+    T_OPEN_BRACKET	shift, and go to state 319
+
+    ScpScuRoleList	go to state 341
+    ScpScuRole	go to state 321
+
+
+
+state 256
+
+    AssociateAcParameter  ->  T_ASYNC_WINDOW . INTEGER INTEGER   (rule 193)
+
+    INTEGER	shift, and go to state 342
+
+
+
+state 257
+
+    AssociateAcContents  ->  AssociateAc T_OPEN_BRACKET AssociateAcParameterList . T_CLOSE_BRACKET   (rule 180)
+    AssociateAcParameterList  ->  AssociateAcParameterList . AssociateAcParameter   (rule 182)
+
+    T_PROT_VER	shift, and go to state 246
+    T_CALLED_AE	shift, and go to state 247
+    T_CALLING_AE	shift, and go to state 248
+    T_APPL_CTX	shift, and go to state 249
+    T_PRES_CTX	shift, and go to state 250
+    T_MAX_LEN	shift, and go to state 251
+    T_IMPL_CLASS	shift, and go to state 252
+    T_IMPL_VER	shift, and go to state 253
+    T_SOP_EXTEND_NEG	shift, and go to state 254
+    T_SCPSCU_ROLE	shift, and go to state 255
+    T_ASYNC_WINDOW	shift, and go to state 256
+    T_CLOSE_BRACKET	shift, and go to state 343
+
+    AssociateAcParameter	go to state 344
+
+
+
+state 258
+
+    AssociateAcParameterList  ->  AssociateAcParameter .   (rule 181)
+
+    $default	reduce using rule 181 (AssociateAcParameterList)
+
+
+
+state 259
+
+    AssociateRjParameter  ->  T_RESULT . INTEGER   (rule 209)
+
+    INTEGER	shift, and go to state 345
+
+
+
+state 260
+
+    AssociateRjParameter  ->  T_SOURCE . INTEGER   (rule 210)
+
+    INTEGER	shift, and go to state 346
+
+
+
+state 261
+
+    AssociateRjParameter  ->  T_REASON . INTEGER   (rule 211)
+
+    INTEGER	shift, and go to state 347
+
+
+
+state 262
+
+    AssociateRjContents  ->  AssociateRj T_OPEN_BRACKET AssociateRjParameterList . T_CLOSE_BRACKET   (rule 206)
+    AssociateRjParameterList  ->  AssociateRjParameterList . AssociateRjParameter   (rule 208)
+
+    T_RESULT	shift, and go to state 259
+    T_SOURCE	shift, and go to state 260
+    T_REASON	shift, and go to state 261
+    T_CLOSE_BRACKET	shift, and go to state 348
+
+    AssociateRjParameter	go to state 349
+
+
+
+state 263
+
+    AssociateRjParameterList  ->  AssociateRjParameter .   (rule 207)
+
+    $default	reduce using rule 207 (AssociateRjParameterList)
+
+
+
+state 264
+
+    AbortRqParameter  ->  T_SOURCE . INTEGER   (rule 218)
+
+    INTEGER	shift, and go to state 350
+
+
+
+state 265
+
+    AbortRqParameter  ->  T_REASON . INTEGER   (rule 219)
+
+    INTEGER	shift, and go to state 351
+
+
+
+state 266
+
+    AbortRqContents  ->  AbortRq T_OPEN_BRACKET AbortRqParameterList . T_CLOSE_BRACKET   (rule 215)
+    AbortRqParameterList  ->  AbortRqParameterList . AbortRqParameter   (rule 217)
+
+    T_SOURCE	shift, and go to state 264
+    T_REASON	shift, and go to state 265
+    T_CLOSE_BRACKET	shift, and go to state 352
+
+    AbortRqParameter	go to state 353
+
+
+
+state 267
+
+    AbortRqParameterList  ->  AbortRqParameter .   (rule 216)
+
+    $default	reduce using rule 216 (AbortRqParameterList)
+
+
+
+state 268
+
+    Attribute  ->  T_OPEN_BRACKET . AttributeIdentification ',' AttributeValue T_CLOSE_BRACKET   (rule 252)
+    Attribute  ->  T_OPEN_BRACKET . TagRef T_CLOSE_BRACKET   (rule 253)
+
+    HEXADECIMAL	shift, and go to state 179
+    STRING	shift, and go to state 180
+
+    AttributeIdentification	go to state 354
+    AttributeTag	go to state 355
+    TagRef	go to state 356
+
+
+
+state 269
+
+    CommandContents  ->  CommandRef T_OPEN_BRACKET T_CLOSE_BRACKET .   (rule 231)
+
+    $default	reduce using rule 231 (CommandContents)
+
+
+
+state 270
+
+    CommandContents  ->  CommandRef T_OPEN_BRACKET AttributeList . T_CLOSE_BRACKET   (rule 232)
+    AttributeList  ->  AttributeList . Attribute   (rule 251)
+
+    T_OPEN_BRACKET	shift, and go to state 268
+    T_CLOSE_BRACKET	shift, and go to state 357
+
+    Attribute	go to state 358
+
+
+
+state 271
+
+    AttributeList  ->  Attribute .   (rule 250)
+
+    $default	reduce using rule 250 (AttributeList)
+
+
+
+state 272
+
+    PresentationContextId  ->  T_OPEN_BRACKET . HEXADECIMAL T_CLOSE_BRACKET   (rule 107)
+    PresentationContextId  ->  T_OPEN_BRACKET . INTEGER T_CLOSE_BRACKET   (rule 108)
+
+    HEXADECIMAL	shift, and go to state 359
+    INTEGER	shift, and go to state 360
+
+
+
+state 273
+
+    SendList  ->  SopContents T_PRES_CTX PresentationContextId .   (rule 106)
+
+    $default	reduce using rule 106 (SendList)
+
+
+
+state 274
+
+    DatasetContents  ->  DatasetRef T_OPEN_BRACKET T_CLOSE_BRACKET .   (rule 239)
+
+    $default	reduce using rule 239 (DatasetContents)
+
+
+
+state 275
+
+    DatasetContents  ->  DatasetRef T_OPEN_BRACKET AttributeList . T_CLOSE_BRACKET   (rule 240)
+    AttributeList  ->  AttributeList . Attribute   (rule 251)
+
+    T_OPEN_BRACKET	shift, and go to state 268
+    T_CLOSE_BRACKET	shift, and go to state 361
+
+    Attribute	go to state 358
+
+
+
+state 276
+
+    FilePreamble  ->  T_FILE_PREAMBLE . STRING   (rule 310)
+
+    STRING	shift, and go to state 362
+
+
+
+state 277
+
+    DicomPrefix  ->  T_DICOM_PREFIX . STRING   (rule 311)
+
+    STRING	shift, and go to state 363
+
+
+
+state 278
+
+    FileTransferSyntax  ->  T_TRANSFER_SYNTAX . TransferSyntax   (rule 312)
+
+    STRING	shift, and go to state 364
+
+    TransferSyntax	go to state 365
+
+
+
+state 279
+
+    FileheadContents  ->  Filehead T_OPEN_BRACKET FileheadParameterList . T_CLOSE_BRACKET   (rule 303)
+    FileheadParameterList  ->  FileheadParameterList . FileheadParameter   (rule 306)
+
+    T_FILE_PREAMBLE	shift, and go to state 276
+    T_DICOM_PREFIX	shift, and go to state 277
+    T_TRANSFER_SYNTAX	shift, and go to state 278
+    T_CLOSE_BRACKET	shift, and go to state 366
+
+    FileheadParameter	go to state 367
+    FilePreamble	go to state 281
+    DicomPrefix	go to state 282
+    FileTransferSyntax	go to state 283
+
+
+
+state 280
+
+    FileheadParameterList  ->  FileheadParameter .   (rule 305)
+
+    $default	reduce using rule 305 (FileheadParameterList)
+
+
+
+state 281
+
+    FileheadParameter  ->  FilePreamble .   (rule 307)
+
+    $default	reduce using rule 307 (FileheadParameter)
+
+
+
+state 282
+
+    FileheadParameter  ->  DicomPrefix .   (rule 308)
+
+    $default	reduce using rule 308 (FileheadParameter)
+
+
+
+state 283
+
+    FileheadParameter  ->  FileTransferSyntax .   (rule 309)
+
+    $default	reduce using rule 309 (FileheadParameter)
+
+
+
+state 284
+
+    DatasetTrailingPadding  ->  T_DATASET_TRAILING_PADDING . T_YES   (rule 321)
+    DatasetTrailingPadding  ->  T_DATASET_TRAILING_PADDING . T_NO   (rule 322)
+
+    T_YES	shift, and go to state 368
+    T_NO	shift, and go to state 369
+
+
+
+state 285
+
+    SectorSize  ->  T_SECTOR_SIZE . INTEGER   (rule 323)
+
+    INTEGER	shift, and go to state 370
+
+
+
+state 286
+
+    PaddingValue  ->  T_PADDING_VALUE . INTEGER   (rule 324)
+
+    INTEGER	shift, and go to state 371
+
+
+
+state 287
+
+    FiletailContents  ->  Filetail T_OPEN_BRACKET FiletailParameterList . T_CLOSE_BRACKET   (rule 314)
+    FiletailParameterList  ->  FiletailParameterList . FiletailParameter   (rule 317)
+
+    T_DATASET_TRAILING_PADDING	shift, and go to state 284
+    T_SECTOR_SIZE	shift, and go to state 285
+    T_PADDING_VALUE	shift, and go to state 286
+    T_CLOSE_BRACKET	shift, and go to state 372
+
+    FiletailParameter	go to state 373
+    DatasetTrailingPadding	go to state 289
+    SectorSize	go to state 290
+    PaddingValue	go to state 291
+
+
+
+state 288
+
+    FiletailParameterList  ->  FiletailParameter .   (rule 316)
+
+    $default	reduce using rule 316 (FiletailParameterList)
+
+
+
+state 289
+
+    FiletailParameter  ->  DatasetTrailingPadding .   (rule 318)
+
+    $default	reduce using rule 318 (FiletailParameter)
+
+
+
+state 290
+
+    FiletailParameter  ->  SectorSize .   (rule 319)
+
+    $default	reduce using rule 319 (FiletailParameter)
+
+
+
+state 291
+
+    FiletailParameter  ->  PaddingValue .   (rule 320)
+
+    $default	reduce using rule 320 (FiletailParameter)
+
+
+
+state 292
+
+    ReferenceSopList  ->  ReferenceSopList T_OR . ReferenceSopRef   (rule 119)
+
+    COMMANDFIELD	shift, and go to state 67
+
+    ReferenceSopRef	go to state 374
+    DimseCmd	go to state 215
+
+
+
+state 293
+
+    ReferenceSopRef  ->  DimseCmd CommandIdentifier .   (rule 120)
+    ReferenceSopRef  ->  DimseCmd CommandIdentifier . IomIod DatasetIdentifier   (rule 121)
+
+    IOMLEVEL	shift, and go to state 68
+    STRING	shift, and go to state 69
+
+    $default	reduce using rule 120 (ReferenceSopRef)
+
+    IomIod	go to state 375
+    IomLevel	go to state 74
+    IodName	go to state 75
+
+
+
+state 294
+
+    SourceSopRef  ->  DimseCmd CommandIdentifier IomIod . DatasetIdentifier   (rule 116)
+
+    IDENTIFIER	shift, and go to state 185
+    STRING	shift, and go to state 186
+
+    DatasetIdentifier	go to state 376
+
+
+
+state 295
+
+    ImportList  ->  DimseCmd CommandIdentifier IomIod . DatasetIdentifier   (rule 64)
+
+    IDENTIFIER	shift, and go to state 185
+    STRING	shift, and go to state 186
+
+    DatasetIdentifier	go to state 377
+
+
+
+state 296
+
+    ExportDimseObjects  ->  DimseCmd CommandIdentifier IomIod . DatasetIdentifier   (rule 60)
+    ExportDimseObjects  ->  DimseCmd CommandIdentifier IomIod . DatasetIdentifier T_PRES_CTX PresentationContextId   (rule 61)
+
+    IDENTIFIER	shift, and go to state 185
+    STRING	shift, and go to state 186
+
+    DatasetIdentifier	go to state 378
+
+
+
+state 297
+
+    CompareCommand  ->  T_COMPARE ObjectRef1 TagRef1 ObjectRef2 TagRef2 .   (rule 39)
+
+    $default	reduce using rule 39 (CompareCommand)
+
+
+
+state 298
+
+    TagRef2  ->  TagRef .   (rule 291)
+
+    $default	reduce using rule 291 (TagRef2)
+
+
+
+state 299
+
+    CompareCommand  ->  T_COMPARE_NOT ObjectRef1 TagRef1 ObjectRef2 TagRef2 .   (rule 40)
+
+    $default	reduce using rule 40 (CompareCommand)
+
+
+
+state 300
+
+    CopyCommand  ->  T_COPY ObjectRef1 TagRef1 ObjectRef2 TagRef2 .   (rule 42)
+
+    $default	reduce using rule 42 (CopyCommand)
+
+
+
+state 301
+
+    ItemNumber  ->  '[' . INTEGER ']'   (rule 301)
+
+    INTEGER	shift, and go to state 379
+
+
+
+state 302
+
+    SequenceRef  ->  T_OPEN_BRACKET Dataset TagRef ItemNumber . T_CLOSE_BRACKET   (rule 298)
+
+    T_CLOSE_BRACKET	shift, and go to state 380
+
+
+
+state 303
+
+    SequenceRef  ->  T_OPEN_BRACKET SequenceRef TagRef ItemNumber . T_CLOSE_BRACKET   (rule 299)
+
+    T_CLOSE_BRACKET	shift, and go to state 381
+
+
+
+state 304
+
+    AssociateRqParameter  ->  T_PROT_VER INTEGER .   (rule 145)
+
+    $default	reduce using rule 145 (AssociateRqParameter)
+
+
+
+state 305
+
+    AssociateRqParameter  ->  T_CALLED_AE STRING .   (rule 146)
+
+    $default	reduce using rule 146 (AssociateRqParameter)
+
+
+
+state 306
+
+    AssociateRqParameter  ->  T_CALLING_AE STRING .   (rule 147)
+
+    $default	reduce using rule 147 (AssociateRqParameter)
+
+
+
+state 307
+
+    AssociateRqParameter  ->  T_APPL_CTX STRING .   (rule 148)
+
+    $default	reduce using rule 148 (AssociateRqParameter)
+
+
+
+state 308
+
+    RqPresCtx  ->  T_OPEN_BRACKET . STRING ',' RqTransferSyntaxList T_CLOSE_BRACKET   (rule 162)
+    VtsRqPresCtx  ->  T_OPEN_BRACKET . INTEGER ',' STRING ',' INTEGER ',' INTEGER ',' RqTransferSyntaxList T_CLOSE_BRACKET   (rule 163)
+
+    INTEGER	shift, and go to state 382
+    STRING	shift, and go to state 383
+
+
+
+state 309
+
+    AssociateRqParameter  ->  T_PRES_CTX AssociateRqPresCtxList .   (rule 149)
+    AssociateRqPresCtxList  ->  AssociateRqPresCtxList . AssociateRqPresCtx   (rule 158)
+    AssociateRqPresCtxList  ->  AssociateRqPresCtxList . ',' AssociateRqPresCtx   (rule 159)
+
+    T_OPEN_BRACKET	shift, and go to state 308
+    ',' 	shift, and go to state 384
+
+    $default	reduce using rule 149 (AssociateRqParameter)
+
+    AssociateRqPresCtx	go to state 385
+    RqPresCtx	go to state 311
+    VtsRqPresCtx	go to state 312
+
+
+
+state 310
+
+    AssociateRqPresCtxList  ->  AssociateRqPresCtx .   (rule 157)
+
+    $default	reduce using rule 157 (AssociateRqPresCtxList)
+
+
+
+state 311
+
+    AssociateRqPresCtx  ->  RqPresCtx .   (rule 160)
+
+    $default	reduce using rule 160 (AssociateRqPresCtx)
+
+
+
+state 312
+
+    AssociateRqPresCtx  ->  VtsRqPresCtx .   (rule 161)
+
+    $default	reduce using rule 161 (AssociateRqPresCtx)
+
+
+
+state 313
+
+    AssociateRqParameter  ->  T_MAX_LEN INTEGER .   (rule 150)
+
+    $default	reduce using rule 150 (AssociateRqParameter)
+
+
+
+state 314
+
+    AssociateRqParameter  ->  T_IMPL_CLASS STRING .   (rule 151)
+
+    $default	reduce using rule 151 (AssociateRqParameter)
+
+
+
+state 315
+
+    AssociateRqParameter  ->  T_IMPL_VER STRING .   (rule 152)
+
+    $default	reduce using rule 152 (AssociateRqParameter)
+
+
+
+state 316
+
+    SopClassExtended  ->  T_OPEN_BRACKET . STRING ',' ApplicationInfoList T_CLOSE_BRACKET   (rule 169)
+
+    STRING	shift, and go to state 386
+
+
+
+state 317
+
+    AssociateRqParameter  ->  T_SOP_EXTEND_NEG SopClassExtendedList .   (rule 153)
+    SopClassExtendedList  ->  SopClassExtendedList . SopClassExtended   (rule 168)
+
+    T_OPEN_BRACKET	shift, and go to state 316
+
+    $default	reduce using rule 153 (AssociateRqParameter)
+
+    SopClassExtended	go to state 387
+
+
+
+state 318
+
+    SopClassExtendedList  ->  SopClassExtended .   (rule 167)
+
+    $default	reduce using rule 167 (SopClassExtendedList)
+
+
+
+state 319
+
+    ScpScuRole  ->  T_OPEN_BRACKET . STRING ',' INTEGER ',' INTEGER T_CLOSE_BRACKET   (rule 175)
+
+    STRING	shift, and go to state 388
+
+
+
+state 320
+
+    AssociateRqParameter  ->  T_SCPSCU_ROLE ScpScuRoleList .   (rule 154)
+    ScpScuRoleList  ->  ScpScuRoleList . ScpScuRole   (rule 174)
+
+    T_OPEN_BRACKET	shift, and go to state 319
+
+    $default	reduce using rule 154 (AssociateRqParameter)
+
+    ScpScuRole	go to state 389
+
+
+
+state 321
+
+    ScpScuRoleList  ->  ScpScuRole .   (rule 173)
+
+    $default	reduce using rule 173 (ScpScuRoleList)
+
+
+
+state 322
+
+    AssociateRqParameter  ->  T_ASYNC_WINDOW INTEGER . INTEGER   (rule 155)
+
+    INTEGER	shift, and go to state 390
+
+
+
+state 323
+
+    UserIdentityNegotiation  ->  INTEGER . INTEGER STRING   (rule 176)
+    UserIdentityNegotiation  ->  INTEGER . INTEGER STRING STRING   (rule 177)
+
+    INTEGER	shift, and go to state 391
+
+
+
+state 324
+
+    UserIdentityNegotiation  ->  STRING .   (rule 178)
+
+    $default	reduce using rule 178 (UserIdentityNegotiation)
+
+
+
+state 325
+
+    AssociateRqParameter  ->  T_USER_ID_NEG UserIdentityNegotiation .   (rule 156)
+
+    $default	reduce using rule 156 (AssociateRqParameter)
+
+
+
+state 326
+
+    AssociateRqContents  ->  AssociateRq T_OPEN_BRACKET AssociateRqParameterList T_CLOSE_BRACKET .   (rule 142)
+
+    $default	reduce using rule 142 (AssociateRqContents)
+
+
+
+state 327
+
+    AssociateRqParameterList  ->  AssociateRqParameterList AssociateRqParameter .   (rule 144)
+
+    $default	reduce using rule 144 (AssociateRqParameterList)
+
+
+
+state 328
+
+    AssociateAcParameter  ->  T_PROT_VER INTEGER .   (rule 183)
+
+    $default	reduce using rule 183 (AssociateAcParameter)
+
+
+
+state 329
+
+    AssociateAcParameter  ->  T_CALLED_AE STRING .   (rule 184)
+
+    $default	reduce using rule 184 (AssociateAcParameter)
+
+
+
+state 330
+
+    AssociateAcParameter  ->  T_CALLING_AE STRING .   (rule 185)
+
+    $default	reduce using rule 185 (AssociateAcParameter)
+
+
+
+state 331
+
+    AssociateAcParameter  ->  T_APPL_CTX STRING .   (rule 186)
+
+    $default	reduce using rule 186 (AssociateAcParameter)
+
+
+
+state 332
+
+    AcPresCtx  ->  T_OPEN_BRACKET . STRING ',' INTEGER AcTransferSyntax T_CLOSE_BRACKET   (rule 199)
+    VtsAcPresCtx  ->  T_OPEN_BRACKET . INTEGER ',' INTEGER ',' STRING MoreAcPresentationContext T_CLOSE_BRACKET   (rule 202)
+
+    INTEGER	shift, and go to state 392
+    STRING	shift, and go to state 393
+
+
+
+state 333
+
+    AssociateAcParameter  ->  T_PRES_CTX AssociateAcPresCtxList .   (rule 187)
+    AssociateAcPresCtxList  ->  AssociateAcPresCtxList . AssociateAcPresCtx   (rule 195)
+    AssociateAcPresCtxList  ->  AssociateAcPresCtxList . ',' AssociateAcPresCtx   (rule 196)
+
+    T_OPEN_BRACKET	shift, and go to state 332
+    ',' 	shift, and go to state 394
+
+    $default	reduce using rule 187 (AssociateAcParameter)
+
+    AssociateAcPresCtx	go to state 395
+    AcPresCtx	go to state 335
+    VtsAcPresCtx	go to state 336
+
+
+
+state 334
+
+    AssociateAcPresCtxList  ->  AssociateAcPresCtx .   (rule 194)
+
+    $default	reduce using rule 194 (AssociateAcPresCtxList)
+
+
+
+state 335
+
+    AssociateAcPresCtx  ->  AcPresCtx .   (rule 197)
+
+    $default	reduce using rule 197 (AssociateAcPresCtx)
+
+
+
+state 336
+
+    AssociateAcPresCtx  ->  VtsAcPresCtx .   (rule 198)
+
+    $default	reduce using rule 198 (AssociateAcPresCtx)
+
+
+
+state 337
+
+    AssociateAcParameter  ->  T_MAX_LEN INTEGER .   (rule 188)
+
+    $default	reduce using rule 188 (AssociateAcParameter)
+
+
+
+state 338
+
+    AssociateAcParameter  ->  T_IMPL_CLASS STRING .   (rule 189)
+
+    $default	reduce using rule 189 (AssociateAcParameter)
+
+
+
+state 339
+
+    AssociateAcParameter  ->  T_IMPL_VER STRING .   (rule 190)
+
+    $default	reduce using rule 190 (AssociateAcParameter)
+
+
+
+state 340
+
+    SopClassExtendedList  ->  SopClassExtendedList . SopClassExtended   (rule 168)
+    AssociateAcParameter  ->  T_SOP_EXTEND_NEG SopClassExtendedList .   (rule 191)
+
+    T_OPEN_BRACKET	shift, and go to state 316
+
+    $default	reduce using rule 191 (AssociateAcParameter)
+
+    SopClassExtended	go to state 387
+
+
+
+state 341
+
+    ScpScuRoleList  ->  ScpScuRoleList . ScpScuRole   (rule 174)
+    AssociateAcParameter  ->  T_SCPSCU_ROLE ScpScuRoleList .   (rule 192)
+
+    T_OPEN_BRACKET	shift, and go to state 319
+
+    $default	reduce using rule 192 (AssociateAcParameter)
+
+    ScpScuRole	go to state 389
+
+
+
+state 342
+
+    AssociateAcParameter  ->  T_ASYNC_WINDOW INTEGER . INTEGER   (rule 193)
+
+    INTEGER	shift, and go to state 396
+
+
+
+state 343
+
+    AssociateAcContents  ->  AssociateAc T_OPEN_BRACKET AssociateAcParameterList T_CLOSE_BRACKET .   (rule 180)
+
+    $default	reduce using rule 180 (AssociateAcContents)
+
+
+
+state 344
+
+    AssociateAcParameterList  ->  AssociateAcParameterList AssociateAcParameter .   (rule 182)
+
+    $default	reduce using rule 182 (AssociateAcParameterList)
+
+
+
+state 345
+
+    AssociateRjParameter  ->  T_RESULT INTEGER .   (rule 209)
+
+    $default	reduce using rule 209 (AssociateRjParameter)
+
+
+
+state 346
+
+    AssociateRjParameter  ->  T_SOURCE INTEGER .   (rule 210)
+
+    $default	reduce using rule 210 (AssociateRjParameter)
+
+
+
+state 347
+
+    AssociateRjParameter  ->  T_REASON INTEGER .   (rule 211)
+
+    $default	reduce using rule 211 (AssociateRjParameter)
+
+
+
+state 348
+
+    AssociateRjContents  ->  AssociateRj T_OPEN_BRACKET AssociateRjParameterList T_CLOSE_BRACKET .   (rule 206)
+
+    $default	reduce using rule 206 (AssociateRjContents)
+
+
+
+state 349
+
+    AssociateRjParameterList  ->  AssociateRjParameterList AssociateRjParameter .   (rule 208)
+
+    $default	reduce using rule 208 (AssociateRjParameterList)
+
+
+
+state 350
+
+    AbortRqParameter  ->  T_SOURCE INTEGER .   (rule 218)
+
+    $default	reduce using rule 218 (AbortRqParameter)
+
+
+
+state 351
+
+    AbortRqParameter  ->  T_REASON INTEGER .   (rule 219)
+
+    $default	reduce using rule 219 (AbortRqParameter)
+
+
+
+state 352
+
+    AbortRqContents  ->  AbortRq T_OPEN_BRACKET AbortRqParameterList T_CLOSE_BRACKET .   (rule 215)
+
+    $default	reduce using rule 215 (AbortRqContents)
+
+
+
+state 353
+
+    AbortRqParameterList  ->  AbortRqParameterList AbortRqParameter .   (rule 217)
+
+    $default	reduce using rule 217 (AbortRqParameterList)
+
+
+
+state 354
+
+    Attribute  ->  T_OPEN_BRACKET AttributeIdentification . ',' AttributeValue T_CLOSE_BRACKET   (rule 252)
+
+    ',' 	shift, and go to state 397
+
+
+
+state 355
+
+    AttributeIdentification  ->  AttributeTag .   (rule 254)
+    TagRef  ->  AttributeTag .   (rule 292)
+
+    T_CLOSE_BRACKET	reduce using rule 292 (TagRef)
+    $default	reduce using rule 254 (AttributeIdentification)
+
+
+
+state 356
+
+    Attribute  ->  T_OPEN_BRACKET TagRef . T_CLOSE_BRACKET   (rule 253)
+
+    T_CLOSE_BRACKET	shift, and go to state 398
+
+
+
+state 357
+
+    CommandContents  ->  CommandRef T_OPEN_BRACKET AttributeList T_CLOSE_BRACKET .   (rule 232)
+
+    $default	reduce using rule 232 (CommandContents)
+
+
+
+state 358
+
+    AttributeList  ->  AttributeList Attribute .   (rule 251)
+
+    $default	reduce using rule 251 (AttributeList)
+
+
+
+state 359
+
+    PresentationContextId  ->  T_OPEN_BRACKET HEXADECIMAL . T_CLOSE_BRACKET   (rule 107)
+
+    T_CLOSE_BRACKET	shift, and go to state 399
+
+
+
+state 360
+
+    PresentationContextId  ->  T_OPEN_BRACKET INTEGER . T_CLOSE_BRACKET   (rule 108)
+
+    T_CLOSE_BRACKET	shift, and go to state 400
+
+
+
+state 361
+
+    DatasetContents  ->  DatasetRef T_OPEN_BRACKET AttributeList T_CLOSE_BRACKET .   (rule 240)
+
+    $default	reduce using rule 240 (DatasetContents)
+
+
+
+state 362
+
+    FilePreamble  ->  T_FILE_PREAMBLE STRING .   (rule 310)
+
+    $default	reduce using rule 310 (FilePreamble)
+
+
+
+state 363
+
+    DicomPrefix  ->  T_DICOM_PREFIX STRING .   (rule 311)
+
+    $default	reduce using rule 311 (DicomPrefix)
+
+
+
+state 364
+
+    TransferSyntax  ->  STRING .   (rule 166)
+
+    $default	reduce using rule 166 (TransferSyntax)
+
+
+
+state 365
+
+    FileTransferSyntax  ->  T_TRANSFER_SYNTAX TransferSyntax .   (rule 312)
+
+    $default	reduce using rule 312 (FileTransferSyntax)
+
+
+
+state 366
+
+    FileheadContents  ->  Filehead T_OPEN_BRACKET FileheadParameterList T_CLOSE_BRACKET .   (rule 303)
+
+    $default	reduce using rule 303 (FileheadContents)
+
+
+
+state 367
+
+    FileheadParameterList  ->  FileheadParameterList FileheadParameter .   (rule 306)
+
+    $default	reduce using rule 306 (FileheadParameterList)
+
+
+
+state 368
+
+    DatasetTrailingPadding  ->  T_DATASET_TRAILING_PADDING T_YES .   (rule 321)
+
+    $default	reduce using rule 321 (DatasetTrailingPadding)
+
+
+
+state 369
+
+    DatasetTrailingPadding  ->  T_DATASET_TRAILING_PADDING T_NO .   (rule 322)
+
+    $default	reduce using rule 322 (DatasetTrailingPadding)
+
+
+
+state 370
+
+    SectorSize  ->  T_SECTOR_SIZE INTEGER .   (rule 323)
+
+    $default	reduce using rule 323 (SectorSize)
+
+
+
+state 371
+
+    PaddingValue  ->  T_PADDING_VALUE INTEGER .   (rule 324)
+
+    $default	reduce using rule 324 (PaddingValue)
+
+
+
+state 372
+
+    FiletailContents  ->  Filetail T_OPEN_BRACKET FiletailParameterList T_CLOSE_BRACKET .   (rule 314)
+
+    $default	reduce using rule 314 (FiletailContents)
+
+
+
+state 373
+
+    FiletailParameterList  ->  FiletailParameterList FiletailParameter .   (rule 317)
+
+    $default	reduce using rule 317 (FiletailParameterList)
+
+
+
+state 374
+
+    ReferenceSopList  ->  ReferenceSopList T_OR ReferenceSopRef .   (rule 119)
+
+    $default	reduce using rule 119 (ReferenceSopList)
+
+
+
+state 375
+
+    ReferenceSopRef  ->  DimseCmd CommandIdentifier IomIod . DatasetIdentifier   (rule 121)
+
+    IDENTIFIER	shift, and go to state 185
+    STRING	shift, and go to state 186
+
+    DatasetIdentifier	go to state 401
+
+
+
+state 376
+
+    SourceSopRef  ->  DimseCmd CommandIdentifier IomIod DatasetIdentifier .   (rule 116)
+
+    $default	reduce using rule 116 (SourceSopRef)
+
+
+
+state 377
+
+    ImportList  ->  DimseCmd CommandIdentifier IomIod DatasetIdentifier .   (rule 64)
+
+    $default	reduce using rule 64 (ImportList)
+
+
+
+state 378
+
+    ExportDimseObjects  ->  DimseCmd CommandIdentifier IomIod DatasetIdentifier .   (rule 60)
+    ExportDimseObjects  ->  DimseCmd CommandIdentifier IomIod DatasetIdentifier . T_PRES_CTX PresentationContextId   (rule 61)
+
+    T_PRES_CTX	shift, and go to state 402
+
+    $default	reduce using rule 60 (ExportDimseObjects)
+
+
+
+state 379
+
+    ItemNumber  ->  '[' INTEGER . ']'   (rule 301)
+
+    ']' 	shift, and go to state 403
+
+
+
+state 380
+
+    SequenceRef  ->  T_OPEN_BRACKET Dataset TagRef ItemNumber T_CLOSE_BRACKET .   (rule 298)
+
+    $default	reduce using rule 298 (SequenceRef)
+
+
+
+state 381
+
+    SequenceRef  ->  T_OPEN_BRACKET SequenceRef TagRef ItemNumber T_CLOSE_BRACKET .   (rule 299)
+
+    $default	reduce using rule 299 (SequenceRef)
+
+
+
+state 382
+
+    VtsRqPresCtx  ->  T_OPEN_BRACKET INTEGER . ',' STRING ',' INTEGER ',' INTEGER ',' RqTransferSyntaxList T_CLOSE_BRACKET   (rule 163)
+
+    ',' 	shift, and go to state 404
+
+
+
+state 383
+
+    RqPresCtx  ->  T_OPEN_BRACKET STRING . ',' RqTransferSyntaxList T_CLOSE_BRACKET   (rule 162)
+
+    ',' 	shift, and go to state 405
+
+
+
+state 384
+
+    AssociateRqPresCtxList  ->  AssociateRqPresCtxList ',' . AssociateRqPresCtx   (rule 159)
+
+    T_OPEN_BRACKET	shift, and go to state 308
+
+    AssociateRqPresCtx	go to state 406
+    RqPresCtx	go to state 311
+    VtsRqPresCtx	go to state 312
+
+
+
+state 385
+
+    AssociateRqPresCtxList  ->  AssociateRqPresCtxList AssociateRqPresCtx .   (rule 158)
+
+    $default	reduce using rule 158 (AssociateRqPresCtxList)
+
+
+
+state 386
+
+    SopClassExtended  ->  T_OPEN_BRACKET STRING . ',' ApplicationInfoList T_CLOSE_BRACKET   (rule 169)
+
+    ',' 	shift, and go to state 407
+
+
+
+state 387
+
+    SopClassExtendedList  ->  SopClassExtendedList SopClassExtended .   (rule 168)
+
+    $default	reduce using rule 168 (SopClassExtendedList)
+
+
+
+state 388
+
+    ScpScuRole  ->  T_OPEN_BRACKET STRING . ',' INTEGER ',' INTEGER T_CLOSE_BRACKET   (rule 175)
+
+    ',' 	shift, and go to state 408
+
+
+
+state 389
+
+    ScpScuRoleList  ->  ScpScuRoleList ScpScuRole .   (rule 174)
+
+    $default	reduce using rule 174 (ScpScuRoleList)
+
+
+
+state 390
+
+    AssociateRqParameter  ->  T_ASYNC_WINDOW INTEGER INTEGER .   (rule 155)
+
+    $default	reduce using rule 155 (AssociateRqParameter)
+
+
+
+state 391
+
+    UserIdentityNegotiation  ->  INTEGER INTEGER . STRING   (rule 176)
+    UserIdentityNegotiation  ->  INTEGER INTEGER . STRING STRING   (rule 177)
+
+    STRING	shift, and go to state 409
+
+
+
+state 392
+
+    VtsAcPresCtx  ->  T_OPEN_BRACKET INTEGER . ',' INTEGER ',' STRING MoreAcPresentationContext T_CLOSE_BRACKET   (rule 202)
+
+    ',' 	shift, and go to state 410
+
+
+
+state 393
+
+    AcPresCtx  ->  T_OPEN_BRACKET STRING . ',' INTEGER AcTransferSyntax T_CLOSE_BRACKET   (rule 199)
+
+    ',' 	shift, and go to state 411
+
+
+
+state 394
+
+    AssociateAcPresCtxList  ->  AssociateAcPresCtxList ',' . AssociateAcPresCtx   (rule 196)
+
+    T_OPEN_BRACKET	shift, and go to state 332
+
+    AssociateAcPresCtx	go to state 412
+    AcPresCtx	go to state 335
+    VtsAcPresCtx	go to state 336
+
+
+
+state 395
+
+    AssociateAcPresCtxList  ->  AssociateAcPresCtxList AssociateAcPresCtx .   (rule 195)
+
+    $default	reduce using rule 195 (AssociateAcPresCtxList)
+
+
+
+state 396
+
+    AssociateAcParameter  ->  T_ASYNC_WINDOW INTEGER INTEGER .   (rule 193)
+
+    $default	reduce using rule 193 (AssociateAcParameter)
+
+
+
+state 397
+
+    Attribute  ->  T_OPEN_BRACKET AttributeIdentification ',' . AttributeValue T_CLOSE_BRACKET   (rule 252)
+
+    T_SQ	shift, and go to state 413
+    T_OPEN_BRACKET	shift, and go to state 414
+    VR  	shift, and go to state 415
+    '[' 	shift, and go to state 416
+
+    $default	reduce using rule 274 (OptionalVR)
+
+    AttributeValue	go to state 417
+    SequenceValue	go to state 418
+    SequenceVR	go to state 419
+    OtherValue	go to state 420
+    OptionalVR	go to state 421
+    AttributeVR	go to state 422
+
+
+
+state 398
+
+    Attribute  ->  T_OPEN_BRACKET TagRef T_CLOSE_BRACKET .   (rule 253)
+
+    $default	reduce using rule 253 (Attribute)
+
+
+
+state 399
+
+    PresentationContextId  ->  T_OPEN_BRACKET HEXADECIMAL T_CLOSE_BRACKET .   (rule 107)
+
+    $default	reduce using rule 107 (PresentationContextId)
+
+
+
+state 400
+
+    PresentationContextId  ->  T_OPEN_BRACKET INTEGER T_CLOSE_BRACKET .   (rule 108)
+
+    $default	reduce using rule 108 (PresentationContextId)
+
+
+
+state 401
+
+    ReferenceSopRef  ->  DimseCmd CommandIdentifier IomIod DatasetIdentifier .   (rule 121)
+
+    $default	reduce using rule 121 (ReferenceSopRef)
+
+
+
+state 402
+
+    ExportDimseObjects  ->  DimseCmd CommandIdentifier IomIod DatasetIdentifier T_PRES_CTX . PresentationContextId   (rule 61)
+
+    T_OPEN_BRACKET	shift, and go to state 272
+
+    PresentationContextId	go to state 423
+
+
+
+state 403
+
+    ItemNumber  ->  '[' INTEGER ']' .   (rule 301)
+
+    $default	reduce using rule 301 (ItemNumber)
+
+
+
+state 404
+
+    VtsRqPresCtx  ->  T_OPEN_BRACKET INTEGER ',' . STRING ',' INTEGER ',' INTEGER ',' RqTransferSyntaxList T_CLOSE_BRACKET   (rule 163)
+
+    STRING	shift, and go to state 424
+
+
+
+state 405
+
+    RqPresCtx  ->  T_OPEN_BRACKET STRING ',' . RqTransferSyntaxList T_CLOSE_BRACKET   (rule 162)
+
+    STRING	shift, and go to state 364
+
+    RqTransferSyntaxList	go to state 425
+    TransferSyntax	go to state 426
+
+
+
+state 406
+
+    AssociateRqPresCtxList  ->  AssociateRqPresCtxList ',' AssociateRqPresCtx .   (rule 159)
+
+    $default	reduce using rule 159 (AssociateRqPresCtxList)
+
+
+
+state 407
+
+    SopClassExtended  ->  T_OPEN_BRACKET STRING ',' . ApplicationInfoList T_CLOSE_BRACKET   (rule 169)
+
+    INTEGER	shift, and go to state 427
+
+    ApplicationInfoList	go to state 428
+    ApplicationInfoByte	go to state 429
+
+
+
+state 408
+
+    ScpScuRole  ->  T_OPEN_BRACKET STRING ',' . INTEGER ',' INTEGER T_CLOSE_BRACKET   (rule 175)
+
+    INTEGER	shift, and go to state 430
+
+
+
+state 409
+
+    UserIdentityNegotiation  ->  INTEGER INTEGER STRING .   (rule 176)
+    UserIdentityNegotiation  ->  INTEGER INTEGER STRING . STRING   (rule 177)
+
+    STRING	shift, and go to state 431
+
+    $default	reduce using rule 176 (UserIdentityNegotiation)
+
+
+
+state 410
+
+    VtsAcPresCtx  ->  T_OPEN_BRACKET INTEGER ',' . INTEGER ',' STRING MoreAcPresentationContext T_CLOSE_BRACKET   (rule 202)
+
+    INTEGER	shift, and go to state 432
+
+
+
+state 411
+
+    AcPresCtx  ->  T_OPEN_BRACKET STRING ',' . INTEGER AcTransferSyntax T_CLOSE_BRACKET   (rule 199)
+
+    INTEGER	shift, and go to state 433
+
+
+
+state 412
+
+    AssociateAcPresCtxList  ->  AssociateAcPresCtxList ',' AssociateAcPresCtx .   (rule 196)
+
+    $default	reduce using rule 196 (AssociateAcPresCtxList)
+
+
+
+state 413
+
+    SequenceVR  ->  T_SQ .   (rule 259)
+
+    $default	reduce using rule 259 (SequenceVR)
+
+
+
+state 414
+
+    AttributeVR  ->  T_OPEN_BRACKET . VR T_CLOSE_BRACKET   (rule 278)
+    AttributeVR  ->  T_OPEN_BRACKET . '[' VR ']' T_CLOSE_BRACKET   (rule 279)
+    AttributeVR  ->  T_OPEN_BRACKET . VR '?' T_CLOSE_BRACKET   (rule 280)
+    AttributeVR  ->  T_OPEN_BRACKET . '[' VR ']' '?' T_CLOSE_BRACKET   (rule 281)
+
+    VR  	shift, and go to state 434
+    '[' 	shift, and go to state 435
+
+
+
+state 415
+
+    AttributeVR  ->  VR .   (rule 276)
+
+    $default	reduce using rule 276 (AttributeVR)
+
+
+
+state 416
+
+    SequenceVR  ->  '[' . T_SQ ']'   (rule 260)
+    AttributeVR  ->  '[' . VR ']'   (rule 277)
+
+    T_SQ	shift, and go to state 436
+    VR  	shift, and go to state 437
+
+
+
+state 417
+
+    Attribute  ->  T_OPEN_BRACKET AttributeIdentification ',' AttributeValue . T_CLOSE_BRACKET   (rule 252)
+
+    T_CLOSE_BRACKET	shift, and go to state 438
+
+
+
+state 418
+
+    AttributeValue  ->  SequenceValue .   (rule 256)
+
+    $default	reduce using rule 256 (AttributeValue)
+
+
+
+state 419
+
+    SequenceValue  ->  SequenceVR . ',' ItemList   (rule 258)
+
+    ',' 	shift, and go to state 439
+
+
+
+state 420
+
+    AttributeValue  ->  OtherValue .   (rule 257)
+
+    $default	reduce using rule 257 (AttributeValue)
+
+
+
+state 421
+
+    OtherValue  ->  OptionalVR . Values   (rule 273)
+
+    T_AUTOSET	shift, and go to state 440
+    HEXADECIMAL	shift, and go to state 441
+    INTEGER	shift, and go to state 442
+    STRING	shift, and go to state 443
+
+    $default	reduce using rule 282 (Values)
+
+    Values	go to state 444
+    VMList	go to state 445
+    Value	go to state 446
+
+
+
+state 422
+
+    OptionalVR  ->  AttributeVR . ','   (rule 275)
+
+    ',' 	shift, and go to state 447
+
+
+
+state 423
+
+    ExportDimseObjects  ->  DimseCmd CommandIdentifier IomIod DatasetIdentifier T_PRES_CTX PresentationContextId .   (rule 61)
+
+    $default	reduce using rule 61 (ExportDimseObjects)
+
+
+
+state 424
+
+    VtsRqPresCtx  ->  T_OPEN_BRACKET INTEGER ',' STRING . ',' INTEGER ',' INTEGER ',' RqTransferSyntaxList T_CLOSE_BRACKET   (rule 163)
+
+    ',' 	shift, and go to state 448
+
+
+
+state 425
+
+    RqPresCtx  ->  T_OPEN_BRACKET STRING ',' RqTransferSyntaxList . T_CLOSE_BRACKET   (rule 162)
+    RqTransferSyntaxList  ->  RqTransferSyntaxList . ',' TransferSyntax   (rule 165)
+
+    T_CLOSE_BRACKET	shift, and go to state 449
+    ',' 	shift, and go to state 450
+
+
+
+state 426
+
+    RqTransferSyntaxList  ->  TransferSyntax .   (rule 164)
+
+    $default	reduce using rule 164 (RqTransferSyntaxList)
+
+
+
+state 427
+
+    ApplicationInfoByte  ->  INTEGER .   (rule 172)
+
+    $default	reduce using rule 172 (ApplicationInfoByte)
+
+
+
+state 428
+
+    SopClassExtended  ->  T_OPEN_BRACKET STRING ',' ApplicationInfoList . T_CLOSE_BRACKET   (rule 169)
+    ApplicationInfoList  ->  ApplicationInfoList . ',' ApplicationInfoByte   (rule 171)
+
+    T_CLOSE_BRACKET	shift, and go to state 451
+    ',' 	shift, and go to state 452
+
+
+
+state 429
+
+    ApplicationInfoList  ->  ApplicationInfoByte .   (rule 170)
+
+    $default	reduce using rule 170 (ApplicationInfoList)
+
+
+
+state 430
+
+    ScpScuRole  ->  T_OPEN_BRACKET STRING ',' INTEGER . ',' INTEGER T_CLOSE_BRACKET   (rule 175)
+
+    ',' 	shift, and go to state 453
+
+
+
+state 431
+
+    UserIdentityNegotiation  ->  INTEGER INTEGER STRING STRING .   (rule 177)
+
+    $default	reduce using rule 177 (UserIdentityNegotiation)
+
+
+
+state 432
+
+    VtsAcPresCtx  ->  T_OPEN_BRACKET INTEGER ',' INTEGER . ',' STRING MoreAcPresentationContext T_CLOSE_BRACKET   (rule 202)
+
+    ',' 	shift, and go to state 454
+
+
+
+state 433
+
+    AcPresCtx  ->  T_OPEN_BRACKET STRING ',' INTEGER . AcTransferSyntax T_CLOSE_BRACKET   (rule 199)
+
+    ',' 	shift, and go to state 455
+
+    $default	reduce using rule 200 (AcTransferSyntax)
+
+    AcTransferSyntax	go to state 456
+
+
+
+state 434
+
+    AttributeVR  ->  T_OPEN_BRACKET VR . T_CLOSE_BRACKET   (rule 278)
+    AttributeVR  ->  T_OPEN_BRACKET VR . '?' T_CLOSE_BRACKET   (rule 280)
+
+    T_CLOSE_BRACKET	shift, and go to state 457
+    '?' 	shift, and go to state 458
+
+
+
+state 435
+
+    AttributeVR  ->  T_OPEN_BRACKET '[' . VR ']' T_CLOSE_BRACKET   (rule 279)
+    AttributeVR  ->  T_OPEN_BRACKET '[' . VR ']' '?' T_CLOSE_BRACKET   (rule 281)
+
+    VR  	shift, and go to state 459
+
+
+
+state 436
+
+    SequenceVR  ->  '[' T_SQ . ']'   (rule 260)
+
+    ']' 	shift, and go to state 460
+
+
+
+state 437
+
+    AttributeVR  ->  '[' VR . ']'   (rule 277)
+
+    ']' 	shift, and go to state 461
+
+
+
+state 438
+
+    Attribute  ->  T_OPEN_BRACKET AttributeIdentification ',' AttributeValue T_CLOSE_BRACKET .   (rule 252)
+
+    $default	reduce using rule 252 (Attribute)
+
+
+
+state 439
+
+    SequenceValue  ->  SequenceVR ',' . ItemList   (rule 258)
+
+    STRING	shift, and go to state 462
+    '>' 	shift, and go to state 463
+
+    $default	reduce using rule 268 (ItemByValue)
+
+    ItemList	go to state 464
+    ItemByReferenceList	go to state 465
+    ItemByReference	go to state 466
+    ItemByValueList	go to state 467
+    ItemByValue	go to state 468
+    ItemAttributeList	go to state 469
+    ItemAttribute	go to state 470
+
+
+
+state 440
+
+    Value  ->  T_AUTOSET .   (rule 289)
+
+    $default	reduce using rule 289 (Value)
+
+
+
+state 441
+
+    Value  ->  HEXADECIMAL .   (rule 287)
+
+    $default	reduce using rule 287 (Value)
+
+
+
+state 442
+
+    Value  ->  INTEGER .   (rule 288)
+
+    $default	reduce using rule 288 (Value)
+
+
+
+state 443
+
+    Value  ->  STRING .   (rule 286)
+
+    $default	reduce using rule 286 (Value)
+
+
+
+state 444
+
+    OtherValue  ->  OptionalVR Values .   (rule 273)
+
+    $default	reduce using rule 273 (OtherValue)
+
+
+
+state 445
+
+    Values  ->  VMList .   (rule 283)
+    VMList  ->  VMList . ',' Value   (rule 285)
+
+    ',' 	shift, and go to state 471
+
+    $default	reduce using rule 283 (Values)
+
+
+
+state 446
+
+    VMList  ->  Value .   (rule 284)
+
+    $default	reduce using rule 284 (VMList)
+
+
+
+state 447
+
+    OptionalVR  ->  AttributeVR ',' .   (rule 275)
+
+    $default	reduce using rule 275 (OptionalVR)
+
+
+
+state 448
+
+    VtsRqPresCtx  ->  T_OPEN_BRACKET INTEGER ',' STRING ',' . INTEGER ',' INTEGER ',' RqTransferSyntaxList T_CLOSE_BRACKET   (rule 163)
+
+    INTEGER	shift, and go to state 472
+
+
+
+state 449
+
+    RqPresCtx  ->  T_OPEN_BRACKET STRING ',' RqTransferSyntaxList T_CLOSE_BRACKET .   (rule 162)
+
+    $default	reduce using rule 162 (RqPresCtx)
+
+
+
+state 450
+
+    RqTransferSyntaxList  ->  RqTransferSyntaxList ',' . TransferSyntax   (rule 165)
+
+    STRING	shift, and go to state 364
+
+    TransferSyntax	go to state 473
+
+
+
+state 451
+
+    SopClassExtended  ->  T_OPEN_BRACKET STRING ',' ApplicationInfoList T_CLOSE_BRACKET .   (rule 169)
+
+    $default	reduce using rule 169 (SopClassExtended)
+
+
+
+state 452
+
+    ApplicationInfoList  ->  ApplicationInfoList ',' . ApplicationInfoByte   (rule 171)
+
+    INTEGER	shift, and go to state 427
+
+    ApplicationInfoByte	go to state 474
+
+
+
+state 453
+
+    ScpScuRole  ->  T_OPEN_BRACKET STRING ',' INTEGER ',' . INTEGER T_CLOSE_BRACKET   (rule 175)
+
+    INTEGER	shift, and go to state 475
+
+
+
+state 454
+
+    VtsAcPresCtx  ->  T_OPEN_BRACKET INTEGER ',' INTEGER ',' . STRING MoreAcPresentationContext T_CLOSE_BRACKET   (rule 202)
+
+    STRING	shift, and go to state 476
+
+
+
+state 455
+
+    AcTransferSyntax  ->  ',' . TransferSyntax   (rule 201)
+
+    STRING	shift, and go to state 364
+
+    TransferSyntax	go to state 477
+
+
+
+state 456
+
+    AcPresCtx  ->  T_OPEN_BRACKET STRING ',' INTEGER AcTransferSyntax . T_CLOSE_BRACKET   (rule 199)
+
+    T_CLOSE_BRACKET	shift, and go to state 478
+
+
+
+state 457
+
+    AttributeVR  ->  T_OPEN_BRACKET VR T_CLOSE_BRACKET .   (rule 278)
+
+    $default	reduce using rule 278 (AttributeVR)
+
+
+
+state 458
+
+    AttributeVR  ->  T_OPEN_BRACKET VR '?' . T_CLOSE_BRACKET   (rule 280)
+
+    T_CLOSE_BRACKET	shift, and go to state 479
+
+
+
+state 459
+
+    AttributeVR  ->  T_OPEN_BRACKET '[' VR . ']' T_CLOSE_BRACKET   (rule 279)
+    AttributeVR  ->  T_OPEN_BRACKET '[' VR . ']' '?' T_CLOSE_BRACKET   (rule 281)
+
+    ']' 	shift, and go to state 480
+
+
+
+state 460
+
+    SequenceVR  ->  '[' T_SQ ']' .   (rule 260)
+
+    $default	reduce using rule 260 (SequenceVR)
+
+
+
+state 461
+
+    AttributeVR  ->  '[' VR ']' .   (rule 277)
+
+    $default	reduce using rule 277 (AttributeVR)
+
+
+
+state 462
+
+    ItemByReference  ->  STRING .   (rule 265)
+
+    $default	reduce using rule 265 (ItemByReference)
+
+
+
+state 463
+
+    ItemAttribute  ->  '>' . Attribute   (rule 272)
+
+    T_OPEN_BRACKET	shift, and go to state 268
+
+    Attribute	go to state 481
+
+
+
+state 464
+
+    SequenceValue  ->  SequenceVR ',' ItemList .   (rule 258)
+
+    $default	reduce using rule 258 (SequenceValue)
+
+
+
+state 465
+
+    ItemList  ->  ItemByReferenceList .   (rule 261)
+    ItemByReferenceList  ->  ItemByReferenceList . ',' ItemByReference   (rule 264)
+
+    ',' 	shift, and go to state 482
+
+    $default	reduce using rule 261 (ItemList)
+
+
+
+state 466
+
+    ItemByReferenceList  ->  ItemByReference .   (rule 263)
+
+    $default	reduce using rule 263 (ItemByReferenceList)
+
+
+
+state 467
+
+    ItemList  ->  ItemByValueList .   (rule 262)
+    ItemByValueList  ->  ItemByValueList . ',' ItemByValue   (rule 267)
+
+    ',' 	shift, and go to state 483
+
+    $default	reduce using rule 262 (ItemList)
+
+
+
+state 468
+
+    ItemByValueList  ->  ItemByValue .   (rule 266)
+
+    $default	reduce using rule 266 (ItemByValueList)
+
+
+
+state 469
+
+    ItemByValue  ->  ItemAttributeList .   (rule 269)
+    ItemAttributeList  ->  ItemAttributeList . ItemAttribute   (rule 271)
+
+    '>' 	shift, and go to state 463
+
+    $default	reduce using rule 269 (ItemByValue)
+
+    ItemAttribute	go to state 484
+
+
+
+state 470
+
+    ItemAttributeList  ->  ItemAttribute .   (rule 270)
+
+    $default	reduce using rule 270 (ItemAttributeList)
+
+
+
+state 471
+
+    VMList  ->  VMList ',' . Value   (rule 285)
+
+    T_AUTOSET	shift, and go to state 440
+    HEXADECIMAL	shift, and go to state 441
+    INTEGER	shift, and go to state 442
+    STRING	shift, and go to state 443
+
+    Value	go to state 485
+
+
+
+state 472
+
+    VtsRqPresCtx  ->  T_OPEN_BRACKET INTEGER ',' STRING ',' INTEGER . ',' INTEGER ',' RqTransferSyntaxList T_CLOSE_BRACKET   (rule 163)
+
+    ',' 	shift, and go to state 486
+
+
+
+state 473
+
+    RqTransferSyntaxList  ->  RqTransferSyntaxList ',' TransferSyntax .   (rule 165)
+
+    $default	reduce using rule 165 (RqTransferSyntaxList)
+
+
+
+state 474
+
+    ApplicationInfoList  ->  ApplicationInfoList ',' ApplicationInfoByte .   (rule 171)
+
+    $default	reduce using rule 171 (ApplicationInfoList)
+
+
+
+state 475
+
+    ScpScuRole  ->  T_OPEN_BRACKET STRING ',' INTEGER ',' INTEGER . T_CLOSE_BRACKET   (rule 175)
+
+    T_CLOSE_BRACKET	shift, and go to state 487
+
+
+
+state 476
+
+    VtsAcPresCtx  ->  T_OPEN_BRACKET INTEGER ',' INTEGER ',' STRING . MoreAcPresentationContext T_CLOSE_BRACKET   (rule 202)
+
+    ',' 	shift, and go to state 488
+
+    $default	reduce using rule 203 (MoreAcPresentationContext)
+
+    MoreAcPresentationContext	go to state 489
+
+
+
+state 477
+
+    AcTransferSyntax  ->  ',' TransferSyntax .   (rule 201)
+
+    $default	reduce using rule 201 (AcTransferSyntax)
+
+
+
+state 478
+
+    AcPresCtx  ->  T_OPEN_BRACKET STRING ',' INTEGER AcTransferSyntax T_CLOSE_BRACKET .   (rule 199)
+
+    $default	reduce using rule 199 (AcPresCtx)
+
+
+
+state 479
+
+    AttributeVR  ->  T_OPEN_BRACKET VR '?' T_CLOSE_BRACKET .   (rule 280)
+
+    $default	reduce using rule 280 (AttributeVR)
+
+
+
+state 480
+
+    AttributeVR  ->  T_OPEN_BRACKET '[' VR ']' . T_CLOSE_BRACKET   (rule 279)
+    AttributeVR  ->  T_OPEN_BRACKET '[' VR ']' . '?' T_CLOSE_BRACKET   (rule 281)
+
+    T_CLOSE_BRACKET	shift, and go to state 490
+    '?' 	shift, and go to state 491
+
+
+
+state 481
+
+    ItemAttribute  ->  '>' Attribute .   (rule 272)
+
+    $default	reduce using rule 272 (ItemAttribute)
+
+
+
+state 482
+
+    ItemByReferenceList  ->  ItemByReferenceList ',' . ItemByReference   (rule 264)
+
+    STRING	shift, and go to state 462
+
+    ItemByReference	go to state 492
+
+
+
+state 483
+
+    ItemByValueList  ->  ItemByValueList ',' . ItemByValue   (rule 267)
+
+    '>' 	shift, and go to state 463
+
+    $default	reduce using rule 268 (ItemByValue)
+
+    ItemByValue	go to state 493
+    ItemAttributeList	go to state 469
+    ItemAttribute	go to state 470
+
+
+
+state 484
+
+    ItemAttributeList  ->  ItemAttributeList ItemAttribute .   (rule 271)
+
+    $default	reduce using rule 271 (ItemAttributeList)
+
+
+
+state 485
+
+    VMList  ->  VMList ',' Value .   (rule 285)
+
+    $default	reduce using rule 285 (VMList)
+
+
+
+state 486
+
+    VtsRqPresCtx  ->  T_OPEN_BRACKET INTEGER ',' STRING ',' INTEGER ',' . INTEGER ',' RqTransferSyntaxList T_CLOSE_BRACKET   (rule 163)
+
+    INTEGER	shift, and go to state 494
+
+
+
+state 487
+
+    ScpScuRole  ->  T_OPEN_BRACKET STRING ',' INTEGER ',' INTEGER T_CLOSE_BRACKET .   (rule 175)
+
+    $default	reduce using rule 175 (ScpScuRole)
+
+
+
+state 488
+
+    MoreAcPresentationContext  ->  ',' . INTEGER ',' INTEGER ',' TransferSyntax   (rule 204)
+
+    INTEGER	shift, and go to state 495
+
+
+
+state 489
+
+    VtsAcPresCtx  ->  T_OPEN_BRACKET INTEGER ',' INTEGER ',' STRING MoreAcPresentationContext . T_CLOSE_BRACKET   (rule 202)
+
+    T_CLOSE_BRACKET	shift, and go to state 496
+
+
+
+state 490
+
+    AttributeVR  ->  T_OPEN_BRACKET '[' VR ']' T_CLOSE_BRACKET .   (rule 279)
+
+    $default	reduce using rule 279 (AttributeVR)
+
+
+
+state 491
+
+    AttributeVR  ->  T_OPEN_BRACKET '[' VR ']' '?' . T_CLOSE_BRACKET   (rule 281)
+
+    T_CLOSE_BRACKET	shift, and go to state 497
+
+
+
+state 492
+
+    ItemByReferenceList  ->  ItemByReferenceList ',' ItemByReference .   (rule 264)
+
+    $default	reduce using rule 264 (ItemByReferenceList)
+
+
+
+state 493
+
+    ItemByValueList  ->  ItemByValueList ',' ItemByValue .   (rule 267)
+
+    $default	reduce using rule 267 (ItemByValueList)
+
+
+
+state 494
+
+    VtsRqPresCtx  ->  T_OPEN_BRACKET INTEGER ',' STRING ',' INTEGER ',' INTEGER . ',' RqTransferSyntaxList T_CLOSE_BRACKET   (rule 163)
+
+    ',' 	shift, and go to state 498
+
+
+
+state 495
+
+    MoreAcPresentationContext  ->  ',' INTEGER . ',' INTEGER ',' TransferSyntax   (rule 204)
+
+    ',' 	shift, and go to state 499
+
+
+
+state 496
+
+    VtsAcPresCtx  ->  T_OPEN_BRACKET INTEGER ',' INTEGER ',' STRING MoreAcPresentationContext T_CLOSE_BRACKET .   (rule 202)
+
+    $default	reduce using rule 202 (VtsAcPresCtx)
+
+
+
+state 497
+
+    AttributeVR  ->  T_OPEN_BRACKET '[' VR ']' '?' T_CLOSE_BRACKET .   (rule 281)
+
+    $default	reduce using rule 281 (AttributeVR)
+
+
+
+state 498
+
+    VtsRqPresCtx  ->  T_OPEN_BRACKET INTEGER ',' STRING ',' INTEGER ',' INTEGER ',' . RqTransferSyntaxList T_CLOSE_BRACKET   (rule 163)
+
+    STRING	shift, and go to state 364
+
+    RqTransferSyntaxList	go to state 500
+    TransferSyntax	go to state 426
+
+
+
+state 499
+
+    MoreAcPresentationContext  ->  ',' INTEGER ',' . INTEGER ',' TransferSyntax   (rule 204)
+
+    INTEGER	shift, and go to state 501
+
+
+
+state 500
+
+    VtsRqPresCtx  ->  T_OPEN_BRACKET INTEGER ',' STRING ',' INTEGER ',' INTEGER ',' RqTransferSyntaxList . T_CLOSE_BRACKET   (rule 163)
+    RqTransferSyntaxList  ->  RqTransferSyntaxList . ',' TransferSyntax   (rule 165)
+
+    T_CLOSE_BRACKET	shift, and go to state 502
+    ',' 	shift, and go to state 450
+
+
+
+state 501
+
+    MoreAcPresentationContext  ->  ',' INTEGER ',' INTEGER . ',' TransferSyntax   (rule 204)
+
+    ',' 	shift, and go to state 503
+
+
+
+state 502
+
+    VtsRqPresCtx  ->  T_OPEN_BRACKET INTEGER ',' STRING ',' INTEGER ',' INTEGER ',' RqTransferSyntaxList T_CLOSE_BRACKET .   (rule 163)
+
+    $default	reduce using rule 163 (VtsRqPresCtx)
+
+
+
+state 503
+
+    MoreAcPresentationContext  ->  ',' INTEGER ',' INTEGER ',' . TransferSyntax   (rule 204)
+
+    STRING	shift, and go to state 364
+
+    TransferSyntax	go to state 504
+
+
+
+state 504
+
+    MoreAcPresentationContext  ->  ',' INTEGER ',' INTEGER ',' TransferSyntax .   (rule 204)
+
+    $default	reduce using rule 204 (MoreAcPresentationContext)
+
+
+
+state 505
+
+    $   	go to state 506
+
+
+
+state 506
+
+    $   	go to state 507
+
+
+
+state 507
+
+    $default	accept

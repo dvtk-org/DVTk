@@ -27,12 +27,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_056B34314EA94E71B0C012405A94D64B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_059B5BE3334A4A01A559EBF74D8E4FCC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -51,37 +45,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_09CAB83BD6F6446E88BDFDBB1EE33BF7"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_0A1C4E76AF904F879636B9D194BA796A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_0CEA1380837844D1AA6CE1470420C1BF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_1116B9DA381E4463AAC37C937E342615"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_1203D59593714867920C6279322F6391"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_12E5E8CE334B4C918C125A7CBD880DDE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -111,31 +81,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_1B2E0B3DE6244DD188EF45B1963B4E98"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_1DF2DA4436CF42639231115DB377E29C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_1EED783742454E2BB5E85BB093820314"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_1FA95C7DAD3E405499872E0CE8BCE7A5"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_223507D4D3DD4F4C8879BD9253BC8627"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -153,12 +105,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_2785B5335D794D4A9FE0C6E772E07E13"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_2A105B2985FC4A36AED6A2320BBD6C53"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -171,19 +117,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_30C07761E80D47CB87C9F2CF589FE8E9"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_313B1AD6F4424CDEB64CA2A8BBA71617"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3636F04BCA8544BEBE1129CCCA43D3BD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -213,43 +147,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_3FD01814CBEC409AA63115D3504362B8"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4196AD6FAC4A42B189AC5634B512662A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_41EF8665F0214D048B5888DF59036F34"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_42052B4D15F64744A7E1B4DE1481A59C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4355D8E00BA44EBC8F504D90EDEE8370"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_44C1FF029A3143F79F8F5A30A01C99D7"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_496609320DFD4E248FF891A5BB2F0AF9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -291,12 +189,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5645D223104D41F781BD89C4CE64CCDC"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_5A4C25C3B72C469FA7A65029D081575C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -309,18 +201,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5F4692543EFC43C6AA0B8406F0B27DDB"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_60BE991F03054911AEAB9FA24B028353"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_61182051749F4F249555E1F51BDC0FC3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -328,12 +208,6 @@
         "Entry"
         {
         "MsmKey" = "8:_6119EF69E34A4F48810440AA81DE9A48"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_67CED63406894A63B345F6C5E17C419F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -352,12 +226,6 @@
         "Entry"
         {
         "MsmKey" = "8:_712BB13D48A74019A2EE4E264A55FC8E"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_722C7FBE9B0442309597A9FCFA56842F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -423,12 +291,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_942FA1428927458DB3CA9625814DBA80"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_94D7582344F14794A915B182582521CB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -442,12 +304,6 @@
         "Entry"
         {
         "MsmKey" = "8:_95AD4870B78C45DFA7ADB97602CC3600"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_95D8AB8F7C5249CE8003040E00331E62"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -477,18 +333,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A047DF9F03D14F71AD70FB4A920E2F1B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A13A6EDE1EF845DA8CB04B711FBED54F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_A1737EFBF76D4E06BE9E48AA4133F1DB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -513,31 +357,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_AD97153D94914CB89F33F75F85D03C87"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_AE6150984A024161B280C1B62E20CE46"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_AEEFEBFD128740FDBCD4F6414BA16C75"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_B0020996BDA34D58BF35575F6615AF62"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B333B8EEB413490AAB77890CF19E3C57"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -567,12 +393,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BDAC2F90E4A9488F93C143451C3487FE"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_BFB83FA5B8B247A492CF10197A4115BD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -597,25 +417,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C841432D973A43DCA31A9FFAA3B365AD"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CB2233307A604BB2BD023516AC2CD82F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_CC06BA356BB14CEAAEF61355ADB4B866"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CD5EDBF0740D44A5853D3513FA4DDDE4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -628,12 +430,6 @@
         "Entry"
         {
         "MsmKey" = "8:_CF1106CEC9CA4BD5BA32A00083058FFF"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D0797BB7BAD1429F8F0A534A737F97B8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -663,12 +459,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_D84820C7EABD4895BEB74D0F3ABF1EC6"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_DF3A82CE1D144CE2AE939589E29FFE96"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -682,18 +472,6 @@
         "Entry"
         {
         "MsmKey" = "8:_E271C1A222184571BAB4F078468CF238"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E344C033755E41E4981339A4B330613B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E3B919A046154C29AAA91498C41CEEAF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -729,18 +507,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_F98BFF480C8F40CBB3381F9FA229C27C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_FBB8819A873E4455AC5392AE2506EEB6"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_FC92CB632D8D4BFB8FF0D6F086E61D4D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -753,7 +519,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:bin\\DVT Examples Setup\\Debug\\DVT Examples Setup.msi"
+        "OutputFilename" = "8:..\\bin\\Setups\\Debug\\DVTk_DVT_Examples-a.b.c.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -780,7 +546,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:bin\\DVT Examples Setup\\Release\\Examples.msi"
+        "OutputFilename" = "8:..\\bin\\Setups\\Release\\DVTk_DVT_Examples-a.b.c.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -867,26 +633,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_056B34314EA94E71B0C012405A94D64B"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Print\\Scp\\Results\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_B940C6ACB4254BB2B57CE816B9D1EA9B"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_059B5BE3334A4A01A559EBF74D8E4FCC"
             {
             "SourcePath" = "8:Resources\\Example\\Scripts\\Retrieve\\Scp\\1.ds"
@@ -947,46 +693,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_09CAB83BD6F6446E88BDFDBB1EE33BF7"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Report\\Scu\\Html\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_07A01F3712DD45CCAB5AFFCA2135AC99"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0A1C4E76AF904F879636B9D194BA796A"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Query\\Scp\\Html\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_C95F98E96103422F8C24E7F18A04D283"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0CEA1380837844D1AA6CE1470420C1BF"
             {
             "SourcePath" = "8:Resources\\Example\\Scripts\\Retrieve\\Scu\\Retrieve_SCU.ses"
@@ -1007,52 +713,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1116B9DA381E4463AAC37C937E342615"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Mpps\\Scp\\Html\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_5DC5C3FD414946AAB1BC7371ABD84AC9"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1203D59593714867920C6279322F6391"
             {
             "SourcePath" = "8:Resources\\Example\\Scripts\\Retrieve\\Scp\\2.ds"
             "TargetName" = "8:2.ds"
             "Tag" = "8:"
             "Folder" = "8:_6BEF3E280E6C4F46BB036D55180D5D80"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_12E5E8CE334B4C918C125A7CBD880DDE"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Print\\Scp\\Html\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_F4135988086A4CC2AD0BC56ED84F6866"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1147,26 +813,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1B2E0B3DE6244DD188EF45B1963B4E98"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Query\\Scu\\Results\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_489415EA22E2477CA4AF407A75A8D652"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1DF2DA4436CF42639231115DB377E29C"
             {
             "SourcePath" = "8:Resources\\Example\\Scripts\\Retrieve\\Scu\\2.ds"
@@ -1187,52 +833,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1EED783742454E2BB5E85BB093820314"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Verification\\Scu\\Html\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_855FDBC8D4E54FC7A603356182A3523F"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1FA95C7DAD3E405499872E0CE8BCE7A5"
             {
             "SourcePath" = "8:Resources\\Example\\Scripts\\Storage\\Scu\\1814.ds"
             "TargetName" = "8:1814.ds"
             "Tag" = "8:"
             "Folder" = "8:_6A10C7B98B914AD787B2E9B0BF91595D"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_223507D4D3DD4F4C8879BD9253BC8627"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Storage\\Scu\\Html\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_FF5C1B1FEFA447B5A059301AC732E665"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1287,26 +893,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2785B5335D794D4A9FE0C6E772E07E13"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Commit\\Scu\\Html\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_4DAFD104408549FE985D683D2EE1312D"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2A105B2985FC4A36AED6A2320BBD6C53"
             {
             "SourcePath" = "8:Resources\\Example\\Scripts\\Storage\\Scu\\5.dss"
@@ -1347,52 +933,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_30C07761E80D47CB87C9F2CF589FE8E9"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Report\\Scu\\Results\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_90B9968CF5384D3C89BD872DAC8AC57A"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_313B1AD6F4424CDEB64CA2A8BBA71617"
             {
             "SourcePath" = "8:Resources\\Example\\Scripts\\Retrieve\\Scu\\1.ds"
             "TargetName" = "8:1.ds"
             "Tag" = "8:"
             "Folder" = "8:_464ED757FADD4656B511392225F23301"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3636F04BCA8544BEBE1129CCCA43D3BD"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Storage\\Scp\\Results\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_B2202A3BBC7548D3AF28C614398DD030"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1487,132 +1033,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3FD01814CBEC409AA63115D3504362B8"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Query\\Scp\\Results\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_85EAA61CA3A6492EA70B04FF04B1B33E"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4196AD6FAC4A42B189AC5634B512662A"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Mpps\\Scu\\Results\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_3D399A1ECADC4D289B4D85252B78E8FE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_41EF8665F0214D048B5888DF59036F34"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Commit\\Scu\\Results\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_9453BD0D36AC4109BE19AA5E65D4A5EA"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_42052B4D15F64744A7E1B4DE1481A59C"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Mpps\\Scp\\Results\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_C620FF3780F041BC9BE63600133ABF0E"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4355D8E00BA44EBC8F504D90EDEE8370"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Retrieve\\Scu\\Html\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_7F8715416F834834AE8F1051AEDC131C"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_44C1FF029A3143F79F8F5A30A01C99D7"
             {
             "SourcePath" = "8:Resources\\Example\\Scripts\\Mpps\\Scu\\1.ds"
             "TargetName" = "8:1.ds"
             "Tag" = "8:"
             "Folder" = "8:_04C3BE03E72547EE8843DD521E81B5CE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_496609320DFD4E248FF891A5BB2F0AF9"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Storage\\Scp\\Html\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_95CDEFCA86B4418FA686BFED747943C5"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1653,26 +1079,6 @@
             "TargetName" = "8:1.ds"
             "Tag" = "8:"
             "Folder" = "8:_10443C205A924E45984C82EE9052E4AB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4C8249B5B74848829CEC8201DFD3191E"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Retrieve\\Scp\\Results\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_4F0038069B644608854E71115F260730"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1747,26 +1153,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5645D223104D41F781BD89C4CE64CCDC"
-            {
-            "SourcePath" = "8:Resources\\Example\\Emulators\\Emulator_2\\Results\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_039C1E8D8C4D4F5487481250EAE26E0B"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5A4C25C3B72C469FA7A65029D081575C"
             {
             "SourcePath" = "8:Resources\\Example\\Scripts\\Storage\\Scp\\4.dss"
@@ -1807,46 +1193,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5F4692543EFC43C6AA0B8406F0B27DDB"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Verification\\Scu\\Results\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_C5697AF7F68344A1A6B6AE665CEF7CEE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_60BE991F03054911AEAB9FA24B028353"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Verification\\Scp\\Html\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_BA18A1EFC2A44DB8A494131ED51F01C7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_61182051749F4F249555E1F51BDC0FC3"
             {
             "SourcePath" = "8:Resources\\Example\\Scripts\\Print\\Scp\\Print_SCP.ses"
@@ -1873,26 +1219,6 @@
             "TargetName" = "8:Emulator_1.ses"
             "Tag" = "8:"
             "Folder" = "8:_8F81ABEF066C4C3782FFEAF6C8939828"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_67CED63406894A63B345F6C5E17C419F"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Print\\Scu\\Results\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_F31FDC869FDB4AC88CAE9D31D6DB2665"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1953,26 +1279,6 @@
             "TargetName" = "8:1.ds"
             "Tag" = "8:"
             "Folder" = "8:_2C4FE0FFC4224DE7A911242A8F289ECF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_722C7FBE9B0442309597A9FCFA56842F"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Storage\\Scu\\Results\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_E22526A5675042D4A5295D2B2CB03885"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2187,26 +1493,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_942FA1428927458DB3CA9625814DBA80"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Commit\\Scp\\Results\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_1B0645397A9D48539F59150245EE5BDC"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_94D7582344F14794A915B182582521CB"
             {
             "SourcePath" = "8:Resources\\Example\\Scripts\\Print\\Scu\\Print_SCU.ses"
@@ -2253,26 +1539,6 @@
             "TargetName" = "8:3.ds"
             "Tag" = "8:"
             "Folder" = "8:_CD65E95DE5EF4F3C97698E7132379BEE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_95D8AB8F7C5249CE8003040E00331E62"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Retrieve\\Scu\\Results\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_96D6DF6A52744CCC992FDD809FE14588"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2367,46 +1633,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A047DF9F03D14F71AD70FB4A920E2F1B"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Print\\Scu\\Html\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_34DDE90F8BF043F08AA7AA5F75DD9C56"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A13A6EDE1EF845DA8CB04B711FBED54F"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Report\\Scp\\Results\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_877D7F0BB5164DD589B103CA5A01CAA0"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A1737EFBF76D4E06BE9E48AA4133F1DB"
             {
             "SourcePath" = "8:Resources\\Example\\Scripts\\Verification\\Scp\\1.ds"
@@ -2487,26 +1713,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AD97153D94914CB89F33F75F85D03C87"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Mpps\\Scu\\Html\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_4270E5161FCC4FB692ECD877207571FD"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AE6150984A024161B280C1B62E20CE46"
             {
             "SourcePath" = "8:Resources\\Example\\Scripts\\Storage\\Scp\\2.dss"
@@ -2527,52 +1733,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AEEFEBFD128740FDBCD4F6414BA16C75"
-            {
-            "SourcePath" = "8:Resources\\Example\\Emulators\\Emulator_1\\Results\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_8F8DCEA4982342A880F061D2D6656703"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B0020996BDA34D58BF35575F6615AF62"
             {
             "SourcePath" = "8:Resources\\Example\\example.pdvt"
             "TargetName" = "8:example.pdvt"
             "Tag" = "8:"
             "Folder" = "8:_96566E206DE747A28C85FAEF75485807"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B333B8EEB413490AAB77890CF19E3C57"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Worklist\\Scp\\Html\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_3E52809B869D4690AF3A88FE68DF3C37"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2653,26 +1819,6 @@
             "TargetName" = "8:1.ds"
             "Tag" = "8:"
             "Folder" = "8:_75A228FE905647E5A7C38BF7E84AB768"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BDAC2F90E4A9488F93C143451C3487FE"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Worklist\\Scp\\Results\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_7B2087A74526482C904CC5DA03EFD35E"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2769,7 +1915,7 @@
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C841432D973A43DCA31A9FFAA3B365AD"
             {
-            "SourcePath" = "8:Resources\\Installer Banner.jpg"
+            "SourcePath" = "8:..\\Resources\\Img\\Installer Banner.jpg"
             "TargetName" = "8:Installer Banner.jpg"
             "Tag" = "8:"
             "Folder" = "8:_765938367A2247F5899D0F7EDA1E6219"
@@ -2787,52 +1933,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CB2233307A604BB2BD023516AC2CD82F"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Query\\Scu\\Html\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_F6059C980BB147E6A40164D97BD6C1E1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CC06BA356BB14CEAAEF61355ADB4B866"
             {
             "SourcePath" = "8:Resources\\Example\\Scripts\\Commit\\Scu\\1.ds"
             "TargetName" = "8:1.ds"
             "Tag" = "8:"
             "Folder" = "8:_082582D38145458B8A63942956F07B0F"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CD5EDBF0740D44A5853D3513FA4DDDE4"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Report\\Scp\\Html\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_5FF0F0B872C543E38ACF96E984D55C0A"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2873,26 +1979,6 @@
             "TargetName" = "8:6.dss"
             "Tag" = "8:"
             "Folder" = "8:_6A10C7B98B914AD787B2E9B0BF91595D"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D0797BB7BAD1429F8F0A534A737F97B8"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Verification\\Scp\\Results\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_ED72FBDE5E704C7186BB093B888852E9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2987,26 +2073,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D84820C7EABD4895BEB74D0F3ABF1EC6"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Worklist\\Scu\\Results\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_957DCF8589C6466EA10A6EA45A5416C5"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DF3A82CE1D144CE2AE939589E29FFE96"
             {
             "SourcePath" = "8:Resources\\Example\\Scripts\\Mpps\\Scp\\MPPS_SCP.ses"
@@ -3053,46 +2119,6 @@
             "TargetName" = "8:1.ds"
             "Tag" = "8:"
             "Folder" = "8:_03A7008C37A849409D08620FF1E805F1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E344C033755E41E4981339A4B330613B"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Commit\\Scp\\Html\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_013B5750DC374006BFBDBB0852476AC6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E3B919A046154C29AAA91498C41CEEAF"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Retrieve\\Scp\\Html\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_0C515D6920D244E1B2DED4A154641802"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3193,46 +2219,6 @@
             "TargetName" = "8:1.ds"
             "Tag" = "8:"
             "Folder" = "8:_B00F327EA1F343A5AB99ED6085D18B9C"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F98BFF480C8F40CBB3381F9FA229C27C"
-            {
-            "SourcePath" = "8:Resources\\Example\\Scripts\\Worklist\\Scu\\Html\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_64E7BA3A4BEA419D80E6CDE264DC723E"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FBB8819A873E4455AC5392AE2506EEB6"
-            {
-            "SourcePath" = "8:Resources\\Example\\Media\\Results\\_.txt"
-            "TargetName" = "8:_.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_45A7E79DC58A4EDF8891D1C6C7DC17E9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3988,17 +2974,6 @@
                                                     "Property" = "8:_04348330E7214E37A660BBCEEF3B57AE"
                                                         "Folders"
                                                         {
-                                                            "{9EF0B969-E518-4E46-987F-47570745A589}:_55A9C855DBDE41CA8CAF50535E95B391"
-                                                            {
-                                                            "Name" = "8:CVS"
-                                                            "AlwaysCreate" = "11:FALSE"
-                                                            "Condition" = "8:"
-                                                            "Transitive" = "11:FALSE"
-                                                            "Property" = "8:_D5BA90A42EB946A086D743586B0A6C1E"
-                                                                "Folders"
-                                                                {
-                                                                }
-                                                            }
                                                             "{9EF0B969-E518-4E46-987F-47570745A589}:_7D2A01AAA9594AFDAB21E3B8A783EE0F"
                                                             {
                                                             "Name" = "8:Scp"
@@ -4171,7 +3146,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:DVT Examples"
         "ProductCode" = "8:{E8552CC1-80FA-4DE2-B3DE-48A0EE124A1B}"
-        "PackageCode" = "8:{7ECB666C-0E51-4891-9CDC-FC775AD6371E}"
+        "PackageCode" = "8:{19E0BC35-8CE7-4245-A998-E37EC4B0097F}"
         "UpgradeCode" = "8:{D4657724-A12D-428F-BA30-7DDF5AFCC2B1}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"

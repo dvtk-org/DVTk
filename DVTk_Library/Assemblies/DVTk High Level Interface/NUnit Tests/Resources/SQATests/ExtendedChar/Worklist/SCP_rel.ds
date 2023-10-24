@@ -1,0 +1,19 @@
+## 
+##  SCP Worklist DICOMScript: rel.ds
+## 
+##  Pre-conditions:
+##       - association existing
+## 
+##  Test Scenario:
+##       - expect release association request
+##       - return release association response
+## 
+##  Expected Result:
+##       - SCU signals successful release
+## 
+##  Post-conditions:
+##       - no association
+## 
+RECEIVE RELEASE-RQ
+
+SEND RELEASE-RP

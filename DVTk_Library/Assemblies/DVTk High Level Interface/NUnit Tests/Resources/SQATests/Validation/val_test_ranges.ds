@@ -1,0 +1,158 @@
+## 
+## DVT DICOMScript
+##
+## Name: val_test_vr_pass.ds
+##
+## Test Suite Ref: 3.2.11.3.4.9.2.4
+## Test Case Ref:
+##
+## Pre-conditions:
+##
+## Test Scenario:
+##    - Create (various) C-STORE-RQ command objects and datasets for the 
+##      "Validation Test Ranges SOP Class" with known errors.
+##    - the objects are validated 
+##    - and deleted
+##
+##    Tests: 1 Check enumerated values
+##           2 Check defined values
+##
+## Expected Result:
+##    22 errors, 23 warnings
+##
+## Post-conditions:
+##    -
+##
+
+##================================================================================
+## Ranges Tests: Test Expected ranges of Attribute's. 
+## In the definition the first attribute value(s) are enumerated, 
+## the second attribute value(s) are defined.
+## For attributes with VM=1 (ST, LT, UT), two attributes are used:
+## XX_03 for enumerated, 
+## XX_04 for defined. 
+##================================================================================
+
+
+##================================================================================
+## Ranges Test 1: Check enumerated values
+## All enumerated values (value 1/XX_03) of the dataset attributes are wrong
+## This should cause errors because enumerates are mandatory
+##================================================================================
+
+# Create and Set Objects For Test 1
+CREATE C-STORE-RQ RANGES_STORE_RQ1 "Validation Test Ranges SOP Class" RQ_RANGES1
+
+SET C-STORE-RQ RANGES_STORE_RQ1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Ranges SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, AUTOSET);
+}
+
+SET "Validation Test Ranges SOP Class" RQ_RANGES1
+{
+(0x10000003, AE, "noot", "DEFINED 2");
+(0x10020003, AS, "012Y", "003Y");
+(0x10040003, AT, 0x123, 0x00020001);
+(0x10060003, CS, "NOOT", "DEFINED 1");
+(0x10080003, DA, "20000101", "19990202");
+(0x100A0003, DS, "-243.89", "-202");
+(0x100C0003, DT, "20000101", "19990203");
+(0x100E0003, FL, "386.87", "-2.02");
+(0x10100003, FD, "-1.25", "-2.03");
+(0x10120003, IS, "123", "-201");
+(0x10140003, LO, "mies", "DEFINED 3");
+(0x10160003, LT, "mies");
+(0x10160004, LT, "DEFINED");
+(0x101C0003, PN, "mies", "DEFINED 1");
+(0x101E0003, SH, "mies", "DEFINED 3");
+(0x10200003, SL, -23, -202);
+(0x10240003, SS, +45, -203);
+(0x10260003, ST, "noot");
+(0x10260004, ST, "DEFINED");
+(0x10280003, TM, "1212", "2002");
+(0x102A0003, UI, "3.4.5", "2.0.1");
+(0x102C0003, UL, 1234, 201);
+(0x102E0003, US, 0x0012, 202);
+(0x10300003, UT, "noot");
+(0x10300004, UT, "DEFIND");
+}
+
+# Validate object(s) for Test 1
+VALIDATE C-STORE-RQ RANGES_STORE_RQ1 "Validation Test Ranges SOP Class" RQ_RANGES1
+
+# Delete objects for Test 1
+DELETE C-STORE-RQ RANGES_STORE_RQ1 
+DELETE "Validation Test Ranges SOP Class" RQ_RANGES1
+
+#********************************************************************************
+
+##================================================================================
+## Ranges Test 2: Check defined values
+## All defined values (value 2/XX_04) of the dataset attributes are wrong 
+## This should cause Warnings because defines are NOT mandatory
+## ================================================================================
+
+
+# Create and Set Objects For Test 2
+CREATE C-STORE-RQ RANGES_STORE_RQ2 "Validation Test Ranges SOP Class" RQ_RANGES2
+
+SET C-STORE-RQ RANGES_STORE_RQ2
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test Ranges SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, AUTOSET);
+}
+
+
+SET "Validation Test Ranges SOP Class" RQ_RANGES2
+{
+(0x10000003, AE, "ENUM 2", "noot");
+(0x10020003, AS, "003Y", "012Y");
+(0x10040003, AT, 0x00010001, 0x123);
+(0x10060003, CS, "ENUM 1", "MIES");
+(0x10080003, DA, "19990103", "20000101");
+(0x100A0003, DS, "1.01", "-243.89");
+(0x100C0003, DT, "19990101", "20000101");
+(0x100E0003, FL, "1.02", "386.87");
+(0x10100003, FD, "1.03", "-1.25");
+(0x10120003, IS, "101", "123");
+(0x10140003, LO, "ENUM 3", "noot");
+(0x10160003, LT, "ENUM");
+(0x10160004, LT, "Liesje leerde Lotte lopen langs de lange lindenlaan");
+(0x101C0003, PN, "ENUM 2", "noot");
+(0x101E0003, SH, "ENUM 3", "noot");
+(0x10200003, SL, 102, -23);
+(0x10240003, SS, 103, +45);
+(0x10260003, ST, "ENUM");
+(0x10260004, ST, "mies");
+(0x10280003, TM, "1002", "1212");
+(0x102A0003, UI, "1.0.3", "2.3.4");
+(0x102C0003, UL, 102, 1234);
+(0x102E0003, US, 103, 0x0012);
+(0x10300003, UT, "ENUM");
+(0x10300004, UT, "mies");
+}
+
+# Validate object(s) for test 2
+VALIDATE C-STORE-RQ RANGES_STORE_RQ2 "Validation Test Ranges SOP Class" RQ_RANGES2
+
+# Delete objects for Test 2
+DELETE C-STORE-RQ RANGES_STORE_RQ2 
+DELETE "Validation Test Ranges SOP Class" RQ_RANGES2
+
+##
+## Script Result should be:
+## Validation: 22 error(s), 23 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 0 error(s), 0 warning(s)
+##

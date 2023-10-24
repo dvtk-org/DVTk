@@ -30,55 +30,55 @@ using DvtkApplicationLayer.UserInterfaces;
 
 namespace DCMCompare
 {
-	/// <summary>
-	/// Summary description for Form1.
-	/// </summary>
-	public class DCMCompareForm : System.Windows.Forms.Form
-	{
-		private System.Windows.Forms.MainMenu mainMenu1;
-		private System.Windows.Forms.MenuItem MenuItem_Help;
-		private System.Windows.Forms.MenuItem MenuItem_FileExit;
-		private System.Windows.Forms.MenuItem MenuItem_File;
-		private System.Windows.Forms.MenuItem MenuItem_AboutDCMCompare;
-		private System.Windows.Forms.TabControl TabControl;
-		private System.Windows.Forms.TabPage TabCompareDetailResults;
-		private System.Windows.Forms.TabPage TabComparisonFilter;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Panel panel2;
-		private System.Windows.Forms.StatusBar statusBarCompare;
-		private DCMCompare.StatusBarProgressPanel statusBarPanel;
-		private System.Windows.Forms.MenuItem MenuItemCompare;
-		private System.Windows.Forms.MenuItem menuItemCompareAgain;
-		private System.Windows.Forms.MenuItem MenuItemCompareFilter;
-		private System.Windows.Forms.MenuItem MenuItemCompareNoFilter;
-		private System.Windows.Forms.MenuItem menuItemCompareAgainFilter;
-		private System.Windows.Forms.MenuItem menuItemCompareAgainNoFilter;
-		private System.Windows.Forms.ListBox listBoxFilterAttr;
-		private System.Windows.Forms.Button buttonAddAttr;
+    /// <summary>
+    /// Summary description for Form1.
+    /// </summary>
+    public class DCMCompareForm : System.Windows.Forms.Form
+    {
+        private System.Windows.Forms.MainMenu mainMenu1;
+        private System.Windows.Forms.MenuItem MenuItem_Help;
+        private System.Windows.Forms.MenuItem MenuItem_FileExit;
+        private System.Windows.Forms.MenuItem MenuItem_File;
+        private System.Windows.Forms.MenuItem MenuItem_AboutDCMCompare;
+        private System.Windows.Forms.TabControl TabControl;
+        private System.Windows.Forms.TabPage TabCompareDetailResults;
+        private System.Windows.Forms.TabPage TabComparisonFilter;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.StatusBar statusBarCompare;
+        private DCMCompare.StatusBarProgressPanel statusBarPanel;
+        private System.Windows.Forms.MenuItem MenuItemCompare;
+        private System.Windows.Forms.MenuItem menuItemCompareAgain;
+        private System.Windows.Forms.MenuItem MenuItemCompareFilter;
+        private System.Windows.Forms.MenuItem MenuItemCompareNoFilter;
+        private System.Windows.Forms.MenuItem menuItemCompareAgainFilter;
+        private System.Windows.Forms.MenuItem menuItemCompareAgainNoFilter;
+        private System.Windows.Forms.ListBox listBoxFilterAttr;
+        private System.Windows.Forms.Button buttonAddAttr;
         private System.Windows.Forms.Button buttonRemoveAttr;
         private IContainer components;
-		public static string firstDCMFile;
-		public static string secondDCMFile;
-		public MainThread theMainSessionThread = null;
-		private DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew dvtkWebBrowser;
-		public ThreadManager dvtThreadMgr = null;
-		string detailXmlFullFileName = "";
-		string summaryXmlFullFileName = "";
+        public static string firstDCMFile;
+        public static string secondDCMFile;
+        public MainThread theMainSessionThread = null;
+        private DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew dvtkWebBrowser;
+        public ThreadManager dvtThreadMgr = null;
+        string detailXmlFullFileName = "";
+        string summaryXmlFullFileName = "";
         string filteredAttrFilePath;
-		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.Button buttonAddSeqItemAttr;
-		private System.Windows.Forms.CheckBox checkBoxFilterGroupLength;		
-		public static ArrayList attributesTagList = new ArrayList();
-		public static bool filterGroupLengthAttributes = false;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button buttonAddSeqItemAttr;
+        private System.Windows.Forms.CheckBox checkBoxFilterGroupLength;
+        public static ArrayList attributesTagList = new ArrayList();
+        public static bool filterGroupLengthAttributes = false;
 
         private string configFileDirectory;
 
-		public DCMCompareForm()
-		{
-			//
-			// Required for Windows Form Designer support
-			//
-			InitializeComponent();
+        public DCMCompareForm()
+        {
+            //
+            // Required for Windows Form Designer support
+            //
+            InitializeComponent();
 
             configFileDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\DVTk\DICOM Compare";
             if (!Directory.Exists(configFileDirectory))
@@ -87,36 +87,36 @@ namespace DCMCompare
             }
             filteredAttrFilePath = configFileDirectory + @"\FilteredAttributes.txt";
 
-			// Set the DrawItem event handler
-			statusBarCompare.DrawItem +=new StatusBarDrawItemEventHandler(statusBarPanel.ParentDrawItemHandler);
+            // Set the DrawItem event handler
+            statusBarCompare.DrawItem += new StatusBarDrawItemEventHandler(statusBarPanel.ParentDrawItemHandler);
 
-			this.dvtkWebBrowser.XmlStyleSheetFullFileName = Application.StartupPath + "\\DVT_RESULTS.xslt";
+            this.dvtkWebBrowser.XmlStyleSheetFullFileName = Application.StartupPath + "\\DVT_RESULTS.xslt";
 
-			menuItemCompareAgain.Visible = false;
-		}
+            menuItemCompareAgain.Visible = false;
+        }
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if (components != null) 
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
 
-		#region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        #region Windows Form Designer generated code
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DCMCompareForm));
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
@@ -280,8 +280,8 @@ namespace DCMCompare
             // 
             // buttonAddSeqItemAttr
             // 
-            this.buttonAddSeqItemAttr.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.buttonAddSeqItemAttr.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAddSeqItemAttr.Location = new System.Drawing.Point(307, 28);
             this.buttonAddSeqItemAttr.Name = "buttonAddSeqItemAttr";
@@ -292,7 +292,7 @@ namespace DCMCompare
             // 
             // buttonAddAttr
             // 
-            this.buttonAddAttr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.buttonAddAttr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonAddAttr.Location = new System.Drawing.Point(125, 28);
             this.buttonAddAttr.Name = "buttonAddAttr";
@@ -303,7 +303,7 @@ namespace DCMCompare
             // 
             // buttonRemoveAttr
             // 
-            this.buttonRemoveAttr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.buttonRemoveAttr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonRemoveAttr.Location = new System.Drawing.Point(559, 28);
             this.buttonRemoveAttr.Name = "buttonRemoveAttr";
@@ -389,339 +389,339 @@ namespace DCMCompare
             ((System.ComponentModel.ISupportInitialize)(this.statusBarPanel)).EndInit();
             this.ResumeLayout(false);
 
-		}
-		#endregion
+        }
+        #endregion
 
 
-		private void Compare(bool compareAgain , bool withFilter)
-		{
-			statusBarPanel.ProgressBar.Value = statusBarPanel.ProgressBar.Minimum;
+        private void Compare(bool compareAgain, bool withFilter)
+        {
+            statusBarPanel.ProgressBar.Value = statusBarPanel.ProgressBar.Minimum;
 
-			if(!compareAgain)
-			{
-				OpenFileDialog theOpenFileDialog = new OpenFileDialog();
+            if (!compareAgain)
+            {
+                OpenFileDialog theOpenFileDialog = new OpenFileDialog();
 
-				theOpenFileDialog.Filter = "DCM files (*.dcm) |*.dcm|All files (*.*)|*.*";
-				theOpenFileDialog.Title = "Select first DCM file";
-				theOpenFileDialog.Multiselect = false;
-				theOpenFileDialog.ReadOnlyChecked = true;
-			
-				// Show the file dialog.
-				// If the user pressed the OK button...
-				if (theOpenFileDialog.ShowDialog() == DialogResult.OK)
-				{
-					// Add all DCM files selected.
-					firstDCMFile = theOpenFileDialog.FileName;
-					theOpenFileDialog.Filter = "DCM files (*.dcm) |*.dcm|All files (*.*)|*.*";
-					theOpenFileDialog.Title = "Select second DCM file";
-					theOpenFileDialog.Multiselect = false;
-					theOpenFileDialog.ReadOnlyChecked = true;
+                theOpenFileDialog.Filter = "DCM files (*.dcm) |*.dcm|All files (*.*)|*.*";
+                theOpenFileDialog.Title = "Select first DCM file";
+                theOpenFileDialog.Multiselect = false;
+                theOpenFileDialog.ReadOnlyChecked = true;
 
-					if (theOpenFileDialog.ShowDialog() == DialogResult.OK)
-					{
-						secondDCMFile = theOpenFileDialog.FileName;
-					}
-					else
-					{
-						return;
-					}
-				}
-				else
-				{
-					return;
-				}
-			}
-	
-			//Update the title of the form
-			string theNewText = "DCMCompare Tool - ";
-			theNewText+= string.Format("Comparing {0} and {1}", firstDCMFile, secondDCMFile);
-			Text = theNewText;
-			
-			//Initialize and Execute the script session
-			if(theMainSessionThread == null)
-			{
-				dvtThreadMgr = new ThreadManager();
+                // Show the file dialog.
+                // If the user pressed the OK button...
+                if (theOpenFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Add all DCM files selected.
+                    firstDCMFile = theOpenFileDialog.FileName;
+                    theOpenFileDialog.Filter = "DCM files (*.dcm) |*.dcm|All files (*.*)|*.*";
+                    theOpenFileDialog.Title = "Select second DCM file";
+                    theOpenFileDialog.Multiselect = false;
+                    theOpenFileDialog.ReadOnlyChecked = true;
 
-				theMainSessionThread = new MainThread();
-				theMainSessionThread.Initialize(dvtThreadMgr);
-				theMainSessionThread.Options.Identifier = "DCM_Compare";
-				theMainSessionThread.Options.LogThreadStartingAndStoppingInParent = false;
-				theMainSessionThread.Options.LogChildThreadsOverview = false;
+                    if (theOpenFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        secondDCMFile = theOpenFileDialog.FileName;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    return;
+                }
+            }
 
-				// Load the Dvtk Script session 
-				theMainSessionThread.Options.LoadFromFile(Application.StartupPath + @"\Script.ses");
+            //Update the title of the form
+            string theNewText = "DCMCompare Tool - ";
+            theNewText += string.Format("Comparing {0} and {1}", firstDCMFile, secondDCMFile);
+            Text = theNewText;
+
+            //Initialize and Execute the script session
+            if (theMainSessionThread == null)
+            {
+                dvtThreadMgr = new ThreadManager();
+
+                theMainSessionThread = new MainThread();
+                theMainSessionThread.Initialize(dvtThreadMgr);
+                theMainSessionThread.Options.Identifier = "DCM_Compare";
+                theMainSessionThread.Options.LogThreadStartingAndStoppingInParent = false;
+                theMainSessionThread.Options.LogChildThreadsOverview = false;
+
+                // Load the Dvtk Script session 
+                theMainSessionThread.Options.LoadFromFile(Application.StartupPath + @"\Script.ses");
                 theMainSessionThread.Options.ResultsDirectory = configFileDirectory + @"\results";
                 theMainSessionThread.Options.DataDirectory = configFileDirectory + @"\results";
-				DirectoryInfo resultDirectory = new DirectoryInfo(theMainSessionThread.Options.ResultsDirectory);
-				if(!resultDirectory.Exists)
-				{
-					resultDirectory.Create();
-				}
+                DirectoryInfo resultDirectory = new DirectoryInfo(theMainSessionThread.Options.ResultsDirectory);
+                if (!resultDirectory.Exists)
+                {
+                    resultDirectory.Create();
+                }
 
-				theMainSessionThread.Options.StrictValidation = true;
+                theMainSessionThread.Options.StrictValidation = true;
 
-				theMainSessionThread.Options.StartAndStopResultsGatheringEnabled = true;
-				theMainSessionThread.Options.ResultsFileNameOnlyWithoutExtension = 
-					string.Format("{0:000}", theMainSessionThread.Options.SessionId) +
-					"_" + theMainSessionThread.Options.Identifier + "_res";
+                theMainSessionThread.Options.StartAndStopResultsGatheringEnabled = true;
+                theMainSessionThread.Options.ResultsFileNameOnlyWithoutExtension =
+                    string.Format("{0:000}", theMainSessionThread.Options.SessionId) +
+                    "_" + theMainSessionThread.Options.Identifier + "_res";
 
-				detailXmlFullFileName = theMainSessionThread.Options.DetailResultsFullFileName;
-				summaryXmlFullFileName = theMainSessionThread.Options.SummaryResultsFullFileName;				
+                detailXmlFullFileName = theMainSessionThread.Options.DetailResultsFullFileName;
+                summaryXmlFullFileName = theMainSessionThread.Options.SummaryResultsFullFileName;
 
-				menuItemCompareAgain.Visible = true;
-			}
+                menuItemCompareAgain.Visible = true;
+            }
 
-			if(withFilter)
-			{
-				//Populate the Filtered Attributes List
-				if(listBoxFilterAttr.Items.Count != 0)
-				{
-					foreach( object listItem in listBoxFilterAttr.Items)
-					{
-						string attributeStr = listItem.ToString().Trim();
-						attributesTagList.Add(attributeStr);						
-					}
-				}
-			}
+            if (withFilter)
+            {
+                //Populate the Filtered Attributes List
+                if (listBoxFilterAttr.Items.Count != 0)
+                {
+                    foreach (object listItem in listBoxFilterAttr.Items)
+                    {
+                        string attributeStr = listItem.ToString().Trim();
+                        attributesTagList.Add(attributeStr);
+                    }
+                }
+            }
 
-			//Start the execution
-			theMainSessionThread.Start();
-			for(int i=0; i< 10; i++)
-			{
-				statusBarPanel.ProgressBar.PerformStep();
-				System.Threading.Thread.Sleep(250);
-			}
+            //Start the execution
+            theMainSessionThread.Start();
+            for (int i = 0; i < 10; i++)
+            {
+                statusBarPanel.ProgressBar.PerformStep();
+                System.Threading.Thread.Sleep(250);
+            }
 
-			dvtThreadMgr.WaitForCompletionThreads();
+            dvtThreadMgr.WaitForCompletionThreads();
 
-			//Stop the thread
-			if(theMainSessionThread  != null)
-			{
-				theMainSessionThread.Stop();
-				theMainSessionThread = null;
-				dvtThreadMgr = null;
-			}
+            //Stop the thread
+            if (theMainSessionThread != null)
+            {
+                theMainSessionThread.Stop();
+                theMainSessionThread = null;
+                dvtThreadMgr = null;
+            }
 
-			//Display the results
-			this.ShowResults();
-		}
+            //Display the results
+            this.ShowResults();
+        }
 
-		private void MenuItem_FileExit_Click(object sender, System.EventArgs e)
-		{
-			this.Close();
-		}
+        private void MenuItem_FileExit_Click(object sender, System.EventArgs e)
+        {
+            this.Close();
+        }
 
-		private void ShowResults()
-		{
-			string detailhtmlFullFileName = detailXmlFullFileName.ToLower().Replace(".xml", ".html");
-			string summaryhtmlFullFileName = summaryXmlFullFileName.ToLower().Replace(".xml", ".html");
-				
-			// Do the actual conversion from XML to HTML.
-			dvtkWebBrowser.ConvertXmlToHtml(detailXmlFullFileName, detailhtmlFullFileName);
-		
-			//Also convert summary result xml to html for further use
-			dvtkWebBrowser.ConvertXmlToHtml(summaryXmlFullFileName, summaryhtmlFullFileName);
-			
-			dvtkWebBrowser.Navigate(detailhtmlFullFileName);
-		}
+        private void ShowResults()
+        {
+            string detailhtmlFullFileName = detailXmlFullFileName.ToLower().Replace(".xml", ".html");
+            string summaryhtmlFullFileName = summaryXmlFullFileName.ToLower().Replace(".xml", ".html");
 
-		private void MenuItem_AboutDCMCompare_Click(object sender, System.EventArgs e)
-		{
-			AboutForm   about = new AboutForm("DCM Compare Tool");
-			about.ShowDialog ();
-		}
+            // Do the actual conversion from XML to HTML.
+            dvtkWebBrowser.ConvertXmlToHtml(detailXmlFullFileName, detailhtmlFullFileName);
 
-		private void TabControl_SelectedIndexChanged(object sender, System.EventArgs e)
-		{
-			if (TabControl.SelectedTab == TabComparisonFilter) 
-			{
-				TabControl.SelectedTab = TabComparisonFilter;
-			}
+            //Also convert summary result xml to html for further use
+            dvtkWebBrowser.ConvertXmlToHtml(summaryXmlFullFileName, summaryhtmlFullFileName);
 
-			if (TabControl.SelectedTab == TabCompareDetailResults) 
-			{
-				TabControl.SelectedTab = TabCompareDetailResults;
-			}
-		}
+            dvtkWebBrowser.Navigate(detailhtmlFullFileName);
+        }
 
-		private void DCMCompareForm_Load(object sender, System.EventArgs e)
-		{
-			StreamReader reader = new StreamReader(filteredAttrFilePath);
-			while (reader.Peek() != -1) 
-			{
-				string line = reader.ReadLine().Trim();
-				if(line != "")
-					listBoxFilterAttr.Items.Add(line);
-			}
-			reader.Close();
-		}
+        private void MenuItem_AboutDCMCompare_Click(object sender, System.EventArgs e)
+        {
+            AboutForm about = new AboutForm("DCM Compare Tool");
+            about.ShowDialog();
+        }
 
-		private void DCMCompareForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-		{
-			StreamWriter writer = new StreamWriter(filteredAttrFilePath);
-			foreach( object listItem in listBoxFilterAttr.Items)
-			{
-				writer.WriteLine(listItem.ToString());
-			}
-			writer.Close();
+        private void TabControl_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            if (TabControl.SelectedTab == TabComparisonFilter)
+            {
+                TabControl.SelectedTab = TabComparisonFilter;
+            }
 
-			//Clear all temporary files
-			ArrayList theFilesToRemove = new ArrayList();
-			DirectoryInfo theDirectoryInfo = new DirectoryInfo (configFileDirectory + @"\results\");
-			FileInfo[] thePixFilesInfo;
+            if (TabControl.SelectedTab == TabCompareDetailResults)
+            {
+                TabControl.SelectedTab = TabCompareDetailResults;
+            }
+        }
 
-			if (theDirectoryInfo.Exists)
-			{
-				thePixFilesInfo = theDirectoryInfo.GetFiles("*.pix");
+        private void DCMCompareForm_Load(object sender, System.EventArgs e)
+        {
+            StreamReader reader = new StreamReader(filteredAttrFilePath);
+            while (reader.Peek() != -1)
+            {
+                string line = reader.ReadLine().Trim();
+                if (line != "")
+                    listBoxFilterAttr.Items.Add(line);
+            }
+            reader.Close();
+        }
 
-				foreach (FileInfo theFileInfo in thePixFilesInfo)
-				{
-					string thePixFileName = theFileInfo.Name;
+        private void DCMCompareForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            StreamWriter writer = new StreamWriter(filteredAttrFilePath);
+            foreach (object listItem in listBoxFilterAttr.Items)
+            {
+                writer.WriteLine(listItem.ToString());
+            }
+            writer.Close();
 
-					theFilesToRemove.Add(thePixFileName);
-				}				
-			}
+            //Clear all temporary files
+            ArrayList theFilesToRemove = new ArrayList();
+            DirectoryInfo theDirectoryInfo = new DirectoryInfo(configFileDirectory + @"\results\");
+            FileInfo[] thePixFilesInfo;
 
-			//Delete all pix & idx files
-			foreach(string theFileName in theFilesToRemove)
-			{
-				string theFullFileName = System.IO.Path.Combine(theDirectoryInfo.FullName, theFileName);
+            if (theDirectoryInfo.Exists)
+            {
+                thePixFilesInfo = theDirectoryInfo.GetFiles("*.pix");
 
-				if (File.Exists(theFullFileName))
-				{
-					try
-					{
-						File.Delete(theFullFileName);
-					}
-					catch(Exception exception)
-					{
-						string theWarningText = string.Format("Could not be delete the {0} temporary file.\n due to exception: {1}\n\n", theFullFileName, exception.Message);
+                foreach (FileInfo theFileInfo in thePixFilesInfo)
+                {
+                    string thePixFileName = theFileInfo.Name;
 
-						MessageBox.Show(theWarningText, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-					}
-				}				
-			}
-		}
+                    theFilesToRemove.Add(thePixFileName);
+                }
+            }
 
-		private void MenuItemCompareFilter_Click(object sender, System.EventArgs e)
-		{
-			TabControl.SelectedTab = TabCompareDetailResults;
-			Compare(false , true);
-		}
+            //Delete all pix & idx files
+            foreach (string theFileName in theFilesToRemove)
+            {
+                string theFullFileName = System.IO.Path.Combine(theDirectoryInfo.FullName, theFileName);
 
-		private void MenuItemCompareNoFilter_Click(object sender, System.EventArgs e)
-		{
-			TabControl.SelectedTab = TabCompareDetailResults;
-			Compare(false , false);
-		}
+                if (File.Exists(theFullFileName))
+                {
+                    try
+                    {
+                        File.Delete(theFullFileName);
+                    }
+                    catch (Exception exception)
+                    {
+                        string theWarningText = string.Format("Could not be delete the {0} temporary file.\n due to exception: {1}\n\n", theFullFileName, exception.Message);
 
-		private void menuItemCompareAgainFilter_Click(object sender, System.EventArgs e)
-		{
-			TabControl.SelectedTab = TabCompareDetailResults;
-			Compare(true , true);
-		}
+                        MessageBox.Show(theWarningText, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+        }
 
-		private void menuItemCompareAgainNoFilter_Click(object sender, System.EventArgs e)
-		{
-			TabControl.SelectedTab = TabCompareDetailResults;
-			Compare(true , false);
-		}
+        private void MenuItemCompareFilter_Click(object sender, System.EventArgs e)
+        {
+            TabControl.SelectedTab = TabCompareDetailResults;
+            Compare(false, true);
+        }
 
-		private void buttonAddAttr_Click(object sender, System.EventArgs e)
-		{
-			AddAttribute addAttr = new AddAttribute();
-			addAttr.ShowDialog();
-			listBoxFilterAttr.Items.Add(TagString(addAttr.AttributeGroup,addAttr.AttributeElement));
-		}
+        private void MenuItemCompareNoFilter_Click(object sender, System.EventArgs e)
+        {
+            TabControl.SelectedTab = TabCompareDetailResults;
+            Compare(false, false);
+        }
 
-		private void buttonRemoveAttr_Click(object sender, System.EventArgs e)
-		{
-			listBoxFilterAttr.Items.Remove(listBoxFilterAttr.SelectedItem);
-		}
+        private void menuItemCompareAgainFilter_Click(object sender, System.EventArgs e)
+        {
+            TabControl.SelectedTab = TabCompareDetailResults;
+            Compare(true, true);
+        }
 
-		private void buttonAddSeqItemAttr_Click(object sender, System.EventArgs e)
-		{
-			AddSeqItemAttr addSeqItemAttr = new AddSeqItemAttr();
-			addSeqItemAttr.ShowDialog();
-			string attrStr = TagString(addSeqItemAttr.SeqAttributeGroup, addSeqItemAttr.SeqAttributeElement) + "[" + 
-						addSeqItemAttr.SeqItemNr + "]" + "/" + TagString(addSeqItemAttr.AttributeGroup, addSeqItemAttr.AttributeElement);
-			listBoxFilterAttr.Items.Add(attrStr);		
-		}
-	
-		public static string TagString(UInt16 group, UInt16 element)
-		{
-			System.Text.StringBuilder sb = new System.Text.StringBuilder();
-			System.Byte[] groupByteArray = System.BitConverter.GetBytes(group);
-			System.Byte[] elementByteArray = System.BitConverter.GetBytes(element);
-			if (System.BitConverter.IsLittleEndian)
-			{
-				// Display as Big Endian
-				System.Array.Reverse(groupByteArray);
-				System.Array.Reverse(elementByteArray);
-			}
-			string hexByteStr0, hexByteStr1;
+        private void menuItemCompareAgainNoFilter_Click(object sender, System.EventArgs e)
+        {
+            TabControl.SelectedTab = TabCompareDetailResults;
+            Compare(true, false);
+        }
 
-			hexByteStr0 = groupByteArray[0].ToString("x");
-			if (hexByteStr0.Length == 1) hexByteStr0 = "0" + hexByteStr0; // prepend with leading zero
-			hexByteStr1 = groupByteArray[1].ToString("x");
-			if (hexByteStr1.Length == 1) hexByteStr1 = "0" + hexByteStr1; // prepend with leading zero
-			sb.AppendFormat(
-				"0x{0}{1}", 
-				hexByteStr0,
-				hexByteStr1);
+        private void buttonAddAttr_Click(object sender, System.EventArgs e)
+        {
+            AddAttribute addAttr = new AddAttribute();
+            addAttr.ShowDialog();
+            listBoxFilterAttr.Items.Add(TagString(addAttr.AttributeGroup, addAttr.AttributeElement));
+        }
 
-			hexByteStr0 = elementByteArray[0].ToString("x");
-			if (hexByteStr0.Length == 1) hexByteStr0 = "0" + hexByteStr0; // prepend with leading zero
-			hexByteStr1 = elementByteArray[1].ToString("x");
-			if (hexByteStr1.Length == 1) hexByteStr1 = "0" + hexByteStr1; // prepend with leading zero
-			sb.AppendFormat(
-				"{0}{1}", 
-				hexByteStr0,
-				hexByteStr1);
-			return sb.ToString();
-		}
+        private void buttonRemoveAttr_Click(object sender, System.EventArgs e)
+        {
+            listBoxFilterAttr.Items.Remove(listBoxFilterAttr.SelectedItem);
+        }
 
-		private void checkBoxFilterGroupLength_CheckedChanged(object sender, System.EventArgs e)
-		{
-			if(checkBoxFilterGroupLength.Checked)
-				filterGroupLengthAttributes = true;
-			else
-				filterGroupLengthAttributes = false;
-		}		
-	}
+        private void buttonAddSeqItemAttr_Click(object sender, System.EventArgs e)
+        {
+            AddSeqItemAttr addSeqItemAttr = new AddSeqItemAttr();
+            addSeqItemAttr.ShowDialog();
+            string attrStr = TagString(addSeqItemAttr.SeqAttributeGroup, addSeqItemAttr.SeqAttributeElement) + "[" +
+                        addSeqItemAttr.SeqItemNr + "]" + "/" + TagString(addSeqItemAttr.AttributeGroup, addSeqItemAttr.AttributeElement);
+            listBoxFilterAttr.Items.Add(attrStr);
+        }
 
-	/// <summary>
-	/// For displaying Status Progress bar in tool
-	/// </summary>
-	public class StatusBarProgressPanel : StatusBarPanel
-	{
-		private bool isAdded = false;
+        public static string TagString(UInt16 group, UInt16 element)
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            System.Byte[] groupByteArray = System.BitConverter.GetBytes(group);
+            System.Byte[] elementByteArray = System.BitConverter.GetBytes(element);
+            if (System.BitConverter.IsLittleEndian)
+            {
+                // Display as Big Endian
+                System.Array.Reverse(groupByteArray);
+                System.Array.Reverse(elementByteArray);
+            }
+            string hexByteStr0, hexByteStr1;
 
-		private ProgressBar progressBar = new ProgressBar();
-		[Category("Progress")]
-		public ProgressBar ProgressBar
-		{
-			get { return progressBar; }
-		}
+            hexByteStr0 = groupByteArray[0].ToString("x");
+            if (hexByteStr0.Length == 1) hexByteStr0 = "0" + hexByteStr0; // prepend with leading zero
+            hexByteStr1 = groupByteArray[1].ToString("x");
+            if (hexByteStr1.Length == 1) hexByteStr1 = "0" + hexByteStr1; // prepend with leading zero
+            sb.AppendFormat(
+                "0x{0}{1}",
+                hexByteStr0,
+                hexByteStr1);
 
-		public StatusBarProgressPanel() : base()
-		{
-			// Just to be safe
-			this.Style = System.Windows.Forms.StatusBarPanelStyle.OwnerDraw;
-		}
+            hexByteStr0 = elementByteArray[0].ToString("x");
+            if (hexByteStr0.Length == 1) hexByteStr0 = "0" + hexByteStr0; // prepend with leading zero
+            hexByteStr1 = elementByteArray[1].ToString("x");
+            if (hexByteStr1.Length == 1) hexByteStr1 = "0" + hexByteStr1; // prepend with leading zero
+            sb.AppendFormat(
+                "{0}{1}",
+                hexByteStr0,
+                hexByteStr1);
+            return sb.ToString();
+        }
 
-		public void ParentDrawItemHandler(object sender, StatusBarDrawItemEventArgs sbdevent)
-		{
-			// Only add this once to the parent's control container
-			if (isAdded == false)
-			{
-				this.Parent.Controls.Add(this.progressBar);
-				this.isAdded = true;
-			}
+        private void checkBoxFilterGroupLength_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (checkBoxFilterGroupLength.Checked)
+                filterGroupLengthAttributes = true;
+            else
+                filterGroupLengthAttributes = false;
+        }
+    }
 
-			// Get the bounds of this panel and copy to the progress bar's bounds
-			if (sbdevent.Panel == this)
-				progressBar.Bounds = sbdevent.Bounds;
-		}
-	}
+    /// <summary>
+    /// For displaying Status Progress bar in tool
+    /// </summary>
+    public class StatusBarProgressPanel : StatusBarPanel
+    {
+        private bool isAdded = false;
+
+        private ProgressBar progressBar = new ProgressBar();
+        [Category("Progress")]
+        public ProgressBar ProgressBar
+        {
+            get { return progressBar; }
+        }
+
+        public StatusBarProgressPanel() : base()
+        {
+            // Just to be safe
+            this.Style = System.Windows.Forms.StatusBarPanelStyle.OwnerDraw;
+        }
+
+        public void ParentDrawItemHandler(object sender, StatusBarDrawItemEventArgs sbdevent)
+        {
+            // Only add this once to the parent's control container
+            if (isAdded == false)
+            {
+                this.Parent.Controls.Add(this.progressBar);
+                this.isAdded = true;
+            }
+
+            // Get the bounds of this panel and copy to the progress bar's bounds
+            if (sbdevent.Panel == this)
+                progressBar.Bounds = sbdevent.Bounds;
+        }
+    }
 }

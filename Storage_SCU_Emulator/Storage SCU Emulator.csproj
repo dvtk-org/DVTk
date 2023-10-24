@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <BaseAddress>285212672</BaseAddress>
-    <Optimize>true</Optimize>
-    <DebugType>
-    </DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-  </PropertyGroup>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
     <ProductVersion>8.0.50727</ProductVersion>
@@ -17,7 +7,7 @@
     <ProjectGuid>{431BB8A2-80C8-4C5A-81C4-A51BBCF852DA}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ApplicationIcon>DVTk Based Application.ico</ApplicationIcon>
+    <ApplicationIcon>..\Resources\Ico\DVTk Based Application.ico</ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
     <AssemblyName>Storage SCU Emulator</AssemblyName>
@@ -36,7 +26,7 @@
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <OldToolsVersion>2.0</OldToolsVersion>
     <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
@@ -57,50 +47,26 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug\</OutputPath>
+    <OutputPath>$(SolutionDir)\bin\$(Configuration)</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <BaseAddress>285212672</BaseAddress>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>$(SolutionDir)\bin\$(Configuration)</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <DebugType>
+    </DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DVTK, Version=1.2.3.4, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DVTk_Library\DVTK.dll</HintPath>
-    </Reference>
-    <Reference Include="DvtkApplicationLayer, Version=1.2.3.4, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DVTk_Library\DvtkApplicationLayer.dll</HintPath>
-    </Reference>
-    <Reference Include="DvtkData, Version=1.2.3.4, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DVTk_Library\DvtkData.dll</HintPath>
-    </Reference>
-    <Reference Include="DvtkDicomEmulators, Version=0.0.0.0, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DVTk_Library\DvtkDicomEmulators.dll</HintPath>
-    </Reference>
-    <Reference Include="DvtkDicomUnicodeConversion, Version=2.3.0.5, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DVTk_Library\DvtkDicomUnicodeConversion.dll</HintPath>
-    </Reference>
-    <Reference Include="DvtkHighLevelInterface, Version=1.2.3.4, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DVTk_Library\DvtkHighLevelInterface.dll</HintPath>
-    </Reference>
-    <Reference Include="DvtkIheActors, Version=0.0.0.0, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DVTk_Library\DvtkIheActors.dll</HintPath>
-    </Reference>
-    <Reference Include="DvtkInformationEntity, Version=1.2.3.4, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DVTk_Library\DvtkInformationEntity.dll</HintPath>
-    </Reference>
-    <Reference Include="DVTKManagedCodeAdapter, Version=1.2.3.4, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DVTk_Library\DVTKManagedCodeAdapter.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualBasic">
       <Name>Microsoft.VisualBasic</Name>
     </Reference>
@@ -134,7 +100,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Source\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\DataSource.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,12 +108,6 @@
     <Compile Include="Source\Storage SCU emulator.cs">
       <SubType>Form</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DVTk Based Application.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -171,37 +131,82 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\Resources\Ico\DVTk Based Application.ico">
+      <Link>DVTk Based Application.ico</Link>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DVTk_Library\Assemblies\DVTk Application Layer\DVTk Application Layer.csproj">
+      <Project>{6c70caf0-d330-4f52-b6ce-71c70dc1600f}</Project>
+      <Name>DVTk Application Layer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk_Library\Assemblies\DVTk Data\DVTk Data.csproj">
+      <Project>{7df60c20-4034-49cc-9974-b8443a2bc192}</Project>
+      <Name>DVTk Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk_Library\Assemblies\DVTk Dicom Emulators\DVTk Dicom Emulators.csproj">
+      <Project>{397501b2-4ae8-4eda-84bf-905417497b2f}</Project>
+      <Name>DVTk Dicom Emulators</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk_Library\Assemblies\DVTk Dicom Unicode Conversion\DVTk Dicom Unicode Conversion.csproj">
+      <Project>{7eb8141d-851b-478a-9950-d04c96008dc0}</Project>
+      <Name>DVTk Dicom Unicode Conversion</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk_Library\Assemblies\DVTk High Level Interface\DVTk High Level Interface.csproj">
+      <Project>{4b34d6b9-d185-4742-a204-70c490500754}</Project>
+      <Name>DVTk High Level Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk_Library\Assemblies\DVTk Ihe Actors\DVTk Ihe Actors.csproj">
+      <Project>{dedc169f-3fc4-4189-b9f0-169c8debc11a}</Project>
+      <Name>DVTk Ihe Actors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk_Library\Assemblies\DVTk Information Entity\DVTk Information Entity.csproj">
+      <Project>{36bb69f0-a963-49d9-8626-e88a02fe0141}</Project>
+      <Name>DVTk Information Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk_Library\Assemblies\DVTkManagedCodeAdapter\DVTkManagedCodeAdapter.vcxproj">
+      <Project>{8e50a389-c478-4013-817d-8191c994b602}</Project>
+      <Name>DVTKManagedCodeAdapter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk_Library\Assemblies\DVTk\DVTk.csproj">
+      <Project>{dbc39a1e-18cb-4809-81e0-47b1c899bbe0}</Project>
+      <Name>DVTk</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>REM SET LIBRARY_DIRECTORY=$(ProjectDir)..\DVTk_Library\Releases\5_1_1_0\$(ConfigurationName)
-SET LIBRARY_DIRECTORY=$(ProjectDir)..\DVTk_Library\Builds\$(ConfigurationName)
+    <PreBuildEvent>
+      <!--REM SET LIBRARY_DIRECTORY=$(ProjectDir)..\DVTk_Library\Releases\5_1_1_0\$(ConfigurationName)
+			SET LIBRARY_DIRECTORY=$(ProjectDir)..\DVTk_Library\Builds\$(ConfigurationName)
 
-IF NOT EXIST "%25LIBRARY_DIRECTORY%25" (
-ECHO Unable to find library directory "%25LIBRARY_DIRECTORY%25"
-EXIT -1
-)
+			IF NOT EXIST "%25LIBRARY_DIRECTORY%25" (
+			ECHO Unable to find library directory "%25LIBRARY_DIRECTORY%25"
+			EXIT -1
+			)
 
-del /Q /S "$(ProjectDir)DVTk_Library\*.*"
+			del /Q /S "$(ProjectDir)DVTk_Library\*.*"
 
-IF NOT EXIST "$(ProjectDir)DVTk_Library" (
-mkdir "$(ProjectDir)DVTk_Library"
-)
+			IF NOT EXIST "$(ProjectDir)DVTk_Library" (
+			mkdir "$(ProjectDir)DVTk_Library"
+			)
 
-xcopy /Y /E "%25LIBRARY_DIRECTORY%25" "$(ProjectDir)DVTk_Library"
-</PreBuildEvent>
-    <PostBuildEvent>Echo Creating directories and copying files to "$(TargetDir)".
+			xcopy /Y /E "%25LIBRARY_DIRECTORY%25" "$(ProjectDir)DVTk_Library"-->
+    </PreBuildEvent>
+    <PostBuildEvent>
+			Echo Creating directories and copying files to "$(TargetDir)".
 
-copy "$(ProjectDir)Resources\StorageSCUEmulator.ses" "$(TargetDir)"
-copy "$(ProjectDir)Resources\CommitSCUEmulator.ses" "$(TargetDir)"
-copy "$(ProjectDir)DVTk_Library\CharacterSets.dat" "$(TargetDir)"
-copy "$(ProjectDir)DVTk_Library\DVT_RESULTS.xslt" "$(TargetDir)"
-copy "$(ProjectDir)Resources\Microsoft.mshtml.dll" "$(TargetDir)"
-copy "$(ProjectDir)Resources\dcmconv.exe" "$(TargetDir)"
+			copy "$(ProjectDir)Resources\StorageSCUEmulator.ses" "$(TargetDir)"
+			copy "$(ProjectDir)Resources\CommitSCUEmulator.ses" "$(TargetDir)"
+			copy "$(ProjectDir)..\DVTk_Library\Resources\CharacterSets.dat" "$(TargetDir)"
+			copy "$(ProjectDir)..\DVTk_Library\Resources\DVT_RESULTS.xslt" "$(TargetDir)"
+			copy "$(ProjectDir)..\Resources\Libs\Microsoft.mshtml.dll" "$(TargetDir)"
+			copy "$(ProjectDir)..\Resources\Libs\dcmconv.exe" "$(TargetDir)"
 
-IF NOT EXIST "$(TargetDir)CharacterSets" (
-mkdir "$(TargetDir)CharacterSets"
-)
-xcopy /Y "$(ProjectDir)DVTk_Library\CharacterSets" "$(TargetDir)CharacterSets"
-</PostBuildEvent>
+			IF NOT EXIST "$(TargetDir)CharacterSets" (
+			mkdir "$(TargetDir)CharacterSets"
+			)
+			xcopy /Y "$(ProjectDir)..\DVTk_Library\Resources\CharacterSets" "$(TargetDir)CharacterSets"
+		</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -2050,4 +2050,22 @@ Description:
 ------------
 - Added support for VR OV (Other Very Long)
 
- 
+
+<------------------------------------------------------------------------------>
+
+=======================
+= DVTk Library 5.2.1  =
+=======================
+
+
+
+=
+= Implemented support for VR SV (Signed Very Long String) and UV (Unsigned Very Long String)
+=
+
+Date 2021-03-29
+
+Description:
+------------
+- Added support for VR SV (Signed Very Long String) and UV (Unsigned Very Long String)
+

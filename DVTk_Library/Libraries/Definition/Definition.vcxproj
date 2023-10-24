@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup Label="ProjectConfigurations">
+		<ProjectConfiguration Include="Debug|Win32">
+			<Configuration>Debug</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Release|Win32">
+			<Configuration>Release</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+	</ItemGroup>
+	<PropertyGroup Label="Globals">
+		<ProjectName>Definition</ProjectName>
+		<ProjectGuid>{DADE89C9-2D7F-4582-BF44-FA656E9E556D}</ProjectGuid>
+		<RootNamespace>Definition</RootNamespace>
+		<WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+	</PropertyGroup>
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+		<ConfigurationType>StaticLibrary</ConfigurationType>
+		<UseOfMfc>false</UseOfMfc>
+		<CharacterSet>MultiByte</CharacterSet>
+		<PlatformToolset>v143</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+		<ConfigurationType>StaticLibrary</ConfigurationType>
+		<UseOfMfc>false</UseOfMfc>
+		<CharacterSet>MultiByte</CharacterSet>
+		<PlatformToolset>v143</PlatformToolset>
+	</PropertyGroup>
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+	<ImportGroup Label="ExtensionSettings">
+	</ImportGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+		<Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+	</ImportGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+		<Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+	</ImportGroup>
+	<PropertyGroup Label="UserMacros" />
+	<PropertyGroup>
+		<_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+		<OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\bin\$(Configuration)\</OutDir>
+		<IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)\obj\$(Configuration)\</IntDir>
+		<OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\bin\$(Configuration)\</OutDir>
+		<IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)\obj\$(Configuration)\</IntDir>
+	</PropertyGroup>
+	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+		<ClCompile>
+			<InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+			<AdditionalIncludeDirectories>..\Include;..\Global;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+			<PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_WINDOWS;NATIVE_ENDIAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<StringPooling>true</StringPooling>
+			<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+			<FunctionLevelLinking>true</FunctionLevelLinking>
+			<PrecompiledHeaderOutputFile>$(SolutionDir)\bin\$(Configuration)\Definition.pch</PrecompiledHeaderOutputFile>
+			<AssemblerListingLocation>$(ProjectDir)\obj\$(Configuration)\</AssemblerListingLocation>
+			<ObjectFileName>$(ProjectDir)\obj\$(Configuration)\</ObjectFileName>
+			<ProgramDataBaseFileName>$(ProjectDir)\obj\$(Configuration)\</ProgramDataBaseFileName>
+			<WarningLevel>Level4</WarningLevel>
+			<SuppressStartupBanner>true</SuppressStartupBanner>
+			<CompileAs>Default</CompileAs>
+		</ClCompile>
+		<ResourceCompile>
+			<PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<Culture>0x0409</Culture>
+		</ResourceCompile>
+		<Lib>
+			<OutputFile>$(SolutionDir)\bin\$(Configuration)\Definition.lib</OutputFile>
+			<SuppressStartupBanner>true</SuppressStartupBanner>
+		</Lib>
+	</ItemDefinitionGroup>
+	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+		<ClCompile>
+			<Optimization>Disabled</Optimization>
+			<AdditionalIncludeDirectories>..\Include;..\Global;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+			<PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_WINDOWS;NATIVE_ENDIAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+			<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+			<RuntimeTypeInfo>true</RuntimeTypeInfo>
+			<PrecompiledHeaderOutputFile>$(SolutionDir)\bin\$(Configuration)\Definition.pch</PrecompiledHeaderOutputFile>
+			<AssemblerListingLocation>$(ProjectDir)\obj\$(Configuration)\</AssemblerListingLocation>
+			<ObjectFileName>$(ProjectDir)\obj\$(Configuration)\</ObjectFileName>
+			<ProgramDataBaseFileName>$(ProjectDir)\obj\$(Configuration)\</ProgramDataBaseFileName>
+			<BrowseInformation>true</BrowseInformation>
+			<WarningLevel>Level4</WarningLevel>
+			<SuppressStartupBanner>true</SuppressStartupBanner>
+			<DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+			<CallingConvention>Cdecl</CallingConvention>
+			<CompileAs>Default</CompileAs>
+			<DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+		</ClCompile>
+		<ResourceCompile>
+			<PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<Culture>0x0409</Culture>
+		</ResourceCompile>
+		<Lib>
+			<OutputFile>$(SolutionDir)\bin\$(Configuration)\Definition.lib</OutputFile>
+			<SuppressStartupBanner>true</SuppressStartupBanner>
+		</Lib>
+	</ItemDefinitionGroup>
+	<ItemGroup>
+		<ClCompile Include="AEDefinition.cpp" />
+		<ClCompile Include="AESession.cpp" />
+		<ClCompile Include="AttributeDefinition.cpp" />
+		<ClCompile Include="AttributeGroupDefinition.cpp" />
+		<ClCompile Include="AttributeRegister.cpp" />
+		<ClCompile Include="CommandDefinition.cpp" />
+		<ClCompile Include="DatasetDefinition.cpp" />
+		<ClCompile Include="deffilecontent.cpp" />
+		<ClCompile Include="definition.cpp" />
+		<ClCompile Include="definition_lex.cpp" />
+		<ClCompile Include="definition_parse.cpp" />
+		<ClCompile Include="DefinitionDetails.cpp" />
+		<ClCompile Include="definitionfile.cpp" />
+		<ClCompile Include="DefinitionInstance.cpp" />
+		<ClCompile Include="DICOMObjectDefinition.cpp" />
+		<ClCompile Include="ItemDefinition.cpp" />
+		<ClCompile Include="MacroDefinition.cpp" />
+		<ClCompile Include="MetaSopClassDefinition.cpp" />
+		<ClCompile Include="ModuleDefinition.cpp" />
+		<ClCompile Include="SopClassDefinition.cpp" />
+		<ClCompile Include="SystemDefinition.cpp" />
+	</ItemGroup>
+	<ItemGroup>
+		<ClInclude Include="AEDefinition.h" />
+		<ClInclude Include="AESession.h" />
+		<ClInclude Include="AttributeDefinition.h" />
+		<ClInclude Include="AttributeGroupDefinition.h" />
+		<ClInclude Include="AttributeRegister.h" />
+		<ClInclude Include="CommandDefinition.h" />
+		<ClInclude Include="DatasetDefinition.h" />
+		<ClInclude Include="deffilecontent.h" />
+		<ClInclude Include="definition.h" />
+		<ClInclude Include="definition_parse.cpp.h" />
+		<ClInclude Include="DefinitionDetails.h" />
+		<ClInclude Include="definitionfile.h" />
+		<ClInclude Include="DefinitionInstance.h" />
+		<ClInclude Include="DICOMObjectDefinition.h" />
+		<ClInclude Include="ItemDefinition.h" />
+		<ClInclude Include="MacroDefinition.h" />
+		<ClInclude Include="MetaSopClassDefinition.h" />
+		<ClInclude Include="ModuleDefinition.h" />
+		<ClInclude Include="SopClassDefinition.h" />
+		<ClInclude Include="SystemDefinition.h" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="definition_lex.l">
+			<Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Step on %(FullPath)</Message>
+			<Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\Tools\Div\l.bat "%(RootDir)%(Directory)" %(Filename)</Command>
+			<Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).cpp;%(Outputs)</Outputs>
+			<Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Step on %(FullPath)</Message>
+			<Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\Tools\Div\l.bat "%(RootDir)%(Directory)" %(Filename)</Command>
+			<Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(Filename).cpp;%(Outputs)</Outputs>
+		</None>
+		<CustomBuild Include="definition_parse.y">
+			<Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Step on %(FullPath)</Message>
+			<Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"%(RootDir)%(Directory)"CreateParserAndLexer.bat %(RootDir)%(Directory) %(Filename)</Command>
+			<Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).cpp;%(Filename).cpp.h;%(Outputs)</Outputs>
+			<Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Step on %(FullPath)</Message>
+			<Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"%(RootDir)%(Directory)"CreateParserAndLexer.bat %(RootDir)%(Directory) %(Filename)</Command>
+			<Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(Filename).cpp;%(Filename).cpp.h;%(Outputs)</Outputs>
+		</CustomBuild>
+	</ItemGroup>
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+	<ImportGroup Label="ExtensionTargets">
+	</ImportGroup>
+</Project>

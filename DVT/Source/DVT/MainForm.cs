@@ -731,9 +731,9 @@ namespace Dvt
             // 
             // MainStatusBar
             // 
-            this.MainStatusBar.Location = new System.Drawing.Point(0, 442);
+            this.MainStatusBar.Location = new System.Drawing.Point(0, 431);
             this.MainStatusBar.Name = "MainStatusBar";
-            this.MainStatusBar.Size = new System.Drawing.Size(656, 23);
+            this.MainStatusBar.Size = new System.Drawing.Size(656, 34);
             this.MainStatusBar.TabIndex = 0;
             // 
             // MainMenu
@@ -1306,7 +1306,7 @@ namespace Dvt
             // 
             // MainForm
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.AutoScaleBaseSize = new System.Drawing.Size(6, 15);
             this.ClientSize = new System.Drawing.Size(656, 465);
             this.Controls.Add(this.MainToolBar);
             this.Controls.Add(this.MainStatusBar);

@@ -1,0 +1,104 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3B6E5E6A-4FF6-4E67-A509-31E9715B8A4A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dvtk.Dicom.StructuredReporting</RootNamespace>
+    <AssemblyName>Dvtk.Dicom.StructuredReporting</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>$(SolutionDir)\bin\$(Configuration)</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>$(SolutionDir)\bin\$(Configuration)</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>none</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConceptCode.cs" />
+    <Compile Include="ContentItem.cs" />
+    <Compile Include="ContentItemWithValueTypeCode.cs" />
+    <Compile Include="ContentItemWithValueTypeNum.cs" />
+    <Compile Include="Convert.cs" />
+    <Compile Include="IContentItemVisitor.cs" />
+    <Compile Include="MeasuredValue.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerializationContext.cs" />
+    <Compile Include="Specification\CodedConcept.cs" />
+    <Compile Include="Specification\CodeDefinition.cs" />
+    <Compile Include="Specification\CodingSchemeDesignatorCodeValuePair.cs" />
+    <Compile Include="Specification\ConceptName.cs" />
+    <Compile Include="Specification\ContentItem.cs" />
+    <Compile Include="Specification\ContentItemDescription.cs" />
+    <Compile Include="Specification\ContextGroup.cs" />
+    <Compile Include="Specification\ContextGroups.cs" />
+    <Compile Include="Specification\ControlledTerminology.cs" />
+    <Compile Include="Specification\IncludedContextGroup.cs" />
+    <Compile Include="Specification\InterfacesUnions.cs" />
+    <Compile Include="Specification\Parameter.cs" />
+    <Compile Include="Specification\Standard.cs" />
+    <Compile Include="Specification\SupportUnions.cs" />
+    <Compile Include="Specification\Template.cs" />
+    <Compile Include="StructuredReport.cs" />
+    <Compile Include="Validation\ConceptCodeValidationRule.cs" />
+    <Compile Include="Validation\ContentItemConceptNameValidationRule.cs" />
+    <Compile Include="Validation\ContentItemValueValidationRule.cs.cs" />
+    <Compile Include="Validation\ValidationResult.cs" />
+    <Compile Include="Validation\ValidationResults.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Assemblies\DVTk Data\DVTk Data.csproj">
+      <Project>{7DF60C20-4034-49CC-9974-B8443A2BC192}</Project>
+      <Name>DVTk Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Assemblies\DVTk High Level Interface\DVTk High Level Interface.csproj">
+      <Project>{4B34D6B9-D185-4742-A204-70C490500754}</Project>
+      <Name>DVTk High Level Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dvtk.Ucum\Dvtk.Ucum.csproj">
+      <Project>{2EC10ACD-AC1E-433A-B896-23F82DEDCBC8}</Project>
+      <Name>Dvtk.Ucum</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UI\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+			SET DESTINATION_DIR=$(ProjectDir)..\..\builds\$(ConfigurationName)
+			ECHO DESTINATION_DIR is %25DESTINATION_DIR%25
+
+			Copy "$(TargetPath)" "%25DESTINATION_DIR%25
+			IF EXIST "$(TargetDir)$(TargetName).pdb" Copy "$(TargetDir)$(TargetName).pdb" "%25DESTINATION_DIR%25"
+
+			Copy "$(ProjectDir)..\..\Resources\Vampire.Support.dll" "%25DESTINATION_DIR%25"
+		</PostBuildEvent>
+  </PropertyGroup>
+</Project>
