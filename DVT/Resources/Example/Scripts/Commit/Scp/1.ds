@@ -68,7 +68,7 @@ SEND N-ACTION-RSP (
 ## Process transaction - this could take some time...
 DELAY 5
 
-SEND N-EVENT-REPORT-RQ (
+SEND N-EVENT-REPORT-RQ  "Storage Commitment Push Model SOP Class" (
 (0x00000002, "Storage Commitment Push Model SOP Class")
 (0x00001000, "StorageCommitmentPushUID")
 (0x00001002, 1) # Storage Commitment Request Successful

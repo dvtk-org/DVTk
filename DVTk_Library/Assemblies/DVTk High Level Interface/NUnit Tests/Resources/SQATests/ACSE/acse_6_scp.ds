@@ -1,0 +1,70 @@
+##
+## DVT DICOMScript
+##
+## Name: acse_6_scp.ds
+##
+## Test Suite Ref: 3.2.2.3.
+## Test Case Ref: 1, 2
+##
+## Test Suite Ref: 3.2.6.1.
+## Test Case Ref: 1, 2
+##
+## Pre-conditions:
+##	No association.
+##
+## Test Scenario:
+##	Test use of string -> uid mapping.
+##	Test parsing of complete ACSE requests.
+##	Receive Associate Request - with parameters defined with illegal lengths.
+##	Send Associate Accept - with parameters defined.
+##	Receive Release Request.
+##	Send Release Response.
+##
+## Expected Result:
+## 	Validation: 10 error(s), 2 warning(s)
+## 	User Validation: 0 error(s), 0 warning(s)
+## 	General Error: 0 error(s), 0 warning(s)
+##
+## Post-conditions:
+##	No association.
+##
+RECEIVE ASSOCIATE-RQ
+
+SEND ASSOCIATE-AC (
+	PROTOCOL-VERSION 1
+
+	CALLED-AE-TITLE "TEST_CALLED"
+
+	CALLING-AE-TITLE "TEST_CALLING"
+
+	APPLICATION-CONTEXT-NAME "1.2.840.10008.3.1.1.1"
+
+        PRESENTATION-CONTEXT-ITEMS
+        ("Secondary Capture Image Storage SOP Class", 0, "Implicit VR Little Endian")
+	("Computed Radiography Image Storage SOP Class", 0, "1.2.840.10008.1.2")
+
+	MAXIMUM-LENGTH-RECEIVED 65536
+
+	IMPLEMENTATION-CLASS-UID "1.22.333.4444.55555.666666"
+
+	IMPLEMENTATION-VERSION-NAME "TestDVT"
+
+	SOP-CLASS-EXTENDED-NEGOTIATION
+	("Secondary Capture Image Storage SOP Class", 0, 1, 2, 3, 4, 5)
+
+	SCPSCU-ROLE-SELECTION
+	("Secondary Capture Image Storage SOP Class", 0, 0)
+
+	ASYNCHRONOUS-OPERATIONS-WINDOW 0 0
+)
+
+RECEIVE RELEASE-RQ
+
+SEND RELEASE-RP
+
+##
+## Script Result should be:
+## Validation: 10 error(s), 0 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 1 error(s), 0 warning(s)
+##

@@ -1,0 +1,102 @@
+## 
+## DVT DICOMScript
+##
+## Name: val_test_vm_fail.ds
+##
+## Test Suite Ref: 3.2.11.3.4.9.2.2
+## Test Case Ref:
+##
+## Pre-conditions:
+##
+## Test Scenario:
+##    - a C-STORE-RQ command object and a dataset for the "Validation Test VM SOP Class"
+##      are created and values with known errors are set
+##    - the objects are validated 
+##    - and deleted
+##
+## Expected Result:
+##    12 errors, 0 warnings with code as indicated in the script
+##
+## Post-conditions:
+##    -
+##
+
+CREATE C-STORE-RQ VM_STORE_RQ1 "Validation Test VM SOP Class" RQ_VM1
+
+SET C-STORE-RQ VM_STORE_RQ1
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test VM SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, AUTOSET);
+}
+
+
+ECHO "================================================================================"
+ECHO "VM test 1: (all 'dataset' attributes must fail!)..."
+ECHO "Test runs against the following pre-defined VM's in ValidationTestVMSopClass.def"
+ECHO "  SS_10: VM = 1 "
+ECHO "  SS_20: VM = 2 "
+ECHO "  SS_30: VM = 2..5 "
+ECHO "  SS_40: VM = 1-n "
+ECHO "  SS_50: VM = 2-2n "
+ECHO "  SS_60: VM = 3-2n "
+ECHO "================================================================================"
+
+#Set number of values below lower ranges 
+SET "Validation Test VM SOP Class" RQ_VM1
+{
+(0x10240010, SS, );		## Test for Validation Rule D_VM_1
+(0x10240020, SS, 10);		## Test for Validation Rule D_VM_2
+(0x10240030, SS, 10);		## Test for Validation Rule D_VM_2
+(0x10240040, SS, );		## Test for Validation Rule D_VM_1
+(0x10240050, SS, );		## Test for Validation Rule D_VM_1
+(0x10240060, SS, );	      ## Test for Validation Rule D_VM_1
+}
+
+ECHO "================================================================================"
+ECHO "Test 1a: "
+ECHO "  All 'dataset' attributes have an error 'number of values...' and the attributes"
+ECHO "  with zero length (no values so '0' in 'P' column) have a 'Zero length..' error "
+ECHO "================================================================================"
+
+VALIDATE C-STORE-RQ VM_STORE_RQ1 "Validation Test VM SOP Class" RQ_VM1
+
+
+#Set number of values above upper ranges or
+SET "Validation Test VM SOP Class" RQ_VM1 
+{
+(0x10240010, SS, 10, 20);		      ## Test for Validation Rule D_VM_2 
+(0x10240020, SS, 10, 20, 30);		      ## Test for Validation Rule D_VM_2
+(0x10240030, SS, 10, 20, 30, 40, 50, 60); ## Test for Validation Rule D_VM_2
+(0x10240040, SS, );		            ## Test for Validation Rule D_VM_1
+(0x10240050, SS, 10, 20, 30);		      ## Test for Validation Rule D_VM_3
+(0x10240060, SS, 10, 20, 30, 40);	      ## Test for Validation Rule D_VM_4
+}
+
+ECHO "================================================================================"
+ECHO "Test 1b: "
+ECHO "  All 'dataset' attributes have an error 'number of values...' and the attributes"
+ECHO "  with zero length (no values so '0' in 'P' column) have a 'Zero lenght..' error "
+ECHO "================================================================================"
+
+VALIDATE C-STORE-RQ VM_STORE_RQ1 "Validation Test VM SOP Class" RQ_VM1
+
+DELETE C-STORE-RQ VM_STORE_RQ1
+DELETE "Validation Test VM SOP Class" RQ_VM1
+
+ECHO "================================================================================"
+
+##
+## Script Result should be:
+## Validation: 12 error(s), 0 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 0 error(s), 0 warning(s)
+##
+
+
+
+

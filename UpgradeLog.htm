@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+ <html xmlns:msxsl="urn:schemas-microsoft-com:xslt"><head><meta content="en-us" http-equiv="Content-Language" /><meta content="text/html; charset=utf-16" http-equiv="Content-Type" /><title _locID="ConversionReport0">
+          Migration Report
+        </title><style> 
+                    /* Body style, for the entire document */
+                    body
+                    {
+                        background: #F3F3F4;
+                        color: #1E1E1F;
+                        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                        padding: 0;
+                        margin: 0;
+                    }
+
+                    /* Header1 style, used for the main title */
+                    h1
+                    {
+                        padding: 10px 0px 10px 10px;
+                        font-size: 21pt;
+                        background-color: #E2E2E2;
+                        border-bottom: 1px #C1C1C2 solid; 
+                        color: #201F20;
+                        margin: 0;
+                        font-weight: normal;
+                    }
+
+                    /* Header2 style, used for "Overview" and other sections */
+                    h2
+                    {
+                        font-size: 18pt;
+                        font-weight: normal;
+                        padding: 15px 0 5px 0;
+                        margin: 0;
+                    }
+
+                    /* Header3 style, used for sub-sections, such as project name */
+                    h3
+                    {
+                        font-weight: normal;
+                        font-size: 15pt;
+                        margin: 0;
+                        padding: 15px 0 5px 0;
+                        background-color: transparent;
+                    }
+
+                    /* Color all hyperlinks one color */
+                    a
+                    {
+                        color: #1382CE;
+                    }
+
+                    /* Table styles */ 
+                    table
+                    {
+                        border-spacing: 0 0;
+                        border-collapse: collapse;
+                        font-size: 10pt;
+                    }
+
+                    table th
+                    {
+                        background: #E7E7E8;
+                        text-align: left;
+                        text-decoration: none;
+                        font-weight: normal;
+                        padding: 3px 6px 3px 6px;
+                    }
+
+                    table td
+                    {
+                        vertical-align: top;
+                        padding: 3px 6px 5px 5px;
+                        margin: 0px;
+                        border: 1px solid #E7E7E8;
+                        background: #F7F7F8;
+                    }
+
+                    /* Local link is a style for hyperlinks that link to file:/// content, there are lots so color them as 'normal' text until the user mouse overs */
+                    .localLink
+                    {
+                        color: #1E1E1F;
+                        background: #EEEEED;
+                        text-decoration: none;
+                    }
+
+                    .localLink:hover
+                    {
+                        color: #1382CE;
+                        background: #FFFF99;
+                        text-decoration: none;
+                    }
+
+                    /* Center text, used in the over views cells that contain message level counts */ 
+                    .textCentered
+                    {
+                        text-align: center;
+                    }
+
+                    /* The message cells in message tables should take up all avaliable space */
+                    .messageCell
+                    {
+                        width: 100%;
+                    }
+
+                    /* Padding around the content after the h1 */ 
+                    #content 
+                    {
+	                    padding: 0px 12px 12px 12px; 
+                    }
+
+                    /* The overview table expands to width, with a max width of 97% */ 
+                    #overview table
+                    {
+                        width: auto;
+                        max-width: 75%; 
+                    }
+
+                    /* The messages tables are always 97% width */
+                    #messages table
+                    {
+                        width: 97%;
+                    }
+
+                    /* All Icons */
+                    .IconSuccessEncoded, .IconInfoEncoded, .IconWarningEncoded, .IconErrorEncoded
+                    {
+                        min-width:18px;
+                        min-height:18px; 
+                        background-repeat:no-repeat;
+                        background-position:center;
+                    }
+
+                    /* Success icon encoded */
+                    .IconSuccessEncoded
+                    {
+                        /* Note: Do not delete the comment below. It is used to verify the correctness of the encoded image resource below before the product is released */
+                        /* [---XsltValidateInternal-Base64EncodedImage:IconSuccess#Begin#background-image: url(data:image/png;base64,#Separator#);#End#] */
+                        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABcElEQVR4Xq2TsUsCURzHv15g8ZJcBWlyiYYgCIWcb9DFRRwMW5TA2c0/QEFwFkxxUQdxVlBwCYWOi6IhWgQhBLHJUCkhLr/BW8S7gvrAg+N+v8/v+x68Z8MGy+XSCyABQAXgBgHGALoASkIIDWSLeLBetdHryMjd5IxQPWT4rn1c/P7+xxp72Cs9m5SZ0Bq2vPnbPFafK2zDvmNHypdC0BPkLlQhxJsCAhQoZwdZU5mwxh720qGo8MzTxTTKZDPCx2HoVzp6lz0Q9tKhyx0kGs8Ny+TkWRKk8lCROwEduhyg9l/6lunOPSfmH3NUH6uQ0KHLAe7JYvJjevm+DAMGJHToKtigE+vwvIidxLamb8IBY9e+C5LiXREkfho3TSd06HJA13/oh6T51MTsfQbHrsMynQ5dDihFjiK8JJAU9AKIWTp76dCVN7HWHrajmUEGvyF9nkbAE6gLIS7kTUyuf2gscLoJrElZo/Mvj+nPz/kLTmfnEwP3tB0AAAAASUVORK5CYII=);
+                    }
+
+                    /* Information icon encoded */
+                    .IconInfoEncoded
+                    {
+                        /* Note: Do not delete the comment below. It is used to verify the correctness of the encoded image resource below before the product is released */
+                        /* [---XsltValidateInternal-Base64EncodedImage:IconInformation#Begin#background-image: url(data:image/png;base64,#Separator#);#End#] */
+                        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHElEQVR4Xs2TsUoDQRRF7wwoziokjZUKadInhdhukR9YP8DMX1hYW+QvdsXa/QHBbcXC7W0CamWTQnclFutceIQJwwaWNLlwm5k5d94M76mmaeCrrmsLYOocY12FcxZFUeozCqKqqgYA8uevv1H6VuPxcwlfk5N92KHBxfFeCSAxxswlYAW/Xr989x/mv9gkhtyMDhcAxgzRsp7flj8B/HF1RsMXq+NZMkopaHe7lbKxQUEIGbKsYNoGn969060hZBkQex/W8oRQwsQaW2o3Ago2SVcJUzAgY3N0lTCZZm+zPS8HB51gMmS1DEYyOz9acKO1D8JWTlafKIMxdhvlfdyT94Vv5h7P8Ky7nQzACmhvKq3zk3PjW9asz9D/1oigecsioooAAAAASUVORK5CYII=);
+                    }
+
+                    /* Warning icon encoded */
+                    .IconWarningEncoded
+                    {
+                        /* Note: Do not delete the comment below. It is used to verify the correctness of the encoded image resource below before the product is released */
+                        /* [---XsltValidateInternal-Base64EncodedImage:IconWarning#Begin#background-image: url(data:image/png;base64,#Separator#);#End#] */
+                        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAx0lEQVR4XpWSMQ7CMAxFf4xAyBMLCxMrO8dhaBcuwdCJS3RJBw7SA/QGTCxdWJgiQYWKXJWKIXHIlyw5lqr34tQgEOdcBsCOx5yZK3hCCKdYXneQkh4pEfqzLfu+wVDSyyzFoJjfz9NB+pAF+eizx2Vruts0k15mPgvS6GYvpVtQhB61IB/dk6AF6fS4Ben0uIX5odtFe8Q/eW1KvFeH4e8khT6+gm5B+t3juyDt7n0jpe+CANTd+oTUjN/U3yVaABnSUjFz/gFq44JaVSCXeQAAAABJRU5ErkJggg==);
+                    }
+
+                    /* Error icon encoded */
+                    .IconErrorEncoded
+                    {
+                        /* Note: Do not delete the comment below. It is used to verify the correctness of the encoded image resource below before the product is released */
+                        /* [---XsltValidateInternal-Base64EncodedImage:IconError#Begin#background-image: url(data:image/png;base64,#Separator#);#End#] */
+                        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABQElEQVR4XqWTvUoEQRCE6wYPZUA80AfwAQz23uCMjA7MDRQEIzPBVEyNTQUFIw00vcQTTMzuAh/AxEQQT8HF/3G/oGGnEUGuoNnd6qoZuqltyKEsyzVJq5I6rnUp6SjGeGhESikzzlc1eL7opfuVbrqbU1Zw9NCgtQMaZpY0eNnaaL2fHusvTK5vKu7sjSS1Y4y3QUA6K3e3Mau5UFDyMP7tYF9o8cAHZv68vipoIJg971PZIZ5HiwdvYGGvFVFHmGmZ2MxwmQYPXubPl9Up0tfoMQGetXd6mRbvhBw+boZ6WF7Mbv1+GsHRk0fQmPAH1GfmZirbCfDJ61tw3Px8/8pZsPAG4jlVhcPgZ7adwNWBB68lkRQWFiTgFlbnLY3DGGM7izIJIyT/jjIvEJw6fdJTc6krDzh6aMwMP9bvDH4ADSsa9uSWVJkAAAAASUVORK5CYII=);
+                    }
+                 </style><script type="text/javascript" language="javascript"> 
+          
+            // Startup 
+            // Hook up the the loaded event for the document/window, to linkify the document content
+            var startupFunction = function() { linkifyElement("messages"); };
+            
+            if(window.attachEvent)
+            {
+              window.attachEvent('onload', startupFunction);
+            }
+            else if (window.addEventListener) 
+            {
+              window.addEventListener('load', startupFunction, false);
+            }
+            else 
+            {
+              document.addEventListener('load', startupFunction, false);
+            } 
+            
+            // Toggles the visibility of table rows with the specified name 
+            function toggleTableRowsByName(name)
+            {
+               var allRows = document.getElementsByTagName('tr');
+               for (i=0; i < allRows.length; i++)
+               {
+                  var currentName = allRows[i].getAttribute('name');
+                  if(!!currentName && currentName.indexOf(name) == 0)
+                  {
+                      var isVisible = allRows[i].style.display == ''; 
+                      isVisible ? allRows[i].style.display = 'none' : allRows[i].style.display = '';
+                  }
+               }
+            }
+            
+            function scrollToFirstVisibleRow(name) 
+            {
+               var allRows = document.getElementsByTagName('tr');
+               for (i=0; i < allRows.length; i++)
+               {
+                  var currentName = allRows[i].getAttribute('name');
+                  var isVisible = allRows[i].style.display == ''; 
+                  if(!!currentName && currentName.indexOf(name) == 0 && isVisible)
+                  {
+                     allRows[i].scrollIntoView(true); 
+                     return true; 
+                  }
+               }
+               
+               return false;
+            }
+            
+            // Linkifies the specified text content, replaces candidate links with html links 
+            function linkify(text)
+            {
+                 if(!text || 0 === text.length)
+                 {
+                     return text; 
+                 }
+
+                 // Find http, https and ftp links and replace them with hyper links 
+                 var urlLink = /(http|https|ftp)\:\/\/[a-zA-Z0-9\-\.]+(:[a-zA-Z0-9]*)?\/?([a-zA-Z0-9\-\._\?\,\/\\\+&%\$#\=~;\{\}])*/gi;
+                 
+                 return text.replace(urlLink, '<a href="$&">$&</a>') ;
+            }
+            
+            // Linkifies the specified element by ID
+            function linkifyElement(id)
+            {
+                var element = document.getElementById(id);
+                if(!!element)
+                {
+                  element.innerHTML = linkify(element.innerHTML); 
+                }
+            }
+            
+            function ToggleMessageVisibility(projectName)
+            {
+              if(!projectName || 0 === projectName.length)
+              {
+                return; 
+              }
+              
+              toggleTableRowsByName("MessageRowClass" + projectName);
+              toggleTableRowsByName('MessageRowHeaderShow' + projectName);
+              toggleTableRowsByName('MessageRowHeaderHide' + projectName); 
+            }
+            
+            function ScrollToFirstVisibleMessage(projectName)
+            {
+              if(!projectName || 0 === projectName.length)
+              {
+                return; 
+              }
+              
+              // First try the 'Show messages' row
+              if(!scrollToFirstVisibleRow('MessageRowHeaderShow' + projectName))
+              {
+                // Failed to find a visible row for 'Show messages', try an actual message row 
+                scrollToFirstVisibleRow('MessageRowClass' + projectName); 
+              }
+            }
+           </script></head><body><h1 _locID="ConversionReport">
+          Migration Report - </h1><div id="content"><h2 _locID="OverviewTitle">Overview</h2><div id="overview"><table><tr><th></th><th _locID="ProjectTableHeader">Project</th><th _locID="PathTableHeader">Path</th><th _locID="ErrorsTableHeader">Errors</th><th _locID="WarningsTableHeader">Warnings</th><th _locID="MessagesTableHeader">Messages</th></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#DICOM Compare Setup">DICOM Compare Setup</a></strong></td><td>DICOM_Compare\DICOM Compare Setup.vdproj</td><td class="textCentered"><a href="#DICOM Compare SetupError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#DICOM Editor Setup">DICOM Editor Setup</a></strong></td><td>DICOM Editor\DICOM Editor Setup.vdproj</td><td class="textCentered"><a href="#DICOM Editor SetupError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#DICOM Network Analyzer Setup">DICOM Network Analyzer Setup</a></strong></td><td>DICOM_Network_Analyzer\DICOM Network Analyzer Setup without WinPCap.vdproj</td><td class="textCentered"><a href="#DICOM Network Analyzer SetupError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#DVT Examples Setup">DVT Examples Setup</a></strong></td><td>DVT\DVT Examples Setup.vdproj</td><td class="textCentered"><a href="#DVT Examples SetupError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#DVT Setup">DVT Setup</a></strong></td><td>DVT\DVT Setup.vdproj</td><td class="textCentered"><a href="#DVT SetupError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#Query Retrieve SCP Emulator Setup">Query Retrieve SCP Emulator Setup</a></strong></td><td>Query_Retrieve_SCP_Emulator\Query Retrieve SCP Emulator Setup.vdproj</td><td class="textCentered"><a href="#Query Retrieve SCP Emulator SetupError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#Query Retrieve SCU Emulator Setup">Query Retrieve SCU Emulator Setup</a></strong></td><td>Query_Retrieve_SCU_Emulator\Query Retrieve SCU Emulator Setup.vdproj</td><td class="textCentered"><a href="#Query Retrieve SCU Emulator SetupError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#RIS Emulator Setup">RIS Emulator Setup</a></strong></td><td>RIS_Emulator\RIS Emulator Setup.vdproj</td><td class="textCentered"><a href="#RIS Emulator SetupError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#Storage SCP Emulator Setup">Storage SCP Emulator Setup</a></strong></td><td>Storage_SCP_Emulator\Storage SCP Emulator Setup.vdproj</td><td class="textCentered"><a href="#Storage SCP Emulator SetupError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconErrorEncoded" /><td><strong><a href="#Storage SCU Emulator Setup">Storage SCU Emulator Setup</a></strong></td><td>Storage_SCU_Emulator\Storage SCU Emulator Setup.vdproj</td><td class="textCentered"><a href="#Storage SCU Emulator SetupError">1</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Assemblies">Assemblies</a></strong></td><td>Assemblies</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Attribute Group">Attribute Group</a></strong></td><td>DVTk_Library\Libraries\AttributeGroup\AttributeGroup.vcxproj</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Condition">Condition</a></strong></td><td>DVTk_Library\Libraries\Condition\Condition.vcxproj</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Definition">Definition</a></strong></td><td>DVTk_Library\Libraries\Definition\Definition.vcxproj</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Dicom">Dicom</a></strong></td><td>DVTk_Library\Libraries\Dicom\Dicom.vcxproj</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#DVT">DVT</a></strong></td><td>DVT</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#DVTk_Library">DVTk_Library</a></strong></td><td>DVTk_Library</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#DVTKManagedCodeAdapter">DVTKManagedCodeAdapter</a></strong></td><td>DVTk_Library\Assemblies\DVTkManagedCodeAdapter\DVTkManagedCodeAdapter.vcxproj</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Emulator">Emulator</a></strong></td><td>DVTk_Library\Libraries\Emulator\Emulator.vcxproj</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Libraries">Libraries</a></strong></td><td>Libraries</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Log">Log</a></strong></td><td>DVTk_Library\Libraries\Log\Log.vcxproj</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Media">Media</a></strong></td><td>DVTk_Library\Libraries\Media\Media.vcxproj</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Network">Network</a></strong></td><td>DVTk_Library\Libraries\Network\Network.vcxproj</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Query Retrieve SCU Emulator">Query Retrieve SCU Emulator</a></strong></td><td>Query_Retrieve_SCU_Emulator\Query Retrieve SCU Emulator.csproj</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Relation">Relation</a></strong></td><td>DVTk_Library\Libraries\Relation\Relation.vcxproj</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Scripting">Scripting</a></strong></td><td>DVTk_Library\Libraries\Scripting\Scripting.vcxproj</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Session">Session</a></strong></td><td>DVTk_Library\Libraries\Session\Session.vcxproj</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Setups">Setups</a></strong></td><td>Setups</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Utility">Utility</a></strong></td><td>DVTk_Library\Libraries\Utility\Utility.vcxproj</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Validation">Validation</a></strong></td><td>DVTk_Library\Libraries\Validation\Validation.vcxproj</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Warehouse">Warehouse</a></strong></td><td>DVTk_Library\Libraries\Warehouse\Warehouse.vcxproj</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#">0</a></td></tr><tr><td class="IconSuccessEncoded" /><td><strong><a href="#Solution"><span _locID="OverviewSolutionSpan">Solution</span></a></strong></td><td>DICOM.sln</td><td class="textCentered"><a>0</a></td><td class="textCentered"><a>0</a></td><td class="textCentered"><a href="#" onclick="ScrollToFirstVisibleMessage('Solution'); return false;">1</a></td></tr></table></div><h2 _locID="SolutionAndProjectsTitle">Solution and projects</h2><div id="messages"><a name="DICOM Compare Setup" /><h3>DICOM Compare Setup</h3><table><tr id="DICOM Compare SetupHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassDICOM Compare Setup"><td class="IconErrorEncoded"><a name="DICOM Compare SetupError" /></td><td class="messageCell"><strong>DICOM_Compare\DICOM Compare Setup.vdproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 54435603-dbb4-11d2-8724-00a0c9a8b90c</span></td></tr></table><a name="DICOM Editor Setup" /><h3>DICOM Editor Setup</h3><table><tr id="DICOM Editor SetupHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassDICOM Editor Setup"><td class="IconErrorEncoded"><a name="DICOM Editor SetupError" /></td><td class="messageCell"><strong>DICOM Editor\DICOM Editor Setup.vdproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 54435603-dbb4-11d2-8724-00a0c9a8b90c</span></td></tr></table><a name="DICOM Network Analyzer Setup" /><h3>DICOM Network Analyzer Setup</h3><table><tr id="DICOM Network Analyzer SetupHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassDICOM Network Analyzer Setup"><td class="IconErrorEncoded"><a name="DICOM Network Analyzer SetupError" /></td><td class="messageCell"><strong>DICOM_Network_Analyzer\DICOM Network Analyzer Setup without WinPCap.vdproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 54435603-dbb4-11d2-8724-00a0c9a8b90c</span></td></tr></table><a name="DVT Examples Setup" /><h3>DVT Examples Setup</h3><table><tr id="DVT Examples SetupHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassDVT Examples Setup"><td class="IconErrorEncoded"><a name="DVT Examples SetupError" /></td><td class="messageCell"><strong>DVT\DVT Examples Setup.vdproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 54435603-dbb4-11d2-8724-00a0c9a8b90c</span></td></tr></table><a name="DVT Setup" /><h3>DVT Setup</h3><table><tr id="DVT SetupHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassDVT Setup"><td class="IconErrorEncoded"><a name="DVT SetupError" /></td><td class="messageCell"><strong>DVT\DVT Setup.vdproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 54435603-dbb4-11d2-8724-00a0c9a8b90c</span></td></tr></table><a name="Query Retrieve SCP Emulator Setup" /><h3>Query Retrieve SCP Emulator Setup</h3><table><tr id="Query Retrieve SCP Emulator SetupHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassQuery Retrieve SCP Emulator Setup"><td class="IconErrorEncoded"><a name="Query Retrieve SCP Emulator SetupError" /></td><td class="messageCell"><strong>Query_Retrieve_SCP_Emulator\Query Retrieve SCP Emulator Setup.vdproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 54435603-dbb4-11d2-8724-00a0c9a8b90c</span></td></tr></table><a name="Query Retrieve SCU Emulator Setup" /><h3>Query Retrieve SCU Emulator Setup</h3><table><tr id="Query Retrieve SCU Emulator SetupHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassQuery Retrieve SCU Emulator Setup"><td class="IconErrorEncoded"><a name="Query Retrieve SCU Emulator SetupError" /></td><td class="messageCell"><strong>Query_Retrieve_SCU_Emulator\Query Retrieve SCU Emulator Setup.vdproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 54435603-dbb4-11d2-8724-00a0c9a8b90c</span></td></tr></table><a name="RIS Emulator Setup" /><h3>RIS Emulator Setup</h3><table><tr id="RIS Emulator SetupHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassRIS Emulator Setup"><td class="IconErrorEncoded"><a name="RIS Emulator SetupError" /></td><td class="messageCell"><strong>RIS_Emulator\RIS Emulator Setup.vdproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 54435603-dbb4-11d2-8724-00a0c9a8b90c</span></td></tr></table><a name="Storage SCP Emulator Setup" /><h3>Storage SCP Emulator Setup</h3><table><tr id="Storage SCP Emulator SetupHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassStorage SCP Emulator Setup"><td class="IconErrorEncoded"><a name="Storage SCP Emulator SetupError" /></td><td class="messageCell"><strong>Storage_SCP_Emulator\Storage SCP Emulator Setup.vdproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 54435603-dbb4-11d2-8724-00a0c9a8b90c</span></td></tr></table><a name="Storage SCU Emulator Setup" /><h3>Storage SCU Emulator Setup</h3><table><tr id="Storage SCU Emulator SetupHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="ErrorRowClassStorage SCU Emulator Setup"><td class="IconErrorEncoded"><a name="Storage SCU Emulator SetupError" /></td><td class="messageCell"><strong>Storage_SCU_Emulator\Storage SCU Emulator Setup.vdproj:
+        </strong><span>The application which this project type is based on was not found. Please try this link for further information: 54435603-dbb4-11d2-8724-00a0c9a8b90c</span></td></tr></table><a name="Assemblies" /><h3>Assemblies</h3><table><tr id="AssembliesHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">Assemblies logged no messages.
+                  </td></tr></table><a name="Attribute Group" /><h3>Attribute Group</h3><table><tr id="Attribute GroupHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">Attribute Group logged no messages.
+                  </td></tr></table><a name="Condition" /><h3>Condition</h3><table><tr id="ConditionHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">Condition logged no messages.
+                  </td></tr></table><a name="Definition" /><h3>Definition</h3><table><tr id="DefinitionHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">Definition logged no messages.
+                  </td></tr></table><a name="Dicom" /><h3>Dicom</h3><table><tr id="DicomHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">Dicom logged no messages.
+                  </td></tr></table><a name="DVT" /><h3>DVT</h3><table><tr id="DVTHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">DVT logged no messages.
+                  </td></tr></table><a name="DVTk_Library" /><h3>DVTk_Library</h3><table><tr id="DVTk_LibraryHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">DVTk_Library logged no messages.
+                  </td></tr></table><a name="DVTKManagedCodeAdapter" /><h3>DVTKManagedCodeAdapter</h3><table><tr id="DVTKManagedCodeAdapterHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">DVTKManagedCodeAdapter logged no messages.
+                  </td></tr></table><a name="Emulator" /><h3>Emulator</h3><table><tr id="EmulatorHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">Emulator logged no messages.
+                  </td></tr></table><a name="Libraries" /><h3>Libraries</h3><table><tr id="LibrariesHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">Libraries logged no messages.
+                  </td></tr></table><a name="Log" /><h3>Log</h3><table><tr id="LogHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">Log logged no messages.
+                  </td></tr></table><a name="Media" /><h3>Media</h3><table><tr id="MediaHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">Media logged no messages.
+                  </td></tr></table><a name="Network" /><h3>Network</h3><table><tr id="NetworkHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">Network logged no messages.
+                  </td></tr></table><a name="Query Retrieve SCU Emulator" /><h3>Query Retrieve SCU Emulator</h3><table><tr id="Query Retrieve SCU EmulatorHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">Query Retrieve SCU Emulator logged no messages.
+                  </td></tr></table><a name="Relation" /><h3>Relation</h3><table><tr id="RelationHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">Relation logged no messages.
+                  </td></tr></table><a name="Scripting" /><h3>Scripting</h3><table><tr id="ScriptingHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">Scripting logged no messages.
+                  </td></tr></table><a name="Session" /><h3>Session</h3><table><tr id="SessionHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">Session logged no messages.
+                  </td></tr></table><a name="Setups" /><h3>Setups</h3><table><tr id="SetupsHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">Setups logged no messages.
+                  </td></tr></table><a name="Utility" /><h3>Utility</h3><table><tr id="UtilityHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">Utility logged no messages.
+                  </td></tr></table><a name="Validation" /><h3>Validation</h3><table><tr id="ValidationHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">Validation logged no messages.
+                  </td></tr></table><a name="Warehouse" /><h3>Warehouse</h3><table><tr id="WarehouseHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr><td class="IconInfoEncoded" /><td class="messageCell" _locID="NoMessagesRow">Warehouse logged no messages.
+                  </td></tr></table><a name="Solution" /><h3 _locID="ProjectDisplayNameHeader">Solution</h3><table><tr id="SolutionHeaderRow"><th></th><th class="messageCell" _locID="MessageTableHeader">Message</th></tr><tr name="MessageRowHeaderShowSolution"><td class="IconInfoEncoded" /><td class="messageCell"><a _locID="ShowAdditionalMessages" href="#" name="SolutionMessage" onclick="ToggleMessageVisibility('Solution'); return false;">
+          Show 1 additional messages
+        </a></td></tr><tr name="MessageRowClassSolution" style="display: none"><td class="IconInfoEncoded"><a name="SolutionMessage" /></td><td class="messageCell"><strong>DICOM.sln:
+        </strong><span>The solution file does not require migration.</span></td></tr><tr style="display: none" name="MessageRowHeaderHideSolution"><td class="IconInfoEncoded" /><td class="messageCell"><a _locID="HideAdditionalMessages" href="#" name="SolutionMessage" onclick="ToggleMessageVisibility('Solution'); return false;">
+          Hide 1 additional messages
+        </a></td></tr></table></div></div></body></html>

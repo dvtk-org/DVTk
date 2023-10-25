@@ -1,0 +1,165 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <Import Project="..\..\..\..\packages\Microsoft.NET.Test.Sdk.17.4.1\build\net462\Microsoft.NET.Test.Sdk.props" Condition="Exists('..\..\..\..\packages\Microsoft.NET.Test.Sdk.17.4.1\build\net462\Microsoft.NET.Test.Sdk.props')" />
+  <Import Project="..\..\..\..\packages\NUnit.3.13.3\build\NUnit.props" Condition="Exists('..\..\..\..\packages\NUnit.3.13.3\build\NUnit.props')" />
+    <Import Project="..\..\..\..\packages\Microsoft.CodeCoverage.17.4.1\build\netstandard2.0\Microsoft.CodeCoverage.props" Condition="Exists('..\..\..\..\packages\Microsoft.CodeCoverage.17.4.1\build\netstandard2.0\Microsoft.CodeCoverage.props')" />
+  <Import Project="..\..\..\..\packages\NUnitTestAdapter.2.3.0\build\NUnitTestAdapter.props" Condition="Exists('..\..\..\..\packages\NUnitTestAdapter.2.3.0\build\NUnitTestAdapter.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{226921D5-F9C5-4441-A92D-495D296685FA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DvtkHighLevelInterface___NUnit_Tests</RootNamespace>
+    <AssemblyName>DvtkHighLevelInterface - NUnit Tests</AssemblyName>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>$(SolutionDir)\bin\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>$(SolutionDir)\bin\$(Configuration)\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>$(SolutionDir)\bin\$(Configuration)\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>$(SolutionDir)\bin\$(Configuration)\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.CodeCoverage.Shim, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.CodeCoverage.17.4.1\lib\net462\Microsoft.VisualStudio.CodeCoverage.Shim.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.core, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\NUnitTestAdapter.WithFramework.2.0.0\lib\nunit.core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="nunit.core.interfaces, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\NUnitTestAdapter.WithFramework.2.0.0\lib\nunit.core.interfaces.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\NUnitTestAdapter.WithFramework.2.0.0\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.util, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\NUnitTestAdapter.WithFramework.2.0.0\lib\nunit.util.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NUnit.VisualStudio.TestAdapter, Version=2.0.0.0, Culture=neutral, PublicKeyToken=4cb40d35494691ac, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\NUnitTestAdapter.WithFramework.2.0.0\lib\NUnit.VisualStudio.TestAdapter.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dicom\Messages\AssociateRq_NUnit.cs" />
+    <Compile Include="Dicom\Other\BooleanExpressionsDataSet_NUnit.cs" />
+    <Compile Include="Dicom\Threads\ConcurrentMessageIterator_NUnit.cs" />
+    <Compile Include="Dicom\Threads\DicomThreadOptions_NUnit.cs" />
+    <Compile Include="InformationModel\QueryRetrievePatientRootInformationModel_NUnit.cs" />
+    <Compile Include="InformationModel\QueryRetrievePatientStudyOnlyInformationModel_NUnit.cs" />
+    <Compile Include="InformationModel\QueryRetrieveStudyRootInformationModel_NUnit.cs" />
+    <Compile Include="NUnit\Config.cs" />
+    <Compile Include="NUnit\Paths.cs" />
+    <Compile Include="Common\Compare\AttributeCollections_NUnit.cs" />
+    <Compile Include="Common\Compare\CompareBase_NUnit.cs" />
+    <Compile Include="Common\Compare\CompareResults_NUnit.cs" />
+    <Compile Include="Common\Compare\CompareRule_NUnit.cs" />
+    <Compile Include="Common\UserInterfaces\HliForm_NUnit.cs" />
+    <Compile Include="Dicom\Files\DicomFile_NUnit.cs" />
+    <Compile Include="Dicom\Files\FileMetaInformation_NUnit.cs" />
+    <Compile Include="Dicom\Messages\DicomMessage_NUnit.cs" />
+    <Compile Include="Dicom\Other\DataSet_NUnit.cs" />
+    <Compile Include="Dicom\Threads\DicomThread_NUnit.cs" />
+    <Compile Include="InformationModel\ModalityWorklistInformationModel_NUnit.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQATests\SQATests_NUnit.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DVTk Data\DVTk Data.csproj">
+      <Project>{7df60c20-4034-49cc-9974-b8443a2bc192}</Project>
+      <Name>DVTk Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DVTk Hl7\DVTk Hl7.csproj">
+      <Project>{6aa55771-980c-45ed-9ccb-59c83c25815b}</Project>
+      <Name>DVTk Hl7</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DVTkManagedCodeAdapter\DVTkManagedCodeAdapter.vcxproj">
+      <Project>{8e50a389-c478-4013-817d-8191c994b602}</Project>
+      <Name>DVTKManagedCodeAdapter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DVTk\DVTk.csproj">
+      <Project>{dbc39a1e-18cb-4809-81e0-47b1c899bbe0}</Project>
+      <Name>DVTk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk High Level Interface.csproj">
+      <Project>{4b34d6b9-d185-4742-a204-70c490500754}</Project>
+      <Name>DVTk High Level Interface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+		XCOPY /E /I "$(ProjectDir)Resources" "$(TargetDir)Resources"
+		XCOPY /E /I "$(ProjectDir)Data" "$(TargetDir)Data"
+
+		IF NOT EXIST "$(TargetDir)CharacterSets" (
+		mkdir "$(TargetDir)CharacterSets"
+		)
+		xcopy /Y "$(ProjectDir)..\..\..\Resources\CharacterSets" "$(TargetDir)CharacterSets"
+		copy "$(ProjectDir)..\..\..\Resources\CharacterSets.dat" "$(TargetDir)"
+		copy "$(ProjectDir)..\..\..\Resources\AllDimseCommands.def" "$(TargetDir)"
+		copy "$(ProjectDir)..\..\..\..\Resources\Libs\libcrypto-3.dll" "$(TargetDir)"
+		copy "$(ProjectDir)..\..\..\..\Resources\Libs\libssl-3.dll" "$(TargetDir)"
+	</PostBuildEvent>
+  </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\..\..\packages\NUnitTestAdapter.2.3.0\build\NUnitTestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\packages\NUnitTestAdapter.2.3.0\build\NUnitTestAdapter.props'))" />
+    <Error Condition="!Exists('..\..\..\..\packages\Microsoft.CodeCoverage.17.4.1\build\netstandard2.0\Microsoft.CodeCoverage.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\packages\Microsoft.CodeCoverage.17.4.1\build\netstandard2.0\Microsoft.CodeCoverage.props'))" />
+    <Error Condition="!Exists('..\..\..\..\packages\Microsoft.CodeCoverage.17.4.1\build\netstandard2.0\Microsoft.CodeCoverage.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\packages\Microsoft.CodeCoverage.17.4.1\build\netstandard2.0\Microsoft.CodeCoverage.targets'))" />
+    <Error Condition="!Exists('..\..\..\..\packages\NUnit.3.13.3\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\packages\NUnit.3.13.3\build\NUnit.props'))" />
+    <Error Condition="!Exists('..\..\..\..\packages\Microsoft.NET.Test.Sdk.17.4.1\build\net462\Microsoft.NET.Test.Sdk.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\packages\Microsoft.NET.Test.Sdk.17.4.1\build\net462\Microsoft.NET.Test.Sdk.props'))" />
+    <Error Condition="!Exists('..\..\..\..\packages\Microsoft.NET.Test.Sdk.17.4.1\build\net462\Microsoft.NET.Test.Sdk.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\packages\Microsoft.NET.Test.Sdk.17.4.1\build\net462\Microsoft.NET.Test.Sdk.targets'))" />
+  </Target>
+  <Import Project="..\..\..\..\packages\Microsoft.CodeCoverage.17.4.1\build\netstandard2.0\Microsoft.CodeCoverage.targets" Condition="Exists('..\..\..\..\packages\Microsoft.CodeCoverage.17.4.1\build\netstandard2.0\Microsoft.CodeCoverage.targets')" />
+    <Import Project="..\..\..\..\packages\Microsoft.NET.Test.Sdk.17.4.1\build\net462\Microsoft.NET.Test.Sdk.targets" Condition="Exists('..\..\..\..\packages\Microsoft.NET.Test.Sdk.17.4.1\build\net462\Microsoft.NET.Test.Sdk.targets')" />
+</Project>

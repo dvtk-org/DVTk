@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{96d10589-cc4a-4d4c-bb50-14ec94da7158}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Source Files\DULP">
+      <UniqueIdentifier>{7334c266-8c38-40b2-92e9-3d71cdb5b1b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Socket">
+      <UniqueIdentifier>{210417a7-88b7-48fe-9f66-9129d22ebccd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{1c582dca-7b68-4e68-9e72-3ff6bf84e182}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Header Files\DULPh">
+      <UniqueIdentifier>{ca738090-61da-4d02-ab4c-90e076fe8df6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Socketh">
+      <UniqueIdentifier>{f2b7eb78-23a3-4098-9e00-cf94c47d347b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="abort_rq.cpp">
+      <Filter>Source Files\DULP</Filter>
+    </ClCompile>
+    <ClCompile Include="accepted.cpp">
+      <Filter>Source Files\DULP</Filter>
+    </ClCompile>
+    <ClCompile Include="assoc_ac.cpp">
+      <Filter>Source Files\DULP</Filter>
+    </ClCompile>
+    <ClCompile Include="assoc_rj.cpp">
+      <Filter>Source Files\DULP</Filter>
+    </ClCompile>
+    <ClCompile Include="assoc_rq.cpp">
+      <Filter>Source Files\DULP</Filter>
+    </ClCompile>
+    <ClCompile Include="assoc_states.cpp">
+      <Filter>Source Files\DULP</Filter>
+    </ClCompile>
+    <ClCompile Include="association.cpp">
+      <Filter>Source Files\DULP</Filter>
+    </ClCompile>
+    <ClCompile Include="base_io.cpp">
+      <Filter>Source Files\DULP</Filter>
+    </ClCompile>
+    <ClCompile Include="data_tf_pdu.cpp">
+      <Filter>Source Files\DULP</Filter>
+    </ClCompile>
+    <ClCompile Include="file_pdu.cpp">
+      <Filter>Source Files\DULP</Filter>
+    </ClCompile>
+    <ClCompile Include="message_union.cpp">
+      <Filter>Source Files\DULP</Filter>
+    </ClCompile>
+    <ClCompile Include="network_tf.cpp">
+      <Filter>Source Files\DULP</Filter>
+    </ClCompile>
+    <ClCompile Include="pdu.cpp">
+      <Filter>Source Files\DULP</Filter>
+    </ClCompile>
+    <ClCompile Include="pdu_items.cpp">
+      <Filter>Source Files\DULP</Filter>
+    </ClCompile>
+    <ClCompile Include="rel_rp.cpp">
+      <Filter>Source Files\DULP</Filter>
+    </ClCompile>
+    <ClCompile Include="rel_rq.cpp">
+      <Filter>Source Files\DULP</Filter>
+    </ClCompile>
+    <ClCompile Include="sniffer_pdus.cpp">
+      <Filter>Source Files\DULP</Filter>
+    </ClCompile>
+    <ClCompile Include="unknown_pdu.cpp">
+      <Filter>Source Files\DULP</Filter>
+    </ClCompile>
+    <ClCompile Include="vr.cpp">
+      <Filter>Source Files\DULP</Filter>
+    </ClCompile>
+    <ClCompile Include="base_socket.cpp">
+      <Filter>Source Files\Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="certificate.cpp">
+      <Filter>Source Files\Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="openssl.cpp">
+      <Filter>Source Files\Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="socket.cpp">
+      <Filter>Source Files\Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="tls.cpp">
+      <Filter>Source Files\Socket</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="abort_rq.h">
+      <Filter>Header Files\DULPh</Filter>
+    </ClInclude>
+    <ClInclude Include="accepted.h">
+      <Filter>Header Files\DULPh</Filter>
+    </ClInclude>
+    <ClInclude Include="assoc_ac.h">
+      <Filter>Header Files\DULPh</Filter>
+    </ClInclude>
+    <ClInclude Include="assoc_rj.h">
+      <Filter>Header Files\DULPh</Filter>
+    </ClInclude>
+    <ClInclude Include="assoc_rq.h">
+      <Filter>Header Files\DULPh</Filter>
+    </ClInclude>
+    <ClInclude Include="assoc_states.h">
+      <Filter>Header Files\DULPh</Filter>
+    </ClInclude>
+    <ClInclude Include="association.h">
+      <Filter>Header Files\DULPh</Filter>
+    </ClInclude>
+    <ClInclude Include="base_io.h">
+      <Filter>Header Files\DULPh</Filter>
+    </ClInclude>
+    <ClInclude Include="data_tf_pdu.h">
+      <Filter>Header Files\DULPh</Filter>
+    </ClInclude>
+    <ClInclude Include="file_pdu.h">
+      <Filter>Header Files\DULPh</Filter>
+    </ClInclude>
+    <ClInclude Include="message_union.h">
+      <Filter>Header Files\DULPh</Filter>
+    </ClInclude>
+    <ClInclude Include="network_tf.h">
+      <Filter>Header Files\DULPh</Filter>
+    </ClInclude>
+    <ClInclude Include="pdu.h">
+      <Filter>Header Files\DULPh</Filter>
+    </ClInclude>
+    <ClInclude Include="pdu_items.h">
+      <Filter>Header Files\DULPh</Filter>
+    </ClInclude>
+    <ClInclude Include="rel_rp.h">
+      <Filter>Header Files\DULPh</Filter>
+    </ClInclude>
+    <ClInclude Include="rel_rq.h">
+      <Filter>Header Files\DULPh</Filter>
+    </ClInclude>
+    <ClInclude Include="sniffer_pdus.h">
+      <Filter>Header Files\DULPh</Filter>
+    </ClInclude>
+    <ClInclude Include="unknown_pdu.h">
+      <Filter>Header Files\DULPh</Filter>
+    </ClInclude>
+    <ClInclude Include="vr.h">
+      <Filter>Header Files\DULPh</Filter>
+    </ClInclude>
+    <ClInclude Include="base_socket.h">
+      <Filter>Header Files\Socketh</Filter>
+    </ClInclude>
+    <ClInclude Include="certificate.h">
+      <Filter>Header Files\Socketh</Filter>
+    </ClInclude>
+    <ClInclude Include="openssl.h">
+      <Filter>Header Files\Socketh</Filter>
+    </ClInclude>
+    <ClInclude Include="socket.h">
+      <Filter>Header Files\Socketh</Filter>
+    </ClInclude>
+    <ClInclude Include="tls.h">
+      <Filter>Header Files\Socketh</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -80,6 +80,18 @@ namespace QR_Emulator
 		private System.Windows.Forms.Button buttonBrowse;
 		private System.Windows.Forms.TextBox textBoxDataDir;
         private System.Windows.Forms.CheckBox checkBoxSelectDir;
+        private System.Windows.Forms.Label labelMaxTlsVersion;
+        private System.Windows.Forms.Label labelMinTlsVersion;
+        private System.Windows.Forms.CheckBox checkBoxSecurity;
+        private System.Windows.Forms.GroupBox groupBoxSecurity;
+        private System.Windows.Forms.ComboBox comboboxMaxTlsVersion;
+        private System.Windows.Forms.ComboBox comboboxMinTlsVersion;
+        private System.Windows.Forms.Label labelCertificate;
+        private System.Windows.Forms.TextBox textBoxCertificate;
+        private System.Windows.Forms.Button buttonCertificate;
+        private System.Windows.Forms.Label labelCredential;
+        private System.Windows.Forms.TextBox textBoxCredential;
+        private System.Windows.Forms.Button buttonCredential;
         private MenuItem menuItem5;
         private MenuItem menuItemStoredFilesExploreValidationResults;
         private MenuItem menuItem7;
@@ -173,6 +185,18 @@ namespace QR_Emulator
             this.userControlActivityLogging = new DvtkHighLevelInterface.Common.UserInterfaces.UserControlActivityLogging();
             this.tabPageResults = new System.Windows.Forms.TabPage();
             this.dvtkWebBrowserResults = new DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew();
+            this.checkBoxSecurity = new System.Windows.Forms.CheckBox();
+            this.labelMaxTlsVersion = new System.Windows.Forms.Label();
+            this.labelMinTlsVersion = new System.Windows.Forms.Label();
+            this.groupBoxSecurity = new System.Windows.Forms.GroupBox();
+            this.comboboxMaxTlsVersion = new System.Windows.Forms.ComboBox();
+            this.comboboxMinTlsVersion = new System.Windows.Forms.ComboBox();
+            this.labelCertificate = new System.Windows.Forms.Label();
+            this.textBoxCertificate = new System.Windows.Forms.TextBox();
+            this.buttonCertificate = new System.Windows.Forms.Button();
+            this.labelCredential = new System.Windows.Forms.Label();
+            this.textBoxCredential = new System.Windows.Forms.TextBox();
+            this.buttonCredential = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.toolStripQRSCPEmulator.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -441,11 +465,136 @@ namespace QR_Emulator
             this.tabPageQueryRetrieve.Controls.Add(this.dicomThreadOptionsUserControl);
             this.tabPageQueryRetrieve.Controls.Add(this.label1);
             this.tabPageQueryRetrieve.Controls.Add(this.buttonExploreDicomFiles);
+            this.tabPageQueryRetrieve.Controls.Add(this.checkBoxSecurity);
+            this.tabPageQueryRetrieve.Controls.Add(this.groupBoxSecurity);
             this.tabPageQueryRetrieve.Location = new System.Drawing.Point(4, 22);
             this.tabPageQueryRetrieve.Name = "tabPageQueryRetrieve";
             this.tabPageQueryRetrieve.Size = new System.Drawing.Size(648, 616);
             this.tabPageQueryRetrieve.TabIndex = 1;
             this.tabPageQueryRetrieve.Text = "Configuration";
+
+            // 
+            // groupBoxSecurity
+            // 
+            this.groupBoxSecurity.Controls.Add(this.labelMaxTlsVersion);
+            this.groupBoxSecurity.Controls.Add(this.labelMinTlsVersion);
+            this.groupBoxSecurity.Controls.Add(this.comboboxMaxTlsVersion);
+            this.groupBoxSecurity.Controls.Add(this.comboboxMinTlsVersion);
+            this.groupBoxSecurity.Controls.Add(this.labelCertificate);
+            this.groupBoxSecurity.Controls.Add(this.textBoxCertificate);
+            this.groupBoxSecurity.Controls.Add(this.buttonCertificate);
+            this.groupBoxSecurity.Controls.Add(this.labelCredential);
+            this.groupBoxSecurity.Controls.Add(this.textBoxCredential);
+            this.groupBoxSecurity.Controls.Add(this.buttonCredential);
+            this.groupBoxSecurity.Enabled = false;
+            this.groupBoxSecurity.Location = new System.Drawing.Point(0, 560);
+            this.groupBoxSecurity.Name = "groupBoxSecurity";
+            this.groupBoxSecurity.Size = new System.Drawing.Size(600, 75);
+            this.groupBoxSecurity.TabStop = false;
+            this.groupBoxSecurity.Text = "Security Options ";
+            // 
+            // checkBoxSecurity
+            // 
+            this.checkBoxSecurity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxSecurity.Location = new System.Drawing.Point(8, 530);
+            this.checkBoxSecurity.Name = "checkBoxSecurity";
+            this.checkBoxSecurity.Size = new System.Drawing.Size(150, 24);
+            this.checkBoxSecurity.TabIndex = 8;
+            this.checkBoxSecurity.Text = "Secure Connection";
+            this.checkBoxSecurity.CheckedChanged += new System.EventHandler(this.checkBoxSecurity_CheckedChanged);
+            // 
+            // labelMaxTlsVersion
+            // 
+            this.labelMaxTlsVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMaxTlsVersion.Location = new System.Drawing.Point(8, 25);
+            this.labelMaxTlsVersion.Name = "labelMaxTlsVersion";
+            this.labelMaxTlsVersion.Size = new System.Drawing.Size(115, 24);
+            this.labelMaxTlsVersion.TabIndex = 20;
+            this.labelMaxTlsVersion.Text = "Max TLS Version: ";
+            // 
+            // labelMinTlsVersion
+            // 
+            this.labelMinTlsVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMinTlsVersion.Location = new System.Drawing.Point(8, 50);
+            this.labelMinTlsVersion.Name = "labelMinTlsVersion";
+            this.labelMinTlsVersion.Size = new System.Drawing.Size(110, 24);
+            this.labelMinTlsVersion.TabIndex = 21;
+            this.labelMinTlsVersion.Text = "Min TLS Version: ";
+            // 
+            // comboboxMaxTlsVersion
+            // 
+            this.comboboxMaxTlsVersion.FormattingEnabled = true;
+            this.comboboxMaxTlsVersion.Items.AddRange(new object[] {
+            "TLS1.0",
+            "TLS1.1",
+            "TLS1.2",
+            "TLS1.3"});
+            this.comboboxMaxTlsVersion.Location = new System.Drawing.Point(125, 25);
+            this.comboboxMaxTlsVersion.Size = new System.Drawing.Size(100, 28);
+            this.comboboxMaxTlsVersion.SelectedIndexChanged += new System.EventHandler(this.comboboxMaxTlsVersion_SelectedIndexChanged);
+
+            // 
+            // comboboxMinTlsVersion
+            // 
+            this.comboboxMinTlsVersion.FormattingEnabled = true;
+            this.comboboxMinTlsVersion.Items.AddRange(new object[] {
+            "TLS1.0",
+            "TLS1.1",
+            "TLS1.2",
+            "TLS1.3"});
+            this.comboboxMinTlsVersion.Location = new System.Drawing.Point(125, 50);
+            this.comboboxMinTlsVersion.Size = new System.Drawing.Size(100, 28);
+            this.comboboxMinTlsVersion.SelectedIndexChanged += new System.EventHandler(this.comboboxMinTlsVersion_SelectedIndexChanged);
+            // 
+            // labelcertificate
+            // 
+            this.labelCertificate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCertificate.Location = new System.Drawing.Point(230, 25);
+            this.labelCertificate.Name = "labelCertificate";
+            this.labelCertificate.Size = new System.Drawing.Size(80, 24);
+            this.labelCertificate.Text = "Certificate: ";
+            // 
+            // labelcredential
+            // 
+            this.labelCredential.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCredential.Location = new System.Drawing.Point(230, 50);
+            this.labelCredential.Name = "labelCredential";
+            this.labelCredential.Size = new System.Drawing.Size(80, 24);
+            this.labelCredential.Text = "Credential: ";
+            // 
+            // textboxcertificate
+            // 
+            this.textBoxCertificate.Location = new System.Drawing.Point(320, 25);
+            this.textBoxCertificate.Name = "textBoxCertificate";
+            this.textBoxCertificate.ReadOnly = true;
+            this.textBoxCertificate.Size = new System.Drawing.Size(180, 28);
+            // 
+            // textboxcertificate
+            // 
+            this.textBoxCredential.Location = new System.Drawing.Point(320, 50);
+            this.textBoxCredential.Name = "textBoxCredential";
+            this.textBoxCredential.ReadOnly = true;
+            this.textBoxCredential.Size = new System.Drawing.Size(180, 28);
+            // 
+            // buttonCertificate
+            // 
+            this.buttonCertificate.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonCertificate.Location = new System.Drawing.Point(510, 25);
+            this.buttonCertificate.Name = "buttonCertificate";
+            this.buttonCertificate.Size = new System.Drawing.Size(75, 20);
+            this.buttonCertificate.Text = "Browse";
+            this.buttonCertificate.UseVisualStyleBackColor = true;
+            this.buttonCertificate.Click += new System.EventHandler(this.buttonCertificate_Click);
+            // 
+            // buttonCredential
+            // 
+            this.buttonCredential.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonCredential.Location = new System.Drawing.Point(510, 50);
+            this.buttonCredential.Name = "buttonCredential";
+            this.buttonCredential.Size = new System.Drawing.Size(75, 20);
+            this.buttonCredential.Text = "Browse";
+            this.buttonCredential.UseVisualStyleBackColor = true;
+            this.buttonCredential.Click += new System.EventHandler(this.buttonCredential_Click);
             // 
             // label4
             // 
@@ -959,6 +1108,49 @@ namespace QR_Emulator
             this.sourceQRScp.Options.ResultsDirectory = validationResultsFileGroup.Directory;
             this.sourceQRScp.Options.DataDirectory = validationResultsFileGroup.Directory;
             this.socketTimeout.Value = this.sourceQRScp.Options.SocketTimeout;
+
+            if (this.sourceQRScp.Options.DvtkScriptSession.SecuritySettings.SecureSocketsEnabled == true)
+            {
+                checkBoxSecurity.Checked = true;
+                groupBoxSecurity.Enabled = true;
+            }
+            else
+            {
+                checkBoxSecurity.Checked = false;
+                groupBoxSecurity.Enabled = false;
+            }
+            switch (this.sourceQRScp.Options.DvtkScriptSession.SecuritySettings.MaxTlsVersionFlags)
+            {
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_0:
+                    comboboxMaxTlsVersion.SelectedIndex = 0;
+                    break;
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_1:
+                    comboboxMaxTlsVersion.SelectedIndex = 1;
+                    break;
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_2:
+                    comboboxMaxTlsVersion.SelectedIndex = 2;
+                    break;
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_3:
+                    comboboxMaxTlsVersion.SelectedIndex = 3;
+                    break;
+            }
+            switch (this.sourceQRScp.Options.DvtkScriptSession.SecuritySettings.MinTlsVersionFlags)
+            {
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_0:
+                    comboboxMinTlsVersion.SelectedIndex = 0;
+                    break;
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_1:
+                    comboboxMinTlsVersion.SelectedIndex = 1;
+                    break;
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_2:
+                    comboboxMinTlsVersion.SelectedIndex = 2;
+                    break;
+                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_3:
+                    comboboxMinTlsVersion.SelectedIndex = 3;
+                    break;
+            }
+            this.textBoxCertificate.Text = this.sourceQRScp.Options.DvtkScriptSession.SecuritySettings.CertificateFileName;
+            this.textBoxCredential.Text = this.sourceQRScp.Options.DvtkScriptSession.SecuritySettings.CredentialsFileName;
             //
             //Initialize move destinations
             //
@@ -1824,6 +2016,146 @@ namespace QR_Emulator
             Process.Start(new ProcessStartInfo(rootPath + @"\QueryAttributes.txt"));
         }
 
-         
-	}
+        private void checkBoxSecurity_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (checkBoxSecurity.Checked)
+            {
+                this.sourceQRScp.Options.DvtkScriptSession.SecuritySettings.SecureSocketsEnabled = true;
+                this.groupBoxSecurity.Enabled = true;
+            }
+            else
+            {
+                this.sourceQRScp.Options.DvtkScriptSession.SecuritySettings.SecureSocketsEnabled = false;
+                this.groupBoxSecurity.Enabled = false;
+            }
+        }
+
+        private void comboboxMaxTlsVersion_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            Dvtk.Sessions.ISecuritySettings theISecuritySettings = this.sourceQRScp.Options.DvtkScriptSession.SecuritySettings;
+
+
+            switch (comboboxMaxTlsVersion.SelectedIndex)
+            {
+                case 0:
+                    updateMaxTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_0, theISecuritySettings);
+                    break;
+                case 1:
+                    updateMaxTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_1, theISecuritySettings);
+                    break;
+                case 2:
+                    updateMaxTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_2, theISecuritySettings);
+                    break;
+                case 3:
+                    updateMaxTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_3, theISecuritySettings);
+                    break;
+            }
+        }
+
+        private void updateMaxTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags theVersionFlag, Dvtk.Sessions.ISecuritySettings theISecuritySettings)
+        {
+            Dvtk.Sessions.TlsVersionFlags currentMaxVersion = theISecuritySettings.MaxTlsVersionFlags;
+            Dvtk.Sessions.TlsVersionFlags currentMinVersion = theISecuritySettings.MinTlsVersionFlags;
+            if (theVersionFlag < currentMinVersion)
+            {
+                comboboxMaxTlsVersion.SelectedIndex = (int)currentMaxVersion;
+                MessageBox.Show("Max version cannot be smaller than Min version.");
+            }
+            else
+            {
+                theISecuritySettings.MaxTlsVersionFlags = theVersionFlag;
+            }
+        }
+
+        private void comboboxMinTlsVersion_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            Dvtk.Sessions.ISecuritySettings theISecuritySettings = this.sourceQRScp.Options.DvtkScriptSession.SecuritySettings;
+
+            switch (comboboxMinTlsVersion.SelectedIndex)
+            {
+                case 0:
+                    updateMinTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_0, theISecuritySettings);
+                    break;
+                case 1:
+                    updateMinTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_1, theISecuritySettings);
+                    break;
+                case 2:
+                    updateMinTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_2, theISecuritySettings);
+                    break;
+                case 3:
+                    updateMinTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_3, theISecuritySettings);
+                    break;
+            }
+        }
+
+        private void updateMinTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags theVersionFlag, Dvtk.Sessions.ISecuritySettings theISecuritySettings)
+        {
+            Dvtk.Sessions.TlsVersionFlags currentMaxVersion = theISecuritySettings.MaxTlsVersionFlags;
+            Dvtk.Sessions.TlsVersionFlags currentMinVersion = theISecuritySettings.MinTlsVersionFlags;
+            if (theVersionFlag > currentMaxVersion)
+            {
+                comboboxMinTlsVersion.SelectedIndex = (int)currentMinVersion;
+                MessageBox.Show("Min version cannot be bigger than Max version.");
+            }
+            else
+            {
+                theISecuritySettings.MinTlsVersionFlags = theVersionFlag;
+            }
+        }
+
+        private void buttonCertificate_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog theOpenFileDialog = new OpenFileDialog();
+
+            theOpenFileDialog.Filter = "PEM Certificate files (*.pem;*.cer)|*.pem;*.cer";
+
+            theOpenFileDialog.Title = "Select the file containing the SUT Public Keys (certificates)";
+
+            theOpenFileDialog.CheckFileExists = false;
+
+            // Only if the current file exists, set this file in the file browser.
+            if (textBoxCertificate.Text != "")
+            {
+                if (File.Exists(textBoxCertificate.Text))
+                {
+                    theOpenFileDialog.FileName = textBoxCertificate.Text;
+                }
+            }
+
+            if (theOpenFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                textBoxCertificate.Text = theOpenFileDialog.FileName;
+                this.sourceQRScp.Options.DvtkScriptSession.SecuritySettings.CertificateFileName = theOpenFileDialog.FileName;
+            }
+        }
+
+        private void buttonCredential_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog theOpenFileDialog = new OpenFileDialog();
+
+            theOpenFileDialog.Filter = "PEM Certificate files (*.pem;*.cer)|*.pem;*.cer";
+
+            theOpenFileDialog.Title = "Select the file containing the DVT Private Keys (credentials)";
+
+            theOpenFileDialog.CheckFileExists = false;
+
+            // Only if the current file exists, set this file in the file browser.
+            if (textBoxCredential.Text != "")
+            {
+                if (File.Exists(textBoxCredential.Text))
+                {
+                    theOpenFileDialog.FileName = textBoxCredential.Text;
+                }
+            }
+
+            if (theOpenFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                textBoxCredential.Text = theOpenFileDialog.FileName;
+                this.sourceQRScp.Options.DvtkScriptSession.SecuritySettings.CredentialsFileName = theOpenFileDialog.FileName;
+            }
+        }
+
+
+
+    }
 }

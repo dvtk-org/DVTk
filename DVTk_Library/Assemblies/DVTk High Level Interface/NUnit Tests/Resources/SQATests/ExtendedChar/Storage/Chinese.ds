@@ -1,0 +1,133 @@
+##
+##       DVT Extended Character Sanity Test of Chinese Characters
+##
+##       Patient: Secondary Capture Image
+##       Send to an DVT Store Emulator
+##
+
+## Send Chinese Guo Biao 2312-80 (CN, GB2312EUC)
+SEND C-STORE-RQ "SC Image" (
+ (0x00080005, CS, "","ISO 2022 CN")  # Specific Character Set
+ (0x00080016, UI, "1.2.840.10008.5.1.4.1.1.7")  # SOP Class UID
+ (0x00080018, UI, "NEW:SopInstanceUid")  # SOP Instance UID
+ (0x00080020, DA, "19970917")  # Study Date
+ (0x00080030, TM, "")  # Study Time
+ (0x00080050, SH, "")  # Accession Number
+ (0x00080060, CS, "OT")  # Modality
+ (0x00080064, CS, "DV")  # Conversion Type
+ (0x00080070, LO, "") # Manufacturer
+ (0x00080081, ST, "(1B)$A(A3)(C3)(A3)(E8)(A3)(E9)(A3)(EE)(A3)(E5)(A3)(F3)(A3)(E5) Address Line 1(0D)(0A)Line 2(0D)(0A)City, State  (1B)$A(A3)(C3)(A3)(E8)(A3)(E9)(A3)(EE)(A3)(E5)(A3)(F3)(A3)(E5) 21435-4321") # Institution Address
+ (0x00080090, PN, "")  # Referring Physician's Name
+ (0x00081030, LO, "This is a study description (1B)$A(A3)(C3)(A3)(E8)(A3)(E9)(A3)(EE)(A3)(E5)(A3)(F3)(A3)(E5)(1B)(B") # Study Description
+ (0x00100010, PN, "Chinese^Name=(1B)$A(A3)(C3)(A3)(E8)(A3)(E9)(A3)(EE)(A3)(E5)(A3)(F3)(A3)(E5)")  # Patient's Name
+ (0x00100020, LO, "Chinese GB2312")  # Patient ID
+ (0x00100030, DA, "")  # Patient's Birth Date
+ (0x00100040, CS, "O")  # Patient's Sex
+ (0x00102180, SH, "(1B)$A(A3)(C3)(A3)(E8)(A3)(E9)(A3)(EE)(A3)(E5)(A3)(F3)(A3)(E5)Occupatn") # Occupation
+ (0x00104000, LT, "These are patient comments(0D)(0A)They are on 2 lines (1B)$A(A3)(C3)(A3)(E8)(A3)(E9)(A3)(EE)(A3)(E5)(A3)(F3)(A3)(E5)") # Patient Comments
+ (0x00190100, UT, "This text can go on forever and ever(0D)(0A)and forever and ever(0D)(0A)and forever and ever(0D)(0A)and forever and ever(0D)(0A)and have Chinese text (1B)$A(A3)(C3)(A3)(E8)(A3)(E9)(A3)(EE)(A3)(E5)(A3)(F3)(A3)(E5) ...") # Private UT Test Tag
+ (0x0020000D, UI, "NEW:StudyInstanceUid")  # Study Instance UID
+ (0x0020000E, UI, "NEW:SeriesInstanceUid")  # Series Instance UID
+ (0x00200010, SH, "1")  # Study ID
+ (0x00200011, IS, "1")  # Series Number
+ (0x00200013, IS, "1")  # Image Number
+ (0x00200020, CS, "") # Patient Orientation
+ (0x00280002, US, 0x0001)  # Samples Per Pixel
+ (0x00280004, CS, "MONOCHROME2")  # Photometric Interpretation
+ (0x00280010, US, 512)  # Rows
+ (0x00280011, US, 512)  # Columns
+ (0x00280100, US, 0x0008)  # Bits Allocated
+ (0x00280101, US, 0x0008)  # Bits Stored
+ (0x00280102, US, 0x0007)  # High Bit
+ (0x00280103, US, 0x0000)  # Pixel Representation
+ (0x7FE00010, OB, 512)  # Pixel Data
+)
+
+RECEIVE C-STORE-RSP (
+(0x00000900, US, 0x0000)
+)
+
+## Send Chinese Guo Biao 2312-80 with extentions also called GBK (CN EXT, CP936)
+SEND C-STORE-RQ "SC Image" (
+ (0x00080005, CS, "","ISO 2022 CN EXT")  # Specific Character Set
+ (0x00080016, UI, "1.2.840.10008.5.1.4.1.1.7")  # SOP Class UID
+ (0x00080018, UI, "NEW:SopInstanceUid")  # SOP Instance UID
+ (0x00080020, DA, "19970917")  # Study Date
+ (0x00080030, TM, "")  # Study Time
+ (0x00080050, SH, "")  # Accession Number
+ (0x00080060, CS, "OT")  # Modality
+ (0x00080064, CS, "DV")  # Conversion Type
+ (0x00080070, LO, "") # Manufacturer
+ (0x00080081, ST, "(1B)$A(A3)(C3)(A3)(E8)(A3)(E9)(A3)(EE)(A3)(E5)(A3)(F3)(A3)(E5) Address Line 1(0D)(0A)Line 2(0D)(0A)City, State  (1B)$A(A3)(C3)(A3)(E8)(A3)(E9)(A3)(EE)(A3)(E5)(A3)(F3)(A3)(E5) 21435-4321") # Institution Address
+ (0x00080090, PN, "")  # Referring Physician's Name
+ (0x00081030, LO, "This is a study description (1B)$A(A3)(C3)(A3)(E8)(A3)(E9)(A3)(EE)(A3)(E5)(A3)(F3)(A3)(E5)(1B)(B") # Study Description
+ (0x00100010, PN, "Chinese^Name=(1B)$A(A3)(C3)(A3)(E8)(A3)(E9)(A3)(EE)(A3)(E5)(A3)(F3)(A3)(E5)")  # Patient's Name
+ (0x00100020, LO, "Chinese GBK")  # Patient ID
+ (0x00100030, DA, "")  # Patient's Birth Date
+ (0x00100040, CS, "O")  # Patient's Sex
+ (0x00102180, SH, "(1B)$A(A3)(C3)(A3)(E8)(A3)(E9)(A3)(EE)(A3)(E5)(A3)(F3)(A3)(E5)Occupatn") # Occupation
+ (0x00104000, LT, "These are patient comments(0D)(0A)They are on 2 lines (1B)$A(A3)(C3)(A3)(E8)(A3)(E9)(A3)(EE)(A3)(E5)(A3)(F3)(A3)(E5)") # Patient Comments
+ (0x00190100, UT, "This text can go on forever and ever(0D)(0A)and forever and ever(0D)(0A)and forever and ever(0D)(0A)and forever and ever(0D)(0A)and have Chinese text (1B)$A(A3)(C3)(A3)(E8)(A3)(E9)(A3)(EE)(A3)(E5)(A3)(F3)(A3)(E5) ...") # Private UT Test Tag
+ (0x0020000D, UI, "NEW:StudyInstanceUid")  # Study Instance UID
+ (0x0020000E, UI, "NEW:SeriesInstanceUid")  # Series Instance UID
+ (0x00200010, SH, "1")  # Study ID
+ (0x00200011, IS, "1")  # Series Number
+ (0x00200013, IS, "1")  # Image Number
+ (0x00200020, CS, "") # Patient Orientation
+ (0x00280002, US, 0x0001)  # Samples Per Pixel
+ (0x00280004, CS, "MONOCHROME2")  # Photometric Interpretation
+ (0x00280010, US, 512)  # Rows
+ (0x00280011, US, 512)  # Columns
+ (0x00280100, US, 0x0008)  # Bits Allocated
+ (0x00280101, US, 0x0008)  # Bits Stored
+ (0x00280102, US, 0x0007)  # High Bit
+ (0x00280103, US, 0x0000)  # Pixel Representation
+ (0x7FE00010, OB, 512)  # Pixel Data
+)
+
+RECEIVE C-STORE-RSP (
+(0x00000900, US, 0x0000)
+)
+
+## Send Chinese Big 5 (B5, BIG5)
+SEND C-STORE-RQ "SC Image" (
+ (0x00080005, CS, "","ISO 2022 B5")  # Specific Character Set
+ (0x00080016, UI, "1.2.840.10008.5.1.4.1.1.7")  # SOP Class UID
+ (0x00080018, UI, "NEW:SopInstanceUid")  # SOP Instance UID
+ (0x00080020, DA, "19970917")  # Study Date
+ (0x00080030, TM, "")  # Study Time
+ (0x00080050, SH, "")  # Accession Number
+ (0x00080060, CS, "OT")  # Modality
+ (0x00080064, CS, "DV")  # Conversion Type
+ (0x00080070, LO, "") # Manufacturer
+ (0x00080081, ST, "(1B)$(GAddress Line 1(0D)(0A)(1B)$(GLine 2 (A2)(D0)(A2)(F1)(A2)(EF)(A1)(40)(A2)(B4)(0D)(0A)City, State  21435-4321") # Institution Address
+ (0x00080090, PN, "")  # Referring Physician's Name
+ (0x00081030, LO, "(1B)$(G(A2)(D0)(A2)(F1)(A2)(EF)(A1)(40)(A2)(B4) This is a study description") # Study Description
+ (0x00100010, PN, "Name^Big5=(1B)$(G(A2)(D0)(A2)(F1)(A2)(EF)(A1)(40)(A2)(B4)^(1B)$(G(A2)(D0)(A2)(F1)(A2)(EF)(A1)(40)(A2)(B4)(1B)(B")  # Patient's Name
+ (0x00100020, LO, "Chinese Big 5")  # Patient ID
+ (0x00100030, DA, "")  # Patient's Birth Date
+ (0x00100040, CS, "O")  # Patient's Sex
+ (0x00102180, SH, "(1B)$(G(A2)(D0)(A2)(F1)(A2)(EF)(A1)(40)(A2)(B4)Occupation") # Occupation
+ (0x00104000, LT, "These are patient comments(0D)(0A)They are on 2 lines(1B)$(G(A2)(D0)(A2)(F1)(A2)(EF)(A1)(40)(A2)(B4)") # Patient Comments
+ (0x00190100, UT, "This text can go on forever and ever(0D)(0A)and forever and ever(0D)(0A)and forever and ever(0D)(0A)and forever and ever(0D)(0A)and include Chinese (1B)$(G(A2)(D0)(A2)(F1)(A2)(EF)(A1)(40)(A2)(B4) and more English...") # Private UT Test Tag
+ (0x0020000D, UI, "NEW:StudyInstanceUid")  # Study Instance UID
+ (0x0020000E, UI, "NEW:SeriesInstanceUid")  # Series Instance UID
+ (0x00200010, SH, "1")  # Study ID
+ (0x00200011, IS, "1")  # Series Number
+ (0x00200013, IS, "1")  # Image Number
+ (0x00200020, CS, "") # Patient Orientation
+ (0x00280002, US, 0x0001)  # Samples Per Pixel
+ (0x00280004, CS, "MONOCHROME2")  # Photometric Interpretation
+ (0x00280010, US, 512)  # Rows
+ (0x00280011, US, 512)  # Columns
+ (0x00280100, US, 0x0008)  # Bits Allocated
+ (0x00280101, US, 0x0008)  # Bits Stored
+ (0x00280102, US, 0x0007)  # High Bit
+ (0x00280103, US, 0x0000)  # Pixel Representation
+ (0x7FE00010, OB, 512)  # Pixel Data
+)
+
+RECEIVE C-STORE-RSP (
+(0x00000900, US, 0x0000)
+)
+

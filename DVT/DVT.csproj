@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,8 +10,8 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DVT</RootNamespace>
     <AssemblyName>DVT</AssemblyName>
-    <ApplicationIcon>DVTk Based Application.ico</ApplicationIcon>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ApplicationIcon>..\Resources\Ico\DVTk Based Application.ico</ApplicationIcon>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
@@ -35,51 +35,25 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\\Debug\</OutputPath>
+    <OutputPath>$(SolutionDir)\bin\$(Configuration)</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <OutputPath>bin\\Release\</OutputPath>
+    <OutputPath>$(SolutionDir)\bin\$(Configuration)</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup />
   <ItemGroup>
-    <Reference Include="DVTK, Version=1.2.3.4, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DVTk_Library\DVTK.dll</HintPath>
-    </Reference>
-    <Reference Include="DvtkApplicationLayer, Version=1.2.3.4, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DVTk_Library\DvtkApplicationLayer.dll</HintPath>
-    </Reference>
-    <Reference Include="DvtkData, Version=1.2.3.4, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DVTk_Library\DvtkData.dll</HintPath>
-    </Reference>
-    <Reference Include="DvtkDicomEmulators, Version=2.3.0.5, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DVTk_Library\DvtkDicomEmulators.dll</HintPath>
-    </Reference>
-    <Reference Include="DvtkDicomUnicodeConversion, Version=0.0.0.0, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DVTk_Library\DvtkDicomUnicodeConversion.dll</HintPath>
-    </Reference>
-    <Reference Include="DVTKManagedCodeAdapter, Version=1.2.3.4, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DVTk_Library\DVTKManagedCodeAdapter.dll</HintPath>
-    </Reference>
-    <Reference Include="DvtkScriptSupport, Version=1.2.3.4, Culture=neutral, PublicKeyToken=5166403a8245d5cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DVTk_Library\DvtkScriptSupport.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -88,7 +62,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Source\DVT\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Source\DVT\ChangePasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +115,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\DVT\ChangePasswordForm.resx">
       <DependentUpon>ChangePasswordForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -200,9 +183,6 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
@@ -220,51 +200,95 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DVTk Based Application.ico" />
+    <None Include="Resources\DVTk-Logo-Transparant.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DVTk_Library\Assemblies\DVTk Application Layer\DVTk Application Layer.csproj">
+      <Project>{6c70caf0-d330-4f52-b6ce-71c70dc1600f}</Project>
+      <Name>DVTk Application Layer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk_Library\Assemblies\DVTk Data\DVTk Data.csproj">
+      <Project>{7df60c20-4034-49cc-9974-b8443a2bc192}</Project>
+      <Name>DVTk Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk_Library\Assemblies\DVTk Dicom Emulators\DVTk Dicom Emulators.csproj">
+      <Project>{397501b2-4ae8-4eda-84bf-905417497b2f}</Project>
+      <Name>DVTk Dicom Emulators</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk_Library\Assemblies\DVTk Dicom Unicode Conversion\DVTk Dicom Unicode Conversion.csproj">
+      <Project>{7eb8141d-851b-478a-9950-d04c96008dc0}</Project>
+      <Name>DVTk Dicom Unicode Conversion</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk_Library\Assemblies\DVTk Script Support\DVTk Script Support.csproj">
+      <Project>{d8170a29-9f92-4b3c-8a67-f93704653e8c}</Project>
+      <Name>DVTk Script Support</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk_Library\Assemblies\DVTkManagedCodeAdapter\DVTkManagedCodeAdapter.vcxproj">
+      <Project>{8e50a389-c478-4013-817d-8191c994b602}</Project>
+      <Name>DVTKManagedCodeAdapter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVTk_Library\Assemblies\DVTk\DVTk.csproj">
+      <Project>{dbc39a1e-18cb-4809-81e0-47b1c899bbe0}</Project>
+      <Name>DVTk</Name>
+    </ProjectReference>
     <ProjectReference Include="DVT Common.csproj">
       <Project>{ED78A4EA-F738-46A0-8B08-1C14C032DBB6}</Project>
       <Name>DVT Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\Resources\Ico\DVTk Based Application.ico">
+      <Link>DVTk Based Application.ico</Link>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
   <PropertyGroup>
-    <PostBuildEvent>echo Copying files to "$(TargetDir)"
-
-Copy "$(ProjectDir)DVTk_Library\DVT_RESULTS.xslt" "$(TargetDir)"
-Copy "$(ProjectDir)DVTk_Library\CharacterSets.dat" "$(TargetDir)"
-Copy "$(ProjectDir)DVTk_Library\ImageDisplayFormat.dat" "$(TargetDir)"
-IF NOT EXIST "$(TargetDir)CharacterSets" (
-mkdir "$(TargetDir)CharacterSets"
-)
-xcopy /Y "$(ProjectDir)DVTk_Library\CharacterSets" "$(TargetDir)CharacterSets"
-Copy "$(ProjectDir)Resources\fold.gif" "$(TargetDir)"
-Copy "$(ProjectDir)Resources\list.gif" "$(TargetDir)"
-Copy "$(ProjectDir)Resources\open.gif" "$(TargetDir)"
-Copy "$(ProjectDir)Resources\script.js" "$(TargetDir)"
-Copy "$(ProjectDir)Resources\sortonmes.xsl" "$(TargetDir)"
-Copy "$(ProjectDir)Resources\sortontype.xsl" "$(TargetDir)"
-Copy "$(ProjectDir)Resources\viewonmes.xsl" "$(TargetDir)"
-Copy "$(ProjectDir)Resources\createsum.xsl" "$(TargetDir)"
-Copy "$(ProjectDir)Resources\create_results.xslt" "$(TargetDir)"
-Copy "$(ProjectDir)Resources\viewonmesfiltered.xsl" "$(TargetDir)"
-Copy "$(ProjectDir)Resources\createreport.xsl" "$(TargetDir)"
-Copy "$(ProjectDir)Resources\createreport1.xsl" "$(TargetDir)"
-Copy "$(ProjectDir)Resources\DVTKdllList.xml" "$(TargetDir)"
-Copy "$(ProjectDir)Resources\dvtStartScreen.html" "$(TargetDir)"
-Copy "$(ProjectDir)Resources\Lib\Microsoft.mshtml.dll" "$(TargetDir)"
-Copy "$(ProjectDir)Resources\Lib\libeay32.dll" "$(TargetDir)"
-Copy "$(ProjectDir)Resources\Lib\ssleay32.dll" "$(TargetDir)"
-</PostBuildEvent>
     <PreBuildEvent>
+      <!--SET LIBRARY_DIRECTORY=$(ProjectDir)..\DVTk_Library\Builds\$(ConfigurationName)
+
+			IF NOT EXIST "%25LIBRARY_DIRECTORY%25" (
+			ECHO Unable to find library directory "%25LIBRARY_DIRECTORY%25"
+			EXIT -1
+			)
+
+			del /Q /S "$(ProjectDir)DVTk_Library\*.*"
+
+			IF NOT EXIST "$(ProjectDir)DVTk_Library" (
+			mkdir "$(ProjectDir)DVTk_Library"
+			)
+
+			xcopy /Y /E "%25LIBRARY_DIRECTORY%25" "$(ProjectDir)DVTk_Library"-->
     </PreBuildEvent>
+    <PostBuildEvent>
+			echo Copying files to "$(TargetDir)"
+
+			Copy "$(ProjectDir)..\DVTk_Library\Resources\DVT_RESULTS.xslt" "$(TargetDir)"
+			Copy "$(ProjectDir)..\DVTk_Library\Resources\CharacterSets.dat" "$(TargetDir)"
+			Copy "$(ProjectDir)..\DVTk_Library\Resources\ImageDisplayFormat.dat" "$(TargetDir)"
+			IF NOT EXIST "$(TargetDir)CharacterSets" (
+			mkdir "$(TargetDir)CharacterSets"
+			)
+			xcopy /Y "$(ProjectDir)..\DVTk_Library\Resources\CharacterSets" "$(TargetDir)CharacterSets"
+			Copy "$(ProjectDir)Resources\fold.gif" "$(TargetDir)"
+			Copy "$(ProjectDir)Resources\list.gif" "$(TargetDir)"
+			Copy "$(ProjectDir)Resources\open.gif" "$(TargetDir)"
+			Copy "$(ProjectDir)Resources\script.js" "$(TargetDir)"
+			Copy "$(ProjectDir)Resources\sortonmes.xsl" "$(TargetDir)"
+			Copy "$(ProjectDir)Resources\sortontype.xsl" "$(TargetDir)"
+			Copy "$(ProjectDir)Resources\viewonmes.xsl" "$(TargetDir)"
+			Copy "$(ProjectDir)Resources\createsum.xsl" "$(TargetDir)"
+			Copy "$(ProjectDir)Resources\create_results.xslt" "$(TargetDir)"
+			Copy "$(ProjectDir)Resources\viewonmesfiltered.xsl" "$(TargetDir)"
+			Copy "$(ProjectDir)Resources\createreport.xsl" "$(TargetDir)"
+			Copy "$(ProjectDir)Resources\createreport1.xsl" "$(TargetDir)"
+			Copy "$(ProjectDir)Resources\DVTKdllList.xml" "$(TargetDir)"
+			Copy "$(ProjectDir)Resources\dvtStartScreen.html" "$(TargetDir)"
+
+			Copy "$(ProjectDir)..\Resources\Libs\Microsoft.mshtml.dll" "$(TargetDir)"
+			Copy "$(ProjectDir)..\Resources\Libs\libeay32.dll" "$(TargetDir)"
+			Copy "$(ProjectDir)..\Resources\Libs\ssleay32.dll" "$(TargetDir)"
+			Copy "$(ProjectDir)..\Resources\Libs\libssl-3.dll" "$(TargetDir)"
+			Copy "$(ProjectDir)..\Resources\Libs\libcrypto-3.dll" "$(TargetDir)"
+		</PostBuildEvent>
   </PropertyGroup>
 </Project>

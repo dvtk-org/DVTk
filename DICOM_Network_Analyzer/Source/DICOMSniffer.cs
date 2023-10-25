@@ -1,6 +1,6 @@
 // ------------------------------------------------------
 // DVTk - The Healthcare Validation Toolkit (www.dvtk.org)
-// Copyright © 2009 DVTk
+// Copyright ï¿½ 2009 DVTk
 // ------------------------------------------------------
 // This file is part of DVTk.
 //
@@ -457,7 +457,7 @@ namespace SnifferUI
             this.tabControlSniffer.Location = new System.Drawing.Point(0, 28);
             this.tabControlSniffer.Name = "tabControlSniffer";
             this.tabControlSniffer.SelectedIndex = 0;
-            this.tabControlSniffer.Size = new System.Drawing.Size(852, 554);
+            this.tabControlSniffer.Size = new System.Drawing.Size(854, 565);
             this.tabControlSniffer.TabIndex = 21;
             this.tabControlSniffer.SelectedIndexChanged += new System.EventHandler(this.TabControl_SelectedIndexChanged);
             // 
@@ -465,9 +465,9 @@ namespace SnifferUI
             // 
             this.tabSnifferInformation.AutoScroll = true;
             this.tabSnifferInformation.Controls.Add(this.splitContainerCapInfo);
-            this.tabSnifferInformation.Location = new System.Drawing.Point(4, 25);
+            this.tabSnifferInformation.Location = new System.Drawing.Point(4, 22);
             this.tabSnifferInformation.Name = "tabSnifferInformation";
-            this.tabSnifferInformation.Size = new System.Drawing.Size(844, 525);
+            this.tabSnifferInformation.Size = new System.Drawing.Size(846, 539);
             this.tabSnifferInformation.TabIndex = 0;
             this.tabSnifferInformation.Text = "Capture Information";
             this.tabSnifferInformation.UseVisualStyleBackColor = true;
@@ -499,35 +499,35 @@ namespace SnifferUI
             this.splitContainerCapInfo.Panel2.Controls.Add(this.availableAdapters);
             this.splitContainerCapInfo.Panel2.Controls.Add(this.selectedAdapter);
             this.splitContainerCapInfo.Panel2.Controls.Add(this.selectedAdapters);
-            this.splitContainerCapInfo.Size = new System.Drawing.Size(844, 525);
-            this.splitContainerCapInfo.SplitterDistance = 256;
+            this.splitContainerCapInfo.Size = new System.Drawing.Size(846, 539);
+            this.splitContainerCapInfo.SplitterDistance = 262;
             this.splitContainerCapInfo.TabIndex = 31;
             // 
             // ipAddress1
             // 
             this.ipAddress1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ipAddress1.BeepOnError = true;
-            this.ipAddress1.Location = new System.Drawing.Point(700, 22);
+            this.ipAddress1.Location = new System.Drawing.Point(726, 19);
             this.ipAddress1.Name = "ipAddress1";
-            this.ipAddress1.Size = new System.Drawing.Size(120, 22);
+            this.ipAddress1.Size = new System.Drawing.Size(100, 20);
             this.ipAddress1.TabIndex = 42;
             // 
             // ipAddress2
             // 
             this.ipAddress2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ipAddress2.BeepOnError = true;
-            this.ipAddress2.Location = new System.Drawing.Point(700, 58);
+            this.ipAddress2.Location = new System.Drawing.Point(726, 50);
             this.ipAddress2.Name = "ipAddress2";
-            this.ipAddress2.Size = new System.Drawing.Size(120, 22);
+            this.ipAddress2.Size = new System.Drawing.Size(100, 20);
             this.ipAddress2.TabIndex = 43;
             // 
             // Portlabel
             // 
             this.Portlabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Portlabel.AutoSize = true;
-            this.Portlabel.Location = new System.Drawing.Point(651, 98);
+            this.Portlabel.Location = new System.Drawing.Point(685, 85);
             this.Portlabel.Name = "Portlabel";
-            this.Portlabel.Size = new System.Drawing.Size(38, 17);
+            this.Portlabel.Size = new System.Drawing.Size(29, 13);
             this.Portlabel.TabIndex = 51;
             this.Portlabel.Text = "Port:";
             // 
@@ -536,9 +536,9 @@ namespace SnifferUI
             this.comboBoxConnections.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxConnections.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxConnections.Location = new System.Drawing.Point(7, 175);
+            this.comboBoxConnections.Location = new System.Drawing.Point(6, 192);
             this.comboBoxConnections.Name = "comboBoxConnections";
-            this.comboBoxConnections.Size = new System.Drawing.Size(506, 24);
+            this.comboBoxConnections.Size = new System.Drawing.Size(564, 21);
             this.comboBoxConnections.TabIndex = 49;
             this.comboBoxConnections.DropDown += new System.EventHandler(this.comboBoxConnections_DropDown);
             this.comboBoxConnections.SelectedIndexChanged += new System.EventHandler(this.comboBoxConnections_SelectedIndexChanged);
@@ -547,9 +547,9 @@ namespace SnifferUI
             // 
             this.connectionsLable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.connectionsLable.Location = new System.Drawing.Point(4, 148);
+            this.connectionsLable.Location = new System.Drawing.Point(3, 169);
             this.connectionsLable.Name = "connectionsLable";
-            this.connectionsLable.Size = new System.Drawing.Size(184, 24);
+            this.connectionsLable.Size = new System.Drawing.Size(296, 20);
             this.connectionsLable.TabIndex = 46;
             this.connectionsLable.Text = "Available DICOM Associations:";
             // 
@@ -557,36 +557,36 @@ namespace SnifferUI
             // 
             this.progressBarAnalysis.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBarAnalysis.Location = new System.Drawing.Point(7, 45);
+            this.progressBarAnalysis.Location = new System.Drawing.Point(6, 39);
             this.progressBarAnalysis.Name = "progressBarAnalysis";
-            this.progressBarAnalysis.Size = new System.Drawing.Size(507, 24);
+            this.progressBarAnalysis.Size = new System.Drawing.Size(565, 21);
             this.progressBarAnalysis.TabIndex = 47;
             // 
             // progressbarLabel
             // 
             this.progressbarLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressbarLabel.Location = new System.Drawing.Point(4, 23);
+            this.progressbarLabel.Location = new System.Drawing.Point(3, 20);
             this.progressbarLabel.Name = "progressbarLabel";
-            this.progressbarLabel.Size = new System.Drawing.Size(124, 19);
+            this.progressbarLabel.Size = new System.Drawing.Size(246, 16);
             this.progressbarLabel.TabIndex = 48;
             this.progressbarLabel.Text = "Analysis Progress:";
             // 
             // IP2Lable
             // 
             this.IP2Lable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.IP2Lable.Location = new System.Drawing.Point(651, 59);
+            this.IP2Lable.Location = new System.Drawing.Point(685, 51);
             this.IP2Lable.Name = "IP2Lable";
-            this.IP2Lable.Size = new System.Drawing.Size(35, 21);
+            this.IP2Lable.Size = new System.Drawing.Size(29, 18);
             this.IP2Lable.TabIndex = 45;
             this.IP2Lable.Text = "IP2:";
             // 
             // IP1Lable
             // 
             this.IP1Lable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.IP1Lable.Location = new System.Drawing.Point(651, 25);
+            this.IP1Lable.Location = new System.Drawing.Point(685, 22);
             this.IP1Lable.Name = "IP1Lable";
-            this.IP1Lable.Size = new System.Drawing.Size(35, 21);
+            this.IP1Lable.Size = new System.Drawing.Size(29, 18);
             this.IP1Lable.TabIndex = 44;
             this.IP1Lable.Text = "IP1:";
             // 
@@ -597,9 +597,9 @@ namespace SnifferUI
             this.groupBoxCapture.Controls.Add(this.connectionsLabel);
             this.groupBoxCapture.Controls.Add(this.capturePackets);
             this.groupBoxCapture.Controls.Add(this.capPacketLable);
-            this.groupBoxCapture.Location = new System.Drawing.Point(631, 149);
+            this.groupBoxCapture.Location = new System.Drawing.Point(669, 169);
             this.groupBoxCapture.Name = "groupBoxCapture";
-            this.groupBoxCapture.Size = new System.Drawing.Size(204, 101);
+            this.groupBoxCapture.Size = new System.Drawing.Size(170, 88);
             this.groupBoxCapture.TabIndex = 50;
             this.groupBoxCapture.TabStop = false;
             this.groupBoxCapture.Text = "Capture Progress";
@@ -607,36 +607,36 @@ namespace SnifferUI
             // connection
             // 
             this.connection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.connection.Location = new System.Drawing.Point(127, 66);
+            this.connection.Location = new System.Drawing.Point(106, 57);
             this.connection.Name = "connection";
             this.connection.ReadOnly = true;
-            this.connection.Size = new System.Drawing.Size(60, 22);
+            this.connection.Size = new System.Drawing.Size(50, 20);
             this.connection.TabIndex = 1;
             // 
             // connectionsLabel
             // 
             this.connectionsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.connectionsLabel.Location = new System.Drawing.Point(10, 67);
+            this.connectionsLabel.Location = new System.Drawing.Point(8, 58);
             this.connectionsLabel.Name = "connectionsLabel";
-            this.connectionsLabel.Size = new System.Drawing.Size(124, 18);
+            this.connectionsLabel.Size = new System.Drawing.Size(104, 16);
             this.connectionsLabel.TabIndex = 0;
             this.connectionsLabel.Text = "Open Connections:";
             // 
             // capturePackets
             // 
             this.capturePackets.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.capturePackets.Location = new System.Drawing.Point(127, 24);
+            this.capturePackets.Location = new System.Drawing.Point(106, 21);
             this.capturePackets.Name = "capturePackets";
             this.capturePackets.ReadOnly = true;
-            this.capturePackets.Size = new System.Drawing.Size(60, 22);
+            this.capturePackets.Size = new System.Drawing.Size(50, 20);
             this.capturePackets.TabIndex = 30;
             // 
             // capPacketLable
             // 
             this.capPacketLable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.capPacketLable.Location = new System.Drawing.Point(10, 27);
+            this.capPacketLable.Location = new System.Drawing.Point(8, 23);
             this.capPacketLable.Name = "capPacketLable";
-            this.capPacketLable.Size = new System.Drawing.Size(124, 20);
+            this.capPacketLable.Size = new System.Drawing.Size(104, 18);
             this.capPacketLable.TabIndex = 32;
             this.capPacketLable.Text = "Captured Packets:";
             // 
@@ -644,9 +644,9 @@ namespace SnifferUI
             // 
             this.groupBoxFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxFilter.Controls.Add(this.Port);
-            this.groupBoxFilter.Location = new System.Drawing.Point(633, 1);
+            this.groupBoxFilter.Location = new System.Drawing.Point(670, 1);
             this.groupBoxFilter.Name = "groupBoxFilter";
-            this.groupBoxFilter.Size = new System.Drawing.Size(205, 137);
+            this.groupBoxFilter.Size = new System.Drawing.Size(171, 119);
             this.groupBoxFilter.TabIndex = 52;
             this.groupBoxFilter.TabStop = false;
             this.groupBoxFilter.Text = "Filter packets";
@@ -655,9 +655,9 @@ namespace SnifferUI
             // 
             this.Port.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Port.BeepOnError = true;
-            this.Port.Location = new System.Drawing.Point(67, 95);
+            this.Port.Location = new System.Drawing.Point(56, 82);
             this.Port.Name = "Port";
-            this.Port.Size = new System.Drawing.Size(55, 22);
+            this.Port.Size = new System.Drawing.Size(46, 20);
             this.Port.TabIndex = 2;
             // 
             // adapterList
@@ -665,10 +665,9 @@ namespace SnifferUI
             this.adapterList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.adapterList.ItemHeight = 16;
-            this.adapterList.Location = new System.Drawing.Point(1, 113);
+            this.adapterList.Location = new System.Drawing.Point(1, 98);
             this.adapterList.Name = "adapterList";
-            this.adapterList.Size = new System.Drawing.Size(841, 148);
+            this.adapterList.Size = new System.Drawing.Size(843, 147);
             this.adapterList.TabIndex = 24;
             this.adapterList.SelectedIndexChanged += new System.EventHandler(this.AdapterList_SelectedIndexChanged);
             // 
@@ -676,9 +675,9 @@ namespace SnifferUI
             // 
             this.availableAdapters.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.availableAdapters.Location = new System.Drawing.Point(4, 90);
+            this.availableAdapters.Location = new System.Drawing.Point(3, 78);
             this.availableAdapters.Name = "availableAdapters";
-            this.availableAdapters.Size = new System.Drawing.Size(182, 15);
+            this.availableAdapters.Size = new System.Drawing.Size(152, 56);
             this.availableAdapters.TabIndex = 26;
             this.availableAdapters.Text = "Available Network Adapters:";
             // 
@@ -686,19 +685,19 @@ namespace SnifferUI
             // 
             this.selectedAdapter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.selectedAdapter.Location = new System.Drawing.Point(4, 42);
+            this.selectedAdapter.Location = new System.Drawing.Point(3, 36);
             this.selectedAdapter.Name = "selectedAdapter";
             this.selectedAdapter.ReadOnly = true;
-            this.selectedAdapter.Size = new System.Drawing.Size(838, 22);
+            this.selectedAdapter.Size = new System.Drawing.Size(841, 20);
             this.selectedAdapter.TabIndex = 25;
             // 
             // selectedAdapters
             // 
             this.selectedAdapters.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.selectedAdapters.Location = new System.Drawing.Point(4, 18);
+            this.selectedAdapters.Location = new System.Drawing.Point(3, 16);
             this.selectedAdapters.Name = "selectedAdapters";
-            this.selectedAdapters.Size = new System.Drawing.Size(172, 15);
+            this.selectedAdapters.Size = new System.Drawing.Size(144, 56);
             this.selectedAdapters.TabIndex = 27;
             this.selectedAdapters.Text = "Selected Network Adapter:";
             // 
@@ -706,9 +705,9 @@ namespace SnifferUI
             // 
             this.tabAssoOverview.Controls.Add(this.splitContainerAssocOverview);
             this.tabAssoOverview.Controls.Add(this.panel7);
-            this.tabAssoOverview.Location = new System.Drawing.Point(4, 25);
+            this.tabAssoOverview.Location = new System.Drawing.Point(4, 22);
             this.tabAssoOverview.Name = "tabAssoOverview";
-            this.tabAssoOverview.Size = new System.Drawing.Size(844, 525);
+            this.tabAssoOverview.Size = new System.Drawing.Size(704, 461);
             this.tabAssoOverview.TabIndex = 1;
             this.tabAssoOverview.Text = "Association Overview";
             this.tabAssoOverview.UseVisualStyleBackColor = true;
@@ -716,7 +715,7 @@ namespace SnifferUI
             // splitContainerAssocOverview
             // 
             this.splitContainerAssocOverview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerAssocOverview.Location = new System.Drawing.Point(0, 83);
+            this.splitContainerAssocOverview.Location = new System.Drawing.Point(0, 72);
             this.splitContainerAssocOverview.Name = "splitContainerAssocOverview";
             this.splitContainerAssocOverview.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -731,17 +730,17 @@ namespace SnifferUI
             this.splitContainerAssocOverview.Panel2.Controls.Add(this.buttonAssocAcc);
             this.splitContainerAssocOverview.Panel2.Controls.Add(this.richTextBoxAccept);
             this.splitContainerAssocOverview.Panel2.Controls.Add(this.label4);
-            this.splitContainerAssocOverview.Size = new System.Drawing.Size(844, 442);
-            this.splitContainerAssocOverview.SplitterDistance = 219;
+            this.splitContainerAssocOverview.Size = new System.Drawing.Size(704, 389);
+            this.splitContainerAssocOverview.SplitterDistance = 192;
             this.splitContainerAssocOverview.TabIndex = 25;
             // 
             // buttonAssReq
             // 
             this.buttonAssReq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAssReq.Location = new System.Drawing.Point(706, 69);
+            this.buttonAssReq.Location = new System.Drawing.Point(589, 60);
             this.buttonAssReq.Name = "buttonAssReq";
-            this.buttonAssReq.Size = new System.Drawing.Size(126, 39);
+            this.buttonAssReq.Size = new System.Drawing.Size(105, 35);
             this.buttonAssReq.TabIndex = 22;
             this.buttonAssReq.Text = "Show Assoc Req PDU";
             this.buttonAssReq.Click += new System.EventHandler(this.buttonAssReq_Click);
@@ -753,18 +752,18 @@ namespace SnifferUI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBoxReq.BackColor = System.Drawing.SystemColors.Control;
             this.richTextBoxReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBoxReq.Location = new System.Drawing.Point(4, 33);
+            this.richTextBoxReq.Location = new System.Drawing.Point(3, 29);
             this.richTextBoxReq.Name = "richTextBoxReq";
             this.richTextBoxReq.ReadOnly = true;
-            this.richTextBoxReq.Size = new System.Drawing.Size(684, 183);
+            this.richTextBoxReq.Size = new System.Drawing.Size(571, 160);
             this.richTextBoxReq.TabIndex = 21;
             this.richTextBoxReq.Text = "";
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(4, 10);
+            this.label1.Location = new System.Drawing.Point(3, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(134, 19);
+            this.label1.Size = new System.Drawing.Size(112, 16);
             this.label1.TabIndex = 20;
             this.label1.Text = "Requested Services:";
             // 
@@ -772,9 +771,9 @@ namespace SnifferUI
             // 
             this.buttonAssocAcc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAssocAcc.Location = new System.Drawing.Point(706, 87);
+            this.buttonAssocAcc.Location = new System.Drawing.Point(589, 75);
             this.buttonAssocAcc.Name = "buttonAssocAcc";
-            this.buttonAssocAcc.Size = new System.Drawing.Size(126, 40);
+            this.buttonAssocAcc.Size = new System.Drawing.Size(105, 38);
             this.buttonAssocAcc.TabIndex = 23;
             this.buttonAssocAcc.Text = "Show Assoc Acc PDU";
             this.buttonAssocAcc.Click += new System.EventHandler(this.buttonAssocAcc_Click);
@@ -786,10 +785,10 @@ namespace SnifferUI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBoxAccept.BackColor = System.Drawing.SystemColors.Control;
             this.richTextBoxAccept.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBoxAccept.Location = new System.Drawing.Point(4, 30);
+            this.richTextBoxAccept.Location = new System.Drawing.Point(3, 26);
             this.richTextBoxAccept.Name = "richTextBoxAccept";
             this.richTextBoxAccept.ReadOnly = true;
-            this.richTextBoxAccept.Size = new System.Drawing.Size(684, 184);
+            this.richTextBoxAccept.Size = new System.Drawing.Size(571, 162);
             this.richTextBoxAccept.TabIndex = 22;
             this.richTextBoxAccept.Text = "";
             // 
@@ -797,9 +796,9 @@ namespace SnifferUI
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.label4.Location = new System.Drawing.Point(4, 8);
+            this.label4.Location = new System.Drawing.Point(3, 7);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(134, 28);
+            this.label4.Size = new System.Drawing.Size(112, 27);
             this.label4.TabIndex = 21;
             this.label4.Text = "Accepted Services:";
             // 
@@ -816,30 +815,30 @@ namespace SnifferUI
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(844, 83);
+            this.panel7.Size = new System.Drawing.Size(704, 72);
             this.panel7.TabIndex = 24;
             // 
             // calledAETitle
             // 
-            this.calledAETitle.Location = new System.Drawing.Point(83, 9);
+            this.calledAETitle.Location = new System.Drawing.Point(69, 8);
             this.calledAETitle.Name = "calledAETitle";
-            this.calledAETitle.Size = new System.Drawing.Size(253, 28);
+            this.calledAETitle.Size = new System.Drawing.Size(211, 24);
             this.calledAETitle.TabIndex = 13;
             // 
             // callingAETitle
             // 
             this.callingAETitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.callingAETitle.Location = new System.Drawing.Point(506, 9);
+            this.callingAETitle.Location = new System.Drawing.Point(422, 8);
             this.callingAETitle.Name = "callingAETitle";
-            this.callingAETitle.Size = new System.Drawing.Size(314, 28);
+            this.callingAETitle.Size = new System.Drawing.Size(262, 24);
             this.callingAETitle.TabIndex = 14;
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(4, 9);
+            this.label6.Location = new System.Drawing.Point(3, 8);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(76, 19);
+            this.label6.Size = new System.Drawing.Size(64, 16);
             this.label6.TabIndex = 11;
             this.label6.Text = "Requestor:";
             // 
@@ -847,48 +846,48 @@ namespace SnifferUI
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.Location = new System.Drawing.Point(422, 9);
+            this.label5.Location = new System.Drawing.Point(352, 8);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(67, 19);
+            this.label5.Size = new System.Drawing.Size(57, 16);
             this.label5.TabIndex = 12;
             this.label5.Text = "Acceptor:";
             // 
             // accIPAddressLabel
             // 
-            this.accIPAddressLabel.Location = new System.Drawing.Point(506, 45);
+            this.accIPAddressLabel.Location = new System.Drawing.Point(422, 39);
             this.accIPAddressLabel.Name = "accIPAddressLabel";
-            this.accIPAddressLabel.Size = new System.Drawing.Size(324, 27);
+            this.accIPAddressLabel.Size = new System.Drawing.Size(270, 23);
             this.accIPAddressLabel.TabIndex = 23;
             // 
             // reqIPAddressLabel
             // 
-            this.reqIPAddressLabel.Location = new System.Drawing.Point(86, 45);
+            this.reqIPAddressLabel.Location = new System.Drawing.Point(72, 39);
             this.reqIPAddressLabel.Name = "reqIPAddressLabel";
-            this.reqIPAddressLabel.Size = new System.Drawing.Size(286, 27);
+            this.reqIPAddressLabel.Size = new System.Drawing.Size(238, 23);
             this.reqIPAddressLabel.TabIndex = 22;
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(422, 46);
+            this.label3.Location = new System.Drawing.Point(352, 40);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 19);
+            this.label3.Size = new System.Drawing.Size(64, 16);
             this.label3.TabIndex = 21;
             this.label3.Text = "IP Address:";
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(5, 46);
+            this.label2.Location = new System.Drawing.Point(4, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 19);
+            this.label2.Size = new System.Drawing.Size(64, 16);
             this.label2.TabIndex = 20;
             this.label2.Text = "IP Address:";
             // 
             // tabPDUsOverview
             // 
             this.tabPDUsOverview.Controls.Add(this.splitContainerServiceElement);
-            this.tabPDUsOverview.Location = new System.Drawing.Point(4, 25);
+            this.tabPDUsOverview.Location = new System.Drawing.Point(4, 22);
             this.tabPDUsOverview.Name = "tabPDUsOverview";
-            this.tabPDUsOverview.Size = new System.Drawing.Size(844, 525);
+            this.tabPDUsOverview.Size = new System.Drawing.Size(704, 461);
             this.tabPDUsOverview.TabIndex = 2;
             this.tabPDUsOverview.Text = "Service Elements Overview";
             this.tabPDUsOverview.UseVisualStyleBackColor = true;
@@ -914,37 +913,37 @@ namespace SnifferUI
             this.splitContainerServiceElement.Panel2.Controls.Add(this.accIPAddress);
             this.splitContainerServiceElement.Panel2.Controls.Add(this.label7);
             this.splitContainerServiceElement.Panel2.Controls.Add(this.accPduList);
-            this.splitContainerServiceElement.Size = new System.Drawing.Size(844, 525);
-            this.splitContainerServiceElement.SplitterDistance = 401;
+            this.splitContainerServiceElement.Size = new System.Drawing.Size(704, 461);
+            this.splitContainerServiceElement.SplitterDistance = 334;
             this.splitContainerServiceElement.TabIndex = 14;
             // 
             // reqIPAddressSELabel
             // 
-            this.reqIPAddressSELabel.Location = new System.Drawing.Point(104, 58);
+            this.reqIPAddressSELabel.Location = new System.Drawing.Point(87, 50);
             this.reqIPAddressSELabel.Name = "reqIPAddressSELabel";
-            this.reqIPAddressSELabel.Size = new System.Drawing.Size(258, 26);
+            this.reqIPAddressSELabel.Size = new System.Drawing.Size(215, 23);
             this.reqIPAddressSELabel.TabIndex = 30;
             // 
             // reqIPAddress
             // 
-            this.reqIPAddress.Location = new System.Drawing.Point(104, 18);
+            this.reqIPAddress.Location = new System.Drawing.Point(87, 16);
             this.reqIPAddress.Name = "reqIPAddress";
-            this.reqIPAddress.Size = new System.Drawing.Size(258, 28);
+            this.reqIPAddress.Size = new System.Drawing.Size(215, 24);
             this.reqIPAddress.TabIndex = 28;
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(10, 21);
+            this.label8.Location = new System.Drawing.Point(8, 18);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(85, 18);
+            this.label8.Size = new System.Drawing.Size(71, 16);
             this.label8.TabIndex = 27;
             this.label8.Text = "Requestor:";
             // 
             // label12
             // 
-            this.label12.Location = new System.Drawing.Point(13, 58);
+            this.label12.Location = new System.Drawing.Point(11, 50);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(77, 18);
+            this.label12.Size = new System.Drawing.Size(64, 16);
             this.label12.TabIndex = 29;
             this.label12.Text = "IP Address:";
             // 
@@ -954,10 +953,9 @@ namespace SnifferUI
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.reqPduList.ContextMenu = this.contextMenuSniffer;
-            this.reqPduList.ItemHeight = 16;
-            this.reqPduList.Location = new System.Drawing.Point(0, 96);
+            this.reqPduList.Location = new System.Drawing.Point(0, 83);
             this.reqPduList.Name = "reqPduList";
-            this.reqPduList.Size = new System.Drawing.Size(397, 372);
+            this.reqPduList.Size = new System.Drawing.Size(331, 316);
             this.reqPduList.TabIndex = 11;
             this.reqPduList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.reqPduList_MouseDown);
             // 
@@ -996,16 +994,16 @@ namespace SnifferUI
             // 
             // accIPAddressSELabel
             // 
-            this.accIPAddressSELabel.Location = new System.Drawing.Point(110, 58);
+            this.accIPAddressSELabel.Location = new System.Drawing.Point(92, 50);
             this.accIPAddressSELabel.Name = "accIPAddressSELabel";
-            this.accIPAddressSELabel.Size = new System.Drawing.Size(273, 26);
+            this.accIPAddressSELabel.Size = new System.Drawing.Size(227, 23);
             this.accIPAddressSELabel.TabIndex = 31;
             // 
             // label11
             // 
-            this.label11.Location = new System.Drawing.Point(22, 58);
+            this.label11.Location = new System.Drawing.Point(18, 50);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(76, 18);
+            this.label11.Size = new System.Drawing.Size(64, 16);
             this.label11.TabIndex = 30;
             this.label11.Text = "IP Address:";
             // 
@@ -1013,16 +1011,16 @@ namespace SnifferUI
             // 
             this.accIPAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.accIPAddress.Location = new System.Drawing.Point(110, 21);
+            this.accIPAddress.Location = new System.Drawing.Point(92, 18);
             this.accIPAddress.Name = "accIPAddress";
-            this.accIPAddress.Size = new System.Drawing.Size(297, 27);
+            this.accIPAddress.Size = new System.Drawing.Size(248, 24);
             this.accIPAddress.TabIndex = 29;
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(20, 21);
+            this.label7.Location = new System.Drawing.Point(17, 18);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(68, 18);
+            this.label7.Size = new System.Drawing.Size(56, 16);
             this.label7.TabIndex = 28;
             this.label7.Text = "Acceptor:";
             // 
@@ -1032,19 +1030,18 @@ namespace SnifferUI
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.accPduList.ContextMenu = this.contextMenuSniffer;
-            this.accPduList.ItemHeight = 16;
-            this.accPduList.Location = new System.Drawing.Point(4, 96);
+            this.accPduList.Location = new System.Drawing.Point(3, 83);
             this.accPduList.Name = "accPduList";
-            this.accPduList.Size = new System.Drawing.Size(436, 388);
+            this.accPduList.Size = new System.Drawing.Size(365, 329);
             this.accPduList.TabIndex = 12;
             this.accPduList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.accPduList_MouseDown);
             // 
             // tabSummaryValidationResults
             // 
             this.tabSummaryValidationResults.Controls.Add(this.dvtkSummaryWebBrowserSniffer);
-            this.tabSummaryValidationResults.Location = new System.Drawing.Point(4, 25);
+            this.tabSummaryValidationResults.Location = new System.Drawing.Point(4, 22);
             this.tabSummaryValidationResults.Name = "tabSummaryValidationResults";
-            this.tabSummaryValidationResults.Size = new System.Drawing.Size(844, 525);
+            this.tabSummaryValidationResults.Size = new System.Drawing.Size(704, 461);
             this.tabSummaryValidationResults.TabIndex = 3;
             this.tabSummaryValidationResults.Text = "Summary Validation Results";
             this.tabSummaryValidationResults.UseVisualStyleBackColor = true;
@@ -1054,16 +1051,16 @@ namespace SnifferUI
             this.dvtkSummaryWebBrowserSniffer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dvtkSummaryWebBrowserSniffer.Location = new System.Drawing.Point(0, 0);
             this.dvtkSummaryWebBrowserSniffer.Name = "dvtkSummaryWebBrowserSniffer";
-            this.dvtkSummaryWebBrowserSniffer.Size = new System.Drawing.Size(844, 525);
+            this.dvtkSummaryWebBrowserSniffer.Size = new System.Drawing.Size(704, 461);
             this.dvtkSummaryWebBrowserSniffer.TabIndex = 0;
             this.dvtkSummaryWebBrowserSniffer.XmlStyleSheetFullFileName = "";
             // 
             // tabDetailValidationResults
             // 
             this.tabDetailValidationResults.Controls.Add(this.dvtkDetailWebBrowserSniffer);
-            this.tabDetailValidationResults.Location = new System.Drawing.Point(4, 25);
+            this.tabDetailValidationResults.Location = new System.Drawing.Point(4, 22);
             this.tabDetailValidationResults.Name = "tabDetailValidationResults";
-            this.tabDetailValidationResults.Size = new System.Drawing.Size(844, 525);
+            this.tabDetailValidationResults.Size = new System.Drawing.Size(704, 461);
             this.tabDetailValidationResults.TabIndex = 4;
             this.tabDetailValidationResults.Text = "Detail Validation Results";
             this.tabDetailValidationResults.UseVisualStyleBackColor = true;
@@ -1073,7 +1070,7 @@ namespace SnifferUI
             this.dvtkDetailWebBrowserSniffer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dvtkDetailWebBrowserSniffer.Location = new System.Drawing.Point(0, 0);
             this.dvtkDetailWebBrowserSniffer.Name = "dvtkDetailWebBrowserSniffer";
-            this.dvtkDetailWebBrowserSniffer.Size = new System.Drawing.Size(844, 525);
+            this.dvtkDetailWebBrowserSniffer.Size = new System.Drawing.Size(704, 461);
             this.dvtkDetailWebBrowserSniffer.TabIndex = 0;
             this.dvtkDetailWebBrowserSniffer.XmlStyleSheetFullFileName = "";
             // 
@@ -1253,7 +1250,7 @@ namespace SnifferUI
             this.toolBarSniffer.Location = new System.Drawing.Point(0, 0);
             this.toolBarSniffer.Name = "toolBarSniffer";
             this.toolBarSniffer.ShowToolTips = true;
-            this.toolBarSniffer.Size = new System.Drawing.Size(852, 28);
+            this.toolBarSniffer.Size = new System.Drawing.Size(854, 28);
             this.toolBarSniffer.TabIndex = 22;
             this.toolBarSniffer.ButtonClick += new System.Windows.Forms.ToolBarButtonClickEventHandler(this.toolBarSniffer_ButtonClick);
             // 
@@ -1392,30 +1389,30 @@ namespace SnifferUI
             // 
             // statusBarSniffer
             // 
-            this.statusBarSniffer.Location = new System.Drawing.Point(0, 582);
+            this.statusBarSniffer.Location = new System.Drawing.Point(0, 593);
             this.statusBarSniffer.Name = "statusBarSniffer";
-            this.statusBarSniffer.Size = new System.Drawing.Size(852, 23);
+            this.statusBarSniffer.Size = new System.Drawing.Size(854, 20);
             this.statusBarSniffer.TabIndex = 23;
             // 
             // progressBarStatusBar
             // 
-            this.progressBarStatusBar.Location = new System.Drawing.Point(367, 591);
+            this.progressBarStatusBar.Location = new System.Drawing.Point(306, 512);
             this.progressBarStatusBar.Name = "progressBarStatusBar";
-            this.progressBarStatusBar.Size = new System.Drawing.Size(490, 18);
+            this.progressBarStatusBar.Size = new System.Drawing.Size(408, 16);
             this.progressBarStatusBar.TabIndex = 24;
             this.progressBarStatusBar.Visible = false;
             // 
             // DICOMSniffer
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(6, 15);
-            this.ClientSize = new System.Drawing.Size(852, 605);
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.ClientSize = new System.Drawing.Size(854, 613);
             this.Controls.Add(this.progressBarStatusBar);
             this.Controls.Add(this.tabControlSniffer);
             this.Controls.Add(this.toolBarSniffer);
             this.Controls.Add(this.statusBarSniffer);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Menu = this.mainMenuDICOMSniffer;
-            this.MinimumSize = new System.Drawing.Size(870, 652);
+            this.MinimumSize = new System.Drawing.Size(725, 565);
             this.Name = "DICOMSniffer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DICOM Network Analyzer";
@@ -1536,8 +1533,8 @@ namespace SnifferUI
 			catch (Exception except) 
 			{
                 string msg = string.Format("Error:{0}\n", except.Message);
-                MessageBox.Show(this, "Please install the Npcap driver, which can be found on https://nmap.org/npcap/ .\n" + msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				this.Close();
+                MessageBox.Show(this, "Please install the Npcap driver, which can be found at https://nmap.org/npcap/ .\n" + msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
 				return;
 			}			
 
@@ -1549,8 +1546,8 @@ namespace SnifferUI
 			}
 			else
 			{
-                string msg = "No network adapter(driver) detected on the machine.\nPlease install the Npcap driver, which can be found on https://nmap.org/npcap/ .\r\n";
-				MessageBox.Show(this, msg, "Warning",MessageBoxButtons.OK, MessageBoxIcon.Warning );
+                string msg = "No network adapter(driver) detected on the machine.\nPlease install the Npcap driver, which can be found at https://nmap.org/npcap/ .\r\n";
+                MessageBox.Show(this, msg, "Warning",MessageBoxButtons.OK, MessageBoxIcon.Warning );
 				this.Close();
 				return;
 			}

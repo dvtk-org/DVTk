@@ -1,0 +1,127 @@
+##
+## DVT DICOMScript
+##
+## Name: vr_1_scp.ds
+##
+## Test Suite Ref: 3.2.2.3.1.2
+## Test Case Ref: 1
+##
+## Pre-conditions:
+##	No association.
+##
+## Test Scenario:
+##	Request association using Implicit VR Little Endian
+##	Transfer Syntax.
+##	Accept Transfer Syntax.
+##	Make Modality Worklist Query with VR Keywords.
+##	Send Modality Worklist Query responses.
+##	Release association after successful storage.
+##
+## Expected Result:
+##	0 errors, 0 warnings
+##
+## Post-conditions:
+##	No association.
+##
+RECEIVE ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Modality Worklist Information Model - FIND SOP Class",
+         "Implicit VR Little Endian")
+)
+
+SEND ASSOCIATE-AC (
+        PRESENTATION-CONTEXT-ITEMS
+        ("Modality Worklist Information Model - FIND SOP Class",
+         0,
+         "Implicit VR Little Endian")
+)
+
+
+RECEIVE C-FIND-RQ "Modality Worklist - FIND" (
+(0x00000002, "Modality Worklist Information Model - FIND SOP Class")
+
+(0x00100010, "*") # Patient's Name
+(0x00100020, "") # Patient ID
+(0x0020000D, "") # Study Instance UID
+(0x00400100, SQ,
+>(0x00400001, "CALLEDAETITLE", "CALLINGAETITLE") # Scheduled Station AE Title
+>(0x00400002, "YESTERDAY-TOMORROW") # Scheduled Procedure Step Start Date
+>(0x00400003, "") # Scheduled Procedure Step Start Time
+>(0x00400007, "") # Scheduled Procedure Step Description
+>(0x00400008, SQ, "") # Scheduled Action Item Code Sequence
+>(0x00400009, "") # Scheduled Procedure Step ID
+>(0x00080060, "CT") # Modality
+)
+)
+
+SEND C-FIND-RSP "Modality Worklist - FIND" (
+(0x00000002, "Modality Worklist Information Model - FIND SOP Class")
+(0x00000900, 0xFF00)
+
+(0x00100010, "One^Test Patient")
+(0x00100020, "TP-1")
+(0x0020000D, "NEW:StudyInstanceUid1")
+(0x00400100, SQ,
+>(0x00400001, "CALLEDAETITLE")
+>(0x00400002, "TODAY")
+>(0x00400003, "NOW")
+>(0x00400007, "Exam 1")
+>(0x00400009, "1")
+>(0x00080060, "CT")
+)
+(0x00321060, "Exam 1")
+(0x00401001, "1")
+)
+
+SEND C-FIND-RSP "Modality Worklist - FIND" (
+(0x00000002, "Modality Worklist Information Model - FIND SOP Class")
+(0x00000900, 0xFF00)
+
+(0x00100010, "Two^Test Patient")
+(0x00100020, "TP-2")
+(0x0020000D, "NEW:StudyInstanceUid2")
+(0x00400100, SQ,
+>(0x00400001, "CALLINGAETITLE")
+>(0x00400002, "YESTERDAY")
+>(0x00400003, "103000")
+>(0x00400007, "Exam 2")
+>(0x00400009, "2")
+>(0x00080060, "CT")
+)
+(0x00321060, "Exam 2")
+(0x00401001, "2")
+)
+
+SEND C-FIND-RSP "Modality Worklist - FIND" (
+(0x00000002, "Modality Worklist Information Model - FIND SOP Class")
+(0x00000900, 0xFF00)
+
+(0x00100010, "Three^Test Patient")
+(0x00100020, "TP-3")
+(0x0020000D, "NEW:StudyInstanceUid3")
+(0x00400100, SQ,
+>(0x00400001, "CALLINGAETITLE")
+>(0x00400002, "TOMORROW")
+>(0x00400003, "151500")
+>(0x00400007, "Exam 3")
+>(0x00400009, "3")
+>(0x00080060, "CT")
+)
+(0x00321060, "Exam 3")
+(0x00401001, "3")
+)
+
+SEND C-FIND-RSP (
+(0x00000900, 0x0000)
+)
+
+RECEIVE RELEASE-RQ
+
+SEND RELEASE-RP
+
+##
+## Script Result should be:
+## Validation: 1 error(s), 0 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 0 error(s), 0 warning(s)
+##

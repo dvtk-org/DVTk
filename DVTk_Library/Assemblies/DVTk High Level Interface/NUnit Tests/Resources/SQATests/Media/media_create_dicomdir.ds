@@ -1,0 +1,987 @@
+## 
+## DVT DICOMScript
+##
+## Name: media_create_dicomdir.ds
+##
+## Test Suite Ref: 3.2.2.4.4
+##                 3.2.2.4.17
+##                 3.2.2.4.22
+## Test Case Ref : #1, #2, #3
+##
+## Pre-conditions:
+##
+## Test Scenario:
+##    - Create a DICOM Dir structure and write this to disk
+##
+##
+## Expected Result:
+##    0 errors, 0 warnings
+##
+## Post-conditions:
+##    -
+##
+
+#  1 identifies current still
+#  refImageNr (if defined) identifies the other plane of a biplane acquisition
+#  refAltNr (if defined) identifies the movie derived from 1
+#
+#
+#  Media Storage Directory SOP Class - Directory Record IMAGE Module - Referenced Image Sequence
+#
+#
+#  Media Storage Directory SOP Class - Directory Record IMAGE Module - Alternate Image Sequence
+#  
+#
+#  Media Storage Directory SOP Class - Directory Record IMAGE Module - Icon Image Sequence
+#
+
+CREATE "Media Storage Directory SOP Class - Directory Record IMAGE Module - Icon Image Sequence" "STILL_RECORD_1_ITEM_0003"
+SET "Media Storage Directory SOP Class - Directory Record IMAGE Module - Icon Image Sequence" "STILL_RECORD_1_ITEM_0003" {
+(0x00280002, US ,1 );
+(0x00280004, CS ,"MONOCHROME2");
+(0x00280010, US ,128);
+(0x00280011, US ,128);
+(0x00280100, US ,8);
+(0x00280101, US ,8);
+(0x00280102, US ,7);
+(0x00280103, US,0000);
+(0x7fe00010, OB ,"XA_ICON_1.PIX");
+}
+#
+#	Media Storage Directory SOP Class - Directory Record IMAGE Module - Directory Record Sequence
+#
+CREATE "Media Storage Directory SOP Class - Directory Record IMAGE Module - Directory Record Sequence" "STILL_RECORD_1"
+SET "Media Storage Directory SOP Class - Directory Record IMAGE Module - Directory Record Sequence" "STILL_RECORD_1" {
+(0x00041400, UL , 0);
+(0x00041410, US ,0xFFFF);
+(0x00041420, UL , 0);
+(0x00041430, CS ,"IMAGE");
+(0x00041500, CS ,"DICOM" ,"STDY1" ,"SERIES1" ,"IMG2" ,"STILL1" );
+(0x00041510, UI ,"1.2.840.10008.5.1.4.1.1.12.1");
+(0x00041511, UI ,"1.3.46.670589.17.997345933.692.1.7.1");
+(0x00041512, UI ,"1.2.840.10008.1.2.4.70");
+(0x00080005, CS ,"ISO_IR 100");
+(0x00080008, CS ,"ORIGINAL", "PRIMARY", "SINGLE PLANE");
+(0x00200013, IS ,"1");
+(0x00500004, CS ,"NO");
+(0x00880200, SQ ,"STILL_RECORD_1_ITEM_0003");
+}
+#
+#	DICOM File Head
+#
+CREATE FILE-HEAD
+SET FILE-HEAD {
+         PREAMBLE = "";
+         PREFIX = "DICM";
+         TRANSFER-SYNTAX = "1.2.840.10008.1.2.4.70";
+}
+#
+#         DICOM File Tail
+#
+CREATE FILE-TAIL
+SET FILE-TAIL {
+         DATASET-TRAILING-PADDING = YES;
+         SECTOR-SIZE = 2048;
+         PADDING-VALUE = 0;
+}
+#
+#  File Meta Information SOP Class/C-STORE
+#
+CREATE C-STORE-RQ FMI1_CMD "File Meta" FMI1
+#
+#	M Module File Meta Information SOP Class - DICOM Meta Information
+#
+SET "File Meta" FMI1 
+{
+(0x00020000, UL, );
+(0x00020001, OB,1,2,0,0,1,1,1);
+(0x00020002, UI,"1.2.840.10008.5.1.4.1.1.12.1");
+(0x00020003, UI,"1.3.46.670589.17.997345933.692.1.7.1");
+(0x00020010, UI,"1.2.840.10008.1.2.4.70");
+(0x00020012, UI,"1.3.46.670589.17.1.13");
+(0x00020013, SH,"CDGEN_V4_5");
+(0x00020016, AE,"ARC_DVN_V4_5");
+}
+CREATE "Study Component Management SOP Class - Study Component CD-medical 1.0 Extended Module - Referenced Image Sequence" "STUDYCMP_REF_1"
+SET "Study Component Management SOP Class - Study Component CD-medical 1.0 Extended Module - Referenced Image Sequence" "STUDYCMP_REF_1" 
+{
+(0x00080054, AE,"Arc Archive");
+(0x00081150, UI,"1.2.840.10008.5.1.4.1.1.12.1");
+(0x00081155, UI,"1.3.46.670589.17.997345933.692.1.7.1");
+(0x00880130, SH,"ARC CDROM 4");
+(0x00880140, UI,"1.3.46.670589.17.997345933.692.1.2.1");
+}
+
+#  X-Ray Angiographic Image Storage SOP Class/C-STORE
+#
+#  1 identifies current still
+#  refImageNr (if defined) identifies the other plane of a biplane acquisition
+#  refAltNr (if defined) identifies the movie derived from 1
+
+#
+#	X-Ray Angiographic Image Storage SOP Class - Patient Module - Referenced Patient Sequence
+#
+CREATE "X-Ray Angiographic Image Storage SOP Class - Patient Module - Referenced Patient Sequence" "STILL_1_ITEM_0001"
+SET "X-Ray Angiographic Image Storage SOP Class - Patient Module - Referenced Patient Sequence" "STILL_1_ITEM_0001" 
+{
+(0x00081150, UI,"1.2.840.10008.3.1.2.1.1");
+(0x00081155, UI,"1.3.46.670589.17.997345933.692.1.4.3");
+}
+#
+#	X-Ray Angiographic Image Storage SOP Class - General Study Module - Referenced Study Sequence
+#
+CREATE "X-Ray Angiographic Image Storage SOP Class - General Study Module - Referenced Study Sequence" "STILL_1_ITEM_0002"
+SET "X-Ray Angiographic Image Storage SOP Class - General Study Module - Referenced Study Sequence" "STILL_1_ITEM_0002" 
+{
+(0x00081150, UI,"1.2.840.10008.3.1.2.3.1");
+(0x00081155, UI  ,"1.3.46.670589.17.997345933.692.1.9.1");
+}
+#
+#	X-Ray Angiographic Image Storage SOP Class - General Series Module - Referenced Study Component Sequence
+#
+CREATE "X-Ray Angiographic Image Storage SOP Class - General Series Module - Referenced Study Component Sequence" "STILL_1_ITEM_0003"
+SET "X-Ray Angiographic Image Storage SOP Class - General Series Module - Referenced Study Component Sequence" "STILL_1_ITEM_0003" 
+{
+(0x00081150, UI,"1.2.840.10008.3.1.2.3.2");
+(0x00081155, UI,"1.3.46.670589.17.997345933.692.1.8.1");
+}
+#
+#	X-Ray Angiographic Image Storage SOP Class - General Image CD-medical 1.0 Extended Module - Alternate Image Sequence
+#
+#
+#	X-Ray Angiographic Image Storage SOP Class - X-Ray Image CD-medical 1.0 Extended Module - Referenced Image Sequence
+#
+#
+#	X-Ray Angiographic Image Storage SOP Class - X-Ray Image CD-medical 1.0 Extended Module - Edge Enhancement Sequence
+#
+#
+#	X-Ray Angiographic Image Storage SOP Class - Modality LUT Module - Modality LUT Sequence
+#
+CREATE "X-Ray Angiographic Image Storage SOP Class - Modality LUT Module - Modality LUT Sequence" "STILL_1_ITEM_0007"
+SET "X-Ray Angiographic Image Storage SOP Class - Modality LUT Module - Modality LUT Sequence" "STILL_1_ITEM_0007" 
+{
+(0x00283002, US, );
+(0x00283004, LO ,"US");
+(0x00283006, US, );
+}
+CREATE C-STORE-RQ STILL_1_CMD "X-Ray Angiographic Image" "STILL_1"
+#
+#	M Module X-Ray Angiographic Image Storage SOP Class - Patient Module
+#
+SET "X-Ray Angiographic Image" "STILL_1" 
+{
+(0x00081120, SQ ,"STILL_1_ITEM_0001");
+(0x00100010, PN ,"Dirk-Arc^Dirk");
+(0x00100020, LO ,"ARC-PATID-3");
+(0x00100030, DA ,"19531112");
+(0x00100040, CS ,"M");
+}
+#
+#	M Module X-Ray Angiographic Image Storage SOP Class - General Study Module
+#
+SET "X-Ray Angiographic Image" "STILL_1" 
+{
+(0x00080020, DA,"19950902");
+(0x00080030, TM ,"120200");
+(0x00080050, SH ,"ARC 1234561");
+(0x00080090, PN ,"Doolitle^Barry^^Dr");
+(0x00081030, LO ,"Arc Study 4 1");
+(0x00081110, SQ ,"STILL_1_ITEM_0002");
+(0x0020000d, UI ,"1.3.46.670589.17.997345933.692.1.9.1");
+(0x00200010, SH ,"Arc-StudyID-1");
+}
+#
+#	M Module X-Ray Angiographic Image Storage SOP Class - General Series Module
+#
+SET "X-Ray Angiographic Image" "STILL_1" {
+(0x00080021, DA ,"19950902");
+(0x00080031, TM ,"120200");
+(0x00080060, CS ,"XA");
+(0x00081050, PN ,"Smithwicks^Barry^^Dr");
+(0x00081111, SQ ,"STILL_1_ITEM_0003");
+(0x0020000e, UI ,"1.3.46.670589.17.997345933.692.1.6.1");
+(0x00200011, IS ,"8881");
+}
+#
+#	M Module X-Ray Angiographic Image Storage SOP Class - General Equipment Module
+#/
+SET "X-Ray Angiographic Image" "STILL_1" {
+(0x00080070, LO, "");
+(0x00080080, LO ,"ARC Medical Hospital 1");
+(0x00080081, ST ,"Veenpluis 6 Best");
+(0x00081090, LO, "ARC Cardio Device 1");
+(0x00181020, LO, "DVN_4_5");
+}
+#
+#	M Module X-Ray Angiographic Image Storage SOP Class - General Image CD-medical 1.0 Extended Module
+#
+SET "X-Ray Angiographic Image" "STILL_1" 
+{
+(0x00080022, DA, "19950902");
+(0x00080023, DA, "19950902");
+(0x00080032, TM, "120200");
+(0x00080033, TM, "120200");
+(0x00090010, LO  ,"CARDIO-D.R. 1.0");
+(0x00200012, IS, "4");
+(0x00200013, IS ,"1");
+(0x00200020, CS, "");
+(0x00201002, IS ,"1");
+}
+#
+#	M Module X-Ray Angiographic Image Storage SOP Class - Image Pixel Module
+#
+SET "X-Ray Angiographic Image" "STILL_1" 
+{
+(0x00280010, US ,512);
+(0x00280011, US ,512);
+(0x7fe00010, OB, "XA_PIX_1.PIX");
+}
+#
+#	C Module X-Ray Angiographic Image Storage SOP Class - Cine CD-medical 1.0 Extended Module
+#
+SET "X-Ray Angiographic Image" "STILL_1" 
+{
+(0x00181063, DS, "20");
+(0x00181066, DS, "10");
+(0x00190010, LO ,"CARDIO-D.R. 1.0");
+(0x00191030, UL, 180000);
+}
+#
+#	C Module X-Ray Angiographic Image Storage SOP Class - Multi-frame Module
+#
+SET "X-Ray Angiographic Image" "STILL_1" 
+{
+(0x00280008, IS, "8");
+}
+#
+#	M Module X-Ray Angiographic Image Storage SOP Class - Frame Pointers Module
+#
+SET "X-Ray Angiographic Image" "STILL_1" 
+{
+(0x00286010, US, 4);
+}
+#
+#	M Module X-Ray Angiographic Image Storage SOP Class - X-Ray Image CD-medical 1.0 Extended Module
+#
+SET "X-Ray Angiographic Image" "STILL_1" 
+{
+(0x00080008, CS ,"ORIGINAL", "PRIMARY", "SINGLE PLANE");
+(0x00180022, CS ,"EKG");
+(0x00280002, US ,1);
+(0x00280004, CS,"MONOCHROME2");
+(0x00280009, AT,0x00181063);
+(0x00280100, US, 8);
+(0x00280101, US, 8);
+(0x00280102, US, 7);
+(0x00280103, US ,0000);
+(0x00281040, CS ,"DISP");
+(0x00500004, CS ,"NO");
+}
+#
+#	M Module X-Ray Angiographic Image Storage SOP Class - X-Ray Acquisition Module
+#
+SET "X-Ray Angiographic Image" "STILL_1" 
+{
+(0x00180060, DS, "85");
+(0x00181152, IS, "");
+(0x00181155, CS ,"GR");
+(0x00181162, DS, "");
+}
+#
+#	M Module X-Ray Angiographic Image Storage SOP Class - XA Positioner Module
+#
+SET "X-Ray Angiographic Image" "STILL_1" 
+{
+(0x00181500, CS ,"STATIC");
+(0x00181510, DS, "2");
+(0x00181511, DS, "-2");
+}
+#
+# U Module X-Ray Angiographic Image Storage SOP Class - Display Shutter Module
+#
+#
+#	C Module X-Ray Angiographic Image Storage SOP Class - Image Blanking CD-medical 1.0 Module
+#
+#
+#	C Module X-Ray Angiographic Image Storage SOP Class - Modality LUT Module
+#
+SET "X-Ray Angiographic Image" "STILL_1" 
+{
+(0x00281052, DS, "0");
+(0x00281053, DS, "1");
+(0x00281054, LO, "LINEAR");
+}
+#
+#	U Module X-Ray Angiographic Image Image Storage SOP Class - Curve Module
+#
+#
+#	M Module X-Ray Angiographic Image Storage SOP Class - SOP Common Module
+#
+SET "X-Ray Angiographic Image" "STILL_1" 
+{
+(0x00080005, CS ,"ISO_IR 100");
+(0x00080012, DA ,"19950902");
+(0x00080013, TM ,"120200");
+(0x00080014, UI ,"1.3.46.670589.17.997345933.692.1.11");
+(0x00080016, UI ,"1.2.840.10008.5.1.4.1.1.12.1");
+(0x00080018, UI ,"1.3.46.670589.17.997345933.692.1.7.1");
+}
+WRITE "DICOM\\STDY1\\SERIES1\\IMG2\\STILL1" FILE-HEAD
+WRITE "DICOM\\STDY1\\SERIES1\\IMG2\\STILL1" "File Meta" FMI1
+WRITE "DICOM\\STDY1\\SERIES1\\IMG2\\STILL1" "X-Ray Angiographic Image" "STILL_1"
+WRITE "DICOM\\STDY1\\SERIES1\\IMG2\\STILL1" FILE-TAIL
+DELETE FILE-HEAD
+DELETE "File Meta" FMI1
+DELETE FILE-TAIL
+DELETE "X-Ray Angiographic Image" "STILL_1"
+DELETE "X-Ray Angiographic Image Storage SOP Class - Patient Module - Referenced Patient Sequence" "STILL_1_ITEM_0001"
+DELETE "X-Ray Angiographic Image Storage SOP Class - General Study Module - Referenced Study Sequence" "STILL_1_ITEM_0002"
+DELETE "X-Ray Angiographic Image Storage SOP Class - General Series Module - Referenced Study Component Sequence" "STILL_1_ITEM_0003"
+DELETE "X-Ray Angiographic Image Storage SOP Class - Modality LUT Module - Modality LUT Sequence" "STILL_1_ITEM_0007"
+
+#
+#  Media Storage Directory SOP Class - Directory Record STUDY COMPONENT Module - Directory Record Sequence
+#
+#
+#	Media Storage Directory SOP Class - Directory Record STUDY COMPONENT Module - Procedure Code Sequence
+#
+CREATE "Media Storage Directory SOP Class - Directory Record STUDY COMPONENT Module - Procedure Code Sequence" "STUDYCOMP_RECORD_1_ITEM_0001"
+SET "Media Storage Directory SOP Class - Directory Record STUDY COMPONENT Module - Procedure Code Sequence" "STUDYCOMP_RECORD_1_ITEM_0001" {
+(0x00080100, SH, "NONE");
+(0x00080102, SH, "L");
+(0x00080104, LO, "NONE");
+}
+#
+#	Media Storage Directory SOP Class - Directory Record STUDY COMPONENT Module - Directory Record Sequence
+#
+CREATE "Media Storage Directory SOP Class - Directory Record STUDY COMPONENT Module - Directory Record Sequence" "STUDYCOMP_RECORD_1"
+SET "Media Storage Directory SOP Class - Directory Record STUDY COMPONENT Module - Directory Record Sequence" "STUDYCOMP_RECORD_1" {
+(0x00041400, UL, 0);
+(0x00041410, US,0xFFFF);
+(0x00041420, UL, 0);
+(0x00041430, CS,"STUDY COMPONENT");
+(0x00041500, CS,"DICOM","STDY1","SERIES1","STDYCMP1");
+(0x00041510, UI,"1.2.840.10008.3.1.2.3.2");
+(0x00041511, UI,"1.3.46.670589.17.997345933.692.1.8.1");
+(0x00041512, UI ,"1.2.840.10008.1.2.1");
+(0x00080005, CS ,"ISO_IR 100");
+(0x00080060, CS ,"XA");
+(0x00081030, LO ,"Arc Study 4 1");
+(0x00081032, SQ ,"STUDYCOMP_RECORD_1_ITEM_0001");
+(0x00081050, PN ,"Smithwicks^Barry^^Dr");
+}
+#
+#	DICOM File Head
+#
+CREATE FILE-HEAD
+SET FILE-HEAD {
+         PREAMBLE = "";
+         PREFIX = "DICM";
+         TRANSFER-SYNTAX = "1.2.840.10008.1.2.1";
+}
+#
+#         DICOM File Tail
+#
+CREATE FILE-TAIL
+SET FILE-TAIL {
+         DATASET-TRAILING-PADDING = YES;
+         SECTOR-SIZE = 2048;
+         PADDING-VALUE = 0;
+}
+#
+#  Template for File Meta Information SOP Class\\C-STORE
+#  Generated from media.didi
+#  Last modified Thu Jun 12 10:58:51 1997
+#
+CREATE C-STORE-RQ FMI2_CMD "File Meta" FMI2
+#
+#	M Module File Meta Information SOP Class - DICOM Meta Information
+#
+SET "File Meta" FMI2 
+{
+(0x00020000, UL, );
+(0x00020001, OB ,1,2,0,0,1,1,1);
+(0x00020002, UI ,"1.2.840.10008.3.1.2.3.2");
+(0x00020003, UI ,"1.3.46.670589.17.997345933.692.1.8.1");
+(0x00020010, UI ,"1.2.840.10008.1.2.1");
+(0x00020012, UI ,"1.3.46.670589.17.1.13");
+(0x00020013, SH ,"CDGEN_V4_5");
+(0x00020016, AE ,"ARC_DVN_V4_5" );
+}
+#
+#  Study Component Management SOP Class\\C-STORE
+#  Study Component Management SOP Class - C-STORE - Referenced Image Sequence
+#
+CREATE "Study Component Management SOP Class - C-STORE - Referenced Image Sequence" "STUDYCOMP_1_ITEM_0002"
+SET "Study Component Management SOP Class - C-STORE - Referenced Image Sequence" "STUDYCOMP_1_ITEM_0002" 
+{
+(0x00081150, UI ,"1.2.840.10008.3.1.2.3.2");
+(0x00081155, UI ,"1.3.46.670589.17.997345933.692.1.7.refImageNr");
+(0x00880130, SH ,"ARC CDROM 4");
+(0x00880140, UI ,"1.3.46.670589.17.997345933.692.1.2.1");
+}
+#
+#	Study Component Management SOP Class - C-STORE - Referenced Series Sequence
+#
+CREATE "Study Component Management SOP Class - C-STORE - Referenced Series Sequence" "STUDYCOMP_1_ITEM_0001"
+SET "Study Component Management SOP Class - C-STORE - Referenced Series Sequence" "STUDYCOMP_1_ITEM_0001" 
+{
+(0x00080021, DA ,"19950902");
+(0x00080031, TM ,"120200");
+(0x00081140, SQ,"STUDYCMP_REF_1" );
+(0x0020000e, UI ,"1.3.46.670589.17.997345933.692.1.6.1");
+(0x00880130, SH ,"ARC CDROM 4");
+(0x00880140, UI  ,"1.3.46.670589.17.997345933.692.1.2.1");
+}
+#
+#	Study Component Management SOP Class - C-STORE - Referenced Study Sequence
+#
+CREATE "Study Component Management SOP Class - C-STORE - Referenced Study Sequence" "STUDYCOMP_1_ITEM_0003"
+SET "Study Component Management SOP Class - C-STORE - Referenced Study Sequence" "STUDYCOMP_1_ITEM_0003" 
+{
+(0x00081150, UI ,"1.2.840.10008.3.1.2.3.1");
+(0x00081155, UI ,"1.3.46.670589.17.997345933.692.1.9.1");
+}
+#
+#	Study Component Management SOP Class - C-STORE - Procedure Code Sequence
+#
+CREATE "Study Component Management SOP Class - C-STORE - Procedure Code Sequence" "STUDYCOMP_1_ITEM_0004"
+SET "Study Component Management SOP Class - C-STORE - Procedure Code Sequence" "STUDYCOMP_1_ITEM_0004" 
+{
+(0x00080100, SH, "NONE");
+(0x00080102, SH, "L");
+(0x00080104, LO, "NONE");
+}
+#CREATE C-STORE-RQ STUDYCOMP_1_CMD "Study Component" "STUDYCOMP_1"
+CREATE N-CREATE-RQ STUDYCOMP_1_CMD "Study Component" "STUDYCOMP_1"
+
+#
+#	NONE Module Study Component Management SOP Class - SOP Common Module
+#
+SET "Study Component" "STUDYCOMP_1" 
+{
+(0x00080005, CS,"ISO_IR 100");
+}
+#
+#	NONE Module Study Component Management SOP Class - Study Component Module
+#
+SET "Study Component" "STUDYCOMP_1" 
+{
+(0x00081115, SQ ,"STUDYCOMP_1_ITEM_0001");
+(0x00200010, SH ,"Arc-StudyID-1");
+}
+#
+#	NONE Module Study Component Management SOP Class - Study Component Relationship Module
+#
+SET "Study Component" "STUDYCOMP_1" 
+{
+(0x00081110, SQ ,"STUDYCOMP_1_ITEM_0003");
+}
+#
+#	NONE Module Study Component Management SOP Class - Study Component Acquisition Module
+#
+SET "Study Component" "STUDYCOMP_1" 
+{
+(0x00080060, CS ,"XA");
+(0x00081030, LO ,"Arc Study 4 1");
+(0x00081032, SQ ,"STUDYCOMP_1_ITEM_0004");
+(0x00081050, PN ,"Smithwicks^Barry^^Dr");
+(0x00321055, CS, "");
+}
+WRITE "DICOM\\STDY1\\SERIES1\\STDYCMP1" FILE-HEAD
+WRITE "DICOM\\STDY1\\SERIES1\\STDYCMP1" "File Meta" FMI2
+WRITE "DICOM\\STDY1\\SERIES1\\STDYCMP1" "Study Component" "STUDYCOMP_1"
+WRITE "DICOM\\STDY1\\SERIES1\\STDYCMP1" FILE-TAIL
+DELETE FILE-HEAD
+DELETE "File Meta" FMI2
+DELETE FILE-TAIL
+DELETE "Study Component" "STUDYCOMP_1"
+DELETE "Study Component Management SOP Class - C-STORE - Referenced Series Sequence" "STUDYCOMP_1_ITEM_0001"
+DELETE "Study Component Management SOP Class - C-STORE - Referenced Image Sequence" "STUDYCOMP_1_ITEM_0002"
+DELETE "Study Component Management SOP Class - C-STORE - Referenced Study Sequence" "STUDYCOMP_1_ITEM_0003"
+DELETE "Study Component Management SOP Class - C-STORE - Procedure Code Sequence" "STUDYCOMP_1_ITEM_0004"
+
+#
+#  Media Storage Directory SOP Class - Directory Record VISIT Module - Directory Record Sequence
+#  Generated from media.didi
+#  Last modified Thu Jun 12 10:58:51 1997
+#
+#
+#	Media Storage Directory SOP Class - Directory Record VISIT Module - Directory Record Sequence
+#
+CREATE "Media Storage Directory SOP Class - Directory Record VISIT Module - Directory Record Sequence" "VISIT_RECORD_1"
+SET "Media Storage Directory SOP Class - Directory Record VISIT Module - Directory Record Sequence" "VISIT_RECORD_1" 
+{
+(0x00041400, UL,"STUDYCOMP_RECORD_1");
+(0x00041410, US,0xFFFF);
+(0x00041420, UL , 0);
+(0x00041430, CS  ,"VISIT");
+(0x00041500, CS  ,"DICOM" ,"STDY1","SERIES1","VISIT1");
+(0x00041510, UI  ,"1.2.840.10008.3.1.2.2.1");
+(0x00041511, UI  ,"1.3.46.670589.17.997345933.692.1.10.1");
+(0x00041512, UI  ,"1.2.840.10008.1.2.1");
+(0x00080005, CS  ,"ISO_IR 100");
+(0x00080080, LO  ,"ARC Medical Hospital 1");
+(0x00380010, LO  ,"Arc-AdmitID-1");
+(0x00380020, DA  ,"19950902");
+}
+#
+#	DICOM File Head
+#
+CREATE FILE-HEAD
+SET FILE-HEAD {
+         PREAMBLE = "";
+         PREFIX = "DICM";
+         TRANSFER-SYNTAX = "1.2.840.10008.1.2.1";
+}
+#
+#         DICOM File Tail
+#
+CREATE FILE-TAIL
+SET FILE-TAIL {
+         DATASET-TRAILING-PADDING = YES;
+         SECTOR-SIZE = 2048;
+         PADDING-VALUE = 0;
+}
+#
+#  File Meta Information SOP Class\\C-STORE
+#
+CREATE C-STORE-RQ FMI3_CMD "File Meta" FMI3
+#
+#	M Module File Meta Information SOP Class - DICOM Meta Information
+#
+SET "File Meta" FMI3
+{
+(0x00020000, UL, );
+(0x00020001, OB ,1,2,0,0,1,1,1);
+(0x00020002, UI ,"1.2.840.10008.3.1.2.2.1");
+(0x00020003, UI ,"1.3.46.670589.17.997345933.692.1.10.1");
+(0x00020010, UI ,"1.2.840.10008.1.2.1");
+(0x00020012, UI ,"1.3.46.670589.17.1.13");
+(0x00020013, SH  ,"CDGEN_V4_5");
+(0x00020016, AE ,"ARC_DVN_V4_5");
+}
+#
+#  Detached Visit Management SOP Class\\C-STORE
+#
+#  Detached Visit Management SOP Class - C-STORE - Referenced Study Sequence
+#
+CREATE "Detached Visit Management SOP Class - C-STORE - Referenced Study Sequence" "VISIT_1_ITEM_0001"
+SET "Detached Visit Management SOP Class - C-STORE - Referenced Study Sequence" "VISIT_1_ITEM_0001" {
+(0x00081150, UI, "1.2.840.10008.3.1.2.3.1");
+(0x00081155, UI  ,"1.3.46.670589.17.997345933.692.1.9.1");
+}
+#
+# Detached Visit Management SOP Class - C-STORE - Referenced Patient Sequence
+#
+CREATE "Detached Visit Management SOP Class - C-STORE - Referenced Patient Sequence" "VISIT_1_ITEM_0002"
+SET "Detached Visit Management SOP Class - C-STORE - Referenced Patient Sequence" "VISIT_1_ITEM_0002" 
+{
+(0x00081150, UI ,"1.2.840.10008.3.1.2.1.1");
+(0x00081155, UI ,"1.3.46.670589.17.997345933.692.1.4.3");
+}
+#CREATE C-STORE-RQ VISIT_1_CMD "Detached Visit" "VISIT_1"
+CREATE N-SET-RQ VISIT_1_CMD "Detached Visit" "VISIT_1"
+#
+#	NONE Module Detached Visit Management SOP Class - SOP Common Module
+#
+SET "Detached Visit" "VISIT_1" 
+{
+(0x00080005, CS ,"ISO_IR 100");
+}
+#
+#	NONE Module Detached Visit Management SOP Class - Visit Relationship Module
+#
+SET "Detached Visit" "VISIT_1" 
+{
+(0x00081110, SQ ,"VISIT_1_ITEM_0001");
+(0x00081120, SQ ,"VISIT_1_ITEM_0002");
+}
+#
+#	NONE Module Detached Visit Management SOP Class - Visit Admission Module
+#
+SET "Detached Visit" "VISIT_1" 
+{
+(0x00080090, PN ,"Doolitle^Barry^^Dr");
+}
+#
+#	NONE Module Detached Visit Management SOP Class - Visit Identification Module 
+#
+SET "Detached Visit " "VISIT_1" 
+{
+(0x00080080, LO ,"ARC Medical Hospital 1");
+(0x00380010, LO ,"Arc-AdmitID-1");
+(0x00380020, DA  ,"19950902");
+}
+WRITE "DICOM\\STDY1\\SERIES1\\VISIT1" FILE-HEAD
+WRITE "DICOM\\STDY1\\SERIES1\\VISIT1" "File Meta" FMI3
+WRITE "DICOM\\STDY1\\SERIES1\\VISIT1" "Detached Visit " "VISIT_1"
+WRITE "DICOM\\STDY1\\SERIES1\\VISIT1" FILE-TAIL
+DELETE FILE-HEAD
+DELETE "File Meta" FMI3
+DELETE FILE-TAIL
+DELETE "Detached Visit " "VISIT_1"
+DELETE "Detached Visit Management SOP Class - C-STORE - Referenced Study Sequence" "VISIT_1_ITEM_0001"
+DELETE "Detached Visit Management SOP Class - C-STORE - Referenced Patient Sequence" "VISIT_1_ITEM_0002"
+#
+#  Media Storage Directory SOP Class - Directory Record SERIES Module - Directory Record Sequence
+#
+#
+#	Media Storage Directory SOP Class - Directory Record SERIES Module - Directory Record Sequence
+#
+CREATE "Media Storage Directory SOP Class - Directory Record SERIES Module - Directory Record Sequence" "SERIES_RECORD_1"
+SET "Media Storage Directory SOP Class - Directory Record SERIES Module - Directory Record Sequence" "SERIES_RECORD_1" 
+{
+(0x00041400, UL ,"VISIT_RECORD_1");
+(0x00041410, US,0xFFFF);
+(0x00041420, UL,"STILL_RECORD_1");
+(0x00041430, CS ,"SERIES");
+(0x00080005, CS ,"ISO_IR 100");
+(0x00080060, CS,"XA");
+(0x00080080, LO,"ARC Medical Hospital 1");
+(0x00080081, ST ,"Veenpluis 6 Best");
+(0x00081050, PN ,"Smithwicks^Barry^^Dr");
+(0x0020000e, UI ,"1.3.46.670589.17.997345933.692.1.6.1");
+(0x00200011, IS ,"8881");
+}
+#
+#  Template for Media Storage Directory SOP Class - Directory Record STUDY Module - Directory Record Sequence
+#
+#	Media Storage Directory SOP Class - Directory Record STUDY Module - Directory Record Sequence
+#
+CREATE "Media Storage Directory SOP Class - Directory Record STUDY Module - Directory Record Sequence" "STUDY_RECORD_1"
+SET "Media Storage Directory SOP Class - Directory Record STUDY Module - Directory Record Sequence" "STUDY_RECORD_1" 
+{
+(0x00041400, UL, 0);
+(0x00041410, US,0xFFFF);
+(0x00041420, UL,"SERIES_RECORD_1");
+(0x00041430, CS ,"STUDY");
+(0x00041500, CS ,"DICOM","STDY1","STUDY1");
+(0x00041510, UI ,"1.2.840.10008.3.1.2.3.1");
+(0x00041511, UI ,"1.3.46.670589.17.997345933.692.1.9.1");
+(0x00041512, UI ,"1.2.840.10008.1.2.1");
+(0x00080005, CS ,"ISO_IR 100");
+(0x00080020, DA ,"19950902");
+(0x00080030, TM ,"120200");
+(0x00080050, SH ,"ARC 1234561");
+(0x00081030, LO ,"Arc Study 4 1");
+(0x00200010, SH ,"Arc-StudyID-1");
+}
+#
+#	DICOM File Head
+#
+CREATE FILE-HEAD
+SET FILE-HEAD {
+         PREAMBLE = "";
+         PREFIX = "DICM";
+         TRANSFER-SYNTAX = "1.2.840.10008.1.2.1";
+}
+#
+#         DICOM File Tail
+#
+CREATE FILE-TAIL
+SET FILE-TAIL {
+         DATASET-TRAILING-PADDING = YES;
+         SECTOR-SIZE = 2048;
+         PADDING-VALUE = 0;
+}
+#
+#  File Meta Information SOP Class\\C-STORE
+#
+CREATE C-STORE-RQ FMI4_CMD "File Meta" FMI4
+#
+#	M Module File Meta Information SOP Class - DICOM Meta Information
+#
+SET "File Meta" FMI4 
+{
+(0x00020000, UL, );
+(0x00020001, OB ,1,2,0,0,1,1,1);
+(0x00020002, UI ,"1.2.840.10008.3.1.2.3.1");
+(0x00020003, UI ,"1.3.46.670589.17.997345933.692.1.9.1");
+(0x00020010, UI ,"1.2.840.10008.1.2.1");
+(0x00020012, UI ,"1.3.46.670589.17.1.13");
+(0x00020013, SH ,"CDGEN_V4_5");
+(0x00020016, AE ,"ARC_DVN_V4_5");
+}
+#
+#  Detached Study Management SOP Class\\C-STORE
+#
+#
+#  Detached Study Management SOP Class - C-STORE - Referenced Study Component Sequence
+#
+CREATE "Detached Study Management SOP Class - C-STORE - Referenced Study Component Sequence" "STUDY_1_ITEM_0002"
+SET "Detached Study Management SOP Class - C-STORE - Referenced Study Component Sequence" "STUDY_1_ITEM_0002" 
+{
+(0x00081150, UI, "1.2.840.10008.3.1.2.3.2");
+(0x00081155, UI ,"1.3.46.670589.17.997345933.692.1.8.1");
+}
+#
+#	Detached Study Management SOP Class - C-STORE - Referenced Patient Sequence
+#
+CREATE "Detached Study Management SOP Class - C-STORE - Referenced Patient Sequence" "STUDY_1_ITEM_0003"
+SET "Detached Study Management SOP Class - C-STORE - Referenced Patient Sequence" "STUDY_1_ITEM_0003" 
+{
+(0x00081150, UI ,"1.2.840.10008.3.1.2.1.1" );
+(0x00081155, UI ,"1.3.46.670589.17.997345933.692.1.4.3");
+}
+#
+#	Detached Study Management SOP Class - C-STORE - Referenced Visit Sequence
+#
+CREATE "Detached Study Management SOP Class - C-STORE - Referenced Visit Sequence" "STUDY_1_ITEM_0004"
+SET "Detached Study Management SOP Class - C-STORE - Referenced Visit Sequence" "STUDY_1_ITEM_0004" 
+{
+(0x00081150, UI, "1.2.840.10008.3.1.2.2.1");
+(0x00081155, UI ,"1.3.46.670589.17.997345933.692.1.10.1");
+}
+#CREATE C-STORE-RQ STUDY_1_CMD "Detached Study" "STUDY_1"
+CREATE N-SET-RQ STUDY_1_CMD "Detached Study" "STUDY_1"
+#
+#	NONE Module Detached Study Management SOP Class - SOP Common Module
+#
+SET "Detached Study" "STUDY_1" 
+{
+(0x00080005, CS ,"ISO_IR 100");
+(0x00080012, DA ,"19950902");
+(0x00080013, TM ,"120200");
+(0x00080014, UI ,"1.3.46.670589.17.997345933.692.1.11");
+(0x00080016, UI ,"1.2.840.10008.3.1.2.3.1");
+(0x00080018, UI ,"1.3.46.670589.17.997345933.692.1.9.1");
+}
+#
+#	NONE Module Detached Study Management SOP Class - Study Relationship Module
+#
+SET "Detached Study" "STUDY_1" 
+{
+(0x00080050, SH ,"ARC 1234561");
+(0x00081111, SQ ,"STUDY_1_ITEM_0002");
+(0x00081120, SQ ,"STUDY_1_ITEM_0003");
+(0x00081125, SQ ,"STUDY_1_ITEM_0004");
+(0x0020000d, UI ,"1.3.46.670589.17.997345933.692.1.9.1");
+}
+#
+#	NONE Module Detached Study Management SOP Class - Study Identification Module
+#
+SET "Detached Study" "STUDY_1" 
+{
+(0x00200010, SH ,"Arc-StudyID-1");
+}
+#
+#	NONE Module Detached Study Management SOP Class - Study Acquisition Module
+#
+SET "Detached Study" "STUDY_1" 
+{
+(0x00080020, DA ,"19950902");
+(0x00080030, TM ,"120200");
+(0x00201000, IS ,"1");
+(0x00201004, IS ,"1");
+}
+WRITE "DICOM\\STDY1\\STUDY1" FILE-HEAD
+WRITE "DICOM\\STDY1\\STUDY1" "File Meta" FMI4
+WRITE "DICOM\\STDY1\\STUDY1" "Detached Study" "STUDY_1"
+WRITE "DICOM\\STDY1\\STUDY1" FILE-TAIL
+DELETE FILE-HEAD
+DELETE "File Meta" FMI4
+DELETE FILE-TAIL
+DELETE "Detached Study" "STUDY_1"
+DELETE "Detached Study Management SOP Class - C-STORE - Referenced Study Component Sequence" "STUDY_1_ITEM_0002"
+DELETE "Detached Study Management SOP Class - C-STORE - Referenced Patient Sequence" "STUDY_1_ITEM_0003"
+DELETE "Detached Study Management SOP Class - C-STORE - Referenced Visit Sequence" "STUDY_1_ITEM_0004"
+#
+#  Media Storage Directory SOP Class - Directory Record PATIENT Module - Directory Record Sequence
+#
+#  Media Storage Directory SOP Class - Directory Record PATIENT Module - Directory Record Sequence
+#
+CREATE "Media Storage Directory SOP Class - Directory Record PATIENT Module - Directory Record Sequence" "PATIENT_RECORD_1"
+SET "Media Storage Directory SOP Class - Directory Record PATIENT Module - Directory Record Sequence" "PATIENT_RECORD_1" 
+{
+(0x00041400, UL , 0);
+(0x00041410, US ,0xFFFF);
+(0x00041420, UL ,"STUDY_RECORD_1" );
+(0x00041430, CS ,"PATIENT");
+(0x00041500, CS ,"DICOM","PAT1");
+(0x00041510, UI,"1.2.840.10008.3.1.2.1.1");
+(0x00041511, UI,"1.3.46.670589.17.997345933.692.1.4.3");
+(0x00041512, UI ,"1.2.840.10008.1.2.1");
+(0x00080005, CS ,"ISO_IR 100");
+(0x00100010, PN ,"Dirk-Arc^Dirk");
+(0x00100020, LO ,"ARC-PATID-3");
+(0x00100030, DA ,"19531112");
+(0x00100040, CS ,"M");
+}
+#
+#	DICOM File Head
+#
+CREATE FILE-HEAD
+SET FILE-HEAD {
+         PREAMBLE = "";
+         PREFIX = "DICM";
+         TRANSFER-SYNTAX = "1.2.840.10008.1.2.1";
+}
+#
+#         DICOM File Tail
+#
+CREATE FILE-TAIL
+SET FILE-TAIL {
+         DATASET-TRAILING-PADDING = YES;
+         SECTOR-SIZE = 2048;
+         PADDING-VALUE = 0;
+}
+#
+#  File Meta Information SOP Class\\C-STORE
+#
+CREATE C-STORE-RQ FMI5_CMD "File Meta" FMI5
+#
+#	M Module File Meta Information SOP Class - DICOM Meta Information
+#
+SET "File Meta" FMI5
+{
+(0x00020000, UL, );
+(0x00020001, OB ,1,2,0,0,1,1,1);
+(0x00020002, UI ,"1.2.840.10008.3.1.2.1.1");
+(0x00020003, UI ,"1.3.46.670589.17.997345933.692.1.4.3");
+(0x00020010, UI ,"1.2.840.10008.1.2.1");
+(0x00020012, UI ,"1.3.46.670589.17.1.13");
+(0x00020013, SH ,"CDGEN_V4_5");
+(0x00020016, AE  ,"ARC_DVN_V4_5");
+}
+#
+#  Detached Patient Management SOP Class\\C-STORE
+#
+CREATE "Detached Patient Management SOP Class - C-STORE - Referenced Study Sequence" "PATIENT_3_ITEM_0001"
+SET "Detached Patient Management SOP Class - C-STORE - Referenced Study Sequence" "PATIENT_3_ITEM_0001" 
+{
+(0x00081150, UI ,"1.2.840.10008.3.1.2.3.1");
+(0x00081155, UI ,"1.3.46.670589.17.997345933.692.1.9.1");
+}
+#
+#	Detached Patient Management SOP Class - C-STORE - Referenced Visit Sequence
+#
+CREATE "Detached Patient Management SOP Class - C-STORE - Referenced Visit Sequence" "PATIENT_3_ITEM_0002"
+SET "Detached Patient Management SOP Class - C-STORE - Referenced Visit Sequence" "PATIENT_3_ITEM_0002" 
+{
+(0x00081150, UI ,"1.2.840.10008.3.1.2.2.1");
+(0x00081155, UI ,"1.3.46.670589.17.997345933.692.1.10.1");
+}
+#
+#	Detached Patient Management SOP Class - C-STORE - Referenced Patient Alias Sequence
+#
+#CREATE C-STORE-RQ PATIENT_3_CMD "Detached Patient" PATIENT_3
+CREATE N-GET-RQ PATIENT_3_CMD "Detached Patient" PATIENT_3
+#
+#	NONE Module Detached Patient Management SOP Class - SOP Common Module
+#
+SET "Detached Patient" "PATIENT_3" 
+{
+(0x00080005, CS ,"ISO_IR 100");
+}
+#
+#	NONE Module Detached Patient Management SOP Class - Patient Relationship Module
+#
+SET "Detached Patient" "PATIENT_3" 
+{
+(0x00081110, SQ ,"PATIENT_3_ITEM_0001");
+(0x00081125, SQ ,"PATIENT_3_ITEM_0002");
+}
+#
+#	NONE Module Detached Patient Management SOP Class - Patient Identification Module
+#
+SET "Detached Patient" "PATIENT_3" 
+{
+(0x00100010, PN,"Dirk-Arc^Dirk");
+(0x00100020, LO,"ARC-PATID-3");
+}
+#
+#	NONE Module Detached Patient Management SOP Class - Patient Demographic Module
+#
+SET "Detached Patient" "PATIENT_3" 
+{
+(0x00100030, DA ,"19531112");
+(0x00100040, CS ,"M");
+}
+WRITE "DICOM\\PAT1" FILE-HEAD
+WRITE "DICOM\\PAT1" "File Meta" FMI5
+WRITE "DICOM\\PAT1" "Detached Patient" "PATIENT_3"
+WRITE "DICOM\\PAT1" FILE-TAIL
+DELETE FILE-HEAD
+DELETE "File Meta" FMI5
+DELETE FILE-TAIL
+DELETE "Detached Patient" "PATIENT_3"
+DELETE "Detached Patient Management SOP Class - C-STORE - Referenced Study Sequence" "PATIENT_3_ITEM_0001"
+DELETE "Detached Patient Management SOP Class - C-STORE - Referenced Visit Sequence" "PATIENT_3_ITEM_0002"
+#
+#	DICOM File Head
+#
+CREATE FILE-HEAD
+SET FILE-HEAD {
+         PREAMBLE = "";
+         PREFIX = "DICM";
+         TRANSFER-SYNTAX = "1.2.840.10008.1.2.1";
+}
+#
+#         DICOM File Tail
+#
+CREATE FILE-TAIL
+SET FILE-TAIL {
+         DATASET-TRAILING-PADDING = YES;
+         SECTOR-SIZE = 2048;
+         PADDING-VALUE = 0;
+}
+#
+#  File Meta Information SOP Class\\C-STORE
+#
+CREATE C-STORE-RQ FMI6_CMD "File Meta" FMI6
+#
+#	M Module File Meta Information SOP Class - DICOM Meta Information
+#
+SET "File Meta" FMI6 
+{
+(0x00020000, UL, );
+(0x00020001, OB ,1,2,0,0,1,1,1);
+(0x00020002, UI ,"1.2.840.10008.1.3.10");
+(0x00020003, UI ,"1.3.46.670589.17.997345933.692.1.4.3");
+(0x00020010, UI ,"1.2.840.10008.1.2.1");
+(0x00020012, UI ,"1.3.46.670589.17.1.13");
+(0x00020013, SH ,"CDGEN_V4_5");
+(0x00020016, AE ,"ARC_DVN_V4_5");
+}
+#
+#  Media Storage Directory SOP Class\\C-STORE
+#
+CREATE C-STORE-RQ DICOMDIR_1_CMD "Media Directory" DICOMDIR_1
+#
+#	M Module Media Storage Directory SOP Class - File-set Identification Module
+#
+SET "Media Directory" DICOMDIR_1 
+{
+(0x00041130, CS ,"ARC CDROM 4");
+(0x00041142, CS ,"ISO_IR 100");
+}
+#
+#	U Module Media Storage Directory SOP Class - Directory Information Module
+#
+SET "Media Directory" DICOMDIR_1 
+{
+(0x00041200, UL ,"PATIENT_RECORD_1");
+(0x00041202, UL ,"PATIENT_RECORD_1");
+(0x00041212, US ,0x0000);
+(0x00041220, SQ, 
+ "STILL_RECORD_1"
+, "PATIENT_RECORD_1"
+, "SERIES_RECORD_1"
+, "STUDY_RECORD_1"
+, "STUDYCOMP_RECORD_1"
+, "VISIT_RECORD_1"
+);
+}
+WRITE "DICOMDIR" FILE-HEAD
+WRITE "DICOMDIR" "File Meta" FMI6
+WRITE "DICOMDIR" "Media Directory" DICOMDIR_1
+WRITE "DICOMDIR" FILE-TAIL
+DELETE FILE-HEAD
+DELETE "File Meta" FMI6
+DELETE FILE-TAIL
+DELETE "Media Directory" DICOMDIR_1
+
+##
+## Script Result should be: 0 error(s), 0 warning(s)
+##

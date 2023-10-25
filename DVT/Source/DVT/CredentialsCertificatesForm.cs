@@ -153,121 +153,123 @@ namespace Dvt
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.ButtonAddCertificate = new System.Windows.Forms.Button();
-			this.ButtonRemoveCertificate = new System.Windows.Forms.Button();
-			this.ButtonChangePassword = new System.Windows.Forms.Button();
-			this.ButtonOK = new System.Windows.Forms.Button();
-			this.ButtonCancel = new System.Windows.Forms.Button();
-			this.DataGridCertificates = new System.Windows.Forms.DataGrid();
-			this.GridTableStyle = new System.Windows.Forms.DataGridTableStyle();
-			this.DialogOpenFile = new System.Windows.Forms.OpenFileDialog();
-			this.DialogAddCertificate = new System.Windows.Forms.OpenFileDialog();
-			((System.ComponentModel.ISupportInitialize)(this.DataGridCertificates)).BeginInit();
-			this.SuspendLayout();
-			// 
-			// ButtonAddCertificate
-			// 
-			this.ButtonAddCertificate.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.ButtonAddCertificate.Location = new System.Drawing.Point(8, 200);
-			this.ButtonAddCertificate.Name = "ButtonAddCertificate";
-			this.ButtonAddCertificate.Size = new System.Drawing.Size(112, 23);
-			this.ButtonAddCertificate.TabIndex = 0;
-			this.ButtonAddCertificate.Text = "Import Key";
-			this.ButtonAddCertificate.Click += new System.EventHandler(this.ButtonAddCertificate_Click);
-			// 
-			// ButtonRemoveCertificate
-			// 
-			this.ButtonRemoveCertificate.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.ButtonRemoveCertificate.Location = new System.Drawing.Point(128, 200);
-			this.ButtonRemoveCertificate.Name = "ButtonRemoveCertificate";
-			this.ButtonRemoveCertificate.Size = new System.Drawing.Size(112, 23);
-			this.ButtonRemoveCertificate.TabIndex = 1;
-			this.ButtonRemoveCertificate.Text = "Remove Key";
-			this.ButtonRemoveCertificate.Click += new System.EventHandler(this.ButtonRemoveCertificate_Click);
-			// 
-			// ButtonChangePassword
-			// 
-			this.ButtonChangePassword.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.ButtonChangePassword.Location = new System.Drawing.Point(248, 200);
-			this.ButtonChangePassword.Name = "ButtonChangePassword";
-			this.ButtonChangePassword.Size = new System.Drawing.Size(112, 23);
-			this.ButtonChangePassword.TabIndex = 2;
-			this.ButtonChangePassword.Text = "Change password";
-			this.ButtonChangePassword.Click += new System.EventHandler(this.ButtonChangePassword_Click);
-			// 
-			// ButtonOK
-			// 
-			this.ButtonOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.ButtonOK.Location = new System.Drawing.Point(472, 200);
-			this.ButtonOK.Name = "ButtonOK";
-			this.ButtonOK.TabIndex = 3;
-			this.ButtonOK.Text = "Ok";
-			this.ButtonOK.Click += new System.EventHandler(this.Ok_Click);
-			// 
-			// ButtonCancel
-			// 
-			this.ButtonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.ButtonCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.ButtonCancel.Location = new System.Drawing.Point(552, 200);
-			this.ButtonCancel.Name = "ButtonCancel";
-			this.ButtonCancel.TabIndex = 4;
-			this.ButtonCancel.Text = "Cancel";
-			this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
-			// 
-			// DataGridCertificates
-			// 
-			this.DataGridCertificates.AllowNavigation = false;
-			this.DataGridCertificates.CaptionVisible = false;
-			this.DataGridCertificates.DataMember = "";
-			this.DataGridCertificates.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-			this.DataGridCertificates.Location = new System.Drawing.Point(8, 40);
-			this.DataGridCertificates.Name = "DataGridCertificates";
-			this.DataGridCertificates.ParentRowsVisible = false;
-			this.DataGridCertificates.ReadOnly = true;
-			this.DataGridCertificates.RowHeadersVisible = false;
-			this.DataGridCertificates.Size = new System.Drawing.Size(624, 152);
-			this.DataGridCertificates.TabIndex = 2;
-			this.DataGridCertificates.TableStyles.AddRange(new System.Windows.Forms.DataGridTableStyle[] {
-																											 this.GridTableStyle});
-			this.DataGridCertificates.TabStop = false;
-			// 
-			// GridTableStyle
-			// 
-			this.GridTableStyle.DataGrid = this.DataGridCertificates;
-			this.GridTableStyle.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-			this.GridTableStyle.MappingName = "ArrayList";
-			// 
-			// DialogOpenFile
-			// 
-			this.DialogOpenFile.Filter = "PEM Certificate files (*.pem;*.cer)|*.pem;*.cer";
-			// 
-			// DialogAddCertificate
-			// 
-			this.DialogAddCertificate.Filter = "PEM Certificate files (*.pem;*.cer)|*.pem;*.cer|DER Certificate files (*.cer)|*.c" +
-				"er|PKCS#12 files (*.p12;*.pfx)|*.p12;*.pfx|PKCS#7 files (*.p7b;*.p7c)|*.p7b;*.p7" +
-				"c";
-			// 
-			// CredentialsCertificatesForm
-			// 
-			this.AcceptButton = this.ButtonOK;
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.CancelButton = this.ButtonCancel;
-			this.ClientSize = new System.Drawing.Size(642, 240);
-			this.Controls.Add(this.DataGridCertificates);
-			this.Controls.Add(this.ButtonAddCertificate);
-			this.Controls.Add(this.ButtonRemoveCertificate);
-			this.Controls.Add(this.ButtonChangePassword);
-			this.Controls.Add(this.ButtonOK);
-			this.Controls.Add(this.ButtonCancel);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-			this.MaximizeBox = false;
-			this.MinimizeBox = false;
-			this.Name = "CredentialsCertificatesForm";
-			this.ShowInTaskbar = false;
-			this.Text = "CredentialsCertificatesForm";
-			this.Closing += new System.ComponentModel.CancelEventHandler(this.CredentialsCertificatesForm_Closing);
-			((System.ComponentModel.ISupportInitialize)(this.DataGridCertificates)).EndInit();
-			this.ResumeLayout(false);
+            this.ButtonAddCertificate = new System.Windows.Forms.Button();
+            this.ButtonRemoveCertificate = new System.Windows.Forms.Button();
+            this.ButtonChangePassword = new System.Windows.Forms.Button();
+            this.ButtonOK = new System.Windows.Forms.Button();
+            this.ButtonCancel = new System.Windows.Forms.Button();
+            this.DataGridCertificates = new System.Windows.Forms.DataGrid();
+            this.GridTableStyle = new System.Windows.Forms.DataGridTableStyle();
+            this.DialogOpenFile = new System.Windows.Forms.OpenFileDialog();
+            this.DialogAddCertificate = new System.Windows.Forms.OpenFileDialog();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridCertificates)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // ButtonAddCertificate
+            // 
+            this.ButtonAddCertificate.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ButtonAddCertificate.Location = new System.Drawing.Point(10, 231);
+            this.ButtonAddCertificate.Name = "ButtonAddCertificate";
+            this.ButtonAddCertificate.Size = new System.Drawing.Size(134, 26);
+            this.ButtonAddCertificate.TabIndex = 0;
+            this.ButtonAddCertificate.Text = "Import Key";
+            this.ButtonAddCertificate.Click += new System.EventHandler(this.ButtonAddCertificate_Click);
+            // 
+            // ButtonRemoveCertificate
+            // 
+            this.ButtonRemoveCertificate.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ButtonRemoveCertificate.Location = new System.Drawing.Point(154, 231);
+            this.ButtonRemoveCertificate.Name = "ButtonRemoveCertificate";
+            this.ButtonRemoveCertificate.Size = new System.Drawing.Size(134, 26);
+            this.ButtonRemoveCertificate.TabIndex = 1;
+            this.ButtonRemoveCertificate.Text = "Remove Key";
+            this.ButtonRemoveCertificate.Click += new System.EventHandler(this.ButtonRemoveCertificate_Click);
+            // 
+            // ButtonChangePassword
+            // 
+            this.ButtonChangePassword.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ButtonChangePassword.Location = new System.Drawing.Point(298, 231);
+            this.ButtonChangePassword.Name = "ButtonChangePassword";
+            this.ButtonChangePassword.Size = new System.Drawing.Size(134, 26);
+            this.ButtonChangePassword.TabIndex = 2;
+            this.ButtonChangePassword.Text = "Change password";
+            this.ButtonChangePassword.Click += new System.EventHandler(this.ButtonChangePassword_Click);
+            // 
+            // ButtonOK
+            // 
+            this.ButtonOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ButtonOK.Location = new System.Drawing.Point(566, 231);
+            this.ButtonOK.Name = "ButtonOK";
+            this.ButtonOK.Size = new System.Drawing.Size(90, 26);
+            this.ButtonOK.TabIndex = 3;
+            this.ButtonOK.Text = "Ok";
+            this.ButtonOK.Click += new System.EventHandler(this.Ok_Click);
+            // 
+            // ButtonCancel
+            // 
+            this.ButtonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.ButtonCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ButtonCancel.Location = new System.Drawing.Point(662, 231);
+            this.ButtonCancel.Name = "ButtonCancel";
+            this.ButtonCancel.Size = new System.Drawing.Size(90, 26);
+            this.ButtonCancel.TabIndex = 4;
+            this.ButtonCancel.Text = "Cancel";
+            this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
+            // 
+            // DataGridCertificates
+            // 
+            this.DataGridCertificates.AllowNavigation = false;
+            this.DataGridCertificates.CaptionVisible = false;
+            this.DataGridCertificates.DataMember = "";
+            this.DataGridCertificates.HeaderForeColor = System.Drawing.SystemColors.ControlText;
+            this.DataGridCertificates.Location = new System.Drawing.Point(10, 46);
+            this.DataGridCertificates.Name = "DataGridCertificates";
+            this.DataGridCertificates.ParentRowsVisible = false;
+            this.DataGridCertificates.ReadOnly = true;
+            this.DataGridCertificates.RowHeadersVisible = false;
+            this.DataGridCertificates.Size = new System.Drawing.Size(748, 176);
+            this.DataGridCertificates.TabIndex = 2;
+            this.DataGridCertificates.TableStyles.AddRange(new System.Windows.Forms.DataGridTableStyle[] {
+            this.GridTableStyle});
+            this.DataGridCertificates.TabStop = false;
+            // 
+            // GridTableStyle
+            // 
+            this.GridTableStyle.DataGrid = this.DataGridCertificates;
+            this.GridTableStyle.HeaderForeColor = System.Drawing.SystemColors.ControlText;
+            this.GridTableStyle.MappingName = "ArrayList";
+            // 
+            // DialogOpenFile
+            // 
+            this.DialogOpenFile.Filter = "PEM Certificate files (*.pem;*.cer)|*.pem;*.cer";
+            // 
+            // DialogAddCertificate
+            // 
+            this.DialogAddCertificate.Filter = "PEM Certificate files (*.pem;*.cer)|*.pem;*.cer|DER Certificate files (*.cer)|*.c" +
+    "er|PKCS#12 files (*.p12;*.pfx)|*.p12;*.pfx|PKCS#7 files (*.p7b;*.p7c)|*.p7b;*.p7" +
+    "c";
+            // 
+            // CredentialsCertificatesForm
+            // 
+            this.AcceptButton = this.ButtonOK;
+            this.AutoScaleBaseSize = new System.Drawing.Size(6, 15);
+            this.CancelButton = this.ButtonCancel;
+            this.ClientSize = new System.Drawing.Size(821, 271);
+            this.Controls.Add(this.DataGridCertificates);
+            this.Controls.Add(this.ButtonAddCertificate);
+            this.Controls.Add(this.ButtonRemoveCertificate);
+            this.Controls.Add(this.ButtonChangePassword);
+            this.Controls.Add(this.ButtonOK);
+            this.Controls.Add(this.ButtonCancel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "CredentialsCertificatesForm";
+            this.ShowInTaskbar = false;
+            this.Text = "CredentialsCertificatesForm";
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.CredentialsCertificatesForm_Closing);
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridCertificates)).EndInit();
+            this.ResumeLayout(false);
 
 		}
 		#endregion

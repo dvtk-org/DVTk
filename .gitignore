@@ -1,0 +1,12 @@
+/.vs
+*.pix
+obj
+*.bak
+*.cache
+/DVTk_Library/Assemblies/DVTk/.vs
+/DVTk_Library/bin
+/bin/Debug/CharacterSets
+/bin/Debug/Data
+/bin/Debug/Resources
+/DVTk_Library/Libraries/Media/bin
+/DVTk_Library/Libraries/Network/bin

@@ -1,0 +1,125 @@
+##
+##       DVT Name Format Test
+##
+##       Patient: Secondary Capture Image
+##       Send to an DVT Store Emulator
+##
+
+## Send a valid set
+## Sends all of the DICOM defined multibyte Asian character sets
+## Referring Physician's Name has no 8-bit form and is encoded using JIS X 0212 (IR 159)
+## Patient's Name is encoded with both JIS X 0208 (IR 87) and KS X 1001 (IR 149)
+## Patient ID is encoded in IR 100
+SEND C-STORE-RQ "SC Image" (
+ (0x00080005, CS, "ISO 2022 IR 100","ISO 2022 IR 87","ISO 2022 IR 149","ISO 2022 IR 159")  # Specific Character Set
+ (0x00080016, UI, "1.2.840.10008.5.1.4.1.1.7")  # SOP Class UID
+ (0x00080018, UI, "NEW:SopInstanceUid")  # SOP Instance UID
+ (0x00080020, DA, "19970917")  # Study Date
+ (0x00080030, TM, "")  # Study Time
+ (0x00080050, SH, "")  # Accession Number
+ (0x00080060, CS, "OT")  # Modality
+ (0x00080064, CS, "DV")  # Conversion Type
+ (0x00080070, LO, "") # Manufacturer
+ (0x00080090, PN, "=(1B)$(D(2A)(21)(1B)(B")  # Referring Physician's Name
+ (0x00100010, PN, "Yamada^Tarou and Hong^Gildong=(1B)$B(3B)(33)(45)(44)(1B)(B^(1B)$B(42)(40)(4F)(3A)(1B)(B and (1B)$)C(FB)(F3)^(1B)$)C(D1)(CE)(D4)(D7)=(1B)$B(24)(64)(24)(5E)(24)(40)(1B)(B^(1B)$B(24)(3F)(24)(6D)(24)(26)(1B)(B and (1B)$)C(C8)(AB)^(1B)$)C(B1)(E6)(B5)(BF)")  # Patient's Name
+ (0x00100020, LO, "(1B)-AISO 100 chars: (A1)(B0)")  # Patient ID
+ (0x00100030, DA, "")  # Patient's Birth Date
+ (0x00100040, CS, "O")  # Patient's Sex
+ (0x0020000D, UI, "NEW:StudyInstanceUid")  # Study Instance UID
+ (0x0020000E, UI, "NEW:SeriesInstanceUid")  # Series Instance UID
+ (0x00200010, SH, "1")  # Study ID
+ (0x00200011, IS, "1")  # Series Number
+ (0x00200013, IS, "1")  # Image Number
+ (0x00200020, CS, "") # Patient Orientation
+ (0x00280002, US, 0x0001)  # Samples Per Pixel
+ (0x00280004, CS, "MONOCHROME2")  # Photometric Interpretation
+ (0x00280010, US, 512)  # Rows
+ (0x00280011, US, 512)  # Columns
+ (0x00280100, US, 0x0008)  # Bits Allocated
+ (0x00280101, US, 0x0008)  # Bits Stored
+ (0x00280102, US, 0x0007)  # High Bit
+ (0x00280103, US, 0x0000)  # Pixel Representation
+ (0x7FE00010, OB, 512)  # Pixel Data
+)
+
+RECEIVE C-STORE-RSP (
+(0x00000900, US, 0x0000)
+)
+
+## Changes from valid case:
+##   Removed "=" on referring physician - gives error that code extension not allowed in first component group
+SEND C-STORE-RQ "SC Image" (
+ (0x00080005, CS, "ISO 2022 IR 100","ISO 2022 IR 87","ISO 2022 IR 149","ISO 2022 IR 159")  # Specific Character Set
+ (0x00080016, UI, "1.2.840.10008.5.1.4.1.1.7")  # SOP Class UID
+ (0x00080018, UI, "NEW:SopInstanceUid")  # SOP Instance UID
+ (0x00080020, DA, "19970917")  # Study Date
+ (0x00080030, TM, "")  # Study Time
+ (0x00080050, SH, "")  # Accession Number
+ (0x00080060, CS, "OT")  # Modality
+ (0x00080064, CS, "DV")  # Conversion Type
+ (0x00080070, LO, "") # Manufacturer
+ (0x00080090, PN, "(1B)$(D(2A)(21)(1B)(B")  # Referring Physician's Name
+ (0x00100010, PN, "Yamada^Tarou and Hong^Gildong=(1B)$B(3B)(33)(45)(44)(1B)(B^(1B)$B(42)(40)(4F)(3A)(1B)(B and (1B)$)C(FB)(F3)^(1B)$)C(D1)(CE)(D4)(D7)=(1B)$B(24)(64)(24)(5E)(24)(40)(1B)(B^(1B)$B(24)(3F)(24)(6D)(24)(26)(1B)(B and (1B)$)C(C8)(AB)^(1B)$)C(B1)(E6)(B5)(BF)")  # Patient's Name
+ (0x00100020, LO, "(1B)-AISO 100 chars: (A1)(B0)")  # Patient ID
+ (0x00100030, DA, "")  # Patient's Birth Date
+ (0x00100040, CS, "O")  # Patient's Sex
+ (0x0020000D, UI, "NEW:StudyInstanceUid")  # Study Instance UID
+ (0x0020000E, UI, "NEW:SeriesInstanceUid")  # Series Instance UID
+ (0x00200010, SH, "1")  # Study ID
+ (0x00200011, IS, "1")  # Series Number
+ (0x00200013, IS, "1")  # Image Number
+ (0x00200020, CS, "") # Patient Orientation
+ (0x00280002, US, 0x0001)  # Samples Per Pixel
+ (0x00280004, CS, "MONOCHROME2")  # Photometric Interpretation
+ (0x00280010, US, 512)  # Rows
+ (0x00280011, US, 512)  # Columns
+ (0x00280100, US, 0x0008)  # Bits Allocated
+ (0x00280101, US, 0x0008)  # Bits Stored
+ (0x00280102, US, 0x0007)  # High Bit
+ (0x00280103, US, 0x0000)  # Pixel Representation
+ (0x7FE00010, OB, 512)  # Pixel Data
+)
+
+RECEIVE C-STORE-RSP (
+(0x00000900, US, 0x0000)
+)
+
+## Changes from valid case:
+##   Added 2 "="s to the referring physician name - gives too many component groups errors
+##   Added 3 "^"s to the first component of the patient name - gives too many componets error
+SEND C-STORE-RQ "SC Image" (
+ (0x00080005, CS, "ISO 2022 IR 100","ISO 2022 IR 87","ISO 2022 IR 149","ISO 2022 IR 159")  # Specific Character Set
+ (0x00080016, UI, "1.2.840.10008.5.1.4.1.1.7")  # SOP Class UID
+ (0x00080018, UI, "NEW:SopInstanceUid")  # SOP Instance UID
+ (0x00080020, DA, "19970917")  # Study Date
+ (0x00080030, TM, "")  # Study Time
+ (0x00080050, SH, "")  # Accession Number
+ (0x00080060, CS, "OT")  # Modality
+ (0x00080064, CS, "DV")  # Conversion Type
+ (0x00080070, LO, "") # Manufacturer
+ (0x00080090, PN, "==(1B)$(D(2A)(21)(1B)(B=")  # Referring Physician's Name
+ (0x00100010, PN, "Yamada^Tarou and Hong^Gildong^^^=(1B)$B(3B)(33)(45)(44)(1B)(B^(1B)$B(42)(40)(4F)(3A)(1B)(B and (1B)$)C(FB)(F3)^(1B)$)C(D1)(CE)(D4)(D7)=(1B)$B(24)(64)(24)(5E)(24)(40)(1B)(B^(1B)$B(24)(3F)(24)(6D)(24)(26)(1B)(B and (1B)$)C(C8)(AB)^(1B)$)C(B1)(E6)(B5)(BF)")  # Patient's Name
+ (0x00100020, LO, "(1B)-AISO 100 chars: (A1)(B0)")  # Patient ID
+ (0x00100030, DA, "")  # Patient's Birth Date
+ (0x00100040, CS, "O")  # Patient's Sex
+ (0x0020000D, UI, "NEW:StudyInstanceUid")  # Study Instance UID
+ (0x0020000E, UI, "NEW:SeriesInstanceUid")  # Series Instance UID
+ (0x00200010, SH, "1")  # Study ID
+ (0x00200011, IS, "1")  # Series Number
+ (0x00200013, IS, "1")  # Image Number
+ (0x00200020, CS, "") # Patient Orientation
+ (0x00280002, US, 0x0001)  # Samples Per Pixel
+ (0x00280004, CS, "MONOCHROME2")  # Photometric Interpretation
+ (0x00280010, US, 512)  # Rows
+ (0x00280011, US, 512)  # Columns
+ (0x00280100, US, 0x0008)  # Bits Allocated
+ (0x00280101, US, 0x0008)  # Bits Stored
+ (0x00280102, US, 0x0007)  # High Bit
+ (0x00280103, US, 0x0000)  # Pixel Representation
+ (0x7FE00010, OB, 512)  # Pixel Data
+)
+
+RECEIVE C-STORE-RSP (
+(0x00000900, US, 0x0000)
+)
+

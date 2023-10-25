@@ -1,0 +1,24 @@
+## 
+##  SCP Worklist DICOMScript: SCP_rqtoday.ds
+## 
+##  Pre-conditions:
+##       - association established
+## 
+##  Test Scenario:
+##       - expect C-FIND-RQ for Worklist matching Test Specification
+## 
+##  Expected Result:
+##       - start query 
+## 
+##  Post-conditions:
+##       - query started
+## 
+RECEIVE C-FIND-RQ "Modality Worklist FIND" (
+ (0x00000002, UI, "Modality Worklist FIND SOP Class")
+
+ (0x00400100, SQ,
+> (0x00400001, "CALLINGAETITLE")
+> (0x00400002, "TODAY")
+> (0x00080060, "LABEL:Modality")
+)
+)

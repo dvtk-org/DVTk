@@ -26,9 +26,9 @@ using System.Reflection;
 
 namespace Dvt
 {
-	/// <summary>
-	/// Summary description for WizardNew.
-	/// </summary>
+    /// <summary>
+    /// Summary description for WizardNew.
+    /// </summary>
     public class WizardNew : System.Windows.Forms.Form
     {
         public System.Windows.Forms.TabControl WizardPages;
@@ -128,8 +128,10 @@ namespace Dvt
         private System.Windows.Forms.CheckBox CheckBoxKeyExchangeDH;
         private System.Windows.Forms.CheckBox CheckBoxAuthenticationRSA;
         private System.Windows.Forms.CheckBox CheckBoxAuthenticationDSA;
-        private System.Windows.Forms.CheckBox CheckBoxTLS;
-        private System.Windows.Forms.CheckBox CheckBoxSSL;
+        private System.Windows.Forms.ComboBox ComboboxMaxTlsVersion;
+        private System.Windows.Forms.ComboBox ComboboxMinTlsVersion;
+        private System.Windows.Forms.Label LabelMaxTlsVersion;
+        private System.Windows.Forms.Label LabelMinTlsVersion;
         private System.Windows.Forms.CheckBox CheckBoxEncryptionNone;
         private System.Windows.Forms.CheckBox CheckBoxEncryptionTripleDES;
         private System.Windows.Forms.CheckBox CheckBoxEncryptionAES128;
@@ -163,7 +165,7 @@ namespace Dvt
         private System.Windows.Forms.NumericUpDown NumericSUTPDULength;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.CheckBox CheckBoxCheckRemoteCertificates;
-		private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label9;
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -182,35 +184,35 @@ namespace Dvt
             {
                 case StartPage.all:
                     this.current_page = 1;
-					ActiveControl = RadioNewProject;
+                    ActiveControl = RadioNewProject;
                     break;
 
                 case StartPage.project:
                     this.current_page = 2;
-					if (this.ProjectFileName.Text != "")
-					{
-						this.ButtonNext.Enabled = true;
-					}
-					else
-					{
-						this.ButtonNext.Enabled = false;
-					}
+                    if (this.ProjectFileName.Text != "")
+                    {
+                        this.ButtonNext.Enabled = true;
+                    }
+                    else
+                    {
+                        this.ButtonNext.Enabled = false;
+                    }
                     this.WizardPages.SelectedTab = this.Page2;
-					ActiveControl = ButtonBrowseProject;
+                    ActiveControl = ButtonBrowseProject;
                     break;
 
                 case StartPage.session:
                     this.current_page = 4;
-					if (this.SessionFileName.Text != "")
-					{
-						this.ButtonNext.Enabled = true;
-					}
-					else
-					{
-						this.ButtonNext.Enabled = false;
-					}
+                    if (this.SessionFileName.Text != "")
+                    {
+                        this.ButtonNext.Enabled = true;
+                    }
+                    else
+                    {
+                        this.ButtonNext.Enabled = false;
+                    }
                     this.WizardPages.SelectedTab = this.Page4;
-					ActiveControl = ButtonBrowseSession;
+                    ActiveControl = ButtonBrowseSession;
                     break;
             }
             // Initialize Page 2
@@ -242,16 +244,16 @@ namespace Dvt
 
         public void ConstructAndSaveProject(DvtkApplicationLayer.Project theProject)
         {
-			theProject.display_message = new DvtkApplicationLayer.Project.CallBackMessageDisplay (this.CallBackMessageDisplay);
+            theProject.display_message = new DvtkApplicationLayer.Project.CallBackMessageDisplay(this.CallBackMessageDisplay);
 
-			theProject.New(this.ProjectFileName.Text);
+            theProject.New(this.ProjectFileName.Text);
 
-			foreach (object session in this.ListBoxSessions.Items)
-			{
-				theProject.AddSession(session.ToString());
-			}
+            foreach (object session in this.ListBoxSessions.Items)
+            {
+                theProject.AddSession(session.ToString());
+            }
 
-			theProject.SaveProject();
+            theProject.SaveProject();
         }
 
         public string GetSession()
@@ -264,23 +266,23 @@ namespace Dvt
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
-        protected override void Dispose( bool disposing )
+        protected override void Dispose(bool disposing)
         {
-            if( disposing )
+            if (disposing)
             {
-                if(components != null)
+                if (components != null)
                 {
                     components.Dispose();
                 }
             }
-            base.Dispose( disposing );
+            base.Dispose(disposing);
         }
 
-        private     int                     current_page;
-        private     bool                    created_project;
-        private     bool                    created_session;
-        private     StartPage               start_page;
-        private     DvtkApplicationLayer.Session sessionApp ;
+        private int current_page;
+        private bool created_project;
+        private bool created_session;
+        private StartPage start_page;
+        private DvtkApplicationLayer.Session sessionApp;
 
         #region Windows Form Designer generated code
         /// <summary>
@@ -384,8 +386,10 @@ namespace Dvt
             this.label26 = new System.Windows.Forms.Label();
             this.GroupSecurityVersion = new System.Windows.Forms.GroupBox();
             this.label29 = new System.Windows.Forms.Label();
-            this.CheckBoxTLS = new System.Windows.Forms.CheckBox();
-            this.CheckBoxSSL = new System.Windows.Forms.CheckBox();
+            this.ComboboxMaxTlsVersion = new System.Windows.Forms.ComboBox();
+            this.ComboboxMinTlsVersion = new System.Windows.Forms.ComboBox();
+            this.LabelMaxTlsVersion = new System.Windows.Forms.Label();
+            this.LabelMinTlsVersion = new System.Windows.Forms.Label();
             this.GroupSecurityAuthentication = new System.Windows.Forms.GroupBox();
             this.CheckBoxAuthenticationDSA = new System.Windows.Forms.CheckBox();
             this.CheckBoxAuthenticationRSA = new System.Windows.Forms.CheckBox();
@@ -1431,8 +1435,10 @@ namespace Dvt
             // GroupSecurityVersion
             // 
             this.GroupSecurityVersion.Controls.Add(this.label29);
-            this.GroupSecurityVersion.Controls.Add(this.CheckBoxTLS);
-            this.GroupSecurityVersion.Controls.Add(this.CheckBoxSSL);
+            this.GroupSecurityVersion.Controls.Add(this.ComboboxMaxTlsVersion);
+            this.GroupSecurityVersion.Controls.Add(this.ComboboxMinTlsVersion);
+            this.GroupSecurityVersion.Controls.Add(this.LabelMaxTlsVersion);
+            this.GroupSecurityVersion.Controls.Add(this.LabelMinTlsVersion);
             this.GroupSecurityVersion.Location = new System.Drawing.Point(176, 72);
             this.GroupSecurityVersion.Name = "GroupSecurityVersion";
             this.GroupSecurityVersion.Size = new System.Drawing.Size(216, 128);
@@ -1449,25 +1455,46 @@ namespace Dvt
             this.label29.Text = "When selecting both versions, DVT will attemt to make a connection with either on" +
                 "e.";
             // 
-            // CheckBoxTLS
+            // comboboxMaxTlsVersion
             // 
-            this.CheckBoxTLS.Checked = true;
-            this.CheckBoxTLS.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CheckBoxTLS.Location = new System.Drawing.Point(16, 24);
-            this.CheckBoxTLS.Name = "CheckBoxTLS";
-            this.CheckBoxTLS.Size = new System.Drawing.Size(64, 24);
-            this.CheckBoxTLS.TabIndex = 2;
-            this.CheckBoxTLS.Text = "TLS v1";
-            this.CheckBoxTLS.CheckedChanged += new System.EventHandler(this.CheckBoxTLS_CheckedChanged);
+            this.ComboboxMaxTlsVersion.FormattingEnabled = true;
+            this.ComboboxMaxTlsVersion.Items.AddRange(new object[] {
+            "TLS1.0",
+            "TLS1.1",
+            "TLS1.2",
+            "TLS1.3"});
+            this.ComboboxMaxTlsVersion.Location = new System.Drawing.Point(150, 25);
+            this.ComboboxMaxTlsVersion.Size = new System.Drawing.Size(151, 28);
+            this.ComboboxMaxTlsVersion.SelectedIndexChanged += new System.EventHandler(this.ComboboxMaxTlsVersion_SelectedIndexChanged);
+
             // 
-            // CheckBoxSSL
+            // comboboxMinTlsVersion
             // 
-            this.CheckBoxSSL.Location = new System.Drawing.Point(16, 48);
-            this.CheckBoxSSL.Name = "CheckBoxSSL";
-            this.CheckBoxSSL.Size = new System.Drawing.Size(64, 24);
-            this.CheckBoxSSL.TabIndex = 3;
-            this.CheckBoxSSL.Text = "SSL v3";
-            this.CheckBoxSSL.CheckedChanged += new System.EventHandler(this.CheckBoxSSL_CheckedChanged);
+            this.ComboboxMinTlsVersion.FormattingEnabled = true;
+            this.ComboboxMinTlsVersion.Items.AddRange(new object[] {
+            "TLS1.0",
+            "TLS1.1",
+            "TLS1.2",
+            "TLS1.3"});
+            this.ComboboxMinTlsVersion.Location = new System.Drawing.Point(150, 75);
+            this.ComboboxMinTlsVersion.Size = new System.Drawing.Size(151, 28);
+            this.ComboboxMinTlsVersion.SelectedIndexChanged += new System.EventHandler(this.ComboboxMinTlsVersion_SelectedIndexChanged);
+
+            // 
+            // label max tls version
+            // 
+            this.LabelMaxTlsVersion.AutoSize = true;
+            this.LabelMaxTlsVersion.Location = new System.Drawing.Point(50, 25);
+            this.LabelMaxTlsVersion.Size = new System.Drawing.Size(35, 16);
+            this.LabelMaxTlsVersion.Text = "Max Tls Version";
+
+            // 
+            // label max tls version
+            // 
+            this.LabelMinTlsVersion.AutoSize = true;
+            this.LabelMinTlsVersion.Location = new System.Drawing.Point(50, 75);
+            this.LabelMinTlsVersion.Size = new System.Drawing.Size(35, 16);
+            this.LabelMinTlsVersion.Text = "Min Tls Version";
             // 
             // GroupSecurityAuthentication
             // 
@@ -1850,9 +1877,9 @@ namespace Dvt
             this.panel11.ResumeLayout(false);
             this.ResumeLayout(false);
 
-		}
+        }
         #endregion
-       
+
         private void ButtonPrev_Click(object sender, System.EventArgs e)
         {
             switch (this.current_page)
@@ -1911,24 +1938,24 @@ namespace Dvt
                     this.WizardPages.SelectedTab = this.Page9;
                     break;
                 case 11:    // Environment settings
-					if (ComboBoxSessionType.Text == "Media")
-					{
-						this.current_page = 5;
-						this.WizardPages.SelectedTab = this.Page5;	
-					}
-					else
-					{
-						if (this.CheckboxSecureConnection.Checked)
-						{
-							this.current_page = 10;
-							this.WizardPages.SelectedTab = this.Page10;
-						}
-						else
-						{
-							this.current_page = 7;
-							this.WizardPages.SelectedTab = this.Page7;
-						}
-					}
+                    if (ComboBoxSessionType.Text == "Media")
+                    {
+                        this.current_page = 5;
+                        this.WizardPages.SelectedTab = this.Page5;
+                    }
+                    else
+                    {
+                        if (this.CheckboxSecureConnection.Checked)
+                        {
+                            this.current_page = 10;
+                            this.WizardPages.SelectedTab = this.Page10;
+                        }
+                        else
+                        {
+                            this.current_page = 7;
+                            this.WizardPages.SelectedTab = this.Page7;
+                        }
+                    }
                     break;
                 case 12:    // Load definition files
                     this.current_page = 11;
@@ -1937,28 +1964,28 @@ namespace Dvt
                     break;
             }
 
-			UpdateTab(current_page);
+            UpdateTab(current_page);
         }
 
         private void ButtonNext_Click(object sender, System.EventArgs e)
         {
-			Assembly ThisAssembly = Assembly.GetExecutingAssembly();
-			AssemblyName ThisAssemblyName = ThisAssembly.GetName();
+            Assembly ThisAssembly = Assembly.GetExecutingAssembly();
+            AssemblyName ThisAssemblyName = ThisAssembly.GetName();
 
-			string dvtVersion = 
-				string.Format(
-				"{0:D}.{1:D}.{2:D}" ,
-				ThisAssemblyName.Version.Major,
-				ThisAssemblyName.Version.Minor,
-				ThisAssemblyName.Version.Build
-				);
+            string dvtVersion =
+                string.Format(
+                "{0:D}.{1:D}.{2:D}",
+                ThisAssemblyName.Version.Major,
+                ThisAssemblyName.Version.Minor,
+                ThisAssemblyName.Version.Build
+                );
 
             switch (this.current_page)
             {
                 case 1:     // Create new Project or Session
                     if (this.RadioNewProject.Checked)
                     {
-                        if (MessageBox.Show (this,
+                        if (MessageBox.Show(this,
                             "The currently opened project will be closed. Are you sure you want to continue?",
                             "Replace currently opened project?",
                             MessageBoxButtons.YesNo,
@@ -2010,29 +2037,29 @@ namespace Dvt
                     switch (this.ComboBoxSessionType.SelectedIndex)
                     {
                         case 0:     // Script
-                            sessionApp = new DvtkApplicationLayer.ScriptSession (this.SessionFileName.Text);
+                            sessionApp = new DvtkApplicationLayer.ScriptSession(this.SessionFileName.Text);
                             this.current_page = 6;
                             this.WizardPages.SelectedTab = this.Page6;
                             break;
                         case 1:     // Media
-                            sessionApp = new DvtkApplicationLayer.MediaSession (this.SessionFileName.Text);
+                            sessionApp = new DvtkApplicationLayer.MediaSession(this.SessionFileName.Text);
                             this.current_page = 11;
                             this.WizardPages.SelectedTab = this.Page11;
                             break;
                         case 2:     // Emulator
-                            sessionApp = new DvtkApplicationLayer.EmulatorSession (this.SessionFileName.Text);
+                            sessionApp = new DvtkApplicationLayer.EmulatorSession(this.SessionFileName.Text);
                             this.current_page = 6;
                             this.WizardPages.SelectedTab = this.Page6;
                             break;
                     }
                     sessionApp.SessionTitle = this.TextBoxSessionTitle.Text;
-					sessionApp.SoftwareVersions = dvtVersion;
+                    sessionApp.SoftwareVersions = dvtVersion;
                     sessionApp.TestedBy = this.TextBoxUserName.Text;
                     sessionApp.LogLevelMask = (int)(DvtkApplicationLayer.Session.LogLevelFlags.Error | DvtkApplicationLayer.Session.LogLevelFlags.Warning |
                     DvtkApplicationLayer.Session.LogLevelFlags.Info);
                     sessionApp.Mode = DvtkApplicationLayer.Session.StorageMode.AsMedia;
-        			sessionApp.AutoCreateDirectory = true;
-        			sessionApp.ContinueOnError = true;
+                    sessionApp.AutoCreateDirectory = true;
+                    sessionApp.ContinueOnError = true;
 
                     // Store the session filename which has been set in the previous
                     // step.
@@ -2041,19 +2068,19 @@ namespace Dvt
                 case 6:     // DVT Role settings
                     if (this.ComboBoxSessionType.SelectedIndex == 0) // script session
                     {
-                        ((DvtkApplicationLayer.ScriptSession)sessionApp).DvtAeTitle =               this.TextBoxDVTAeTitle.Text;
-                        ((DvtkApplicationLayer.ScriptSession)sessionApp).DvtPort =                  (ushort)this.NumericDVTListenPort.Value;
-                        ((DvtkApplicationLayer.ScriptSession)sessionApp).DvtSocketTimeout =         (ushort)this.NumericSocketTimeOut.Value;
+                        ((DvtkApplicationLayer.ScriptSession)sessionApp).DvtAeTitle = this.TextBoxDVTAeTitle.Text;
+                        ((DvtkApplicationLayer.ScriptSession)sessionApp).DvtPort = (ushort)this.NumericDVTListenPort.Value;
+                        ((DvtkApplicationLayer.ScriptSession)sessionApp).DvtSocketTimeout = (ushort)this.NumericSocketTimeOut.Value;
                         ((DvtkApplicationLayer.ScriptSession)sessionApp).DvtMaximumLengthReceived = (uint)this.NumericDVTPDULength.Value;
                     }
                     else // emulator session
                     {
-                        ((DvtkApplicationLayer.EmulatorSession)sessionApp).DvtAeTitle =               this.TextBoxDVTAeTitle.Text;
-                        ((DvtkApplicationLayer.EmulatorSession)sessionApp).DvtPort =                  (ushort)this.NumericDVTListenPort.Value;
-                        ((DvtkApplicationLayer.EmulatorSession)sessionApp).DvtSocketTimeout =         (ushort)this.NumericSocketTimeOut.Value;
+                        ((DvtkApplicationLayer.EmulatorSession)sessionApp).DvtAeTitle = this.TextBoxDVTAeTitle.Text;
+                        ((DvtkApplicationLayer.EmulatorSession)sessionApp).DvtPort = (ushort)this.NumericDVTListenPort.Value;
+                        ((DvtkApplicationLayer.EmulatorSession)sessionApp).DvtSocketTimeout = (ushort)this.NumericSocketTimeOut.Value;
                         ((DvtkApplicationLayer.EmulatorSession)sessionApp).DvtMaximumLengthReceived = (uint)this.NumericDVTPDULength.Value;
-						((DvtkApplicationLayer.EmulatorSession)sessionApp).DvtImplementationClassUid= "1.2.826.0.1.3680043.2.1545.1";
-						((DvtkApplicationLayer.EmulatorSession)sessionApp).DvtImplementationVersionName= "dvt" + dvtVersion;
+                        ((DvtkApplicationLayer.EmulatorSession)sessionApp).DvtImplementationClassUid = "1.2.826.0.1.3680043.2.1545.1";
+                        ((DvtkApplicationLayer.EmulatorSession)sessionApp).DvtImplementationVersionName = "dvt" + dvtVersion;
                     }
                     this.current_page = 7;
                     this.WizardPages.SelectedTab = this.Page7;
@@ -2061,18 +2088,18 @@ namespace Dvt
                 case 7:     // System Under Test settings
                     if (this.ComboBoxSessionType.SelectedIndex == 0) // script session
                     {
-                        ((DvtkApplicationLayer.ScriptSession)sessionApp).SutAeTitle =               this.TextBoxSUTAETitle.Text;
-                        ((DvtkApplicationLayer.ScriptSession)sessionApp).SutPort =                  (ushort)this.NumericSUTListenPort.Value;
-                        ((DvtkApplicationLayer.ScriptSession)sessionApp).SutHostName =              this.TextBoxTCPIP.Text;
+                        ((DvtkApplicationLayer.ScriptSession)sessionApp).SutAeTitle = this.TextBoxSUTAETitle.Text;
+                        ((DvtkApplicationLayer.ScriptSession)sessionApp).SutPort = (ushort)this.NumericSUTListenPort.Value;
+                        ((DvtkApplicationLayer.ScriptSession)sessionApp).SutHostName = this.TextBoxTCPIP.Text;
                         ((DvtkApplicationLayer.ScriptSession)sessionApp).SutMaximumLengthReceived = (uint)this.NumericSUTPDULength.Value;
                         //((DvtkApplicationLayer.ScriptSession)sessionApp).SecureSocketsEnabled =   this.CheckboxSecureConnection.Checked;
                         ((Dvtk.Sessions.ScriptSession)sessionApp.Implementation).SecuritySettings.SecureSocketsEnabled = this.CheckboxSecureConnection.Checked;
                     }
                     else // emulator session
                     {
-                        ((DvtkApplicationLayer.EmulatorSession)sessionApp).SutAeTitle =               this.TextBoxSUTAETitle.Text;
-                        ((DvtkApplicationLayer.EmulatorSession)sessionApp).SutPort =                  (ushort)this.NumericSUTListenPort.Value;
-                        ((DvtkApplicationLayer.EmulatorSession)sessionApp).SutHostName =              this.TextBoxTCPIP.Text;
+                        ((DvtkApplicationLayer.EmulatorSession)sessionApp).SutAeTitle = this.TextBoxSUTAETitle.Text;
+                        ((DvtkApplicationLayer.EmulatorSession)sessionApp).SutPort = (ushort)this.NumericSUTListenPort.Value;
+                        ((DvtkApplicationLayer.EmulatorSession)sessionApp).SutHostName = this.TextBoxTCPIP.Text;
                         ((DvtkApplicationLayer.EmulatorSession)sessionApp).SutMaximumLengthReceived = (uint)this.NumericSUTPDULength.Value;
                         //((DvtkApplicationLayer.EmulatorSession)sessionApp).SecureSocketsEnabled =   this.CheckboxSecureConnection.Checked;
                         ((Dvtk.Sessions.EmulatorSession)sessionApp.Implementation).SecuritySettings.SecureSocketsEnabled = this.CheckboxSecureConnection.Checked;
@@ -2080,16 +2107,44 @@ namespace Dvt
                     if (this.CheckboxSecureConnection.Checked)
                     {
                         // Initialize the security settings panel
-                        if (sessionApp.Implementation is Dvtk.Sessions.ISecure) 
-						{
-                            Dvtk.Sessions.ISecuritySettings security_settings = null;                            
+                        if (sessionApp.Implementation is Dvtk.Sessions.ISecure)
+                        {
+                            Dvtk.Sessions.ISecuritySettings security_settings = null;
 
                             security_settings = (sessionApp.Implementation as Dvtk.Sessions.ISecure).SecuritySettings;
 
-                            if ((security_settings.TlsVersionFlags & Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1) != 0)
-                                this.CheckBoxTLS.Checked = true;
-                            if ((security_settings.TlsVersionFlags & Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_SSLv3) != 0)
-                                this.CheckBoxSSL.Checked = true;
+
+                            switch (security_settings.MaxTlsVersionFlags)
+                            {
+                                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_0:
+                                    ComboboxMaxTlsVersion.SelectedIndex = 0;
+                                    break;
+                                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_1:
+                                    ComboboxMaxTlsVersion.SelectedIndex = 1;
+                                    break;
+                                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_2:
+                                    ComboboxMaxTlsVersion.SelectedIndex = 2;
+                                    break;
+                                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_3:
+                                    ComboboxMaxTlsVersion.SelectedIndex = 3;
+                                    break;
+                            }
+
+                            switch (security_settings.MinTlsVersionFlags)
+                            {
+                                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_0:
+                                    ComboboxMinTlsVersion.SelectedIndex = 0;
+                                    break;
+                                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_1:
+                                    ComboboxMinTlsVersion.SelectedIndex = 1;
+                                    break;
+                                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_2:
+                                    ComboboxMinTlsVersion.SelectedIndex = 2;
+                                    break;
+                                case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_3:
+                                    ComboboxMinTlsVersion.SelectedIndex = 3;
+                                    break;
+                            }
                             this.CheckBoxCacheSecureSessions.Checked = security_settings.CacheTlsSessions;
                             this.CheckBoxCheckRemoteCertificates.Checked = security_settings.CheckRemoteCertificate;
                             if ((security_settings.CipherFlags & Dvtk.Sessions.CipherFlags.TLS_AUTHENICATION_METHOD_DSA) != 0)
@@ -2151,7 +2206,7 @@ namespace Dvt
                 case 12:    // Load definition files
                     foreach (string def_file in this.ListBoxDefinitionFiles.Items)
                     {
-                        this.sessionApp.Implementation.DefinitionManagement.LoadDefinitionFile (def_file);
+                        this.sessionApp.Implementation.DefinitionManagement.LoadDefinitionFile(def_file);
                     }
                     sessionApp.Save();
                     this.created_session = true;
@@ -2159,7 +2214,7 @@ namespace Dvt
                     break;
             }
 
-        	UpdateTab(current_page);
+            UpdateTab(current_page);
         }
 
         private void ButtonCancel_Click(object sender, System.EventArgs e)
@@ -2183,46 +2238,46 @@ namespace Dvt
         // Event handlers for the Select a project file name Wizard page
         private void ButtonBrowseProject_Click(object sender, System.EventArgs e)
         {
-            this.DialogOpenProjectFile.ShowDialog (this);
+            this.DialogOpenProjectFile.ShowDialog(this);
             if (this.DialogOpenProjectFile.FileName != "")
             {
-                FileInfo file = new FileInfo (this.DialogOpenProjectFile.FileName);
-				if (file.Exists)
-				{
-					MessageBox.Show (this, "You're not allowed to select an existing project file.",
-						"Invalid file selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
-//				else if(this.DialogOpenProjectFile.FileName.IndexOf("-")>0)
-//				{
-//					MessageBox.Show (this, "You're not allowed to select a project file with '-' in its name.Please select another project file name.",
-//						"Invalid file selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
-//				}
-				else
-				{
-					this.ProjectFileName.Text = this.DialogOpenProjectFile.FileName;
-					this.ButtonNext.Enabled = true;
-				}
+                FileInfo file = new FileInfo(this.DialogOpenProjectFile.FileName);
+                if (file.Exists)
+                {
+                    MessageBox.Show(this, "You're not allowed to select an existing project file.",
+                        "Invalid file selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                //				else if(this.DialogOpenProjectFile.FileName.IndexOf("-")>0)
+                //				{
+                //					MessageBox.Show (this, "You're not allowed to select a project file with '-' in its name.Please select another project file name.",
+                //						"Invalid file selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //				}
+                else
+                {
+                    this.ProjectFileName.Text = this.DialogOpenProjectFile.FileName;
+                    this.ButtonNext.Enabled = true;
+                }
             }
         }
 
         private void ButtonAddSession_Click(object sender, System.EventArgs e)
         {
-            ArrayList skipped_files = new ArrayList ();
-            if (this.DialogAddExistingSessions.ShowDialog (this) == DialogResult.OK)
+            ArrayList skipped_files = new ArrayList();
+            if (this.DialogAddExistingSessions.ShowDialog(this) == DialogResult.OK)
             {
                 foreach (object file in this.DialogAddExistingSessions.FileNames)
                 {
-                    if (this.ListBoxSessions.Items.Contains (file))
-                        skipped_files.Add (file);
+                    if (this.ListBoxSessions.Items.Contains(file))
+                        skipped_files.Add(file);
                     else
-                        this.ListBoxSessions.Items.Add (file);
+                        this.ListBoxSessions.Items.Add(file);
                 }
                 if (skipped_files.Count > 0)
                 {
                     string text = "Skipped the following session files because they already exist:";
                     foreach (object file in skipped_files)
                         text += "\n" + file.ToString();
-                    MessageBox.Show (this, text, "Skipped files", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, text, "Skipped files", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 if (this.ListBoxSessions.Items.Count > 0)
                     this.ButtonRemoveSession.Enabled = true;
@@ -2234,7 +2289,7 @@ namespace Dvt
             int nr_items = this.ListBoxSessions.SelectedItems.Count;
             if (nr_items > 0)
             {
-                if (MessageBox.Show (this,
+                if (MessageBox.Show(this,
                     "Are you sure you want to delete the selected session files?",
                     "Remove selected session files?",
                     MessageBoxButtons.YesNo,
@@ -2243,9 +2298,9 @@ namespace Dvt
                 {
                     // Create a copy of the selected items. This is needed because the
                     // selected items list is dynamically updated.
-                    ArrayList list = new ArrayList (this.ListBoxSessions.SelectedItems);
+                    ArrayList list = new ArrayList(this.ListBoxSessions.SelectedItems);
                     foreach (object item in list)
-                        this.ListBoxSessions.Items.Remove (item);
+                        this.ListBoxSessions.Items.Remove(item);
 
                     if (this.ListBoxSessions.Items.Count == 0)
                         this.ButtonRemoveSession.Enabled = false;
@@ -2255,13 +2310,13 @@ namespace Dvt
 
         private void ButtonBrowseSession_Click(object sender, System.EventArgs e)
         {
-            this.DialogOpenSessionFile.ShowDialog (this);
+            this.DialogOpenSessionFile.ShowDialog(this);
             if (this.DialogOpenSessionFile.FileName != "")
             {
-                FileInfo    file = new FileInfo (this.DialogOpenSessionFile.FileName);
+                FileInfo file = new FileInfo(this.DialogOpenSessionFile.FileName);
                 if (file.Exists)
                 {
-                    MessageBox.Show (this, "You're not allowed to select an existing session file.",
+                    MessageBox.Show(this, "You're not allowed to select an existing session file.",
                         "Invalid file selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
@@ -2306,7 +2361,7 @@ namespace Dvt
             }
         }
 
-        private void DisableNavigation ()
+        private void DisableNavigation()
         {
             this.LabelSelect1ItemMsg.Visible = true;
             this.ButtonNext.Enabled = false;
@@ -2314,7 +2369,7 @@ namespace Dvt
             this.ListBoxSecuritySettings.Enabled = false;
         }
 
-        private void EnableNavigation ()
+        private void EnableNavigation()
         {
             this.LabelSelect1ItemMsg.Visible = false;
             this.ButtonNext.Enabled = true;
@@ -2323,99 +2378,89 @@ namespace Dvt
         }
 
         // Security Settings - Key Exchange group settings
-        private void CheckBoxKeyExchangeRSA_CheckedChanged(object sender, System.EventArgs e) {
-            if (UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_KEY_EXCHANGE_METHOD_RSA, this.CheckBoxKeyExchangeRSA.Checked))
-                UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_KEY_EXCHANGE_METHOD_DH, this.CheckBoxKeyExchangeDH.Checked);
+        private void CheckBoxKeyExchangeRSA_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_KEY_EXCHANGE_METHOD_RSA, this.CheckBoxKeyExchangeRSA.Checked))
+                UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_KEY_EXCHANGE_METHOD_DH, this.CheckBoxKeyExchangeDH.Checked);
         }
 
-        private void CheckBoxKeyExchangeDH_CheckedChanged(object sender, System.EventArgs e) 
-		{
-            if (UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_KEY_EXCHANGE_METHOD_DH, this.CheckBoxKeyExchangeDH.Checked))
-                UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_KEY_EXCHANGE_METHOD_RSA, this.CheckBoxKeyExchangeRSA.Checked);
+        private void CheckBoxKeyExchangeDH_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_KEY_EXCHANGE_METHOD_DH, this.CheckBoxKeyExchangeDH.Checked))
+                UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_KEY_EXCHANGE_METHOD_RSA, this.CheckBoxKeyExchangeRSA.Checked);
         }
 
         // Security Settings - Authentication group settings
-        private void CheckBoxAuthenticationRSA_CheckedChanged(object sender, System.EventArgs e) 
-		{
-            if (UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_AUTHENICATION_METHOD_RSA, this.CheckBoxAuthenticationRSA.Checked))
-                UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_AUTHENICATION_METHOD_DSA, this.CheckBoxAuthenticationDSA.Checked);
+        private void CheckBoxAuthenticationRSA_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_AUTHENICATION_METHOD_RSA, this.CheckBoxAuthenticationRSA.Checked))
+                UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_AUTHENICATION_METHOD_DSA, this.CheckBoxAuthenticationDSA.Checked);
         }
 
-        private void CheckBoxAuthenticationDSA_CheckedChanged(object sender, System.EventArgs e) 
-		{
-            if (UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_AUTHENICATION_METHOD_DSA, this.CheckBoxAuthenticationDSA.Checked))
-                UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_AUTHENICATION_METHOD_RSA, this.CheckBoxAuthenticationRSA.Checked);
+        private void CheckBoxAuthenticationDSA_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_AUTHENICATION_METHOD_DSA, this.CheckBoxAuthenticationDSA.Checked))
+                UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_AUTHENICATION_METHOD_RSA, this.CheckBoxAuthenticationRSA.Checked);
         }
 
-        // Security Settings - Version group settings
-        private void CheckBoxTLS_CheckedChanged(object sender, System.EventArgs e) 
-		{
-            if (this.UpdateVersionFlag (Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1, this.CheckBoxTLS.Checked))
-                this.UpdateVersionFlag (Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_SSLv3, this.CheckBoxSSL.Checked);
-        }
-
-        private void CheckBoxSSL_CheckedChanged(object sender, System.EventArgs e) 
-		{
-            if (this.UpdateVersionFlag (Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_SSLv3, this.CheckBoxSSL.Checked))
-                this.UpdateVersionFlag (Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1, this.CheckBoxTLS.Checked);
-        }
 
         // Security Settings - Encryption group settings
-        private void CheckBoxEncryptionNone_CheckedChanged(object sender, System.EventArgs e) {
-            if (UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_NONE, this.CheckBoxEncryptionNone.Checked))
-                if (UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_3DES, this.CheckBoxEncryptionTripleDES.Checked))
-                    if (UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_AES128, this.CheckBoxEncryptionAES128.Checked))
-                        UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_AES256, this.CheckBoxEncryptionAES256.Checked);
+        private void CheckBoxEncryptionNone_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_NONE, this.CheckBoxEncryptionNone.Checked))
+                if (UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_3DES, this.CheckBoxEncryptionTripleDES.Checked))
+                    if (UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_AES128, this.CheckBoxEncryptionAES128.Checked))
+                        UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_AES256, this.CheckBoxEncryptionAES256.Checked);
         }
 
-        private void CheckBoxEncryptionTripleDES_CheckedChanged(object sender, System.EventArgs e) 
-		{
-            if (UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_3DES, this.CheckBoxEncryptionTripleDES.Checked))
-                if (UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_NONE, this.CheckBoxEncryptionNone.Checked))
-                    if (UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_AES128, this.CheckBoxEncryptionAES128.Checked))
-                        UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_AES256, this.CheckBoxEncryptionAES256.Checked);
+        private void CheckBoxEncryptionTripleDES_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_3DES, this.CheckBoxEncryptionTripleDES.Checked))
+                if (UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_NONE, this.CheckBoxEncryptionNone.Checked))
+                    if (UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_AES128, this.CheckBoxEncryptionAES128.Checked))
+                        UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_AES256, this.CheckBoxEncryptionAES256.Checked);
         }
 
-        private void CheckBoxEncryptionAES128_CheckedChanged(object sender, System.EventArgs e) 
-		{
-            if (UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_AES128, this.CheckBoxEncryptionAES128.Checked))
-                if (UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_NONE, this.CheckBoxEncryptionNone.Checked))
-                    if (UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_3DES, this.CheckBoxEncryptionTripleDES.Checked))
-                        UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_AES256, this.CheckBoxEncryptionAES256.Checked);
+        private void CheckBoxEncryptionAES128_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_AES128, this.CheckBoxEncryptionAES128.Checked))
+                if (UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_NONE, this.CheckBoxEncryptionNone.Checked))
+                    if (UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_3DES, this.CheckBoxEncryptionTripleDES.Checked))
+                        UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_AES256, this.CheckBoxEncryptionAES256.Checked);
         }
 
-        private void CheckBoxEncryptionAES256_CheckedChanged(object sender, System.EventArgs e) 
-		{
-            if (UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_AES256, this.CheckBoxEncryptionAES256.Checked))
-                if (UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_NONE, this.CheckBoxEncryptionNone.Checked))
-                    if (UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_3DES, this.CheckBoxEncryptionTripleDES.Checked))
-                        UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_AES128, this.CheckBoxEncryptionAES128.Checked);
+        private void CheckBoxEncryptionAES256_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_AES256, this.CheckBoxEncryptionAES256.Checked))
+                if (UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_NONE, this.CheckBoxEncryptionNone.Checked))
+                    if (UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_3DES, this.CheckBoxEncryptionTripleDES.Checked))
+                        UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_ENCRYPTION_METHOD_AES128, this.CheckBoxEncryptionAES128.Checked);
         }
 
         // Security Settings - Data Integrity group settings
-        private void CheckBoxDataIntegritySHA_CheckedChanged(object sender, System.EventArgs e) 
-		{
-            if (UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_DATA_INTEGRITY_METHOD_SHA1, this.CheckBoxDataIntegritySHA.Checked))
-                UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_DATA_INTEGRITY_METHOD_MD5, this.CheckBoxDataIntegrityMD5.Checked);
+        private void CheckBoxDataIntegritySHA_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_DATA_INTEGRITY_METHOD_SHA1, this.CheckBoxDataIntegritySHA.Checked))
+                UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_DATA_INTEGRITY_METHOD_MD5, this.CheckBoxDataIntegrityMD5.Checked);
         }
 
-        private void CheckBoxDataIntegrityMD5_CheckedChanged(object sender, System.EventArgs e) 
-		{
-            if (UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_DATA_INTEGRITY_METHOD_MD5, this.CheckBoxDataIntegrityMD5.Checked))
-                UpdateSecurityFlag (Dvtk.Sessions.CipherFlags.TLS_DATA_INTEGRITY_METHOD_SHA1, this.CheckBoxDataIntegritySHA.Checked);
+        private void CheckBoxDataIntegrityMD5_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_DATA_INTEGRITY_METHOD_MD5, this.CheckBoxDataIntegrityMD5.Checked))
+                UpdateSecurityFlag(Dvtk.Sessions.CipherFlags.TLS_DATA_INTEGRITY_METHOD_SHA1, this.CheckBoxDataIntegritySHA.Checked);
         }
 
-        private void UpdateAENameVersionBox ()
+        private void UpdateAENameVersionBox()
         {
             foreach (string filename in this.ListBoxDefinitionFiles.Items)
             {
                 Dvtk.Sessions.DefinitionFileDetails def_details;
                 try
                 {
-                    def_details = this.sessionApp.Implementation.DefinitionManagement.GetDefinitionFileDetails (filename);
-                    if (!this.ComboBoxAENameVersion.Items.Contains (def_details.ApplicationEntityName + '-' +def_details.ApplicationEntityVersion))
+                    def_details = this.sessionApp.Implementation.DefinitionManagement.GetDefinitionFileDetails(filename);
+                    if (!this.ComboBoxAENameVersion.Items.Contains(def_details.ApplicationEntityName + '-' + def_details.ApplicationEntityVersion))
                     {
-                        this.ComboBoxAENameVersion.Items.Add (def_details.ApplicationEntityName + '-' +def_details.ApplicationEntityVersion);
+                        this.ComboBoxAENameVersion.Items.Add(def_details.ApplicationEntityName + '-' + def_details.ApplicationEntityVersion);
                         if (this.ComboBoxAENameVersion.Items.Count == 1)
                             this.ComboBoxAENameVersion.SelectedIndex = 0;
                     }
@@ -2431,7 +2476,7 @@ namespace Dvt
             int nr_items = this.ListBoxDefinitionFiles.SelectedItems.Count;
             if (nr_items > 0)
             {
-                if (MessageBox.Show (this,
+                if (MessageBox.Show(this,
                     "Are you sure you want to delete the selected definition files?",
                     "Remove selected definition files?",
                     MessageBoxButtons.YesNo,
@@ -2440,9 +2485,9 @@ namespace Dvt
                 {
                     // Create a copy of the selected items. This is needed because the
                     // selected items list is dynamically updated.
-                    ArrayList list = new ArrayList (this.ListBoxDefinitionFiles.SelectedItems);
+                    ArrayList list = new ArrayList(this.ListBoxDefinitionFiles.SelectedItems);
                     foreach (object item in list)
-                        this.ListBoxDefinitionFiles.Items.Remove (item);
+                        this.ListBoxDefinitionFiles.Items.Remove(item);
 
                     if (this.ListBoxDefinitionFiles.Items.Count == 0)
                     {
@@ -2450,61 +2495,61 @@ namespace Dvt
                         this.ComboBoxAENameVersion.Enabled = false;
                     }
                     else
-                        this.UpdateAENameVersionBox ();
+                        this.UpdateAENameVersionBox();
                 }
             }
         }
 
         private void ButtonAddDefFiles_Click(object sender, System.EventArgs e)
         {
-            ArrayList skipped_files = new ArrayList ();
+            ArrayList skipped_files = new ArrayList();
             if (this.TextBoxDefinitionRoot.Text != "")
                 this.DialogAddDefinitionFiles.InitialDirectory = this.TextBoxDefinitionRoot.Text;
 
-            if (this.DialogAddDefinitionFiles.ShowDialog (this) == DialogResult.OK)
+            if (this.DialogAddDefinitionFiles.ShowDialog(this) == DialogResult.OK)
             {
                 foreach (object file in this.DialogAddDefinitionFiles.FileNames)
                 {
-                    if (this.ListBoxDefinitionFiles.Items.Contains (file))
-                        skipped_files.Add (file);
+                    if (this.ListBoxDefinitionFiles.Items.Contains(file))
+                        skipped_files.Add(file);
                     else
-                        this.ListBoxDefinitionFiles.Items.Add (file);
+                        this.ListBoxDefinitionFiles.Items.Add(file);
                 }
                 if (skipped_files.Count > 0)
                 {
                     string text = "Skipped the following definition files because they already exist:";
                     foreach (object file in skipped_files)
                         text += "\n" + file.ToString();
-                    MessageBox.Show (this, text, "Skipped files", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, text, "Skipped files", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 if (this.ListBoxDefinitionFiles.Items.Count > 0)
                 {
                     this.ButtonRemoveDefFiles.Enabled = true;
                     this.ComboBoxAENameVersion.Enabled = true;
-                    this.UpdateAENameVersionBox ();
+                    this.UpdateAENameVersionBox();
                 }
             }
         }
 
         private void ButtonAddCredentials_Click(object sender, System.EventArgs e)
         {
-            ArrayList skipped_files = new ArrayList ();
+            ArrayList skipped_files = new ArrayList();
             this.DialogAddCredentialFiles.Title = "Load Credential Files";
-            if (this.DialogAddCredentialFiles.ShowDialog (this) == DialogResult.OK)
+            if (this.DialogAddCredentialFiles.ShowDialog(this) == DialogResult.OK)
             {
                 foreach (object file in this.DialogAddCredentialFiles.FileNames)
                 {
-                    if (this.ListBoxCredentials.Items.Contains (file))
-                        skipped_files.Add (file);
+                    if (this.ListBoxCredentials.Items.Contains(file))
+                        skipped_files.Add(file);
                     else
-                        this.ListBoxCredentials.Items.Add (file);
+                        this.ListBoxCredentials.Items.Add(file);
                 }
                 if (skipped_files.Count > 0)
                 {
                     string text = "Skipped the following credential files because they already exist:";
                     foreach (object file in skipped_files)
                         text += "\n" + file.ToString();
-                    MessageBox.Show (this, text, "Skipped files", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, text, "Skipped files", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 if (this.ListBoxCredentials.Items.Count > 0)
                     this.ButtonRemoveCredentials.Enabled = true;
@@ -2516,7 +2561,7 @@ namespace Dvt
             int nr_items = this.ListBoxCredentials.SelectedItems.Count;
             if (nr_items > 0)
             {
-                if (MessageBox.Show (this,
+                if (MessageBox.Show(this,
                     "Are you sure you want to delete the selected credential files?",
                     "Remove selected credential files?",
                     MessageBoxButtons.YesNo,
@@ -2525,9 +2570,9 @@ namespace Dvt
                 {
                     // Create a copy of the selected items. This is needed because the
                     // selected items list is dynamically updated.
-                    ArrayList list = new ArrayList (this.ListBoxCredentials.SelectedItems);
+                    ArrayList list = new ArrayList(this.ListBoxCredentials.SelectedItems);
                     foreach (object item in list)
-                        this.ListBoxCredentials.Items.Remove (item);
+                        this.ListBoxCredentials.Items.Remove(item);
 
                     if (this.ListBoxCredentials.Items.Count == 0)
                         this.ButtonRemoveCredentials.Enabled = false;
@@ -2537,23 +2582,23 @@ namespace Dvt
 
         private void ButtonAddCertificates_Click(object sender, System.EventArgs e)
         {
-            ArrayList skipped_files = new ArrayList ();
+            ArrayList skipped_files = new ArrayList();
             this.DialogAddCredentialFiles.Title = "Load Certificate Files";
-            if (this.DialogAddCredentialFiles.ShowDialog (this) == DialogResult.OK)
+            if (this.DialogAddCredentialFiles.ShowDialog(this) == DialogResult.OK)
             {
                 foreach (object file in this.DialogAddCredentialFiles.FileNames)
                 {
-                    if (this.ListBoxCertificates.Items.Contains (file))
-                        skipped_files.Add (file);
+                    if (this.ListBoxCertificates.Items.Contains(file))
+                        skipped_files.Add(file);
                     else
-                        this.ListBoxCertificates.Items.Add (file);
+                        this.ListBoxCertificates.Items.Add(file);
                 }
                 if (skipped_files.Count > 0)
                 {
                     string text = "Skipped the following certificate files because they already exist:";
                     foreach (object file in skipped_files)
                         text += "\n" + file.ToString();
-                    MessageBox.Show (this, text, "Skipped files", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, text, "Skipped files", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 if (this.ListBoxCertificates.Items.Count > 0)
                     this.ButtonRemoveCertificates.Enabled = true;
@@ -2565,7 +2610,7 @@ namespace Dvt
             int nr_items = this.ListBoxCertificates.SelectedItems.Count;
             if (nr_items > 0)
             {
-                if (MessageBox.Show (this,
+                if (MessageBox.Show(this,
                     "Are you sure you want to delete the selected certificate files?",
                     "Remove selected certificate files?",
                     MessageBoxButtons.YesNo,
@@ -2574,9 +2619,9 @@ namespace Dvt
                 {
                     // Create a copy of the selected items. This is needed because the
                     // selected items list is dynamically updated.
-                    ArrayList list = new ArrayList (this.ListBoxCertificates.SelectedItems);
+                    ArrayList list = new ArrayList(this.ListBoxCertificates.SelectedItems);
                     foreach (object item in list)
-                        this.ListBoxCertificates.Items.Remove (item);
+                        this.ListBoxCertificates.Items.Remove(item);
 
                     if (this.ListBoxCertificates.Items.Count == 0)
                         this.ButtonRemoveCertificates.Enabled = false;
@@ -2590,7 +2635,7 @@ namespace Dvt
             if (this.TextBoxDefinitionRoot.Text != "")
                 this.DialogBrowseFolder.SelectedPath = this.TextBoxDefinitionRoot.Text;
 
-            if (this.DialogBrowseFolder.ShowDialog (this) == DialogResult.OK)
+            if (this.DialogBrowseFolder.ShowDialog(this) == DialogResult.OK)
                 this.TextBoxDefinitionRoot.Text = this.DialogBrowseFolder.SelectedPath;
         }
 
@@ -2600,7 +2645,7 @@ namespace Dvt
             if (this.TextBoxResultsRoot.Text != "")
                 this.DialogBrowseFolder.SelectedPath = this.TextBoxResultsRoot.Text;
 
-            if (this.DialogBrowseFolder.ShowDialog (this) == DialogResult.OK)
+            if (this.DialogBrowseFolder.ShowDialog(this) == DialogResult.OK)
                 this.TextBoxResultsRoot.Text = this.DialogBrowseFolder.SelectedPath;
         }
 
@@ -2610,7 +2655,7 @@ namespace Dvt
             if (this.TextBoxScriptRoot.Text != "")
                 this.DialogBrowseFolder.SelectedPath = this.TextBoxScriptRoot.Text;
 
-            if (this.DialogBrowseFolder.ShowDialog (this) == DialogResult.OK)
+            if (this.DialogBrowseFolder.ShowDialog(this) == DialogResult.OK)
                 this.TextBoxScriptRoot.Text = this.DialogBrowseFolder.SelectedPath;
         }
 
@@ -2620,63 +2665,129 @@ namespace Dvt
             e.Handled = true;
         }
 
-        private void CheckBoxCheckRemoteCertificates_CheckedChanged(object sender, System.EventArgs e) 
-		{
+        private void CheckBoxCheckRemoteCertificates_CheckedChanged(object sender, System.EventArgs e)
+        {
             if (this.ComboBoxSessionType.SelectedIndex == 0) // script session
                 (sessionApp.Implementation as Dvtk.Sessions.ISecure).SecuritySettings.CheckRemoteCertificate = this.CheckBoxCheckRemoteCertificates.Checked;
             else    // emulator session
                 (sessionApp.Implementation as Dvtk.Sessions.ISecure).SecuritySettings.CheckRemoteCertificate = this.CheckBoxCheckRemoteCertificates.Checked;
         }
 
-        private void CheckBoxCacheSecureSessions_CheckedChanged(object sender, System.EventArgs e) 
-		{
+        private void CheckBoxCacheSecureSessions_CheckedChanged(object sender, System.EventArgs e)
+        {
             if (this.ComboBoxSessionType.SelectedIndex == 0) // script session
                 (sessionApp.Implementation as Dvtk.Sessions.ISecure).SecuritySettings.CacheTlsSessions = this.CheckBoxCacheSecureSessions.Checked;
             else    // emulator session
                 (sessionApp.Implementation as Dvtk.Sessions.ISecure).SecuritySettings.CacheTlsSessions = this.CheckBoxCacheSecureSessions.Checked;
         }
 
-        // Security Settings - Version group settings
-        private bool UpdateVersionFlag (Dvtk.Sessions.TlsVersionFlags flag, bool enabled)
-		{
-            bool    success = true;
-            if (sessionApp.Implementation is Dvtk.Sessions.ISecure) {
-                Dvtk.Sessions.ISecuritySettings security_settings = null;
-
-                security_settings = (sessionApp.Implementation as Dvtk.Sessions.ISecure).SecuritySettings;
-
-                try {
-                    if (enabled)
-                        security_settings.TlsVersionFlags |= flag;
-                    else
-                        security_settings.TlsVersionFlags &= ~flag;
-                    this.EnableNavigation ();
+        private void UpdateMaxTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags theVersionFlag)
+        {
+            if (sessionApp.Implementation is Dvtk.Sessions.ISecure)
+            {
+                Dvtk.Sessions.ISecuritySettings theISecuritySettings = null;
+                theISecuritySettings = (sessionApp.Implementation as Dvtk.Sessions.ISecure).SecuritySettings;
+                Dvtk.Sessions.TlsVersionFlags currentMaxVersion = theISecuritySettings.MaxTlsVersionFlags;
+                Dvtk.Sessions.TlsVersionFlags currentMinVersion = theISecuritySettings.MinTlsVersionFlags;
+                if (theVersionFlag < currentMinVersion)
+                {
+                    ComboboxMaxTlsVersion.SelectedIndex = (int)currentMaxVersion;
+                    MessageBox.Show("Max version cannot be smaller than Min version.");
                 }
-                catch (Exception e) {
-                    this.LabelSelect1ItemMsg.Text = e.Message;
-                    this.DisableNavigation();
-                    success = false;
+                else
+                {
+                    theISecuritySettings.MaxTlsVersionFlags = theVersionFlag;
+                    this.EnableNavigation();
                 }
             }
-            return success;
         }
 
-        private bool UpdateSecurityFlag (Dvtk.Sessions.CipherFlags flag, bool enabled) 
-		{
-            bool    success = true;
-            if (sessionApp.Implementation is Dvtk.Sessions.ISecure) {
+        private void UpdateMinTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags theVersionFlag)
+        {
+            if (sessionApp.Implementation is Dvtk.Sessions.ISecure)
+            {
+                Dvtk.Sessions.ISecuritySettings theISecuritySettings = null;
+                theISecuritySettings = (sessionApp.Implementation as Dvtk.Sessions.ISecure).SecuritySettings;
+                Dvtk.Sessions.TlsVersionFlags currentMaxVersion = theISecuritySettings.MaxTlsVersionFlags;
+                Dvtk.Sessions.TlsVersionFlags currentMinVersion = theISecuritySettings.MinTlsVersionFlags;
+                if (theVersionFlag > currentMaxVersion)
+                {
+                    ComboboxMinTlsVersion.SelectedIndex = (int)currentMinVersion;
+                    MessageBox.Show("Min version cannot be bigger than Max version.");
+                }
+                else
+                {
+                    theISecuritySettings.MinTlsVersionFlags = theVersionFlag;
+                    this.EnableNavigation();
+                }
+            }
+        }
+
+        private void ComboboxMaxTlsVersion_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            try
+            {
+                switch (ComboboxMaxTlsVersion.SelectedIndex)
+                {
+                    case 0:
+                        UpdateMaxTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_0);
+                        break;
+                    case 1:
+                        UpdateMaxTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_1);
+                        break;
+                    case 2:
+                        UpdateMaxTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_2);
+                        break;
+                    case 3:
+                        UpdateMaxTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_3);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.LabelSelect1ItemMsg.Text = ex.Message;
+                this.DisableNavigation();
+            }
+        }
+
+        private void ComboboxMinTlsVersion_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            switch (ComboboxMinTlsVersion.SelectedIndex)
+            {
+                case 0:
+                    UpdateMinTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_0);
+                    break;
+                case 1:
+                    UpdateMinTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_1);
+                    break;
+                case 2:
+                    UpdateMinTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_2);
+                    break;
+                case 3:
+                    UpdateMinTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_3);
+                    break;
+            }
+        }
+
+        private bool UpdateSecurityFlag(Dvtk.Sessions.CipherFlags flag, bool enabled)
+        {
+            bool success = true;
+            if (sessionApp.Implementation is Dvtk.Sessions.ISecure)
+            {
                 Dvtk.Sessions.ISecuritySettings security_settings = null;
 
                 security_settings = (sessionApp.Implementation as Dvtk.Sessions.ISecure).SecuritySettings;
 
-                try {
+                try
+                {
                     if (enabled)
                         security_settings.CipherFlags |= flag;
                     else
                         security_settings.CipherFlags &= ~flag;
-                    this.EnableNavigation ();
+                    this.EnableNavigation();
                 }
-                catch (Exception e) {
+                catch (Exception e)
+                {
                     this.LabelSelect1ItemMsg.Text = e.Message;
                     this.DisableNavigation();
                     success = false;
@@ -2687,38 +2798,38 @@ namespace Dvt
 
         private void CallBackMessageDisplay(string message)
         {
-            MessageBox.Show (this, message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(this, message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-		private void WizardPages_TabIndexChanged(object sender, System.EventArgs e)
-		{
-			MessageBox.Show("hello");		
-		}
+        private void WizardPages_TabIndexChanged(object sender, System.EventArgs e)
+        {
+            MessageBox.Show("hello");
+        }
 
-		private void UpdateTab(int thePageToDisplay)
-		{
-			switch(thePageToDisplay)
-			{
-				case 11:
-				{
-					if (ComboBoxSessionType.Text == "Script")
-					{
-						label36.Visible = true;
-						TextBoxScriptRoot.Visible = true;
-						ButtonBrowseScriptRoot.Visible = true;	
-					}
-					else
-					{
-						label36.Visible = false;
-						TextBoxScriptRoot.Visible = false;
-						ButtonBrowseScriptRoot.Visible = false;
-					}
-				}
-				break;
+        private void UpdateTab(int thePageToDisplay)
+        {
+            switch (thePageToDisplay)
+            {
+                case 11:
+                    {
+                        if (ComboBoxSessionType.Text == "Script")
+                        {
+                            label36.Visible = true;
+                            TextBoxScriptRoot.Visible = true;
+                            ButtonBrowseScriptRoot.Visible = true;
+                        }
+                        else
+                        {
+                            label36.Visible = false;
+                            TextBoxScriptRoot.Visible = false;
+                            ButtonBrowseScriptRoot.Visible = false;
+                        }
+                    }
+                    break;
 
-				default:
-					break;
-			}
-		}
+                default:
+                    break;
+            }
+        }
     }
 }

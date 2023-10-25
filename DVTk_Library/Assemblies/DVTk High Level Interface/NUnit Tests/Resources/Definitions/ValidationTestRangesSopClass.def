@@ -1,0 +1,83 @@
+################################################################################
+# Definition File: ValidationTestRangesSopClass.def
+#
+# Description    : Generated manually for testing the validation algorithm
+#                  regarding Defined/Enumerated Values and Ranges
+#
+# Note           : No specific system has been defined
+#
+################################################################################
+
+DEFINE SYSTEM "DICOM" "3.0"
+"DICOM" "3.0"
+ENDDEFINE
+
+#
+# Definition of the Validation Test Ranges SOP Class
+#
+DEFINE C-STORE-RQ "Validation Test Ranges SOP Class"
+
+SOPCLASS "1.3.46.670589.17.2.42.3" "Validation Test Ranges SOP Class"
+
+MODULE "Test Module Ranges" M
+(0x10000003,3,AE,1:n,E,"ENUM 1"|"ENUM 2"|"ENUM 3",D,"DEFINED 1"|"DEFINED 2"|"DEFINED 3")	"AE_03"
+(0x10020003,3,AS,1:n,E,"001Y"|"002Y"|"003Y",D,"001Y"|"002Y"|"003Y")	"AS_03"
+(0x10040003,3,AT,1:n,E, 0x00010001|0x00010002|0x00010003,D,0x00020001|0x00020002|0x00020003)	"AT_03"
+(0x10060003,3,CS,1:n,E,"ENUM 1"|"ENUM 2"|"ENUM 3",D,"DEFINED 1"|"DEFINED 2"|"DEFINED 3")	"CS_03"
+(0x10080003,3,DA,1:n,E,"19990101"|"19990102"|"19990103",D,"19990201"|"19990202"|"19990203")	"DA_03"
+(0x100A0003,3,DS,1:n,E,"1.01"|"1.02"|"1.03",D,"-201"|"-202"|"-203")	"DS_03"
+(0x100C0003,3,DT,1:n,E,"19990101"|"19990102"|"19990103",D,"19990201"|"19990202"|"19990203")	"DT_03"
+(0x100E0003,3,FL,1:n,E,"1.01"|"1.02"|"1.03",D,"-2.01"|"-2.02"|"-2.03")	"FL_03"
+(0x10100003,3,FD,1:n,E,"1.01"|"1.02"|"1.03",D,"-2.01"|"-2.02"|"-2.03")	"FD_03"
+(0x10120003,3,IS,1:n,E,"101"|"102"|"103",D,"-201"|"-202"|"-203")	"IS_03"
+(0x10140003,3,LO,1:n,E,"ENUM 1"|"ENUM 2"|"ENUM 3",D,"DEFINED 1"|"DEFINED 2"|"DEFINED 3" )	"LO_03"
+(0x10160003,3,LT,1:n,E,"ENUM"|"DOGS")	"LT_03"
+(0x10160004,3,LT,1:n,D,"DEFINED"|"DEFAULT")	"LT_04"
+(0x101C0003,3,PN,1:n,E,"ENUM 1"|"ENUM 2"|"ENUM 3",D,"DEFINED 1"|"DEFINED 2"|"DEFINED 3" )	"PN_03"
+(0x101E0003,3,SH,1:n,E,"ENUM 1"|"ENUM 2"|"ENUM 3",D,"DEFINED 1"|"DEFINED 2"|"DEFINED 3" )	"SH_03"
+(0x10200003,3,SL,1:n,E,101|102|103,D,-201|-202|-203)	"SL_03"
+(0x10240003,3,SS,1:n,E,101|102|103,D,-201|-202|-203)	"SS_03"
+(0x10260003,3,ST,1:n,E,"ENUM"|"DOGS")	"ST_03"
+(0x10260004,3,ST,1:n,D,"DEFINED"|"DEFAULT")	"ST_04"
+(0x10280003,3,TM,1:n,E,"1001"|"1002"|"1003",D,"2001"|"2002"|"2003")	"TM_03"
+(0x102A0003,3,UI,1:n,E,"1.0.1"|"1.0.2"|"1.0.3",D,"2.0.1"|"2.0.2"|"2.0.3")	"UI_03"
+(0x102C0003,3,UL,1:n,E,101|102|103,D,201|202|203)	"UL_03"
+(0x102E0003,3,US,1:n,E,101|102|103,D,201|202|203)	"US_03"
+(0x10300003,3,UT,1:n,E,"ENUM"|"DOGS")	"UT_03"
+(0x10300004,3,UT,1:n,D,"DEFINED"|"DEFAULT")	"UT_04"
+
+ENDDEFINE
+
+
+#
+# Commands applicable for the Validation Test Ranges SOP Class
+#
+
+DEFINE C-STORE-RQ
+(0x00000000,1,UL,1)	     "Group 0000 Length"
+(0x00000002,1,UI,1)	     "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x0001) "Command Field"
+(0x00000110,1,US,1)	     "Message ID"
+(0x00000700,1,US,1,E,0x0000
+                   | 0x0001
+                   | 0x0002) "Priority"
+(0x00000800,1,US,1)	     "Data Set Type"
+(0x00001000,1,UI,1)	     "Affected SOP Instance UID"
+(0x00001030,3,AE,1)	     "Move Originator AE Title"
+(0x00001031,3,US,1)	     "Move Originator Message ID"
+ENDDEFINE
+
+DEFINE C-STORE-RSP
+(0x00000000,1,UL,1)	      "Group 0000 Length"
+(0x00000002,1,UI,1)	      "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x8001)  "Command Field"
+(0x00000120,1,US,1)	      "Message ID Being Responded To"
+(0x00000800,1,US,1)           "Data Set Type"
+(0x00000900,1,US,1)	      "Status"
+(0x00000901,3,AT,1:n)	      "Offending Element"
+(0x00000902,3,LO,1)	      "Error Comment"
+(0x00000903,3,US,1)	      "Error ID"
+(0x00001000,1,UI,1)	      "Affected SOP Instance UID"
+ENDDEFINE
+
+

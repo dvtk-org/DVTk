@@ -1,0 +1,139 @@
+<Examples>
+
+
+<Example name="IncludesDicomThreadScu">
+Imports System
+Imports System.IO
+Imports System.Windows.Forms
+Imports DvtkData.Dimse.VR
+Imports DvtkData.Dimse.DimseCommand
+Imports DvtkHighLevelInterface
+Imports DvtkHighLevelInterface.Dicom.Messages
+Imports DvtkHighLevelInterface.Common.UserInterfaces
+Imports DvtkHighLevelInterface.Dicom.Threads
+</Example>
+
+<Example name="DicomThreadScu">
+Class DicomThreadScu
+    Inherits DicomThread
+
+    Protected Overrides Sub Execute()
+
+        'Sending an association request
+        SendAssociateRq _
+        ( _
+            New DvtkHighLevelInterface.Dicom.Other.PresentationContext("1.2.840.10008.5.1.4.1.1.2", "1.2.840.10008.1.2", "1.2.840.10008.1.2.1") _
+        )
+
+
+        'Receive the associate Ackknowledge 
+        'Alternatively you could use ReceiveAssociateAc() method which will throw a 
+        'HLIException if the received message is not an associate Ackknowledge
+        Dim receivedMessage As DvtkHighLevelInterface.Dicom.Messages.DicomProtocolMessage = Nothing
+        receivedMessage = ReceiveMessage()
+        'Check wether the received response is indeed an associate ackknowledge
+        If Not receivedMessage.IsAssociateAc Then
+            If receivedMessage.IsAssociateRj Then
+                Throw New System.Exception("Association Rejected.")
+            ElseIf receivedMessage.IsAbort Then
+                Throw New System.Exception("Abort Message.")
+            Else
+                'No idea what kind of message was sent back.
+                Throw New System.Exception("Received unknown message.")
+            End If
+        End If
+
+
+        'Sending a Message
+        'We create a DicomMessage configured for C-Store Requests
+        Dim aCTStoreRQMessage As DvtkHighLevelInterface.Dicom.Messages.DicomMessage = New DicomMessage(CSTORERQ)
+        'Check the AttributeSet.read for documentation on reading files to handle exceptions
+        aCTStoreRQMessage.DataSet.Read(ScriptContext._CTImageFullFileName)
+        Try
+            Send(aCTStoreRQMessage)
+        Catch ex As DvtkHighLevelInterface.Common.Other.HliException
+            'Error while sending. Handle as you please. 
+            'ex.Message.ToString()
+        End Try
+
+
+        'The CStore Response
+        Dim aCStoreRSPMessage As DvtkHighLevelInterface.Dicom.Messages.DicomMessage
+        aCStoreRSPMessage = ReceiveDicomMessage()
+        'make sure it really is a CSTORE Response
+        If Not aCStoreRSPMessage.CommandSet.DimseCommand = DvtkData.Dimse.DimseCommand.CSTORERSP Then
+            Throw New System.Exception("After a CSTORE Request the SCP returned an unexpected message.")
+        End If
+
+
+        'send a release request
+        Try
+            SendReleaseRq()
+        Catch ex As DvtkHighLevelInterface.Common.Other.HliException
+            'You error message. Handle as you please. 
+            'ex.Message.ToString()
+        End Try
+
+
+        Dim aReleaseResponseMessage As DvtkHighLevelInterface.Dicom.Messages.ReleaseRp
+        'receive the release response
+        Try
+            aReleaseResponseMessage = ReceiveReleaseRp()
+        Catch ex As DvtkHighLevelInterface.Common.Other.HliException
+            'You error message. Handle as you please. 
+            'ex.Message.ToString()
+        End Try
+
+    End Sub
+
+End Class
+</Example>
+
+
+<Example name="Main">
+Class MainDicomThread
+    Inherits DicomThreadScu
+
+End Class 
+
+Class ScriptContext
+
+    ' Full session file name, only needed when not executing script under Dvt(Cmd).
+    Public Const _SessionFullFileName As String = "C:\Program Files\DVT\example\scripts\storage\scu\Storage_SCU.ses"
+    Public Const _CTImageFullFileName As String = "c:\YourCTImageFile.dcm"
+
+End Class ' ScriptContext
+
+Module DvtkScript
+
+    Sub Main(ByVal CmdArgs() As String)
+
+        Dim theExecutablePath As String = System.Windows.Forms.Application.ExecutablePath
+        Dim theExecutableName As String = Path.GetFileName(theExecutablePath).ToLower()
+
+        Dvtk.Setup.Initialize()
+
+        Dim theDvtThreadManager As DvtkHighLevelInterface.Common.Threads.ThreadManager = New DvtkHighLevelInterface.Common.Threads.ThreadManager
+
+        Dim theMainDicomThread As MainDicomThread = New MainDicomThread
+        theMainDicomThread.Initialize(theDvtThreadManager)
+
+
+        theMainDicomThread.Options.LoadFromFile(ScriptContext._SessionFullFileName)
+        theMainDicomThread.Options.Identifier = "MainDicomThread"
+
+        Dim theHliForm As HliForm = New HliForm
+        theHliForm.AutoExit = False
+        theHliForm.Attach(theMainDicomThread)
+
+        theMainDicomThread.Start()
+
+        theHliForm.WaitUntilClosed()
+
+        Dvtk.Setup.Terminate()
+
+    End Sub
+</Example>
+
+
+</Examples>

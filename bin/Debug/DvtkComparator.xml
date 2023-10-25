@@ -1,0 +1,1010 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DvtkComparator</name>
+    </assembly>
+    <members>
+        <member name="T:Dvtk.Comparator.BaseComparator">
+            <summary>
+            Summary description for BaseComparator.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Comparator.BaseComparator.Compare(DvtkData.Dimse.TagValueCollection,Dvtk.Results.ResultsReporter,Dvtk.Comparator.BaseComparator)">
+            <summary>
+            Compare the two messages.
+            </summary>
+            <param name="tagValueFilterCollection">Tag Value Filter.</param>
+            <param name="resultsReporter">Results reporter.</param>
+            <param name="thatBaseComparator">Reference comparator.</param>
+            <returns>bool - true = messages compared, false messages not compared</returns>
+        </member>
+        <member name="T:Dvtk.Comparator.BaseComparatorCollection">
+            <summary>
+            Summary description for BaseComparatorCollection.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Comparator.BaseComparatorCollection.#ctor">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="M:Dvtk.Comparator.BaseComparatorCollection.AddComparisonTagValueFilter(DvtkData.Dimse.DicomTagValue)">
+            <summary>
+            Add a Tag Value filter for the comparator.
+            Only compare messages which contain the same values for this filter.
+            </summary>
+            <param name="tagValueFilter">Tag Value Filter.</param>
+        </member>
+        <member name="P:Dvtk.Comparator.BaseComparatorCollection.Item(System.Int32)">
+            <summary>
+            Gets or sets an <see cref="T:Dvtk.Comparator.BaseComparator"/> from the collection.
+            </summary>
+            <param name="index">The zero-based index of the collection member to get or set.</param>
+            <value>The <see cref="T:Dvtk.Comparator.BaseComparatorCollection"/> at the specified index.</value>
+        </member>
+        <member name="M:Dvtk.Comparator.BaseComparatorCollection.Add(Dvtk.Comparator.BaseComparator)">
+            <summary>
+            Adds an object to the end of the <see cref="T:Dvtk.Comparator.BaseComparatorCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.BaseComparator"/> to be added to the end of the <see cref="T:Dvtk.Comparator.BaseComparatorCollection"/>.</param>
+            <returns>The <see cref="T:Dvtk.Comparator.BaseComparatorCollection"/> index at which the value has been added.</returns>
+        </member>
+        <member name="M:Dvtk.Comparator.BaseComparatorCollection.IndexOf(Dvtk.Comparator.BaseComparator)">
+            <summary>
+            Searches for the specified <see cref="T:Dvtk.Comparator.BaseComparator"/> and 
+            returns the zero-based index of the first occurrence within the entire <see cref="T:Dvtk.Comparator.BaseComparatorCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.BaseComparator"/> to locate in the <see cref="T:Dvtk.Comparator.BaseComparatorCollection"/>.</param>
+            <returns>
+            The zero-based index of the first occurrence of value within the entire <see cref="T:Dvtk.Comparator.BaseComparatorCollection"/>, 
+            if found; otherwise, -1.
+            </returns>
+        </member>
+        <member name="M:Dvtk.Comparator.BaseComparatorCollection.Insert(System.Int32,Dvtk.Comparator.BaseComparator)">
+            <summary>
+            Inserts an <see cref="T:Dvtk.Comparator.BaseComparator"/> element into the <see cref="T:Dvtk.Comparator.BaseComparatorCollection"/> at the specified index.
+            </summary>
+            <param name="index">The zero-based index at which value should be inserted.</param>
+            <param name="value">The <see cref="T:Dvtk.Comparator.BaseComparatorCollection"/> to insert.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.BaseComparatorCollection.Remove(Dvtk.Comparator.BaseComparator)">
+            <summary>
+            Removes the first occurrence of a specific <see cref="T:Dvtk.Comparator.BaseComparator"/> from the <see cref="T:Dvtk.Comparator.BaseComparatorCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.BaseComparator"/> to remove from the <see cref="T:Dvtk.Comparator.BaseComparatorCollection"/>.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.BaseComparatorCollection.Contains(Dvtk.Comparator.BaseComparator)">
+            <summary>
+            Determines whether the <see cref="T:Dvtk.Comparator.BaseComparatorCollection"/> contains a specific element.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.BaseComparator"/> to locate in the <see cref="T:Dvtk.Comparator.BaseComparatorCollection"/>.</param>
+            <returns>
+            <c>true</c> if the <see cref="T:Dvtk.Comparator.BaseComparatorCollection"/> contains the specified value; 
+            otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Dvtk.Comparator.BaseComparatorCollection.OnInsert(System.Int32,System.Object)">
+            <summary>
+            Performs additional custom processes before inserting a new element into the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which to insert value.</param>
+            <param name="value">The new value of the element at index.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.BaseComparatorCollection.OnRemove(System.Int32,System.Object)">
+            <summary>
+            Performs additional custom processes when removing an element from the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which value can be found.</param>
+            <param name="value">The value of the element to remove from index.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.BaseComparatorCollection.OnSet(System.Int32,System.Object,System.Object)">
+            <summary>
+            Performs additional custom processes before setting a value in the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which oldValue can be found.</param>
+            <param name="oldValue">The value to replace with newValue.</param>
+            <param name="newValue">The new value of the element at index.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.BaseComparatorCollection.OnValidate(System.Object)">
+            <summary>
+            Performs additional custom processes when validating a value.
+            </summary>
+            <param name="value">The object to validate.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.BaseComparatorCollection.CopyTo(Dvtk.Comparator.BaseComparator[],System.Int32)">
+            <summary>
+            Copies the elements of the <see cref="T:System.Collections.ICollection"/> to a strong-typed <c>BaseComparator[]</c>, 
+            starting at a particular <c>BaseComparator[]</c> index.
+            </summary>
+            <param name="array">
+            The one-dimensional <c>BaseComparator[]</c> that is the destination of the elements 
+            copied from <see cref="T:System.Collections.ICollection"/>.
+            The <c>BaseComparator[]</c> must have zero-based indexing. 
+            </param>
+            <param name="index">
+            The zero-based index in array at which copying begins.
+            </param>
+            <remarks>
+            Provides the strongly typed member for <see cref="T:System.Collections.ICollection"/>.
+            </remarks>
+        </member>
+        <member name="M:Dvtk.Comparator.BaseComparatorCollection.Compare(Dvtk.Results.ResultsReporter)">
+            <summary>
+            Compare all comparators against eachother.
+            </summary>
+            <param name="resultsReporter">Results reporter.</param>
+        </member>
+        <member name="T:Dvtk.Comparator.Bases.BaseLookupConvertor">
+            <summary>
+            Summary description for BaseLookupConvertor.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Comparator.Bases.BaseValueConvertor">
+            <summary>
+            Summary description for BaseValueConvertor.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Comparator.Bases.LookupEntry">
+            <summary>
+            Summary description for LookupEntry.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Comparator.Bases.LookupEntryCollection">
+            <summary>
+            Summary description for LookupEntryCollection.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Comparator.Bases.LookupEntryCollection.Item(System.Int32)">
+            <summary>
+            Gets or sets an <see cref="T:Dvtk.Comparator.Bases.LookupEntry"/> from the collection.
+            </summary>
+            <param name="index">The zero-based index of the collection member to get or set.</param>
+            <value>The <see cref="T:Dvtk.Comparator.Bases.LookupEntryCollection"/> at the specified index.</value>
+        </member>
+        <member name="M:Dvtk.Comparator.Bases.LookupEntryCollection.Add(Dvtk.Comparator.Bases.LookupEntry)">
+            <summary>
+            Adds an object to the end of the <see cref="T:Dvtk.Comparator.Bases.LookupEntryCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.Bases.LookupEntry"/> to be added to the end of the <see cref="T:Dvtk.Comparator.Bases.LookupEntryCollection"/>.</param>
+            <returns>The <see cref="T:Dvtk.Comparator.Bases.LookupEntryCollection"/> index at which the value has been added.</returns>
+        </member>
+        <member name="M:Dvtk.Comparator.Bases.LookupEntryCollection.IndexOf(Dvtk.Comparator.Bases.LookupEntry)">
+            <summary>
+            Searches for the specified <see cref="T:Dvtk.Comparator.Bases.LookupEntry"/> and 
+            returns the zero-based index of the first occurrence within the entire <see cref="T:Dvtk.Comparator.Bases.LookupEntryCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.Bases.LookupEntry"/> to locate in the <see cref="T:Dvtk.Comparator.Bases.LookupEntryCollection"/>.</param>
+            <returns>
+            The zero-based index of the first occurrence of value within the entire <see cref="T:Dvtk.Comparator.Bases.LookupEntryCollection"/>, 
+            if found; otherwise, -1.
+            </returns>
+        </member>
+        <member name="M:Dvtk.Comparator.Bases.LookupEntryCollection.Insert(System.Int32,Dvtk.Comparator.Bases.LookupEntry)">
+            <summary>
+            Inserts an <see cref="T:Dvtk.Comparator.Bases.LookupEntry"/> element into the <see cref="T:Dvtk.Comparator.Bases.LookupEntryCollection"/> at the specified index.
+            </summary>
+            <param name="index">The zero-based index at which value should be inserted.</param>
+            <param name="value">The <see cref="T:Dvtk.Comparator.Bases.LookupEntryCollection"/> to insert.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.Bases.LookupEntryCollection.Remove(Dvtk.Comparator.Bases.LookupEntry)">
+            <summary>
+            Removes the first occurrence of a specific <see cref="T:Dvtk.Comparator.Bases.LookupEntry"/> from the <see cref="T:Dvtk.Comparator.Bases.LookupEntryCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.Bases.LookupEntry"/> to remove from the <see cref="T:Dvtk.Comparator.Bases.LookupEntryCollection"/>.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.Bases.LookupEntryCollection.Contains(Dvtk.Comparator.Bases.LookupEntry)">
+            <summary>
+            Determines whether the <see cref="T:Dvtk.Comparator.Bases.LookupEntryCollection"/> contains a specific element.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.Bases.LookupEntry"/> to locate in the <see cref="T:Dvtk.Comparator.Bases.LookupEntryCollection"/>.</param>
+            <returns>
+            <c>true</c> if the <see cref="T:Dvtk.Comparator.Bases.LookupEntryCollection"/> contains the specified value; 
+            otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Dvtk.Comparator.Bases.LookupEntryCollection.OnInsert(System.Int32,System.Object)">
+            <summary>
+            Performs additional custom processes before inserting a new element into the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which to insert value.</param>
+            <param name="value">The new value of the element at index.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.Bases.LookupEntryCollection.OnRemove(System.Int32,System.Object)">
+            <summary>
+            Performs additional custom processes when removing an element from the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which value can be found.</param>
+            <param name="value">The value of the element to remove from index.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.Bases.LookupEntryCollection.OnSet(System.Int32,System.Object,System.Object)">
+            <summary>
+            Performs additional custom processes before setting a value in the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which oldValue can be found.</param>
+            <param name="oldValue">The value to replace with newValue.</param>
+            <param name="newValue">The new value of the element at index.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.Bases.LookupEntryCollection.OnValidate(System.Object)">
+            <summary>
+            Performs additional custom processes when validating a value.
+            </summary>
+            <param name="value">The object to validate.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.Bases.LookupEntryCollection.CopyTo(Dvtk.Comparator.Bases.LookupEntry[],System.Int32)">
+            <summary>
+            Copies the elements of the <see cref="T:System.Collections.ICollection"/> to a strong-typed <c>LookupEntry[]</c>, 
+            starting at a particular <c>LookupEntry[]</c> index.
+            </summary>
+            <param name="array">
+            The one-dimensional <c>LookupEntry[]</c> that is the destination of the elements 
+            copied from <see cref="T:System.Collections.ICollection"/>.
+            The <c>LookupEntry[]</c> must have zero-based indexing. 
+            </param>
+            <param name="index">
+            The zero-based index in array at which copying begins.
+            </param>
+            <remarks>
+            Provides the strongly typed member for <see cref="T:System.Collections.ICollection"/>.
+            </remarks>
+        </member>
+        <member name="T:Dvtk.Comparator.Convertors.DateConvertor">
+            <summary>
+            Summary description for DateConvertor.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Comparator.Convertors.Hl7MessageToDicomMessageConvertor">
+            <summary>
+            Summary description for Hl7MessageToDicomMessageConvertor.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Comparator.Convertors.IdConvertor">
+            <summary>
+            Summary description for IdConvertor.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Comparator.Convertors.NameConvertor">
+            <summary>
+            Summary description for NameConvertor.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Comparator.Convertors.PriorityConvertor">
+            <summary>
+            Summary description for PriorityConvertor.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Comparator.Convertors.StringConvertor">
+            <summary>
+            Summary description for StringConvertor.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Comparator.Convertors.TimeConvertor">
+            <summary>
+            Summary description for TimeConvertor.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Comparator.Convertors.UidConvertor">
+            <summary>
+            Summary description for UidConvertor.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Comparator.DicomHl7TagMap">
+            <summary>
+            Summary description for DicomHl7TagMap.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomHl7TagMap.#ctor(Dvtk.Comparator.DicomTagPath,Dvtk.Comparator.Hl7TagPath)">
+            <summary>
+            Class constructor
+            </summary>
+            <param name="dicomTagPath">DICOM Tag Path.</param>
+            <param name="hl7TagPath">HL7 Tag Path.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomHl7TagMap.#ctor(Dvtk.Comparator.DicomTagPath,Dvtk.Comparator.Hl7TagPath,Dvtk.Comparator.Bases.BaseValueConvertor)">
+            <summary>
+            Class constructor
+            </summary>
+            <param name="dicomTagPath">DICOM Tag Path.</param>
+            <param name="hl7TagPath">HL7 Tag Path.</param>
+            <param name="valueConvertor"></param>
+        </member>
+        <member name="P:Dvtk.Comparator.DicomHl7TagMap.DicomTagPath">
+            <summary>
+            Property - DicomTagPath.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Comparator.DicomHl7TagMap.DicomTag">
+            <summary>
+            Property - DICOM Tag.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Comparator.DicomHl7TagMap.Hl7Tag">
+            <summary>
+            Property - HL7 Tag.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Comparator.DicomHl7TagMap.Hl7ComponentIndex">
+            <summary>
+            Property - HL7 Component Index.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Comparator.DicomHl7TagMap.Hl7Name">
+            <summary>
+            Property - HL7 Name.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Comparator.DicomHl7TagMapCollection">
+            <summary>
+            Summary description for DicomHl7TagMapCollection.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Comparator.DicomHl7TagMapCollection.Item(System.Int32)">
+            <summary>
+            Gets or sets an <see cref="T:Dvtk.Comparator.DicomHl7TagMap"/> from the collection.
+            </summary>
+            <param name="index">The zero-based index of the collection member to get or set.</param>
+            <value>The <see cref="T:Dvtk.Comparator.DicomHl7TagMapCollection"/> at the specified index.</value>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomHl7TagMapCollection.Add(Dvtk.Comparator.DicomHl7TagMap)">
+            <summary>
+            Adds an object to the end of the <see cref="T:Dvtk.Comparator.DicomHl7TagMapCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.DicomHl7TagMap"/> to be added to the end of the <see cref="T:Dvtk.Comparator.DicomHl7TagMapCollection"/>.</param>
+            <returns>The <see cref="T:Dvtk.Comparator.DicomHl7TagMapCollection"/> index at which the value has been added.</returns>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomHl7TagMapCollection.IndexOf(Dvtk.Comparator.DicomHl7TagMap)">
+            <summary>
+            Searches for the specified <see cref="T:Dvtk.Comparator.DicomHl7TagMap"/> and 
+            returns the zero-based index of the first occurrence within the entire <see cref="T:Dvtk.Comparator.DicomHl7TagMapCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.DicomHl7TagMap"/> to locate in the <see cref="T:Dvtk.Comparator.DicomHl7TagMapCollection"/>.</param>
+            <returns>
+            The zero-based index of the first occurrence of value within the entire <see cref="T:Dvtk.Comparator.DicomHl7TagMapCollection"/>, 
+            if found; otherwise, -1.
+            </returns>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomHl7TagMapCollection.Insert(System.Int32,Dvtk.Comparator.DicomHl7TagMap)">
+            <summary>
+            Inserts an <see cref="T:Dvtk.Comparator.DicomHl7TagMap"/> element into the <see cref="T:Dvtk.Comparator.DicomHl7TagMap"/> at the specified index.
+            </summary>
+            <param name="index">The zero-based index at which value should be inserted.</param>
+            <param name="value">The <see cref="T:Dvtk.Comparator.DicomHl7TagMapCollection"/> to insert.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomHl7TagMapCollection.Remove(Dvtk.Comparator.DicomHl7TagMap)">
+            <summary>
+            Removes the first occurrence of a specific <see cref="T:Dvtk.Comparator.DicomHl7TagMap"/> from the <see cref="T:Dvtk.Comparator.DicomHl7TagMapCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.DicomHl7TagMap"/> to remove from the <see cref="T:Dvtk.Comparator.DicomHl7TagMapCollection"/>.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomHl7TagMapCollection.Contains(Dvtk.Comparator.DicomHl7TagMap)">
+            <summary>
+            Determines whether the <see cref="T:Dvtk.Comparator.DicomHl7TagMapCollection"/> contains a specific element.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.DicomHl7TagMap"/> to locate in the <see cref="T:Dvtk.Comparator.DicomHl7TagMapCollection"/>.</param>
+            <returns>
+            <c>true</c> if the <see cref="T:Dvtk.Comparator.DicomHl7TagMapCollection"/> contains the specified value; 
+            otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomHl7TagMapCollection.OnInsert(System.Int32,System.Object)">
+            <summary>
+            Performs additional custom processes before inserting a new element into the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which to insert value.</param>
+            <param name="value">The new value of the element at index.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomHl7TagMapCollection.OnRemove(System.Int32,System.Object)">
+            <summary>
+            Performs additional custom processes when removing an element from the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which value can be found.</param>
+            <param name="value">The value of the element to remove from index.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomHl7TagMapCollection.OnSet(System.Int32,System.Object,System.Object)">
+            <summary>
+            Performs additional custom processes before setting a value in the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which oldValue can be found.</param>
+            <param name="oldValue">The value to replace with newValue.</param>
+            <param name="newValue">The new value of the element at index.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomHl7TagMapCollection.OnValidate(System.Object)">
+            <summary>
+            Performs additional custom processes when validating a value.
+            </summary>
+            <param name="value">The object to validate.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomHl7TagMapCollection.CopyTo(Dvtk.Comparator.DicomHl7TagMap[],System.Int32)">
+            <summary>
+            Copies the elements of the <see cref="T:System.Collections.ICollection"/> to a strong-typed <c>DicomHl7TagMap[]</c>, 
+            starting at a particular <c>DicomHl7TagMap[]</c> index.
+            </summary>
+            <param name="array">
+            The one-dimensional <c>DicomHl7TagMap[]</c> that is the destination of the elements 
+            copied from <see cref="T:System.Collections.ICollection"/>.
+            The <c>DicomHl7TagMap[]</c> must have zero-based indexing. 
+            </param>
+            <param name="index">
+            The zero-based index in array at which copying begins.
+            </param>
+            <remarks>
+            Provides the strongly typed member for <see cref="T:System.Collections.ICollection"/>.
+            </remarks>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomHl7TagMapCollection.Find(DvtkData.Dimse.Tag)">
+            <summary>
+            Try to find an HL7 tag in the collection using the DICOM Tag as index.
+            </summary>
+            <param name="dicomTag">DICOM Tag used as index.</param>
+            <returns>Hl7Tag - null if no match found</returns>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomHl7TagMapCollection.Find(Dvtk.Hl7.Hl7Tag)">
+            <summary>
+            Try to find a DICOM tag in the collection using the HL7 Tag as index.
+            </summary>
+            <param name="hl7Tag">HL7 Tag used as index.</param>
+            <returns>DicomTag - null if no match found</returns>
+        </member>
+        <member name="T:Dvtk.Comparator.DicomHl7TagMapTemplate">
+            <summary>
+            Summary description for DicomHl7TagMapTemplate.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomHl7TagMapTemplate.#cctor">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomHl7TagMapTemplate.FindTagMap(Dvtk.Hl7.Hl7Tag)">
+            <summary>
+            Try to find a DicomHl7TagMap in the collection using the HL7 Tag as index.
+            </summary>
+            <param name="hl7Tag">HL7 Tag used as index.</param>
+            <returns>DicomHl7TagMap - null if no match found</returns>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomHl7TagMapTemplate.FindTagMap(Dvtk.Hl7.Hl7Tag,System.Int32)">
+            <summary>
+            Try to find a DicomHl7TagMap in the collection using the HL7 Tag as index.
+            </summary>
+            <param name="hl7Tag">HL7 Tag used as index.</param>
+            <param name="componentIndex">Component index.</param>
+            <returns>DicomHl7TagMap - null if no match found</returns>
+        </member>
+        <member name="T:Dvtk.Comparator.DicomTagPath">
+            <summary>
+            Summary description for DicomTagPath.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Comparator.DicomComparator">
+            <summary>
+            Summary description for DicomComparator.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomComparator.#ctor(System.String)">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Comparator.DicomComparator.Name">
+            <summary>
+            Property - Name
+            </summary>
+        </member>
+        <member name="P:Dvtk.Comparator.DicomComparator.Template">
+            <summary>
+            Property - Template
+            </summary>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomComparator.Initialize(DvtkData.Dimse.DicomMessage)">
+            <summary>
+            Initialize the DicomComparator
+            </summary>
+            <param name="dicomMessage"></param>
+            <returns>bool - true = template initialized, false template not initialized</returns>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomComparator.Compare(DvtkData.Dimse.TagValueCollection,Dvtk.Results.ResultsReporter,Dvtk.Comparator.BaseComparator)">
+            <summary>
+            Compare the two messages.
+            </summary>
+            <param name="tagValueFilterCollection">Tag Value Filter.</param>
+            <param name="resultsReporter">Results reporter.</param>
+            <param name="thatBaseComparator">Reference comparator.</param>
+            <returns>bool - true = messages compared, false messages not compared</returns>
+        </member>
+        <member name="T:Dvtk.Comparator.DicomComparisonTag">
+            <summary>
+            Summary description for DicomComparisonTag.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomComparisonTag.#ctor(DvtkData.Dimse.Tag,DvtkData.Dimse.VR,Dvtk.CommonDataFormat.BaseCommonDataFormat)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="tag">Comparison Tag</param>
+            <param name="vr">Tag VR.</param>
+            <param name="commonDataFormat">Data Format for Tag</param>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomComparisonTag.#ctor(DvtkData.Dimse.Tag,DvtkData.Dimse.Tag,DvtkData.Dimse.VR,Dvtk.CommonDataFormat.BaseCommonDataFormat)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="parentSequenceTag">Parent Sequence Tag</param>
+            <param name="tag">Comparison Tag</param>
+            <param name="vr">Tag VR</param>
+            <param name="commonDataFormat">Data Format for Tag</param>
+        </member>
+        <member name="P:Dvtk.Comparator.DicomComparisonTag.ParentSequenceTag">
+            <summary>
+            ParentSequenceTag property.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Comparator.DicomComparisonTag.Tag">
+            <summary>
+            Tag property.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Comparator.DicomComparisonTag.DataFormat">
+            <summary>
+            DataFormat property.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Comparator.DicomComparisonTagCollection">
+            <summary>
+            Summary description for DicomComparisonTagCollection.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Comparator.DicomComparisonTagCollection.Item(System.Int32)">
+            <summary>
+            Gets or sets an <see cref="T:Dvtk.Comparator.DicomComparisonTag"/> from the collection.
+            </summary>
+            <param name="index">The zero-based index of the collection member to get or set.</param>
+            <value>The <see cref="T:Dvtk.Comparator.DicomComparisonTagCollection"/> at the specified index.</value>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomComparisonTagCollection.Add(Dvtk.Comparator.DicomComparisonTag)">
+            <summary>
+            Adds an object to the end of the <see cref="T:Dvtk.Comparator.DicomComparisonTagCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.DicomComparisonTag"/> to be added to the end of the <see cref="T:Dvtk.Comparator.DicomComparisonTagCollection"/>.</param>
+            <returns>The <see cref="T:Dvtk.Comparator.DicomComparisonTagCollection"/> index at which the value has been added.</returns>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomComparisonTagCollection.IndexOf(Dvtk.Comparator.DicomComparisonTag)">
+            <summary>
+            Searches for the specified <see cref="T:Dvtk.Comparator.DicomComparisonTag"/> and 
+            returns the zero-based index of the first occurrence within the entire <see cref="T:Dvtk.Comparator.DicomComparisonTagCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.DicomComparisonTag"/> to locate in the <see cref="T:Dvtk.Comparator.DicomComparisonTagCollection"/>.</param>
+            <returns>
+            The zero-based index of the first occurrence of value within the entire <see cref="T:Dvtk.Comparator.DicomComparisonTagCollection"/>, 
+            if found; otherwise, -1.
+            </returns>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomComparisonTagCollection.Insert(System.Int32,Dvtk.Comparator.DicomComparisonTag)">
+            <summary>
+            Inserts an <see cref="T:Dvtk.Comparator.DicomComparisonTag"/> element into the <see cref="T:Dvtk.Comparator.DicomComparisonTag"/> at the specified index.
+            </summary>
+            <param name="index">The zero-based index at which value should be inserted.</param>
+            <param name="value">The <see cref="T:Dvtk.Comparator.DicomComparisonTagCollection"/> to insert.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomComparisonTagCollection.Remove(Dvtk.Comparator.DicomComparisonTag)">
+            <summary>
+            Removes the first occurrence of a specific <see cref="T:Dvtk.Comparator.DicomComparisonTag"/> from the <see cref="T:Dvtk.Comparator.DicomComparisonTagCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.DicomComparisonTag"/> to remove from the <see cref="T:Dvtk.Comparator.DicomComparisonTagCollection"/>.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomComparisonTagCollection.Contains(Dvtk.Comparator.DicomComparisonTag)">
+            <summary>
+            Determines whether the <see cref="T:Dvtk.Comparator.DicomComparisonTagCollection"/> contains a specific element.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.DicomComparisonTag"/> to locate in the <see cref="T:Dvtk.Comparator.DicomComparisonTagCollection"/>.</param>
+            <returns>
+            <c>true</c> if the <see cref="T:Dvtk.Comparator.DicomComparisonTagCollection"/> contains the specified value; 
+            otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomComparisonTagCollection.OnInsert(System.Int32,System.Object)">
+            <summary>
+            Performs additional custom processes before inserting a new element into the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which to insert value.</param>
+            <param name="value">The new value of the element at index.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomComparisonTagCollection.OnRemove(System.Int32,System.Object)">
+            <summary>
+            Performs additional custom processes when removing an element from the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which value can be found.</param>
+            <param name="value">The value of the element to remove from index.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomComparisonTagCollection.OnSet(System.Int32,System.Object,System.Object)">
+            <summary>
+            Performs additional custom processes before setting a value in the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which oldValue can be found.</param>
+            <param name="oldValue">The value to replace with newValue.</param>
+            <param name="newValue">The new value of the element at index.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomComparisonTagCollection.OnValidate(System.Object)">
+            <summary>
+            Performs additional custom processes when validating a value.
+            </summary>
+            <param name="value">The object to validate.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomComparisonTagCollection.CopyTo(Dvtk.Comparator.DicomComparisonTag[],System.Int32)">
+            <summary>
+            Copies the elements of the <see cref="T:System.Collections.ICollection"/> to a strong-typed <c>DicomComparisonTag[]</c>, 
+            starting at a particular <c>DicomComparisonTag[]</c> index.
+            </summary>
+            <param name="array">
+            The one-dimensional <c>DicomComparisonTag[]</c> that is the destination of the elements 
+            copied from <see cref="T:System.Collections.ICollection"/>.
+            The <c>DicomComparisonTag[]</c> must have zero-based indexing. 
+            </param>
+            <param name="index">
+            The zero-based index in array at which copying begins.
+            </param>
+            <remarks>
+            Provides the strongly typed member for <see cref="T:System.Collections.ICollection"/>.
+            </remarks>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomComparisonTagCollection.Find(DvtkData.Dimse.Tag)">
+            <summary>
+            Try to find a comparison tag in the collection with the same tag as the given one.
+            </summary>
+            <param name="tag">Tag to try to find in the collection.</param>
+            <returns>DicomComparisonTag - null if no match found</returns>
+        </member>
+        <member name="T:Dvtk.Comparator.DicomComparisonTemplate">
+            <summary>
+            Summary description for DicomComparisonTemplate.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomComparisonTemplate.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomComparisonTemplate.Initialize(DvtkData.Dimse.DimseCommand,System.String)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="command">DIMSE Command ID</param>
+            <param name="sopClassUid">SOP Class UID</param>
+            <returns>bool - true = template initialized, false template not initialized</returns>
+        </member>
+        <member name="P:Dvtk.Comparator.DicomComparisonTemplate.Command">
+            <summary>
+            Command property.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Comparator.DicomComparisonTemplate.SopClassUid">
+            <summary>
+            SopClassUid property.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Comparator.DicomComparisonTemplate.ComparisonTags">
+            <summary>
+            ComparisonTags property.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Comparator.DicomTagVr">
+            <summary>
+            Summary description for DicomTagVr.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Comparator.DicomTagVrCollection">
+            <summary>
+            Summary description for DicomTagVrCollection.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Comparator.DicomTagVrCollection.Item(System.Int32)">
+            <summary>
+            Gets or sets an <see cref="T:Dvtk.Comparator.DicomTagVr"/> from the collection.
+            </summary>
+            <param name="index">The zero-based index of the collection member to get or set.</param>
+            <value>The <see cref="T:Dvtk.Comparator.DicomTagVrCollection"/> at the specified index.</value>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomTagVrCollection.Add(Dvtk.Comparator.DicomTagVr)">
+            <summary>
+            Adds an object to the end of the <see cref="T:Dvtk.Comparator.DicomTagVrCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.DicomTagVr"/> to be added to the end of the <see cref="T:Dvtk.Comparator.DicomTagVrCollection"/>.</param>
+            <returns>The <see cref="T:Dvtk.Comparator.DicomTagVrCollection"/> index at which the value has been added.</returns>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomTagVrCollection.IndexOf(Dvtk.Comparator.DicomTagVr)">
+            <summary>
+            Searches for the specified <see cref="T:Dvtk.Comparator.DicomTagVr"/> and 
+            returns the zero-based index of the first occurrence within the entire <see cref="T:Dvtk.Comparator.DicomTagVrCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.DicomTagVr"/> to locate in the <see cref="T:Dvtk.Comparator.DicomTagVrCollection"/>.</param>
+            <returns>
+            The zero-based index of the first occurrence of value within the entire <see cref="T:Dvtk.Comparator.DicomTagVrCollection"/>, 
+            if found; otherwise, -1.
+            </returns>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomTagVrCollection.Insert(System.Int32,Dvtk.Comparator.DicomTagVr)">
+            <summary>
+            Inserts an <see cref="T:Dvtk.Comparator.DicomTagVr"/> element into the <see cref="T:Dvtk.Comparator.DicomTagVrCollection"/> at the specified index.
+            </summary>
+            <param name="index">The zero-based index at which value should be inserted.</param>
+            <param name="value">The <see cref="T:Dvtk.Comparator.DicomTagVrCollection"/> to insert.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomTagVrCollection.Remove(Dvtk.Comparator.DicomTagVr)">
+            <summary>
+            Removes the first occurrence of a specific <see cref="T:Dvtk.Comparator.DicomTagVr"/> from the <see cref="T:Dvtk.Comparator.DicomTagVrCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.DicomTagVr"/> to remove from the <see cref="T:Dvtk.Comparator.DicomTagVrCollection"/>.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomTagVrCollection.Contains(Dvtk.Comparator.DicomTagVr)">
+            <summary>
+            Determines whether the <see cref="T:Dvtk.Comparator.DicomTagVrCollection"/> contains a specific element.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.DicomTagVr"/> to locate in the <see cref="T:Dvtk.Comparator.DicomTagVrCollection"/>.</param>
+            <returns>
+            <c>true</c> if the <see cref="T:Dvtk.Comparator.DicomTagVrCollection"/> contains the specified value; 
+            otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomTagVrCollection.OnInsert(System.Int32,System.Object)">
+            <summary>
+            Performs additional custom processes before inserting a new element into the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which to insert value.</param>
+            <param name="value">The new value of the element at index.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomTagVrCollection.OnRemove(System.Int32,System.Object)">
+            <summary>
+            Performs additional custom processes when removing an element from the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which value can be found.</param>
+            <param name="value">The value of the element to remove from index.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomTagVrCollection.OnSet(System.Int32,System.Object,System.Object)">
+            <summary>
+            Performs additional custom processes before setting a value in the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which oldValue can be found.</param>
+            <param name="oldValue">The value to replace with newValue.</param>
+            <param name="newValue">The new value of the element at index.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomTagVrCollection.OnValidate(System.Object)">
+            <summary>
+            Performs additional custom processes when validating a value.
+            </summary>
+            <param name="value">The object to validate.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomTagVrCollection.CopyTo(Dvtk.Comparator.DicomTagVr[],System.Int32)">
+            <summary>
+            Copies the elements of the <see cref="T:System.Collections.ICollection"/> to a strong-typed <c>DicomTagVr[]</c>, 
+            starting at a particular <c>DicomTagVr[]</c> index.
+            </summary>
+            <param name="array">
+            The one-dimensional <c>DicomTagVr[]</c> that is the destination of the elements 
+            copied from <see cref="T:System.Collections.ICollection"/>.
+            The <c>DicomTagVr[]</c> must have zero-based indexing. 
+            </param>
+            <param name="index">
+            The zero-based index in array at which copying begins.
+            </param>
+            <remarks>
+            Provides the strongly typed member for <see cref="T:System.Collections.ICollection"/>.
+            </remarks>
+        </member>
+        <member name="M:Dvtk.Comparator.DicomTagVrCollection.GetVR(DvtkData.Dimse.Tag)">
+            <summary>
+            Get the VR for the given Tag.
+            </summary>
+            <param name="tag">Dicom Tag.</param>
+            <returns>Dicom VR.</returns>
+        </member>
+        <member name="T:Dvtk.Comparator.DicomTagVrLookup">
+            <summary>
+            Summary description for DicomTagVrLookup.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Comparator.Hl7TagPath">
+            <summary>
+            Summary description for Hl7TagPath.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Comparator.Hl7TagPath.Name">
+            <summary>
+            Property - Name.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Comparator.Hl7Comparator">
+            <summary>
+            Summary description for Hl7Comparator.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Comparator.Hl7Comparator.#ctor(System.String)">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Comparator.Hl7Comparator.Name">
+            <summary>
+            Property - Name
+            </summary>
+        </member>
+        <member name="P:Dvtk.Comparator.Hl7Comparator.Template">
+            <summary>
+            Property - Template
+            </summary>
+        </member>
+        <member name="M:Dvtk.Comparator.Hl7Comparator.Initialize(Dvtk.Hl7.Messages.Hl7Message)">
+            <summary>
+            Initialize the Hl7Comparator
+            </summary>
+            <param name="hl7Message"></param>
+            <returns>bool - true = template initialized, false template not initialized</returns>
+        </member>
+        <member name="M:Dvtk.Comparator.Hl7Comparator.Compare(DvtkData.Dimse.TagValueCollection,Dvtk.Results.ResultsReporter,Dvtk.Comparator.BaseComparator)">
+            <summary>
+            Compare the two messages.
+            </summary>
+            <param name="tagValueFilterCollection">Tag Value Filter.</param>
+            <param name="resultsReporter">Results reporter.</param>
+            <param name="thatBaseComparator">Reference comparator.</param>
+            <returns>bool - true = messages compared, false messages not compared</returns>
+        </member>
+        <member name="T:Dvtk.Comparator.Hl7ComparisonTag">
+            <summary>
+            Summary description for Hl7ComparisonTag.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Comparator.Hl7ComparisonTag.#ctor(Dvtk.Hl7.Hl7Tag,Dvtk.CommonDataFormat.BaseCommonDataFormat)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="tag">Comparison Tag</param>
+            <param name="commonDataFormat">Data Format for Tag</param>
+        </member>
+        <member name="P:Dvtk.Comparator.Hl7ComparisonTag.Tag">
+            <summary>
+            Tag property.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Comparator.Hl7ComparisonTag.DataFormat">
+            <summary>
+            DataFormat property.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Comparator.Hl7ComparisonTagCollection">
+            <summary>
+            Summary description for Hl7ComparisonTagCollection.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Comparator.Hl7ComparisonTagCollection.Item(System.Int32)">
+            <summary>
+            Gets or sets an <see cref="T:Dvtk.Comparator.Hl7ComparisonTag"/> from the collection.
+            </summary>
+            <param name="index">The zero-based index of the collection member to get or set.</param>
+            <value>The <see cref="T:Dvtk.Comparator.Hl7ComparisonTagCollection"/> at the specified index.</value>
+        </member>
+        <member name="M:Dvtk.Comparator.Hl7ComparisonTagCollection.Add(Dvtk.Comparator.Hl7ComparisonTag)">
+            <summary>
+            Adds an object to the end of the <see cref="T:Dvtk.Comparator.Hl7ComparisonTagCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.Hl7ComparisonTag"/> to be added to the end of the <see cref="T:Dvtk.Comparator.Hl7ComparisonTagCollection"/>.</param>
+            <returns>The <see cref="T:Dvtk.Comparator.Hl7ComparisonTagCollection"/> index at which the value has been added.</returns>
+        </member>
+        <member name="M:Dvtk.Comparator.Hl7ComparisonTagCollection.IndexOf(Dvtk.Comparator.Hl7ComparisonTag)">
+            <summary>
+            Searches for the specified <see cref="T:Dvtk.Comparator.Hl7ComparisonTag"/> and 
+            returns the zero-based index of the first occurrence within the entire <see cref="T:Dvtk.Comparator.Hl7ComparisonTagCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.Hl7ComparisonTag"/> to locate in the <see cref="T:Dvtk.Comparator.Hl7ComparisonTagCollection"/>.</param>
+            <returns>
+            The zero-based index of the first occurrence of value within the entire <see cref="T:Dvtk.Comparator.Hl7ComparisonTagCollection"/>, 
+            if found; otherwise, -1.
+            </returns>
+        </member>
+        <member name="M:Dvtk.Comparator.Hl7ComparisonTagCollection.Insert(System.Int32,Dvtk.Comparator.Hl7ComparisonTag)">
+            <summary>
+            Inserts an <see cref="T:Dvtk.Comparator.Hl7ComparisonTag"/> element into the <see cref="T:Dvtk.Comparator.Hl7ComparisonTag"/> at the specified index.
+            </summary>
+            <param name="index">The zero-based index at which value should be inserted.</param>
+            <param name="value">The <see cref="T:Dvtk.Comparator.Hl7ComparisonTagCollection"/> to insert.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.Hl7ComparisonTagCollection.Remove(Dvtk.Comparator.Hl7ComparisonTag)">
+            <summary>
+            Removes the first occurrence of a specific <see cref="T:Dvtk.Comparator.Hl7ComparisonTag"/> from the <see cref="T:Dvtk.Comparator.Hl7ComparisonTagCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.Hl7ComparisonTag"/> to remove from the <see cref="T:Dvtk.Comparator.Hl7ComparisonTagCollection"/>.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.Hl7ComparisonTagCollection.Contains(Dvtk.Comparator.Hl7ComparisonTag)">
+            <summary>
+            Determines whether the <see cref="T:Dvtk.Comparator.Hl7ComparisonTagCollection"/> contains a specific element.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Comparator.Hl7ComparisonTag"/> to locate in the <see cref="T:Dvtk.Comparator.Hl7ComparisonTagCollection"/>.</param>
+            <returns>
+            <c>true</c> if the <see cref="T:Dvtk.Comparator.Hl7ComparisonTagCollection"/> contains the specified value; 
+            otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Dvtk.Comparator.Hl7ComparisonTagCollection.OnInsert(System.Int32,System.Object)">
+            <summary>
+            Performs additional custom processes before inserting a new element into the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which to insert value.</param>
+            <param name="value">The new value of the element at index.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.Hl7ComparisonTagCollection.OnRemove(System.Int32,System.Object)">
+            <summary>
+            Performs additional custom processes when removing an element from the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which value can be found.</param>
+            <param name="value">The value of the element to remove from index.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.Hl7ComparisonTagCollection.OnSet(System.Int32,System.Object,System.Object)">
+            <summary>
+            Performs additional custom processes before setting a value in the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which oldValue can be found.</param>
+            <param name="oldValue">The value to replace with newValue.</param>
+            <param name="newValue">The new value of the element at index.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.Hl7ComparisonTagCollection.OnValidate(System.Object)">
+            <summary>
+            Performs additional custom processes when validating a value.
+            </summary>
+            <param name="value">The object to validate.</param>
+        </member>
+        <member name="M:Dvtk.Comparator.Hl7ComparisonTagCollection.CopyTo(Dvtk.Comparator.Hl7ComparisonTag[],System.Int32)">
+            <summary>
+            Copies the elements of the <see cref="T:System.Collections.ICollection"/> to a strong-typed <c>Hl7ComparisonTag[]</c>, 
+            starting at a particular <c>Hl7ComparisonTag[]</c> index.
+            </summary>
+            <param name="array">
+            The one-dimensional <c>Hl7ComparisonTag[]</c> that is the destination of the elements 
+            copied from <see cref="T:System.Collections.ICollection"/>.
+            The <c>Hl7ComparisonTag[]</c> must have zero-based indexing. 
+            </param>
+            <param name="index">
+            The zero-based index in array at which copying begins.
+            </param>
+            <remarks>
+            Provides the strongly typed member for <see cref="T:System.Collections.ICollection"/>.
+            </remarks>
+        </member>
+        <member name="M:Dvtk.Comparator.Hl7ComparisonTagCollection.Find(Dvtk.Hl7.Hl7Tag)">
+            <summary>
+            Try to find a comparison tag in the collection with the same tag as the given one.
+            </summary>
+            <param name="tag">Tag to try to find in the collection.</param>
+            <returns>Hl7ComparisonTag - null if no match found</returns>
+        </member>
+        <member name="T:Dvtk.Comparator.Hl7ComparisonTemplate">
+            <summary>
+            Summary description for Hl7ComparisonTemplate.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Comparator.Hl7ComparisonTemplate.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Comparator.Hl7ComparisonTemplate.Initialize(System.String,System.String)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="messageType">HL7 Message Type</param>
+            <param name="messageSubType">HL7 Message Subtype</param>
+            <returns>bool - true = template initialized, false template not initialized</returns>
+        </member>
+        <member name="P:Dvtk.Comparator.Hl7ComparisonTemplate.MessageType">
+            <summary>
+            MessageType property.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Comparator.Hl7ComparisonTemplate.MessageSubType">
+            <summary>
+            MessageSubType property.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Comparator.Hl7ComparisonTemplate.ComparisonTags">
+            <summary>
+            ComparisonTags property.
+            </summary>
+        </member>
+    </members>
+</doc>

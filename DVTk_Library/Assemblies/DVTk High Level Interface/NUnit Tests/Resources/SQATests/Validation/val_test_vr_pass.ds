@@ -1,0 +1,141 @@
+## 
+## DVT DICOMScript
+##
+## Name: val_test_vr_pass.ds
+##
+## Test Suite Ref:  3.2.11.3.4.9.2
+##                  3.2.11.3.4.9.2.1
+##                  3.2.11.3.4.9.3
+##                  3.2.11.3.4.9.3.1
+##                  3.2.11.3.4.9.3.2
+##                  3.2.11.3.4.9.3.3
+##                  3.2.11.3.4.9.3.4
+##                  3.2.11.3.4.9.3.5
+##                  3.2.11.3.4.9.3.6
+##                  3.2.11.3.4.9.3.7
+##                  3.2.11.3.4.9.3.8
+##                  3.2.11.3.4.9.3.9
+##                  3.2.11.3.4.9.3.10
+##                  3.2.11.3.4.9.3.11
+##                  3.2.11.3.4.9.3.12
+##                  3.2.11.3.4.9.3.13
+##                  3.2.11.3.4.9.3.14
+##                  3.2.11.3.4.9.3.15
+##                  3.2.11.3.4.9.3.16
+##                  3.2.11.3.4.9.3.17
+
+
+## Test Case Ref:
+##
+## Pre-conditions:
+##
+## Test Scenario:
+##    - Create (various) C-STORE-RQ command objects datasets for the "Validation Test VR SOP Class"
+##      with known errors
+##    - the objects are validated 
+##    - and deleted
+##
+## Expected Result:
+##    0 errors, 0 warnings
+##
+## Post-conditions:
+##    -
+##
+
+
+ECHO "================================================================================"
+
+CREATE C-STORE-RQ VR_STORE_RQ1 "Validation Test VR SOP Class" RQ_VR1
+
+SET C-STORE-RQ VR_STORE_RQ1 
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test VR SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, US, 0);
+(0x00001000, UI, AUTOSET);
+}
+
+SET "Validation Test VR SOP Class" RQ_VR1 
+{
+(0x00080005, CS, "", "ISO 2022 IR 87");
+
+(0x10000001, AE, "  AE Title  ");
+(0x10000002, AE, " Title 1", "title 2 ");
+
+## Boundary condition i.e. Max Length for AE
+(0x10000003, AE, "  AE Title      ");
+
+
+(0x10020001, AS, "012D");
+(0x10020002, AS, "123M", "056Y");
+(0x10020003, AS, "992W");
+
+(0x10060001, CS, "ABC_0123_XYZ");
+(0x10060002, CS, " ABC_0123_XYZ ", "A B 0 _ ");
+
+## Boundary condition i.e. Max Length for CS
+(0x10060003, CS, "ABC_0123_XYZ    ");
+
+(0x10080001, DA, "19850501");
+(0x10080002, DA, "");
+
+(0x100A0001, DS, "123");
+(0x100A0002, DS, "1.87", "1E-50");
+(0x100A0003, DS, "-1.45e+27", "+3e-1", "  45E4  ");
+
+## Boundary condition i.e. Max Length for DS
+(0x100A0004, DS, "1234567890123456");
+
+(0x100C0001, DT, "2000");
+(0x100C0002, DT, "1999", "199903");
+(0x100C0003, DT, "19990312", "1999031223", "199903122359", "19990312235902");
+(0x100C0004, DT, "19990312235902.0012", "19990312235902.0012+1234");
+(0x100C0005, DT, "19990312235902.0012 ");
+
+## Boundary condition i.e. Max Length for DT
+(0x100C0006, DT, "19990312235902.0012+123456");
+
+(0x10120001, IS, "123");
+(0x10120002, IS, "  +2356 ", " -2 ");
+
+## Boundary condition i.e. Max Length for IS
+(0x10120003, IS, "+123456789  ");
+
+(0x10140001, LO, " bla bla ");
+(0x10140002, LO, " bla 12345583658690 fdhsfyusafuhagf ", "   ");
+
+(0x101C0001, PN, "cmp1^cmp2^cmp3^cmp4^cmp5=^1^2^^=^a^b^c^");
+(0x101C0002, PN, "cmp1^^cmp3=^a^b^c^=^x", "==");
+(0x101C0003, PN, "cmp1 = = ");
+(0x101C0004, PN, "component group 1=test esc code:\1Bii in component group 2");
+
+(0x10280001, TM, "12");
+(0x10280002, TM, "1212", "121212");
+(0x10280003, TM, "231402.123456", "231402.12 ");
+
+## Boundary condition i.e. Max Length for TM
+(0x10280004, TM, "123456.789012000");
+
+(0x102A0001, UI, "1");
+(0x102A0002, UI, "1.2", "1.0.1");
+
+## Boundary condition i.e. Max Length for UI
+(0x102A0003, UI, "123456789.123456789.123456789.123456789.123456789.123456789.1234");
+}
+
+VALIDATE C-STORE-RQ VR_STORE_RQ1 "Validation Test VR SOP Class" RQ_VR1
+
+DELETE "Validation Test VR SOP Class" RQ_VR1
+DELETE C-STORE-RQ VR_STORE_RQ1
+
+ECHO "================================================================================"
+
+##
+## Script Result should be:
+## Validation: 2 error(s), 0 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 0 error(s), 0 warning(s)
+##

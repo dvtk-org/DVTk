@@ -1,0 +1,27 @@
+##
+## SCU Storage DICOMScript: assoc.ds
+##
+## Pre-conditions:
+##      - no association
+##
+## Test Scenario:
+##      - send association for Secondary Capture Storage Service Class
+##              - little endian implicit VR
+##      - expect accept association - Result/Reason = 0 - acceptance
+##              - little endian explicit VR
+##
+## Expected Result:
+##      - SCP signals successful association
+##
+## Post-conditions:
+##      - association created
+##
+SEND ASSOCIATE-RQ (
+        PRESENTATION-CONTEXT-ITEMS
+        ("SC Image Storage SOP Class", "Implicit VR Little Endian")
+)
+
+RECEIVE ASSOCIATE-AC (
+        PRESENTATION-CONTEXT-ITEMS
+        ("SC Image Storage SOP Class", 0, "Implicit VR Little Endian" )
+)

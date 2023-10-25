@@ -1,0 +1,180 @@
+##
+##       ADVT Extended Character VR Limit Test
+##
+##       Patient: Secondary Capture Image
+##       Send to an ADVT Store Emulator
+##
+
+## Send Valid Japanese (IR 87)
+SEND C-STORE-RQ "SC Image" (
+ (0x00080005, CS, "","ISO 2022 IR 87")  # Specific Character Set
+ (0x00080016, UI, "1.2.840.10008.5.1.4.1.1.7")  # SOP Class UID
+ (0x00080018, UI, "NEW:SopInstanceUid")  # SOP Instance UID
+ (0x00080020, DA, "19970917")  # Study Date
+ (0x00080030, TM, "")  # Study Time
+ (0x00080050, SH, "")  # Accession Number
+ (0x00080060, CS, "OT")  # Modality
+ (0x00080064, CS, "DV")  # Conversion Type
+ (0x00080070, LO, "") # Manufacturer
+ (0x00080081, ST, "(1B)$B(3B)(33)(45)(44)(1B)(B Address Line 1(0D)(0A)Line 2(0D)(0A)City, State  (1B)$B(3B)(33)(45)(44)(1B)(B 21435-4321(0D)(0A) This includes the allowed control characters (0C) and backslash \") # Institution Address
+ (0x00080090, PN, "")  # Referring Physician's Name
+ (0x00081030, LO, "This is a study description (1B)$B(3B)(33)\\(1B)(B. Its max length is 64 characters.") # Study Description
+ (0x00100010, PN, "Yamada^Tarou=(1B)$B(3B)(33)(45)(44)(1B)(B^(1B)$B(42)(40)(4F)(3A)(1B)(B=(1B)$B\\==^^(24)(64)(24)(5E)(24)(40)(1B)(B^^^^(1B)$B(24)(3F)(24)(6D)(24)(26)(1B)(B")  # Patient's Name
+ (0x00100020, LO, "Japanese IR 87")  # Patient ID
+ (0x00100030, DA, "")  # Patient's Birth Date
+ (0x00100040, CS, "O")  # Patient's Sex
+ (0x00102180, SH, "(1B)$B(3B)(33)(45)(44)(42)(40)(4F)(3A)(24)(64)\\(1B)(BOccupation") # Occupation
+ (0x00104000, LT, "These are patient comments(0D)(0A)They are on 3 lines (1B)$B(3B)(33)(45)(44)(1B)(B(0D)(0A)and include the allowed control characters (0C) and backslash \.") # Patient Comments
+ (0x00190100, UT, "This text can go on forever and ever(0D)(0A)and forever and ever(0D)(0A)and forever and ever(0D)(0A)and forever and ever(0D)(0A)and have Japanese text (1B)$B(3B)(33)(45)(44)(1B)(B and can include the allowed control characters (0C) and backslash \  ...") # Private UT Test Tag
+ (0x0020000D, UI, "NEW:StudyInstanceUid")  # Study Instance UID
+ (0x0020000E, UI, "NEW:SeriesInstanceUid")  # Series Instance UID
+ (0x00200010, SH, "1")  # Study ID
+ (0x00200011, IS, "1")  # Series Number
+ (0x00200013, IS, "1")  # Image Number
+ (0x00200020, CS, "") # Patient Orientation
+ (0x00280002, US, 0x0001)  # Samples Per Pixel
+ (0x00280004, CS, "MONOCHROME2")  # Photometric Interpretation
+ (0x00280010, US, 512)  # Rows
+ (0x00280011, US, 512)  # Columns
+ (0x00280100, US, 0x0008)  # Bits Allocated
+ (0x00280101, US, 0x0008)  # Bits Stored
+ (0x00280102, US, 0x0007)  # High Bit
+ (0x00280103, US, 0x0000)  # Pixel Representation
+ (0x7FE00010, OB, 512)  # Pixel Data
+)
+
+RECEIVE C-STORE-RSP (
+(0x00000900, US, 0x0000)
+)
+
+## Change from first image:
+## Add character to Study Description and Occupation to get length errors
+## Add single CR and LF characters and LF CR pair in Private UT Test Tag - this will generate warnings
+SEND C-STORE-RQ "SC Image" (
+ (0x00080005, CS, "","ISO 2022 IR 87")  # Specific Character Set
+ (0x00080016, UI, "1.2.840.10008.5.1.4.1.1.7")  # SOP Class UID
+ (0x00080018, UI, "NEW:SopInstanceUid")  # SOP Instance UID
+ (0x00080020, DA, "19970917")  # Study Date
+ (0x00080030, TM, "")  # Study Time
+ (0x00080050, SH, "")  # Accession Number
+ (0x00080060, CS, "OT")  # Modality
+ (0x00080064, CS, "DV")  # Conversion Type
+ (0x00080070, LO, "") # Manufacturer
+ (0x00080081, ST, "(1B)$B(3B)(33)(45)(44)(1B)(B Address Line 1(0D)(0A)Line 2(0D)(0A)City, State  (1B)$B(3B)(33)(45)(44)(1B)(B 21435-4321(0D)(0A) This includes the allowed control characters (0C) and backslash \") # Institution Address
+ (0x00080090, PN, "")  # Referring Physician's Name
+ (0x00081030, LO, "This is a study description (1B)$B(3B)(33)\\(1B)(B. Its max length is 64 characters.+") # Study Description
+ (0x00100010, PN, "Yamada^Tarou=(1B)$B(3B)(33)(45)(44)(1B)(B^(1B)$B(42)(40)(4F)(3A)(1B)(B=(1B)$B\\==^^(24)(64)(24)(5E)(24)(40)(1B)(B^^^^(1B)$B(24)(3F)(24)(6D)(24)(26)(1B)(B")  # Patient's Name
+ (0x00100020, LO, "Japanese IR 87")  # Patient ID
+ (0x00100030, DA, "")  # Patient's Birth Date
+ (0x00100040, CS, "O")  # Patient's Sex
+ (0x00102180, SH, "(1B)$B(3B)(33)(45)(44)(42)(40)(4F)(3A)(24)(64)\\(1B)(BOccupation+") # Occupation
+ (0x00104000, LT, "These are patient comments(0D)(0A)They are on 3 lines (1B)$B(3B)(33)(45)(44)(1B)(B(0D)(0A)and include the allowed control characters (0C) and backslash \.") # Patient Comments
+ (0x00190100, UT, "This text can go on forever and ever(0D)(0A)and forever and ever(0D)(0A)and forever and ever(0D)(0A)and forever and ever(0D)(0A)and have Japanese text (1B)$B(3B)(33)(45)(44)(1B)(B and can include the allowed control characters (0C), (0A), (0D), and (0A)(0D) and backslash \  ...") # Private UT Test Tag
+ (0x0020000D, UI, "NEW:StudyInstanceUid")  # Study Instance UID
+ (0x0020000E, UI, "NEW:SeriesInstanceUid")  # Series Instance UID
+ (0x00200010, SH, "1")  # Study ID
+ (0x00200011, IS, "1")  # Series Number
+ (0x00200013, IS, "1")  # Image Number
+ (0x00200020, CS, "") # Patient Orientation
+ (0x00280002, US, 0x0001)  # Samples Per Pixel
+ (0x00280004, CS, "MONOCHROME2")  # Photometric Interpretation
+ (0x00280010, US, 512)  # Rows
+ (0x00280011, US, 512)  # Columns
+ (0x00280100, US, 0x0008)  # Bits Allocated
+ (0x00280101, US, 0x0008)  # Bits Stored
+ (0x00280102, US, 0x0007)  # High Bit
+ (0x00280103, US, 0x0000)  # Pixel Representation
+ (0x7FE00010, OB, 512)  # Pixel Data
+)
+
+RECEIVE C-STORE-RSP (
+(0x00000900, US, 0x0000)
+)
+
+## Change from first image:
+## Change character in Patient Name, Study Description and Occupation to \ to get VM error
+SEND C-STORE-RQ "SC Image" (
+ (0x00080005, CS, "","ISO 2022 IR 87")  # Specific Character Set
+ (0x00080016, UI, "1.2.840.10008.5.1.4.1.1.7")  # SOP Class UID
+ (0x00080018, UI, "NEW:SopInstanceUid")  # SOP Instance UID
+ (0x00080020, DA, "19970917")  # Study Date
+ (0x00080030, TM, "")  # Study Time
+ (0x00080050, SH, "")  # Accession Number
+ (0x00080060, CS, "OT")  # Modality
+ (0x00080064, CS, "DV")  # Conversion Type
+ (0x00080070, LO, "") # Manufacturer
+ (0x00080081, ST, "(1B)$B(3B)(33)(45)(44)(1B)(B Address Line 1(0D)(0A)Line 2(0D)(0A)City, State  (1B)$B(3B)(33)(45)(44)(1B)(B 21435-4321(0D)(0A) This includes the allowed control characters (0C) and backslash \") # Institution Address
+ (0x00080090, PN, "")  # Referring Physician's Name
+ (0x00081030, LO, "This is a study description (1B)$B(3B)(33)\\(1B)(B\ Its max length is 64 characters.") # Study Description
+ (0x00100010, PN, "Yamada^Tarou=(1B)$B(3B)(33)(45)(44)(1B)(B^(1B)$B(42)(40)(4F)(3A)(1B)(B=\(1B)$B\\==^^(24)(64)(24)(5E)(24)(40)(1B)(B^^^^(1B)$B(24)(3F)(24)(6D)(24)(26)(1B)(B")  # Patient's Name
+ (0x00100020, LO, "Japanese IR 87")  # Patient ID
+ (0x00100030, DA, "")  # Patient's Birth Date
+ (0x00100040, CS, "O")  # Patient's Sex
+ (0x00102180, SH, "(1B)$B(3B)(33)(45)(44)(42)(40)(4F)(3A)(24)(64)\\(1B)(B\Occupatio") # Occupation
+ (0x00104000, LT, "These are patient comments(0D)(0A)They are on 3 lines (1B)$B(3B)(33)(45)(44)(1B)(B(0D)(0A)and include the allowed control characters (0C) and backslash \.") # Patient Comments
+ (0x00190100, UT, "This text can go on forever and ever(0D)(0A)and forever and ever(0D)(0A)and forever and ever(0D)(0A)and forever and ever(0D)(0A)and have Japanese text (1B)$B(3B)(33)(45)(44)(1B)(B and can include the allowed control characters (0C) and backslash \  ...") # Private UT Test Tag
+ (0x0020000D, UI, "NEW:StudyInstanceUid")  # Study Instance UID
+ (0x0020000E, UI, "NEW:SeriesInstanceUid")  # Series Instance UID
+ (0x00200010, SH, "1")  # Study ID
+ (0x00200011, IS, "1")  # Series Number
+ (0x00200013, IS, "1")  # Image Number
+ (0x00200020, CS, "") # Patient Orientation
+ (0x00280002, US, 0x0001)  # Samples Per Pixel
+ (0x00280004, CS, "MONOCHROME2")  # Photometric Interpretation
+ (0x00280010, US, 512)  # Rows
+ (0x00280011, US, 512)  # Columns
+ (0x00280100, US, 0x0008)  # Bits Allocated
+ (0x00280101, US, 0x0008)  # Bits Stored
+ (0x00280102, US, 0x0007)  # High Bit
+ (0x00280103, US, 0x0000)  # Pixel Representation
+ (0x7FE00010, OB, 512)  # Pixel Data
+)
+
+RECEIVE C-STORE-RSP (
+(0x00000900, US, 0x0000)
+)
+
+## Change from first image:
+## Change character in Study Description and Occupation to FF to get illegal control character error
+## Add CR LF to Patient Name to get illegal control character error
+## Add non-DICOM control character to Institution Address, Patient Comments and Private UT Test Tag for what should be an illegal character errors but is not flaged
+SEND C-STORE-RQ "SC Image" (
+ (0x00080005, CS, "","ISO 2022 IR 87")  # Specific Character Set
+ (0x00080016, UI, "1.2.840.10008.5.1.4.1.1.7")  # SOP Class UID
+ (0x00080018, UI, "NEW:SopInstanceUid")  # SOP Instance UID
+ (0x00080020, DA, "19970917")  # Study Date
+ (0x00080030, TM, "")  # Study Time
+ (0x00080050, SH, "")  # Accession Number
+ (0x00080060, CS, "OT")  # Modality
+ (0x00080064, CS, "DV")  # Conversion Type
+ (0x00080070, LO, "") # Manufacturer
+ (0x00080081, ST, "(1B)$B(3B)(33)(45)(44)(1B)(B Address Line 1(0D)(0A)Line 2(0D)(0A)City, State  (1B)$B(3B)(33)(45)(44)(1B)(B 21435-4321(0D)(0A) This includes the allowed control characters (0C) and backslash \ but not (03)") # Institution Address
+ (0x00080090, PN, "")  # Referring Physician's Name
+ (0x00081030, LO, "This is a study description (1B)$B(3B)(33)\\(1B)(B(0C) Its max length is 64 characters.") # Study Description
+ (0x00100010, PN, "Yamada^Tarou=(1B)$B(3B)(33)(45)(44)(1B)(B^(1B)$B(42)(40)(4F)(3A)(1B)(B=(OD)(0A)(1B)$B\\==^^(24)(64)(24)(5E)(24)(40)(1B)(B^^^^(1B)$B(24)(3F)(24)(6D)(24)(26)(1B)(B")  # Patient's Name
+ (0x00100020, LO, "Japanese IR 87")  # Patient ID
+ (0x00100030, DA, "")  # Patient's Birth Date
+ (0x00100040, CS, "O")  # Patient's Sex
+ (0x00102180, SH, "(1B)$B(3B)(33)(45)(44)(42)(40)(4F)(3A)(24)(64)\\(1B)(BOccupatio(0C)") # Occupation
+ (0x00104000, LT, "These are patient comments(0D)(0A)They are on 3 lines (1B)$B(3B)(33)(45)(44)(1B)(B(0D)(0A)and include the allowed control characters (0C) and backslash \ but not (13).") # Patient Comments
+ (0x00190100, UT, "This text can go on forever and ever(0D)(0A)and forever and ever(0D)(0A)and forever and ever(0D)(0A)and forever and ever(0D)(0A)and have Japanese text (1B)$B(3B)(33)(45)(44)(1B)(B and can include the allowed control characters (0C) and backslash \ but not (1F) ...") # Private UT Test Tag
+ (0x0020000D, UI, "NEW:StudyInstanceUid")  # Study Instance UID
+ (0x0020000E, UI, "NEW:SeriesInstanceUid")  # Series Instance UID
+ (0x00200010, SH, "1")  # Study ID
+ (0x00200011, IS, "1")  # Series Number
+ (0x00200013, IS, "1")  # Image Number
+ (0x00200020, CS, "") # Patient Orientation
+ (0x00280002, US, 0x0001)  # Samples Per Pixel
+ (0x00280004, CS, "MONOCHROME2")  # Photometric Interpretation
+ (0x00280010, US, 512)  # Rows
+ (0x00280011, US, 512)  # Columns
+ (0x00280100, US, 0x0008)  # Bits Allocated
+ (0x00280101, US, 0x0008)  # Bits Stored
+ (0x00280102, US, 0x0007)  # High Bit
+ (0x00280103, US, 0x0000)  # Pixel Representation
+ (0x7FE00010, OB, 512)  # Pixel Data
+)
+
+RECEIVE C-STORE-RSP (
+(0x00000900, US, 0x0000)
+)

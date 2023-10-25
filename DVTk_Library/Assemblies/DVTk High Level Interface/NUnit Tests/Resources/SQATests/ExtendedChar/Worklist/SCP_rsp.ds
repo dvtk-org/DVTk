@@ -1,0 +1,18 @@
+## 
+##  SCP Worklist DICOMScript: SCP_rsp.ds
+## 
+##  Pre-conditions:
+##       - search completed
+## 
+##  Test Scenario:
+##       - indicate that no more matches are found
+## 
+##  Expected Result:
+##       - return C-FIND-RSP - Status = 0000 (success) 
+## 
+##  Post-conditions:
+##       - association remains
+## 
+SEND C-FIND-RSP (
+ (0x00000900, US, 0x0000)
+)

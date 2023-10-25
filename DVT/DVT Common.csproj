@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -11,7 +11,7 @@
     <RootNamespace>DVT_Common</RootNamespace>
     <AssemblyName>DVT Common</AssemblyName>
     <StartupObject>DVTCommon.DVTCommon</StartupObject>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
@@ -35,19 +35,21 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\\Debug\</OutputPath>
+    <OutputPath>$(SolutionDir)\bin\$(Configuration)</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <OutputPath>bin\\Release\</OutputPath>
+    <OutputPath>$(SolutionDir)\bin\$(Configuration)</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -56,9 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Source\DVT Common\DVT Common.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -78,32 +77,26 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
   <PropertyGroup>
-    <PreBuildEvent>REM SET LIBRARY_DIRECTORY=$(ProjectDir)..\DVTk_Library\Releases\5_1_1_0\$(ConfigurationName)
-SET LIBRARY_DIRECTORY=$(ProjectDir)..\DVTk_Library\Builds\$(ConfigurationName)
+    <PreBuildEvent>
+      <!--REM SET LIBRARY_DIRECTORY=$(ProjectDir)..\DVTk_Library\Releases\5_1_1_0\$(ConfigurationName)
+			SET LIBRARY_DIRECTORY=$(ProjectDir)..\DVTk_Library\Builds\$(ConfigurationName)
 
-IF NOT EXIST "%25LIBRARY_DIRECTORY%25" (
-ECHO Unable to find library directory "%25LIBRARY_DIRECTORY%25"
-EXIT -1
-)
+			IF NOT EXIST "%25LIBRARY_DIRECTORY%25" (
+			ECHO Unable to find library directory "%25LIBRARY_DIRECTORY%25"
+			EXIT -1
+			)
 
-ECHO "%25LIBRARY_DIRECTORY%25"
-ECHO "$(ProjectDir)DVTk_Library"
+			ECHO "%25LIBRARY_DIRECTORY%25"
+			ECHO "$(ProjectDir)DVTk_Library"
 
-del /Q /S "$(ProjectDir)DVTk_Library\*.*"
+			del /Q /S "$(ProjectDir)DVTk_Library\*.*"
 
-IF NOT EXIST "$(ProjectDir)DVTk_Library" (
-mkdir "$(ProjectDir)DVTk_Library"
-)
+			IF NOT EXIST "$(ProjectDir)DVTk_Library" (
+			mkdir "$(ProjectDir)DVTk_Library"
+			)
 
-xcopy /Y /E "%25LIBRARY_DIRECTORY%25" "$(ProjectDir)DVTk_Library"
-</PreBuildEvent>
+			xcopy /Y /E "%25LIBRARY_DIRECTORY%25" "$(ProjectDir)DVTk_Library"-->
+    </PreBuildEvent>
   </PropertyGroup>
 </Project>

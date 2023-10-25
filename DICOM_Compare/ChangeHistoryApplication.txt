@@ -35,9 +35,33 @@ Description:
 
 
 
-
 ====================================================
 = DICOM Compare 5.1.1, based on DVTk library 5.1.1 =
 ====================================================
 No changes in the application code compared to DICOM Compare 5.0.0. 
 The only difference is that this new version is based on DVTk Library 5.1.1.
+<------------------------------------------------------------------------------>
+
+
+
+
+
+===================================================
+= DICOM Compare 5.2.1, based on DVTk library 5.2.1 =
+===================================================
+
+
+
+=
+= Implemented change requests for 5.2.1
+=
+
+<------------------------------------------------------------------------------>
+
+Date 2021-03-29
+
+Description:
+------------
+- Added support for VR OV (Other Very Long), SV (Signed Very Long String) and UV (Unsigned Very Long String)
+
+<------------------------------------------------------------------------------>

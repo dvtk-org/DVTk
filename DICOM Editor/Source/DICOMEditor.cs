@@ -2006,7 +2006,8 @@ namespace DCMEditor
 			if (vrString == "SL")   return VR.SL;
 			if (vrString == "SQ")   return VR.SQ;
 			if (vrString == "SS")   return VR.SS;
-			if (vrString == "ST")   return VR.ST;
+            if (vrString == "ST")   return VR.ST;
+            if (vrString == "SV")   return VR.SV;
 			if (vrString == "TM")   return VR.TM;
 			if (vrString == "UI")   return VR.UI;
 			if (vrString == "UL")   return VR.UL;
@@ -2015,6 +2016,7 @@ namespace DCMEditor
 			if (vrString == "UT")   return VR.UT;
             if (vrString == "UC")   return VR.UC;
             if (vrString == "UR")   return VR.UR;
+            if (vrString == "UV")   return VR.UV;
 			// Unknown DicomValueType
 			throw new System.NotImplementedException();
 		}

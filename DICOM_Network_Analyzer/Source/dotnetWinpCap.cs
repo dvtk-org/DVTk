@@ -1,6 +1,6 @@
 // ------------------------------------------------------
 // DVTk - The Healthcare Validation Toolkit (www.dvtk.org)
-// Copyright © 2009 DVTk
+// Copyright ï¿½ 2009 DVTk
 // ------------------------------------------------------
 // This file is part of DVTk.
 //
@@ -248,7 +248,7 @@ namespace Sniffer
 
             if (LoadLibrary("wpcap.dll") == IntPtr.Zero)
             {
-                MessageBox.Show(null, "Please install the Npcap driver, which can be found on https://nmap.org/npcap/ .", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(null, "Please install the Npcap driver, which can be found at https://nmap.org/npcap/ .", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
 

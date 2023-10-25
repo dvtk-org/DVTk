@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>DVTKManagedCodeAdapter</ProjectName>
+    <ProjectGuid>{8E50A389-C478-4013-817D-8191C994B602}</ProjectGuid>
+    <RootNamespace>DVTKManagedCodeAdapter</RootNamespace>
+    <Keyword>ManagedCProj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <CLRSupport>true</CLRSupport>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <CLRSupport>true</CLRSupport>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\bin\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)\obj\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\bin\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)\obj\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">DVTKManagedCodeAdapter</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">DVTKManagedCodeAdapter</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkKeyFile>$(ProjectDir)..\..\Resources\Strong Name Key\DVTk Key.snk</LinkKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkKeyFile>$(ProjectDir)..\..\Resources\Strong Name Key\DVTk Key.snk</LinkKeyFile>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\Libraries\Include;..\..\Libraries\Global;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalUsingDirectories>%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ForcedUsingFiles>$(SolutionDir)\bin\$(Configuration)\DvtkData.dll;%(ForcedUsingFiles)</ForcedUsingFiles>
+      <LanguageStandard>Default</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>/noentry %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>AttributeGroup.lib;Definition.lib;Dicom.lib;Log.lib;Media.lib;Network.lib;Scripting.lib;Session.lib;Utility.lib;Warehouse.lib;Emulator.lib;Relation.lib;Validation.lib;Condition.lib;libcrypto.lib;libssl.lib;mscoree.lib;Wsock32.lib;msvcrt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)DVTKManagedCodeAdapter.dll</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)\bin\$(Configuration)\;..\..\Resources;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>nochkclr.obj;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ForceSymbolReferences>__DllMainCRTStartup%4012;%(ForceSymbolReferences)</ForceSymbolReferences>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <NoEntryPoint>true</NoEntryPoint>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+				sn -R "$(TargetDir)DVTKManagedCodeAdapter.dll" "$(ProjectDir)..\..\Resources\Strong Name Key\DVTk Key.snk"
+
+				SET ESTINATION_DIR=
+				IF EXIST "$(ProjectDir)..\..\..\builds" SET ESTINATION_DIR=$(ProjectDir)..\..\..\builds\$(Configuration)
+				IF EXIST "$(ProjectDir)..\..\..\..\..\Releases" SET ESTINATION_DIR=$(ProjectDir)..\..\..\$(Configuration)
+				ECHO ESTINATION_DIR is %ESTINATION_DIR%
+
+				Copy "$(TargetPath)" "%ESTINATION_DIR%"
+				IF EXIST "$(TargetDir)$(TargetName).pdb" Copy "$(TargetDir)$(TargetName).pdb" "%ESTINATION_DIR%"
+			</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\Libraries\Include;..\..\Libraries\Global;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ForcedUsingFiles>$(SolutionDir)\bin\$(Configuration)\DvtkData.dll;%(ForcedUsingFiles)</ForcedUsingFiles>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>AttributeGroup.lib;Definition.lib;Dicom.lib;Log.lib;msvcrtd.lib;Media.lib;Network.lib;Scripting.lib;Session.lib;Utility.lib;Warehouse.lib;Emulator.lib;Relation.lib;Validation.lib;Condition.lib;libcrypto.lib;libssl.lib;mscoree.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)DVTKManagedCodeAdapter.dll</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)\bin\$(Configuration)\;..\..\Resources;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>nochkclr.obj;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <AddModuleNamesToAssembly>%(AddModuleNamesToAssembly)</AddModuleNamesToAssembly>
+      <ForceSymbolReferences>__DllMainCRTStartup%4012;%(ForceSymbolReferences)</ForceSymbolReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AssemblyDebug>true</AssemblyDebug>
+      <NoEntryPoint>true</NoEntryPoint>
+      <FixedBaseAddress>
+      </FixedBaseAddress>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+				sn -R "$(TargetDir)DVTKManagedCodeAdapter.dll" "$(ProjectDir)..\..\Resources\Strong Name Key\DVTk Key.snk"
+
+				SET ESTINATION_DIR=
+				IF EXIST "$(ProjectDir)..\..\..\builds" SET ESTINATION_DIR=$(ProjectDir)..\..\..\builds\$(Configuration)
+				IF EXIST "$(ProjectDir)..\..\..\..\..\Releases" SET ESTINATION_DIR=$(ProjectDir)..\..\..\$(Configuration)
+				ECHO ESTINATION_DIR is %ESTINATION_DIR%
+
+				Copy "$(TargetPath)" "%ESTINATION_DIR%"
+				IF EXIST "$(TargetDir)$(TargetName).pdb" Copy "$(TargetDir)$(TargetName).pdb" "%ESTINATION_DIR%"
+			</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="System">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="System.Data">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ActivityReportingAdapter.cpp" />
+    <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="ConfirmInteractionAdapter.cpp" />
+    <ClCompile Include="CountingAdapter.cpp" />
+    <ClCompile Include="DVTKManagedCodeAdapter.cpp" />
+    <ClCompile Include="IDimse.cpp" />
+    <ClCompile Include="IDul.cpp" />
+    <ClCompile Include="ISessions.cpp" />
+    <ClCompile Include="ISockets.cpp" />
+    <ClCompile Include="ManagedWrapper.cpp" />
+    <ClCompile Include="MAttributeUtilities.cpp" />
+    <ClCompile Include="MBaseSession.cpp" />
+    <ClCompile Include="MCertificate.cpp" />
+    <ClCompile Include="MCertificateFile.cpp" />
+    <ClCompile Include="MDataSet.cpp" />
+    <ClCompile Include="MDefinition.cpp" />
+    <ClCompile Include="MDIMSEConvertors.cpp" />
+    <ClCompile Include="MDIMSEResultsConvertors.cpp" />
+    <ClCompile Include="MDULConvertors.cpp" />
+    <ClCompile Include="MDULResultsConvertors.cpp" />
+    <ClCompile Include="MEmulatorSession.cpp" />
+    <ClCompile Include="MMediaConvertors.cpp" />
+    <ClCompile Include="MMediaSession.cpp" />
+    <ClCompile Include="MPrinter.cpp" />
+    <ClCompile Include="MScriptSession.cpp" />
+    <ClCompile Include="MSessionFactory.cpp" />
+    <ClCompile Include="MSnifferSession.cpp" />
+    <ClCompile Include="SerializationAdapter.cpp" />
+    <ClCompile Include="Stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="UtilityFunctions.cpp" />
+    <ClCompile Include="ValidationMessageLevels.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ActivityReportingAdapter.h" />
+    <ClInclude Include="ConfirmInteractionAdapter.h" />
+    <ClInclude Include="CountingAdapter.h" />
+    <ClInclude Include="DVTKManagedCodeAdapter.h" />
+    <ClInclude Include="IDimse.h" />
+    <ClInclude Include="IDul.h" />
+    <ClInclude Include="ISessions.h" />
+    <ClInclude Include="ISockets.h" />
+    <ClInclude Include="MAttributeUtilities.h" />
+    <ClInclude Include="MBaseSession.h" />
+    <ClInclude Include="MCertificate.h" />
+    <ClInclude Include="MCertificateFile.h" />
+    <ClInclude Include="MDataSet.h" />
+    <ClInclude Include="MDefinition.h" />
+    <ClInclude Include="MDIMSEConvertors.h" />
+    <ClInclude Include="MDIMSEResultsConvertors.h" />
+    <ClInclude Include="MDULConvertors.h" />
+    <ClInclude Include="MDULResultsConvertors.h" />
+    <ClInclude Include="MEmulatorSession.h" />
+    <ClInclude Include="MMediaConvertors.h" />
+    <ClInclude Include="MMediaSession.h" />
+    <ClInclude Include="MPrinter.h" />
+    <ClInclude Include="MScriptSession.h" />
+    <ClInclude Include="MSessionFactory.h" />
+    <ClInclude Include="MSnifferSession.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="SerializationAdapter.h" />
+    <ClInclude Include="Stdafx.h" />
+    <ClInclude Include="UtilityFunctions.h" />
+    <ClInclude Include="ValidationMessageLevels.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Resources\Libs\libcrypto.dll" />
+    <None Include="..\..\..\Resources\Libs\libssl.dll" />
+    <None Include="app.ico" />
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="app.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

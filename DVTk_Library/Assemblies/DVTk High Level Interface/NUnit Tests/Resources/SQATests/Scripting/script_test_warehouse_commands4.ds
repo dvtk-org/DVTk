@@ -1,0 +1,56 @@
+## 
+## DVT DICOMScript
+##
+## Name: script_test_warehouse_commands4.ds
+##
+## Test Suite Ref: 3.2.2.4.12
+## Test Case Ref: 
+##
+## Pre-conditions:
+##
+## Test Scenario:
+##     VERBOSE ON/OF Combinations with ECHO statements
+## Expected Result: 4 displayed messages
+##
+## Post-conditions:
+##    -
+##
+
+
+VERBOSE ON 
+
+ECHO "1 This message should display"
+
+VERBOSE OFF 
+
+ECHO "ERROR: 1 This message should NOT display"
+
+VERBOSE ON 
+
+ECHO "2 This message should display"
+
+VERBOSE ON 
+
+ECHO "3 This message should display"
+
+VERBOSE OFF 
+
+ECHO "ERROR: 2 This message should NOT display"
+
+VERBOSE OFF 
+
+ECHO "ERROR: 3 This message should NOT display"
+
+VERBOSE ON 
+
+ECHO "4 This message should display"
+
+
+##
+## Script Result should be:
+## Validation: 0 error(s), 0 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 0 error(s), 0 warning(s)
+##
+
+

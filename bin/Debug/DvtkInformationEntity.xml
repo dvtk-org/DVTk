@@ -1,0 +1,1360 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DvtkInformationEntity</name>
+    </assembly>
+    <members>
+        <member name="M:Dvtk.Dicom.InformationEntity.AttributeMatching.TMMatching.Padd(System.String)">
+            <summary>
+            Padd the supplied time in such a way, that the format becomes "HHMMSS.FFFFFF".
+            </summary>
+            <param name="time">The time that may be padded.</param>
+            <returns>The padded time.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.AttributeMatching.TMMatching.Matches(System.String,System.String)">
+            <summary>
+            Indicates if an TM attribute value matches a value in a C-FIND-RQ.
+            </summary>
+            <param name="attributeValue">Single value of an attribute.</param>
+            <param name="requestValue">Value in a C-FIND-RQ.</param>
+            <returns>Does it match. </returns>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.BaseInformationEntity">
+            <summary>
+            Summary description for BaseInformationEntity.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.#ctor(System.String)">
+            <summary>
+            Class Constructor.
+            </summary>
+            <param name="level">Entity level in the Information Model.</param>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.BaseInformationEntity.Level">
+            <summary>
+            Get the Entity Level in the Information Model.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.BaseInformationEntity.DataSet">
+            <summary>
+            Get the local DataSet used to store the Entity attribute values.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.BaseInformationEntity.Children">
+            <summary>
+            Get the Entity child list in the Information Model.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.BaseInformationEntity.Parent">
+            <summary>
+            Get the Entity parent in the Information Model.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.BaseInformationEntity.TagTypeList">
+            <summary>
+            Set/Get the Tag Type list used to interogate the Entity.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.AddChild(Dvtk.Dicom.InformationEntity.BaseInformationEntity)">
+            <summary>
+            Add a child Entity to this.
+            </summary>
+            <param name="informationEntity">Child Entity being added.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.CopyFrom(DvtkData.Dimse.AttributeSet)">
+            <summary>
+            Copy from the given source Dataset into the local Dataset as defined by the
+            default Tag Type list.
+            </summary>
+            <param name="sourceDataset">Source Dataset used to populate the local Dataset.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.CopyFrom(Dvtk.Dicom.InformationEntity.TagTypeList,DvtkData.Dimse.AttributeSet)">
+            <summary>
+            Copy from the given source Dataset into the local Dataset as defined by the
+            given Tag Type list.
+            </summary>
+            <param name="tagTypeList">Tag Type list identifying attributes to copy.</param>
+            <param name="sourceDataset">Source Dataset used to populate the local Dataset.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.CheckForSpecialTags(DvtkData.Dimse.AttributeSet)">
+            <summary>
+            Includes the non-dataset attributes in the information model.
+            Handled attributes are,
+            MODALITIES_IN_STUDY
+            NUMBER_OF_PATIENT_RELATED_STUDIES
+            NUMBER_OF_PATIENT_RELATED_SERIES
+            NUMBER_OF_PATIENT_RELATED_INSTANCES
+            NUMBER_OF_STUDY_RELATED_SERIES
+            NUMBER_OF_STUDY_RELATED_INSTANCES.
+            NUMBER_OF_SERIES_RELATED_INSTANCES
+            </summary>
+            <param name="sourceDataset"></param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.CopyUniqueTagTo(DvtkData.Dimse.AttributeSet)">
+            <summary>
+            Copy the attribute with a Unique tag from the local Dataset into the given destination Dataset.
+            </summary>
+            <param name="destinationDataset">Dataset being populated with the Unique tag attribute.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.CopyTo(DvtkData.Dimse.AttributeSet)">
+            <summary>
+            Copy from the local Dataset into the given destination Dataset as defined by the
+            default Tag Type list.
+            </summary>
+            <param name="destinationDataset">Dataset being populated by the default Tag Type list.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.CopyTo(Dvtk.Dicom.InformationEntity.TagTypeList,DvtkData.Dimse.AttributeSet)">
+            <summary>
+            Copy from the local Dataset into the given destination Dataset as defined by the
+            given Tag Type list.
+            </summary>
+            <param name="tagTypeList">Tag Type list used to define copy.</param>
+            <param name="destinationDataset">Dataset being populated by the given Tag Type list.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.CopyTo(Dvtk.Dicom.InformationEntity.TagTypeList,DvtkData.Dimse.AttributeSet,System.Boolean)">
+            <summary>
+            Copy from the local Dataset into the given destination Dataset as defined by the
+            given Tag Type list. If the copyUniqueTagOnly parameter is true - only copy the Unique Tag attribute.
+            </summary>
+            <param name="tagTypeList">Tag Type list used to define copy.</param>
+            <param name="destinationDataset">Dataset being populated by the given Tag Type list.</param>
+            <param name="copyUniqueTagOnly">Boolean indicator to define use of Unique Tag.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.CopyAdditionalAttributes(DvtkData.Dimse.AttributeSet)">
+            <summary>
+            Copy the defined Additional Attributes from the local additional attributes to the given
+            dataset.
+            </summary>
+            <param name="destinationDataset">Destinaion dataset for loacl additional attributes.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.UniversalMatch(Dvtk.Dicom.InformationEntity.TagTypeList)">
+            <summary>
+            Check if a Universal Match is possible on the local dataset using the Tag Type list given.
+            </summary>
+            <param name="tagTypeList">Tag type list used for Universal Match.</param>
+            <returns>Boolean indicating if a Universal Match is true or false.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.IsTagTypeIn(Dvtk.Dicom.InformationEntity.TagType)">
+            <summary>
+            Check if the given Tag Type is in the local Tag Type list.
+            </summary>
+            <param name="tagType">Tag Type.</param>
+            <returns>Boolean indicating if the Tag Type is in the local Tag Type list - true or false.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.IsUniqueTagFoundIn(DvtkData.Dimse.AttributeSet)">
+            <summary>
+            Check if the Unique Tag as defined in the local Tag Type list is present in the given match dataset.
+            </summary>
+            <param name="matchDataset">Dataset to check for match.</param>
+            <returns>Boolean indicating if the match dataset contains the default Unique Tag.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.IsFoundIn(DvtkData.Dimse.AttributeSet)">
+            <summary>
+            Check if the given match dataset is found in the local dataset using the default Tag Type list. 
+            A check is made to see if all the attributes in the given match dataset are present in the local
+            dataset.
+            </summary>
+            <param name="matchDataset">Match dataset to check.</param>
+            <returns>Boolean indicating if the match attributes are present in the local dataset.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.IsFoundIn(Dvtk.Dicom.InformationEntity.TagTypeList,DvtkData.Dimse.AttributeSet)">
+            <summary>
+            Check if the given match dataset is found in the local dataset using the given Tag Type list. 
+            A check is made to see if all the attributes in the given match dataset are present in the local
+            dataset.
+            </summary>
+            <param name="tagTypeList">Match Tag Type list.</param>
+            <param name="matchDataset">Match dataset to check.</param>
+            <returns>Boolean indicating if the match attributes are present in the local dataset.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.IsFoundIn(Dvtk.Dicom.InformationEntity.TagTypeList,DvtkData.Dimse.AttributeSet,System.Boolean)">
+            <summary>
+            Check if the given match dataset is found in the local dataset using the given Tag Type list. 
+            A check is made to see if all the attributes in the given match dataset are present in the local
+            dataset. if the given matchOnUniqueTagOnly parameter is true only the Unique Tags will be checked.
+            </summary>
+            <param name="tagTypeList">Match Tag Type list.</param>
+            <param name="matchDataset">Match dataset to check.</param>
+            <param name="matchOnUniqueTagOnly">Boolean indicating if only the Unique Tag should be checked.</param>
+            <returns>Boolean indicating if the match attributes are present in the local dataset.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.SetDefaultTagTypeList">
+            <summary>
+            Implement is any sub-classes - define the default Tag Type list.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.ConsoleDisplay">
+            <summary>
+            Display this Entity to the Console - useful when debugging.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.Dump(System.String)">
+            <summary>
+            Dump this Entity to a String - useful when debugging.
+            </summary>
+            <returns>The dump.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.GetCompositeDataModel">
+            <summary>
+            Gets the composite children of the object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.AddDefaultAttributes(System.Boolean,DvtkData.Dimse.DataSet)">
+            <summary>
+            Use the information entity tagTypeList to add default values from the defaultDataset
+            into this _dataset.
+            A default value will be added if:
+            overWriteExistingValue is true and a default value exists.
+            or:
+            overWriteExistingValue is false and the default value exists and this _dataset either does
+            not contain the default tag or the default tag has a zero-length value.
+            All child Entities are also processed.
+            </summary>
+            <param name="overWriteExistingValue"></param>
+            <param name="defaultDataset"></param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.AddAdditionalAttributes(System.Boolean,DvtkData.Dimse.DataSet)">
+            <summary>
+            Add the additional attributes to this Entity and any children.
+            </summary>
+            <param name="overWriteExistingValue"></param>        
+            <param name="additionalDataset"></param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.MatchString(System.String,System.String)">
+            <summary>
+            Check if the searchKey matches the candidateValue.
+            </summary>
+            <param name="searchKey">Key to match against.</param>
+            <param name="candidateValue">Value to try to match against the searchKey.</param>
+            <returns>Bool indicating the result of the match.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.WildCardMatchString(System.String,System.String,System.Boolean)">
+            <summary>
+            Check if the searchKey matches the candidateValue. A "*" can be present as the last
+            character of the searchKey to indciate a wildcard match from that point in the string
+            onwards.
+            </summary>
+            <param name="searchKey">Key to match against - last character maybe a "*" wildcard.</param>
+            <param name="candidateValue">Value to try to match against the searchKey.</param>
+            <param name="caseSensitive"></param>
+            <returns>Bool indicating the result of the match.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.GetSpecificCharacterSet">
+            <summary>
+            Try to get the Specific Character Set attribute stored in the dataset of the IE.
+            </summary>
+            <returns>Specific Character Set attribute if found in IE else null</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntity.SetCaseSentive(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Enabling the case sensitive query for the information entity. by default the case sensitivity is false for all.
+            </summary>
+            <param name="AE"></param>
+            <param name="CS"></param>
+            <param name="PN"></param>
+            <param name="SH"></param>
+            <param name="LO"></param>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.BaseInformationEntityList">
+            <summary>
+            Summary description for BaseInformationEntityList.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.BaseInformationEntityList.Item(System.Int32)">
+            <summary>
+            Gets or sets an <see cref="T:Dvtk.Dicom.InformationEntity.BaseInformationEntity"/> from the collection.
+            </summary>
+            <param name="index">The zero-based index of the collection member to get or set.</param>
+            <value>The <see cref="T:Dvtk.Dicom.InformationEntity.BaseInformationEntityList"/> at the specified index.</value>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntityList.Add(Dvtk.Dicom.InformationEntity.BaseInformationEntity)">
+            <summary>
+            Adds an object to the end of the <see cref="T:Dvtk.Dicom.InformationEntity.BaseInformationEntityList"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Dicom.InformationEntity.BaseInformationEntity"/> to be added to the end of the <see cref="T:Dvtk.Dicom.InformationEntity.BaseInformationEntityList"/>.</param>
+            <returns>The <see cref="T:Dvtk.Dicom.InformationEntity.BaseInformationEntityList"/> index at which the value has been added.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntityList.IndexOf(Dvtk.Dicom.InformationEntity.BaseInformationEntity)">
+            <summary>
+            Searches for the specified <see cref="T:Dvtk.Dicom.InformationEntity.BaseInformationEntity"/> and 
+            returns the zero-based index of the first occurrence within the entire <see cref="T:Dvtk.Dicom.InformationEntity.BaseInformationEntityList"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Dicom.InformationEntity.BaseInformationEntity"/> to locate in the <see cref="T:Dvtk.Dicom.InformationEntity.BaseInformationEntityList"/>.</param>
+            <returns>
+            The zero-based index of the first occurrence of value within the entire <see cref="T:Dvtk.Dicom.InformationEntity.BaseInformationEntityList"/>, 
+            if found; otherwise, -1.
+            </returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntityList.Insert(System.Int32,Dvtk.Dicom.InformationEntity.BaseInformationEntity)">
+            <summary>
+            Inserts an <see cref="T:Dvtk.Dicom.InformationEntity.BaseInformationEntity"/> element into the <see cref="T:Dvtk.Dicom.InformationEntity.BaseInformationEntity"/> at the specified index.
+            </summary>
+            <param name="index">The zero-based index at which value should be inserted.</param>
+            <param name="value">The <see cref="T:Dvtk.Dicom.InformationEntity.BaseInformationEntityList"/> to insert.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntityList.Remove(Dvtk.Dicom.InformationEntity.BaseInformationEntity)">
+            <summary>
+            Removes the first occurrence of a specific <see cref="T:Dvtk.Dicom.InformationEntity.BaseInformationEntity"/> from the <see cref="T:Dvtk.Dicom.InformationEntity.BaseInformationEntityList"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Dicom.InformationEntity.BaseInformationEntity"/> to remove from the <see cref="T:Dvtk.Dicom.InformationEntity.BaseInformationEntityList"/>.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntityList.Contains(Dvtk.Dicom.InformationEntity.BaseInformationEntity)">
+            <summary>
+            Determines whether the <see cref="T:Dvtk.Dicom.InformationEntity.BaseInformationEntityList"/> contains a specific element.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Dicom.InformationEntity.BaseInformationEntity"/> to locate in the <see cref="T:Dvtk.Dicom.InformationEntity.BaseInformationEntityList"/>.</param>
+            <returns>
+            <c>true</c> if the <see cref="T:Dvtk.Dicom.InformationEntity.BaseInformationEntityList"/> contains the specified value; 
+            otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntityList.OnInsert(System.Int32,System.Object)">
+            <summary>
+            Performs additional custom processes before inserting a new element into the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which to insert value.</param>
+            <param name="value">The new value of the element at index.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntityList.OnRemove(System.Int32,System.Object)">
+            <summary>
+            Performs additional custom processes when removing an element from the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which value can be found.</param>
+            <param name="value">The value of the element to remove from index.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntityList.OnSet(System.Int32,System.Object,System.Object)">
+            <summary>
+            Performs additional custom processes before setting a value in the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which oldValue can be found.</param>
+            <param name="oldValue">The value to replace with newValue.</param>
+            <param name="newValue">The new value of the element at index.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntityList.OnValidate(System.Object)">
+            <summary>
+            Performs additional custom processes when validating a value.
+            </summary>
+            <param name="value">The object to validate.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationEntityList.CopyTo(Dvtk.Dicom.InformationEntity.BaseInformationEntity[],System.Int32)">
+            <summary>
+            Copies the elements of the <see cref="T:System.Collections.ICollection"/> to a strong-typed <c>BaseInformationEntity[]</c>, 
+            starting at a particular <c>BaseInformationEntity[]</c> index.
+            </summary>
+            <param name="array">
+            The one-dimensional <c>BaseInformationEntity[]</c> that is the destination of the elements 
+            copied from <see cref="T:System.Collections.ICollection"/>.
+            The <c>BaseInformationEntity[]</c> must have zero-based indexing. 
+            </param>
+            <param name="index">
+            The zero-based index in array at which copying begins.
+            </param>
+            <remarks>
+            Provides the strongly typed member for <see cref="T:System.Collections.ICollection"/>.
+            </remarks>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.BaseInformationModel">
+            <summary>
+            Summary description for BaseInformationModel.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationModel.#ctor(System.String)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="name">Information Model Name.</param>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.BaseInformationModel.DataDirectory">
+            <summary>
+            Property - Data Directory.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.BaseInformationModel.IsDataStored">
+            <summary>
+            Property - Stored Data.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationModel.LoadInformationModel(System.String)">
+            <summary>
+            Load the Information Model by reading all the .DCM and .RAW files
+            present in the given directory. The data read is normalised into the
+            Information Model.
+            </summary>
+            <param name="dataDirectory">Source data directory containing the .DCm and .RAW files.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationModel.RefreshInformationModel">
+            <summary>
+            Refresh the Information Model by re-loading the contents.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationModel.QueryInformationModel(DvtkData.Dimse.DataSet)">
+            <summary>
+            Query the Information Model using the given Query Dataset.
+            </summary>
+            <param name="queryDataset">Query Dataset.</param>
+            <returns>A collection of zero or more query reponse datasets.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationModel.AddDefaultAttributesToInformationModel(System.Boolean,DvtkData.Dimse.DataSet)">
+            <summary>
+            Copy the default dataset attributes to the Information Entities in the Information
+            Model that define them.
+            </summary>
+            <param name="overWriteExistingValue">Boolean to indicate whether any already existing value should be overwritten or not.</param>
+            <param name="defaultDataset">Dataset containing all the default values.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationModel.AddAdditionalAttributesToInformationModel(System.Boolean,DvtkData.Dimse.DataSet)">
+            <summary>
+            Add the attributes in this additional dataset to all Information Entities in the Information
+            Model. 
+            </summary>
+            <param name="overWriteExistingValue">Boolean to indicate whether any already existing value should be overwritten or not.</param>
+            <param name="additionalDataset">Dataset containing the additional values.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationModel.PatientRegistration(DvtkData.Dimse.DataSet)">
+            <summary>
+            Patient Registration request - update modality worklist information model.
+            </summary>
+            <param name="dataset">Dataset containing patient registration attributes.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationModel.PatientUpdate(DvtkData.Dimse.DataSet)">
+            <summary>
+            Patient Update request - update modality worklist information model.
+            </summary>
+            <param name="dataset">Dataset containing patient update attributes.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationModel.PatientMerge(DvtkData.Dimse.DataSet)">
+            <summary>
+            Patient merge request - update modality worklist information model.
+            </summary>
+            <param name="dataset">Dataset containing patient merge attributes.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationModel.PlacerOrderManagement(DvtkData.Dimse.DataSet)">
+            <summary>
+            Placer order management request - update modality worklist information model.
+            </summary>
+            <param name="dataset">Dataset containing placer order management attributes.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationModel.ConsoleDisplay">
+            <summary>
+            Display the Information Model to the Console - for debugging purposes.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationModel.Dump(System.String)">
+            <summary>
+            Dump the Information Model to a String - for debugging purposes.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationModel.GetCompositeDataModel">
+            <summary>
+            returns the composite datamodel
+            </summary>
+            <returns>Returns the collection of composite data model</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.BaseInformationModel.IsSequenceHavingValue(DvtkData.Dimse.SequenceItem)">
+            <summary>
+            Checks the SQ item having value or not
+            </summary>
+            <param name="items"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.DataSetCollection">
+            <summary>
+            Summary description for DataSetCollection.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.DataSetCollection.Item(System.Int32)">
+            <summary>
+            Gets or sets an <see cref="T:DvtkData.Dimse.DataSet"/> from the collection.
+            </summary>
+            <param name="index">The zero-based index of the collection member to get or set.</param>
+            <value>The <see cref="T:Dvtk.Dicom.InformationEntity.DataSetCollection"/> at the specified index.</value>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.DataSetCollection.Add(DvtkData.Dimse.DataSet)">
+            <summary>
+            Adds an object to the end of the <see cref="T:Dvtk.Dicom.InformationEntity.DataSetCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:DvtkData.Dimse.DataSet"/> to be added to the end of the <see cref="T:Dvtk.Dicom.InformationEntity.DataSetCollection"/>.</param>
+            <returns>The <see cref="T:Dvtk.Dicom.InformationEntity.DataSetCollection"/> index at which the value has been added.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.DataSetCollection.IndexOf(DvtkData.Dimse.DataSet)">
+            <summary>
+            Searches for the specified <see cref="T:DvtkData.Dimse.DataSet"/> and 
+            returns the zero-based index of the first occurrence within the entire <see cref="T:Dvtk.Dicom.InformationEntity.DataSetCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:DvtkData.Dimse.DataSet"/> to locate in the <see cref="T:Dvtk.Dicom.InformationEntity.DataSetCollection"/>.</param>
+            <returns>
+            The zero-based index of the first occurrence of value within the entire <see cref="T:Dvtk.Dicom.InformationEntity.DataSetCollection"/>, 
+            if found; otherwise, -1.
+            </returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.DataSetCollection.Insert(System.Int32,DvtkData.Dimse.DataSet)">
+            <summary>
+            Inserts an <see cref="T:DvtkData.Dimse.DataSet"/> element into the <see cref="T:DvtkData.Dimse.DataSet"/> at the specified index.
+            </summary>
+            <param name="index">The zero-based index at which value should be inserted.</param>
+            <param name="value">The <see cref="T:Dvtk.Dicom.InformationEntity.DataSetCollection"/> to insert.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.DataSetCollection.Remove(DvtkData.Dimse.DataSet)">
+            <summary>
+            Removes the first occurrence of a specific <see cref="T:DvtkData.Dimse.DataSet"/> from the <see cref="T:Dvtk.Dicom.InformationEntity.DataSetCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:DvtkData.Dimse.DataSet"/> to remove from the <see cref="T:Dvtk.Dicom.InformationEntity.DataSetCollection"/>.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.DataSetCollection.Contains(DvtkData.Dimse.DataSet)">
+            <summary>
+            Determines whether the <see cref="T:Dvtk.Dicom.InformationEntity.DataSetCollection"/> contains a specific element.
+            </summary>
+            <param name="value">The <see cref="T:DvtkData.Dimse.DataSet"/> to locate in the <see cref="T:Dvtk.Dicom.InformationEntity.DataSetCollection"/>.</param>
+            <returns>
+            <c>true</c> if the <see cref="T:Dvtk.Dicom.InformationEntity.DataSetCollection"/> contains the specified value; 
+            otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.DataSetCollection.OnInsert(System.Int32,System.Object)">
+            <summary>
+            Performs additional custom processes before inserting a new element into the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which to insert value.</param>
+            <param name="value">The new value of the element at index.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.DataSetCollection.OnRemove(System.Int32,System.Object)">
+            <summary>
+            Performs additional custom processes when removing an element from the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which value can be found.</param>
+            <param name="value">The value of the element to remove from index.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.DataSetCollection.OnSet(System.Int32,System.Object,System.Object)">
+            <summary>
+            Performs additional custom processes before setting a value in the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which oldValue can be found.</param>
+            <param name="oldValue">The value to replace with newValue.</param>
+            <param name="newValue">The new value of the element at index.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.DataSetCollection.OnValidate(System.Object)">
+            <summary>
+            Performs additional custom processes when validating a value.
+            </summary>
+            <param name="value">The object to validate.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.DataSetCollection.CopyTo(DvtkData.Dimse.DataSet[],System.Int32)">
+            <summary>
+            Copies the elements of the <see cref="T:System.Collections.ICollection"/> to a strong-typed <c>DataSet[]</c>, 
+            starting at a particular <c>DataSet[]</c> index.
+            </summary>
+            <param name="array">
+            The one-dimensional <c>DataSet[]</c> that is the destination of the elements 
+            copied from <see cref="T:System.Collections.ICollection"/>.
+            The <c>DataSet[]</c> must have zero-based indexing. 
+            </param>
+            <param name="index">
+            The zero-based index in array at which copying begins.
+            </param>
+            <remarks>
+            Provides the strongly typed member for <see cref="T:System.Collections.ICollection"/>.
+            </remarks>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.ICommitInformationModel">
+            <summary>
+            Summary description for ICommitInformationModel.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.ICommitInformationModel.IsInstanceInInformationModel(System.String,System.String)">
+            <summary>
+            Check if the given instance is present in the Information Model. The instance will be at the leave nodes of the Information Model.
+            </summary>
+            <param name="sopClassUid">SOP Class UID to search for.</param>
+            <param name="sopInstanceUid">SOP Instance UID to search for.</param>
+            <returns>Boolean - true if instance found in the Information Model, otherwise false.</returns>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.IRetrieveInformationModel">
+            <summary>
+            Summary description for IRetrieveInformationModel.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.IRetrieveInformationModel.RetrieveInformationModel(DvtkData.Dimse.DataSet)">
+            <summary>
+            Retrieve a list of filenames from the Information Model. The filenames match the
+            individual instances matching the retrieve dataset attributes.
+            </summary>
+            <param name="retrieveDataset">Retrive dataset.</param>
+            <returns>File list - containing the filenames of all instances matching the retrieve dataset attributes.</returns>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.TagType">
+            <summary>
+            Summary description for TagType.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.TagType.#ctor(System.UInt16,System.UInt16)">
+            <summary>
+            Class Constructor.
+            </summary>
+            <param name="group">Tag - group number.</param>
+            <param name="element">Tag - element number.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.TagType.#ctor(System.UInt16,System.UInt16,Dvtk.Dicom.InformationEntity.TagTypeEnum)">
+            <summary>
+            Class Constructor.		
+            </summary>
+            <param name="group">Tag - group number.</param>
+            <param name="element">Tag - element number.</param>
+            <param name="type">Tag Type.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.TagType.#ctor(DvtkData.Dimse.Tag)">
+            <summary>
+            Class Constructor.
+            </summary>
+            <param name="tag">Tag (group/element combination).</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.TagType.#ctor(DvtkData.Dimse.Tag,Dvtk.Dicom.InformationEntity.TagTypeEnum)">
+            <summary>
+            Class Constructor.
+            </summary>
+            <param name="tag">Tag (group/element combination).</param>
+            <param name="type">Tag Type.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.TagType.#ctor(DvtkData.Dimse.Tag,DvtkData.Dimse.VR,Dvtk.Dicom.InformationEntity.TagTypeEnum)">
+            <summary>
+            Class Constructor.
+            </summary>
+            <param name="tag">Tag (group/element combination).</param>
+            <param name="vr">Tag VR.</param>
+            <param name="type">Tag Type.</param>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.TagType.Tag">
+            <summary>
+            Get the Tag.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.TagType.Vr">
+            <summary>
+            Get the VR.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.TagType.Type">
+            <summary>
+            Get the Tag Type.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.TagTypeList">
+            <summary>
+            Summary description for TagTypeList.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.TagTypeList.Item(System.Int32)">
+            <summary>
+            Gets or sets an <see cref="T:Dvtk.Dicom.InformationEntity.TagType"/> from the collection.
+            </summary>
+            <param name="index">The zero-based index of the collection member to get or set.</param>
+            <value>The <see cref="T:Dvtk.Dicom.InformationEntity.TagTypeList"/> at the specified index.</value>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.TagTypeList.Add(Dvtk.Dicom.InformationEntity.TagType)">
+            <summary>
+            Adds an object to the end of the <see cref="T:Dvtk.Dicom.InformationEntity.TagTypeList"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Dicom.InformationEntity.TagType"/> to be added to the end of the <see cref="T:Dvtk.Dicom.InformationEntity.TagTypeList"/>.</param>
+            <returns>The <see cref="T:Dvtk.Dicom.InformationEntity.TagTypeList"/> index at which the value has been added.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.TagTypeList.IndexOf(Dvtk.Dicom.InformationEntity.TagType)">
+            <summary>
+            Searches for the specified <see cref="T:Dvtk.Dicom.InformationEntity.TagType"/> and 
+            returns the zero-based index of the first occurrence within the entire <see cref="T:Dvtk.Dicom.InformationEntity.TagTypeList"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Dicom.InformationEntity.TagType"/> to locate in the <see cref="T:Dvtk.Dicom.InformationEntity.TagTypeList"/>.</param>
+            <returns>
+            The zero-based index of the first occurrence of value within the entire <see cref="T:Dvtk.Dicom.InformationEntity.TagTypeList"/>, 
+            if found; otherwise, -1.
+            </returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.TagTypeList.Insert(System.Int32,Dvtk.Dicom.InformationEntity.TagType)">
+            <summary>
+            Inserts an <see cref="T:Dvtk.Dicom.InformationEntity.TagType"/> element into the <see cref="T:Dvtk.Dicom.InformationEntity.TagType"/> at the specified index.
+            </summary>
+            <param name="index">The zero-based index at which value should be inserted.</param>
+            <param name="value">The <see cref="T:Dvtk.Dicom.InformationEntity.TagTypeList"/> to insert.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.TagTypeList.Remove(Dvtk.Dicom.InformationEntity.TagType)">
+            <summary>
+            Removes the first occurrence of a specific <see cref="T:Dvtk.Dicom.InformationEntity.TagType"/> from the <see cref="T:Dvtk.Dicom.InformationEntity.TagTypeList"/>.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Dicom.InformationEntity.TagType"/> to remove from the <see cref="T:Dvtk.Dicom.InformationEntity.TagTypeList"/>.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.TagTypeList.Contains(Dvtk.Dicom.InformationEntity.TagType)">
+            <summary>
+            Determines whether the <see cref="T:Dvtk.Dicom.InformationEntity.TagTypeList"/> contains a specific element.
+            </summary>
+            <param name="value">The <see cref="T:Dvtk.Dicom.InformationEntity.TagType"/> to locate in the <see cref="T:Dvtk.Dicom.InformationEntity.TagTypeList"/>.</param>
+            <returns>
+            <c>true</c> if the <see cref="T:Dvtk.Dicom.InformationEntity.TagTypeList"/> contains the specified value; 
+            otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.TagTypeList.OnInsert(System.Int32,System.Object)">
+            <summary>
+            Performs additional custom processes before inserting a new element into the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which to insert value.</param>
+            <param name="value">The new value of the element at index.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.TagTypeList.OnRemove(System.Int32,System.Object)">
+            <summary>
+            Performs additional custom processes when removing an element from the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which value can be found.</param>
+            <param name="value">The value of the element to remove from index.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.TagTypeList.OnSet(System.Int32,System.Object,System.Object)">
+            <summary>
+            Performs additional custom processes before setting a value in the collection instance.
+            </summary>
+            <param name="index">The zero-based index at which oldValue can be found.</param>
+            <param name="oldValue">The value to replace with newValue.</param>
+            <param name="newValue">The new value of the element at index.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.TagTypeList.OnValidate(System.Object)">
+            <summary>
+            Performs additional custom processes when validating a value.
+            </summary>
+            <param name="value">The object to validate.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.TagTypeList.CopyTo(Dvtk.Dicom.InformationEntity.TagType[],System.Int32)">
+            <summary>
+            Copies the elements of the <see cref="T:System.Collections.ICollection"/> to a strong-typed <c>TagType[]</c>, 
+            starting at a particular <c>TagType[]</c> index.
+            </summary>
+            <param name="array">
+            The one-dimensional <c>TagType[]</c> that is the destination of the elements 
+            copied from <see cref="T:System.Collections.ICollection"/>.
+            The <c>TagType[]</c> must have zero-based indexing. 
+            </param>
+            <param name="index">
+            The zero-based index in array at which copying begins.
+            </param>
+            <remarks>
+            Provides the strongly typed member for <see cref="T:System.Collections.ICollection"/>.
+            </remarks>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.CompositeInfoModel.BaseCompositeInformationEntity">
+            <summary>
+            Base composite Information class, provides base functionalites for Composite object model
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.CompositeInfoModel.BaseCompositeInformationEntity.#ctor">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.CompositeInfoModel.BaseCompositeInformationEntity.Children">
+            <summary>
+            gets the Collection of childrens of the objects
+            </summary>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.CompositeInfoModel.BaseCompositeInformationEntity.Attributes">
+            <summary>
+            gets the attributes of the objects
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.CompositeInfoModel.BaseCompositeInformationEntity.GetDicomValue(DvtkData.Dimse.Attribute)">
+            <summary>
+            This static function returns the Re-Construted value of the particular Dicom attribute.
+            </summary>
+            <param name="attribute">Dicom attribute contains tag vr and value</param>
+            <returns>Returns the value of the Dicom attribute</returns>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.CompositeInfoModel.Image">
+            <summary>
+            Image Compisite Entity. It is derived from the base composite entity
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.CompositeInfoModel.Image.#ctor">
+            <summary>
+            Class Constructor
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.CompositeInfoModel.Image.#ctor(DvtkData.Dimse.DataSet)">
+            <summary>
+            Class constructer with Dataset as parameter
+            </summary>
+            <param name="_dataSet">DICOM dataset which is having Image attributes</param>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.CompositeInfoModel.Image.InstanceNumber">
+            <summary>
+            gets or sets the instance number
+            </summary>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.CompositeInfoModel.Image.SOPInstanceUID">
+            <summary>
+            gets or sets the SOP instance UID
+            </summary>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.CompositeInfoModel.Patient">
+            <summary>
+            Patient Composite entity. It is derived from BaseCompositeEntity.
+            It contains the studies as Children
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.CompositeInfoModel.Patient.#ctor">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.CompositeInfoModel.Patient.#ctor(DvtkData.Dimse.DataSet)">
+            <summary>
+            Class constructor with Dicom dataset as parameter
+            </summary>
+            <param name="_dataSet">DICOM dataset which contains the Patient attributes</param>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.CompositeInfoModel.Patient.PatientName">
+            <summary>
+            gets or sets patient name
+            </summary>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.CompositeInfoModel.Patient.PatientId">
+            <summary>
+            gets or sets patient ID
+            </summary>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.CompositeInfoModel.Series">
+            <summary>
+            Series Composite entity. It is derived from BaseCompositeEntity.
+            It contains the Images as Children
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.CompositeInfoModel.Series.#ctor">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.CompositeInfoModel.Series.#ctor(DvtkData.Dimse.DataSet)">
+            <summary>
+            Class constructor with DICOM dataset as parameter.
+            </summary>
+            <param name="_dataSet">DICOM dataset which contains series attributes</param>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.CompositeInfoModel.Series.InstanceNumber">
+            <summary>
+            gets or sets instance number
+            </summary>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.CompositeInfoModel.Series.SeriesInstanceUID">
+            <summary>
+            gets or sets SeriesInstanceUID
+            </summary>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.CompositeInfoModel.Study">
+            <summary>
+            /// Study Composite entity. It is derived from BaseCompositeEntity.
+            It contains the Series as Children
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.CompositeInfoModel.Study.#ctor">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.CompositeInfoModel.Study.#ctor(DvtkData.Dimse.DataSet)">
+            <summary>
+            Class constructor with DICOM dataset which contains study attributes
+            </summary>
+            <param name="_dataSet">DICOM dataset which contains study attributes</param>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.CompositeInfoModel.Study.StudyID">
+            <summary>
+            Gets or sets study ID
+            </summary>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.CompositeInfoModel.Study.StudyInstanceUID">
+            <summary>
+            Gets or sets StudyInstanceUID
+            </summary>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.DefaultValues.DefaultValueManager">
+            <summary>
+            Summary description for DefaultValueManager.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.DefaultValues.DefaultValueManager.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.DefaultValues.DefaultValueManager.InstantiatedDefaultTagValues">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.DefaultValues.DefaultValueManager.AddUserDefinedDefaultTagValue(DvtkData.Dimse.BaseDicomTagValue)">
+            <summary>
+            Add user defined default Tag Values. Used to help define the message tag/values 
+            used during the tests.
+            </summary>
+            <param name="defaultTagValue">Default Tag Value pair.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.DefaultValues.DefaultValueManager.CreateDefaultTagValues">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.DefaultValues.DefaultValueManager.UpdateInstantiatedDefaultTagValues(DvtkData.Dimse.AffectedEntityEnum)">
+            <summary>
+            Update the default DICOM Tag Values grouped by the given affected entity.
+            Any 'auto' default value in the affected entity will get it's next value.
+            </summary>
+            <param name="affectedEntity">Affected Entity enum - to update.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.DefaultValues.DefaultValueManager.UpdateInstantiatedDefaultTagValues(DvtkData.Dimse.DicomTagValue)">
+            <summary>
+            
+            </summary>
+            <param name="tagValue"></param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.DefaultValues.DefaultValueManager.GetInstantiatedValue(DvtkData.Dimse.Tag)">
+            <summary>
+            
+            </summary>
+            <param name="tag"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.DefaultValues.InBuiltDefaultTagValues">
+            <summary>
+            Summary description for InBuiltDefaultTagValues.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.QueryRetrieve.InstanceInformationEntity">
+            <summary>
+            Summary description for InstanceInformationEntity.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.InstanceInformationEntity.#ctor(System.String)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="filename">Filename containing this entity and all parent entities (as a composite).</param>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.QueryRetrieve.InstanceInformationEntity.Filename">
+            <summary>
+            Get the name of the file containing this entity and all parents as a composite.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.InstanceInformationEntity.SetDefaultTagTypeList">
+            <summary>
+            Set the Default Tag Type List for this Entity.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.QueryRetrieve.PatientInformationEntity">
+            <summary>
+            Summary description for PatientInformationEntity.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.PatientInformationEntity.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.QueryRetrieve.PatientInformationEntity.FileNames">
+            <summary>
+            Gets the filenames of all (indirect) child instance information entities.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.PatientInformationEntity.SetDefaultTagTypeList">
+            <summary>
+            Set the Default Tag Type List for this Entity.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.QueryRetrieve.PatientRootInformationModel">
+            <summary>
+            Summary description for PatientRootInformationModel.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.PatientRootInformationModel.#ctor">
+            <summary>
+            Class Constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.PatientRootInformationModel.AddToInformationModel(DvtkData.Media.DicomFile,System.Boolean)">
+            <summary>
+            Add the given dataset present in a Dicom File to the Information Model. The data is normalised into the Information Model.
+            </summary>
+            <param name="dicomFile">The dicom File containing the dataset to be added.</param>
+            <param name="storeFile">Boolean indicating whether the dataset should be stored or not.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.PatientRootInformationModel.QueryInformationModel(DvtkData.Dimse.DataSet)">
+            <summary>
+            Query the Information Model using the given Query Dataset.
+            </summary>
+            <param name="queryDataset">Query Dataset.</param>
+            <returns>A collection of zero or more query reponse datasets.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.PatientRootInformationModel.IsInstanceInInformationModel(System.String,System.String)">
+            <summary>
+            Check if the given instance is present in the Information Model. The instance will be at the leaf nodes of the Information Model.
+            </summary>
+            <param name="sopClassUid">SOP Class UID to search for.</param>
+            <param name="sopInstanceUid">SOP Instance UID to search for.</param>
+            <returns>Boolean - true if instance found in the Information Model, otherwise false.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.PatientRootInformationModel.RetrieveInformationModel(DvtkData.Dimse.DataSet)">
+            <summary>
+            Retrieve a list of filenames from the Information Model. The filenames match the
+            individual instances matching the retrieve dataset attributes.
+            </summary>
+            <param name="retrieveDataset">Retrive dataset.</param>
+            <returns>File list - containing the filenames of all instances matching the retrieve dataset attributes.</returns>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.QueryRetrieve.PatientStudyInformationEntity">
+            <summary>
+            Summary description for PatientStudyInformationEntity.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.PatientStudyInformationEntity.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.QueryRetrieve.PatientStudyInformationEntity.FileNames">
+            <summary>
+            Gets the filenames of all (indirect) child instance information entities.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.PatientStudyInformationEntity.SetDefaultTagTypeList">
+            <summary>
+            Set the Default Tag Type List for this Entity.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.QueryRetrieve.PatientStudyOnlyInformationModel">
+            <summary>
+            Summary description for PatientStudyOnlyInformationModel.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.PatientStudyOnlyInformationModel.#ctor">
+            <summary>
+            Class Constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.PatientStudyOnlyInformationModel.AddToInformationModel(DvtkData.Media.DicomFile,System.Boolean)">
+            <summary>
+            Add the given dataset present in a Dicom File to the Information Model. The data is normalised into the Information Model.
+            </summary>
+            <param name="dicomFile">The dicom File containing the dataset to be added.</param>
+            <param name="storeFile">Boolean indicating whether the dataset should be stored or not.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.PatientStudyOnlyInformationModel.QueryInformationModel(DvtkData.Dimse.DataSet)">
+            <summary>
+            Query the Information Model using the given Query Dataset.
+            </summary>
+            <param name="queryDataset">Query Dataset.</param>
+            <returns>A collection of zero or more query reponse datasets.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.PatientStudyOnlyInformationModel.IsInstanceInInformationModel(System.String,System.String)">
+            <summary>
+            Check if the given instance is present in the Information Model. The instance will be at the leaf nodes of the Information Model.
+            </summary>
+            <param name="sopClassUid">SOP Class UID to search for.</param>
+            <param name="sopInstanceUid">SOP Instance UID to search for.</param>
+            <returns>Boolean - true if instance found in the Information Model, otherwise false.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.PatientStudyOnlyInformationModel.RetrieveInformationModel(DvtkData.Dimse.DataSet)">
+            <summary>
+            Retrieve a list of filenames from the Information Model. The filenames match the
+            individual instances matching the retrieve dataset attributes.
+            </summary>
+            <param name="retrieveDataset">Retrive dataset.</param>
+            <returns>File list - containing the filenames of all instances matching the retrieve dataset attributes.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.QueryRetrieveInformationModel.LoadInformationModel(System.String)">
+            <summary>
+            Load the Information Model by reading all the .DCM and .RAW files
+            present in the given directory. The data read is normalised into the
+            Information Model.
+            </summary>
+            <param name="dataDirectory">Source data directory containing the .DCm and .RAW files.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.QueryRetrieveInformationModel.StoreDicomFile(DvtkData.Media.DicomFile)">
+            <summary>
+            Store the DICOM file into a DICOM Media File in the current Information Model directory.
+            The file contents might be later used for retrieval.The transfer syntax is also passed so that the TS specified
+            in the dcm file is used while moving the file to a Storage SCP
+            </summary>
+            <param name="dicomFile">The DICOM file to store</param>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.QueryRetrieve.SeriesInformationEntity">
+            <summary>
+            Summary description for SeriesInformationEntity.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.SeriesInformationEntity.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.QueryRetrieve.SeriesInformationEntity.FileNames">
+            <summary>
+            Gets the filenames of all child instance information entities.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.SeriesInformationEntity.SetDefaultTagTypeList">
+            <summary>
+            Set the Default Tag Type List for this Entity.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.QueryRetrieve.StudyInformationEntity">
+            <summary>
+            Summary description for StudyInformationEntity.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.StudyInformationEntity.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Dicom.InformationEntity.QueryRetrieve.StudyInformationEntity.FileNames">
+            <summary>
+            Gets the filenames of all child instance information entities, that are part of all child series information entities.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.StudyInformationEntity.SetDefaultTagTypeList">
+            <summary>
+            Set the Default Tag Type List for this Entity.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.QueryRetrieve.StudyRootInformationModel">
+            <summary>
+            Summary description for StudyRootInformationModel.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.StudyRootInformationModel.#ctor">
+            <summary>
+            Class Constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.StudyRootInformationModel.AddToInformationModel(DvtkData.Media.DicomFile,System.Boolean)">
+            <summary>
+            Add the given dataset present in a Dicom File to the Information Model. The data is normalised into the Information Model.
+            </summary>
+            <param name="dicomFile">The dicom File containing the dataset to be added.</param>
+            <param name="storeFile">Boolean indicating whether the dataset should be stored or not.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.StudyRootInformationModel.QueryInformationModel(DvtkData.Dimse.DataSet)">
+            <summary>
+            Query the Information Model using the given Query Dataset.
+            </summary>
+            <param name="queryDataset">Query Dataset.</param>
+            <returns>A collection of zero or more query reponse datasets.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.StudyRootInformationModel.IsInstanceInInformationModel(System.String,System.String)">
+            <summary>
+            Check if the given instance is present in the Information Model. The instance will be at the leaf nodes of the Information Model.
+            </summary>
+            <param name="sopClassUid">SOP Class UID to search for.</param>
+            <param name="sopInstanceUid">SOP Instance UID to search for.</param>
+            <returns>Boolean - true if instance found in the Information Model, otherwise false.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.QueryRetrieve.StudyRootInformationModel.RetrieveInformationModel(DvtkData.Dimse.DataSet)">
+            <summary>
+            Retrieve a list of filenames from the Information Model. The filenames match the
+            individual instances matching the retrieve dataset attributes.
+            </summary>
+            <param name="retrieveDataset">Retrive dataset.</param>
+            <returns>File list - containing the filenames of all instances matching the retrieve dataset attributes.</returns>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.Worklist.ImagingServiceRequestInformationEntity">
+            <summary>
+            Summary description for ImagingServiceRequestInformationEntity.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.ImagingServiceRequestInformationEntity.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.ImagingServiceRequestInformationEntity.SetDefaultTagTypeList">
+            <summary>
+            Set the Default Tag Type List for this Entity.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.Worklist.ModalityWorklistInformationModel">
+            <summary>
+            Summary description for ModalityWorklistInformationModel.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.ModalityWorklistInformationModel.#ctor">
+            <summary>
+            Class Constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.ModalityWorklistInformationModel.AddToInformationModel(DvtkData.Dimse.DataSet,System.Boolean)">
+            <summary>
+            Add the given Dataset to the Information Model. The data is normalised into the Information Model.
+            </summary>
+            <param name="dataset">Dataset to add to Informatio Model.</param>
+            <param name="storeDataset">Boolean indicating whether or not the dataset should also be stored to file for possible retrieval.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.ModalityWorklistInformationModel.LoadInformationModel(System.String)">
+            <summary>
+            Load the Information Model by reading all the .DCM and .RAW files
+            present in the given directory. The data read is normalised into the
+            Information Model.
+            </summary>
+            <param name="dataDirectory">Source data directory containing the .DCm and .RAW files.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.ModalityWorklistInformationModel.QueryInformationModel(DvtkData.Dimse.DataSet)">
+            <summary>
+            Query the Information Model using the given Query Dataset.
+            </summary>
+            <param name="queryDataset">Query Dataset.</param>
+            <returns>A collection of zero or more query reponse datasets.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.ModalityWorklistInformationModel.PatientRegistration(DvtkData.Dimse.DataSet)">
+            <summary>
+            Patient Registration request - update modality worklist information model.
+            </summary>
+            <param name="dataset">Dataset containing patient registration attributes.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.ModalityWorklistInformationModel.PatientUpdate(DvtkData.Dimse.DataSet)">
+            <summary>
+            Patient Update request - update modality worklist information model.
+            </summary>
+            <param name="dataset">Dataset containing patient update attributes.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.ModalityWorklistInformationModel.PatientMerge(DvtkData.Dimse.DataSet)">
+            <summary>
+            Patient merge request - update modality worklist information model.
+            </summary>
+            <param name="dataset">Dataset containing patient merge attributes.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.ModalityWorklistInformationModel.PlacerOrderManagement(DvtkData.Dimse.DataSet)">
+            <summary>
+            Placer order management request - update modality worklist information model.
+            </summary>
+            <param name="dataset">Dataset containing placer order management attributes.</param>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.Worklist.PatientInformationEntity">
+            <summary>
+            Summary description for PatientInformationEntity.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.PatientInformationEntity.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.PatientInformationEntity.SetDefaultTagTypeList">
+            <summary>
+            Set the Default Tag Type List for this Entity.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.Worklist.RequestedProcedureInformationEntity">
+            <summary>
+            Summary description for RequestedProcedureInformationEntity.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.RequestedProcedureInformationEntity.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.RequestedProcedureInformationEntity.SetDefaultTagTypeList">
+            <summary>
+            Set the Default Tag Type List for this Entity.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.RequestedProcedureInformationEntity.CopyFrom(DvtkData.Dimse.AttributeSet)">
+            <summary>
+            Copy from the given source Dataset into the local Dataset as defined by the
+            default Tag Type list. In addition to the base copy we need to copy attributes from the
+            Request Attributes Sequence (if present).
+            </summary>
+            <param name="sourceDataset">Source Dataset used to populate the local Dataset.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.RequestedProcedureInformationEntity.IsFoundIn(DvtkData.Dimse.AttributeSet)">
+            <summary>
+            Check if the given match dataset is found in the local dataset using the default Tag Type list. 
+            A check is made to see if all the attributes in the given match dataset are present in the local
+            dataset. In addition to the base match we need to try to match attributes from the
+            Request Attributes Sequence (if present).
+            </summary>
+            <param name="matchDataset">Match dataset to check.</param>
+            <returns>Boolean indicating if the match attributes are present in the local dataset.</returns>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.Worklist.ScheduledProcedureStepInformationEntity">
+            <summary>
+            Summary description for ScheduledProcedureStepInformationEntity.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.ScheduledProcedureStepInformationEntity.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.ScheduledProcedureStepInformationEntity.SetDefaultTagTypeList">
+            <summary>
+            Set the Default Tag Type List for this Entity.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.ScheduledProcedureStepInformationEntity.CopyFrom(DvtkData.Dimse.AttributeSet)">
+            <summary>
+            Copy from the given source Dataset into the local Dataset as defined by the
+            default Tag Type list. In addition to the base copy we need to copy attributes from the
+            Request Attributes Sequence (if present) and the Scheduled Procedure Step (if present).
+            </summary>
+            <param name="sourceDataset">Source Dataset used to populate the local Dataset.</param>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.ScheduledProcedureStepInformationEntity.IsFoundIn(DvtkData.Dimse.AttributeSet)">
+            <summary>
+            Check if the given match dataset is found in the local dataset using the default Tag Type list. 
+            A check is made to see if all the attributes in the given match dataset are present in the local
+            dataset. In addition to the base match we need to try to match attributes from the
+            Request Attributes Sequence (if present) or Scheduled Procedure Step Sequence (if present).
+            </summary>
+            <param name="matchDataset">Match dataset to check.</param>
+            <returns>Boolean indicating if the match attributes are present in the local dataset.</returns>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.Worklist.VisitInformationEntity">
+            <summary>
+            Summary description for VisitInformationEntity.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.VisitInformationEntity.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.VisitInformationEntity.SetDefaultTagTypeList">
+            <summary>
+            Set the Default Tag Type List for this Entity.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Dicom.InformationEntity.Worklist.WorklistQueryDataset">
+            <summary>
+            Summary description for WorklistQueryDataset.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.WorklistQueryDataset.CreateWorklistItemDataset(DvtkData.Dimse.TagValueCollection)">
+            <summary>
+            Create a Worklist Response Dataset from the given user defined tags and teh default manager values.
+            </summary>
+            <param name="userDefinedTags">User defined Tags.</param>
+            <returns>DvtkData.Dimse.DataSet - Modality Worklist Response Dataset.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.WorklistQueryDataset.CreateWorklistQueryDataset(DvtkData.Dimse.TagValueCollection)">
+            <summary>
+            Create a Worklist Query Dataset from the given query tags and the default return keys.
+            </summary>
+            <param name="queryTags">Query Tags.</param>
+            <returns>DvtkData.Dimse.DataSet - Modality Worklist Query Dataset.</returns>
+        </member>
+        <member name="M:Dvtk.Dicom.InformationEntity.Worklist.WorklistQueryDataset.CreateWorklistQueryDataset(System.String,System.String)">
+            <summary>
+            Create a Worklist Query Dataset from the given DCM file. We assume that the DCM file
+            contains the appropriate MWL Query Dataset. If the scheduled procedure step start date
+            is present in the DCM file, it will be overwritten with the value given by scheduledProcedureStepStartDate.
+            </summary>
+            <param name="mwlQueryDcmFilename">MWL Query Dcm Filename.</param>
+            <param name="userDefinedScheduledProcedureStepStartDate">User Defined Scheduled Procedure Step Start Date.</param>
+            <returns>DvtkData.Dimse.DataSet - Modality Worklist Query Dataset.</returns>
+        </member>
+    </members>
+</doc>

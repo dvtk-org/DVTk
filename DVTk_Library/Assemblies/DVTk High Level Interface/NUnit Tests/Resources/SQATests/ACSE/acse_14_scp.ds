@@ -1,0 +1,75 @@
+##
+## DVT DICOMScript
+##
+## Name: acse_14_scp.ds
+##
+## Test Suite Ref: 3.2.2.3.
+## Test Case Ref: 1, 2, 5 
+##
+## Test Suite Ref: 3.2.6.1.
+## Test Case Ref: 1, 2
+##
+## Pre-conditions:
+##	No association.
+##
+## Test Scenario:
+##	Test use of string -> uid mapping.
+##	Test parsing of complete ACSE requests.
+##	Receive Associate Request - with all parameters defined incorrectly.
+##	Send Abort Request - with all parameters defined.
+##
+## Expected Result:
+## 	Validation: 13 error(s), 10 warning(s)
+## 	User Validation: 0 error(s), 0 warning(s)
+## 	General Error: 0 error(s), 0 warning(s)
+##
+## Post-conditions:
+##	No association.
+##
+RECEIVE ASSOCIATE-RQ (
+	PROTOCOL-VERSION 0
+
+	CALLED-AE-TITLE "XTEST_CALLED"
+
+	CALLING-AE-TITLE "XTEST_CALLING"
+
+	APPLICATION-CONTEXT-NAME "1.1.2.840.10008.3.1.1.1"
+
+        PRESENTATION-CONTEXT-ITEMS
+        ("Secondary Capture Image Storage SOP Class", "Implicit VR Big Endian")
+	("Computed Radiography Image Storage SOP Class", "1.2.840.10008.1.2.1")
+        ("CT Image Storage SOP Class", "Explicit VR Big Endian")
+	("MR Image Storage SOP Class", "1.2.840.10008.1.2.2")
+#       Nuclear Medicine Image Storage SOP Class
+	("1.2.840.10008.5.1.4.1.1.20", "1.2.840.10008.1.2.1")
+
+	MAXIMUM-LENGTH-RECEIVED 32768
+
+	IMPLEMENTATION-CLASS-UID "1.1.22.333.4444.55555.666666"
+
+	IMPLEMENTATION-VERSION-NAME "XTestDVT"
+
+	SOP-CLASS-EXTENDED-NEGOTIATION
+	("Secondary Capture Image Storage SOP Class", 0, 1, 2, 3, 4, 5, 6, 7)
+#       Nuclear Medicine Image Storage SOP Class
+	("1.2.840.10008.5.1.4.1.1.20", 0, 1, 2, 3, 4, 5)
+
+	SCPSCU-ROLE-SELECTION
+	("Secondary Capture Image Storage SOP Class", 1, 1)
+#       Nuclear Medicine Image Storage SOP Class
+	("1.2.840.10008.5.1.4.1.1.20", 0, 0)
+
+	ASYNCHRONOUS-OPERATIONS-WINDOW 1 1
+)
+
+SEND ABORT-RQ (
+	SOURCE 0
+	REASON 0
+)
+
+##
+## Script Result should be:
+## Validation: 13 error(s), 10 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 0 error(s), 0 warning(s)
+##

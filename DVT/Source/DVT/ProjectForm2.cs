@@ -102,8 +102,10 @@ namespace Dvt
 		private System.Windows.Forms.CheckBox CheckBoxSecureConnection;
 		private System.Windows.Forms.Panel PanelSecuritySettingsContent;
 		private System.Windows.Forms.GroupBox GroupSecurityVersion;
-		private System.Windows.Forms.CheckBox CheckBoxTLS;
-		private System.Windows.Forms.CheckBox CheckBoxSSL;
+		private System.Windows.Forms.ComboBox ComboboxMaxTlsVersion;
+		private System.Windows.Forms.ComboBox ComboboxMinTlsVersion;
+		private System.Windows.Forms.Label LabelMaxTlsVersion;
+		private System.Windows.Forms.Label LabelMinTlsVersion;
 		private System.Windows.Forms.GroupBox GroupSecurityKeyExchange;
 		private System.Windows.Forms.RadioButton RadioButtonKeyExchangeRSA;
         private System.Windows.Forms.RadioButton RadioButtonKeyExchangeDH;
@@ -477,9 +479,11 @@ namespace Dvt
             this.ButtonViewCertificates = new System.Windows.Forms.Button();
             this.ButtonViewCredentials = new System.Windows.Forms.Button();
             this.GroupSecurityVersion = new System.Windows.Forms.GroupBox();
-            this.CheckBoxTLS = new System.Windows.Forms.CheckBox();
-            this.CheckBoxSSL = new System.Windows.Forms.CheckBox();
-            this.GroupSecurityKeyExchange = new System.Windows.Forms.GroupBox();
+			this.ComboboxMaxTlsVersion = new System.Windows.Forms.ComboBox();
+			this.ComboboxMinTlsVersion = new System.Windows.Forms.ComboBox();
+			this.LabelMaxTlsVersion = new System.Windows.Forms.Label();
+			this.LabelMinTlsVersion = new System.Windows.Forms.Label();
+			this.GroupSecurityKeyExchange = new System.Windows.Forms.GroupBox();
             this.RadioButtonKeyExchangeRSA = new System.Windows.Forms.RadioButton();
             this.RadioButtonKeyExchangeDH = new System.Windows.Forms.RadioButton();
             this.GroupSecurityGeneral = new System.Windows.Forms.GroupBox();
@@ -830,7 +834,7 @@ namespace Dvt
             this.PanelSecuritySettingsContent.Controls.Add(this.GroupSecurityDataIntegrity);
             this.PanelSecuritySettingsContent.Controls.Add(this.GroupSecurityAuthentication);
             this.PanelSecuritySettingsContent.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelSecuritySettingsContent.Location = new System.Drawing.Point(15, 884);
+            this.PanelSecuritySettingsContent.Location = new System.Drawing.Point(15, 889);
             this.PanelSecuritySettingsContent.Name = "PanelSecuritySettingsContent";
             this.PanelSecuritySettingsContent.Size = new System.Drawing.Size(693, 231);
             this.PanelSecuritySettingsContent.TabIndex = 6;
@@ -1010,8 +1014,10 @@ namespace Dvt
             // 
             this.GroupSecurityVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.GroupSecurityVersion.Controls.Add(this.CheckBoxTLS);
-            this.GroupSecurityVersion.Controls.Add(this.CheckBoxSSL);
+			this.GroupSecurityVersion.Controls.Add(this.ComboboxMaxTlsVersion);
+			this.GroupSecurityVersion.Controls.Add(this.ComboboxMinTlsVersion);
+			this.GroupSecurityVersion.Controls.Add(this.LabelMaxTlsVersion);
+			this.GroupSecurityVersion.Controls.Add(this.LabelMinTlsVersion);
             this.GroupSecurityVersion.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.GroupSecurityVersion.Location = new System.Drawing.Point(163, 28);
             this.GroupSecurityVersion.Name = "GroupSecurityVersion";
@@ -1020,24 +1026,48 @@ namespace Dvt
             this.GroupSecurityVersion.TabStop = false;
             this.GroupSecurityVersion.Text = "Version";
             this.GroupSecurityVersion.Visible = false;
-            // 
-            // CheckBoxTLS
-            // 
-            this.CheckBoxTLS.Location = new System.Drawing.Point(19, 28);
-            this.CheckBoxTLS.Name = "CheckBoxTLS";
-            this.CheckBoxTLS.Size = new System.Drawing.Size(77, 27);
-            this.CheckBoxTLS.TabIndex = 0;
-            this.CheckBoxTLS.Text = "TLS v1";
-            this.CheckBoxTLS.CheckedChanged += new System.EventHandler(this.CheckBoxTLS_CheckedChanged);
-            // 
-            // CheckBoxSSL
-            // 
-            this.CheckBoxSSL.Location = new System.Drawing.Point(19, 55);
-            this.CheckBoxSSL.Name = "CheckBoxSSL";
-            this.CheckBoxSSL.Size = new System.Drawing.Size(77, 28);
-            this.CheckBoxSSL.TabIndex = 0;
-            this.CheckBoxSSL.Text = "SSL v3";
-            this.CheckBoxSSL.CheckedChanged += new System.EventHandler(this.CheckBoxSSL_CheckedChanged);
+			// 
+			// comboboxMaxTlsVersion
+			// 
+			this.ComboboxMaxTlsVersion.FormattingEnabled = true;
+			this.ComboboxMaxTlsVersion.Items.AddRange(new object[] {
+			"TLS1.0",
+			"TLS1.1",
+			"TLS1.2",
+			"TLS1.3"});
+			this.ComboboxMaxTlsVersion.Location = new System.Drawing.Point(150, 25);
+			this.ComboboxMaxTlsVersion.Size = new System.Drawing.Size(151, 28);
+			this.ComboboxMaxTlsVersion.SelectedIndexChanged += new System.EventHandler(this.ComboboxMaxTlsVersion_SelectedIndexChanged);
+			
+			// 
+			// comboboxMinTlsVersion
+			// 
+			this.ComboboxMinTlsVersion.FormattingEnabled = true;
+			this.ComboboxMinTlsVersion.Items.AddRange(new object[] {
+			"TLS1.0",
+			"TLS1.1",
+			"TLS1.2",
+			"TLS1.3"});
+			this.ComboboxMinTlsVersion.Location = new System.Drawing.Point(150, 75);
+			this.ComboboxMinTlsVersion.Size = new System.Drawing.Size(151, 28);
+			this.ComboboxMinTlsVersion.SelectedIndexChanged += new System.EventHandler(this.ComboboxMinTlsVersion_SelectedIndexChanged);
+			
+			// 
+			// label max tls version
+			// 
+			this.LabelMaxTlsVersion.AutoSize = true;
+			this.LabelMaxTlsVersion.Location = new System.Drawing.Point(50, 25);
+			this.LabelMaxTlsVersion.Size = new System.Drawing.Size(35, 16);
+			this.LabelMaxTlsVersion.Text = "Max Tls Version";
+
+			// 
+			// label max tls version
+			// 
+			this.LabelMinTlsVersion.AutoSize = true;
+			this.LabelMinTlsVersion.Location = new System.Drawing.Point(50, 75);
+			this.LabelMinTlsVersion.Size = new System.Drawing.Size(35, 16);
+			this.LabelMinTlsVersion.Text = "Min Tls Version";
+
             // 
             // GroupSecurityKeyExchange
             // 
@@ -1249,9 +1279,9 @@ namespace Dvt
             this.PanelSecuritySettingsTitle.Controls.Add(this.MinSecuritySettings);
             this.PanelSecuritySettingsTitle.Controls.Add(this.MaxSecuritySettings);
             this.PanelSecuritySettingsTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelSecuritySettingsTitle.Location = new System.Drawing.Point(15, 847);
+            this.PanelSecuritySettingsTitle.Location = new System.Drawing.Point(15, 851);
             this.PanelSecuritySettingsTitle.Name = "PanelSecuritySettingsTitle";
-            this.PanelSecuritySettingsTitle.Size = new System.Drawing.Size(693, 37);
+            this.PanelSecuritySettingsTitle.Size = new System.Drawing.Size(693, 38);
             this.PanelSecuritySettingsTitle.TabIndex = 5;
             // 
             // CheckBoxSecureConnection
@@ -1305,7 +1335,7 @@ namespace Dvt
             this.PanelSUTSettingContent.Controls.Add(this.TextBoxSUTImplClassUID);
             this.PanelSUTSettingContent.Controls.Add(this.TextBoxSUTImplVersionName);
             this.PanelSUTSettingContent.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelSUTSettingContent.Location = new System.Drawing.Point(15, 663);
+            this.PanelSUTSettingContent.Location = new System.Drawing.Point(15, 667);
             this.PanelSUTSettingContent.Name = "PanelSUTSettingContent";
             this.PanelSUTSettingContent.Size = new System.Drawing.Size(693, 184);
             this.PanelSUTSettingContent.TabIndex = 4;
@@ -1376,7 +1406,7 @@ namespace Dvt
             0,
             0});
             this.NumericSUTListenPort.Name = "NumericSUTListenPort";
-            this.NumericSUTListenPort.Size = new System.Drawing.Size(373, 22);
+            this.NumericSUTListenPort.Size = new System.Drawing.Size(432, 22);
             this.NumericSUTListenPort.TabIndex = 3;
             this.NumericSUTListenPort.ValueChanged += new System.EventHandler(this.NumericSUTListenPort_ValueChanged);
             // 
@@ -1396,7 +1426,7 @@ namespace Dvt
             0,
             0});
             this.NumericSUTMaxPDU.Name = "NumericSUTMaxPDU";
-            this.NumericSUTMaxPDU.Size = new System.Drawing.Size(373, 22);
+            this.NumericSUTMaxPDU.Size = new System.Drawing.Size(432, 22);
             this.NumericSUTMaxPDU.TabIndex = 5;
             this.NumericSUTMaxPDU.ValueChanged += new System.EventHandler(this.NumericSUTMaxPDU_ValueChanged);
             // 
@@ -1446,9 +1476,9 @@ namespace Dvt
             this.PanelSUTSettingTitle.Controls.Add(this.MinSUTSettings);
             this.PanelSUTSettingTitle.Controls.Add(this.MaxSUTSettings);
             this.PanelSUTSettingTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelSUTSettingTitle.Location = new System.Drawing.Point(15, 626);
+            this.PanelSUTSettingTitle.Location = new System.Drawing.Point(15, 629);
             this.PanelSUTSettingTitle.Name = "PanelSUTSettingTitle";
-            this.PanelSUTSettingTitle.Size = new System.Drawing.Size(693, 37);
+            this.PanelSUTSettingTitle.Size = new System.Drawing.Size(693, 38);
             this.PanelSUTSettingTitle.TabIndex = 0;
             // 
             // label2
@@ -1500,7 +1530,7 @@ namespace Dvt
             this.PanelDVTRoleSettingsContent.Controls.Add(this.LabelDVTImplClassUID);
             this.PanelDVTRoleSettingsContent.Controls.Add(this.LabelDVTImplVersionName);
             this.PanelDVTRoleSettingsContent.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelDVTRoleSettingsContent.Location = new System.Drawing.Point(15, 441);
+            this.PanelDVTRoleSettingsContent.Location = new System.Drawing.Point(15, 444);
             this.PanelDVTRoleSettingsContent.Name = "PanelDVTRoleSettingsContent";
             this.PanelDVTRoleSettingsContent.Size = new System.Drawing.Size(693, 185);
             this.PanelDVTRoleSettingsContent.TabIndex = 3;
@@ -1517,7 +1547,7 @@ namespace Dvt
             0,
             0});
             this.NumericDVTListenPort.Name = "NumericDVTListenPort";
-            this.NumericDVTListenPort.Size = new System.Drawing.Size(373, 22);
+            this.NumericDVTListenPort.Size = new System.Drawing.Size(432, 22);
             this.NumericDVTListenPort.TabIndex = 3;
             this.NumericDVTListenPort.ValueChanged += new System.EventHandler(this.NumericDVTListenPort_ValueChanged);
             // 
@@ -1580,7 +1610,7 @@ namespace Dvt
             0,
             0});
             this.NumericDVTTimeOut.Name = "NumericDVTTimeOut";
-            this.NumericDVTTimeOut.Size = new System.Drawing.Size(373, 22);
+            this.NumericDVTTimeOut.Size = new System.Drawing.Size(432, 22);
             this.NumericDVTTimeOut.TabIndex = 4;
             this.NumericDVTTimeOut.ValueChanged += new System.EventHandler(this.NumericDVTTimeOut_ValueChanged);
             // 
@@ -1600,7 +1630,7 @@ namespace Dvt
             0,
             0});
             this.NumericDVTMaxPDU.Name = "NumericDVTMaxPDU";
-            this.NumericDVTMaxPDU.Size = new System.Drawing.Size(373, 22);
+            this.NumericDVTMaxPDU.Size = new System.Drawing.Size(432, 22);
             this.NumericDVTMaxPDU.TabIndex = 5;
             this.NumericDVTMaxPDU.ValueChanged += new System.EventHandler(this.NumericDVTMaxPDU_ValueChanged);
             // 
@@ -1650,9 +1680,9 @@ namespace Dvt
             this.PanelDVTRoleSettingsTitle.Controls.Add(this.MinDVTRoleSettings);
             this.PanelDVTRoleSettingsTitle.Controls.Add(this.MaxDVTRoleSettings);
             this.PanelDVTRoleSettingsTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelDVTRoleSettingsTitle.Location = new System.Drawing.Point(15, 404);
+            this.PanelDVTRoleSettingsTitle.Location = new System.Drawing.Point(15, 406);
             this.PanelDVTRoleSettingsTitle.Name = "PanelDVTRoleSettingsTitle";
-            this.PanelDVTRoleSettingsTitle.Size = new System.Drawing.Size(693, 37);
+            this.PanelDVTRoleSettingsTitle.Size = new System.Drawing.Size(693, 38);
             this.PanelDVTRoleSettingsTitle.TabIndex = 0;
             // 
             // label1
@@ -1693,9 +1723,9 @@ namespace Dvt
             this.PanelGeneralPropertiesContent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PanelGeneralPropertiesContent.Controls.Add(this.panel1);
             this.PanelGeneralPropertiesContent.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelGeneralPropertiesContent.Location = new System.Drawing.Point(15, 52);
+            this.PanelGeneralPropertiesContent.Location = new System.Drawing.Point(15, 53);
             this.PanelGeneralPropertiesContent.Name = "PanelGeneralPropertiesContent";
-            this.PanelGeneralPropertiesContent.Size = new System.Drawing.Size(693, 352);
+            this.PanelGeneralPropertiesContent.Size = new System.Drawing.Size(693, 353);
             this.PanelGeneralPropertiesContent.TabIndex = 0;
             // 
             // panel1
@@ -1733,7 +1763,7 @@ namespace Dvt
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(691, 350);
+            this.panel1.Size = new System.Drawing.Size(691, 351);
             this.panel1.TabIndex = 0;
             this.panel1.Click += new System.EventHandler(this.panel1_Click);
             // 
@@ -2058,7 +2088,7 @@ namespace Dvt
             this.PanelGeneralPropertiesTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelGeneralPropertiesTitle.Location = new System.Drawing.Point(15, 15);
             this.PanelGeneralPropertiesTitle.Name = "PanelGeneralPropertiesTitle";
-            this.PanelGeneralPropertiesTitle.Size = new System.Drawing.Size(693, 37);
+            this.PanelGeneralPropertiesTitle.Size = new System.Drawing.Size(693, 38);
             this.PanelGeneralPropertiesTitle.TabIndex = 0;
             // 
             // label5
@@ -2505,7 +2535,7 @@ namespace Dvt
             this.RemoveIssue.Controls.Add(this.LabelComment);
             this.RemoveIssue.Location = new System.Drawing.Point(4, 25);
             this.RemoveIssue.Name = "RemoveIssue";
-            this.RemoveIssue.Size = new System.Drawing.Size(929, 165);
+            this.RemoveIssue.Size = new System.Drawing.Size(736, 165);
             this.RemoveIssue.TabIndex = 0;
             this.RemoveIssue.Text = " Issue Details";
             // 
@@ -2516,14 +2546,14 @@ namespace Dvt
             this.LabelErrorMessage.ForeColor = System.Drawing.Color.Red;
             this.LabelErrorMessage.Location = new System.Drawing.Point(0, 0);
             this.LabelErrorMessage.Name = "LabelErrorMessage";
-            this.LabelErrorMessage.Size = new System.Drawing.Size(929, 28);
+            this.LabelErrorMessage.Size = new System.Drawing.Size(736, 28);
             this.LabelErrorMessage.TabIndex = 0;
             this.LabelErrorMessage.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // ButtonSaveIssue
             // 
             this.ButtonSaveIssue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonSaveIssue.Location = new System.Drawing.Point(824, 120);
+            this.ButtonSaveIssue.Location = new System.Drawing.Point(631, 120);
             this.ButtonSaveIssue.Name = "ButtonSaveIssue";
             this.ButtonSaveIssue.Size = new System.Drawing.Size(77, 37);
             this.ButtonSaveIssue.TabIndex = 5;
@@ -2535,7 +2565,7 @@ namespace Dvt
             this.TextBoxPr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxPr.Location = new System.Drawing.Point(125, 67);
             this.TextBoxPr.Name = "TextBoxPr";
-            this.TextBoxPr.Size = new System.Drawing.Size(785, 22);
+            this.TextBoxPr.Size = new System.Drawing.Size(592, 22);
             this.TextBoxPr.TabIndex = 2;
             // 
             // TextBoxComment
@@ -2543,7 +2573,7 @@ namespace Dvt
             this.TextBoxComment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxComment.Location = new System.Drawing.Point(125, 30);
             this.TextBoxComment.Name = "TextBoxComment";
-            this.TextBoxComment.Size = new System.Drawing.Size(785, 22);
+            this.TextBoxComment.Size = new System.Drawing.Size(592, 22);
             this.TextBoxComment.TabIndex = 1;
             // 
             // checkBoxIgnoreResult
@@ -3560,10 +3590,40 @@ namespace Dvt
 
 							CheckBoxCheckRemoteCertificates.Checked = theISecuritySettings.CheckRemoteCertificate;
 							CheckBoxCacheSecureSessions.Checked = theISecuritySettings.CacheTlsSessions;
-							CheckBoxTLS.Checked = ((theISecuritySettings.TlsVersionFlags & Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1) != 0);
-							CheckBoxSSL.Checked = ((theISecuritySettings.TlsVersionFlags & Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_SSLv3) != 0);
 
-                            Dvtk.Sessions.CipherFlags currentCipherFlags = theISecuritySettings.CipherFlags;
+							switch (theISecuritySettings.MaxTlsVersionFlags)
+							{
+								case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_0:
+									ComboboxMaxTlsVersion.SelectedIndex = 0;
+									break;
+								case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_1:
+									ComboboxMaxTlsVersion.SelectedIndex = 1;
+									break;
+								case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_2:
+									ComboboxMaxTlsVersion.SelectedIndex = 2;
+									break;
+								case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_3:
+									ComboboxMaxTlsVersion.SelectedIndex = 3;
+									break;
+							}
+
+							switch (theISecuritySettings.MinTlsVersionFlags)
+							{
+								case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_0:
+									ComboboxMinTlsVersion.SelectedIndex = 0;
+									break;
+								case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_1:
+									ComboboxMinTlsVersion.SelectedIndex = 1;
+									break;
+								case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_2:
+									ComboboxMinTlsVersion.SelectedIndex = 2;
+									break;
+								case Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_3:
+									ComboboxMinTlsVersion.SelectedIndex = 3;
+									break;
+							}
+
+							Dvtk.Sessions.CipherFlags currentCipherFlags = theISecuritySettings.CipherFlags;
                             bool areSecuritySettingsChanged = theISecuritySettings.securitySettingsChanged;
 
                             if (areSecuritySettingsChanged)
@@ -5635,62 +5695,107 @@ namespace Dvt
 			}
 		}										
 
-		private void UpdateTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags theVersionFlag, CheckBox theCheckBox) 
+
+		private void UpdateMaxTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags theVersionFlag)
 		{
-			if (GetSelectedSessionNew().Implementation is Dvtk.Sessions.ISecure) 
+			if (GetSelectedSessionNew().Implementation is Dvtk.Sessions.ISecure)
 			{
 				Dvtk.Sessions.ISecuritySettings theISecuritySettings = null;
 				theISecuritySettings = (GetSelectedSessionNew().Implementation as Dvtk.Sessions.ISecure).SecuritySettings;
-            
-				bool isCurrentlyChecked = ((theISecuritySettings.TlsVersionFlags & theVersionFlag) != 0);
-            
-				try 
+				Dvtk.Sessions.TlsVersionFlags currentMaxVersion = theISecuritySettings.MaxTlsVersionFlags;
+				Dvtk.Sessions.TlsVersionFlags currentMinVersion = theISecuritySettings.MinTlsVersionFlags;
+				if (theVersionFlag < currentMinVersion)
 				{
-					if (theCheckBox.Checked) 
-					{
-						theISecuritySettings.TlsVersionFlags |= theVersionFlag;
-					}
-					else 
-					{
-						theISecuritySettings.TlsVersionFlags &= ~theVersionFlag;
-					}
-            
+					ComboboxMaxTlsVersion.SelectedIndex = (int)currentMaxVersion;
+					MessageBox.Show("Max version cannot be smaller than Min version.");
+				}
+				else
+				{
+					theISecuritySettings.MaxTlsVersionFlags = theVersionFlag;
 					SessionChange theSessionChange = new SessionChange(GetSelectedSessionNew(), SessionChange.SessionChangeSubTypEnum.OTHER);
 					Notify(theSessionChange);
 				}
-				catch (Exception theException) 
-				{
-					// Put the state of the check box back to the unchanged setting of the session.
-					theCheckBox.Checked = isCurrentlyChecked;
-            
-					MessageBox.Show(theException.Message + "\n\nThe change for checkbox \"" + theCheckBox.Text + "\" is not allowed.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-				}
 			}
-			else 
+			else
 			{
 				// Sanity check.
 				Debug.Assert(false);
 			}
-		}										
-
-		private void CheckBoxTLS_CheckedChanged(object sender, System.EventArgs e) 
-		{
-			if (_TCM_UpdateCount == 0) 
-			{
-				UpdateTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1, CheckBoxTLS);
-			}										
 		}
 
-		private void CheckBoxSSL_CheckedChanged(object sender, System.EventArgs e) 
+		private void UpdateMinTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags theVersionFlag)
 		{
-			if (_TCM_UpdateCount == 0) 
+			if (GetSelectedSessionNew().Implementation is Dvtk.Sessions.ISecure)
 			{
-				UpdateTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_SSLv3, CheckBoxSSL);
-			}										
+				Dvtk.Sessions.ISecuritySettings theISecuritySettings = null;
+				theISecuritySettings = (GetSelectedSessionNew().Implementation as Dvtk.Sessions.ISecure).SecuritySettings;
+				Dvtk.Sessions.TlsVersionFlags currentMaxVersion = theISecuritySettings.MaxTlsVersionFlags;
+				Dvtk.Sessions.TlsVersionFlags currentMinVersion = theISecuritySettings.MinTlsVersionFlags;
+				if (theVersionFlag > currentMaxVersion)
+				{
+					ComboboxMinTlsVersion.SelectedIndex = (int)currentMinVersion;
+					MessageBox.Show("Min version cannot be bigger than Max version.");
+				}
+				else
+				{
+					theISecuritySettings.MinTlsVersionFlags = theVersionFlag;
+					SessionChange theSessionChange = new SessionChange(GetSelectedSessionNew(), SessionChange.SessionChangeSubTypEnum.OTHER);
+					Notify(theSessionChange);
+				}
+			}
+			else
+			{
+				// Sanity check.
+				Debug.Assert(false);
+			}
 		}
 
-        // Aut RSA
-        private void RadioButtonAuthenticationRSA_CheckedChanged(object sender, System.EventArgs e)
+		private void ComboboxMaxTlsVersion_SelectedIndexChanged(object sender, System.EventArgs e)
+		{
+			if (_TCM_UpdateCount == 0)
+			{
+				switch (ComboboxMaxTlsVersion.SelectedIndex)
+				{
+					case 0:
+						UpdateMaxTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_0);
+						break;
+					case 1:
+						UpdateMaxTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_1);
+						break;
+					case 2:
+						UpdateMaxTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_2);
+						break;
+					case 3:
+						UpdateMaxTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_3);
+						break;
+				}
+			}
+		}
+
+		private void ComboboxMinTlsVersion_SelectedIndexChanged(object sender, System.EventArgs e)
+		{
+			if (_TCM_UpdateCount == 0)
+			{
+				switch (ComboboxMinTlsVersion.SelectedIndex)
+				{
+					case 0:
+						UpdateMinTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_0);
+						break;
+					case 1:
+						UpdateMinTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_1);
+						break;
+					case 2:
+						UpdateMinTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_2);
+						break;
+					case 3:
+						UpdateMinTlsVersionFlag(Dvtk.Sessions.TlsVersionFlags.TLS_VERSION_TLSv1_3);
+						break;
+				}
+			}
+		}
+
+		// Aut RSA
+		private void RadioButtonAuthenticationRSA_CheckedChanged(object sender, System.EventArgs e)
         {
             if (_TCM_UpdateCount != 0)
             {

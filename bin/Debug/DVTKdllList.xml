@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="us-ascii" standalone="yes"?>
+<DVTK_DLL_LIST>
+<Assembly_DllName>DVTK.dll</Assembly_DllName>
+<Assembly_DllName>DvtkCommonDataFormat.dll</Assembly_DllName>
+<Assembly_DllName>DvtkComparator.dll</Assembly_DllName>
+<Assembly_DllName>DvtkData.dll</Assembly_DllName>
+<Assembly_DllName>DvtkDicomEmulators.dll</Assembly_DllName>
+<Assembly_DllName>DvtkHl7.dll</Assembly_DllName>
+<Assembly_DllName>DvtkHighLevelInterface.dll</Assembly_DllName>
+<Assembly_DllName>DvtkIheActors.dll</Assembly_DllName>
+<Assembly_DllName>DVTKManagedCodeAdapter.dll</Assembly_DllName>
+<Assembly_DllName>DvtkApplicationLayer.dll</Assembly_DllName>
+<Assembly_DllName>DvtkDefinitionQueryLibrary.dll</Assembly_DllName>
+</DVTK_DLL_LIST>

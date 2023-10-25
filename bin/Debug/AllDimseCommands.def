@@ -1,0 +1,303 @@
+#
+# AllDimseCommands.def
+#
+# The definition file contains a definition of all of the DIMSE Commands
+# - Requests and Responses.
+#
+DEFINE SYSTEM "DICOM" "3.0"
+"DICOM" "3.0"
+ENDDEFINE
+
+
+#
+# Definition of the All Dimse Command attributes
+#
+DEFINE C-STORE-RQ "All Dimse Command attributes"
+SOPCLASS "100.100.100.100.101" "All Dimse Command attributes"
+ENDDEFINE
+
+
+################################################################################
+# MACRO DEFINITIONS
+################################################################################
+
+
+################################################################################
+# COMMAND DEFINITIONS
+################################################################################
+
+DEFINE C-CANCEL-RQ
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000100,1,US,1,E,0x0FFF)                        "Command Field"
+(0x00000120,1,US,1)                                 "Message ID Being Responded To"
+(0x00000800,1,US,1,E,0x0101)                        "Data Set Type"
+ENDDEFINE
+
+DEFINE C-ECHO-RQ
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000002,1,UI,1)                                 "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x0030)                        "Command Field"
+(0x00000110,1,US,1)                                 "Message ID"
+(0x00000800,1,US,1,E,0x0101)                        "Data Set Type"
+ENDDEFINE
+
+DEFINE C-ECHO-RSP
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000002,1,UI,1)                                 "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x8030)                        "Command Field"
+(0x00000120,1,US,1)                                 "Message ID Being Responded To"
+(0x00000800,1,US,1,E,0x0101)                        "Data Set Type"
+(0x00000900,1,US,1)                                 "Status"
+(0x00000901,3,AT,1:n)                               "Offending Element"
+(0x00000902,3,LO,1)                                 "Error Comment"
+(0x00000903,3,US,1)                                 "Error ID"
+ENDDEFINE
+
+DEFINE C-FIND-RQ
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000002,1,UI,1)                                 "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x0020)                        "Command Field"
+(0x00000110,1,US,1)                                 "Message ID"
+(0x00000700,1,US,1,E,0x0000
+                   | 0x0001
+                   | 0x0002)                        "Priority"
+(0x00000800,1,US,1)                                 "Data Set Type"
+ENDDEFINE
+
+DEFINE C-FIND-RSP
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000002,1,UI,1)                                 "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x8020)                        "Command Field"
+(0x00000120,1,US,1)                                 "Message ID Being Responded To"
+(0x00000800,1,US,1)                                 "Data Set Type"
+(0x00000900,1,US,1)                                 "Status"
+(0x00000901,3,AT,1:n)                               "Offending Element"
+(0x00000902,3,LO,1)                                 "Error Comment"
+(0x00000903,3,US,1)                                 "Error ID"
+(0x00001005,3,AT,1:n)                               "Attribute Identifier List"
+ENDDEFINE
+
+DEFINE C-GET-RQ
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000002,1,UI,1)                                 "Affected SOP Class UID"
+(0x00000010,1,US,1,E,0x0010)                        "Command Field"
+(0x00000110,1,US,1)                                 "Message ID"
+(0x00000700,1,US,1,E,0x0000
+                   | 0x0001
+                   | 0x0002)                        "Priority"
+(0x00000800,1,US,1)                                 "Data Set Type"
+ENDDEFINE
+
+DEFINE C-GET-RSP
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000002,1,UI,1)                                 "Affected SOP Class UID"
+(0x00000120,1,US,1)                                 "Message ID Being Responded To"
+(0x00000800,1,US,1)                                 "Data Set Type"
+(0x00000900,1,US,1)                                 "Status"
+(0x00008010,1,US,1,E,0x8010)                        "Command Field"
+(0x00000901,3,AT,1:n)                               "Offending Element"
+(0x00000902,3,LO,1)                                 "Error Comment"
+(0x00000903,3,US,1)                                 "Error ID"
+(0x00001005,3,AT,1:n)                               "Attribute Identifier List"
+(0x00001020,3,US,1)                                 "Number of Remaining Sub-operations"
+(0x00001021,3,US,1)                                 "Number of Complete Sub-operations"
+(0x00001022,3,US,1)                                 "Number of Failed Sub-operations"
+(0x00001023,3,US,1)                                 "Number of Warning Sub-operations"
+ENDDEFINE
+
+DEFINE C-MOVE-RQ
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000002,1,UI,1)                                 "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x0021)                        "Command Field"
+(0x00000110,1,US,1)                                 "Message ID"
+(0x00000600,1,AE,1)                                 "Move Destination"
+(0x00000700,1,US,1,E,0x0000
+                   | 0x0001
+                   | 0x0002)                        "Priority"
+(0x00000800,1,US,1)                                 "Data Set Type"
+ENDDEFINE
+
+DEFINE C-MOVE-RSP
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000002,1,UI,1)                                 "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x8021)                        "Command Field"
+(0x00000120,1,US,1)                                 "Message ID Being Responded To"
+(0x00000800,1,US,1,E,0x0101)                        "Data Set Type"
+(0x00000900,1,US,1)                                 "Status"
+(0x00000901,3,AT,1:n)                               "Offending Element"
+(0x00000902,3,LO,1)                                 "Error Comment"
+(0x00000903,3,US,1)                                 "Error ID"
+(0x00001020,3,US,1)                                 "Number of Remaining Sub-operations"
+(0x00001021,3,US,1)                                 "Number of Complete Sub-operations"
+(0x00001022,3,US,1)                                 "Number of Failed Sub-operations"
+(0x00001023,3,US,1)                                 "Number of Warning Sub-operations"
+ENDDEFINE
+
+DEFINE C-STORE-RQ
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000002,1,UI,1)                                 "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x0001)                        "Command Field"
+(0x00000110,1,US,1)                                 "Message ID"
+(0x00000700,1,US,1,E,0x0000
+                   | 0x0001
+                   | 0x0002)                        "Priority"
+(0x00000800,1,US,1)                                 "Data Set Type"
+(0x00001030,3,AE,1)                                "Move Originator AE Title"
+(0x00001031,3,US,1)                                "Move Originator Message ID"
+(0x00001000,3,UI,1)                                 "Affected SOP Instance UID"
+ENDDEFINE
+
+DEFINE C-STORE-RSP
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000002,1,UI,1)                                 "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x8001)                        "Command Field"
+(0x00000120,1,US,1)                                 "Message ID Being Responded To"
+(0x00000800,1,US,1,E,0x0101)                        "Data Set Type"
+(0x00000900,1,US,1)                                 "Status"
+(0x00000901,3,AT,1:n)                               "Offending Element"
+(0x00000902,3,LO,1)                                 "Error Comment"
+(0x00000903,3,US,1)                                 "Error ID"
+(0x00001000,3,UI,1)                                 "Affected SOP Instance UID"
+(0x00001005,3,AT,1:n)                               "Attribute Identifier List"
+ENDDEFINE
+
+DEFINE N-ACTION-RQ
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000003,1,UI,1)                                 "Requested SOP Class UID"
+(0x00000100,1,US,1,E,0x0130)                        "Command Field"
+(0x00000110,1,US,1)                                 "Message ID"
+(0x00000800,1,US,1)                                 "Data Set Type"
+(0x00001001,1,UI,1)                                 "Requested SOP Instance UID"
+(0x00001008,1,US,1)                                 "Action Type ID"
+ENDDEFINE
+
+DEFINE N-ACTION-RSP
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000002,1,UI,1)                                 "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x8130)                        "Command Field"
+(0x00000120,1,US,1)                                 "Message ID Being Responded To"
+(0x00000800,1,US,1)                                 "Data Set Type"
+(0x00000900,1,US,1)                                 "Status"
+(0x00000901,3,AT,1:n)                               "Offending Element"
+(0x00000902,3,LO,1)                                 "Error Comment"
+(0x00000903,3,US,1)                                 "Error ID"
+(0x00001000,3,UI,1)                                 "Affected SOP Instance UID"
+(0x00001008,3,US,1)                                 "Action Type ID"
+ENDDEFINE
+
+DEFINE N-CREATE-RQ
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000002,1,UI,1)                                 "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x0140)                        "Command Field"
+(0x00000110,1,US,1)                                 "Message ID"
+(0x00000800,1,US,1)                                 "Data Set Type"
+(0x00001000,3,UI,1)                                 "Affected SOP Instance UID"
+ENDDEFINE
+
+DEFINE N-CREATE-RSP
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000100,1,US,1,E,0x8140)                        "Command Field"
+(0x00000120,1,US,1)                                 "Message ID Being Responded To"
+(0x00000800,1,US,1)                                 "Data Set Type"
+(0x00000900,1,US,1)                                 "Status"
+(0x00000002,3,UI,1)                                 "Affected SOP Class UID"
+(0x00000901,3,AT,1:n)                               "Offending Element"
+(0x00000902,3,LO,1)                                 "Error Comment"
+(0x00000903,3,US,1)                                 "Error ID"
+(0x00001000,3,UI,1)                                 "Affected SOP Instance UID"
+(0x00001005,3,AT,1:n)                               "Attribute Identifier List"
+ENDDEFINE
+
+DEFINE N-DELETE-RQ
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000003,1,UI,1)                                 "Requested SOP Class UID"
+(0x00000100,1,US,1,E,0x0150)                        "Command Field"
+(0x00000110,1,US,1)                                 "Message ID"
+(0x00000800,1,US,1,E,0x0101)                        "Data Set Type"
+(0x00001001,1,UI,1)                                 "Requested SOP Instance UID"
+ENDDEFINE
+
+DEFINE N-DELETE-RSP
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000002,1,UI,1)                                 "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x8150)                        "Command Field"
+(0x00000120,1,US,1)                                 "Message ID Being Responded To"
+(0x00000800,1,US,1,E,0x0101)                        "Data Set Type"
+(0x00000900,1,US,1)                                 "Status"
+(0x00000901,3,AT,1:n)                               "Offending Element"
+(0x00000902,3,LO,1)                                 "Error Comment"
+(0x00000903,3,US,1)                                 "Error ID"
+(0x00001000,3,UI,1)                                 "Affected SOP Instance UID"
+ENDDEFINE
+
+DEFINE N-EVENT-REPORT-RQ
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000002,1,UI,1)                                 "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x0100)                        "Command Field"
+(0x00000110,1,US,1)                                 "Message ID"
+(0x00000800,1,US,1)                                 "Data Set Type"
+(0x00001000,1,UI,1)                                 "Affected SOP Instance UID"
+(0x00001002,1,US,1)                                 "Event Type ID"
+ENDDEFINE
+
+DEFINE N-EVENT-REPORT-RSP
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000100,1,US,1,E,0x8100)                        "Command Field"
+(0x00000120,1,US,1)                                 "Message ID Being Responded To"
+(0x00000800,1,US,1)                                 "Data Set Type"
+(0x00000900,1,US,1)                                 "Status"
+(0x00000002,3,UI,1)                                 "Affected SOP Class UID"
+(0x00000901,3,AT,1:n)                               "Offending Element"
+(0x00000902,3,LO,1)                                 "Error Comment"
+(0x00000903,3,US,1)                                 "Error ID"
+(0x00001000,3,UI,1)                                 "Affected SOP Instance UID"
+(0x00001002,3,US,1)                                 "Event Type ID"
+(0x00001005,3,AT,1:n)                               "Attribute Identifier List"
+ENDDEFINE
+
+DEFINE N-GET-RQ
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000003,1,UI,1)                                 "Requested SOP Class UID"
+(0x00000100,1,US,1,E,0x0110)                        "Command Field"
+(0x00000110,1,US,1)                                 "Message ID"
+(0x00000800,1,US,1,E,0x0101)                        "Data Set Type"
+(0x00001001,1,UI,1)                                 "Requested SOP Instance UID"
+(0x00001005,3,AT,1:n)                               "Attribute Identifier List"
+ENDDEFINE
+
+DEFINE N-GET-RSP
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000100,1,US,1,E,0x8110)                        "Command Field"
+(0x00000120,1,US,1)                                 "Message ID Being Responded To"
+(0x00000800,1,US,1)                                 "Data Set Type"
+(0x00000900,1,US,1)                                 "Status"
+(0x00000002,3,UI,1)                                 "Affected SOP Class UID"
+(0x00000901,3,AT,1:n)                               "Offending Element"
+(0x00000902,3,LO,1)                                 "Error Comment"
+(0x00000903,3,US,1)                                 "Error ID"
+(0x00001000,3,UI,1)                                 "Affected SOP Instance UID"
+(0x00001005,3,AT,1:n)                               "Attribute Identifier List"
+ENDDEFINE
+
+DEFINE N-SET-RQ
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000003,1,UI,1)                                 "Requested SOP Class UID"
+(0x00000100,1,US,1,E,0x0120)                        "Command Field"
+(0x00000110,1,US,1)                                 "Message ID"
+(0x00000800,1,US,1)                                 "Data Set Type"
+(0x00001001,1,UI,1)                                 "Requested SOP Instance UID"
+ENDDEFINE
+
+DEFINE N-SET-RSP
+(0x00000000,1,UL,1)                                 "Group 0000 Length"
+(0x00000002,1,UI,1)                                 "Affected SOP Class UID"
+(0x00000100,1,US,1,E,0x8120)                        "Command Field"
+(0x00000120,1,US,1)                                 "Message ID Being Responded To"
+(0x00000800,1,US,1)                                 "Data Set Type"
+(0x00000900,1,US,1)                                 "Status"
+(0x00000901,3,AT,1:n)                               "Offending Element"
+(0x00000902,3,LO,1)                                 "Error Comment"
+(0x00000903,3,US,1)                                 "Error ID"
+(0x00001000,3,UI,1)                                 "Affected SOP Instance UID"
+(0x00001005,3,AT,1:n)                               "Attribute Identifier List"
+ENDDEFINE

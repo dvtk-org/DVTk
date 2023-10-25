@@ -1,0 +1,189 @@
+## 
+## DVT DICOMScript
+##
+## Name: val_test_vr_fail.ds
+##
+## Test Suite Ref:  3.2.11.3.4.9.2
+##                  3.2.11.3.4.9.2.1
+##                  3.2.11.3.4.9.3
+##                  3.2.11.3.4.9.3.1
+##                  3.2.11.3.4.9.3.2
+##                  3.2.11.3.4.9.3.3
+##                  3.2.11.3.4.9.3.4
+##                  3.2.11.3.4.9.3.5
+##                  3.2.11.3.4.9.3.6
+##                  3.2.11.3.4.9.3.7
+##                  3.2.11.3.4.9.3.8
+##                  3.2.11.3.4.9.3.9
+##                  3.2.11.3.4.9.3.10
+##                  3.2.11.3.4.9.3.11
+##                  3.2.11.3.4.9.3.12
+##                  3.2.11.3.4.9.3.13
+##                  3.2.11.3.4.9.3.14
+##                  3.2.11.3.4.9.3.15
+##                  3.2.11.3.4.9.3.16
+##                  3.2.11.3.4.9.3.17
+## Test Case Ref:
+##
+## Pre-conditions:
+##
+## Test Scenario:
+##    - Create (various) C-STORE-RQ command objects datasets for the "Validation Test VR SOP Class"
+##      with known errors
+##    - the objects are validated 
+##    - and deleted
+##
+## Expected Result:
+##    x errors, y warnings with code as indicated in the script
+##
+## Post-conditions:
+##    -
+##
+
+ECHO "================================================================================"
+
+CREATE C-STORE-RQ VR_STORE_RQ1 "Validation Test VR SOP Class" RQ_VR1
+
+SET C-STORE-RQ VR_STORE_RQ1 
+{
+(0x00000000, UL, 0);
+(0x00000002, UI, "Validation Test VR SOP Class");
+(0x00000100, US, 1);
+(0x00000110, US, 1);
+(0x00000700, US, 0);
+(0x00000800, SS, 0);                      ## Test for Validation Rule D_VR_1
+(0x00001000, UI, AUTOSET);
+}
+
+SET "Validation Test VR SOP Class" RQ_VR1 
+{
+# Check AE encoding rules
+(0x10000001, AE, "AETITLE_IS_TOO_LONG");  ## Test for Validation Rule D_AE_1
+(0x10000002, AE, "NO_LF:\0A !!!", "bla"); ## Test for Validation Rule D_AE_2
+(0x10000003, AE, "NO_FF:\0C");            ## Test for Validation Rule D_AE_2
+(0x10000004, AE, "NO_CR:\0D");            ## Test for Validation Rule D_AE_2
+(0x10000005, AE, "NO_ESC:\1B !!");        ## Test for Validation Rule D_AE_2
+(0x10000006, AE, "                ");     ## Test for Validation Rule D_AE_3
+
+# Check for Boundary AE Max Length
+(0x10000007, AE, "AETITLE_IS_TO_BIG");    ## Test for Validation Rule D_AE_1
+
+# Check AS encoding rules
+(0x10020001, AS, "123DD");                ## Test for Validation Rule D_AS_1
+(0x10020002, AS, "A23D","123Y");          ## Test for Validation Rule D_AE_2
+(0x10020003, AS, "018Y", "123U");         ## Test for Validation Rule D_AE_3
+# Check CS encoding rules
+(0x00080005, CS, "", "ISO 2022 IR 87");   ## attribute required for testing extended content
+(0x10060001, CS, "ABCDEFGHIJKLMNOPQ");    ## Test for Validation Rule D_CS_1
+(0x10060002, CS, "ABCD", "0x0123");       ## Test for Validation Rule D_CS_2
+(0x10060003, CS, "ABCD_", "&EFGA");       ## Test for Validation Rule D_CS_2
+# Check DA encoding rules
+(0x10080001, DA, "1970.12-1970.12.312", "1970121"); ## Test for Validation Rule D_DA_1 (2x)
+(0x10080002, DA, "1970121x", "19700220");           ## Test for Validation Rule D_DA_2
+(0x10080003, DA, "1970p121");                       ## Test for Validation Rule D_DA_2
+(0x10080004, DA, "19701201-19701231");              ## Test for Validation Rule D_DA_3
+(0x10080005, DA, "19700232");                       ## Test for Validation Rule D_DA_5
+(0x10080006, DA, "19700000");                       ## Test for Validation Rule D_DA_5
+(0x10080007, DA, "19990229");                       ## Test for Validation Rule D_DA_5
+(0x10080008, DA, "1970.12.12");                     ## Test for Validation Rule D_DA_6
+
+# Check for Boundary DA Max Length
+(0x10080009, DA, "19700220 ");    		    ## Test for Validation Rule D_DA_1
+
+# Check DS encoding rules
+(0x100A0001, DS, "+1234567890123E12");          ## Test for Validation Rule D_DS_1
+(0x100A0002, DS, "+-120E12", "+120E12");        ## Test for Validation Rule D_DS_2
+(0x100A0003, DS, "+120E 12");                   ## Test for Validation Rule D_DS_3
+(0x100A0004, DS, "120.00.12E12");               ## Test for Validation Rule D_DS_4 
+(0x100A0005, DS, "120.0012E1.2");               ## Test for Validation Rule D_DS_4
+(0x100A0006, DS, "120\8F12E12");                ## Test for Validation Rule D_DS_4
+# Check DT encoding rules
+(0x100C0001, DT, "20011213125930.123456+1212-20011213125930.123456+1212");## Test for Validation Rule D_DT_1
+(0x100C0002, DT, "19.99.02.28", "19990228");    ## Test for Validation Rule D_DT_2
+(0x100C0003, DT, "1999.1 ");                    ## Test for Validation Rule D_DT_2
+(0x100C0004, DT, "1999.+1212");                 ## Test for Validation Rule D_DT_2
+(0x100C0005, DT, "1999.123 +1212");             ## Test for Validation Rule D_DT_2
+(0x100C0006, DT, "1999.123+12");                ## Test for Validation Rule D_DT_2
+(0x100C0007, DT, "1999.123+1260");              ## Test for Validation Rule D_DT_3
+(0x100C0008, DT, " 1999.123");                  ## Test for Validation Rule D_DT_2
+(0x100C0009, DT, "1999.");                      ## Test for Validation Rule D_DT_2
+
+# Check Boundary DT Max Length
+(0x100C0010, DT, "20011213125930.123456+12123");## Test for Validation Rule D_DT_1
+
+# Check IS encoding rules
+(0x10120001, IS, "0000001234567");		## Test for Validation Rule D_IS_2
+(0x10120002, IS, "+ 1234", "-1234");		## Test for Validation Rule D_IS_2	
+(0x10120003, IS, "- 1234");                     ## Test for Validation Rule D_IS_2 
+(0x10120004, IS, "0x1234");                     ## Test for Validation Rule D_IS_2 
+(0x10120005, IS, "+1234 E 5");                  ## Test for Validation Rule D_IS_2 
+(0x10120006, IS, "P1234");                      ## Test for Validation Rule D_IS_2 
+(0x10120007, IS, "2147483648");                 ## Test for Validation Rule D_IS_3
+(0x10120008, IS, "-2147483649");                ## Test for Validation Rule D_IS_3
+(0x10120009, IS, "-2147483648");                ## Test for Validation Rule D_IS_3
+# Check LO encoding rules
+(0x10140001, LO, "12345678901234567890123456789012345678901234567890123456789012345");         ## Test for Validation Rule D_LO_1
+(0x10140002, LO, "NO_BACKSLASH:\\!!!", "Something right");      ## Test for Validation Rule D_LO_1
+(0x10140003, LO, "NO_LF:\0A !!!", "bla");                       ## Test for Validation Rule D_EXT_1
+(0x10140004, LO, "NO_FF:\0C");                                  ## Test for Validation Rule D_EXT_1
+(0x10140005, LO, "NO_CR:\0D");                                  ## Test for Validation Rule D_EXT_1
+# Check LT encoding rules
+(0x10160001, LT, "Something right");                         ## Yields no error
+(0x10160002, LT, "NO_BACKSLASH:\\!!!", "Something right");   ## Test for Validation Rule D_EXT_1 
+# Check PN encoding rules
+(0x101C0001, PN, "NO_LF:\0A");                                      ## Test for Validation Rule D_EXT_1
+(0x101C0002, PN, "NO_FF:\0C", "bla");                               ## Test for Validation Rule D_EXT_1
+(0x101C0003, PN, "NO_CR:\0D");                                      ## Test for Validation Rule D_EXT_1
+(0x101C0004, PN, "Character 'ë' not in default character repertoire"); ## Test for Validation Rule D_EXT_2 & D_EXT_8
+(0x101C0005, PN, "(48)(6F)(6E)(67)(5E)(47)(69)(6C)(64)(6F)(6E)(67)(3D)(1B)(24)(29)(43)(FB)(F3)(5E)(1B)(24)(29)(43)(D1)(CE)(D4)(D7)(3D)(1B)(24)(29)(43)(C8)(AB)(5E)(1B)(24)(29)(43)(B1)(E6)(B5)(BF)"); ## Test for Validation Rule D_EXT_7, D_EXT_8 
+(0x101C0006, PN, "cmp1^cmp2^cmp3^cmp4^cmp5=^1^2^^=^a^b^c^=^x^^^"); ## Test for Validation Rule D_EXT_4
+(0x101C0007, PN, "cmp1^cmp2^cmp3^cmp4^cmp5^cmp6");                 ## Test for Validation Rule D_EXT_5
+(0x101C0008, PN, "01234567890123456789012345678901234567890123456789012345678901234"); ## Test for Validation Rule D_PN_1 
+(0x101C0009, PN, "test esc code:\1Bii in component group 1");      
+# Check SH encoding rules
+(0x101E0001, SH, "NO_BACKSLASH:\5C !!!");                  ## Test for Validation Rule D_EXT_1
+(0x101E0002, SH, "NO_LF:\0A !!!", "bla");                  ## Test for Validation Rule D_EXT_1
+(0x101E0003, SH, "NO_FF:\0C");                             ## Test for Validation Rule D_EXT_1
+(0x101E0004, SH, "NO_CR:\0D");                             ## Test for Validation Rule D_EXT_1
+
+# Check Boundary SH Max Length
+(0x101E0005, SH, "NO_BACKSLASH:\5C!!!");                  ## Test for Validation Rule D_EXT_1
+
+# Check ST encoding rules
+#(0x10260001, ST, "");                                     ## To be defined 
+# Check TM encoding rules
+(0x10280001, TM, "12345678901234567");                     ## Test for Validation Rule D_TM_2 
+(0x10280002, TM, "070907.0705", "010101 1");               ## Test for Validation Rule D_TM_2 
+(0x10280003, TM, "23.00.01");                              ## Test for Validation Rule D_TM_2 
+(0x10280004, TM, "231402.12  ");                           ## Test for Validation Rule D_TM_2
+(0x10280005, TM, "123456.");                               ## Test for Validation Rule D_TM_2
+(0x10280006, TM, " 010100");                               ## Test for Validation Rule D_TM_2 
+(0x10280007, TM, "070907.0705-071007.0706");               ## Test for Validation Rule D_TM_3
+(0x10280008, TM, "010160");                                ## Test for Validation Rule D_TM_5  
+(0x10280009, TM, "23:14:01");                              ## Test for Validation Rule D_TM_6 
+# Check UI encoding rules
+(0x102A0001, UI, "1234567890.1234567890.1234567890.1234567890.1234567890.1234567890"); ## Test for Validation Rule D_UI_1
+(0x102A0002, UI, "1.2.3.4", ".1.2.3.4");                   ## Test for Validation Rule D_UI_2
+(0x102A0003, UI, " 1.1");                                  ## Test for Validation Rule D_UI_2
+(0x102A0004, UI, ".");                                     ## Test for Validation Rule D_UI_1
+(0x102A0005, UI, "1.2.3.4.", "1.2.3.4");                   ## Test for Validation Rule D_UI_3
+(0x102A0006, UI, "1.2..3.4");                              ## Test for Validation Rule D_UI_4
+(0x102A0007, UI, "1.a.1");                                 ## Test for Validation Rule D_UI_5
+(0x102A0008, UI, "1.01.1");                                ## Test for Validation Rule D_UI_6
+# Check UT encoding rules
+#("UT_01", UT, "");                                        ## Tests to be defined 
+}
+
+VALIDATE C-STORE-RQ VR_STORE_RQ1 "Validation Test VR SOP Class" RQ_VR1
+
+DELETE "Validation Test VR SOP Class" RQ_VR1
+DELETE C-STORE-RQ VR_STORE_RQ1
+
+ECHO "================================================================================"
+
+##
+## Script Result should be:
+## Validation: 102 error(s), 2 warning(s)
+## User Validation: 0 error(s), 0 warning(s)
+## General Error: 0 error(s), 0 warning(s)
+##

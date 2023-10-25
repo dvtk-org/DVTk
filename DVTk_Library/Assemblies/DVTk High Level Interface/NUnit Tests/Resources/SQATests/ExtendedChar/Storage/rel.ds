@@ -1,0 +1,19 @@
+##
+## SCU Storage DICOMScript: rel.ds
+##
+## Pre-conditions:
+##      - association existing
+##
+## Test Scenario:
+##      - send release association request
+##      - expect release association response
+##
+## Expected Result:
+##      - SCP signals successful release
+##
+## Post-conditions:
+##      - no association
+##
+SEND RELEASE-RQ
+
+RECEIVE RELEASE-RP
