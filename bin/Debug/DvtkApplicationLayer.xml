@@ -1,0 +1,4036 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DvtkApplicationLayer</name>
+    </assembly>
+    <members>
+        <member name="T:DvtkApplicationLayer.BaseInput">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.BaseInput.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.CustomExceptionHandler">
+             <summary>
+             The Error Handler class.
+             Use this class to be able to show more information in case of an exception in a release version
+             (the same information is shown for a debug version).
+             This class is now most suitable for a windows application.
+             We need a class because event handling methods can't be static.
+             
+             Usage of this class:
+             The first lines of code of the entry point of the application should be:
+             
+             	// Only one of the exception handlers below will be used:
+            		// - Application.ThreadException will be fired for a windows application
+            		// - System.AppDomain.CurrentDomain.UnhandledException will be fired for other applications.
+            		CustomExceptionHandler eh = new CustomExceptionHandler();
+            		Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(eh.OnThreadException);
+            		System.AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(eh.OnAppDomainUnhandledException);
+            
+            
+             At the end of the outer catch block of a .Net thread, add the following code
+             (don't do this for a HLI Thread, there is a different exception handler mechanism already present):
+             
+            		// Problem:
+            		// Errors thrown from a workerthread are eaten by the .NET 1.x CLR.
+            		// Workaround:
+            		// Directly call the global (untrapped) exception handler callback.
+            		// Do NOT rely on 
+            		// either
+            		// - System.AppDomain.CurrentDomain.UnhandledException
+            		// or
+            		// - System.Windows.Forms.Application.ThreadException
+            		// These events will only be triggered for the main thread not for worker threads.
+            		//
+            		CustomExceptionHandler eh = new CustomExceptionHandler();
+            		System.Threading.ThreadExceptionEventArgs args = new ThreadExceptionEventArgs(ex);
+            		eh.OnThreadException(this, args);
+            		//
+            		// Rethrow. This rethrow may work in the future .NET 2.x CLR.
+            		// Currently eaten.
+            		//
+            		throw ex;
+            
+             </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.CustomExceptionHandler.OnThreadException(System.Object,System.Threading.ThreadExceptionEventArgs)">
+            <summary>
+            Handle the exception event.
+            </summary>
+            <param name="sender">The sender of the Exception.</param>
+            <param name="t">The Exception event arguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.CustomExceptionHandler.OnAppDomainUnhandledException(System.Object,System.UnhandledExceptionEventArgs)">
+            <summary>
+            The handler of the unhandled exception.
+            </summary>
+            <param name="sender">The sender of the Exception.</param>
+            <param name="e">The Exception event arguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.CustomExceptionHandler.ShowThreadExceptionDialog(System.Exception)">
+            <summary>
+            The simple dialog that is displayed when this class catches and exception.
+            </summary>
+            <param name="e">The exception.</param>
+            <returns>The dialog result.</returns>
+        </member>
+        <member name="P:DvtkApplicationLayer.CustomExceptionHandler.ShowExceptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.DefinitionFile">
+            <summary>
+            Summary description for DefinitionFile.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.DefinitionFile.#ctor(System.Boolean,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Class represents Definition file details
+            </summary>
+            <param name="loaded"></param>
+            <param name="filename"></param>
+            <param name="sop_class_name"></param>
+            <param name="sop_class_uid"></param>
+            <param name="ae_title"></param>
+            <param name="ae_version"></param>
+            <param name="definition_root"></param>
+        </member>
+        <member name="P:DvtkApplicationLayer.DefinitionFile.Loaded">
+            <summary>
+            Definition file load property
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.DefinitionFile.Filename">
+            <summary>
+            Definition file name property
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.DefinitionFile.SOPClassName">
+            <summary>
+            SOP Class name property
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.DefinitionFile.SOPClassUID">
+            <summary>
+            SOP Class UID property
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.DefinitionFile.AETitle">
+            <summary>
+            AE Title property
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.DefinitionFile.AEVersion">
+            <summary>
+            AE Version property
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.DefinitionFile.DefinitionRoot">
+            <summary>
+            Def directory property
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.DefinitionFilesChecker.#ctor">
+            <summary>
+            // Don't instantiate.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.DefinitionFilesChecker.CheckVersion(System.String,System.String)">
+            <summary>
+            Retrives the Version of the Definition Files installed and compares
+            the value with the Version Numbers that the application can support.
+            </summary>
+            
+            <returns>Boolean value</returns>
+        </member>
+        <member name="T:DvtkApplicationLayer.DicomScript">
+            <summary>
+            Summary description for DicomScript.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.DicomScript.#ctor(DvtkApplicationLayer.Session,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="session"></param>
+            <param name="scriptFileName"></param>
+        </member>
+        <member name="T:DvtkApplicationLayer.Emulator">
+            <summary>
+            Summary description for Emulator.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.Emulator.EmulatorTypes">
+            <summary>
+            Enum Describing various Types of Emulator.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Emulator.EmulatorTypes.STORAGE_SCP">
+            <summary>
+            Emulator Type Storage SCP.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Emulator.EmulatorTypes.STORAGE_SCU">
+            <summary>
+            Emulator Type Storage SCU.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Emulator.EmulatorTypes.PRINT_SCP">
+            <summary>
+            Emulator Type Print SCP.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.Emulator.#ctor">
+            <summary>
+            Constructor For Emulator Class
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.Emulator.#ctor(DvtkApplicationLayer.Session,System.String)">
+            <summary>
+            Constructor with parameters For Emulator Class
+            </summary>
+            <param name="session"></param>
+            <param name="emulatorName"></param>
+        </member>
+        <member name="P:DvtkApplicationLayer.Emulator.EmulatorName">
+            <summary>
+            Represents the name of the emulator.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Emulator.Result">
+            <summary>
+            Represents Collection of Results for an emulator.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Emulator.EmulatorType">
+            <summary>
+            Represent the type of emulator
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.EmulatorInput">
+            <summary>
+            Summary description for EmulatorInput.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorInput.FileNames">
+            <summary>
+            Represents emulator files to be validated.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorInput.ModeOfAssociation">
+             <summary>
+             Determines the mode of association (i.e single or multiple)
+            <returns>
+            True means Multiple Association.
+            False means Single Association.
+            </returns>
+             </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorInput.ValidateOnImport">
+            <summary>
+            Method that specifies whether to validate before import of an image. 
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorInput.NosOfRepetitions">
+            <summary>
+            Represents the number of times thigs are send.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorInput.DataUnderNewStudy">
+            <summary>
+            Boolean DataUnderStudy.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.EmulatorInput.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.EmulatorSession">
+            <summary>
+            Summary description for EmulatorSession.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.EmulatorSession.ScpEmulatorType">
+            <summary>
+            Types of ScpEmulator .
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.EmulatorSession.ScpEmulatorType.Printing">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.EmulatorSession.ScpEmulatorType.Storage">
+            <summary>
+            
+            </summary>   
+        </member>
+        <member name="F:DvtkApplicationLayer.EmulatorSession.ScpEmulatorType.Unknown">
+            <summary>
+            
+            </summary>    
+        </member>
+        <member name="T:DvtkApplicationLayer.EmulatorSession.ScuEmulatorType">
+            <summary>
+            Types of ScuEmulator.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.EmulatorSession.ScuEmulatorType.Storage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.EmulatorSession.ScuEmulatorType.Unknown">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.EmulatorSession.PrinterStatus">
+            <summary>
+            Printer device status.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.EmulatorSession.PrinterStatus.NORMAL">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.EmulatorSession.PrinterStatus.WARNING">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.EmulatorSession.PrinterStatus.FAILURE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.EmulatorSession.EmulatorType">
+            <summary>
+            Types of Emulators.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.EmulatorSession.EmulatorType.StorageSCUEmulator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.EmulatorSession.EmulatorType.StorageSCPEmulator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.EmulatorSession.EmulatorType.PrintScpEmulator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.EmulatorSession.emulatorType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorSession.Emulators">
+            <summary>
+            Represents a collection of emulators in an EmulatorSession.
+            Typically here (StorageScu ,StorageScp ,PrintScp).  
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorSession.DvtAeTitle">
+            <summary>
+            The DVT AE Title is the application entity name of the DVT machine in the test.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorSession.DvtPort">
+            <summary>
+            The port that the Dicom Validation Tool (DVT) should use when making a connection to 
+            System Under Test (SUT).
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorSession.DvtSocketTimeout">
+            <summary>
+            The period that the Dicom Validation Tool (DVT) will listen for incomming messages
+            on the TCP/IP connection before automatically aborting the session.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorSession.DvtMaximumLengthReceived">
+            <summary>
+            The maximum length of message fragment (P-DATA-TF PDU) 
+            that the Dicom Validation Tool (DVT) can receive from the System Under Test (SUT).
+            </summary>
+            <remarks>
+            DICOM DIMSE-messages are split into P-DATA-TF PDU fragments - e.g., C-STORE-RQ of a modality image.
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorSession.DvtImplementationVersionName">
+            <summary>
+            This is the implementation version name for the Dicom Validation Tool (DVT) implementation.
+            </summary>
+            <remarks>
+            The version is composed of the folloqing items<br></br>
+            [dvt][version_major].[version_minor]<br></br>
+            <c>dvtx.x</c>
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorSession.DvtImplementationClassUid">
+            <summary>
+            This is the unique identifier (UID) for the Dicom Validation Tool (DVT) implementation.
+            </summary>
+            <remarks>
+            <p>
+            The UID identifies the release of the Dicom Validation Tool (DVT).
+            </p>
+            <p>
+            The Dicom Validation Tool (DVT) sents this UID during communication with the System Under Test (SUT).
+            </p>
+            <p>
+            The number starts is composed of the following items<br></br>
+            [ASCII(d)].[ASCII(v)].[ASCII(t)].[year].[version_major].[version_minor]<br></br>
+            <c>1.2.826.0.1.3680043.2.1545.1.2.1.7</c>
+            </p>
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorSession.SecureSocketsEnabled">
+            <summary>
+            Enable or disable secure socket communication
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorSession.SutAeTitle">
+            <summary>
+            The AE Title is the application entity name of the SUT machine in the test.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorSession.SutPort">
+            <summary>
+            The port number that the Dicom Validation Tool (DVT) should use when making a 
+            connection to the product machine of the System Under Test (SUT).
+            </summary>
+            <remarks>
+            Also known as the remote connect port.
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorSession.SutHostName">
+            <summary>
+            The name that the Dicom Validation Tool (DVT) should use when making a connection to the 
+            product machine of the System Under Test (SUT).
+            </summary>
+            <remarks>
+            It is best to enter the Internet Address of the Product (in dot notation). 
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorSession.SutMaximumLengthReceived">
+            <summary>
+            The maximum length of message fragment (P-DATA-TF PDU) 
+            that the System Under Test (SUT) can receive from the Dicom Validation Tool (DVT).
+            </summary>
+            <remarks>
+            DICOM DIMSE-messages are split into P-DATA-TF PDU fragments - e.g., C-STORE-RQ of a modality image.
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorSession.SutImplementationVersionName">
+            <summary>
+            The version name given by the Manufacturer to the Product implementation to identify it internally. 
+            DVT checks that the value sent by the Product matches the values given here. 
+            </summary>
+            <remarks>
+            The implementation version name is an optional field - 
+            when the Product does not send this value leave this entry blank.
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorSession.SutImplementationClassUid">
+            <summary>
+            This is the unique identifier (UID) for the Product's implementation of the System Under Test (SUT).
+            </summary>
+            <remarks>
+            <p>
+            The UID is assigned by the Manufacturer to the Product implementation to identify it.
+            The manufacturer publishes this UID in the product DICOM conformance statement.
+            </p>
+            <p>
+            The Dicom Validation Tool (DVT) checks that the value sent by the Product matches the value given here.
+            </p>
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorSession.DefineSqLength">
+            <summary>
+            The DefineSqLength option, 
+            is used to make DVT encode explicit length Sequences when sending messages. 
+            </summary>
+            <remarks>
+            <p>
+            Explicit lengths are computed for both the Sequence and each Item 
+            present within the Sequence.
+            </p>
+            <p>
+            By default DVT uses the undefined length encoding.
+            </p>
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorSession.AddGroupLength">
+            <summary>
+            The AddGroupLength option, 
+            is used to have DVT add Group Length attributes to all 
+            Groups found in each message sent. 
+            </summary>
+            <remarks>
+            By default DVT does not encode Group Length attributes 
+            (except for the Command Group Length).
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorSession.scpEmulatorType">
+            <summary>
+            Method to get and set the ScpEmulator type.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorSession.scuEmulatorType">
+            <summary>
+            Method to get and set the ScuEmulator type.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorSession.EmulatorTypes">
+            <summary>
+            Returns the type of emulator.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.EmulatorSession.#ctor">
+            <summary>
+            Constructor of Emulator Session.
+            Emulation for Verification, Storage and Print SOP Classes.
+            </summary>
+            <remarks>
+            The Dicom Validation Tool (DVT) can be used as either 
+            Service Class User (SCU) or Service Class Provider (SCP) with a direct 
+            connection to the System Under Test (SUT)Product (via TCP/IP). 
+            DVT acts as an emulator for the DICOM Service classes being tested. 
+            DVT can also create and validate DICOM media files.
+            </remarks>
+        </member>
+        <member name="M:DvtkApplicationLayer.EmulatorSession.#ctor(System.String)">
+            <summary>
+            Constructor of Emulator Session.
+            Emulation for Verification, Storage and Print SOP Classes.
+            </summary>
+            <param name="fileName">fileName represents the Session Name.</param>
+            <remarks>
+            The Dicom Validation Tool (DVT) can be used as either 
+            Service Class User (SCU) or Service Class Provider (SCP) with a direct 
+            connection to the System Under Test (SUT)Product (via TCP/IP). 
+            DVT acts as an emulator for the DICOM Service classes being tested. 
+            DVT can also create and validate DICOM media files.
+            </remarks>       
+        </member>
+        <member name="P:DvtkApplicationLayer.EmulatorSession.EmulatorSessionImplementation">
+            <summary>
+            Property to access the Dvtk.Session.EmulatorSession 
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.EmulatorSession.Execute(DvtkApplicationLayer.BaseInput)">
+            <summary>
+            Method for executing a session in a synchronous manner.
+            </summary>
+            <param name="baseInput">baseInput Object (in this case EmulatorInput Object) </param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.EmulatorSession.BeginExecute(DvtkApplicationLayer.BaseInput)">
+            <summary>
+            Method for executing a session in an Asynchronous manner.
+            </summary>
+            <param name="baseInput">baseInput Object</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.EmulatorSession.StopingEmulator">
+            <summary>
+            Method to terminate the connection and call end result gathering.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.EmulatorSession.Save">
+            <summary>
+            set and save EmulatorSession settings to file with extension <c>.ses</c>.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.EmulatorSession.ApplyStatus(DvtkApplicationLayer.EmulatorSession.PrinterStatus,System.String,System.Boolean)">
+            <summary>
+            Apply a new printer status and corresponding status info.
+            </summary>
+            <param name="printerStatus">Printer device status.</param>
+            <param name="statusInfo">Additional information about Printer Status.</param>
+            <param name="sendStatusEvent">Indicates the status event should be sent to SUT</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.EmulatorSession.CreateEmulatorFiles">
+            <summary>
+            Method to create result for a emulator and set its properties.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.EmulatorSession.CreateSessionInstance">
+            <summary>
+            Method to create the instance of a EmulatorSession.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.EmulatorSession.CreateSessionInstance(System.String)">
+            <summary>
+            Method to create the instance of a session. 
+            </summary>
+            <param name="sessionFileName"> FileName of the EmulatorSession.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.EmulatorSession.GetAllProperties">
+            <summary>
+            Method to get the Session Properties from a loaded session.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.EmulatorSession.SetAllProperties">
+            <summary>
+            Method to set the values of Session Properties in a SessionFile.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.MediaFile">
+            <summary>
+            Summary description for MediaFile.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.MediaFile.#ctor(DvtkApplicationLayer.Session,System.String)">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.MediaFile.MediaFileName">
+            <summary>
+            Name of mediaFile.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.MediaFile.Result">
+            <summary>
+            Represents a collection of results for a media file.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.MediaInput">
+            <summary>
+            Summary description for MediaInputObj.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.MediaInput.FileNames">
+            <summary>
+            Collection of media files to be validated.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.MediaInput.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.MediaSession">
+            <summary>
+            Summary description for MediaSession.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.MediaSession.#ctor">
+            <summary>
+            Constructor of MediaSession.
+            </summary>
+             <remarks>
+            Validate DICOM media files.
+            The Dicom Validation Tool (DVT) can also create and validate DICOM media files.
+            </remarks>
+        </member>
+        <member name="M:DvtkApplicationLayer.MediaSession.#ctor(System.String)">
+            <summary>
+            Constructor of MediaSession.
+            </summary>
+            <param name="fileName">fileName represents the Session Name.</param>
+            <remarks>
+            Validate DICOM media files.
+            The Dicom Validation Tool (DVT) can also create and validate DICOM media files.
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.MediaSession.MediaSessionImplementation">
+            <summary>
+            Property to access the Dvtk.Session.MediaSession 
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.MediaSession.MediaFiles">
+            <summary>
+            Represents a collection of mediaFiles in a Media Session.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.MediaSession.Execute(DvtkApplicationLayer.BaseInput)">
+            <summary>
+            Method for executing a session in a synchronous manner.
+            </summary>
+            <param name="baseInput">baseInput Object (in this case mediaInput Object) </param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.MediaSession.ExecuteDir(DvtkApplicationLayer.BaseInput)">
+            <summary>
+            Method for executing a session in a synchronous manner.
+            </summary>
+            <param name="baseInput">baseInput Object (in this case mediaInput Object) </param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.MediaSession.BeginExecute(DvtkApplicationLayer.BaseInput)">
+            <summary>
+            Method for executing a session in an Asynchronous manner.
+            </summary>
+            <param name="baseInput">baseInput Object</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.MediaSession.Save">
+            <summary>
+            set and save MediaSession settings to file with extension <c>.ses</c>.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.MediaSession.CreateMediaFiles">
+            <summary>
+            Method to create result for a mediaFile and set its properties.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.MediaSession.CreateSessionInstance">
+            <summary>
+            Method to create the instance of a MediaSession.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.MediaSession.CreateSessionInstance(System.String)">
+            <summary>
+            Method to create the instance of a session. 
+            </summary>
+            <param name="sessionFileName"> FileName of the MediaSession.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.MediaSession.ValidateMediaFiles">
+            <summary>
+            Validate Media Storage Files.
+            </summary>
+            <remarks>
+            Typically these files have the file-extension DCM. DVT does not check the file-extension.
+            The file should have an internal byte-prefix with byte-values 'DICOM'.
+            </remarks>
+        </member>
+        <member name="T:DvtkApplicationLayer.PartOfSession">
+            <summary>
+            Summary description for PartOfSession.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.PartOfSession.#ctor(DvtkApplicationLayer.Session)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="session"> DvtkApplicationLayer.Sesion</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.PartOfSession.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.PartOfSession.session">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.PartOfSession.ParentSession">
+            <summary>
+            Property to get and set the ParentSession .
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.PathUtils">
+            <summary>
+            Class adding extra methods concerning paths not present in the .NET Path class.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.PathUtils.IsRelativePath(System.String)">
+            <summary>
+            Returns a boolean indicating if the path is relative.
+            </summary>
+            <param name="thePath">The path.</param>
+            <returns>Boolean indicating if the path is relative.</returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.PathUtils.ConvertToAbsolutePath(System.String,System.String)">
+            <summary>
+            Converts a relative path to an absolute path.
+            </summary>
+            <param name="theBasePath">The path to which the relative path is relative to.</param>
+            <param name="theRelativePath">The relative path (must start with ".\" or "..\".</param>
+            <returns>
+            Returns the absolute path.
+            If "theBasePath" directory does not exist or if "theRelativePath" directory is not relative,
+            an empty string is returned.
+            </returns>
+        </member>
+        <member name="T:DvtkApplicationLayer.PrintScpEmulator">
+            <summary>
+            Summary description for PrintScpEmulator.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.PrintScpEmulator.#ctor(DvtkApplicationLayer.Session,System.String)">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.Project">
+            <summary>
+            Summary description for project.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Project.hasUserCancelledLastOperation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Project.display_message">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.Project.CallBackMessageDisplay">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Project.tempButtonNo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Project.tempButtonCancel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Project.ProjectFileName">
+            <summary>
+            Represents the Project File Name.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Project.Sessions">
+            <summary>
+            Represents a collection of Sessions in a Project.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Project.HasCancelledLastOperation">
+            <summary>
+            Boolean that determines whether the last operation has been cancelled be the user.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Project.HasProjectChanged">
+            <summary>
+            Boolean that represents whether the project has been changed.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Project.IsProjectConstructed">
+            <summary>
+            Boolean that represents whether the project has been Constructed.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Project.NosOfSessionsChanged">
+            <summary>
+            Property that represents the number of changed sessions.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.Project.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.Project.Load(System.String)">
+            <summary>
+            Method to Load the Project.
+            </summary>
+            <param name="projFileName">FullFileName of the Project.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Project.SaveProject(System.String)">
+            <summary>
+            Save the Project to the specified Project file name. 
+            The current project file name will also change to the specified project file name.
+            Sessions will not be saved.
+            </summary>
+            <param name="theProjectFileName">The name of the Project file ot save to.</param>
+            <returns>Boolean indicating if the saving was successfull.</returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Project.SaveProject">
+            <summary>
+            Save the Project to the current Project file name.
+            Sessions will not be saved.
+            </summary>
+            <returns>Boolean indicating if the saving was successfull.</returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Project.GetRelativePath(System.String,System.String)">
+            <summary>
+            Converts the absolute path to relative path of session file.
+            </summary>
+            <param name="projectPath">The project file path</param>
+            <param name="filePath">The project file path</param>
+            <returns>The relative path of session file.</returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Project.HasUserCancelledLastOperation">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Project.Close(System.Boolean)">
+            <summary>
+            Method to close the Project.
+            </summary>
+            <param name="saveChanges"></param>
+        </member>
+        <member name="M:DvtkApplicationLayer.Project.New(System.String)">
+            <summary>
+            Construct a new empty Project that has not been saved yet to the supplied Project file.
+            
+            Precondition: no project is constructed.
+            </summary>
+            <param name="theProjectFileName">The name of the Project file.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.Project.AddSession(System.String)">
+            <summary>
+            Method to add a session to an existing Project.
+            </summary>
+            <param name="theSessionFullFileName"></param>
+        </member>
+        <member name="M:DvtkApplicationLayer.Project.AreProjectOrSessionsChanged">
+            <summary>
+            Method to determine whether the project or session has been changed.
+            </summary>
+            <returns>True : if project or session has been changed else false.</returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Project.ContainsSession(System.String)">
+            <summary>
+            Method to determine whether a particular session exist in a list of given sessions.
+            </summary>
+            <param name="session_file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Project.GetNumberOfChangedSessions">
+            <summary>
+            Method to determine the number of changed sessions
+            </summary>
+            <returns>Returns the number of changed sessions</returns>
+        </member>
+        <member name="T:DvtkApplicationLayer.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.Result">
+            <summary>
+            Represents a summary and/or detail results file.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Result.sessionId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.Result.#ctor(System.UInt32,System.UInt32,System.String,System.String,System.Collections.ArrayList)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="errors">Nos of errors</param>
+            <param name="warnings">Nos of warnings</param>
+            <param name="detailFileName">Name of the detailed resultfile.</param>
+            <param name="summaryFileName">Name of the summary resultfile.</param>
+            <param name="resultfiles">Collection of resultFiles.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.Result.#ctor(DvtkApplicationLayer.Session)">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Result.Date">
+            <summary>
+            Represents the date when the result was formed.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Result.SubSummaryResultFiles">
+            <summary>
+            Collection of sub summary results of  validation.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Result.SubDetailResultFiles">
+            <summary>
+            Collection of sub detail results of  validation.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Result.ResultFiles">
+            <summary>
+            Collection of ResultFiles.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Result.SummaryFile">
+            <summary>
+            Represents the summary result of validation.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Result.DetailFile">
+            <summary>
+            Represents the detail result of validation.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Result.NrOfErrors">
+            <summary>
+            Number of errors.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Result.NrOfWarnings">
+            <summary>
+            Number of warnings.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Result.SessionId">
+            <summary>
+            Represents the sessionId.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.Result.GetBaseNameForResultsFile(System.String)">
+            <summary>
+            Converts a results file name to its corresponding base name.
+            The base name is the result of removing "....._xxx_" at the beginning and removing
+            "_res?.xml" at the end.
+            </summary>
+            <param name="theBaseName">The results file name</param>
+            <returns>Indicates if the supplied results file name is a valid one.</returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Result.GetBaseNameNoCheck(System.String)">
+            <summary>
+            Method to get the basename for a resultFile.
+            </summary>
+            <param name="theResultsFileName"> FullName of a resultFile.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Result.GetNamesForScriptFile(System.String,System.Collections.ArrayList)">
+            <summary>
+            Get the results file names of the files that need to be shown (in)directly under the tree node indicated by the tree node tag.
+            </summary>
+            <param name="theScriptFileName">The tree node tag.</param>
+            <param name="theResultsFileNames">Valid results file names to choose from.</param>
+            <returns>The results file names to display under the tree node.</returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Result.GetNamesForCurrentSessionId(DvtkApplicationLayer.Session,System.Collections.ArrayList)">
+            <summary>
+            From a list of results file names, return those results file names with the same session ID
+            as the session ID of the supplied session.
+            </summary>
+            <param name="theSession">The session.</param>
+            <param name="theResultsFileNames">Valid results file names.</param>
+            <returns>List of results file names.</returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Result.Remove(DvtkApplicationLayer.Session,System.Collections.ArrayList)">
+            <summary>
+            Remove .xml files, and if exisiting, the corresponding .html files.
+            </summary>
+            <param name="theSession">The session.</param>
+            <param name="theResultsFileNames">The results file names.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.Result.BackupFiles(DvtkApplicationLayer.Session,System.Collections.ArrayList)">
+            <summary>
+            Method to backUp the Arraylist of files in a session.
+            </summary>
+            <param name="theSession">represents the Session.</param>
+            <param name="theFilesToBackup"></param>
+        </member>
+        <member name="M:DvtkApplicationLayer.Result.GetBaseNameForMediaFile(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="theMediaFullFileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Result.GetNamesForBaseName(System.String,System.Collections.ArrayList)">
+            <summary>
+            
+            </summary>
+            <param name="theBaseName"></param>
+            <param name="theResultsFileNames"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Result.GetAllNamesForSession(DvtkApplicationLayer.Session)">
+            <summary>
+            
+            </summary>
+            <param name="theSession"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Result.GetSummaryNameForScriptFile(DvtkApplicationLayer.Session,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="theSession"></param>
+            <param name="theScriptFileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Result.GetSummaryNameForEmulator(DvtkApplicationLayer.Session,DvtkApplicationLayer.Emulator.EmulatorTypes)">
+            <summary>
+            
+            </summary>
+            <param name="theSession"></param>
+            <param name="theEmulatorType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Result.GetSummaryNameForMediaFile(DvtkApplicationLayer.Session,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="theSession"></param>
+            <param name="theMediaFullFileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Result.GetExpandedNameForScriptFile(DvtkApplicationLayer.Session,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="theSession"></param>
+            <param name="theScriptFileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Result.GetExpandedNameForEmulator(DvtkApplicationLayer.Session,DvtkApplicationLayer.Emulator.EmulatorTypes)">
+            <summary>
+            
+            </summary>
+            <param name="theSession"></param>
+            <param name="theEmulatorType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Result.GetExpandedNameForMediaFile(DvtkApplicationLayer.Session,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="theSession"></param>
+            <param name="theMediaFullFileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Result.GetExpandedName(DvtkApplicationLayer.Session,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="theSession"></param>
+            <param name="theString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Result.GetBaseNameForEmulator(DvtkApplicationLayer.Emulator.EmulatorTypes)">
+            <summary>
+            
+            </summary>
+            <param name="theEmulatorType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Result.ContainsResultsFile(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="resultFileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Result.IsValid(System.String)">
+            <summary>
+            Returns a boolean indicating if the supplied results file name is a valid one.
+            </summary>
+            <param name="theResultsFileName">The results file name.</param>
+            <returns>Indicating if the supplied results file name is a valid one.</returns>
+        </member>
+        <member name="T:DvtkApplicationLayer.Script">
+            <summary>
+            Summary description for Script.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.Script.#ctor(DvtkApplicationLayer.Session,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="session"></param>
+            <param name="scriptFileName"></param>
+        </member>
+        <member name="P:DvtkApplicationLayer.Script.ScriptFileName">
+            <summary>
+            represents the script name.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Script.Result">
+            <summary>
+            Collection of results for a script.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.Script.RemoveResultFiles">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.Script.CreateScriptResult(DvtkApplicationLayer.Script)">
+            <summary>
+            Method to Create the results for a script.
+            </summary>
+            <param name="scriptFile"> Name of the script.</param>
+        </member>
+        <member name="T:DvtkApplicationLayer.ScriptInput">
+            <summary>
+            Summary description for ScriptInputObj.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.ScriptInput.FileName">
+            <summary>
+            Represents name of the script.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.ScriptInput.ContinueOnError">
+            <summary>
+            Determines whether to continue on error.
+            <return>
+            return value = true, i.e continue validating even after encountering an error. 
+            </return>
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.ScriptInput.Arguments">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.ScriptInput.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.ScriptSession">
+            <summary>
+            Summary description for ScriptSession.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.ScriptSession.DvtAeTitle">
+            <summary>
+            The DVT AE Title is the application entity name of the DVT machine in the test.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.ScriptSession.DvtPort">
+            <summary>
+            The port that the Dicom Validation Tool (DVT) should use when making a connection to 
+            System Under Test (SUT).
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.ScriptSession.DvtSocketTimeout">
+            <summary>
+            The period that the Dicom Validation Tool (DVT) will listen for incomming messages
+            on the TCP/IP connection before automatically aborting the session.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.ScriptSession.DvtMaximumLengthReceived">
+            <summary>
+            The maximum length of message fragment (P-DATA-TF PDU) 
+            that the Dicom Validation Tool (DVT) can receive from the System Under Test (SUT).
+            </summary>
+            <remarks>
+            DICOM DIMSE-messages are split into P-DATA-TF PDU fragments - e.g., C-STORE-RQ of a modality image.
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.ScriptSession.DvtImplementationVersionName">
+            <summary>
+            This is the implementation version name for the Dicom Validation Tool (DVT) implementation.
+            </summary>
+            <remarks>
+            The version is composed of the folloqing items<br></br>
+            [dvt][version_major].[version_minor]<br></br>
+            <c>dvtx.x</c>
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.ScriptSession.DvtImplementationClassUid">
+            <summary>
+            This is the unique identifier (UID) for the Dicom Validation Tool (DVT) implementation.
+            </summary>
+            <remarks>
+            <p>
+            The UID identifies the release of the Dicom Validation Tool (DVT).
+            </p>
+            <p>
+            The Dicom Validation Tool (DVT) sents this UID during communication with the System Under Test (SUT).
+            </p>
+            <p>
+            The number starts is composed of the following items<br></br>
+            [ASCII(d)].[ASCII(v)].[ASCII(t)].[year].[version_major].[version_minor]<br></br>
+            <c>1.2.826.0.1.3680043.2.1545.1.2.1.7</c>
+            </p>
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.ScriptSession.SecureSocketsEnabled">
+            <summary>
+            Enable or disable secure socket communication
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.ScriptSession.SutAeTitle">
+            <summary>
+            The AE Title is the application entity name of the SUT machine in the test.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.ScriptSession.SutPort">
+            <summary>
+            The port number that the Dicom Validation Tool (DVT) should use when making a 
+            connection to the product machine of the System Under Test (SUT).
+            </summary>
+            <remarks>
+            Also known as the remote connect port.
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.ScriptSession.SutHostName">
+            <summary>
+            The name that the Dicom Validation Tool (DVT) should use when making a connection to the 
+            product machine of the System Under Test (SUT).
+            </summary>
+            <remarks>
+            It is best to enter the Internet Address of the Product (in dot notation). 
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.ScriptSession.SutMaximumLengthReceived">
+            <summary>
+            The maximum length of message fragment (P-DATA-TF PDU) 
+            that the System Under Test (SUT) can receive from the Dicom Validation Tool (DVT).
+            </summary>
+            <remarks>
+            DICOM DIMSE-messages are split into P-DATA-TF PDU fragments - e.g., C-STORE-RQ of a modality image.
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.ScriptSession.DicomScriptRootDirectory">
+            <summary>
+            Represents root directory of the scripts in a session.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.ScriptSession.SutImplementationVersionName">
+            <summary>
+            The version name given by the Manufacturer to the Product implementation to identify it internally. 
+            DVT checks that the value sent by the Product matches the values given here. 
+            </summary>
+            <remarks>
+            The implementation version name is an optional field - 
+            when the Product does not send this value leave this entry blank.
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.ScriptSession.SutImplementationClassUid">
+            <summary>
+            This is the unique identifier (UID) for the Product's implementation of the System Under Test (SUT).
+            </summary>
+            <remarks>
+            <p>
+            The UID is assigned by the Manufacturer to the Product implementation to identify it.
+            The manufacturer publishes this UID in the product DICOM conformance statement.
+            </p>
+            <p>
+            The Dicom Validation Tool (DVT) checks that the value sent by the Product matches the value given here.
+            </p>
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.ScriptSession.ScriptFiles">
+            <summary>
+            Representa a Collection of scripts in a session.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.ScriptSession.DefineSqLength">
+            <summary>
+            The DefineSqLength option, 
+            is used to make DVT encode explicit length Sequences when sending messages. 
+            </summary>
+            <remarks>
+            <p>
+            Explicit lengths are computed for both the Sequence and each Item 
+            present within the Sequence.
+            </p>
+            <p>
+            By default DVT uses the undefined length encoding.
+            </p>
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.ScriptSession.AddGroupLength">
+            <summary>
+            The AddGroupLength option, 
+            is used to have DVT add Group Length attributes to all 
+            Groups found in each message sent. 
+            </summary>
+            <remarks>
+            By default DVT does not encode Group Length attributes 
+            (except for the Command Group Length).
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.ScriptSession.DescriptionDirectory">
+            <summary>
+            The directory containing instructive and explanatory description files for the scripts.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.ScriptSession.#ctor">
+            <summary>
+            Constructor for ScriptSession.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.ScriptSession.#ctor(System.String)">
+            <summary>
+            Constructor for ScriptSession.
+            </summary>
+            <param name="fileName">fileName represents the Session Name.</param>
+        </member>
+        <member name="P:DvtkApplicationLayer.ScriptSession.ScriptSessionImplementation">
+            <summary>
+            Property to access the Dvtk.Session.ScriptSession
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.ScriptSession.Execute(DvtkApplicationLayer.BaseInput)">
+            <summary>
+            Method for executing a session in a synchronous manner.
+            </summary>
+            <param name="baseInput">baseInput Object (in this case ScriptInput Object) </param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.ScriptSession.BeginExecute(DvtkApplicationLayer.BaseInput)">
+            <summary>
+            Method for executing a session in an Asynchronous manner.
+            </summary>
+            <param name="baseInput">baseInput Object</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.ScriptSession.Save">
+            <summary>
+            set and save ScriptSession settings to file with extension <c>.ses</c>.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.ScriptSession.ExecuteVisualBasicScript">
+            <summary>
+            Execute the Visual Basic Script.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.ScriptSession.CreateScriptFiles">
+            <summary>
+            Method to create result for a script and set its properties.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.ScriptSession.CreateSessionInstance">
+            <summary>
+            Method to create the instance of a EmulatorSession.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.ScriptSession.CreateSessionInstance(System.String)">
+            <summary>
+            Method to create the instance of a session. 
+            </summary>
+            <param name="sessionFileName"> FileName of the ScriptSession.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.ScriptSession.GetAllProperties">
+            <summary>
+            Method to get the Session Properties from a loaded session.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.ScriptSession.SetAllProperties">
+            <summary>
+            Method to set the values of Session Properties in a SessionFile.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.SecuritySettings">
+            <summary>
+            Summary description for SecuritySettings.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.SecuritySettings.CipherFlags">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.SecuritySettings.CipherFlags.TLS_AUTHENICATION_METHOD_RSA">
+            <summary>
+            Rivest-Shamir-Adleman.  
+            A public key algorithm that provides both digital signatures and encryption.  
+            Also the name of the company that developed this and other algorithms.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.SecuritySettings.CipherFlags.TLS_AUTHENICATION_METHOD_DSA">
+            <summary>
+            DSA – Digital Signature Algorithm.
+            A method for computing digital signatures.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.SecuritySettings.CipherFlags.TLS_KEY_EXCHANGE_METHOD_RSA">
+            <summary>
+            Rivest-Shamir-Adleman.
+            A public key algorithm that provides both digital signatures and encryption.
+            Also the name of the company that developed this and other algorithms.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.SecuritySettings.CipherFlags.TLS_KEY_EXCHANGE_METHOD_DH">
+            <summary>
+            DH – Diffie-Hellman algorithm.
+            An algorithm used to exchange symmetric keys.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.SecuritySettings.CipherFlags.TLS_DATA_INTEGRITY_METHOD_SHA1">
+            <summary>
+            Secure Hash Algorithm. 
+            Used to generate a cryptographic hash (or checksum). 
+            FIPS 180-1.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.SecuritySettings.CipherFlags.TLS_DATA_INTEGRITY_METHOD_MD5">
+            <summary>
+            MD5 – Message Digest 5.
+            Used to generate a cryptographic hash (or checksum).
+            RFC 1321.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.SecuritySettings.CipherFlags.TLS_ENCRYPTION_METHOD_NONE">
+            <summary>
+            No encryption.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.SecuritySettings.CipherFlags.TLS_ENCRYPTION_METHOD_3DES">
+            <summary>
+            Triple DES (also known as 3DES) – 
+            DES applied 3 times in a row (encode, decode, encode).
+            Highly secure, well trusted symmetric key encryption algorithm.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.SecuritySettings.CipherFlags.TLS_ENCRYPTION_METHOD_AES128">
+            <summary>
+            AES – Advanced Encryption Standard.
+            Newer symmetric key encryption algorithm.
+            Expected to replace Triple DES.
+            FIPS (Federal Information Processing Standard) 197.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.SecuritySettings.CipherFlags.TLS_ENCRYPTION_METHOD_AES256">
+            <summary>
+            AES – Advanced Encryption Standard.
+            Newer symmetric key encryption algorithm.
+            Expected to replace Triple DES.
+            FIPS (Federal Information Processing Standard) 197.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.SecuritySettings.CipherFlags.TLS_Default">
+            <summary>
+            Default
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.SecuritySettings.TlsVersionFlags">
+            <summary>
+            Protocols Supported
+            </summary>
+            <remarks>
+            <p>
+            The use of the secure transport is optional and 
+            must be turned on in the configuration of the session.
+            </p>
+            <p>
+            By default, a new session will not use secure sockets.
+            </p>
+            <p>
+            The following protocols are supported for secure transport: 
+            <list type="bullet">
+            <item>
+             <term>TLS version 1.0</term>
+             <description>
+             Transport Layer Security (TLS). 
+             Required by DICOM [DICOM, 3.15, B.1] and IHE [IHE2, 4.32.4.1.2]. (default)
+             </description>
+            </item>
+            <item>
+             <term>SSL version 3.0</term>
+             <description>
+             Secure Socket Layer (SSL).
+             Required for compatibility with different implementations.
+             </description>
+            </item>
+            </list>
+            </p>
+            <p>
+            Which protocol to use will be configurable. 
+            Multiple of the protocols can be configured at the same time. 
+            In that case, the server will accept any of the configured protocols. 
+            A client will use the highest protocol in the order of the list above that the server supports.
+            If a security failure occurs in establishing a connection or while transmitting data, 
+            the socket will be closed.  (This is TLS/SSL behavior).
+            The protocols support the following features, which can use different mechanisms 
+            to implement the feature. 
+            DICOM only defines a minimum set of mechanisms that must be supported. 
+            Additional, undefined by DICOM, mechanisms are allowed.
+            </p>
+            </remarks>
+        </member>
+        <member name="F:DvtkApplicationLayer.SecuritySettings.TlsVersionFlags.TLS_VERSION_TLSv1_0">
+            <summary>
+            TLS version 1.0
+            </summary>
+            <remarks>
+            Required by DICOM [DICOM, 3.15, B.1] and IHE [IHE2, 4.32.4.1.2]. (default)
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.SecuritySettings.SecureSocketsEnabled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.SecuritySettings.TlsPassword">
+            <summary>
+            Protocol password
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.SecuritySettings.MaxTlsVersionFlag">
+            <summary>
+            Protocol(s) Supported
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.SecuritySettings.CheckRemoteCertificate">
+            <summary>
+            Verifies the SSL peer and fail the connection if the peer has no ceritificate.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.SecuritySettings.CipherFlag">
+            <summary>
+            Flags indicating the type of security used.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.SecuritySettings.CacheTlsSessions">
+            <summary>
+            Session caching will be optionally supported.
+            It can be turned on or off.
+            DVT will only support in memory caching.
+            Caching will be enabled by default.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.SecuritySettings.TlsCacheTimeout">
+            <summary>
+            Sets the session cache timeout time used by the TLS server.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.SecuritySettings.CredentialsFileName">
+            <summary>
+            Credentials file name
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.SecuritySettings.CertificateFileName">
+            <summary>
+            Certificate file name
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.SecuritySettings.Convert(Dvtk.Sessions.CipherFlags)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.SecuritySettings.Convert(Dvtk.Sessions.TlsVersionFlags)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DvtkApplicationLayer.Session">
+            <summary>
+            Summary description for Session.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.Session.SessionType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.SessionType.ST_UNKNOWN">
+            <summary>
+            Unknown
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.SessionType.ST_SCRIPT">
+            <summary>
+            Script Session
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.SessionType.ST_EMULATOR">
+            <summary>
+            Emulator Session
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.SessionType.ST_MEDIA">
+            <summary>
+            Media Session
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.Session.LogLevelFlags">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.LogLevelFlags.None">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.LogLevelFlags.Error">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.LogLevelFlags.Debug">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.LogLevelFlags.Warning">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.LogLevelFlags.Info">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.LogLevelFlags.Script">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.LogLevelFlags.ScriptName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.LogLevelFlags.PduBytes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.LogLevelFlags.DulpFsm">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.LogLevelFlags.ImageRelation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.LogLevelFlags.Print">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.LogLevelFlags.Label">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.LogLevelFlags.MediaFilename">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.Session.StorageMode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.StorageMode.AsMedia">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.StorageMode.AsMediaOnly">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.StorageMode.AsDataSet">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.StorageMode.TemporaryPixelOnly">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.StorageMode.NoStorage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.isLoaded">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.Session.tempSession">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="fileName">Represnts the session file name.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.TerminateSession">
+            <summary>
+            Method to Terminate the session.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.ParentProject">
+            <summary>
+            Property that determines the project to which the session belongs.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.SecuritySetting">
+            <summary>
+            Property that represents the security setting class for a session.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.Implementation">
+            <summary>
+            Property to access the Dvtk.Sessions.Session
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.Results">
+            <summary>
+            Collection of Results for a particular session.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.SessionId">
+            <summary>
+            Identification for the session.
+            </summary>
+            <remarks>
+            Reported in the results output.
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.ResultsRootDirectory">
+            <summary>
+            Directory used to store results output.
+            </summary>
+            <exception cref="T:System.ArgumentNullException">Argument is a <see langword="null"/> reference.</exception>
+            <exception cref="T:System.ArgumentException">Directory may not be an empty string. Use ".\" for current directory."</exception>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.DefinitionRootDirectory">
+            <summary>
+            Property that represents the Definition directory of a session.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.Date">
+            <summary>
+            Date of test.
+            </summary>
+            <remarks>
+            Reported in the results output.
+            </remarks>                    
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.SessionTitle">
+            <summary>
+            Title for the session.
+            </summary>
+            <remarks>
+            Reported in the results output.
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.SoftwareVersions">
+            <summary>
+            Software versions for the System Under Test (SUT).
+            </summary>
+            <remarks>
+            Reported in the results output.
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.TestedBy">
+            <summary>
+            Name of the tester.
+            </summary>
+            <remarks>
+            Reported in the results output.
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.Mode">
+            <summary>
+            If the storage mode is set to as-media, 
+            DVT will store a received Image Dataset (Group 0008 up to and including Group 7FE0) 
+            in a file with the extension .DCM. 
+            </summary>
+            <remarks>
+            <p>
+            The Image Dataset is stored in the .DCM file in the format 
+            described in DICOM - part 10. 
+            </p>
+            <p>
+            The File Preamble, DICOM Prefix and File Meta Information are added by DVT.
+            </p>
+            <p>
+            The filename is generated from the Session ID and a media storage file index. 
+            The filename used for the media storage is recorded in the corresponding Results File. 
+            The following filenames are generated:
+            <c>nnnIiiii.DCM</c> where <c>nnn</c> is the Session ID, 
+            <c>I</c> signifies image information and <c>iiii</c> is the file index.
+            </p>
+            Examples:
+            <list type="bullet">
+            <item>
+            <term>1I0123.DCM</term>
+            <description>Media Storage File 123 created in Test Session 1.</description>
+            </item>
+            <item>
+            <term>4I0012.DCM</term>
+            <description>Media Storage File 12 created in Test Session 4.</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.Manufacturer">
+            <summary>
+            Manufacturer for the System Under Test (SUT).
+            </summary>
+            <remarks>
+            Reported in the results output.
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.ModelName">
+            <summary>
+            Model name for the System Under Test (SUT).
+            </summary>
+            <remarks>
+            Reported in the results output.
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.LogLevelMask">
+            <summary>
+            Proerty that set and get the LogLevelFlags for a session.
+            </summary>           
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.AutoCreateDirectory">
+            <summary>
+            Determines if a directory is created when this does not yet existing, when writing a Dicom file.
+            </summary>         
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.ContinueOnError">
+            <summary>
+            Determines of execution should continue when an error has occured. 
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.BaseLocation">
+            <summary>
+            Determines the Base Location Of the Project . 
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.Result">
+            <summary>
+            Determine the execution of the Session. 
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.NrOfErrors">
+            <summary>
+             Number of Errors.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.NrOfWarnings">
+            <summary>
+             Number of Warnings.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.Type">
+            <summary>
+            Determine the Session Type.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.SessionFileName">
+            <summary>
+            File name with extension <c>.ses</c> used during load and save.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.BackUpFiles">
+            <summary>
+            Determine the existence of BackUpFiles
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.OptionVerbose">
+            <summary>
+            Determine Verbose On/Off
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.DataDirectory">
+            <summary>
+            Directory used to store data generated by DVT - DCM files, etc.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.UsePrivateAttributeMapping">
+            <summary>
+            Determines whether private attribute tags will be mapped to an internal value or not.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.DetailedValidationResults">
+            <summary>
+            Determines whether the detailed validation results should be generated while executing.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.TestLogValidationResults">
+            <summary>
+            Determines whether the test log validation results should be generated while executing.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.IsExecute">
+            <summary>
+            Determine whether the current session is Executing.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.HasSessionChanged">
+            <summary>
+            Property to determine whether the session has been changed
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.ValidateReferencedFile">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.Session.DisplayConditionText">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.Execute(DvtkApplicationLayer.BaseInput)">
+            <summary>
+            Method for executing a session in a synchronous manner.
+            </summary>
+            <param name="baseInput">baseInput Object </param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.BeginExecute(DvtkApplicationLayer.BaseInput)">
+            <summary>
+            Method for executing a session in an Asynchronous manner.
+            </summary>
+            <param name="baseInput">baseInput Object</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.Save">
+            <summary>
+            set and save session settings to file with extension <c>.ses</c>.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.CreateResultFileName(System.String)">
+            <summary>
+            Method to create result file name.
+            </summary>
+            <param name="filename">baseName of the executed thing (i.e mediaFile , script , emulator) </param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.GetBaseNameNoCheck(System.String)">
+            <summary>
+            Method to get the basename for a resultFile.
+            </summary>
+            <param name="theResultsFileName"> FullName of a resultFile.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.GetSessionId(System.String)">
+            <summary>
+            Method to get the sessionId of the session from a resultFile.
+            </summary>
+            <param name="theResultsName">FullName of a resultFile</param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.SaveSession(System.String)">
+            <summary>
+            Save the session.
+            </summary>
+            <param name="theSessionFileName">File name of the session.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.SaveSessionAs(DvtkApplicationLayer.Session)">
+            <summary>
+            Save the session under a new file name.
+            
+            A new session object will be created from this new saved file (and returned by this method) 
+            and added to the project. The original session wil not be saved.
+            </summary>
+            <param name="theCurrentSession"></param>
+            <returns>The new created session object, null if save as a new session has been cancelled or failed.</returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.SetSessionChanged(DvtkApplicationLayer.Session,System.Boolean)">
+            <summary>
+            Method to set the bool hasSessionchanged 
+            </summary>
+            <param name="theSession"> Represents the session name.</param>
+            <param name="changed">boolean value that determines whether the session has been changed.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.GetNrSessions">
+            <summary>
+            Method to determine the number of sessions in a project.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.GetSession(System.Int32)">
+            <summary>
+            Method to get the Session Information from the Collection of sessions with a particular index.
+            </summary>
+            <param name="index"> Index number of a session in a collection of sessions.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.GetSessionChanged(DvtkApplicationLayer.Session)">
+            <summary>
+            Method to get the value of bool hasSessionchanged.
+            </summary>
+            <param name="theSession">Represents the session name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.RemoveSession(DvtkApplicationLayer.Session)">
+            <summary>
+            Method to remove a session from a collection of sessions.
+            </summary>
+            <param name="theSession">Represents the session name.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.DetermineDetailName(System.String)">
+            <summary>
+            Method to Determine the detail name of a resultFile.
+            </summary>
+            <param name="name">it represents the string whose detailed file needs to be determined. </param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.DetermineSummaryName(System.String)">
+            <summary>
+            Method to Determine the summary name of a resultFile.
+            </summary>
+            <param name="name">Tt represents the string whose summary file needs to be determined. </param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.CreateResults(System.String)">
+            <summary>
+            Method to create result object .
+            </summary>
+            <param name="name">Full Name of the ResultFile.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.LoadSession">
+            <summary>
+            Load a session from file.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.CreateSessionInstance">
+            <summary>
+            Method to create the instance of a session.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.CreateSessionInstance(System.String)">
+            <summary>
+            Method to create the instance of a session. 
+            </summary>
+            <param name="sessionFileName"> FileName of the session.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.ActivityReportEventHandler(System.Object,Dvtk.Events.ActivityReportEventArgs)">
+            <summary>
+            Occurs when a activity report is generated by the application.
+            </summary>
+            <remarks>
+            Users may register a callback to listen for this event.
+            </remarks>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.GetAllProperties">
+            <summary>
+            Method to get the Session Properties from a loaded session.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.SetAllProperties">
+            <summary>
+            Method to set the values of Session Properties in a Session.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.GetFileNamesforSession">
+            <summary>
+            Get the base names from a list of results file names.
+            </summary>
+            <returns>The resultFiles for a session.</returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.Session.GetBaseNamesForResultsFiles(System.Collections.ArrayList)">
+            <summary>
+            Get the base names from a list of results file names.
+            </summary>
+            <param name="theResultsFiles">The results file names.</param>
+            <returns>The unique base names.</returns>
+        </member>
+        <member name="T:DvtkApplicationLayer.SessionManager">
+            <summary>
+            Summary description for SessionManager.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.SessionManager.Instance">
+            <summary>
+            Method to create an instance of session manager.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.SessionManager.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.SessionManager.CreateSession(System.String)">
+            <summary>
+            Create the instance of a seesion according to the session type.
+            </summary>
+            <param name="fileName">represents the sessionfile name.</param>
+            <returns>instance of a session.</returns>
+        </member>
+        <member name="T:DvtkApplicationLayer.StorageScpEmulator">
+            <summary>
+            Summary description for StorageScpEmulator.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StorageScpEmulator.#ctor(DvtkApplicationLayer.Session,System.String)">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.StorageSCUEmulator">
+            <summary>
+            Summary description for StorageSCUEmulator.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StorageSCUEmulator.#ctor(DvtkApplicationLayer.Session,System.String)">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.StoredFiles.ApplicationConfigurableFileGroup">
+            <summary>
+            Specifies a group of files and determines if and when files from this group will be removed.
+            </summary>
+            <remarks>
+            Instances of this, or a derived, class are intended to only be configured within the application,
+            that is without supplying an User Interface to do so.
+            </remarks>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.ApplicationConfigurableFileGroup.askPermissionToRemoveCurrentApplicationRun">
+            <summary>
+            See property AskPermissionToRemoveCurrentApplicationRun.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.ApplicationConfigurableFileGroup.askPermissionToRemovePreviousApplicationRuns">
+            <summary>
+            See property AskPermissionToRemovePreviousApplicationRuns.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.ApplicationConfigurableFileGroup.daysPreviousApplicationRuns">
+            <summary>
+            See property DaysPreviousApplicationRuns.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.ApplicationConfigurableFileGroup.directory">
+            <summary>
+            See property Directory.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.ApplicationConfigurableFileGroup.removeModeCurrentApplicationRun">
+            <summary>
+            See property RemoveModeCurrentApplicationRun.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.ApplicationConfigurableFileGroup.removeModePreviousApplicationRuns">
+            <summary>
+            See property RemoveModePreviousApplicationRuns.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.ApplicationConfigurableFileGroup.sizePreviousApplicationRuns">
+            <summary>
+            See property SizePreviousApplicationRuns.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.ApplicationConfigurableFileGroup.#ctor">
+            <summary>
+            Hide default constructor.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.ApplicationConfigurableFileGroup.#ctor(System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="name">The name of this instance, which must be unique for each UserConfigurableFileGroup instance used within an application.</param>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.ApplicationConfigurableFileGroup.AskPermissionToRemoveCurrentApplicationRun">
+            <summary>
+            Gets or sets a boolean indicating if permission needs to be asked to removed files
+            during the current application run.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.ApplicationConfigurableFileGroup.AskPermissionToRemovePreviousApplicationRuns">
+            <summary>
+            Gets or sets a boolean indicating if permission needs to be asked to removed files
+            during the previous application runs.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.ApplicationConfigurableFileGroup.DaysPreviousApplicationRuns">
+            <summary>
+            Days.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.ApplicationConfigurableFileGroup.Directory">
+            <summary>
+            Gets or sets the directory this instance refers to.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.ApplicationConfigurableFileGroup.RemoveModeCurrentApplicationRun">
+            <summary>
+            Gets or sets the remove mode for files created during the current application run.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.ApplicationConfigurableFileGroup.RemoveModePreviousApplicationRuns">
+            <summary>
+            Gets or sets the remove mode for files created during previous application runs.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.ApplicationConfigurableFileGroup.SizePreviousApplicationRuns">
+            <summary>
+            Size in MB.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.StoredFiles.FileGroup">
+            <summary>
+            Specifies a group of files and determines if and when files from this group will be removed.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.FileGroup.defaultFolder">
+            <summary>
+            See property DefaultDirectory.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.FileGroup.fileGroups">
+            <summary>
+            The FileGroups instance this FileGroup instance belongs to.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.FileGroup.name">
+            <summary>
+            See property Name.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.FileGroup.wildcards">
+            <summary>
+            See property Wildcards.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroup.#ctor">
+            <summary>
+            Hide default constructor.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroup.#ctor(System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="name">The name of this instance.</param>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.FileGroup.AskPermissionToRemoveCurrentApplicationRun">
+            <summary>
+            Gets or sets a boolean indicating if permission needs to be asked to removed files
+            during the current application run.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.FileGroup.AskPermissionToRemovePreviousApplicationRuns">
+            <summary>
+            Gets or sets a boolean indicating if permission needs to be asked to removed files
+            during the previous application runs.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.FileGroup.DaysPreviousApplicationRuns">
+            <summary>
+            Days.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.FileGroup.DefaultFolder">
+            <summary>
+            Gets or sets the default folder (set by application code and not user configurable).
+            </summary>
+            <remarks>
+            The default directory will be constructed as follows:
+            My Documents directory + DVTk + application name + default folder.
+            <br></br><br></br>
+            This default determined directory can be overriden using the Directory set property.
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.FileGroup.Directory">
+            <summary>
+            Gets or sets the directory this instance refers to.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.FileGroup.FileGroups">
+            <summary>
+            Gets or sets the FileGroups instance this FileGroup instance belongs to.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.FileGroup.Name">
+            <summary>
+            Gets or sets the name of this instance (used for serialization and deserialization).
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.FileGroup.RemoveModeCurrentApplicationRun">
+            <summary>
+            Gets or sets the remove mode for files created during the current application run.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.FileGroup.RemoveModePreviousApplicationRuns">
+            <summary>
+            Gets or sets the remove mode for files created during previous application runs.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.FileGroup.SizePreviousApplicationRuns">
+            <summary>
+            Size in MB.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.FileGroup.Wildcards">
+            <summary>
+            Gets or sets the file wildcards that determines which files this instance refers to.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroup.DetermineFilesToRemove">
+            <summary>
+            Determine all files that need to be removed.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroup.CreateDirectory">
+            <summary>
+            Checks if the directory for this FileGroup exist.
+            If not, it will be created.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroup.GetFiles(System.Collections.Specialized.StringCollection,System.Collections.ObjectModel.Collection{System.IO.FileInfo})">
+            <summary>
+            Get all files in the Directory specified by the wildcards and devide them in two collections.
+            </summary>
+            <param name="filesCurrentApplicationRun">All files from the current application run.</param>
+            <param name="filesPreviousApplicationRuns">All files from the previous application runs.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroup.RemoveAllFiles">
+            <summary>
+            Remove all files in the Directory specified by the wildcards.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl">
+            <summary>
+            User control that enables the user to configure one FileGroup instance.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl.radioButtonCheckedChangedEventHandlersEnabled">
+            <summary>
+            Needed to prevent an infinite loop of radioButton..._CheckedChanged calls.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl.userConfigurableFileGroup">
+            <summary>
+            The FileGroup instance this user control operates on.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl.#ctor">
+            <summary>
+            Hide default constructor.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl.#ctor(DvtkApplicationLayer.StoredFiles.UserConfigurableFileGroup)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="userConfigurableFileGroup">The FileGroup instance this user control operates on.</param>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl.RemoveModeCurrentApplicationRun">
+            <summary>
+            Gets or sets the remove mode for the current application run on the UI.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl.RemoveModePreviousApplicationRuns">
+            <summary>
+            Gets or sets the remove mode for the previous application runs on the UI.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl.buttonDirectoryBrowse_Click(System.Object,System.EventArgs)">
+            <summary>
+            Called when the browse button is pressed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl.buttonDirectoryExplore_Click(System.Object,System.EventArgs)">
+            <summary>
+            Called when the explore button is pressed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl.CopySettingsFromUserConfigurableFileGroup">
+            <summary>
+            Copy settings from the FileGroup instance to this UserControl.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl.CopySettingsToUserConfigurableFileGroupAndSave">
+            <summary>
+            Copy settings from this UserControl to the FileGroup instance.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl.radioButtonCurrentApplicationRunKeep_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Called when the radioButton CurrentApplicationRunKeep checked state has changed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl.radioButtonCurrentApplicationRunRemove_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Called when the radioButton CurrentApplicationRunRemove checked state has changed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl.radioButtonPreviousApplicationRunsKeep_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Called when the radioButton PreviousApplicationRunsKeep checked state has changed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl.radioButtonPreviousApplicationRunsRemove_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Called when the radioButton PreviousApplicationRunsRemove checked state has changed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl.radioButtonPreviousApplicationRunsRemoveIfOlderThan_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Called when the radioButton PreviousApplicationRunsRemoveIfOlderThan checked state has changed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl.radioButtonPreviousApplicationRunsRemoveOldestWhenTotalSizeLargerThan_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Called when the radioButton PreviousApplicationRunsRemoveOldestWhenTotalSizeLargerThan checked state has changed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl.textBoxPreviousApplicationRunsDays_Validating(System.Object,System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Called when the input of this text box is validated.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The cancel event arguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl.textBoxPreviousApplicationRunsSize_Validating(System.Object,System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Called when the input of this text box is validated.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The cancel event arguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl.ValidateTextBoxInput(System.Windows.Forms.TextBox,System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Validate if the text box contains un integer between 1 and 65535.
+            </summary>
+            <param name="textBox">The text box.</param>
+            <param name="e">The cancel event arguments.</param>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupConfiguratorUserControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.StoredFiles.FileGroups">
+            <summary>
+            Contains and controls all contained FileGroup instances.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.FileGroups.applicationName">
+            <summary>
+            The name of the application, needed for display in the FileGroupsConfiguratorForm.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.FileGroups.collection">
+            <summary>
+            The internal collection containing the different FileGroup instances.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroups.#ctor">
+            <summary>
+            Hide default constructor.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroups.#ctor(System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="applicationName">The name of the application, needed for display in the FileGroupsConfiguratorForm.</param>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.FileGroups.ApplicationName">
+            <summary>
+            Gets the application name.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.FileGroups.ConstructionTime">
+            <summary>
+            Gets the time this instance was constructed.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.FileGroups.IsConfigured">
+            <summary>
+            Gets or sets a boolean indicating if all contained user configurable file groups have
+            been configured.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.FileGroups.UserConfigurableFileGroups">
+            <summary>
+            Gets all user configurable file group instances.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroups.Add(DvtkApplicationLayer.StoredFiles.FileGroup)">
+            <summary>
+            Add a FileGroup instance.
+            </summary>
+            <remarks>
+            The supplied FileGroup instance may only be added to one FileGroups instance.
+            </remarks>
+            <param name="fileGroup">The FileGroup instance to add.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroups.CheckIsConfigured(System.String)">
+            <summary>
+            Check if the stored files options have been configured. If not, the user is given a choice to do now or use the default options.
+            </summary>
+            <param name="userInterfaceDescription">Description how to configure the stored files options in the User Interface.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroups.CreateDirectories">
+            <summary>
+            Checks if the directories for all contained FileGroups exist.
+            If not, they will be created.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroups.RemoveFiles">
+            <summary>
+            Cleanup the system by removing files that are allowed to be removed according to the
+            contained FileGroup instances.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroups.Save">
+            <summary>
+            Save all user configurable settings.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroups.ShowDialogFileGroupsConfigurator">
+            <summary>
+            Display a Form in which the user configurable FileGroup instances can be configured.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.FileGroupsConfiguratorForm.fileGroupConfiguratorUserControls">
+            <summary>
+            Contains all fileGroupConfiguratorUserControls that are created by this form.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.FileGroupsConfiguratorForm.fileGroups">
+            <summary>
+            The FileGroups instance this form is created for.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupsConfiguratorForm.#ctor">
+            <summary>
+            Hide default construction.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupsConfiguratorForm.#ctor(DvtkApplicationLayer.StoredFiles.FileGroups)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="fileGroups">The file groups to configure for which this form will be created.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupsConfiguratorForm.buttonCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Called when the Cancel button is pressed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupsConfiguratorForm.buttonOK_Click(System.Object,System.EventArgs)">
+            <summary>
+            Called when the OK button is pressed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupsConfiguratorForm.CreateTabPage(DvtkApplicationLayer.StoredFiles.UserConfigurableFileGroup)">
+            <summary>
+            Create a new tab page for the tab control.
+            </summary>
+            <param name="userConfigurableFileGroup">The FileGroup instance to create a new tab page for.</param>
+            <returns></returns>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.FileGroupsConfiguratorForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupsConfiguratorForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.FileGroupsConfiguratorForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.PixFileGroup.#ctor">
+            <summary>
+            Hide default constructor.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.PixFileGroup.#ctor(DvtkApplicationLayer.StoredFiles.ReceivedDicomMessagesFileGroup)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="receivedDicomMessagesFileGroup">The associated instance from which the Directory setting is used.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.PixFileGroup.#ctor(System.String)">
+            <summary>
+            Hide this constructor.
+            </summary>
+            <param name="name">The name.</param>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.PixFileGroup.Directory">
+            <summary>
+            Get will return the same directory as the Directory property from the associated
+            ReceivedDicomMessagesFileGroup instance.
+            <br></br><br></br>
+            Set will not do anything.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.StoredFiles.ReceivedDicomMessagesFileGroup">
+            <summary>
+            Represent received DICOM messages present in a directory.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.ReceivedDicomMessagesFileGroup.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.ReceivedDicomMessagesFileGroup.#ctor(System.String)">
+            <summary>
+            Hide this constructor.
+            </summary>
+            <param name="name">-</param>
+        </member>
+        <member name="T:DvtkApplicationLayer.StoredFiles.RemoveMode">
+            <summary>
+            Different modes that determine if and when files are removed.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.RemoveMode.Keep">
+            <summary>
+            Do not remove any files.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.RemoveMode.Remove">
+            <summary>
+            Remove all files.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.RemoveMode.RemoveOldestWhenTotalSizeLargerThan">
+            <summary>
+            Remove the oldest files when the total size is larger than a specified amount.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.RemoveMode.RemoveIfOlderThan">
+            <summary>
+            Remove if file are older than a specified number of days.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.StoredFiles.ValidationResultsFileGroup">
+            <summary>
+            Represents validation results in a directory.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.ValidationResultsFileGroup.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.ValidationResultsFileGroup.#ctor(System.String)">
+            <summary>
+            Hide this constructor.
+            </summary>
+            <param name="name">-</param>
+        </member>
+        <member name="T:DvtkApplicationLayer.StoredFiles.UserConfigurableFileGroup">
+            <summary>
+            Specifies a group of files and determines if and when files from this group will be removed.
+            </summary>
+            <remarks>
+            Instances of this, or a derived, class are intended to (partly) be configured be the user,
+            making use of a dedicated User Interface.
+            </remarks>
+        </member>
+        <member name="F:DvtkApplicationLayer.StoredFiles.UserConfigurableFileGroup.description">
+            <summary>
+            See property description.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.UserConfigurableFileGroup.#ctor">
+            <summary>
+            Hide default constructor.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.UserConfigurableFileGroup.#ctor(System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="name">The name of this instance, which must be unique for each UserConfigurableFileGroup instance used within an application.</param>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.UserConfigurableFileGroup.AskPermissionToRemoveCurrentApplicationRun">
+            <summary>
+            Gets or sets a boolean indicating if permission needs to be asked to removed files
+            during the current application run.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.UserConfigurableFileGroup.AskPermissionToRemovePreviousApplicationRuns">
+            <summary>
+            Gets or sets a boolean indicating if permission needs to be asked to removed files
+            during the previous application runs.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.UserConfigurableFileGroup.IsConfigured">
+            <summary>
+            Gets or sets a boolean indicating if this instance has been configured in the past.
+            </summary>
+            <remarks>
+            This setting will be saved and loaded as a user setting on disc.
+            <br></br><br></br>
+            DO NOT USE THIS PROPERTY OUTSIDE THE LIBRARY.
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.UserConfigurableFileGroup.DaysPreviousApplicationRuns">
+            <summary>
+            Days.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.UserConfigurableFileGroup.Description">
+            <summary>
+            Gets or sets the description of this FileGroup.
+            </summary>
+            <remarks>
+            This description will be displayed to the user.
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.UserConfigurableFileGroup.Directory">
+            <summary>
+            Gets or sets the directory this instance refers to.
+            </summary>
+            <remarks>
+            This setting will be saved and loaded as a user setting on disc.
+            </remarks>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.UserConfigurableFileGroup.RemoveModeCurrentApplicationRun">
+            <summary>
+            Gets or sets the remove mode for files created during the current application run.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.UserConfigurableFileGroup.RemoveModePreviousApplicationRuns">
+            <summary>
+            Gets or sets the remove mode for files created during previous application runs.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.StoredFiles.UserConfigurableFileGroup.SizePreviousApplicationRuns">
+            <summary>
+            Size in MB.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.StoredFiles.UserConfigurableFileGroup.Explore">
+            <summary>
+            Open Windows explorer with the directory specified in this instance.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.UserInterfaces.AboutForm">
+            <summary>
+            Summary description for AboutForm.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.AboutForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.AboutForm.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="applicationName"></param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.AboutForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.AboutForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.AboutForm.InfoToDisplay">
+            <summary>
+            String which displays license and other info
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.AboutForm.GetVersionString(System.Reflection.Assembly)">
+            <summary>
+            Gets the version of the supplied assembly as a string.
+            </summary>
+            <param name="assembly">The assembly.</param>
+            <returns>A string containing the version of the assembly.</returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.AboutForm.IsAlphaBuild(System.Reflection.Assembly)">
+            <summary>
+            Indicates if the version of the supplied assembly represents an Alpha build.
+            </summary>
+            <param name="assembly">The assembly.</param>
+            <returns>Boolean indicating if the version of the supplied assembly represents an Alpha build.</returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.AboutForm.IsLocalBuild(System.Reflection.Assembly)">
+            <summary>
+            Indicates if the version of the supplied assembly represents a local build.
+            </summary>
+            <param name="assembly">The assembly.</param>
+            <returns>Boolean indicating if the version of the supplied assembly represents a local build.</returns>
+        </member>
+        <member name="T:DvtkApplicationLayer.UserInterfaces.AddAttribute">
+            <summary>
+            Summary description for AddAttribute.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.AddAttribute.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.AddAttribute.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.AddAttribute.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.AddAttribute.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.AddAttribute.NewAttributeTag">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.AddAttribute.NewAttributeVR">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.AddAttribute.NewAttributeValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.UserInterfaces.Banner">
+            <summary>
+            Banner is a Form which contains entries (like e.g. TextBox) that are added by using method calls
+            of this class. The appearance of this Form is then determined dynamically.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.Banner.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.Banner.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.Banner.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.Banner.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.Banner.Caption">
+            <summary>
+            Set the caption of the form.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.Banner.AddImage(System.Drawing.Image)">
+            <summary>
+            Add an image to the form.
+            
+            FOR NOW: only one image maximum will be displayed.
+            </summary>
+            <param name="image"></param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.Banner.buttonOK_Click(System.Object,System.EventArgs)">
+            <summary>
+            Called when the OK button is pressed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.Banner.Banner_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            Makes that that when the return is pressed, the form is closed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.Banner.Banner_Load(System.Object,System.EventArgs)">
+            <summary>
+            Put the controls on the Form.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.Banner.SetButtons(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="buttons"></param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.Banner.ShowDialog">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DvtkApplicationLayer.UserInterfaces.CustomExceptionHandlerForm">
+            <summary>
+            Summary description for CustomExceptionHandlerForm.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.CustomExceptionHandlerForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.CustomExceptionHandlerForm.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="errorText"></param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.CustomExceptionHandlerForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.CustomExceptionHandlerForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.UserInterfaces.DCMEditor">
+            <summary>
+            Summary description for Form1.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.DCMEditor._DCMdataset">
+            <summary>
+            DCM File Dataset
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.DCMEditor._FileMetaInfo">
+            <summary>
+            DCM File FMI
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DCMEditor.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DCMEditor.InitializeDatasetGrid">
+            <summary>
+            Dynamically create the main data attribute grid.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DCMEditor.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DCMEditor.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.DCMEditor.DCMFile">
+            <summary>
+            Loaded DCM File
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.DCMEditor.DefFile">
+            <summary>
+            Loaded Definition File
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.DCMEditor.IsDCMFileChanged">
+            <summary>
+            Boolean for DCM File change
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.DCMEditor.DCMFileTransferSyntax">
+            <summary>
+            Transfer syntax of DCM file
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.DCMEditor.DCMFileDataDirectory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DCMEditor.UpdateAttributeDataGrid">
+            <summary>
+            This is the method for updating UI changes
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DCMEditor.UpdateFMIDataGrid">
+            <summary>
+            This is the method for updating FMI grid
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DCMEditor.AddDatasetInfoToDataGrid">
+            <summary>
+            Helper function for adding dataset to the datagrid
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DCMEditor.AddFMIToDataGrid">
+            <summary>
+            Helper function for adding FMI to the datagrid
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DCMEditor.GetSeqAttributesValues(DvtkHighLevelInterface.Dicom.Other.Attribute)">
+            <summary>
+            Recursive function for handling Seq attributes
+            </summary>
+            <param name="attribute"></param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DCMEditor.SaveDCMFile(System.Object,System.EventArgs)">
+            <summary>
+            Save the DCM File
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DCMEditor.GetHLITagString(System.String)">
+            <summary>
+            Conversion function for Datagrid tag string format to HLI 
+            tag sequence string format.
+            </summary>
+            <param name="datagridTagString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DCMEditor.TagString(System.UInt16,System.UInt16)">
+            <summary>
+            Conversion function for Tag to string format
+            </summary>
+            <param name="groupNr"></param>
+            <param name="elementNr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DCMEditor.GetVR(System.String)">
+            <summary>
+            Conversion function for VR to string format
+            </summary>
+            <param name="vrString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DCMEditor.menuItem_AddNewAttribute_Click(System.Object,System.EventArgs)">
+            <summary>
+            Add a new attribute to the DCM File
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:DvtkApplicationLayer.UserInterfaces.MainThread">
+            <summary>
+            Summary description for Main Thread.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.MainThread.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.MainThread.Execute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.UserInterfaces.AttributeProperty">
+            <summary>
+            This class is used to represent each row in the datagrid. Each row
+            in the datagrid refer to a HLI attribute object and HLI attribute tag sequence.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.AttributeProperty.#ctor(DvtkApplicationLayer.UserInterfaces.DCMEditor)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="editor"></param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.AttributeProperty.#ctor(System.String,System.String,System.String,System.String,System.String,DvtkHighLevelInterface.Dicom.Other.Attribute)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="displayTag"></param>
+            <param name="name"></param>
+            <param name="vr"></param>
+            <param name="vm"></param>
+            <param name="val"></param>
+            <param name="refAttributeObj"></param>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.AttributeProperty.Item(System.Int32)">
+            <summary>
+            Indexer property
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.AttributeProperty.AttributeTag">
+            <summary>
+            Attribute Tag
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.AttributeProperty.AttributeName">
+            <summary>
+            Attribute Name
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.AttributeProperty.AttributeVR">
+            <summary>
+            Attribute VR
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.AttributeProperty.AttributeVM">
+            <summary>
+            Attribute VM
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.AttributeProperty.AttributeValue">
+            <summary>
+            Attribute Value
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.AttributeProperty.HLIAttribute">
+            <summary>
+            HLI Attribute
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew">
+            <summary>
+            Summary description for DvtkWebBrowser.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.htmlDocument">
+            <summary>
+            The Html document that is currently shown.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.htmlBody">
+            <summary>
+            The body of the Html document that is currently shown.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.findRemainingText">
+            <summary>
+            The remaining text part of the displayed Html in which to find a next occurence of a string.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.Navigate(System.String)">
+            <summary>
+            Public method
+            </summary>
+            <param name="fullFileName"></param>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.IsForwardEnabled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.IsBackwardEnabled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.XmlStyleSheetFullFileName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.BackwardFormwardEnabledStateChangeEventHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.BackwardFormwardEnabledStateChangeEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.Back">
+            <summary>
+            Show the previous URL link.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.Forward">
+            <summary>
+            Show the next URL link.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.ConvertXmlToHtml(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="xmlFullFileName"></param>
+            <param name="htmlFullFileName"></param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.GetFullFileNameFromHtmlLink(System.String)">
+            <summary>
+            Remove, if needed, characters from a Html link to get a valid full file name.
+            </summary>
+            <param name="theHtmlLink">The HTML link</param>
+            <returns>The full file name.</returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.NavigateComplete2Handler">
+            <summary>
+            Handler of the NavigateComplete2 event.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.ContainsErrors">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.ContainsWarnings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.FindNextWarning">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.FindNextError">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.FindNextText(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Public method
+            </summary>
+            <param name="theText"></param>
+            <param name="mustMatchWholeWord"></param>
+            <param name="mustMatchCase"></param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.MakeBlank">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.ErrorWarningEnabledStateChangeEventHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:DvtkApplicationLayer.UserInterfaces.DvtkWebBrowserNew.ErrorWarningEnabledStateChangeEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.UserInterfaces.InputForm">
+            <summary>
+            InputForm is a Form which contains entries (like e.g. TextBox) that are added by using method calls
+            of this class. The appearance of this Form is then determined dynamically.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.InputForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.InputForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.InputForm.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.InputForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.InputForm.Caption">
+            <summary>
+            Set the caption of the form.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.InputForm.Description">
+            <summary>
+            UNDER DEVELOPMENT!
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.InputForm.AddDropDownListEntry(System.String,System.Collections.ArrayList,System.Object)">
+            <summary>
+            Add an entry consisting of a desciption and a DropDownList.
+            
+            The DropDownList will use the ToString method of the supplied values to display the
+            items.
+            </summary>
+            <param name="description">The description.</param>
+            <param name="values">The values.</param>
+            <param name="defaultValue">The default value.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.InputForm.AddDropDownListEntry(System.String,System.Collections.IList,System.Collections.IList,System.Object)">
+            <summary>
+            Add an entry consisting of a desciption and a DropDownList.
+            
+            The DropDownList will use supplied textValues to display the items with.
+            </summary>
+            <param name="description">The description.</param>
+            <param name="values">The values.</param>
+            <param name="textValues">The text values.</param>
+            <param name="defaultValue">The default value.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.InputForm.AddImage(System.Drawing.Image)">
+            <summary>
+            Add an image to the form.
+            
+            FOR NOW: only one image maximum will be displayed.
+            </summary>
+            <param name="image"></param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.InputForm.AddTextBoxEntry(System.String,System.String,System.Boolean)">
+            <summary>
+            Add an entry consisting of a desciption and a TextBox.
+            </summary>
+            <param name="description"></param>
+            <param name="defaultValue"></param>
+            <param name="readOnly"></param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.InputForm.buttonOK_Click(System.Object,System.EventArgs)">
+            <summary>
+            Called when the OK button is pressed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.InputForm.DumpTextValues">
+            <summary>
+            Get the text values of all entries for debugging purposes.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.InputForm.InputForm_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            Makes that that when the return is pressed, the form is closed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.InputForm.InputForm_Load(System.Object,System.EventArgs)">
+            <summary>
+            Put the controls on the Form.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.InputForm.GetValue(System.String)">
+            <summary>
+            Get the value of an entry as Object.
+            </summary>
+            <param name="description">The description.</param>
+            <returns>The Object.</returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.InputForm.GetTextValue(System.String)">
+            <summary>
+            Get the text value of an entry.
+            </summary>
+            <param name="description">The description.</param>
+            <returns>The text value.</returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.InputForm.SetButtons(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="buttons"></param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.InputForm.ShowDialog">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DvtkApplicationLayer.UserInterfaces.InputFormDropDownListEntry">
+            <summary>
+            InputFormDropDownListEntry represents a ComboBox entry in the InputForm class.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.InputFormDropDownListEntry.values">
+            <summary>
+            See property Values.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.InputFormDropDownListEntry.textValues">
+            <summary>
+            See propert ValueAsString.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.InputFormDropDownListEntry.comboBox">
+            <summary>
+            See property ComboBox.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.InputFormDropDownListEntry.#ctor(System.String,System.Collections.IList,System.Collections.IList,System.Object)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="description">The description.</param>
+            <param name="values">The values.</param>
+            <param name="textValues">The values as text.</param>
+            <param name="thevalue">The value.</param>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.InputFormDropDownListEntry.ComboBox">
+            <summary>
+            The ComboBox instance used in the InputForm to visualise this entry.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.InputFormDropDownListEntry.Values">
+            <summary>
+            Get the values, i.e. the Objects represented in the ComboBox.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.InputFormDropDownListEntry.TextValues">
+            <summary>
+            Get the text values, i.e. how are the values represented (displayed) in the ComboBox.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.UserInterfaces.InputFormEntry">
+            <summary>
+            Base class for all InputForm entries.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.InputFormEntry.description">
+            <summary>
+            See property Description.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.InputFormEntry.theValue">
+            <summary>
+            See property ValueAsObject.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.InputFormEntry.theTextValue">
+            <summary>
+            See property ValueAsString.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.InputFormEntry.#ctor">
+            <summary>
+            Hide the default constructor.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.InputFormEntry.#ctor(System.String,System.Object,System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="description">The description.</param>
+            <param name="theValue">The value, i.e. what is represented.</param>
+            <param name="theTextValue">The text value as String, i.e. how is the value displayed.</param>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.InputFormEntry.Description">
+            <summary>
+            The description of the entry.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.InputFormEntry.Value">
+            <summary>
+            The value as object, i.e. what is the value represented.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.InputFormEntry.TextValue">
+            <summary>
+            The value as Text, i.e. how is the value displayed.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.UserInterfaces.InputFormTextBoxEntry">
+            <summary>
+            InputFormTextBoxEntry represents a TextBox entry in the InputForm class.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.InputFormTextBoxEntry.readOnly">
+            <summary>
+            See property ReadOnly.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.InputFormTextBoxEntry.textBox">
+            <summary>
+            See property TextBox.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.InputFormTextBoxEntry.#ctor(System.String,System.String,System.Boolean)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="description">The description.</param>
+            <param name="theValue">The value as String.</param>
+            <param name="readOnly"></param>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.InputFormTextBoxEntry.ReadOnly">
+            <summary>
+            Determines if the TextBox displayed is read only.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.InputFormTextBoxEntry.TextBox">
+            <summary>
+            The TextBox instance used in the InputForm to visualise this entry.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.UserInterfaces.InputFormValueAndRepresentation">
+            <summary>
+            Used to be able to have a combination of an Object and a String representation for use in a ComboBox.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.InputFormValueAndRepresentation.theValue">
+            <summary>
+            See property TheObject
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.InputFormValueAndRepresentation.theValueRepresentation">
+            <summary>
+            See property TheString
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.InputFormValueAndRepresentation.#ctor">
+            <summary>
+            Hide default constructor.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.InputFormValueAndRepresentation.#ctor(System.Object,System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="theValue">The Object.</param>
+            <param name="theValueRepresentation">The String.</param>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.InputFormValueAndRepresentation.Value">
+            <summary>
+            Get the value.
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.InputFormValueAndRepresentation.ValueRepresentation">
+            <summary>
+            Get the value representation.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.InputFormValueAndRepresentation.ToString">
+            <summary>
+            This ToString method has been overriden to be able to display a different String then
+            the ToString Object of the this.theObject instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DvtkApplicationLayer.UserInterfaces.ResultsViewer">
+            <summary>
+            Class that has the capabilities to view the results of a Thread instance.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.ResultsViewer.thread">
+            <summary>
+            The thread which results will be displayed.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.ResultsViewer.#ctor">
+            <summary>
+            Hide default constructor.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.ResultsViewer.#ctor(DvtkHighLevelInterface.Common.Threads.Thread)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="thread">The thread which results will be displayed.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.ResultsViewer.#ctor(System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="thread">The thread which results will be displayed.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.ResultsViewer.buttonBackward_Click(System.Object,System.EventArgs)">
+            <summary>
+            Navigate back.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The event erguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.ResultsViewer.buttonForward_Click(System.Object,System.EventArgs)">
+            <summary>
+            Navigate forward.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The event erguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.ResultsViewer.buttonTop_Click(System.Object,System.EventArgs)">
+            <summary>
+            Navigate to the original results.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The event erguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.ResultsViewer.UpdateButtons">
+            <summary>
+            Updates the buttons on this form.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.ResultsViewer.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.ResultsViewer.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.ResultsViewer.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.UserInterfaces.SelectTransferSyntaxesForm">
+            <summary>
+            Summary description for SelectTransferSyntaxesForm.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.SelectTransferSyntaxesForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.UserInterfaces.SelectTransferSyntaxesForm._SelectionChanged">
+            <summary>
+            Used in UI applications for TS selection change
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.SelectTransferSyntaxesForm.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.SelectTransferSyntaxesForm.selectSupportedTS">
+            <summary>
+            Select TS supported as we display dialog
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.SelectTransferSyntaxesForm.DefaultTransferSyntaxesList">
+            <summary>
+            Default Transfer Syntaxes list displayed
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.SelectTransferSyntaxesForm.SupportedTransferSyntaxes">
+            <summary>
+            Supported Transfer Syntaxes
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.SelectTransferSyntaxesForm.DisplaySelectAllButton">
+            <summary>
+            Provide button to Select All Transfer Syntaxes
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.SelectTransferSyntaxesForm.DisplayDeSelectAllButton">
+            <summary>
+            Provide button to De-Select All Transfer Syntaxes
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.SelectTransferSyntaxesForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.SelectTransferSyntaxesForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:DvtkApplicationLayer.UserInterfaces.SopClassesUserControl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.SopClassesUserControl.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:DvtkApplicationLayer.UserInterfaces.SopClassesUserControl.SelectedDefinitionFilesList">
+            <summary>
+            Get the user selected definitions file list from Datagrid
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.SopClassesUserControl.UpdateDataGrid(Dvtk.Sessions.ScriptSession)">
+            <summary>
+            Update the Specify SOP classes tab.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.SopClassesUserControl.AddSopClassToDataGridFromDefinitionFile(System.String)">
+            <summary>
+            The information from a definition file is added to the datagrid and possibly to the combo box.
+            
+            An excpetion is thrown when retrieving details for the definition file fails.
+            </summary>
+            <param name="theDefinitionFullFileName">the full file name of the definition file.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.SopClassesUserControl.AddDefinitionFileDirectory">
+            <summary>
+            Add a definition file direcotory.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.SopClassesUserControl.DataGrid_MouseDown(System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            The reason we handle the mouseup event ourselves, is because with the normal
+            grid, you first have to select a cell, and only then you can enable/disable a
+            checkbox. We want to enable/disable the checkbox with 1 click.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:DvtkApplicationLayer.UserInterfaces.SopClassesUserControl.DataGrid_MouseMove(System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            When moving the mouse over other "loaded" check box while keeping the left mouse button pressed,
+            change the "loaded" state to the new state when the left mouse button was pressed.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="T:DvtkApplicationLayer.VersionChecker">
+            <summary>
+            Checks the version of both the application and the DVTk library and displays a warning
+            if one or both are a non-official or Alpha version.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.VersionChecker.#ctor">
+            <summary>
+            // Don't instantiate.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.VersionChecker.CheckVersion">
+            <summary>
+            Checks the version of both the application and the DVTk library.
+            <br></br>
+            If one or both are a non-official or Alpha version, a warning message box is displayed.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.VersionChecker.GetVersionString(System.Reflection.Assembly)">
+            <summary>
+            Gets the version of the supplied assembly as a string.
+            </summary>
+            <param name="assembly">The assembly.</param>
+            <returns>A string containing the version of the assembly.</returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.VersionChecker.IsAlphaBuild(System.Reflection.Assembly)">
+            <summary>
+            Indicates if the version of the supplied assembly represents an Alpha build.
+            </summary>
+            <param name="assembly">The assembly.</param>
+            <returns>Boolean indicating if the version of the supplied assembly represents an Alpha build.</returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.VersionChecker.IsLocalBuild(System.Reflection.Assembly)">
+            <summary>
+            Indicates if the version of the supplied assembly represents a local build.
+            </summary>
+            <param name="assembly">The assembly.</param>
+            <returns>Boolean indicating if the version of the supplied assembly represents a local build.</returns>
+        </member>
+        <member name="T:DvtkApplicationLayer.VisualBasicScript">
+            <summary>
+            Represents a Visual Basic Script.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.VisualBasicScript.includedFileFullName">
+            <summary>
+            The full name of the file that has been included.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.VisualBasicScript.alreadyIncludedFilesFullNames">
+            <summary>
+            Files that have already be included.
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.VisualBasicScript.includeErrors">
+            <summary>
+            Filled by the callback method ReplaceFirstInclude(...).
+            </summary>
+        </member>
+        <member name="F:DvtkApplicationLayer.VisualBasicScript.compileErrors">
+            <summary>
+            Filled by the callback method OnCompileError(...).
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.VisualBasicScript.#ctor(Dvtk.Sessions.ScriptSession,System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="session">The script Session the script belongs to.</param>
+            <param name="fileName">The script file name (not including path).</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.VisualBasicScript.#ctor(Dvtk.Sessions.ScriptSession,System.String,System.String)">
+            <summary>
+            Constructor.
+            
+            Use this constructor when the script file is located in a directory, other then the
+            Session script directory.
+            </summary>
+            <param name="session">The script Session the script belongs to.</param>
+            <param name="directory">The directory of the script file.</param>
+            <param name="scriptFileName">The script file name (not including path).</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.VisualBasicScript.Execute">
+            <summary>
+            Execute the Visual Basic Script if no include errors and no compile erors exist.
+            If present, include errors and compile errors will be logged in the Results file(s).
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.VisualBasicScript.GetDvtkScriptHost">
+            <summary>
+            Get a new DvtkScriptHost object and set all relevant properties.
+            </summary>
+            <returns>The new DvtkScriptHost object.</returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.VisualBasicScript.GetTextFileContent(System.String)">
+            <summary>
+            Get the content of a text file.
+            </summary>
+            <param name="fullFileName">The full file name of thetext file.</param>
+            <returns>
+            The content of the text file. 
+            The empty string is returned if the text file does not exist.
+            </returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.VisualBasicScript.Compile(DvtkScriptSupport.DvtkScriptHost,System.String@)">
+            <summary>
+            Compile the script to check if the syntax is OK.
+            </summary>
+            <param name="dvtkScriptHost">The dvtk script host.</param>
+            <param name="compileErrors">If existing, the compile errors.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.VisualBasicScript.ExpandAndCompile(System.String,System.String@)">
+            <summary>
+            Expand and compile the script to check if the syntax is OK.
+            This is a "standalone" method. Use this when no Session object is available.
+            </summary>
+            <param name="scriptFullFileName">The full script file name.</param>
+            <param name="includeAndCompileErrors">String containing include and compile errors if existing.</param>
+            <returns>Boolean indicating if the script is correct.</returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.VisualBasicScript.OnCompilerError(System.Object,DvtkScriptSupport.CompilerErrorEventArgs)">
+            <summary>
+            Called when a compiler error exists in a Visual Basic Script, when Compile(...) is called.
+            </summary>
+            <param name="sender">The sended.</param>
+            <param name="e">Arguments.</param>
+        </member>
+        <member name="M:DvtkApplicationLayer.VisualBasicScript.GetContent">
+            <summary>
+            Get the non expanded content (#include lines not replaced) of the Visual Basic Script.
+            </summary>
+            <returns>The content.</returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.VisualBasicScript.GetExpandedContent(System.String@)">
+            <summary>
+            Get the expanded content (#include lines replaced with content of referred file) of the 
+            Visual Basic Script.
+            </summary>
+        </member>
+        <member name="M:DvtkApplicationLayer.VisualBasicScript.Expand(System.String)">
+            <summary>
+            Expand the content by replacing all #include lines with content of referred file.
+            This is done recursively.
+            </summary>
+            <param name="content">
+            The content of the Visual Basic Script that needs to be expanded.
+            </param>
+            <returns>The expanded content of the Visual Basic Script.</returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.VisualBasicScript.ReplaceFirstInclude(System.Text.RegularExpressions.Match)">
+            <summary>
+            Replace the first #include in a string by the content of the referred file.
+            This method is called by the Regex.Replace method used.
+            </summary>
+            <param name="match">Matching string</param>
+            <returns>String used to replace the matching string</returns>
+        </member>
+        <member name="M:DvtkApplicationLayer.VisualBasicScript.ViewExpanded">
+            <summary>
+            View the expanded content with notepad.
+            </summary>
+        </member>
+    </members>
+</doc>

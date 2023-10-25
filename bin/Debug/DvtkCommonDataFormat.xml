@@ -1,0 +1,439 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DvtkCommonDataFormat</name>
+    </assembly>
+    <members>
+        <member name="T:Dvtk.CommonDataFormat.BaseCommonDataFormat">
+            <summary>
+            Summary description for BaseCommonDataFormat.
+            </summary>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.BaseCommonDataFormat.ToDicomFormat">
+            <summary>
+            Convert from Common Data Format to DICOM format.
+            </summary>
+            <returns>DICOM format.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.BaseCommonDataFormat.FromDicomFormat(System.String)">
+            <summary>
+            Convert from DICOM format to Common Data Format.
+            </summary>
+            <param name="dicomFormat">DICOM format.</param>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.BaseCommonDataFormat.ToHl7Format">
+            <summary>
+            Convert from Common Data Format to HL7 format.
+            </summary>
+            <returns>HL7 format.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.BaseCommonDataFormat.FromHl7Format(System.String)">
+            <summary>
+            Convert from HL7 format to Common Data Format.
+            </summary>
+            <param name="hl7Format">HL7 format.</param>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.BaseCommonDataFormat.ConsoleDisplay">
+            <summary>
+            Console Display the Common Data Format content - for debugging purposes.
+            </summary>
+        </member>
+        <member name="T:Dvtk.CommonDataFormat.CommonDateFormat">
+            <summary>
+            Summary description for CommonDateFormat.
+            </summary>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonDateFormat.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonDateFormat.ToDicomFormat">
+            <summary>
+            Convert from Common Data Format to DICOM format.
+            </summary>
+            <returns>DICOM format.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonDateFormat.FromDicomFormat(System.String)">
+            <summary>
+            Convert from DICOM format to Common Data Format.
+            </summary>
+            <param name="dicomFormat">DICOM format.</param>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonDateFormat.ToHl7Format">
+            <summary>
+            Convert from Common Data Format to HL7 format.
+            </summary>
+            <returns>HL7 format.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonDateFormat.FromHl7Format(System.String)">
+            <summary>
+            Convert from HL7 format to Common Data Format.
+            </summary>
+            <param name="hl7Format">HL7 format.</param>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonDateFormat.Equals(System.Object)">
+            <summary>
+            Check if the objects are equal.
+            </summary>
+            <param name="obj">Comparison object.</param>
+            <returns>bool indicating true = equal or false  = not equal.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonDateFormat.GetHashCode">
+            <summary>
+            Get HashCode.
+            </summary>
+            <returns>Base HashCode value.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonDateFormat.ConsoleDisplay">
+            <summary>
+            Console Display the Common Data Format content - for debugging purposes.
+            </summary>
+        </member>
+        <member name="P:Dvtk.CommonDataFormat.CommonDateFormat.Year">
+            <summary>
+            Year Property
+            </summary>
+        </member>
+        <member name="P:Dvtk.CommonDataFormat.CommonDateFormat.Month">
+            <summary>
+            Month Property
+            </summary>
+        </member>
+        <member name="P:Dvtk.CommonDataFormat.CommonDateFormat.Day">
+            <summary>
+            Day Property
+            </summary>
+        </member>
+        <member name="T:Dvtk.CommonDataFormat.CommonIdFormat">
+            <summary>
+            Summary description for CommonIdFormat.
+            </summary>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonIdFormat.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonIdFormat.ToDicomFormat">
+            <summary>
+            Convert from Common Data Format to DICOM format.
+            </summary>
+            <returns>DICOM format.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonIdFormat.FromDicomFormat(System.String)">
+            <summary>
+            Convert from DICOM format to Common Data Format.
+            </summary>
+            <param name="dicomFormat">DICOM format.</param>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonIdFormat.ToHl7Format">
+            <summary>
+            Convert from Common Data Format to HL7 format.
+            </summary>
+            <returns>HL7 format.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonIdFormat.FromHl7Format(System.String)">
+            <summary>
+            Convert from HL7 format to Common Data Format.
+            </summary>
+            <param name="hl7Format">HL7 format.</param>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonIdFormat.Equals(System.Object)">
+            <summary>
+            Check if the objects are equal.
+            </summary>
+            <param name="obj">Comparison object.</param>
+            <returns>bool indicating true = equal or false  = not equal.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonIdFormat.GetHashCode">
+            <summary>
+            Get HashCode.
+            </summary>
+            <returns>Base HashCode value.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonIdFormat.ConsoleDisplay">
+            <summary>
+            Console Display the Common Data Format content - for debugging purposes.
+            </summary>
+        </member>
+        <member name="P:Dvtk.CommonDataFormat.CommonIdFormat.Id">
+            <summary>
+            Id Property
+            </summary>
+        </member>
+        <member name="T:Dvtk.CommonDataFormat.CommonNameFormat">
+            <summary>
+            Summary description for CommonNameFormat.
+            </summary>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonNameFormat.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonNameFormat.ToDicomFormat">
+            <summary>
+            Convert from Common Data Format to DICOM format.
+            </summary>
+            <returns>DICOM format.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonNameFormat.FromDicomFormat(System.String)">
+            <summary>
+            Convert from DICOM format to Common Data Format.
+            </summary>
+            <param name="dicomFormat">DICOM format.</param>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonNameFormat.ToHl7Format">
+            <summary>
+            Convert from Common Data Format to HL7 format.
+            </summary>
+            <returns>HL7 format.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonNameFormat.FromHl7Format(System.String)">
+            <summary>
+            Convert from HL7 format to Common Data Format.
+            </summary>
+            <param name="hl7Format">HL7 format.</param>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonNameFormat.Equals(System.Object)">
+            <summary>
+            Check if the objects are equal.
+            </summary>
+            <param name="obj">Comparison object.</param>
+            <returns>bool indicating true = equal or false  = not equal.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonNameFormat.GetHashCode">
+            <summary>
+            Get HashCode.
+            </summary>
+            <returns>Base HashCode value.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonNameFormat.ConsoleDisplay">
+            <summary>
+            Console Display the Common Data Format content - for debugging purposes.
+            </summary>
+        </member>
+        <member name="P:Dvtk.CommonDataFormat.CommonNameFormat.Surname">
+            <summary>
+            Surname Property
+            </summary>
+        </member>
+        <member name="P:Dvtk.CommonDataFormat.CommonNameFormat.FirstName">
+            <summary>
+            FirstName Property
+            </summary>
+        </member>
+        <member name="P:Dvtk.CommonDataFormat.CommonNameFormat.MiddleName">
+            <summary>
+            MiddleName Property
+            </summary>
+        </member>
+        <member name="P:Dvtk.CommonDataFormat.CommonNameFormat.Prefix">
+            <summary>
+            Prefix Property
+            </summary>
+        </member>
+        <member name="P:Dvtk.CommonDataFormat.CommonNameFormat.Suffix">
+            <summary>
+            Suffix Property
+            </summary>
+        </member>
+        <member name="P:Dvtk.CommonDataFormat.CommonNameFormat.Degree">
+            <summary>
+            Degree Property
+            </summary>
+        </member>
+        <member name="P:Dvtk.CommonDataFormat.CommonNameFormat.IdeographicName">
+            <summary>
+            Ideographic Name Representation Property
+            </summary>
+        </member>
+        <member name="P:Dvtk.CommonDataFormat.CommonNameFormat.PhoneticName">
+            <summary>
+            Phonetic Name Representation Property
+            </summary>
+        </member>
+        <member name="T:Dvtk.CommonDataFormat.CommonStringFormat">
+            <summary>
+            Summary description for CommonStringFormat.
+            </summary>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonStringFormat.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonStringFormat.ToDicomFormat">
+            <summary>
+            Convert from Common Data Format to DICOM format.
+            </summary>
+            <returns>DICOM format.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonStringFormat.FromDicomFormat(System.String)">
+            <summary>
+            Convert from DICOM format to Common Data Format.
+            </summary>
+            <param name="dicomFormat">DICOM format.</param>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonStringFormat.ToHl7Format">
+            <summary>
+            Convert from Common Data Format to HL7 format.
+            </summary>
+            <returns>HL7 format.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonStringFormat.FromHl7Format(System.String)">
+            <summary>
+            Convert from HL7 format to Common Data Format.
+            </summary>
+            <param name="hl7Format">HL7 format.</param>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonStringFormat.Equals(System.Object)">
+            <summary>
+            Check if the objects are equal.
+            </summary>
+            <param name="obj">Comparison object.</param>
+            <returns>bool indicating true = equal or false  = not equal.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonStringFormat.GetHashCode">
+            <summary>
+            Get HashCode.
+            </summary>
+            <returns>Base HashCode value.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonStringFormat.ConsoleDisplay">
+            <summary>
+            Console Display the Common Data Format content - for debugging purposes.
+            </summary>
+        </member>
+        <member name="P:Dvtk.CommonDataFormat.CommonStringFormat.String">
+            <summary>
+            Uid Property
+            </summary>
+        </member>
+        <member name="T:Dvtk.CommonDataFormat.CommonTimeFormat">
+            <summary>
+            Summary description for CommonTimeFormat.
+            </summary>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonTimeFormat.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonTimeFormat.ToDicomFormat">
+            <summary>
+            Convert from Common Data Format to DICOM format.
+            </summary>
+            <returns>DICOM format.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonTimeFormat.FromDicomFormat(System.String)">
+            <summary>
+            Convert from DICOM format to Common Data Format.
+            </summary>
+            <param name="dicomFormat">DICOM format.</param>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonTimeFormat.ToHl7Format">
+            <summary>
+            Convert from Common Data Format to HL7 format.
+            </summary>
+            <returns>HL7 format.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonTimeFormat.FromHl7Format(System.String)">
+            <summary>
+            Convert from HL7 format to Common Data Format.
+            </summary>
+            <param name="hl7Format">HL7 format.</param>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonTimeFormat.Equals(System.Object)">
+            <summary>
+            Check if the objects are equal.
+            </summary>
+            <param name="obj">Comparison object.</param>
+            <returns>bool indicating true = equal or false  = not equal.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonTimeFormat.GetHashCode">
+            <summary>
+            Get HashCode.
+            </summary>
+            <returns>Base HashCode value.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonTimeFormat.ConsoleDisplay">
+            <summary>
+            Console Display the Common Data Format content - for debugging purposes.
+            </summary>
+        </member>
+        <member name="P:Dvtk.CommonDataFormat.CommonTimeFormat.Hour">
+            <summary>
+            Hour Property
+            </summary>
+        </member>
+        <member name="P:Dvtk.CommonDataFormat.CommonTimeFormat.Minute">
+            <summary>
+            Minute Property
+            </summary>
+        </member>
+        <member name="P:Dvtk.CommonDataFormat.CommonTimeFormat.Second">
+            <summary>
+            Second Property
+            </summary>
+        </member>
+        <member name="T:Dvtk.CommonDataFormat.CommonUidFormat">
+            <summary>
+            Summary description for CommonUidFormat.
+            </summary>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonUidFormat.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonUidFormat.ToDicomFormat">
+            <summary>
+            Convert from Common Data Format to DICOM format.
+            </summary>
+            <returns>DICOM format.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonUidFormat.FromDicomFormat(System.String)">
+            <summary>
+            Convert from DICOM format to Common Data Format.
+            </summary>
+            <param name="dicomFormat">DICOM format.</param>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonUidFormat.ToHl7Format">
+            <summary>
+            Convert from Common Data Format to HL7 format.
+            </summary>
+            <returns>HL7 format.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonUidFormat.FromHl7Format(System.String)">
+            <summary>
+            Convert from HL7 format to Common Data Format.
+            </summary>
+            <param name="hl7Format">HL7 format.</param>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonUidFormat.Equals(System.Object)">
+            <summary>
+            Check if the objects are equal.
+            </summary>
+            <param name="obj">Comparison object.</param>
+            <returns>bool indicating true = equal or false  = not equal.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonUidFormat.GetHashCode">
+            <summary>
+            Get HashCode.
+            </summary>
+            <returns>Base HashCode value.</returns>
+        </member>
+        <member name="M:Dvtk.CommonDataFormat.CommonUidFormat.ConsoleDisplay">
+            <summary>
+            Console Display the Common Data Format content - for debugging purposes.
+            </summary>
+        </member>
+        <member name="P:Dvtk.CommonDataFormat.CommonUidFormat.Uid">
+            <summary>
+            Uid Property
+            </summary>
+        </member>
+    </members>
+</doc>

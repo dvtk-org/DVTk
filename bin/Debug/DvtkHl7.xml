@@ -1,0 +1,1117 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DvtkHl7</name>
+    </assembly>
+    <members>
+        <member name="T:Dvtk.Hl7.Hl7Logger">
+            <summary>
+            Summary description for Hl7Logger.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Hl7.Hl7Tag">
+            <summary>
+            Summary description for Hl7Tag.
+            Initially we will use just the Segment Name and Offset - e.g. OBR-1 or OBX-5.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Hl7Tag.#ctor">
+            <summary>
+            Needed for serialization.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Hl7Tag.#ctor(Dvtk.Hl7.Hl7SegmentEnum,System.Int32)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="segment">Enumerated Segment Name.</param>
+            <param name="fieldIndex">Zero-based segment field index.</param>
+        </member>
+        <member name="M:Dvtk.Hl7.Hl7Tag.#ctor(Dvtk.Hl7.Hl7SegmentEnum,System.Int32,System.Int32)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="segment">Enumerated Segment Name.</param>
+            <param name="segmentIndex">One-based segment index.</param>
+            <param name="fieldIndex">Zero-based segment field index.</param>
+        </member>
+        <member name="M:Dvtk.Hl7.Hl7Tag.#ctor(System.String,System.Int32)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="segment">String representation of Segment Name.</param>
+            <param name="fieldIndex">Zero-based segment field index.</param>
+        </member>
+        <member name="M:Dvtk.Hl7.Hl7Tag.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="segment">String representation of Segment Name.</param>
+            <param name="segmentIndex">One-based segment index.</param>
+            <param name="fieldIndex">Zero-based segment field index.</param>
+        </member>
+        <member name="P:Dvtk.Hl7.Hl7Tag.SegmentId">
+            <summary>
+            Property - Segment Id.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Hl7Tag.Segment">
+            <summary>
+            Property - Segment.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Hl7Tag.SegmentIndex">
+            <summary>
+            Property - Segment Index.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Hl7Tag.FieldIndex">
+            <summary>
+            Property - Zero-based segment field index.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Hl7Tag.Equals(System.Object)">
+            <summary>
+            Returns a value indicating whether this instance is equal to a specified object
+            </summary>
+            <param name="obj">An <see cref="T:System.Object"/> to compare with this instance, or a <see langword="null"/> reference.</param>
+            <returns><see langword="true"/> if other is an instance of <see cref="T:Dvtk.Hl7.Hl7Tag"/> and equals the value of this instance; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Dvtk.Hl7.Hl7Tag.GetHashCode">
+            <summary>
+            Returns the object Hashcode.
+            </summary>
+            <returns>Hash code.</returns>
+        </member>
+        <member name="M:Dvtk.Hl7.Hl7Tag.op_Equality(Dvtk.Hl7.Hl7Tag,Dvtk.Hl7.Hl7Tag)">
+            <summary>
+            Determines whether two specified Hl7Tags are equal.
+            </summary>
+            <param name="tag1">A <see cref="T:Dvtk.Hl7.Hl7Tag"/></param>
+            <param name="tag2">A <see cref="T:Dvtk.Hl7.Hl7Tag"/></param>
+            <returns>
+            <see langword="true"/> if <c>tag1</c> and <c>tag2</c> 
+            represent the same <see cref="T:Dvtk.Hl7.Hl7Tag"/>; 
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Dvtk.Hl7.Hl7Tag.op_Inequality(Dvtk.Hl7.Hl7Tag,Dvtk.Hl7.Hl7Tag)">
+            <summary>
+            Determines whether two specified Tags are not equal.
+            </summary>
+            <param name="tag1">A <see cref="T:Dvtk.Hl7.Hl7Tag"/></param>
+            <param name="tag2">A <see cref="T:Dvtk.Hl7.Hl7Tag"/></param>
+            <returns>
+            <see langword="true"/> if <c>tag1</c> and <c>tag2</c> 
+            do not represent the same <see cref="T:Dvtk.Hl7.Hl7Tag"/>; 
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="T:Dvtk.Hl7.BaseHl7TagValue">
+            <summary>
+            Summary description for BaseHl7TagValue.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.BaseHl7TagValue.#ctor(Dvtk.Hl7.Hl7Tag)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="tag">HL7 Tag.</param>
+        </member>
+        <member name="P:Dvtk.Hl7.BaseHl7TagValue.Tag">
+            <summary>
+            Tag property.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Hl7.Hl7TagValue">
+            <summary>
+            Summary description for Hl7TagValue.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Hl7TagValue.#ctor(Dvtk.Hl7.Hl7Tag)">
+            <summary>
+            Class constructor.
+            Value can be empty - universal match.
+            </summary>
+            <param name="tag">Tag</param>
+        </member>
+        <member name="M:Dvtk.Hl7.Hl7TagValue.#ctor(Dvtk.Hl7.Hl7Tag,System.String)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="tag">Tag</param>
+            <param name="lValue">Value</param>
+        </member>
+        <member name="T:Dvtk.Hl7.Messages.AckMessage">
+            <summary>
+            ACK Message class
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.AckMessage.#ctor">
+            <summary>
+            Class constructor - ACK
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.AckMessage.#ctor(System.String)">
+            <summary>
+            Class constructor - ACK
+            </summary>
+            <param name="messageSubType">ACK Message Sub Type.</param>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AckMessage.MSA">
+            <summary>
+            Property - MSA Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AckMessage.ERR">
+            <summary>
+            Property - ERR Segment
+            </summary>
+        </member>
+        <member name="T:Dvtk.Hl7.Messages.AdrMessage">
+            <summary>
+            ADR Message class
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.AdrMessage.#ctor">
+            <summary>
+            Class constructor - ADR
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.AdrMessage.#ctor(System.String)">
+            <summary>
+            Class constructor - ADR
+            </summary>
+            <param name="messageSubType">ADR Message Sub Type.</param>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdrMessage.MSA">
+            <summary>
+            Property - MSA Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdrMessage.QRD">
+            <summary>
+            Property - QRD Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdrMessage.EVN">
+            <summary>
+            Property - EVN Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdrMessage.PID">
+            <summary>
+            Property - PID Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdrMessage.PV1">
+            <summary>
+            Property - PV1 Segment
+            </summary>
+        </member>
+        <member name="T:Dvtk.Hl7.Messages.AdtMessage">
+            <summary>
+            ADT Message class
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.AdtMessage.#ctor">
+            <summary>
+            Class constructor - ADT
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.AdtMessage.#ctor(System.String)">
+            <summary>
+            Class constructor - ADT
+            </summary>
+            <param name="messageSubType">ADT Message Sub Type.</param>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdtMessage.EVN">
+            <summary>
+            Property - EVN Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdtMessage.PID">
+            <summary>
+            Property - PID Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdtMessage.PD1">
+            <summary>
+            Property - PD1 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdtMessage.NK1">
+            <summary>
+            Property - NK1 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdtMessage.PV1">
+            <summary>
+            Property - PV1 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdtMessage.PV2">
+            <summary>
+            Property - PV2 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdtMessage.DB1">
+            <summary>
+            Property - DB1 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdtMessage.OBX">
+            <summary>
+            Property - OBX Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdtMessage.AL1">
+            <summary>
+            Property - AL1 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdtMessage.DG1">
+            <summary>
+            Property - DG1 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdtMessage.DRG">
+            <summary>
+            Property - DRG Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdtMessage.PR1">
+            <summary>
+            Property - PR1 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdtMessage.ROL">
+            <summary>
+            Property - ROL Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdtMessage.GT1">
+            <summary>
+            Property - GT1 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdtMessage.IN1">
+            <summary>
+            Property - IN1 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdtMessage.IN2">
+            <summary>
+            Property - IN2 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdtMessage.IN3">
+            <summary>
+            Property - IN3 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdtMessage.ACC">
+            <summary>
+            Property - ACC Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdtMessage.UB1">
+            <summary>
+            Property - UB1 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdtMessage.UB2">
+            <summary>
+            Property - UB2 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.AdtMessage.MRG">
+            <summary>
+            Property - MRG Segment
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.AdtMessage.obxSeg(System.Int32,System.Int32,System.String)">
+            <summary>
+            Set the OBX value given at the segment/field index.
+            </summary>
+            <param name="segmentIndex">OBX Segment Index.</param>
+            <param name="fieldIndex">OBX Field Index (within Segment).</param>
+            <param name="stringValue">Value to set.</param>
+        </member>
+        <member name="T:Dvtk.Hl7.Messages.Hl7DirectoryReader">
+            <summary>
+            Class that reads a directory for files with a given extension and returns HL7 messages.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7DirectoryReader.#ctor(System.String,System.String)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="directory">Full directory name containing HL7 message files.</param>
+            <param name="fileExtension">Hl7 message file extension.</param>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7DirectoryReader.Count">
+            <summary>
+            Property - Count
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7DirectoryReader.GetHl7Message(System.Int32)">
+            <summary>
+            Get the HL7 message read from the indexed message file.
+            </summary>
+            <param name="index">Zero based index.</param>
+            <returns>HL7 message read from indexed file.</returns>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7DirectoryReader.GetNextHl7Message">
+            <summary>
+            Get the next HL7 message read from the HL7 message directory.
+            </summary>
+            <returns>Next HL7 message read from message directory files.</returns>
+        </member>
+        <member name="T:Dvtk.Hl7.Messages.Hl7FileStream">
+            <summary>
+            Class that implements the creation of a HL7 message from the content of a file.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7FileStream.In(System.String)">
+            <summary>
+            Create a HL7 message from the content of a file.
+            </summary>
+            <param name="fullFileName">The full file name.</param>
+            <returns>The HL7 messages created from the content of the file.</returns>
+        </member>
+        <member name="T:Dvtk.Hl7.Messages.Hl7Message">
+            <summary>
+            Summary description for Hl7Message.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7Message.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7Message.#ctor(System.String,System.String)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="messageType">Message Type</param>
+            <param name="messageSubType">Message Sub Type</param>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7Message.ToString(Dvtk.Hl7.Messages.Hl7MessageDelimiters)">
+            <summary>
+            Generate string representation to HL7 Message - include the end of segment character.
+            </summary>
+            <param name="messageDelimiters">HL7 message delimiters.</param>
+            <returns>string - HL7 ER7 format string.</returns>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7Message.DisplayAsString">
+            <summary>
+            Generate string representation to HL7 Message for display - include the end of 
+            segment character and new line.
+            </summary>
+            <returns>string - HL7 ER7 format string - for display.</returns>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7Message.ToString(Dvtk.Hl7.Messages.Hl7MessageDelimiters,System.Boolean)">
+            <summary>
+            Generate string representation to HL7 Message - include the end of segment character.
+            </summary>
+            <param name="messageDelimiters">HL7 message delimiters.</param>
+            <param name="addNewLine">Add new line boolean - for display purposes.</param>
+            <returns>string - HL7 ER7 format string.</returns>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7Message.FieldDelimiter">
+            <summary>
+            Property - Field Delimiter
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7Message.EncodingCharacters">
+            <summary>
+            Property - Encoding Characters
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7Message.SendingApplication">
+            <summary>
+            Property - Sending Application
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7Message.SendingFacility">
+            <summary>
+            Property - Sending Facility
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7Message.ReceivingApplication">
+            <summary>
+            Property - Receiving Application
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7Message.ReceivingFacility">
+            <summary>
+            Property - Receiving Facility
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7Message.DateTimeOfMessage">
+            <summary>
+            Property - Date/Time Of Message
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7Message.MessageControlId">
+            <summary>
+            Property - Message Control Id
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7Message.ProcessingId">
+            <summary>
+            Property - Processing Id
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7Message.VersionId">
+            <summary>
+            Property - Version Id
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7Message.MSH">
+            <summary>
+            Property - MSH Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7Message.Segments">
+            <summary>
+            Property - Segments
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7Message.MessageType">
+            <summary>
+            Property - Message Type
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7Message.MessageSubType">
+            <summary>
+            Property - Message Sub Type.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7Message.AddSegment(Dvtk.Hl7.Messages.Hl7Segment)">
+            <summary>
+            Add segment to HL7 message
+            </summary>
+            <param name="segment"></param>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7Message.CopySegment(Dvtk.Hl7.Messages.Hl7Segment)">
+            <summary>
+            Copy segment to HL7 message
+            </summary>
+            <param name="segment"></param>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7Message.Value(Dvtk.Hl7.Hl7SegmentEnum,System.Int32,System.Int32)">
+            <summary>
+            Get the value at the indexed segment/field.
+            </summary>
+            <param name="name">Segment Name.</param>
+            <param name="segmentIndex">One-based segment index.</param>
+            <param name="fieldIndex">Zero-based field index.</param>
+            <returns>String - value at the indexed segment/field.</returns>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7Message.Value(Dvtk.Hl7.Hl7SegmentEnum,System.Int32)">
+            <summary>
+            Get the value at the indexed field.
+            </summary>
+            <param name="name">Segment Name.</param>
+            <param name="fieldIndex">Zero-based field index.</param>
+            <returns>String - value at the indexed field.</returns>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7Message.Value(Dvtk.Hl7.Hl7Tag)">
+            <summary>
+            Get the value at the segment/field identified by the tag.
+            </summary>
+            <param name="tag">Hl7 Tag.</param>
+            <returns>String - value at the segment/field identified by the tag.</returns>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7Message.AddValue(Dvtk.Hl7.Hl7SegmentEnum,System.Int32,System.String)">
+            <summary>
+            Set the value at the indexed segment.
+            </summary>
+            <param name="name">Segment Name.</param>
+            <param name="fieldIndex">Field Index.</param>
+            <param name="val">Field Value.</param>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7Message.GetNextSegmentIndex(Dvtk.Hl7.Hl7SegmentEnum,System.Int32@,System.Int32@)">
+            <summary>
+            Search for an existing segment in the collection.
+            Get the segment sequence number.
+            Find the maximum segment index available for that segment so far.
+            The next segment index will be one greater.
+            </summary>
+            <param name="name">Segment Name.</param>
+            <param name="sequenceNumber">Segment Sequence Number.</param>
+            <param name="nextSegmentIndex">nextSegmentIndex - 0 if no matching segment found.</param>
+            <returns>bool - true if a matching segment is found.</returns>
+        </member>
+        <member name="T:Dvtk.Hl7.Messages.Hl7MessageDelimiters">
+            <summary>
+            Summary description for Hl7MessageDelimiters.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7MessageDelimiters.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7MessageDelimiters.#ctor(System.String)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="messageDelimiters">String containg the 5 delimiters.</param>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7MessageDelimiters.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="fieldDelimiter">HL7 Field Delimiter</param>
+            <param name="componentDelimiter">HL7 Component Delimiter</param>
+            <param name="repetitionSeparator">HL7 Repetition Separator</param>
+            <param name="escapeCharacter">HL7 Escape Character</param>
+            <param name="subComponentDelimiter">HL7 Sub-component Delimiter</param>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7MessageDelimiters.FromString(System.String)">
+            <summary>
+            Set the Message Delimiters from the given string.
+            </summary>
+            <param name="messageDelimiters"></param>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7MessageDelimiters.FieldDelimiter">
+            <summary>
+            Property - FieldDelimiter
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7MessageDelimiters.ComponentDelimiter">
+            <summary>
+            Property - ComponentDelimiter
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7MessageDelimiters.RepetitionSeparator">
+            <summary>
+            Property - RepetitionSeparator
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7MessageDelimiters.EscapeCharacter">
+            <summary>
+            Property - EscapeCharacter
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7MessageDelimiters.SubComponentDelimiter">
+            <summary>
+            Property - SubComponentDelimiter
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7MessageDelimiters.ToString">
+            <summary>
+            To String.
+            </summary>
+            <returns>System.String representing the message delimiters.</returns>
+        </member>
+        <member name="T:Dvtk.Hl7.Messages.Hl7MessageFactory">
+            <summary>
+            Summary description for Hl7MessageFactory.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7MessageFactory.CreateHl7Message(Dvtk.Hl7.Messages.Hl7Message,Dvtk.Hl7.Messages.Hl7MessageDelimiters)">
+            <summary>
+            Create a correctly typed HL7 message instance based on the incoming Hl7 message.
+            </summary>
+            <param name="inHl7Message">Incoming HL7 message.</param>
+            <param name="messageDelimiters">HL7 message delimiters.</param>
+            <returns>Correctly typed HL7 message instance.</returns>
+        </member>
+        <member name="T:Dvtk.Hl7.Messages.Hl7Segment">
+            <summary>
+            Summary description for Hl7Segment.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7Segment.#ctor">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7Segment.#ctor(System.Int32,Dvtk.Hl7.Hl7SegmentEnum)">
+            <summary>
+            Class constructor
+            </summary>
+            <param name="sequenceNumber">Segment Sequence Number in HL7 message.</param>
+            <param name="name">Enumerated Segment Name</param>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7Segment.#ctor(System.Int32,System.String)">
+            <summary>
+            Class constructor
+            </summary>
+            <param name="sequenceNumber">Segment Sequence Number in HL7 message.</param>
+            <param name="setId">Set ID</param>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7Segment.Count">
+            <summary>
+            Property - Count - Number of fields defined in segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7Segment.SequenceNumber">
+            <summary>
+            Property - Segment Sequence Number
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7Segment.SegmentId">
+            <summary>
+            Property - Segment Id
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7Segment.Item(System.Int32)">
+            <summary>
+            Property - Segment Value Array
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7Segment.Encode(Dvtk.Hl7.Messages.Hl7MessageDelimiters)">
+            <summary>
+            Encode the segment.
+            </summary>
+            <param name="messageDelimiters">HL7 message delimiters to use to encode the message.</param>
+            <returns>String - encoded segment.</returns>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7Segment.Decode(System.String,Dvtk.Hl7.Messages.Hl7MessageDelimiters)">
+            <summary>
+            Decode the segment. The HL7 message delimiters has been set to the correct value before calling this method.
+            </summary>
+            <param name="segmentString">Encoded segment string.</param>
+            <param name="messageDelimiters">HL7 message delimiters to use to encode the message.</param>
+        </member>
+        <member name="T:Dvtk.Hl7.Messages.Hl7SegmentId">
+            <summary>
+            Summary description for Hl7SegmentId.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7SegmentId.#ctor">
+            <summary>
+            Needed for serialization.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7SegmentId.#ctor(Dvtk.Hl7.Hl7SegmentEnum,System.Int32)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="segmentName">Segment name.</param>
+            <param name="segmentIndex">One-based segment index.</param>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7SegmentId.#ctor(Dvtk.Hl7.Hl7SegmentEnum)">
+            <summary>
+            Class constructor - the segment index defaults to 1.
+            </summary>
+            <param name="segmentName">Segment name.</param>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7SegmentId.SegmentName">
+            <summary>
+            Property - Segment Name.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7SegmentId.SegmentIndex">
+            <summary>
+            Property - Segment Index.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Hl7.Messages.Hl7Stream">
+            <summary>
+            Class containing the common functionality of the Hl7FileStream and Hl7NetworkStream classes.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.Hl7Stream.MessageDelimiters">
+            <summary>
+            When the Decode method was called after calling the set, this contains the message delimiters found during decoding.
+            
+            The message delimiters will be used during the encoding of a HL7 message.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.Hl7Stream.Decode(System.IO.Stream)">
+            <summary>
+            Decode a Hl7Message object from a given stream.
+            </summary>
+            <param name="stream">The stream.</param>
+            <returns>The decoded Hl7Message.</returns>
+        </member>
+        <member name="T:Dvtk.Hl7.Messages.OrmMessage">
+            <summary>
+            ORM Message class
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.OrmMessage.#ctor">
+            <summary>
+            Class constructor - ORM
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.OrmMessage.#ctor(System.String)">
+            <summary>
+            Class constructor
+            </summary>
+            <param name="messageSubType">ORM Message Sub Type.</param>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OrmMessage.PID">
+            <summary>
+            Property - PID Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OrmMessage.PD1">
+            <summary>
+            Property - PD1 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OrmMessage.PV1">
+            <summary>
+            Property - PV1 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OrmMessage.PV2">
+            <summary>
+            Property - PV2 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OrmMessage.IN1">
+            <summary>
+            Property - IN1 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OrmMessage.IN2">
+            <summary>
+            Property - IN2 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OrmMessage.IN3">
+            <summary>
+            Property - IN3 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OrmMessage.GT1">
+            <summary>
+            Property - GT1 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OrmMessage.AL1">
+            <summary>
+            Property - AL1 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OrmMessage.ORC">
+            <summary>
+            Property - ORC Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OrmMessage.OBR">
+            <summary>
+            Property - OBR Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OrmMessage.NTE">
+            <summary>
+            Property - NTE Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OrmMessage.DG1">
+            <summary>
+            Property - DG1 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OrmMessage.OBX">
+            <summary>
+            Property - OBX Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OrmMessage.CTI">
+            <summary>
+            Property - CTI Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OrmMessage.BLG">
+            <summary>
+            Property - BLG Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OrmMessage.ZDS">
+            <summary>
+            Property - ZDS Segment
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.OrmMessage.obrSeg(System.Int32,System.Int32,System.String)">
+            <summary>
+            Set the OBR value given at the segment/field index.
+            </summary>
+            <param name="segmentIndex">OBR Segment Index.</param>
+            <param name="fieldIndex">OBR Field Index (within Segment).</param>
+            <param name="stringValue">Value to set.</param>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.OrmMessage.nteSeg(System.Int32,System.Int32,System.String)">
+            <summary>
+            Set the NTE value given at the segment/field index.
+            </summary>
+            <param name="segmentIndex">NTE Segment Index.</param>
+            <param name="fieldIndex">NTE Field Index (within Segment).</param>
+            <param name="stringValue">Value to set.</param>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.OrmMessage.obxSeg(System.Int32,System.Int32,System.String)">
+            <summary>
+            Set the OBX value given at the segment/field index.
+            </summary>
+            <param name="segmentIndex">OBX Segment Index.</param>
+            <param name="fieldIndex">OBX Field Index (within Segment).</param>
+            <param name="stringValue">Value to set.</param>
+        </member>
+        <member name="T:Dvtk.Hl7.Messages.OrrMessage">
+            <summary>
+            ORR Message class
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.OrrMessage.#ctor">
+            <summary>
+            Class constructor - ORR
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.OrrMessage.#ctor(System.String)">
+            <summary>
+            Class constructor - ORR
+            </summary>
+            <param name="messageSubType">ADT Message Sub Type.</param>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OrrMessage.MSA">
+            <summary>
+            Property - MSA Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OrrMessage.ORC">
+            <summary>
+            Property - ORC Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OrrMessage.OBR">
+            <summary>
+            Property - OBR Segment
+            </summary>
+        </member>
+        <member name="T:Dvtk.Hl7.Messages.OruMessage">
+            <summary>
+            ORU Message class
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.OruMessage.#ctor">
+            <summary>
+            Class constructor - ORU
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.OruMessage.#ctor(System.String)">
+            <summary>
+            Class constructor
+            </summary>
+            <param name="messageSubType">ORU Message Sub Type.</param>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OruMessage.PID">
+            <summary>
+            Property - PID Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OruMessage.PD1">
+            <summary>
+            Property - PD1 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OruMessage.NK1">
+            <summary>
+            Property - NK1 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OruMessage.PV1">
+            <summary>
+            Property - PV1 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OruMessage.PV2">
+            <summary>
+            Property - PV2 Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OruMessage.ORC">
+            <summary>
+            Property - ORC Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OruMessage.OBR">
+            <summary>
+            Property - OBR Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OruMessage.NTE">
+            <summary>
+            Property - NTE Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OruMessage.OBX">
+            <summary>
+            Property - OBX Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OruMessage.CTI">
+            <summary>
+            Property - CTI Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OruMessage.DSC">
+            <summary>
+            Property - DSC Segment
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.OruMessage.ZDS">
+            <summary>
+            Property - ZDS Segment
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.OruMessage.obrSeg(System.Int32,System.Int32,System.String)">
+            <summary>
+            Set the OBR value given at the segment/field index.
+            </summary>
+            <param name="segmentIndex">OBR Segment Index.</param>
+            <param name="fieldIndex">OBR Field Index (within Segment).</param>
+            <param name="stringValue">Value to set.</param>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.OruMessage.nteSeg(System.Int32,System.Int32,System.String)">
+            <summary>
+            Set the NTE value given at the segment/field index.
+            </summary>
+            <param name="segmentIndex">NTE Segment Index.</param>
+            <param name="fieldIndex">NTE Field Index (within Segment).</param>
+            <param name="stringValue">Value to set.</param>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.OruMessage.obxSeg(System.Int32,System.Int32,System.String)">
+            <summary>
+            Set the OBX value given at the segment/field index.
+            </summary>
+            <param name="segmentIndex">OBX Segment Index.</param>
+            <param name="fieldIndex">OBX Field Index (within Segment).</param>
+            <param name="stringValue">Value to set.</param>
+        </member>
+        <member name="T:Dvtk.Hl7.Messages.QryMessage">
+            <summary>
+            QRY Message class
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.QryMessage.#ctor">
+            <summary>
+            Class constructor - QRY
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Messages.QryMessage.#ctor(System.String)">
+            <summary>
+            Class constructor - QRY
+            </summary>
+            <param name="messageSubType">QRY Message Sub Type.</param>
+        </member>
+        <member name="P:Dvtk.Hl7.Messages.QryMessage.QRD">
+            <summary>
+            Property - QRD Segment
+            </summary>
+        </member>
+        <member name="T:Dvtk.Hl7.Hl7Profile">
+            <summary>
+            Summary description for Hl7Profile.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Hl7Profile.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="facility">HL7 Facility.</param>
+            <param name="version">HL7 Version.</param>
+            <param name="messageType">HL7 Message Type.</param>
+            <param name="directory">HL7 Profile Directory.</param>
+            <param name="filename">HL7 Profile Filename.</param>
+        </member>
+        <member name="P:Dvtk.Hl7.Hl7Profile.Id">
+            <summary>
+            Property - Id.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Hl7Profile.WriteXml(System.Xml.XmlTextWriter)">
+            <summary>
+            Write Profile in XML format to the XML Text Writer.
+            </summary>
+            <param name="writer">XML Text Writer</param>
+        </member>
+        <member name="P:Dvtk.Hl7.Hl7Profile.XmlProfile">
+            <summary>
+            Property XmlProfile.
+            </summary>
+        </member>
+        <member name="T:Dvtk.Hl7.Hl7ProfileId">
+            <summary>
+            Summary description for Hl7ProfileId.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Hl7ProfileId.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="facility">HL7 Facility.</param>
+            <param name="version">HL7 Version.</param>
+            <param name="messageType">HL7 Message Type.</param>
+        </member>
+        <member name="P:Dvtk.Hl7.Hl7ProfileId.Facility">
+            <summary>
+            Property - Facility.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Hl7ProfileId.Version">
+            <summary>
+            Property - Version.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Hl7ProfileId.MessageType">
+            <summary>
+            Property - MessageType.
+            </summary>
+        </member>
+        <member name="P:Dvtk.Hl7.Hl7ProfileId.Id">
+            <summary>
+            Property - Id.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Hl7ProfileId.WriteXml(System.Xml.XmlTextWriter)">
+            <summary>
+            Write Profile Id in XML format to the XML Text Writer.
+            </summary>
+            <param name="writer">XML Text Writer</param>
+        </member>
+        <member name="T:Dvtk.Hl7.Hl7ProfileStore">
+            <summary>
+            Summary description for Hl7ProfileStore.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Hl7ProfileStore.#ctor(System.String,System.String)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="directory">HL7 Profile Directory.</param>
+            <param name="filename">HL7 Profile Filename.</param>
+        </member>
+        <member name="M:Dvtk.Hl7.Hl7ProfileStore.GetXmlHl7Profile(Dvtk.Hl7.Hl7ProfileId)">
+            <summary>
+            Get the XmlHl7Profile that corresponds with the Hl7ProfileId.
+            </summary>
+            <param name="profileId">HL7 Profile Id.</param>
+            <returns>XmlHl7Profile.</returns>
+        </member>
+        <member name="T:Dvtk.Hl7.Hl7ValidationContext">
+            <summary>
+            Summary description for Hl7ValidationContext.
+            </summary>
+        </member>
+        <member name="M:Dvtk.Hl7.Hl7ValidationContext.#ctor(System.String)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="filename">HL7 Validation Context Filename.</param>
+        </member>
+        <member name="P:Dvtk.Hl7.Hl7ValidationContext.XmlValidationContext">
+            <summary>
+            Property XmlValidationContext.
+            </summary>
+        </member>
+    </members>
+</doc>

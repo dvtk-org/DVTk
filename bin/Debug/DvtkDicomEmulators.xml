@@ -1,0 +1,471 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DvtkDicomEmulators</name>
+    </assembly>
+    <members>
+        <member name="T:Dvtk.DvtkDicomEmulators.Bases.HliScp">
+            <summary>
+            Summary description for HliScp.
+            </summary>
+        </member>
+        <member name="F:Dvtk.DvtkDicomEmulators.Bases.HliScp.IMPLICIT_VR_LITTLE_ENDIAN">
+            <summary>
+            Transfer Syntax definitions
+            </summary>
+        </member>
+        <member name="F:Dvtk.DvtkDicomEmulators.Bases.HliScp.VERIFICATION_SOP_CLASS_UID">
+            <summary>
+            Verification SOP Class UID definition
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.Bases.HliScp.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.Bases.HliScp.AfterHandlingAssociateRequest(DvtkHighLevelInterface.Dicom.Messages.AssociateRq)">
+            <summary>
+            Method to handle the workflow after receiving an Associate Request.
+            </summary>
+            <param name="associateRq">Associate Request message.</param>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.Bases.HliScp.AfterHandlingReleaseRequest(DvtkHighLevelInterface.Dicom.Messages.ReleaseRq)">
+            <summary>
+            Method to handle the workflow after receiving a Release Request.
+            </summary>
+            <param name="releaseRq">Release Request message.</param>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.Bases.HliScp.AfterHandlingAbort(DvtkHighLevelInterface.Dicom.Messages.Abort)">
+            <summary>
+            Method to handle the workflow after receiving an Abort Request.
+            </summary>
+            <param name="abort">Abort Request message.</param>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.Bases.HliScp.AfterHandlingCEchoRequest(DvtkHighLevelInterface.Dicom.Messages.DicomMessage)">
+            <summary>
+            Method to handle the workflow after receiving a C-EHO-RQ.
+            </summary>
+            <param name="dicomMessage">C-ECHO-RQ message.</param>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.Bases.HliScp.ClearTransferSyntaxes">
+            <summary>
+            Clear the current transfer syntax list - reset contents to empty.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.Bases.HliScp.ClearSopClasses">
+            <summary>
+            Clear the current sop class list - reset contents to empty.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.Bases.HliScp.AddTransferSyntax(System.String)">
+            <summary>
+            Add a single transfer syntax to the list.
+            </summary>
+            <param name="transferSyntax">Transfer Syntax UID.</param>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.Bases.HliScp.AddSopClass(System.String)">
+            <summary>
+            Add a single sop class to the list.
+            </summary>
+            <param name="sopClass">Sop Class UID.</param>
+        </member>
+        <member name="P:Dvtk.DvtkDicomEmulators.Bases.HliScp.RespondToAssociateRequest">
+            <summary>
+            Property - define how to RespondToAssociateRequest.
+            </summary>
+        </member>
+        <member name="P:Dvtk.DvtkDicomEmulators.Bases.HliScp.RespondToReleaseRequest">
+            <summary>
+            Property - define how to RespondToReleaseRequest
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.Bases.HliScp.SetRejectParameters(System.Byte,System.Byte,System.Byte)">
+            <summary>
+             Set Associate Reject parameters.
+            </summary>
+            <param name="result">DULP reject result.</param>
+            <param name="source">DULP reject source.</param>
+            <param name="reason">DULP reject reason.</param>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.Bases.HliScp.SetAbortParameters(System.Byte,System.Byte)">
+            <summary>
+            Set the Abort Request parameters.
+            </summary>
+            <param name="source">DULP abort source.</param>
+            <param name="reason">DULP abort reason.</param>
+        </member>
+        <member name="P:Dvtk.DvtkDicomEmulators.Bases.HliScp.ResultsFilePerAssociation">
+            <summary>
+            Property - ResultsFilePerAssociation
+            </summary>
+        </member>
+        <member name="P:Dvtk.DvtkDicomEmulators.Bases.HliScp.SupportedSopClasses">
+            <summary>
+            Property - Supported Sop Classes
+            </summary>
+        </member>
+        <member name="P:Dvtk.DvtkDicomEmulators.Bases.HliScp.SupportedTransferSyntaxes">
+            <summary>
+            Property - Supported Transfer Syntaxes
+            </summary>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.Bases.HliScu">
+            <summary>
+            This class implements basic functionality for a SCU that is executed in a seperate thread.
+            It is controlled by calling the available Trigger... methods.
+            </summary>
+        </member>
+        <member name="P:Dvtk.DvtkDicomEmulators.Bases.HliScu.ProcessTriggerResult">
+            <summary>
+            Property - Process Trigger Result
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.Bases.HliScu.TriggerSendAssociation(DvtkHighLevelInterface.Dicom.Messages.DicomMessage,DvtkHighLevelInterface.Dicom.Other.PresentationContext[])">
+            <summary>
+            Trigger a SendAssociation. 
+            </summary>
+            <param name="dicomMessage">The DicomMessage to send.</param>
+            <param name="presentationContexts">The presentation contexts used to set up an association.</param>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.Bases.HliScu.TriggerSendAssociation(DvtkHighLevelInterface.Dicom.Messages.DicomMessageCollection,DvtkHighLevelInterface.Dicom.Other.PresentationContext[])">
+            <summary>
+            Trigger a SendAssociation.
+            </summary>
+            <param name="dicomMessageCollection">The DicomMessages to send.</param>
+            <param name="presentationContexts">The presentation contexts used to set up an association.</param>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.Bases.HliScu.TriggerSendAssociationAndWait(DvtkHighLevelInterface.Dicom.Messages.DicomMessage,DvtkHighLevelInterface.Dicom.Other.PresentationContext[])">
+            <summary>
+            Trigger a SendAssociation.
+            </summary>
+            <param name="dicomMessage">The DicomMessage to send.</param>
+            <param name="presentationContexts">The presentation contexts used to set up an association.</param>
+            <returns>Boolean - indicating success or not.</returns>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.Bases.HliScu.TriggerSendAssociationAndWait(DvtkHighLevelInterface.Dicom.Messages.DicomMessageCollection,DvtkHighLevelInterface.Dicom.Other.PresentationContext[])">
+            <summary>
+            Only use this method when only one thread is calling the methods for this object.
+            </summary>
+            <param name="dicomMessageCollection"></param>
+            <param name="presentationContexts"></param>
+            <returns>Boolean - indicating success or not.</returns>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.Bases.HliScu.BeforeProcessTrigger(System.Object)">
+            <summary>
+            May be overriden to implement things that need to be performed before
+            processing a trigger.
+            </summary>
+            <param name="trigger">The trigger that will be processed.</param>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.Bases.HliScu.AfterProcessTrigger(System.Object)">
+            <summary>
+            May be overriden to implement things that need to be performed after
+            processing a trigger.
+            </summary>
+            <param name="trigger">The trigger that will be processed.</param>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.Bases.HliScu.AfterHandlingException(System.Exception)">
+            <summary>
+            Called after the HandleException method has been called.
+            </summary>
+            <remarks>
+            Gives the descendant of this class the possibility to perform
+            extra actions compared to this base class.
+            </remarks>
+            <param name="exception">Exception that has been handled.</param>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.MppsClientServers.MppsScp">
+            <summary>
+            Summary description for MppsScp.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.MppsClientServers.MppsScp.#ctor">
+            <summary>
+            Class Constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.MppsClientServers.MppsScp.AddDefaultMessageHandlers">
+            <summary>
+            Add the default message handlers.
+            </summary>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.PrintClientServers.PrintScp">
+            <summary>
+            Summary description for PrintScp.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.PrintClientServers.PrintScp.#ctor">
+            <summary>
+            Class Constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.PrintClientServers.PrintScp.AddDefaultMessageHandlers">
+            <summary>
+            Add the default message handlers.
+            </summary>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.QueryRetrieveClientServers.QueryRetrieveScp">
+            <summary>
+            Summary description for QueryRetrieveScp.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.QueryRetrieveClientServers.QueryRetrieveScp.#ctor">
+            <summary>
+            Class Constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.QueryRetrieveClientServers.QueryRetrieveScp.AddDefaultMessageHandlers(DvtkHighLevelInterface.InformationModel.QueryRetrieveInformationModels)">
+            <summary>
+            Add the default message handlers - include the Information Models that should be used.
+            </summary>
+            <param name="informationModels">Query Retrieve Information Models.</param>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.StorageClientServers.StorageScp">
+            <summary>
+            Summary description for StorageScp.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.StorageClientServers.StorageScp.#ctor">
+            <summary>
+            Class Constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.StorageClientServers.StorageScp.AddDefaultMessageHandlers">
+            <summary>
+            Add the default message handlers.
+            </summary>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.StorageCommitClientServers.StorageCommitScp">
+            <summary>
+            Summary description for StorageCommitScp.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.StorageCommitClientServers.StorageCommitScp.#ctor">
+            <summary>
+            Class Constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.StorageCommitClientServers.StorageCommitScp.AddDefaultMessageHandlers">
+            <summary>
+            Add the default message handlers.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.StorageCommitClientServers.StorageCommitScp.AddDefaultMessageHandlers(DvtkHighLevelInterface.InformationModel.QueryRetrieveInformationModels,System.Int32)">
+            <summary>
+            Add the default message handlers - include the Information Models that should be used.
+            </summary>
+            <param name="informationModels">Information Model to use with this message handler.</param>
+            <param name="eventDelay">Delay in milliseconds before N-EVENT-REPORT-RQ sent.</param>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.WorklistClientServers.WorklistScp">
+            <summary>
+            Summary description for WorklistScp.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.WorklistClientServers.WorklistScp.#ctor">
+            <summary>
+            Class Constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.WorklistClientServers.WorklistScp.AddDefaultMessageHandlers(DvtkHighLevelInterface.InformationModel.ModalityWorklistInformationModel)">
+            <summary>
+            Add the default message handlers - include the Information Model that should be used.
+            </summary>
+            <param name="modalityWorklistInformationModel">Modality Worklist Information Model.</param>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.MppsMessageHandlers.NCreateHandler">
+            <summary>
+            Summary description for NActionHandler.
+            </summary>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.MppsMessageHandlers.NSetHandler">
+            <summary>
+            Summary description for CStoreHandler.
+            </summary>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.PrintMessageHandlers.NActionHandler">
+            <summary>
+            Summary description for NActionHandler.
+            </summary>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.PrintMessageHandlers.NCreateHandler">
+            <summary>
+            Summary description for NCreateHandler.
+            </summary>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.PrintMessageHandlers.NDeleteHandler">
+            <summary>
+            Summary description for NDeleteHandler.
+            </summary>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.PrintMessageHandlers.NGetHandler">
+            <summary>
+            Summary description for NGetHandler.
+            </summary>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.PrintMessageHandlers.NSetHandler">
+            <summary>
+            Summary description for NSetHandler.
+            </summary>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.PrintMessageHandlers.PrintContext">
+            <summary>
+            Summary description for PrintContext.
+            </summary>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.QueryRetrieveMessageHandlers.CFindHandler">
+            <summary>
+            Summary description for CFindHandler.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.QueryRetrieveMessageHandlers.CFindHandler.#ctor">
+            <summary>
+            Class Constructor
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.QueryRetrieveMessageHandlers.CFindHandler.HandleCFindRequest(DvtkHighLevelInterface.Dicom.Messages.DicomMessage)">
+            <summary>
+            Overridden C-FIND-RQ message handler that makes use of the appropriate Information Model to handle the query.
+            </summary>
+            <param name="queryMessage">C-FIND-RQ Identifier (Dataset) containing query attributes.</param>
+            <returns>Boolean - true if dicomMessage handled here.</returns>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.QueryRetrieveMessageHandlers.CGetHandler">
+            <summary>
+            Summary description for CGetHandler.
+            </summary>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.QueryRetrieveMessageHandlers.CMoveHandler">
+            <summary>
+            Summary description for CMoveHandler.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.QueryRetrieveMessageHandlers.CMoveHandler.EnableMultipleMoveDestinations(System.Collections.Generic.List{DvtkHighLevelInterface.Dicom.Other.DICOMPeer})">
+            <summary>
+            This function is to set the list of move destinations added form 
+            </summary>
+            <param name="peers"></param>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.QueryRetrieveMessageHandlers.QueryRetrieveHandler">
+            <summary>
+            Summary description for QueryRetrieveHandler.
+            </summary>
+        </member>
+        <member name="P:Dvtk.DvtkDicomEmulators.QueryRetrieveMessageHandlers.QueryRetrieveHandler.PatientRootInformationModel">
+            <summary>
+            Property - PatientRootInformationModel
+            </summary>
+        </member>
+        <member name="P:Dvtk.DvtkDicomEmulators.QueryRetrieveMessageHandlers.QueryRetrieveHandler.StudyRootInformationModel">
+            <summary>
+            Property - StudyRootInformationModel
+            </summary>
+        </member>
+        <member name="P:Dvtk.DvtkDicomEmulators.QueryRetrieveMessageHandlers.QueryRetrieveHandler.PatientStudyOnlyInformationModel">
+            <summary>
+            Property - PatientStudyOnlyInformationModel
+            </summary>
+        </member>
+        <member name="P:Dvtk.DvtkDicomEmulators.QueryRetrieveMessageHandlers.QueryRetrieveHandler.RefreshInformationModelBeforeUse">
+            <summary>
+            Property - RefreshInformationModelBeforeUse
+            </summary>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.StorageCommitMessageHandlers.NActionHandler">
+            <summary>
+            Summary description for NActionHandler.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.StorageCommitMessageHandlers.NActionHandler.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.StorageCommitMessageHandlers.NActionHandler.HandleNActionRequest(DvtkHighLevelInterface.Dicom.Messages.DicomMessage)">
+            <summary>
+            Overridden N-ACTION-RQ message handler.
+            </summary>
+            <param name="dicomMessage">N-ACTION-RQ and Dataset.</param>
+            <returns>Boolean - true if dicomMessage handled here.</returns>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.StorageCommitMessageHandlers.NActionNEventReportHandler">
+            <summary>
+            Summary description for NActionNEventReportHandler.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.StorageCommitMessageHandlers.NActionNEventReportHandler.#ctor(DvtkHighLevelInterface.InformationModel.QueryRetrieveInformationModels,System.Int32)">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="informationModels">Information Model to use with this message handler.</param>
+            <param name="eventDelay">Delay in milliseconds before N-EVENT-REPORT-RQ sent.</param>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.StorageCommitMessageHandlers.NActionNEventReportHandler.HandleNActionRequest(DvtkHighLevelInterface.Dicom.Messages.DicomMessage)">
+            <summary>
+            Overridden N-ACTION-RQ message handler. Return an N-EVENT-REPORT-RQ
+            after the N-ACTION-RSP.
+            </summary>
+            <param name="dicomMessage">N-ACTION-RQ and Dataset.</param>
+            <returns>Boolean - true if dicomMessage handled here.</returns>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.StorageCommitMessageHandlers.NActionNEventReportHandler.HandleNEventReportResponse(DvtkHighLevelInterface.Dicom.Messages.DicomMessage)">
+            <summary>
+            Overridden N-EVENT-REPORT-RSP message handler.
+            </summary>
+            <param name="dicomMessage">N-EVENT-REPORT-RSP and Dataset.</param>
+            <returns>Boolean - true if dicomMessage handled here.</returns>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.StorageCommitMessageHandlers.NEventReportHandler">
+            <summary>
+            Summary description for NEventReportHandler.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.StorageCommitMessageHandlers.NEventReportHandler.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.StorageCommitMessageHandlers.NEventReportHandler.HandleNEventReportRequest(DvtkHighLevelInterface.Dicom.Messages.DicomMessage)">
+            <summary>
+            Overridden N-EVENT-REPORT-RQ message handler.
+            </summary>
+            <param name="dicomMessage">N-EVENT-REPORT-RQ and Dataset.</param>
+            <returns>Boolean - true if dicomMessage handled here.</returns>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.StorageMessageHandlers.CStoreHandler">
+            <summary>
+            Summary description for CStoreHandler.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.StorageMessageHandlers.CStoreHandler.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.StorageMessageHandlers.CStoreHandler.HandleCStoreRequest(DvtkHighLevelInterface.Dicom.Messages.DicomMessage)">
+            <summary>
+            Overridden C-STORE-RQ message handler.
+            </summary>
+            <param name="dicomMessage">C-STORE-RQ and Dataset.</param>
+            <returns>Boolean - true if dicomMessage handled here.</returns>
+        </member>
+        <member name="T:Dvtk.DvtkDicomEmulators.WorklistMessageHandlers.CFindHandler">
+            <summary>
+            Summary description for CFindHandler.
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.WorklistMessageHandlers.CFindHandler.#ctor(DvtkHighLevelInterface.InformationModel.ModalityWorklistInformationModel)">
+            <summary>
+            Class Constructor
+            </summary>
+        </member>
+        <member name="M:Dvtk.DvtkDicomEmulators.WorklistMessageHandlers.CFindHandler.HandleCFindRequest(DvtkHighLevelInterface.Dicom.Messages.DicomMessage)">
+            <summary>
+            Overridden C-FIND-RQ message handler that makes use of the appropriate Information Model to handle the query.
+            </summary>
+            <param name="queryMessage">C-FIND-RQ Identifier (Dataset) containing query attributes.</param>
+            <returns>Boolean - true if dicomMessage handled here.</returns>
+        </member>
+    </members>
+</doc>
