@@ -9,7 +9,7 @@ branches:
     increment: Patch
     is-release-branch: true
   feature:
-    label: '{BranchName}'
+    tag: '{BranchName}'
     increment: Minor
 ignore:
   sha: []
