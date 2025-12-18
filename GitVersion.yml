@@ -1,0 +1,17 @@
+mode: ContinuousDeployment
+next-version: 5.3.1
+assembly-versioning-scheme: MajorMinorPatch
+assembly-file-versioning-scheme: MajorMinorPatch
+assembly-informational-format: '{InformationalVersion}'
+branches:
+  main:
+    regex: ^master$|^main$
+    increment: Patch
+    is-release-branch: true
+  feature:
+    label: '{BranchName}'
+    increment: Minor
+ignore:
+  sha: []
+merge-message-formats: {}
+update-build-number: true
