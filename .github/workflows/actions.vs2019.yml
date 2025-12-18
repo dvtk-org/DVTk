@@ -58,10 +58,18 @@ jobs:
       run: |
         ./DVT/updateCopyright.ps1
 
-    - name: Enable .vdproj Builds
-      shell: cmd
+    - name: Enable .vdproj Builds (Registry Fix)
+      shell: pwsh
       run: |
-        "${{ env.DISABLE_TOOL_PATH }}\DisableOutOfProcBuild.exe"
+        # Visual Studio 2019 gebruikt versie 16.0
+        # We zoeken naar het configuratie-pad in het register voor VS2019
+        $vsPath = "HKCU:\SOFTWARE\Microsoft\VisualStudio\16.0*_Config\MSBuild"
+        $keys = Get-Item $vsPath -ErrorAction SilentlyContinue
+        
+        foreach ($key in $keys) {
+            Write-Host "Updating registry for: $($key.Name)"
+            Set-ItemProperty -Path "Registry::$($key.Name)" -Name "EnableOutOfProcBuild" -Value 0
+        }
 
     - name: Build All
       shell: cmd
