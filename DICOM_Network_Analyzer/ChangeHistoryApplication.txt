@@ -703,9 +703,11 @@ Date 2023-03-27
 
 Description:
 ------------
+- Migrated Dvtk Library to .NET Framework 4.8
+- Support for TLS1.2 and TLS1.3
 - Replaced outdated WinPCap driver with newer Npcap driver. Installer can be found on https://nmap.org/npcap
-- The Npcap driver cannot be included in the DICOM Network Analyzer installer, because of the licensing of the Npcap driver.
-- Added .NET Framework 4.8 prequisite to the DICOM Network Analyzer installer.
+- The Npcap driver cannot be included in the DICOM Network Analyzer installer, because of the licensing of the Npcap driver. 
+- Added and fixed NUnit Tests Project for Dvtk
 - Added missing dependencies libssl and libcrypto
 
 <------------------------------------------------------------------------------>

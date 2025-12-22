@@ -130,7 +130,7 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DICOM Editor Setup", "DICOM
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DICOM Compare Setup", "DICOM_Compare\DICOM Compare Setup.vdproj", "{FE34303A-8318-4DF0-ADB3-1B8DA660BBBD}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DICOM Network Analyzer Setup", "DICOM_Network_Analyzer\DICOM Network Analyzer Setup without WinPCap.vdproj", "{6E86B65B-C080-4FAA-89DD-B450A789BC5A}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DICOM Network Analyzer Setup", "DICOM_Network_Analyzer\DICOM Network Analyzer Setup.vdproj", "{6E86B65B-C080-4FAA-89DD-B450A789BC5A}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Query Retrieve SCP Emulator Setup", "Query_Retrieve_SCP_Emulator\Query Retrieve SCP Emulator Setup.vdproj", "{172D070F-EA2C-430D-B703-9443B2F51383}"
 EndProject
