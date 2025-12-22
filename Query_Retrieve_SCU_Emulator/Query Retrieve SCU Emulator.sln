@@ -1,0 +1,22 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Query Retrieve SCU Emulator", "Query Retrieve SCU Emulator.csproj", "{B49F102D-A908-4C70-B90B-4D39389F367C}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Query Retrieve SCU Emulator Setup", "Query Retrieve SCU Emulator Setup.vdproj", "{E4961EA1-21CF-4149-879E-F1CB680BA367}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B49F102D-A908-4C70-B90B-4D39389F367C}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{B49F102D-A908-4C70-B90B-4D39389F367C}.Debug|Any CPU.Build.0 = Debug|x86
+		{B49F102D-A908-4C70-B90B-4D39389F367C}.Release|Any CPU.ActiveCfg = Release|x86
+		{E4961EA1-21CF-4149-879E-F1CB680BA367}.Debug|Any CPU.ActiveCfg = Debug
+		{E4961EA1-21CF-4149-879E-F1CB680BA367}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

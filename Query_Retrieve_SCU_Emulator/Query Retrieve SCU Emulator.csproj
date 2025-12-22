@@ -1,0 +1,550 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+	<PropertyGroup>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		<ProductVersion>8.0.50727</ProductVersion>
+		<SchemaVersion>2.0</SchemaVersion>
+		<ProjectGuid>{B49F102D-A908-4C70-B90B-4D39389F367C}</ProjectGuid>
+		<OutputType>WinExe</OutputType>
+		<AppDesignerFolder>Properties</AppDesignerFolder>
+		<RootNamespace>QR_SCU_Emulator</RootNamespace>
+		<AssemblyName>Query Retrieve SCU Emulator</AssemblyName>
+		<TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+		<FileUpgradeFlags>
+		</FileUpgradeFlags>
+		<UpgradeBackupLocation>
+		</UpgradeBackupLocation>
+		<OldToolsVersion>2.0</OldToolsVersion>
+		<PublishUrl>publish\</PublishUrl>
+		<Install>true</Install>
+		<InstallFrom>Disk</InstallFrom>
+		<UpdateEnabled>false</UpdateEnabled>
+		<UpdateMode>Foreground</UpdateMode>
+		<UpdateInterval>7</UpdateInterval>
+		<UpdateIntervalUnits>Days</UpdateIntervalUnits>
+		<UpdatePeriodically>false</UpdatePeriodically>
+		<UpdateRequired>false</UpdateRequired>
+		<MapFileExtensions>true</MapFileExtensions>
+		<ApplicationRevision>0</ApplicationRevision>
+		<ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+		<IsWebBootstrapper>false</IsWebBootstrapper>
+		<UseApplicationTrust>false</UseApplicationTrust>
+		<BootstrapperEnabled>true</BootstrapperEnabled>
+		<TargetFrameworkProfile />
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+		<DebugSymbols>true</DebugSymbols>
+		<OutputPath>$(SolutionDir)\bin\$(Configuration)</OutputPath>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<DebugType>full</DebugType>
+		<PlatformTarget>x86</PlatformTarget>
+		<ErrorReport>prompt</ErrorReport>
+		<Prefer32Bit>false</Prefer32Bit>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+		<OutputPath>$(SolutionDir)\bin\$(Configuration)</OutputPath>
+		<DefineConstants>TRACE</DefineConstants>
+		<Optimize>true</Optimize>
+		<DebugType>pdbonly</DebugType>
+		<PlatformTarget>x86</PlatformTarget>
+		<ErrorReport>prompt</ErrorReport>
+		<Prefer32Bit>false</Prefer32Bit>
+	</PropertyGroup>
+	<PropertyGroup>
+		<ApplicationIcon>..\Resources\Ico\DVTk Based Application.ico</ApplicationIcon>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="System" />
+		<Reference Include="System.Data" />
+		<Reference Include="System.Deployment" />
+		<Reference Include="System.Drawing" />
+		<Reference Include="System.Windows.Forms" />
+		<Reference Include="System.Xml" />
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Source\Activity Logging.resx">
+			<DependentUpon>Activity Logging.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Source\LoadConfiguration.resx">
+			<DependentUpon>LoadConfiguration.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Source\MoveDlg.resx">
+			<DependentUpon>MoveDlg.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Source\QR SCU Emulator.resx">
+			<DependentUpon>QR SCU Emulator.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<Compile Include="Properties\AssemblyInfo.cs" />
+		<Compile Include="Source\Activity Logging.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="Source\Activity Logging.designer.cs">
+			<DependentUpon>Activity Logging.cs</DependentUpon>
+		</Compile>
+		<Compile Include="Source\ImageInfo.cs" />
+		<Compile Include="Source\LoadConfiguration.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="Source\LoadConfiguration.Designer.cs">
+			<DependentUpon>LoadConfiguration.cs</DependentUpon>
+		</Compile>
+		<Compile Include="Source\MoveDlg.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="Source\PatientInfo.cs" />
+		<Compile Include="Properties\Resources.Designer.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+			<DesignTime>True</DesignTime>
+		</Compile>
+		<None Include="Properties\Settings.settings">
+			<Generator>SettingsSingleFileGenerator</Generator>
+			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
+		<Compile Include="Properties\Settings.Designer.cs">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Settings.settings</DependentUpon>
+			<DesignTimeSharedInput>True</DesignTimeSharedInput>
+		</Compile>
+		<Compile Include="Source\QR SCU Emulator.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="Source\QR SCU Emulator.designer.cs">
+			<DependentUpon>QR SCU Emulator.cs</DependentUpon>
+		</Compile>
+		<Compile Include="Source\SCUDicomThread.cs" />
+		<Compile Include="Source\SCURetrieveDicomThread.cs" />
+		<Compile Include="Source\SCUStoreDicomThread.cs" />
+		<Compile Include="Source\SeriesInfo.cs" />
+		<Compile Include="Source\StudyInfo.cs" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\views_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\ActorConnector.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\arrowleft_green_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\arrowleft_green_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\arrowleft_green_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\arrowright_green_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\arrowright_green_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\arrowright_green_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\copy_clipboard_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\copy_clipboard_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\copy_clipboard_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\copy_to_folder_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\copy_to_folder_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\copy_to_folder_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\cut_clipboard_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\cut_clipboard_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\cut_clipboard_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\delete_x_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\delete_x_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\delete_x_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\favorites_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\favorites_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\favorites_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\folder_closed_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\folder_closed_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\folder_closed_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\folder_open_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\folder_open_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\folder_open_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\folder_options_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\folder_options_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\folder_options_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\folders_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\folders_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\folders_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\history_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\history_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\history_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\home_brown_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\home_brown_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\home_brown_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\home_green_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\home_green_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\home_green_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\home_purple_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\home_purple_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\home_purple_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\home_yellow_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\home_yellow_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\home_yellow_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\line_connector_16.PNG" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\logger.PNG" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\mail_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\mail_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\mail_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\move_to_folder_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\move_to_folder_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\move_to_folder_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\new_document_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\new_document_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\new_document_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\OF.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\open_document_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\open_document_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\open_document_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\paste_clipboard_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\paste_clipboard_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\paste_clipboard_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\print_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\print_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\print_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\print_preview_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\print_preview_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\print_preview_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\properties_doc_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\properties_doc_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\properties_doc_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\redo_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\redo_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\redo_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\redo_round16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\redo_round16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\redo_round16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\redo_square_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\redo_square_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\redo_square_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\refresh_doc_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\refresh_doc_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\refresh_doc_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\save_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\save_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\save_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\save_green_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\save_green_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\save_green_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\search_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\search_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\search_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\stop_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\stop_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\stop_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\undo_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\undo_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\undo_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\undo_round_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\undo_round_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\undo_round_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\undo_square_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\undo_square_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\undo_square_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\up_folder_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\up_folder_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\up_folder_16_h.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\views_16.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\views_16_d.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\logo_anim.gif" />
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="Properties\DataSources\" />
+	</ItemGroup>
+	<ItemGroup>
+		<BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+			<Visible>False</Visible>
+			<ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+			<Install>false</Install>
+		</BootstrapperPackage>
+		<BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+			<Visible>False</Visible>
+			<ProductName>.NET Framework 3.5 SP1</ProductName>
+			<Install>true</Install>
+		</BootstrapperPackage>
+		<BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+			<Visible>False</Visible>
+			<ProductName>Windows Installer 3.1</ProductName>
+			<Install>true</Install>
+		</BootstrapperPackage>
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="..\Resources\Ico\DVTk Based Application.ico">
+			<Link>DVTk Based Application.ico</Link>
+		</Content>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\DVTk_Library\Assemblies\DVTk Application Layer\DVTk Application Layer.csproj">
+			<Project>{6c70caf0-d330-4f52-b6ce-71c70dc1600f}</Project>
+			<Name>DVTk Application Layer</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\DVTk_Library\Assemblies\DVTk Data\DVTk Data.csproj">
+			<Project>{7df60c20-4034-49cc-9974-b8443a2bc192}</Project>
+			<Name>DVTk Data</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\DVTk_Library\Assemblies\DVTk High Level Interface\DVTk High Level Interface.csproj">
+			<Project>{4b34d6b9-d185-4742-a204-70c490500754}</Project>
+			<Name>DVTk High Level Interface</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\DVTk_Library\Assemblies\DVTk\DVTk.csproj">
+			<Project>{dbc39a1e-18cb-4809-81e0-47b1c899bbe0}</Project>
+			<Name>DVTk</Name>
+		</ProjectReference>
+	</ItemGroup>
+	<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+	<PropertyGroup>
+		<PreBuildEvent>
+			<!--REM SET LIBRARY_DIRECTORY=$(ProjectDir)..\DVTk_Library\Releases\3_3_0_0\$(ConfigurationName)
+			SET LIBRARY_DIRECTORY=$(ProjectDir)..\DVTk_Library\Builds\$(ConfigurationName)
+
+			IF NOT EXIST "%25LIBRARY_DIRECTORY%25" (
+			ECHO Unable to find library directory "%25LIBRARY_DIRECTORY%25"
+			EXIT -1
+			)
+
+			del /Q /S "$(ProjectDir)DVTk_Library\*.*"
+
+			IF NOT EXIST "$(ProjectDir)DVTk_Library" (
+			mkdir "$(ProjectDir)DVTk_Library"
+			)
+
+			xcopy /Y /E "%25LIBRARY_DIRECTORY%25" "$(ProjectDir)DVTk_Library"-->
+		</PreBuildEvent>
+		<PostBuildEvent>
+			Copy "$(ProjectDir)Resources\Query_SCU.ses" "$(TargetDir)"
+			Copy "$(ProjectDir)..\DVTk_Library\Resources\DVT_RESULTS.xslt" "$(TargetDir)"
+
+			IF NOT EXIST "$(TargetDir)Results" (
+			mkdir "$(TargetDir)Results"
+			)
+		</PostBuildEvent>
+	</PropertyGroup>
+</Project>
