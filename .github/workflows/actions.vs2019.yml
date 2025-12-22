@@ -71,6 +71,12 @@ jobs:
             Set-ItemProperty -Path "Registry::$($key.Name)" -Name "EnableOutOfProcBuild" -Value 0
         }
 
+    - name: Disable Out-of-Process Build for VS Installer
+      shell: cmd
+      run: |
+        cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild"
+        .\DisableOutOfProcBuild.exe
+
     - name: Build All
       shell: cmd
       run: |
