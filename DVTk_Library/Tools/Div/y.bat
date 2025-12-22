@@ -1,79 +1,41 @@
 @echo off
-
-: Save environment
-: echo Saving environment
-setlocal
-: Arguments
+@REM Arguments
 set InputDir=%1
 set InputName=%2
-PATH=%PATH%;%cd%;%cd%\..\..\Tools\DIV
+set bison_command=%cd%\..\..\Tools\DIV\bison
 
-
+echo === BISON ===
 echo Input directory : %InputDir%
 echo Input name      : %InputName%
 
-: Check InputDir exist
-if exist %InputDir% goto continue1
-mkdir %InputDir%
-:continue1
-
-: echo Changing directory to : %InputDir%
+if not exist %InputDir% mkdir %InputDir%
 cd %InputDir%
 
-: echo Delete y.tab.c if exist
-if not exist y.tab.c goto continue2
-del y.tab.c
-:continue2
+@REM Clean up left over files
+if exist y.tab.c del y.tab.c
+if exist y.tab.h del y.tab.h
+if exist %InputName%.cpp del %InputName%.cpp
+if exist %InputName%.cpp.h del %InputName%.cpp.h
 
-: echo Delete y.tab.h if exist
-if not exist y.tab.h goto continue3
-del y.tab.h
-:continue3
-
-: debug line
-set processing=bison -d -y -v %InputName%.y
-: set processing=bison -d %InputName%.y
-echo Processing : "%processing%"
+set processing=%bison_command% -d -y -v %InputName%.y
+echo Processing: %processing%
 %processing%
 
-if exist y_tab.c goto continue4
-echo Generation y_tab.c failed
-exit 1
-:continue4
+if not exist y_tab.c echo Generation y_tab.c failed && exit 1
+if not exist y_tab.h echo Generation y_tab.h failed && exit 1
+@REM if exist y_tab.h echo y_tab.h generated
 
-if exist y_tab.h goto continue5
-echo Generation y_tab.h failed
-exit 1
-:continue5
-: echo Outputs : y_tab.c and y_tab.h
+@REM Use sed to rename function names in y.tab.c file
 
-: echo Use sed to rename function names in y.tab.c file
-: echo Processing : sed -f yy-sed y_tab.c redirected to  %InputName%.cpp
+echo Creating: %InputName%.cpp
 sed -f yy-sed y_tab.c > %InputName%.cpp
-
-: echo Removing y_tab.c
 del y_tab.c
 
-: echo Use sed to rename function names in y_tab.h file
-: echo Processing : sed -f yy-sed y_tab.h redirected to y_tab.h.new
-sed -f yy-sed y_tab.h > y_tab.h.new
+@REM Use sed to rename function names in y_tab.h file
+echo Creating: %InputName%.cpp.h
+sed -f yy-sed y_tab.h > %InputName%.cpp.h
+del y_tab.h
 
-: echo Copy y_tab.h.new to %InputName%.cpp.h
-set processing=copy y_tab.h.new %InputName%.cpp.h
-: echo Processing %processing%
-%processing% 1>nul
-
-: echo Delete y_tab.h.new
-set processing=del y_tab.h.new
-: echo Processing %processing%
-%processing%
-
-: echo Delete y_tab.h
-set processing=del y_tab.h
-: echo Processing %processing%
-%processing%
-
-:end
-
-: echo Restoring environment
-endlocal
+FOR /F %%A in ("%InputName%.cpp") DO SET _existingFileSize=%%~zA
+ECHO File size of %InputName%.cpp: %_existingFileSize%
+if %_existingFileSize% LEQ 100 echo %InputName%.cpp is empty && exit 1
