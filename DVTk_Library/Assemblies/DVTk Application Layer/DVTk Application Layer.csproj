@@ -32,6 +32,7 @@
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
     <OutputPath>$(SolutionDir)\bin\$(Configuration)</OutputPath>
     <DocumentationFile>$(SolutionDir)\bin\$(Configuration)\DvtkApplicationLayer.xml</DocumentationFile>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
@@ -55,6 +56,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
     <OutputPath>$(SolutionDir)\bin\$(Configuration)</OutputPath>
     <DocumentationFile>$(SolutionDir)\bin\$(Configuration)\DvtkApplicationLayer.xml</DocumentationFile>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
@@ -102,6 +104,9 @@
     </Reference>
     <Reference Include="Microsoft.VisualBasic.Compatibility">
       <Name>Microsoft.VisualBasic.Compatibility</Name>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Name>Microsoft.CSharp</Name>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
