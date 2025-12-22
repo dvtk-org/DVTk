@@ -58,25 +58,26 @@ jobs:
       run: |
         ./DVT/updateCopyright.ps1
 
-    - name: Enable .vdproj Builds (Registry Fix)
+    - name: Disable Out-of-Process Build (Official Fix)
       shell: pwsh
       run: |
-        # Visual Studio 2019 gebruikt versie 16.0
-        # We zoeken naar het configuratie-pad in het register voor VS2019
-        $vsPath = "HKCU:\SOFTWARE\Microsoft\VisualStudio\16.0*_Config\MSBuild"
-        $keys = Get-Item $vsPath -ErrorAction SilentlyContinue
+        # Zoek de tool op de hele C-schijf binnen de Visual Studio map
+        $tool = Get-ChildItem -Path "C:\Program Files (x86)\Microsoft Visual Studio" -Filter "DisableOutOfProcBuild.exe" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
         
-        foreach ($key in $keys) {
-            Write-Host "Updating registry for: $($key.Name)"
-            Set-ItemProperty -Path "Registry::$($key.Name)" -Name "EnableOutOfProcBuild" -Value 0
+        if ($tool) {
+            Write-Host "Tool gevonden op: $($tool.FullName)"
+            # Voer de tool uit
+            Start-Process -FilePath $tool.FullName -Wait
+            Write-Host "Out-of-process build succesvol uitgeschakeld."
+        } else {
+            Write-Warning "DisableOutOfProcBuild.exe kon niet worden gevonden. We proberen de registry fallback..."
+            # Fallback voor als de tool echt ontbreekt (jouw oude script)
+            $vsPath = "HKLM:\SOFTWARE\WOW6432Node\Microsoft\VisualStudio\16.0*_Config\MSBuild"
+            # Let op: HKLM ipv HKCU is vaak effectiever op runners
+            Get-Item $vsPath -ErrorAction SilentlyContinue | ForEach-Object {
+                Set-ItemProperty -Path $_.PSPath -Name "EnableOutOfProcBuild" -Value 0
+            }
         }
-
-    - name: Disable Out-of-Process Build for VS Installer
-      shell: cmd
-      run: |
-        cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild"
-        .\DisableOutOfProcBuild.exe
-
     - name: Build All
       shell: cmd
       run: |
