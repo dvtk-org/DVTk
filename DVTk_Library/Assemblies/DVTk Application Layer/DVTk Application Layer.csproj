@@ -116,13 +116,6 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
-    <COMReference Include="MSHTML">
-      <Guid>{3050F1C5-98B5-11CF-BB82-00AA00BDCE0B}</Guid>
-      <VersionMajor>4</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseInput.cs">
