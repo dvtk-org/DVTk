@@ -1,128 +1,134 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<ItemGroup Label="ProjectConfigurations">
-		<ProjectConfiguration Include="Debug|Win32">
-			<Configuration>Debug</Configuration>
-			<Platform>Win32</Platform>
-		</ProjectConfiguration>
-		<ProjectConfiguration Include="Release|Win32">
-			<Configuration>Release</Configuration>
-			<Platform>Win32</Platform>
-		</ProjectConfiguration>
-	</ItemGroup>
-	<PropertyGroup Label="Globals">
-		<ProjectName>Relation</ProjectName>
-		<ProjectGuid>{AC685071-AAEA-4DBF-9E09-E648F49F8F5B}</ProjectGuid>
-		<RootNamespace>Relation</RootNamespace>
-		<WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-	</PropertyGroup>
-	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-		<ConfigurationType>StaticLibrary</ConfigurationType>
-		<UseOfMfc>false</UseOfMfc>
-		<CharacterSet>MultiByte</CharacterSet>
-		<PlatformToolset>v143</PlatformToolset>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-		<ConfigurationType>StaticLibrary</ConfigurationType>
-		<UseOfMfc>false</UseOfMfc>
-		<CharacterSet>MultiByte</CharacterSet>
-		<PlatformToolset>v143</PlatformToolset>
-	</PropertyGroup>
-	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-	<ImportGroup Label="ExtensionSettings">
-	</ImportGroup>
-	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
-		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-		<Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-	</ImportGroup>
-	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
-		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-		<Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-	</ImportGroup>
-	<PropertyGroup Label="UserMacros" />
-	<PropertyGroup>
-		<_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
-		<OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\bin\$(Configuration)\</OutDir>
-		<IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)\obj\$(Configuration)\</IntDir>
-		<OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\bin\$(Configuration)\</OutDir>
-		<IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)\obj\$(Configuration)\</IntDir>
-	</PropertyGroup>
-	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-		<ClCompile>
-			<InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-			<AdditionalIncludeDirectories>..\Include;..\Global;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-			<PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-			<StringPooling>true</StringPooling>
-			<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-			<FunctionLevelLinking>true</FunctionLevelLinking>
-			<PrecompiledHeaderOutputFile>$(SolutionDir)\bin\$(Configuration)\Relation.pch</PrecompiledHeaderOutputFile>
-			<AssemblerListingLocation>$(ProjectDir)\obj\$(Configuration)\</AssemblerListingLocation>
-			<ObjectFileName>$(ProjectDir)\obj\$(Configuration)\</ObjectFileName>
-			<ProgramDataBaseFileName>$(ProjectDir)\obj\$(Configuration)\</ProgramDataBaseFileName>
-			<WarningLevel>Level4</WarningLevel>
-			<SuppressStartupBanner>true</SuppressStartupBanner>
-			<CompileAs>Default</CompileAs>
-		</ClCompile>
-		<ResourceCompile>
-			<PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-			<Culture>0x0409</Culture>
-		</ResourceCompile>
-		<Lib>
-			<OutputFile>$(SolutionDir)\bin\$(Configuration)\Relation.lib</OutputFile>
-			<SuppressStartupBanner>true</SuppressStartupBanner>
-		</Lib>
-	</ItemDefinitionGroup>
-	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-		<ClCompile>
-			<Optimization>Disabled</Optimization>
-			<AdditionalIncludeDirectories>..\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-			<PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_WINDOWS;NATIVE_ENDIAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-			<BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-			<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-			<RuntimeTypeInfo>true</RuntimeTypeInfo>
-			<PrecompiledHeaderOutputFile>$(SolutionDir)\bin\$(Configuration)\Relation.pch</PrecompiledHeaderOutputFile>
-			<AssemblerListingLocation>$(ProjectDir)\obj\$(Configuration)\</AssemblerListingLocation>
-			<ObjectFileName>$(ProjectDir)\obj\$(Configuration)\</ObjectFileName>
-			<ProgramDataBaseFileName>$(ProjectDir)\obj\$(Configuration)\</ProgramDataBaseFileName>
-			<BrowseInformation>true</BrowseInformation>
-			<WarningLevel>Level4</WarningLevel>
-			<SuppressStartupBanner>true</SuppressStartupBanner>
-			<DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-			<CallingConvention>Cdecl</CallingConvention>
-			<CompileAs>Default</CompileAs>
-			<DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-		</ClCompile>
-		<ResourceCompile>
-			<PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-			<Culture>0x0409</Culture>
-		</ResourceCompile>
-		<Lib>
-			<OutputFile>$(SolutionDir)\bin\$(Configuration)\Relation.lib</OutputFile>
-			<SuppressStartupBanner>true</SuppressStartupBanner>
-		</Lib>
-	</ItemDefinitionGroup>
-	<ItemGroup>
-		<ClCompile Include="patient_data.cpp" />
-		<ClCompile Include="patient_list.cpp" />
-		<ClCompile Include="relation.cpp" />
-		<ClCompile Include="series_data.cpp" />
-		<ClCompile Include="sop_instance_data.cpp" />
-		<ClCompile Include="stored_sop_instance.cpp" />
-		<ClCompile Include="stored_sop_list.cpp" />
-		<ClCompile Include="study_data.cpp" />
-	</ItemGroup>
-	<ItemGroup>
-		<ClInclude Include="patient_data.h" />
-		<ClInclude Include="patient_list.h" />
-		<ClInclude Include="relation.h" />
-		<ClInclude Include="series_data.h" />
-		<ClInclude Include="sop_instance_data.h" />
-		<ClInclude Include="stored_sop_instance.h" />
-		<ClInclude Include="stored_sop_list.h" />
-		<ClInclude Include="study_data.h" />
-	</ItemGroup>
-	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-	<ImportGroup Label="ExtensionTargets">
-	</ImportGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>Relation</ProjectName>
+    <ProjectGuid>{AC685071-AAEA-4DBF-9E09-E648F49F8F5B}</ProjectGuid>
+    <RootNamespace>Relation</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\bin\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)\obj\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\bin\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)\obj\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <CopyCppRuntimeToOutputDir>true</CopyCppRuntimeToOutputDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <CopyCppRuntimeToOutputDir>true</CopyCppRuntimeToOutputDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>..\Include;..\Global;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile>$(SolutionDir)\bin\$(Configuration)\Relation.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(ProjectDir)\obj\$(Configuration)\</AssemblerListingLocation>
+      <ObjectFileName>$(ProjectDir)\obj\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>$(ProjectDir)\obj\$(Configuration)\</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(SolutionDir)\bin\$(Configuration)\Relation.lib</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_WINDOWS;NATIVE_ENDIAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>$(SolutionDir)\bin\$(Configuration)\Relation.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(ProjectDir)\obj\$(Configuration)\</AssemblerListingLocation>
+      <ObjectFileName>$(ProjectDir)\obj\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>$(ProjectDir)\obj\$(Configuration)\</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <CompileAs>Default</CompileAs>
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(SolutionDir)\bin\$(Configuration)\Relation.lib</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="patient_data.cpp" />
+    <ClCompile Include="patient_list.cpp" />
+    <ClCompile Include="relation.cpp" />
+    <ClCompile Include="series_data.cpp" />
+    <ClCompile Include="sop_instance_data.cpp" />
+    <ClCompile Include="stored_sop_instance.cpp" />
+    <ClCompile Include="stored_sop_list.cpp" />
+    <ClCompile Include="study_data.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="patient_data.h" />
+    <ClInclude Include="patient_list.h" />
+    <ClInclude Include="relation.h" />
+    <ClInclude Include="series_data.h" />
+    <ClInclude Include="sop_instance_data.h" />
+    <ClInclude Include="stored_sop_instance.h" />
+    <ClInclude Include="stored_sop_list.h" />
+    <ClInclude Include="study_data.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
 </Project>

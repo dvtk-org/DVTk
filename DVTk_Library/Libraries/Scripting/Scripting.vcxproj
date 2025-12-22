@@ -1,148 +1,154 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<ItemGroup Label="ProjectConfigurations">
-		<ProjectConfiguration Include="Debug|Win32">
-			<Configuration>Debug</Configuration>
-			<Platform>Win32</Platform>
-		</ProjectConfiguration>
-		<ProjectConfiguration Include="Release|Win32">
-			<Configuration>Release</Configuration>
-			<Platform>Win32</Platform>
-		</ProjectConfiguration>
-	</ItemGroup>
-	<PropertyGroup Label="Globals">
-		<ProjectName>Scripting</ProjectName>
-		<ProjectGuid>{9B01E6D4-F4BD-4CAC-94C7-76037DF6634A}</ProjectGuid>
-		<RootNamespace>Scripting</RootNamespace>
-		<WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-	</PropertyGroup>
-	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-		<ConfigurationType>StaticLibrary</ConfigurationType>
-		<UseOfMfc>false</UseOfMfc>
-		<CharacterSet>MultiByte</CharacterSet>
-		<PlatformToolset>v143</PlatformToolset>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-		<ConfigurationType>StaticLibrary</ConfigurationType>
-		<UseOfMfc>false</UseOfMfc>
-		<CharacterSet>MultiByte</CharacterSet>
-		<PlatformToolset>v143</PlatformToolset>
-	</PropertyGroup>
-	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-	<ImportGroup Label="ExtensionSettings" />
-	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
-		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-		<Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-	</ImportGroup>
-	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
-		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-		<Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-	</ImportGroup>
-	<PropertyGroup Label="UserMacros" />
-	<PropertyGroup>
-		<_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
-		<OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\bin\$(Configuration)\</OutDir>
-		<IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)\obj\$(Configuration)\</IntDir>
-		<OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\bin\$(Configuration)\</OutDir>
-		<IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)\obj\$(Configuration)\</IntDir>
-	</PropertyGroup>
-	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-		<ClCompile>
-			<InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-			<AdditionalIncludeDirectories>..\Include;..\Global;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-			<PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_WINDOWS;BIG_ENDIAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-			<StringPooling>true</StringPooling>
-			<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-			<FunctionLevelLinking>true</FunctionLevelLinking>
-			<PrecompiledHeaderOutputFile>$(SolutionDir)\bin\$(Configuration)\Scripting.pch</PrecompiledHeaderOutputFile>
-			<AssemblerListingLocation>$(ProjectDir)\obj\$(Configuration)\</AssemblerListingLocation>
-			<ObjectFileName>$(ProjectDir)\obj\$(Configuration)\</ObjectFileName>
-			<ProgramDataBaseFileName>$(ProjectDir)\obj\$(Configuration)\</ProgramDataBaseFileName>
-			<WarningLevel>Level4</WarningLevel>
-			<SuppressStartupBanner>true</SuppressStartupBanner>
-			<CompileAs>Default</CompileAs>
-		</ClCompile>
-		<ResourceCompile>
-			<PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-			<Culture>0x0409</Culture>
-		</ResourceCompile>
-		<Lib>
-			<OutputFile>$(SolutionDir)\bin\$(Configuration)\Scripting.lib</OutputFile>
-			<SuppressStartupBanner>true</SuppressStartupBanner>
-		</Lib>
-	</ItemDefinitionGroup>
-	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-		<ClCompile>
-			<Optimization>Disabled</Optimization>
-			<AdditionalIncludeDirectories>..\Include;..\Global;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-			<PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_WINDOWS;BIG_ENDIAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-			<BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-			<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-			<RuntimeTypeInfo>true</RuntimeTypeInfo>
-			<PrecompiledHeaderOutputFile>$(SolutionDir)\bin\$(Configuration)\Scripting.pch</PrecompiledHeaderOutputFile>
-			<AssemblerListingLocation>$(ProjectDir)\obj\$(Configuration)\</AssemblerListingLocation>
-			<ObjectFileName>$(ProjectDir)\obj\$(Configuration)\</ObjectFileName>
-			<ProgramDataBaseFileName>$(ProjectDir)\obj\$(Configuration)\</ProgramDataBaseFileName>
-			<BrowseInformation>true</BrowseInformation>
-			<WarningLevel>Level4</WarningLevel>
-			<SuppressStartupBanner>true</SuppressStartupBanner>
-			<DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-			<CallingConvention>Cdecl</CallingConvention>
-			<CompileAs>Default</CompileAs>
-			<DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-		</ClCompile>
-		<ResourceCompile>
-			<PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-			<Culture>0x0409</Culture>
-		</ResourceCompile>
-		<Lib>
-			<OutputFile>$(SolutionDir)\bin\$(Configuration)\Scripting.lib</OutputFile>
-			<SuppressStartupBanner>true</SuppressStartupBanner>
-		</Lib>
-	</ItemDefinitionGroup>
-	<ItemGroup>
-		<ClCompile Include="parserfuncs.cpp" />
-		<ClCompile Include="script1_lexer.cpp" />
-		<ClCompile Include="script1_parser.cpp" />
-		<ClCompile Include="script2_lexer.cpp" />
-		<ClCompile Include="script2_parser.cpp" />
-		<ClCompile Include="script3_lexer.cpp" />
-		<ClCompile Include="script3_parser.cpp" />
-		<ClCompile Include="script4_lexer.cpp" />
-		<ClCompile Include="script4_parser.cpp" />
-		<ClCompile Include="script_lexer.cpp" />
-		<ClCompile Include="script_parser.cpp" />
-		<ClCompile Include="scriptfile.cpp" />
-	</ItemGroup>
-	<ItemGroup>
-		<ClInclude Include="script1_parser.cpp.h" />
-		<ClInclude Include="script2_parser.cpp.h" />
-		<ClInclude Include="script3_parser.cpp.h" />
-		<ClInclude Include="script4_parser.cpp.h" />
-		<ClInclude Include="script_parser.cpp.h" />
-		<ClInclude Include="scriptfile.h" />
-	</ItemGroup>
-	<ItemGroup>
-		<None Include="script_lexer.l">
-			<Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Step on %(FullPath)</Message>
-			<Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"%(RootDir)%(Directory)"CreateMultipleLexers.bat %(RootDir)%(Directory) %(Filename)</Command>
-			<Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">script_lexer.cpp;script1_lexer.cpp;script2_lexer.cpp;script3_lexer.cpp;script4_lexer.cpp;%(Outputs);%(OutputFile)</Outputs>
-			<Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Step on %(FullPath)</Message>
-			<Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"%(RootDir)%(Directory)"CreateMultipleLexers.bat %(RootDir)%(Directory) %(Filename)</Command>
-			<Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">script_lexer.cpp;script1_lexer.cpp;script2_lexer.cpp;script3_lexer.cpp;script4_lexer.cpp;%(Outputs)</Outputs>
-			<FileType>Document</FileType>
-		</None>
-		<CustomBuild Include="script_parser.y">
-			<Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Step on %(FullPath)</Message>
-			<Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"%(RootDir)%(Directory)"CreateMultipleParsers.bat %(RootDir)%(Directory) %(Filename)</Command>
-			<Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">script_parser.cpp;script_parser.cpp.h;script1_parser.cpp;script1_parser.cpp.h;script2_parser.cpp;script2_parser.cpp.h;script3_parser.cpp;script3_parser.cpp.h;script4_parser.cpp;script4_parser.cpp.h;%(Outputs)</Outputs>
-			<Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Step on %(FullPath)</Message>
-			<Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"%(RootDir)%(Directory)"CreateMultipleParsers.bat %(RootDir)%(Directory) %(Filename)</Command>
-			<Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">script_parser.cpp;script_parser.cpp.h;script1_parser.cpp;script1_parser.cpp.h;script2_parser.cpp;script2_parser.cpp.h;script3_parser.cpp;script3_parser.cpp.h;script4_parser.cpp;script4_parser.cpp.h;%(Outputs)</Outputs>
-		</CustomBuild>
-	</ItemGroup>
-	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-	<ImportGroup Label="ExtensionTargets">
-	</ImportGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>Scripting</ProjectName>
+    <ProjectGuid>{9B01E6D4-F4BD-4CAC-94C7-76037DF6634A}</ProjectGuid>
+    <RootNamespace>Scripting</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\bin\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)\obj\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\bin\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)\obj\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <CopyCppRuntimeToOutputDir>true</CopyCppRuntimeToOutputDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <CopyCppRuntimeToOutputDir>true</CopyCppRuntimeToOutputDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>..\Include;..\Global;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_WINDOWS;BIG_ENDIAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile>$(SolutionDir)\bin\$(Configuration)\Scripting.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(ProjectDir)\obj\$(Configuration)\</AssemblerListingLocation>
+      <ObjectFileName>$(ProjectDir)\obj\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>$(ProjectDir)\obj\$(Configuration)\</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(SolutionDir)\bin\$(Configuration)\Scripting.lib</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\Include;..\Global;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_WINDOWS;BIG_ENDIAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>$(SolutionDir)\bin\$(Configuration)\Scripting.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(ProjectDir)\obj\$(Configuration)\</AssemblerListingLocation>
+      <ObjectFileName>$(ProjectDir)\obj\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>$(ProjectDir)\obj\$(Configuration)\</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <CompileAs>Default</CompileAs>
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(SolutionDir)\bin\$(Configuration)\Scripting.lib</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="parserfuncs.cpp" />
+    <ClCompile Include="script1_lexer.cpp" />
+    <ClCompile Include="script1_parser.cpp" />
+    <ClCompile Include="script2_lexer.cpp" />
+    <ClCompile Include="script2_parser.cpp" />
+    <ClCompile Include="script3_lexer.cpp" />
+    <ClCompile Include="script3_parser.cpp" />
+    <ClCompile Include="script4_lexer.cpp" />
+    <ClCompile Include="script4_parser.cpp" />
+    <ClCompile Include="script_lexer.cpp" />
+    <ClCompile Include="script_parser.cpp" />
+    <ClCompile Include="scriptfile.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="script1_parser.cpp.h" />
+    <ClInclude Include="script2_parser.cpp.h" />
+    <ClInclude Include="script3_parser.cpp.h" />
+    <ClInclude Include="script4_parser.cpp.h" />
+    <ClInclude Include="script_parser.cpp.h" />
+    <ClInclude Include="scriptfile.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="script_lexer.l">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Step on %(FullPath)</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"%(RootDir)%(Directory)"CreateMultipleLexers.bat %(RootDir)%(Directory) %(Filename)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">script_lexer.cpp;script1_lexer.cpp;script2_lexer.cpp;script3_lexer.cpp;script4_lexer.cpp;%(Outputs);%(OutputFile)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Step on %(FullPath)</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"%(RootDir)%(Directory)"CreateMultipleLexers.bat %(RootDir)%(Directory) %(Filename)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">script_lexer.cpp;script1_lexer.cpp;script2_lexer.cpp;script3_lexer.cpp;script4_lexer.cpp;%(Outputs)</Outputs>
+      <FileType>Document</FileType>
+    </None>
+    <CustomBuild Include="script_parser.y">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Step on %(FullPath)</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"%(RootDir)%(Directory)"CreateMultipleParsers.bat %(RootDir)%(Directory) %(Filename)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">script_parser.cpp;script_parser.cpp.h;script1_parser.cpp;script1_parser.cpp.h;script2_parser.cpp;script2_parser.cpp.h;script3_parser.cpp;script3_parser.cpp.h;script4_parser.cpp;script4_parser.cpp.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Step on %(FullPath)</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"%(RootDir)%(Directory)"CreateMultipleParsers.bat %(RootDir)%(Directory) %(Filename)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">script_parser.cpp;script_parser.cpp.h;script1_parser.cpp;script1_parser.cpp.h;script2_parser.cpp;script2_parser.cpp.h;script3_parser.cpp;script3_parser.cpp.h;script4_parser.cpp;script4_parser.cpp.h;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
 </Project>

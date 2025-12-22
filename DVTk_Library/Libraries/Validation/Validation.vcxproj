@@ -1,222 +1,228 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<ItemGroup Label="ProjectConfigurations">
-		<ProjectConfiguration Include="Debug|Win32">
-			<Configuration>Debug</Configuration>
-			<Platform>Win32</Platform>
-		</ProjectConfiguration>
-		<ProjectConfiguration Include="Release|Win32">
-			<Configuration>Release</Configuration>
-			<Platform>Win32</Platform>
-		</ProjectConfiguration>
-	</ItemGroup>
-	<PropertyGroup Label="Globals">
-		<ProjectName>Validation</ProjectName>
-		<ProjectGuid>{DB46B436-C9F8-445A-A820-FCDBF2BD7079}</ProjectGuid>
-		<RootNamespace>Validation</RootNamespace>
-		<WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-	</PropertyGroup>
-	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-		<ConfigurationType>StaticLibrary</ConfigurationType>
-		<UseOfMfc>false</UseOfMfc>
-		<CharacterSet>MultiByte</CharacterSet>
-		<PlatformToolset>v143</PlatformToolset>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-		<ConfigurationType>StaticLibrary</ConfigurationType>
-		<UseOfMfc>false</UseOfMfc>
-		<CharacterSet>MultiByte</CharacterSet>
-		<PlatformToolset>v143</PlatformToolset>
-	</PropertyGroup>
-	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-	<ImportGroup Label="ExtensionSettings">
-	</ImportGroup>
-	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
-		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-		<Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-	</ImportGroup>
-	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
-		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-		<Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-	</ImportGroup>
-	<PropertyGroup Label="UserMacros" />
-	<PropertyGroup>
-		<_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
-		<OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\bin\$(Configuration)\</OutDir>
-		<IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)\obj\$(Configuration)\</IntDir>
-		<OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\bin\$(Configuration)\</OutDir>
-		<IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)\obj\$(Configuration)\</IntDir>
-	</PropertyGroup>
-	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-		<ClCompile>
-			<InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-			<AdditionalIncludeDirectories>..\Include;..\Global;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-			<PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_WINDOWS;NATIVE_ENDIAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-			<StringPooling>true</StringPooling>
-			<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-			<FunctionLevelLinking>true</FunctionLevelLinking>
-			<PrecompiledHeaderOutputFile>$(SolutionDir)\bin\$(Configuration)\Validation.pch</PrecompiledHeaderOutputFile>
-			<AssemblerListingLocation>$(ProjectDir)\obj\$(Configuration)\</AssemblerListingLocation>
-			<ObjectFileName>$(ProjectDir)\obj\$(Configuration)\</ObjectFileName>
-			<ProgramDataBaseFileName>$(ProjectDir)\obj\$(Configuration)\</ProgramDataBaseFileName>
-			<WarningLevel>Level4</WarningLevel>
-			<SuppressStartupBanner>true</SuppressStartupBanner>
-			<CompileAs>Default</CompileAs>
-		</ClCompile>
-		<ResourceCompile>
-			<PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-			<Culture>0x0409</Culture>
-		</ResourceCompile>
-		<Lib>
-			<OutputFile>$(SolutionDir)\bin\$(Configuration)\Validation.lib</OutputFile>
-			<SuppressStartupBanner>true</SuppressStartupBanner>
-		</Lib>
-	</ItemDefinitionGroup>
-	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-		<ClCompile>
-			<Optimization>Disabled</Optimization>
-			<AdditionalIncludeDirectories>..\Include;..\Global;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-			<PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_WINDOWS;NATIVE_ENDIAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-			<BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-			<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-			<RuntimeTypeInfo>true</RuntimeTypeInfo>
-			<PrecompiledHeaderOutputFile>$(SolutionDir)\bin\$(Configuration)\Validation.pch</PrecompiledHeaderOutputFile>
-			<AssemblerListingLocation>$(ProjectDir)\obj\$(Configuration)\</AssemblerListingLocation>
-			<ObjectFileName>$(ProjectDir)\obj\$(Configuration)\</ObjectFileName>
-			<ProgramDataBaseFileName>$(ProjectDir)\obj\$(Configuration)\</ProgramDataBaseFileName>
-			<BrowseInformation>true</BrowseInformation>
-			<WarningLevel>Level4</WarningLevel>
-			<SuppressStartupBanner>true</SuppressStartupBanner>
-			<DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-			<CallingConvention>Cdecl</CallingConvention>
-			<CompileAs>Default</CompileAs>
-			<DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-		</ClCompile>
-		<ResourceCompile>
-			<PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-			<Culture>0x0409</Culture>
-		</ResourceCompile>
-		<Lib>
-			<OutputFile>$(SolutionDir)\bin\$(Configuration)\Validation.lib</OutputFile>
-			<SuppressStartupBanner>true</SuppressStartupBanner>
-		</Lib>
-	</ItemDefinitionGroup>
-	<ItemGroup>
-		<ClCompile Include="ACSE_ab_reason.cpp" />
-		<ClCompile Include="ACSE_ab_source.cpp" />
-		<ClCompile Include="ACSE_abort_request_validator.cpp" />
-		<ClCompile Include="ACSE_ac_result.cpp" />
-		<ClCompile Include="ACSE_ae_title.cpp" />
-		<ClCompile Include="ACSE_appl_ctx_name.cpp" />
-		<ClCompile Include="ACSE_associate_accept_validator.cpp" />
-		<ClCompile Include="ACSE_associate_reject_validator.cpp" />
-		<ClCompile Include="ACSE_associate_request_validator.cpp" />
-		<ClCompile Include="ACSE_async_operation_window_validator.cpp" />
-		<ClCompile Include="ACSE_byte.cpp" />
-		<ClCompile Include="ACSE_implementation_version_name.cpp" />
-		<ClCompile Include="ACSE_maximum_length_received.cpp" />
-		<ClCompile Include="ACSE_operation.cpp" />
-		<ClCompile Include="ACSE_parameter.cpp" />
-		<ClCompile Include="ACSE_pc_id.cpp" />
-		<ClCompile Include="ACSE_positive_response_requested.cpp" />
-		<ClCompile Include="ACSE_presentation_context_ac_validator.cpp" />
-		<ClCompile Include="ACSE_presentation_context_rq_validator.cpp" />
-		<ClCompile Include="ACSE_primary_field.cpp" />
-		<ClCompile Include="ACSE_properties.cpp" />
-		<ClCompile Include="ACSE_protocol_version.cpp" />
-		<ClCompile Include="ACSE_release_request_validator.cpp" />
-		<ClCompile Include="ACSE_release_response_validator.cpp" />
-		<ClCompile Include="ACSE_rj_reason.cpp" />
-		<ClCompile Include="ACSE_rj_result.cpp" />
-		<ClCompile Include="ACSE_rj_source.cpp" />
-		<ClCompile Include="ACSE_role.cpp" />
-		<ClCompile Include="ACSE_scp_scu_role_select_validator.cpp" />
-		<ClCompile Include="ACSE_secondary_field.cpp" />
-		<ClCompile Include="ACSE_server_response.cpp" />
-		<ClCompile Include="ACSE_sop_class_extended_validator.cpp" />
-		<ClCompile Include="ACSE_uid.cpp" />
-		<ClCompile Include="ACSE_user_identity_negotiation_validator.cpp" />
-		<ClCompile Include="ACSE_user_identity_type.cpp" />
-		<ClCompile Include="ACSE_user_information_validator.cpp" />
-		<ClCompile Include="media_validator.cpp" />
-		<ClCompile Include="MediaValidationFilter.cpp" />
-		<ClCompile Include="qr_validator.cpp" />
-		<ClCompile Include="record_link.cpp" />
-		<ClCompile Include="record_results.cpp" />
-		<ClCompile Include="record_types.cpp" />
-		<ClCompile Include="record_uid.cpp" />
-		<ClCompile Include="uid_defining.cpp" />
-		<ClCompile Include="uid_ref.cpp" />
-		<ClCompile Include="uid_referring.cpp" />
-		<ClCompile Include="val_attribute.cpp" />
-		<ClCompile Include="val_attribute_group.cpp" />
-		<ClCompile Include="val_base_value.cpp" />
-		<ClCompile Include="val_object_results.cpp" />
-		<ClCompile Include="val_value_sq.cpp" />
-		<ClCompile Include="valdefinitions.cpp" />
-		<ClCompile Include="ValidationEngine.cpp" />
-		<ClCompile Include="validator.cpp" />
-		<ClCompile Include="valrules.cpp" />
-	</ItemGroup>
-	<ItemGroup>
-		<ClInclude Include="ACSE_ab_reason.h" />
-		<ClInclude Include="ACSE_ab_source.h" />
-		<ClInclude Include="ACSE_abort_request_validator.h" />
-		<ClInclude Include="ACSE_ac_result.h" />
-		<ClInclude Include="ACSE_ae_title.h" />
-		<ClInclude Include="ACSE_appl_ctx_name.h" />
-		<ClInclude Include="ACSE_associate_accept_validator.h" />
-		<ClInclude Include="ACSE_associate_reject_validator.h" />
-		<ClInclude Include="ACSE_associate_request_validator.h" />
-		<ClInclude Include="ACSE_async_operation_window_validator.h" />
-		<ClInclude Include="ACSE_byte.h" />
-		<ClInclude Include="ACSE_implementation_version_name.h" />
-		<ClInclude Include="ACSE_maximum_length_received.h" />
-		<ClInclude Include="ACSE_operation.h" />
-		<ClInclude Include="ACSE_parameter.h" />
-		<ClInclude Include="ACSE_pc_id.h" />
-		<ClInclude Include="ACSE_positive_response_requested.h" />
-		<ClInclude Include="ACSE_presentation_context_ac_validator.h" />
-		<ClInclude Include="ACSE_presentation_context_rq_validator.h" />
-		<ClInclude Include="ACSE_primary_field.h" />
-		<ClInclude Include="ACSE_properties.h" />
-		<ClInclude Include="ACSE_protocol_version.h" />
-		<ClInclude Include="ACSE_release_request_validator.h" />
-		<ClInclude Include="ACSE_release_response_validator.h" />
-		<ClInclude Include="ACSE_rj_reason.h" />
-		<ClInclude Include="ACSE_rj_result.h" />
-		<ClInclude Include="ACSE_rj_source.h" />
-		<ClInclude Include="ACSE_role.h" />
-		<ClInclude Include="ACSE_scp_scu_role_select_validator.h" />
-		<ClInclude Include="ACSE_secondary_field.h" />
-		<ClInclude Include="ACSE_server_response.h" />
-		<ClInclude Include="ACSE_sop_class_extended_validator.h" />
-		<ClInclude Include="ACSE_uid.h" />
-		<ClInclude Include="ACSE_user_identity_negotiation_validator.h" />
-		<ClInclude Include="ACSE_user_identity_type.h" />
-		<ClInclude Include="ACSE_user_information_validator.h" />
-		<ClInclude Include="media_validator.h" />
-		<ClInclude Include="MediaValidationFilter.h" />
-		<ClInclude Include="qr_validator.h" />
-		<ClInclude Include="record_link.h" />
-		<ClInclude Include="record_results.h" />
-		<ClInclude Include="record_types.h" />
-		<ClInclude Include="record_uid.h" />
-		<ClInclude Include="uid_defining.h" />
-		<ClInclude Include="uid_ref.h" />
-		<ClInclude Include="uid_referring.h" />
-		<ClInclude Include="val_attribute.h" />
-		<ClInclude Include="val_attribute_group.h" />
-		<ClInclude Include="val_base_value.h" />
-		<ClInclude Include="val_object_results.h" />
-		<ClInclude Include="val_value_sq.h" />
-		<ClInclude Include="valdefinitions.h" />
-		<ClInclude Include="ValidationEngine.h" />
-		<ClInclude Include="validator.h" />
-		<ClInclude Include="valrules.h" />
-	</ItemGroup>
-	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-	<ImportGroup Label="ExtensionTargets">
-	</ImportGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>Validation</ProjectName>
+    <ProjectGuid>{DB46B436-C9F8-445A-A820-FCDBF2BD7079}</ProjectGuid>
+    <RootNamespace>Validation</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\bin\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)\obj\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\bin\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)\obj\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <CopyCppRuntimeToOutputDir>true</CopyCppRuntimeToOutputDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <CopyCppRuntimeToOutputDir>true</CopyCppRuntimeToOutputDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>..\Include;..\Global;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_WINDOWS;NATIVE_ENDIAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile>$(SolutionDir)\bin\$(Configuration)\Validation.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(ProjectDir)\obj\$(Configuration)\</AssemblerListingLocation>
+      <ObjectFileName>$(ProjectDir)\obj\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>$(ProjectDir)\obj\$(Configuration)\</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(SolutionDir)\bin\$(Configuration)\Validation.lib</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\Include;..\Global;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_WINDOWS;NATIVE_ENDIAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>$(SolutionDir)\bin\$(Configuration)\Validation.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(ProjectDir)\obj\$(Configuration)\</AssemblerListingLocation>
+      <ObjectFileName>$(ProjectDir)\obj\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>$(ProjectDir)\obj\$(Configuration)\</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <CompileAs>Default</CompileAs>
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(SolutionDir)\bin\$(Configuration)\Validation.lib</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ACSE_ab_reason.cpp" />
+    <ClCompile Include="ACSE_ab_source.cpp" />
+    <ClCompile Include="ACSE_abort_request_validator.cpp" />
+    <ClCompile Include="ACSE_ac_result.cpp" />
+    <ClCompile Include="ACSE_ae_title.cpp" />
+    <ClCompile Include="ACSE_appl_ctx_name.cpp" />
+    <ClCompile Include="ACSE_associate_accept_validator.cpp" />
+    <ClCompile Include="ACSE_associate_reject_validator.cpp" />
+    <ClCompile Include="ACSE_associate_request_validator.cpp" />
+    <ClCompile Include="ACSE_async_operation_window_validator.cpp" />
+    <ClCompile Include="ACSE_byte.cpp" />
+    <ClCompile Include="ACSE_implementation_version_name.cpp" />
+    <ClCompile Include="ACSE_maximum_length_received.cpp" />
+    <ClCompile Include="ACSE_operation.cpp" />
+    <ClCompile Include="ACSE_parameter.cpp" />
+    <ClCompile Include="ACSE_pc_id.cpp" />
+    <ClCompile Include="ACSE_positive_response_requested.cpp" />
+    <ClCompile Include="ACSE_presentation_context_ac_validator.cpp" />
+    <ClCompile Include="ACSE_presentation_context_rq_validator.cpp" />
+    <ClCompile Include="ACSE_primary_field.cpp" />
+    <ClCompile Include="ACSE_properties.cpp" />
+    <ClCompile Include="ACSE_protocol_version.cpp" />
+    <ClCompile Include="ACSE_release_request_validator.cpp" />
+    <ClCompile Include="ACSE_release_response_validator.cpp" />
+    <ClCompile Include="ACSE_rj_reason.cpp" />
+    <ClCompile Include="ACSE_rj_result.cpp" />
+    <ClCompile Include="ACSE_rj_source.cpp" />
+    <ClCompile Include="ACSE_role.cpp" />
+    <ClCompile Include="ACSE_scp_scu_role_select_validator.cpp" />
+    <ClCompile Include="ACSE_secondary_field.cpp" />
+    <ClCompile Include="ACSE_server_response.cpp" />
+    <ClCompile Include="ACSE_sop_class_extended_validator.cpp" />
+    <ClCompile Include="ACSE_uid.cpp" />
+    <ClCompile Include="ACSE_user_identity_negotiation_validator.cpp" />
+    <ClCompile Include="ACSE_user_identity_type.cpp" />
+    <ClCompile Include="ACSE_user_information_validator.cpp" />
+    <ClCompile Include="media_validator.cpp" />
+    <ClCompile Include="MediaValidationFilter.cpp" />
+    <ClCompile Include="qr_validator.cpp" />
+    <ClCompile Include="record_link.cpp" />
+    <ClCompile Include="record_results.cpp" />
+    <ClCompile Include="record_types.cpp" />
+    <ClCompile Include="record_uid.cpp" />
+    <ClCompile Include="uid_defining.cpp" />
+    <ClCompile Include="uid_ref.cpp" />
+    <ClCompile Include="uid_referring.cpp" />
+    <ClCompile Include="val_attribute.cpp" />
+    <ClCompile Include="val_attribute_group.cpp" />
+    <ClCompile Include="val_base_value.cpp" />
+    <ClCompile Include="val_object_results.cpp" />
+    <ClCompile Include="val_value_sq.cpp" />
+    <ClCompile Include="valdefinitions.cpp" />
+    <ClCompile Include="ValidationEngine.cpp" />
+    <ClCompile Include="validator.cpp" />
+    <ClCompile Include="valrules.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ACSE_ab_reason.h" />
+    <ClInclude Include="ACSE_ab_source.h" />
+    <ClInclude Include="ACSE_abort_request_validator.h" />
+    <ClInclude Include="ACSE_ac_result.h" />
+    <ClInclude Include="ACSE_ae_title.h" />
+    <ClInclude Include="ACSE_appl_ctx_name.h" />
+    <ClInclude Include="ACSE_associate_accept_validator.h" />
+    <ClInclude Include="ACSE_associate_reject_validator.h" />
+    <ClInclude Include="ACSE_associate_request_validator.h" />
+    <ClInclude Include="ACSE_async_operation_window_validator.h" />
+    <ClInclude Include="ACSE_byte.h" />
+    <ClInclude Include="ACSE_implementation_version_name.h" />
+    <ClInclude Include="ACSE_maximum_length_received.h" />
+    <ClInclude Include="ACSE_operation.h" />
+    <ClInclude Include="ACSE_parameter.h" />
+    <ClInclude Include="ACSE_pc_id.h" />
+    <ClInclude Include="ACSE_positive_response_requested.h" />
+    <ClInclude Include="ACSE_presentation_context_ac_validator.h" />
+    <ClInclude Include="ACSE_presentation_context_rq_validator.h" />
+    <ClInclude Include="ACSE_primary_field.h" />
+    <ClInclude Include="ACSE_properties.h" />
+    <ClInclude Include="ACSE_protocol_version.h" />
+    <ClInclude Include="ACSE_release_request_validator.h" />
+    <ClInclude Include="ACSE_release_response_validator.h" />
+    <ClInclude Include="ACSE_rj_reason.h" />
+    <ClInclude Include="ACSE_rj_result.h" />
+    <ClInclude Include="ACSE_rj_source.h" />
+    <ClInclude Include="ACSE_role.h" />
+    <ClInclude Include="ACSE_scp_scu_role_select_validator.h" />
+    <ClInclude Include="ACSE_secondary_field.h" />
+    <ClInclude Include="ACSE_server_response.h" />
+    <ClInclude Include="ACSE_sop_class_extended_validator.h" />
+    <ClInclude Include="ACSE_uid.h" />
+    <ClInclude Include="ACSE_user_identity_negotiation_validator.h" />
+    <ClInclude Include="ACSE_user_identity_type.h" />
+    <ClInclude Include="ACSE_user_information_validator.h" />
+    <ClInclude Include="media_validator.h" />
+    <ClInclude Include="MediaValidationFilter.h" />
+    <ClInclude Include="qr_validator.h" />
+    <ClInclude Include="record_link.h" />
+    <ClInclude Include="record_results.h" />
+    <ClInclude Include="record_types.h" />
+    <ClInclude Include="record_uid.h" />
+    <ClInclude Include="uid_defining.h" />
+    <ClInclude Include="uid_ref.h" />
+    <ClInclude Include="uid_referring.h" />
+    <ClInclude Include="val_attribute.h" />
+    <ClInclude Include="val_attribute_group.h" />
+    <ClInclude Include="val_base_value.h" />
+    <ClInclude Include="val_object_results.h" />
+    <ClInclude Include="val_value_sq.h" />
+    <ClInclude Include="valdefinitions.h" />
+    <ClInclude Include="ValidationEngine.h" />
+    <ClInclude Include="validator.h" />
+    <ClInclude Include="valrules.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
 </Project>
