@@ -28,15 +28,15 @@ jobs:
     - name: Install MFC and ATL
       run: |
         $process = Start-Process -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe" `
-          -ArgumentList "modify --installPath ""C:\Program Files\Microsoft Visual Studio\2022\Enterprise"" --add Microsoft.VisualStudio.Component.VC.ATLMFC --passive --norestart" `
+          -ArgumentList "modify --installPath ""C:\Program Files\Microsoft Visual Studio\2022\Enterprise"" --add Microsoft.VisualStudio.Component.VC.ATLMFC --quiet --norestart --wait" `
           -Wait -PassThru
     
-        # Controleer of de installatie succesvol was (0 of 3010 voor 'reboot required')
+        # Check for succesfull installation
         if ($process.ExitCode -ne 0 -and $process.ExitCode -ne 3010) {
           Write-Error "Installer failed with exit code $($process.ExitCode)"
           exit $process.ExitCode
         }
-      shell: powershell  
+      shell: powershell
 
     - name: Install GitVersion
       uses: gittools/actions/gitversion/setup@v3.0.0
