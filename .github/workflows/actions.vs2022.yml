@@ -20,36 +20,28 @@ jobs:
     runs-on: windows-2022
 
     steps:
+    - name: Install MFC and ATL
+      run: |
+        $vsInstaller = "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe"
+        
+        Write-Host "Start MFC installation..."
+        
+        & $vsInstaller modify --installPath "C:\Program Files\Microsoft Visual Studio\2022\Enterprise" --add Microsoft.VisualStudio.Component.VC.ATLMFC --passive --norestart
+        
+        # Because vs_installer sometimes spawns a process and is closeable,
+        # we explicitly wait here before all installation processes are finished.
+        Write-Host "Waiting for installation to complete..."
+        while (Get-Process -Name "vs_installer", "vs_installerservice" -ErrorAction SilentlyContinue) {
+            Start-Sleep -Seconds 5
+        }
+        
+        Write-Host "MFC installatie succesvol voltooid."
+      shell: powershell
+
     - name: Checkout source code
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
-
-    - name: Install MFC and ATL
-      run: |
-        $vsInstaller = "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe"
-        $vsPath = "C:\Program Files\Microsoft Visual Studio\2022\Enterprise"
-        
-        # We make a list of arguments. PowerShell will handle the quotes correctly.
-        $installArgs = @(
-          "modify",
-          "--installPath", "`"$vsPath`"",
-          "--add", "Microsoft.VisualStudio.Component.VC.ATLMFC",
-          "--quiet",
-          "--norestart",
-          "--wait"
-        )
-        
-        Write-Host "Start of MFC installation..."
-        $process = Start-Process -FilePath $vsInstaller -ArgumentList $installArgs -Wait -PassThru
-        
-        # Check exit code (0 = success, 3010 = success, but restart needed)
-        if ($process.ExitCode -ne 0 -and $process.ExitCode -ne 3010) {
-          Write-Error "Installer failed with exit code $($process.ExitCode). Check correctness of installPath."
-          exit $process.ExitCode
-        }
-        Write-Host "MFC installation succesfull."
-      shell: powershell
 
     - name: Install GitVersion
       uses: gittools/actions/gitversion/setup@v3.0.0
