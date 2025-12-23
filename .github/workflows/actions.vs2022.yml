@@ -1,0 +1,109 @@
+name: .NET Desktop Build (VS2022)
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+
+env:
+  SOLUTION: 'Dicom.sln'
+  BUILD_PLATFORM: 'x86'
+  BUILD_CONFIGURATION: 'Release'
+  DEV_CMD: 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\devenv.com'
+  DISABLE_TOOL_PATH: 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild'
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v3.0.0
+      with:
+        versionSpec: '5.x'
+        preferLatestVersion: true
+
+    - name: Determine version number using GitVersion
+      id: gitversion
+      uses: gittools/actions/gitversion/execute@v3.0.0
+      with:
+        useConfigFile: true
+        configFilePath: 'GitVersion.yml'
+        updateAssemblyInfo: true
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v2
+      with:
+        nuget-config-file: 'NuGet.config'
+
+    - name: Restore Nuget packages
+      run: nuget restore ${{ env.SOLUTION }} -Verbosity Detailed
+
+    - name: Update Version in project files
+      shell: pwsh
+      run: |
+        ./DVT/updateVersion.ps1 -gitversion "${{ env.GITVERSION_FULLSEMVER }}"
+
+    - name: Update Copyright year in AssemblyInfo files
+      shell: pwsh
+      run: |
+        ./DVT/updateCopyright.ps1
+
+    - name: Disable Out-of-Process Build (Official Fix)
+      shell: pwsh
+      run: |
+        # Zoek de tool op de hele C-schijf binnen de Visual Studio map
+        $tool = Get-ChildItem -Path "C:\Program Files (x86)\Microsoft Visual Studio" -Filter "DisableOutOfProcBuild.exe" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
+        
+        if ($tool) {
+            Write-Host "Tool gevonden op: $($tool.FullName)"
+            # Voer de tool uit
+            Start-Process -FilePath $tool.FullName -Wait
+            Write-Host "Out-of-process build succesvol uitgeschakeld."
+        } else {
+            Write-Warning "DisableOutOfProcBuild.exe kon niet worden gevonden. We proberen de registry fallback..."
+            # Fallback voor als de tool echt ontbreekt (jouw oude script)
+            $vsPath = "HKLM:\SOFTWARE\WOW6432Node\Microsoft\VisualStudio\16.0*_Config\MSBuild"
+            # Let op: HKLM ipv HKCU is vaak effectiever op runners
+            Get-Item $vsPath -ErrorAction SilentlyContinue | ForEach-Object {
+                Set-ItemProperty -Path $_.PSPath -Name "EnableOutOfProcBuild" -Value 0
+            }
+        }
+    - name: Build All
+      shell: cmd
+      run: |
+        "${{ env.DEV_CMD }}" ${{ env.SOLUTION }} /Build "${{ env.BUILD_CONFIGURATION }}|${{ env.BUILD_PLATFORM }}"
+
+    - name: Rename msi's
+      shell: cmd
+      run: |
+        rename ".\bin\Setups\Release\*-a.b.c.msi" "*-${{ env.GITVERSION_FULLSEMVER }}.msi"
+
+    - name: Show versioned msi's
+      shell: cmd
+      run: dir .\bin\Setups\Release\
+
+    - name: Run Tests
+      continue-on-error: true
+      run: |
+        vstest.console.exe ".\bin\Release\*Tests.dll" /Platform:${{ env.BUILD_PLATFORM }} /Configuration:${{ env.BUILD_CONFIGURATION }}
+
+    - name: Copy .msi files to staging
+      shell: pwsh
+      run: |
+        New-Item -ItemType Directory -Force -Path staging
+        Copy-Item "bin\Setups\Release\*.msi" -Destination staging -Recurse
+
+    - name: Publish build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ github.workflow }} package ${{ env.GITVERSION_FULLSEMVER }}
+        path: staging/
