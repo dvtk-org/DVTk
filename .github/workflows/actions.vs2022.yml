@@ -27,15 +27,28 @@ jobs:
 
     - name: Install MFC and ATL
       run: |
-        $process = Start-Process -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe" `
-          -ArgumentList "modify --installPath ""C:\Program Files\Microsoft Visual Studio\2022\Enterprise"" --add Microsoft.VisualStudio.Component.VC.ATLMFC --quiet --norestart --wait" `
-          -Wait -PassThru
-    
-        # Check for succesfull installation
+        $vsInstaller = "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe"
+        $vsPath = "C:\Program Files\Microsoft Visual Studio\2022\Enterprise"
+        
+        # We make a list of arguments. PowerShell will handle the quotes correctly.
+        $installArgs = @(
+          "modify",
+          "--installPath", "`"$vsPath`"",
+          "--add", "Microsoft.VisualStudio.Component.VC.ATLMFC",
+          "--quiet",
+          "--norestart",
+          "--wait"
+        )
+        
+        Write-Host "Start of MFC installation..."
+        $process = Start-Process -FilePath $vsInstaller -ArgumentList $installArgs -Wait -PassThru
+        
+        # Check exit code (0 = success, 3010 = success, but restart needed)
         if ($process.ExitCode -ne 0 -and $process.ExitCode -ne 3010) {
-          Write-Error "Installer failed with exit code $($process.ExitCode)"
+          Write-Error "Installer failed with exit code $($process.ExitCode). Check correctness of installPath."
           exit $process.ExitCode
         }
+        Write-Host "MFC installation succesfull."
       shell: powershell
 
     - name: Install GitVersion
