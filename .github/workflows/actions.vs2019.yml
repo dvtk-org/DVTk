@@ -96,7 +96,7 @@ jobs:
     - name: Build All
       shell: cmd
       run: |
-        "${{ env.DEV_CMD }}" ${{ env.SOLUTION }} /Build "${{ env.BUILD_CONFIGURATION }}|${{ env.BUILD_PLATFORM }}"
+        "${{ env.DEV_CMD }}" ${{ env.SOLUTION }} /Build "${{ env.BUILD_CONFIGURATION }}|${{ env.BUILD_PLATFORM }}" /ProjectConfig "${{ env.BUILD_CONFIGURATION }}|${{ env.BUILD_PLATFORM }}"
 
     - name: Rename msi's
       shell: cmd
