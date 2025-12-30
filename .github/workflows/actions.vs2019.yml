@@ -62,9 +62,7 @@ jobs:
       uses: microsoft/setup-msbuild@v2
     
     - name: Setup Visual Studio Installer Projects
-      uses: dvpizlo/setup-visual-studio-installer-projects@v1
-      with:
-        vsversion: 2019
+      uses: seanmiddleditch/gha-setup-vsdevenv@v5
 
 #    - name: Disable Out-of-Process Build (Official Fix)
 #      shell: pwsh
