@@ -58,26 +58,33 @@ jobs:
       run: |
         ./DVT/updateCopyright.ps1
 
-    - name: Disable Out-of-Process Build (Official Fix)
-      shell: pwsh
-      run: |
-        # Zoek de tool op de hele C-schijf binnen de Visual Studio map
-        $tool = Get-ChildItem -Path "C:\Program Files (x86)\Microsoft Visual Studio" -Filter "DisableOutOfProcBuild.exe" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
-        
-        if ($tool) {
-            Write-Host "Tool gevonden op: $($tool.FullName)"
-            # Voer de tool uit
-            Start-Process -FilePath $tool.FullName -Wait
-            Write-Host "Out-of-process build succesvol uitgeschakeld."
-        } else {
-            Write-Warning "DisableOutOfProcBuild.exe kon niet worden gevonden. We proberen de registry fallback..."
-            # Fallback voor als de tool echt ontbreekt (jouw oude script)
-            $vsPath = "HKLM:\SOFTWARE\WOW6432Node\Microsoft\VisualStudio\16.0*_Config\MSBuild"
-            # Let op: HKLM ipv HKCU is vaak effectiever op runners
-            Get-Item $vsPath -ErrorAction SilentlyContinue | ForEach-Object {
-                Set-ItemProperty -Path $_.PSPath -Name "EnableOutOfProcBuild" -Value 0
-            }
-        }
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+    
+    - name: Setup DevEnv for Installer Projects
+      uses: i365dev/setup-visual-studio-installer-projects@v1
+
+#    - name: Disable Out-of-Process Build (Official Fix)
+#      shell: pwsh
+#      run: |
+#        # Zoek de tool op de hele C-schijf binnen de Visual Studio map
+#        $tool = Get-ChildItem -Path "C:\Program Files (x86)\Microsoft Visual Studio" -Filter "DisableOutOfProcBuild.exe" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
+#        
+#        if ($tool) {
+#            Write-Host "Tool gevonden op: $($tool.FullName)"
+#            # Voer de tool uit
+#            Start-Process -FilePath $tool.FullName -Wait
+#            Write-Host "Out-of-process build succesvol uitgeschakeld."
+#        } else {
+#            Write-Warning "DisableOutOfProcBuild.exe kon niet worden gevonden. We proberen de registry fallback..."
+#            # Fallback voor als de tool echt ontbreekt (jouw oude script)
+#            $vsPath = "HKLM:\SOFTWARE\WOW6432Node\Microsoft\VisualStudio\16.0*_Config\MSBuild"
+#            # Let op: HKLM ipv HKCU is vaak effectiever op runners
+#            Get-Item $vsPath -ErrorAction SilentlyContinue | ForEach-Object {
+#                Set-ItemProperty -Path $_.PSPath -Name "EnableOutOfProcBuild" -Value 0
+#            }
+#        }
+
     - name: Build All
       shell: cmd
       run: |
