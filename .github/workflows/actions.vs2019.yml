@@ -61,8 +61,10 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
     
-    - name: Setup DevEnv for Installer Projects
-      uses: i365dev/setup-visual-studio-installer-projects@v1
+    - name: Setup Visual Studio Installer Projects
+      uses: dvpizlo/setup-visual-studio-installer-projects@v1
+      with:
+        vsversion: 2019
 
 #    - name: Disable Out-of-Process Build (Official Fix)
 #      shell: pwsh
