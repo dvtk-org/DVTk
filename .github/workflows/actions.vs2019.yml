@@ -97,7 +97,23 @@ jobs:
     - name: Build All
       shell: cmd
       run: |
-        "${{ env.DEV_CMD }}" ${{ env.SOLUTION }} /Build "${{ env.BUILD_CONFIGURATION }}|${{ env.BUILD_PLATFORM }}" /ProjectConfig "${{ env.BUILD_CONFIGURATION }}|${{ env.BUILD_PLATFORM }}"
+        "${{ env.DEV_CMD }}" ${{ env.SOLUTION }} /Build "${{ env.BUILD_CONFIGURATION }}|${{ env.BUILD_PLATFORM }}" /ProjectConfig "${{ env.BUILD_CONFIGURATION }}|${{ env.BUILD_PLATFORM }}" > build-devenv.log 2>&1
+
+    - name: Show last lines of build log
+      shell: pwsh
+      run: |
+        if (Test-Path build-devenv.log) {
+            Write-Host "=== Last 200 lines of build-devenv.log ==="
+            Get-Content build-devenv.log -Tail 200
+        } else {
+            Write-Host "build-devenv.log not found" exit 1
+        }
+
+    - name: Upload build-devenv.log
+      uses: actions/upload-artifact@v4 
+        with:
+          name: build-devenv-log-${{ github.run_id }}.zip
+          path: build-devenv.zip
 
     - name: Rename msi's
       shell: cmd
