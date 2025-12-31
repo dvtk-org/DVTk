@@ -121,9 +121,10 @@ jobs:
       run: dir .\bin\Setups\Release\
 
     - name: Run Tests
-      continue-on-error: true
+      if: ${{ always() }}
+      shell: cmd
       run: |
-        vstest.console.exe ".\bin\Release\*Tests.dll" /Platform:${{ env.BUILD_PLATFORM }} /Configuration:${{ env.BUILD_CONFIGURATION }}
+        vstest.console.exe ".\bin\Release*Tests.dll"
 
     - name: Copy .msi files to staging
       shell: pwsh
