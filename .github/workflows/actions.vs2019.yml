@@ -67,7 +67,8 @@ jobs:
         $vsPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -version "[16.0,17.0)" -property installationPath
         if (-not $vsPath) { throw "Visual Studio 2019 niet gevonden!" }
         $devenv = Join-Path $vsPath "Common7\IDE\devenv.com"
-        echo "DEV_CMD=$devenv" >> $env:GITHUB_ENV
+        if (-not (Test-Path $devenv)) { throw "devenv.com niet gevonden op $devenv" }
+        Add-Content -Path $env:GITHUB_ENV -Value "DEV_CMD=$devenv"
 
     - name: Setup Visual Studio Installer Projects
       uses: seanmiddleditch/gha-setup-vsdevenv@v5
