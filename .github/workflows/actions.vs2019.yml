@@ -78,7 +78,7 @@ jobs:
       continue-on-error: true
       shell: cmd
       run: |
-        "%DEV_CMD%" %{{ env.SOLUTION }} /Build "%{{ env.BUILD_CONFIGURATION }}|%{{ env.BUILD_PLATFORM }}" /ProjectConfig "%{{ env.BUILD_CONFIGURATION }}|%{{ env.BUILD_PLATFORM }}" > build-devenv.log 2>&1
+        "${{ env.DEV_CMD }}" ${{ env.SOLUTION }} /Build "${{ env.BUILD_CONFIGURATION }}|${{ env.BUILD_PLATFORM }}" /ProjectConfig "${{ env.BUILD_CONFIGURATION }}|${{ env.BUILD_PLATFORM }}" > build-devenv.log 2>&1
 
     - name: Show last lines of build log (only if build failed)
       if: ${{ steps.build.outcome == 'failure' }}
