@@ -111,9 +111,9 @@ jobs:
 
     - name: Upload build-devenv.log
       uses: actions/upload-artifact@v4 
-        with:
-          name: build-devenv-log-${{ github.run_id }}.zip
-          path: build-devenv.zip
+      with:
+        name: build-devenv-log-${{ github.run_id }}.zip
+        path: build-devenv.zip
 
     - name: Rename msi's
       shell: cmd
