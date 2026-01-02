@@ -143,7 +143,14 @@ jobs:
         name: build-devenv-log-${{ github.run_id }}
         path: build-devenv.log
 
+    - name: Run Tests
+      if: ${{ always() }}
+      shell: cmd
+      run: |
+        vstest.console.exe ".\bin\Release\*Tests.dll"
+
     - name: Rename MSI files with version number
+      if: ${{ always() }}
       shell: pwsh
       run: |
         $searchPath = "bin\Setups\Release"
@@ -174,12 +181,6 @@ jobs:
         }
         Get-ChildItem -Path "bin\Setups\Release" -Filter "*.msi" -Recurse | Select-Object FullName
  
-    - name: Run Tests
-      if: ${{ always() }}
-      shell: cmd
-      run: |
-        vstest.console.exe ".\bin\Release\*Tests.dll"
-
     - name: Copy .msi files to staging
       shell: pwsh
       run: |
@@ -187,6 +188,7 @@ jobs:
         Get-ChildItem -Path "bin\Setups\Release\" -Filter "*.msi" -Recurse | Copy-Item -Destination staging
 
     - name: Publish build artifacts
+      if: ${{ always() }}
       uses: actions/upload-artifact@v4
       with:
         name: ${{ github.workflow }} package ${{ env.GITVERSION_FULLSEMVER }}
