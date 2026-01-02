@@ -125,6 +125,7 @@ jobs:
               $anyFailure = $true
             }
         }
+        Copy-Item build-devenv.log -Destination staging
         if ($anyFailure) { exit 1 }
 
     - name: Show last lines of build log (only if build failed)
@@ -135,13 +136,6 @@ jobs:
           Write-Host "=== Last 200 lines of build-devenv.log ==="
           Get-Content build-devenv.log -Tail 200
         }
-
-    - name: Upload build log
-      if: ${{ always() }}
-      uses: actions/upload-artifact@v4
-      with:
-        name: build-devenv-log-${{ github.run_id }}
-        path: build-devenv.log
 
     - name: Run Tests
       if: ${{ always() }}
@@ -182,6 +176,7 @@ jobs:
         Get-ChildItem -Path "bin\Setups\Release" -Filter "*.msi" -Recurse | Select-Object FullName
  
     - name: Copy .msi files to staging
+      if: ${{ always() }}
       shell: pwsh
       run: |
         New-Item -ItemType Directory -Force -Path staging
