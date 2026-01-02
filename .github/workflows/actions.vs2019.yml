@@ -12,13 +12,10 @@ env:
   SOLUTION: 'Dicom.sln'
   BUILD_PLATFORM: 'x86'
   BUILD_CONFIGURATION: 'Release'
-  # Pad voor Visual Studio 2019 Enterprise op de GitHub Runner
-  DEV_CMD: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\devenv.com'
-  DISABLE_TOOL_PATH: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild'
 
 jobs:
   build:
-    runs-on: windows-2019 # Forceert het gebruik van de VS2019 omgeving
+    runs-on: windows-2019
 
     steps:
     - name: Checkout source code
@@ -61,22 +58,25 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
 
-    - name: Locate Devenv and Fix HRESULT 8000000A
+    - name: Locate Devenv and Manual Registry Fix
       shell: pwsh
       run: |
-        # Search installation path of VS2019
+        # Zoek VS2019 gegevens via vswhere
         $vsPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -version "[16.0,17.0)" -property installationPath
+        $instanceId = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -version "[16.0,17.0)" -property instanceId
+        
         if (-not $vsPath) { throw "Visual Studio 2019 niet gevonden!" }
         
-        $devenv = Join-Path $vsPath "Common7\IDE\devenv.com"
-        $disableTool = Join-Path $vsPath "Common7\IDE\CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild\DisableOutOfProcBuild.exe"
-        
-        # Voer de fix uit voor de HRESULT 8000000A fout
-        if (Test-Path $disableTool) {
-          Write-Host "Execute DisableOutOfProcBuild.exe..."
-          & $disableTool
+        # Voer Registry Fix uit voor HRESULT 8000000A 
+        $registryPath = "HKCU:\SOFTWARE\Microsoft\VisualStudio\16.0_$($instanceId)_Config\MSBuild"
+        if (!(Test-Path $registryPath)) {
+            New-Item -Path $registryPath -Force | Out-Null
         }
-        
+        Set-ItemProperty -Path $registryPath -Name "EnableOutOfProcBuild" -Value 0 -Type DWord
+        Write-Host "Registry fix toegepast op $registryPath"
+
+        # Sla pad op voor volgende stappen
+        $devenv = Join-Path $vsPath "Common7\IDE\devenv.com"
         Add-Content -Path $env:GITHUB_ENV -Value "DEV_CMD=$devenv"
 
     - name: Setup Visual Studio Installer Projects
@@ -100,33 +100,39 @@ jobs:
       continue-on-error: true
       shell: pwsh
       run: |
-          $projects = @( "DVT Setup", "DICOM Editor Setup", "DICOM Compare Setup", "DICOM Network Analyzer Setup", "Query Retrieve SCP Emulator Setup", "Query Retrieve SCU Emulator Setup", "RIS Emulator Setup", "Storage SCP Emulator Setup", "Storage SCU Emulator Setup" )
-          if (-not (Test-Path "$env:DEV_CMD")) { throw "DEV_CMD niet gevonden" }
-          if (Test-Path build-devenv.log) { Remove-Item build-devenv.log -Force }
-          foreach ($p in $projects) {
-              Write-Host "=== Building setup project: $p ==="
-              $buildParams = @( "$env:SOLUTION", '/Build', "$($env:BUILD_CONFIGURATION)|$($env:BUILD_PLATFORM)", '/Project', $p )
-              
-              Add-Content -Path build-devenv.log -Value ("`n=== CMD: $p ===") -Encoding UTF8
-              
-              # Bouw en toon output direct + sla op in log
-              & "$env:DEV_CMD" @buildParams | ForEach-Object {
-                  Write-Host $_ 
-                  $_ | Out-File -FilePath build-devenv.log -Append -Encoding UTF8
-              }
-                $exit = $LASTEXITCODE
-                if ($exit -ne 0) {
-                Write-Host "ERROR: Project $p gefaald met exit code $exit"
-                $env:BUILD_FAILED = "true" # Markeer voor later
-                }
+        $projects = @( "DVT Setup", "DICOM Editor Setup", "DICOM Compare Setup", "DICOM Network Analyzer Setup", "Query Retrieve SCP Emulator Setup", "Query Retrieve SCU Emulator Setup", "RIS Emulator Setup", "Storage SCP Emulator Setup", "Storage SCU Emulator Setup" )
+        if (-not (Test-Path "$env:DEV_CMD")) { throw "DEV_CMD niet gevonden" }
+        if (Test-Path build-devenv.log) { Remove-Item build-devenv.log -Force }
+
+        $anyFailure = $false
+        foreach ($p in $projects) {
+            Write-Host "=== Building setup project: $p ==="
+            $buildParams = @( "$env:SOLUTION", '/Build', "$($env:BUILD_CONFIGURATION)|$($env:BUILD_PLATFORM)", '/Project', $p )
+            
+            # Gebruik UTF8 om leesbare logs te krijgen 
+            Add-Content -Path build-devenv.log -Value ("`n=== CMD for project: $p ===") -Encoding UTF8
+            
+            # Voer build uit, toon live output en sla op in logbestand 
+            & "$env:DEV_CMD" @buildParams | ForEach-Object {
+                Write-Host $_ 
+                $_ | Out-File -FilePath build-devenv.log -Append -Encoding UTF8
             }
-            if ($env:BUILD_FAILED -eq "true") { exit 1 }
+
+            $exit = $LASTEXITCODE
+            Write-Host "devenv exitcode for '$p': $exit"
+            if ($exit -ne 0) {
+              Write-Host "WARNING: build failed for project '$p' (exit $exit)."
+              $anyFailure = $true
+            }
+        }
+        if ($anyFailure) { exit 1 }
 
     - name: Show last lines of build log (only if build failed)
-      if: ${{ steps.vdproj.outcome == 'failure' }} # Veranderd van 'build' naar 'vdproj'
+      if: ${{ steps.vdproj.outcome == 'failure' }}
       shell: pwsh
       run: |
         if (Test-Path build-devenv.log) {
+          Write-Host "=== Last 200 lines of build-devenv.log ==="
           Get-Content build-devenv.log -Tail 200
         }
 
@@ -140,23 +146,26 @@ jobs:
     - name: Rename msi's
       shell: cmd
       run: |
-        rename ".\bin\Setups\Release\*-a.b.c.msi" "*-${{ env.GITVERSION_FULLSEMVER }}.msi"
+        for /r .\bin\Setups\Release %%f in (*-a.b.c.msi) do (
+          set "fname=%%~nf"
+          ren "%%f" "!fname:-a.b.c=-${{ env.GITVERSION_FULLSEMVER }}!.msi"
+        )
 
     - name: Show versioned msi's
       shell: cmd
-      run: dir .\bin\Setups\Release\
+      run: dir /s .\bin\Setups\Release\*.msi
 
     - name: Run Tests
       if: ${{ always() }}
       shell: cmd
       run: |
-        vstest.console.exe ".\bin\Release*Tests.dll"
+        vstest.console.exe ".\bin\Release\*Tests.dll"
 
     - name: Copy .msi files to staging
       shell: pwsh
       run: |
         New-Item -ItemType Directory -Force -Path staging
-        Copy-Item "bin\Setups\Release\*.msi" -Destination staging -Recurse
+        Get-ChildItem -Path "bin\Setups\Release\" -Filter "*.msi" -Recurse | Copy-Item -Destination staging
 
     - name: Publish build artifacts
       uses: actions/upload-artifact@v4
