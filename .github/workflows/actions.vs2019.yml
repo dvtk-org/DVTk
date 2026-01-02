@@ -87,8 +87,8 @@ jobs:
       shell: pwsh
       run: |
         msbuild Dicom.sln /t:Rebuild '/p:Configuration=Release;Platform=x86' /m *> build-msbuild.log
-        Copy-Item build-msbuild.log -Destination staging
-        (Get-ChildItem staging -Recurse).FullName
+        Copy-Item build-msbuild.log -Destination ./staging
+        (Get-ChildItem ./staging -Recurse).FullName
 
     - name: Build setup projects (devenv)
       id: vdproj
@@ -98,7 +98,6 @@ jobs:
         $projects = @( "DVT Setup", "DICOM Editor Setup", "DICOM Compare Setup", "DICOM Network Analyzer Setup", "Query Retrieve SCP Emulator Setup", "Query Retrieve SCU Emulator Setup", "RIS Emulator Setup", "Storage SCP Emulator Setup", "Storage SCU Emulator Setup" )
         if (-not (Test-Path "$env:DEV_CMD")) { throw "DEV_CMD niet gevonden" }
         if (Test-Path build-devenv.log) { Remove-Item build-devenv.log -Force }
-
         $anyFailure = $false
         foreach ($p in $projects) {
             Write-Host "=== Building setup project: $p ==="
@@ -112,7 +111,6 @@ jobs:
                 Write-Host $_ 
                 $_ | Out-File -FilePath build-devenv.log -Append -Encoding UTF8
             }
-
             $exit = $LASTEXITCODE
             Write-Host "devenv exitcode for '$p': $exit"
             if ($exit -ne 0) {
@@ -120,8 +118,8 @@ jobs:
               $anyFailure = $true
             }
         }
-        Copy-Item build-devenv.log -Destination staging
-        (Get-ChildItem staging -Recurse).FullName
+        Copy-Item build-devenv.log -Destination ./staging
+        (Get-ChildItem ./staging -Recurse).FullName
         if ($anyFailure) { exit 1 }
 
     - name: Show last lines of build log (only if build failed)
@@ -187,13 +185,13 @@ jobs:
         
         foreach ($file in $files) {
             Write-Host "Kopiëren van $($file.FullName) naar staging"
-            Copy-Item -Path $file.FullName -Destination staging -Force
+            Copy-Item -Path $file.FullName -Destination ./staging -Force
         }
-        (Get-ChildItem staging -Recurse).FullName
+        (Get-ChildItem ./staging -Recurse).FullName
 
     - name: Publish build artifacts
       if: ${{ always() }}
       uses: actions/upload-artifact@v4
       with:
         name: ${{ github.workflow }} package ${{ env.GITVERSION_FULLSEMVER }}
-        path: staging/
+        path: ./staging
