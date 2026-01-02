@@ -61,13 +61,22 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
 
-    - name: Locate Devenv
+    - name: Locate Devenv and Fix HRESULT 8000000A
       shell: pwsh
       run: |
+        # Search installation path of VS2019
         $vsPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -version "[16.0,17.0)" -property installationPath
         if (-not $vsPath) { throw "Visual Studio 2019 niet gevonden!" }
+        
         $devenv = Join-Path $vsPath "Common7\IDE\devenv.com"
-        if (-not (Test-Path $devenv)) { throw "devenv.com niet gevonden op $devenv" }
+        $disableTool = Join-Path $vsPath "Common7\IDE\CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild\DisableOutOfProcBuild.exe"
+        
+        # Voer de fix uit voor de HRESULT 8000000A fout
+        if (Test-Path $disableTool) {
+          Write-Host "Execute DisableOutOfProcBuild.exe..."
+          & $disableTool
+        }
+        
         Add-Content -Path $env:GITHUB_ENV -Value "DEV_CMD=$devenv"
 
     - name: Setup Visual Studio Installer Projects
@@ -91,35 +100,34 @@ jobs:
       continue-on-error: true
       shell: pwsh
       run: |
-        $projects = @( "DVT Setup", "DICOM Editor Setup", "DICOM Compare Setup", "DICOM Network Analyzer Setup", "Query Retrieve SCP Emulator Setup", "Query Retrieve SCU Emulator Setup", "RIS Emulator Setup", "Storage SCP Emulator Setup", "Storage SCU Emulator Setup" )
-        if (-not (Test-Path "$env:DEV_CMD")) { throw "DEV_CMD (devenv) not found: $env:DEV_CMD" }
-        if (Test-Path build-devenv.log) { Remove-Item build-devenv.log -Force }
-        foreach ($p in $projects) {
-            Write-Host "=== Building setup project: $p ==="
-            $args = @(
-              "$env:SOLUTION",
-              '/Build', "$($env:BUILD_CONFIGURATION)|$($env:BUILD_PLATFORM)",
-              '/Project', $p
-            )
-            & "$env:DEV_CMD" @args >> build-devenv.log 2>&1
-            $exit = $LASTEXITCODE
-            Write-Host "devenv exitcode for '$p': $exit"
-            if ($exit -ne 0) {
-              Write-Host "WARNING: build failed for project '$p' (exit $exit). See build-devenv.log for details."
-              # Optioneel: throw om job te laten falen bij eerste fout:
-              throw "devenv returned $exit for project $p"
+          $projects = @( "DVT Setup", "DICOM Editor Setup", "DICOM Compare Setup", "DICOM Network Analyzer Setup", "Query Retrieve SCP Emulator Setup", "Query Retrieve SCU Emulator Setup", "RIS Emulator Setup", "Storage SCP Emulator Setup", "Storage SCU Emulator Setup" )
+          if (-not (Test-Path "$env:DEV_CMD")) { throw "DEV_CMD niet gevonden" }
+          if (Test-Path build-devenv.log) { Remove-Item build-devenv.log -Force }
+          foreach ($p in $projects) {
+              Write-Host "=== Building setup project: $p ==="
+              $buildParams = @( "$env:SOLUTION", '/Build', "$($env:BUILD_CONFIGURATION)|$($env:BUILD_PLATFORM)", '/Project', $p )
+              
+              Add-Content -Path build-devenv.log -Value ("`n=== CMD: $p ===") -Encoding UTF8
+              
+              # Bouw en toon output direct + sla op in log
+              & "$env:DEV_CMD" @buildParams | ForEach-Object {
+                  Write-Host $_ 
+                  $_ | Out-File -FilePath build-devenv.log -Append -Encoding UTF8
+              }
+                $exit = $LASTEXITCODE
+                if ($exit -ne 0) {
+                Write-Host "ERROR: Project $p gefaald met exit code $exit"
+                $env:BUILD_FAILED = "true" # Markeer voor later
+                }
             }
-        }
+            if ($env:BUILD_FAILED -eq "true") { exit 1 }
 
     - name: Show last lines of build log (only if build failed)
-      if: ${{ steps.build.outcome == 'failure' }}
+      if: ${{ steps.vdproj.outcome == 'failure' }} # Veranderd van 'build' naar 'vdproj'
       shell: pwsh
       run: |
         if (Test-Path build-devenv.log) {
-          Write-Host "=== Last 200 lines of build-devenv.log ==="
           Get-Content build-devenv.log -Tail 200
-        } else {
-          Write-Host "build-devenv.log not found"
         }
 
     - name: Upload build log
