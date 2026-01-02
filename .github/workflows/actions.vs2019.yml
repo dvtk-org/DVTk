@@ -99,8 +99,7 @@ jobs:
             $args = @(
               "$env:SOLUTION",
               '/Build', "$($env:BUILD_CONFIGURATION)|$($env:BUILD_PLATFORM)",
-              '/Project', $p,
-              '/ProjectConfig', "$($env:BUILD_CONFIGURATION)|$($env:BUILD_PLATFORM)"
+              '/Project', $p
             )
             & "$env:DEV_CMD" @args >> build-devenv.log 2>&1
             $exit = $LASTEXITCODE
