@@ -143,18 +143,37 @@ jobs:
         name: build-devenv-log-${{ github.run_id }}
         path: build-devenv.log
 
-    - name: Rename msi's
-      shell: cmd
+    - name: Rename MSI files with version number
+      shell: pwsh
       run: |
-        for /r .\bin\Setups\Release %%f in (*-a.b.c.msi) do (
-          set "fname=%%~nf"
-          ren "%%f" "!fname:-a.b.c=-${{ env.GITVERSION_FULLSEMVER }}!.msi"
-        )
-
-    - name: Show versioned msi's
-      shell: cmd
-      run: dir /s .\bin\Setups\Release\*.msi
-
+        $searchPath = "bin\Setups\Release"
+        $version = "${{ env.GITVERSION_FULLSEMVER }}"
+        
+        Write-Host "Zoeken naar MSI bestanden in: $searchPath"
+        
+        # Zoek alle MSI bestanden die de placeholder '-a.b.c' bevatten
+        $msiFiles = Get-ChildItem -Path $searchPath -Filter "*-a.b.c.msi" -Recurse
+        
+        if ($msiFiles.Count -eq 0) {
+            Write-Warning "Geen MSI bestanden gevonden met de placeholder '-a.b.c.msi'. Mogelijk is de build mislukt of zijn ze al hernoemd."
+        }
+        
+        foreach ($file in $msiFiles) {
+            $newName = $file.Name.Replace("-a.b.c", "-$version")
+            $destination = Join-Path $file.DirectoryName $newName
+            
+            Write-Host "Hernoemen: $($file.Name) -> $newName"
+            
+            # Controleer of het doelbestand al bestaat om fouten te voorkomen
+            if (Test-Path $destination) {
+                Write-Host "Bestand $newName bestaat al, verwijderen van oud bestand..."
+                Remove-Item $destination -Force
+            }
+            
+            Move-Item -Path $file.FullName -Destination $destination -Force
+        }
+        Get-ChildItem -Path "bin\Setups\Release" -Filter "*.msi" -Recurse | Select-Object FullName
+ 
     - name: Run Tests
       if: ${{ always() }}
       shell: cmd
