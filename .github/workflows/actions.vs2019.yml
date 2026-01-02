@@ -84,16 +84,10 @@ jobs:
 
     - name: Build managed/native projects (msbuild)
       id: msbuild
-      shell: cmd
+      shell: pwsh
       run: |
-        msbuild Dicom.sln /t:Rebuild /p:Configuration=Release;Platform=x86 /m > build-msbuild.log 2>&1
-
-    - name: Upload msbuild log
-      if: ${{ always() }}
-      uses: actions/upload-artifact@v4
-      with:
-        name: build-msbuild-log-${{ github.run_id }}
-        path: build-msbuild.log
+        msbuild Dicom.sln /t:Rebuild /p:Configuration=Release;Platform=x86 /m *> build-msbuild.log
+        Copy-Item build-msbuild.log -Destination staging
 
     - name: Build setup projects (devenv)
       id: vdproj
