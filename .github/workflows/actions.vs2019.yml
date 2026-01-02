@@ -88,6 +88,7 @@ jobs:
       run: |
         msbuild Dicom.sln /t:Rebuild '/p:Configuration=Release;Platform=x86' /m *> build-msbuild.log
         Copy-Item build-msbuild.log -Destination staging
+        (Get-ChildItem staging -Recurse).FullName
 
     - name: Build setup projects (devenv)
       id: vdproj
@@ -120,6 +121,7 @@ jobs:
             }
         }
         Copy-Item build-devenv.log -Destination staging
+        (Get-ChildItem staging -Recurse).FullName
         if ($anyFailure) { exit 1 }
 
     - name: Show last lines of build log (only if build failed)
@@ -184,9 +186,10 @@ jobs:
         }
         
         foreach ($file in $files) {
-            Write-Host "Kopiëren van $($file.FullName) naar staging/"
-            Copy-Item -Path $file.FullName -Destination "staging\" -Force
+            Write-Host "Kopiëren van $($file.FullName) naar staging"
+            Copy-Item -Path $file.FullName -Destination staging -Force
         }
+        (Get-ChildItem staging -Recurse).FullName
 
     - name: Publish build artifacts
       if: ${{ always() }}
