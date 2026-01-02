@@ -174,7 +174,19 @@ jobs:
       shell: pwsh
       run: |
         New-Item -ItemType Directory -Force -Path staging
-        Get-ChildItem -Path "bin\Setups\Release\" -Filter "*.msi" -Recurse | Copy-Item -Destination staging
+        
+        # Zoek recursief naar ALLE msi bestanden in de bin map
+        $files = Get-ChildItem -Path "bin\" -Filter "*.msi" -Recurse
+        
+        if ($files.Count -eq 0) {
+            Write-Error "GEEN MSI bestanden gevonden in de bin map! De build heeft waarschijnlijk niets geproduceerd."
+            exit 1
+        }
+        
+        foreach ($file in $files) {
+            Write-Host "Kopiëren van $($file.FullName) naar staging/"
+            Copy-Item -Path $file.FullName -Destination "staging\" -Force
+        }
 
     - name: Publish build artifacts
       if: ${{ always() }}
