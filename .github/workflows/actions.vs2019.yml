@@ -86,7 +86,7 @@ jobs:
       id: msbuild
       shell: pwsh
       run: |
-        msbuild Dicom.sln /t:Rebuild /p:Configuration=Release;Platform=x86 /m *> build-msbuild.log
+        msbuild Dicom.sln /t:Rebuild '/p:Configuration=Release;Platform=x86' /m *> build-msbuild.log
         Copy-Item build-msbuild.log -Destination staging
 
     - name: Build setup projects (devenv)
