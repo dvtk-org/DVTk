@@ -26,6 +26,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVTk", "DVTk_Library\Assemblies\DVTk\DVTk.csproj", "{DBC39A1E-18CB-4809-81E0-47B1C899BBE0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVTk Application Layer", "DVTk_Library\Assemblies\DVTk Application Layer\DVTk Application Layer.csproj", "{6C70CAF0-D330-4F52-B6CE-71C70DC1600F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D8170A29-9F92-4B3C-8A67-F93704653E8C} = {D8170A29-9F92-4B3C-8A67-F93704653E8C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVTk Common Data Format", "DVTk_Library\Assemblies\DVTk Common Data Format\DVTk Common Data Format.csproj", "{38F9E2D9-BDA9-4D32-95FD-B779B03C32BD}"
 EndProject
