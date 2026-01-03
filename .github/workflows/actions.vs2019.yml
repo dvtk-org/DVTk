@@ -144,7 +144,14 @@ jobs:
       continue-on-error: true
       shell: cmd
       run: |
-        vstest.console.exe ".\bin\Release\*Tests.dll"
+        vstest.console.exe ".\bin\Release\*Tests.dll" --logger:trx;LogFileName=../../staging/test-results.trx
+
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: always() # Zorg dat dit altijd draait, ook als testen falen
+      with:
+        files: |
+          staging/*.trx
 
     - name: Rename MSI files with version number
       shell: pwsh
