@@ -90,7 +90,7 @@ jobs:
         try {
             & msbuild Dicom.sln /t:Rebuild /p:Configuration=Release /fl /flp:LogFile=./staging/build-msbuild.log
         } finally {
-        Get-ChildItem ./staging -Recurse -File | Select-Object -ExpandProperty FullName
+            Get-ChildItem ./staging -Recurse -File | Select-Object -ExpandProperty FullName
         }
 
     - name: Build setup projects (devenv)
@@ -98,31 +98,52 @@ jobs:
       continue-on-error: true
       shell: pwsh
       run: |
-        $projects = @( "DVT Setup", "DICOM Editor Setup", "DICOM Compare Setup", "DICOM Network Analyzer Setup", "Query Retrieve SCP Emulator Setup", "Query Retrieve SCU Emulator Setup", "RIS Emulator Setup", "Storage SCP Emulator Setup", "Storage SCU Emulator Setup" )
-        if (-not (Test-Path "$env:DEV_CMD")) { throw "DEV_CMD niet gevonden" }
-        if (Test-Path build-devenv.log) { Remove-Item build-devenv.log -Force }
+        $projects = @(
+            "DVT Setup",
+            "DICOM Editor Setup",
+            "DICOM Compare Setup",
+            "DICOM Network Analyzer Setup",
+            "Query Retrieve SCP Emulator Setup",
+            "Query Retrieve SCU Emulator Setup",
+            "RIS Emulator Setup",
+            "Storage SCP Emulator Setup",
+            "Storage SCU Emulator Setup"
+        )
+        
+        if (-not (Test-Path "$env:DEV_CMD")) { throw "Fout: DEV_CMD (devenv.com) niet gevonden op het systeem." }
+        
+        $logPath = "./staging/build-devenv.log"
+        if (Test-Path $logPath) { Remove-Item $logPath -Force }
+        
         $anyFailure = $false
+        
         foreach ($p in $projects) {
-            Write-Host "=== Building setup project: $p ==="
-            $buildParams = @( "$env:SOLUTION", '/Build', "$($env:BUILD_CONFIGURATION)|$($env:BUILD_PLATFORM)", '/Project', $p )
+            Write-Host "--- Bouwen van: $p ---"
             
-            # Gebruik UTF8 om leesbare logs te krijgen 
-            Add-Content -Path build-devenv.log -Value ("`n=== CMD for project: $p ===") -Encoding UTF8
+            # Gebruik de ingebouwde /Out vlag van devenv voor maximale snelheid en stabiliteit
+            # Devenv schrijft dan direct naar een tijdelijk bestand.
+            $tempLog = "temp_$($p.Replace(' ', '_')).log"
             
-            # Voer build uit, toon live output en sla op in logbestand 
-            & "$env:DEV_CMD" @buildParams | ForEach-Object {
-                Write-Host $_ 
-                $_ | Out-File -FilePath build-devenv.log -Append -Encoding UTF8
+            $process = Start-Process -FilePath "$env:DEV_CMD" `
+                -ArgumentList "`"$env:SOLUTION`"", "/Build", "`"$env:BUILD_CONFIGURATION|$env:BUILD_PLATFORM`"", "/Project", "`"$p`"", "/Out", "$tempLog" `
+                -Wait -PassThru
+                
+            # Combineer de logs achteraf (veel sneller dan regel voor regel tijdens de build)
+            if (Test-Path $tempLog) {
+                $content = Get-Content $tempLog
+                $content | Out-File -FilePath $logPath -Append -Encoding UTF8
+                $content | Write-Host  # Toon de output ook in de GitHub console
+                Remove-Item $tempLog
             }
-            $exit = $LASTEXITCODE
-            Write-Host "devenv exitcode for '$p': $exit"
-            if ($exit -ne 0) {
-              Write-Host "WARNING: build failed for project '$p' (exit $exit)."
-              $anyFailure = $true
+            
+            if ($process.ExitCode -ne 0) {
+                Write-Error "Fout tijdens bouwen van $p (Exit code: $($process.ExitCode))"
+                $anyFailure = $true
             }
         }
-        Copy-Item build-devenv.log -Destination ./staging
+        
         Get-ChildItem ./staging -Recurse -File | Select-Object -ExpandProperty FullName
+        
         if ($anyFailure) { exit 1 }
 
     - name: Show last lines of build log (only if build failed)
