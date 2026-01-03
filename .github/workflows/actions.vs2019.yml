@@ -147,10 +147,10 @@ jobs:
         vstest.console.exe ".\bin\Release\*Tests.dll" --logger:trx;LogFileName=../staging/test-results.trx
 
     - name: Upload Test Results Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results-trx
-          path: staging/*.trx
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results-trx
+        path: staging/*.trx
 
     - name: Rename MSI files with version number
       shell: pwsh
