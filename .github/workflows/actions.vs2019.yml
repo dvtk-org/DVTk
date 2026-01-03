@@ -86,9 +86,12 @@ jobs:
       id: msbuild
       shell: pwsh
       run: |
-        msbuild Dicom.sln /t:Rebuild '/p:Configuration=Release;Platform=x86' /m *> build-msbuild.log
+        & msbuild Dicom.sln /t:Rebuild '/p:Configuration=Release;Platform=x86' /m | ForEach-Object {
+            Write-Host $_ 
+            $_ | Out-File -FilePath build-msbuild.log -Append -Encoding UTF8
+        }
         Copy-Item build-msbuild.log -Destination ./staging
-        (Get-ChildItem ./staging -Recurse).FullName
+        Get-ChildItem ./staging -Recurse -File | Select-Object -ExpandProperty FullName
 
     - name: Build setup projects (devenv)
       id: vdproj
@@ -119,7 +122,7 @@ jobs:
             }
         }
         Copy-Item build-devenv.log -Destination ./staging
-        (Get-ChildItem ./staging -Recurse).FullName
+        Get-ChildItem ./staging -Recurse -File | Select-Object -ExpandProperty FullName
         if ($anyFailure) { exit 1 }
 
     - name: Show last lines of build log (only if build failed)
@@ -187,7 +190,7 @@ jobs:
             Write-Host "Kopiëren van $($file.FullName) naar staging"
             Copy-Item -Path $file.FullName -Destination ./staging -Force
         }
-        (Get-ChildItem ./staging -Recurse).FullName
+        Get-ChildItem ./staging -Recurse -File | Select-Object -ExpandProperty FullName
 
     - name: Publish build artifacts
       if: ${{ always() }}
