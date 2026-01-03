@@ -87,11 +87,7 @@ jobs:
       shell: pwsh
       run: |
         New-Item -ItemType Directory -Force -Path ./staging
-        try {
             & msbuild Dicom.sln /t:Rebuild '/p:Configuration=Release;Platform=x86' /m /fl /flp:LogFile=./staging/build-msbuild.log
-        } finally {
-            Get-ChildItem ./staging -Recurse -File | Select-Object -ExpandProperty FullName
-        }
 
     - name: Build setup projects (devenv)
       id: vdproj
@@ -141,8 +137,6 @@ jobs:
                 $anyFailure = $true
             }
         }
-        
-        Get-ChildItem ./staging -Recurse -File | Select-Object -ExpandProperty FullName
         
         if ($anyFailure) { exit 1 }
 
