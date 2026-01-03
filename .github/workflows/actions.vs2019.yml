@@ -87,7 +87,7 @@ jobs:
       shell: pwsh
       run: |
         New-Item -ItemType Directory -Force -Path ./staging
-            & msbuild Dicom.sln /t:Rebuild '/p:Configuration=Release;Platform=x86' /m /fl /flp:LogFile=./staging/build-msbuild.log
+        & msbuild Dicom.sln /t:Rebuild '/p:Configuration=Release;Platform=x86' /m /fl /flp:LogFile=./staging/build-msbuild.log
 
     - name: Build setup projects (devenv)
       id: vdproj
@@ -173,7 +173,7 @@ jobs:
         
         foreach ($file in $msiFiles) {
             $newName = $file.Name.Replace("-a.b.c", "-$version")
-            $destination = Join-Path $file.DirectoryName $newName
+            $destination = Join-Path "./staging" $newName
             
             Write-Host "Hernoemen: $($file.Name) -> $newName"
             
@@ -185,27 +185,7 @@ jobs:
             
             Move-Item -Path $file.FullName -Destination $destination -Force
         }
-        Get-ChildItem -Path "bin\Setups\Release" -Filter "*.msi" -Recurse | Select-Object FullName
- 
-    - name: Copy .msi files to staging
-      if: ${{ always() }}
-      shell: pwsh
-      run: |
-        New-Item -ItemType Directory -Force -Path staging
-        
-        # Zoek recursief naar ALLE msi bestanden in de bin map
-        $files = Get-ChildItem -Path "bin\" -Filter "*.msi" -Recurse
-        
-        if ($files.Count -eq 0) {
-            Write-Error "GEEN MSI bestanden gevonden in de bin map! De build heeft waarschijnlijk niets geproduceerd."
-            exit 1
-        }
-        
-        foreach ($file in $files) {
-            Write-Host "Kopiëren van $($file.FullName) naar staging"
-            Copy-Item -Path $file.FullName -Destination ./staging -Force
-        }
-        Get-ChildItem ./staging -Recurse -File | Select-Object -ExpandProperty FullName
+        Get-ChildItem -Path "./staging" -Filter "*.msi" -Recurse | Select-Object FullName
 
     - name: Publish build artifacts
       if: ${{ always() }}
