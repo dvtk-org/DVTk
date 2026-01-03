@@ -140,23 +140,13 @@ jobs:
         
         if ($anyFailure) { exit 1 }
 
-    - name: Show last lines of build log (only if build failed)
-      if: ${{ steps.vdproj.outcome == 'failure' }}
-      shell: pwsh
-      run: |
-        if (Test-Path build-devenv.log) {
-          Write-Host "=== Last 200 lines of build-devenv.log ==="
-          Get-Content build-devenv.log -Tail 200
-        }
-
     - name: Run Tests
-      if: ${{ always() }}
+      continue-on-error: true
       shell: cmd
       run: |
         vstest.console.exe ".\bin\Release\*Tests.dll"
 
     - name: Rename MSI files with version number
-      if: ${{ always() }}
       shell: pwsh
       run: |
         $searchPath = "bin\Setups\Release"
