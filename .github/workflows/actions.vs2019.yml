@@ -190,7 +190,7 @@ jobs:
         name: "${{ github.event.repository.name }}-Package-${{ env.GITVERSION_FULLSEMVER }}"
         path: ./staging
 
-publish-test-results:
+  publish-test-results:
     runs-on: ubuntu-latest
     needs: build # Wacht tot de Windows build klaar is
     if: always() # Draai dit altijd, ook als testen faalden
