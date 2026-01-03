@@ -86,12 +86,12 @@ jobs:
       id: msbuild
       shell: pwsh
       run: |
-        & msbuild Dicom.sln /t:Rebuild '/p:Configuration=Release;Platform=x86' /m | ForEach-Object {
-            Write-Host $_ 
-            $_ | Out-File -FilePath build-msbuild.log -Append -Encoding UTF8
-        }
-        Copy-Item build-msbuild.log -Destination ./staging
+        New-Item -ItemType Directory -Force -Path ./staging
+        try {
+            & msbuild Dicom.sln /t:Rebuild /p:Configuration=Release /fl /flp:LogFile=./staging/build-msbuild.log
+        } finally {
         Get-ChildItem ./staging -Recurse -File | Select-Object -ExpandProperty FullName
+        }
 
     - name: Build setup projects (devenv)
       id: vdproj
