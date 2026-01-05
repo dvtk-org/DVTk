@@ -63,36 +63,45 @@ jobs:
     - name: Install MFC (Modify existing VS installation)
       shell: pwsh
       run: |
-        # 1. Zoek het pad naar de huidige VS installatie
         $vsPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath
-        
-        # 2. Roep de installer aan om de specifieke MFC component toe te voegen
         $vsInstaller = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\setup.exe"
         
         Write-Host "Installing MFC component to: $vsPath"
         
+        # We voegen --passive toe en gebruiken --add voor de specifieke MFC component
         $process = Start-Process -FilePath $vsInstaller -ArgumentList `
             "modify", `
             "--installPath", "`"$vsPath`"", `
             "--add", "Microsoft.VisualStudio.Component.VC.MFC", `
-            "--quiet", "--norestart" `
+            "--quiet", "--norestart", "--passive" `
             -Wait -PassThru
         if ($process.ExitCode -ne 0 -and $process.ExitCode -ne 3010) {
-            throw "VS Installer failed with exit code $($process.ExitCode)"
+            Write-Error "VS Installer faalde met exit code $($process.ExitCode)"
+            exit 1
         }
-        Write-Host "MFC installatie voltooid."
+        Write-Host "MFC installatie proces voltooid (Exit code: $($process.ExitCode))."
 
     - name: Verify MFC Installation
       shell: pwsh
       run: |
-        $vsPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath
-        $components = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -listComponents
+        # Gebruik -requires om direct te filteren op de component, dit is betrouwbaarder dan handmatig de lijst doorzoeken
+        $mfcCheck = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -requires Microsoft.VisualStudio.Component.VC.MFC -property installationPath
         
-        if ($components -contains "Microsoft.VisualStudio.Component.VC.MFC") {
-            Write-Host "✅ MFC Component is gevonden in Visual Studio."
+        if ($mfcCheck) {
+            Write-Host "✅ MFC Component is succesvol gedetecteerd in: $mfcCheck"
         } else {
-            Write-Error "❌ MFC Component NIET gevonden!"
-            exit 1
+            Write-Host "⚠️ Waarschuwing: vswhere herkent de component nog niet. We checken nu het bestandssysteem..."
+            
+            # Fallback: Controleer of de MFC mappen daadwerkelijk bestaan op schijf
+            $vsPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath
+            $mfcHeader = Get-ChildItem -Path "$vsPath\VC\Tools\MSVC" -Recurse -Filter "afxwin.h" -ErrorAction SilentlyContinue
+            
+            if ($mfcHeader) {
+                Write-Host "✅ MFC bestanden gevonden op schijf: $($mfcHeader.FullName)"
+            } else {
+                Write-Error "❌ MFC Component NIET gevonden (niet via vswhere en niet op het bestandssysteem)."
+                exit 1
+            }
         }
 
     - name: Locate Devenv and Manual Registry Fix
