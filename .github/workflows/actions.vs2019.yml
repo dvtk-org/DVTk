@@ -1,4 +1,4 @@
-name: .NET Desktop Build (VS2019)
+name: DVTk Build (VS2019)
 
 on:
   push:
@@ -61,21 +61,20 @@ jobs:
     - name: Locate Devenv and Manual Registry Fix
       shell: pwsh
       run: |
-        # Zoek VS2019 gegevens via vswhere
+        # Search VS2019 via vswhere
         $vsPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -version "[16.0,17.0)" -property installationPath
         $instanceId = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -version "[16.0,17.0)" -property instanceId
         
-        if (-not $vsPath) { throw "Visual Studio 2019 niet gevonden!" }
+        if (-not $vsPath) { throw "Visual Studio 2019 not found!" }
         
-        # Voer Registry Fix uit voor HRESULT 8000000A 
+        # Execute Registry Fix for HRESULT 8000000A 
         $registryPath = "HKCU:\SOFTWARE\Microsoft\VisualStudio\16.0_$($instanceId)_Config\MSBuild"
         if (!(Test-Path $registryPath)) {
             New-Item -Path $registryPath -Force | Out-Null
         }
         Set-ItemProperty -Path $registryPath -Name "EnableOutOfProcBuild" -Value 0 -Type DWord
-        Write-Host "Registry fix toegepast op $registryPath"
+        Write-Host "Registry fix applied to $registryPath"
 
-        # Sla pad op voor volgende stappen
         $devenv = Join-Path $vsPath "Common7\IDE\devenv.com"
         Add-Content -Path $env:GITHUB_ENV -Value "DEV_CMD=$devenv"
 
@@ -106,7 +105,7 @@ jobs:
             "Storage SCU Emulator Setup"
         )
         
-        if (-not (Test-Path "$env:DEV_CMD")) { throw "Fout: DEV_CMD (devenv.com) niet gevonden op het systeem." }
+        if (-not (Test-Path "$env:DEV_CMD")) { throw "Error: DEV_CMD (devenv.com) not found on the system." }
         
         $logPath = "./staging/build-devenv.log"
         if (Test-Path $logPath) { Remove-Item $logPath -Force }
@@ -114,17 +113,14 @@ jobs:
         $anyFailure = $false
         
         foreach ($p in $projects) {
-            Write-Host "--- Bouwen van: $p ---"
+            Write-Host "--- Building: $p ---"
             
-            # Gebruik de ingebouwde /Out vlag van devenv voor maximale snelheid en stabiliteit
-            # Devenv schrijft dan direct naar een tijdelijk bestand.
             $tempLog = "temp_$($p.Replace(' ', '_')).log"
             
             $process = Start-Process -FilePath "$env:DEV_CMD" `
                 -ArgumentList "`"$env:SOLUTION`"", "/Build", "`"$env:BUILD_CONFIGURATION|$env:BUILD_PLATFORM`"", "/Project", "`"$p`"", "/Out", "$tempLog" `
                 -Wait -PassThru
                 
-            # Combineer de logs achteraf (veel sneller dan regel voor regel tijdens de build)
             if (Test-Path $tempLog) {
                 $content = Get-Content $tempLog
                 $content | Out-File -FilePath $logPath -Append -Encoding UTF8
@@ -133,7 +129,7 @@ jobs:
             }
             
             if ($process.ExitCode -ne 0) {
-                Write-Error "Fout tijdens bouwen van $p (Exit code: $($process.ExitCode))"
+                Write-Error "Error during build of $p (Exit code: $($process.ExitCode))"
                 $anyFailure = $true
             }
         }
@@ -158,20 +154,18 @@ jobs:
         $searchPath = "bin\Setups\Release"
         $version = "${{ env.GITVERSION_FULLSEMVER }}"
         
-        Write-Host "Zoeken naar MSI bestanden in: $searchPath"
-        
-        # Zoek alle MSI bestanden die de placeholder '-a.b.c' bevatten
+        Write-Host "Search all MSI files in: $searchPath"
         $msiFiles = Get-ChildItem -Path $searchPath -Filter "*-a.b.c.msi" -Recurse
         
         if ($msiFiles.Count -eq 0) {
-            Write-Warning "Geen MSI bestanden gevonden met de placeholder '-a.b.c.msi'. Mogelijk is de build mislukt of zijn ze al hernoemd."
+            Write-Warning "No MSI files found with placeholder '-a.b.c.msi'."
         }
         
         foreach ($file in $msiFiles) {
             $newName = $file.Name.Replace("-a.b.c", "-$version")
             $destination = Join-Path "./staging" $newName
             
-            Write-Host "Hernoemen: $($file.Name) -> $newName"
+            Write-Host "Rename: $($file.Name) -> $newName"
             
             # Controleer of het doelbestand al bestaat om fouten te voorkomen
             if (Test-Path $destination) {
@@ -192,8 +186,8 @@ jobs:
 
   publish-test-results:
     runs-on: ubuntu-latest
-    needs: build # Wacht tot de Windows build klaar is
-    if: always() # Draai dit altijd, ook als testen faalden
+    needs: build
+    if: always()
     permissions:
       checks: write
       pull-requests: write
