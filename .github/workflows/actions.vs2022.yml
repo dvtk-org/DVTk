@@ -67,19 +67,19 @@ jobs:
         $vsInstaller = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\setup.exe"
         
         Write-Host "Installing MFC component to: $vsPath"
-        
-        # We voegen --passive toe en gebruiken --add voor de specifieke MFC component
-        $process = Start-Process -FilePath $vsInstaller -ArgumentList `
-            "modify", `
-            "--installPath", "`"$vsPath`"", `
-            "--add", "Microsoft.VisualStudio.Component.VC.MFC", `
-            "--quiet", "--norestart", "--passive" `
-            -Wait -PassThru
+        $args = @(
+            "modify",
+            "--installPath", "$vsPath",
+            "--add", "Microsoft.VisualStudio.Component.VC.MFC",
+            "--quiet",
+            "--norestart"
+        )
+        $process = Start-Process -FilePath $vsInstaller -ArgumentList $args -Wait -PassThru
+        Write-Host "VS Installer Exit Code: $($process.ExitCode)"
         if ($process.ExitCode -ne 0 -and $process.ExitCode -ne 3010) {
-            Write-Error "VS Installer faalde met exit code $($process.ExitCode)"
-            exit 1
+            throw "VS Installer failed with exit code $($process.ExitCode). Check parameters."
         }
-        Write-Host "MFC installatie proces voltooid (Exit code: $($process.ExitCode))."
+        Write-Host "MFC installatie proces voltooid."
 
     - name: Verify MFC Installation
       shell: pwsh
