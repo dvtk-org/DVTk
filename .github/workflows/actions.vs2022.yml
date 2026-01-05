@@ -60,9 +60,27 @@ jobs:
       with:
         vs-version: '[17.0,18.0)'
 
-    - name: Install MFC
+    - name: Install MFC (Modify existing VS installation)
+      shell: pwsh
       run: |
-        choco install visualstudio2022-workload-vctools --package-parameters "--add Microsoft.VisualStudio.Component.VC.MFC"
+        # 1. Zoek het pad naar de huidige VS installatie
+        $vsPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath
+        
+        # 2. Roep de installer aan om de specifieke MFC component toe te voegen
+        $vsInstaller = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\setup.exe"
+        
+        Write-Host "Installing MFC component to: $vsPath"
+        
+        $process = Start-Process -FilePath $vsInstaller -ArgumentList `
+            "modify", `
+            "--installPath", "`"$vsPath`"", `
+            "--add", "Microsoft.VisualStudio.Component.VC.MFC", `
+            "--quiet", "--norestart" `
+            -Wait -PassThru
+        if ($process.ExitCode -ne 0 -and $process.ExitCode -ne 3010) {
+            throw "VS Installer failed with exit code $($process.ExitCode)"
+        }
+        Write-Host "MFC installatie voltooid."
 
     - name: Verify MFC Installation
       shell: pwsh
