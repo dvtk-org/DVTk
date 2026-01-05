@@ -63,7 +63,20 @@ jobs:
     - name: Install MFC
       run: |
         choco install visualstudio2022-workload-vctools --package-parameters "--add Microsoft.VisualStudio.Component.VC.MFC"
-    
+
+    - name: Verify MFC Installation
+      shell: pwsh
+      run: |
+        $vsPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath
+        $components = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -listComponents
+        
+        if ($components -contains "Microsoft.VisualStudio.Component.VC.MFC") {
+            Write-Host "✅ MFC Component is gevonden in Visual Studio."
+        } else {
+            Write-Error "❌ MFC Component NIET gevonden!"
+            exit 1
+        }
+
     - name: Locate Devenv and Manual Registry Fix
       shell: pwsh
       run: |
