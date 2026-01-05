@@ -57,7 +57,13 @@ jobs:
 
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
+      with:
+        vs-version: '2022'
 
+    - name: Install MFC
+      run: |
+        choco install visualstudio2022-workload-vctools --package-parameters "--add Microsoft.VisualStudio.Component.VC.MFC"
+    
     - name: Locate Devenv and Manual Registry Fix
       shell: pwsh
       run: |
