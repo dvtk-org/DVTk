@@ -58,7 +58,7 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
       with:
-        vs-version: '2022'
+        vs-version: '[17.0,18.0)'
 
     - name: Install MFC
       run: |
