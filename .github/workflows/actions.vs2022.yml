@@ -64,6 +64,17 @@ jobs:
         --add Microsoft.VisualStudio.Component.VC.MFC ^
         --quiet --norestart
 
+    - name: Verify MFC Headers
+      shell: pwsh
+      run: |
+        $header = Get-ChildItem -Path "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC" -Recurse -Filter "afx.h" -ErrorAction SilentlyContinue
+        if ($header) {
+            Write-Host "✅ afx.h gevonden in: $($header.FullName)"
+        } else {
+            Write-Error "❌ afx.h nog steeds niet gevonden op de schijf."
+            exit 1
+        }
+
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
       with:
