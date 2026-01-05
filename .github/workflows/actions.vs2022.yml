@@ -56,25 +56,12 @@ jobs:
         ./DVT/updateCopyright.ps1
 
     - name: Install MFC (Modify existing VS installation)
-      shell: pwsh
+      shell: cmd
       run: |
-        $vsPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath
-        $vsInstaller = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\setup.exe"
-        
-        Write-Host "Installing MFC component to: $vsPath"
-        $args = @(
-            "modify",
-            "--installPath", "$vsPath",
-            "--add", "Microsoft.VisualStudio.Component.VC.MFC",
-            "--quiet",
-            "--norestart"
-        )
-        $process = Start-Process -FilePath $vsInstaller -ArgumentList $args -Wait -PassThru
-        Write-Host "VS Installer Exit Code: $($process.ExitCode)"
-        if ($process.ExitCode -ne 0 -and $process.ExitCode -ne 3010) {
-            throw "VS Installer failed with exit code $($process.ExitCode). Check parameters."
-        }
-        Write-Host "MFC installatie proces voltooid."
+        "C:\Program Files (x86)\Microsoft Visual Studio\Installer\setup.exe" modify ^
+        --installPath "C:\Program Files\Microsoft Visual Studio\2022\Enterprise" ^
+        --add Microsoft.VisualStudio.Component.VC.MFC ^
+        --quiet --norestart
 
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
