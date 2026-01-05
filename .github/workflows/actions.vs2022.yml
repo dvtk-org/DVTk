@@ -55,11 +55,6 @@ jobs:
       run: |
         ./DVT/updateCopyright.ps1
 
-    - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v2
-      with:
-        vs-version: '[17.0,18.0)'
-
     - name: Install MFC (Modify existing VS installation)
       shell: pwsh
       run: |
@@ -80,6 +75,11 @@ jobs:
             throw "VS Installer failed with exit code $($process.ExitCode). Check parameters."
         }
         Write-Host "MFC installatie proces voltooid."
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+      with:
+        vs-version: '[17.0,18.0)'
 
     - name: Verify MFC Installation
       shell: pwsh
