@@ -115,7 +115,7 @@ jobs:
     - name: Setup Visual Studio Installer Projects
       uses: seanmiddleditch/gha-setup-vsdevenv@v5
 
-- name: Build managed/native projects (msbuild)
+    - name: Build managed/native projects (msbuild)
       id: msbuild
       shell: pwsh
       run: |
