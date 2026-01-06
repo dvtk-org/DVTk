@@ -55,13 +55,13 @@ jobs:
       run: |
         ./DVT/updateCopyright.ps1
 
-    - name: Install MFC and ATL
+    - name: Install MFC and ATL (v142 compatibility)
       shell: cmd
       run: |
         "C:\Program Files (x86)\Microsoft Visual Studio\Installer\setup.exe" modify ^
         --installPath "C:\Program Files\Microsoft Visual Studio\2022\Enterprise" ^
-        --add Microsoft.VisualStudio.Component.VC.ATL ^
-        --add Microsoft.VisualStudio.Component.VC.MFC ^
+        --add Microsoft.VisualStudio.Component.VC.v142.ATL ^
+        --add Microsoft.VisualStudio.Component.VC.v142.MFC ^
         --quiet --norestart
 
     - name: Verify MFC Headers
