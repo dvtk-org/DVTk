@@ -114,7 +114,7 @@ jobs:
         if (-not $vsPath) { throw "Visual Studio 2022 not found!" }
         
         # Execute Registry Fix for HRESULT 8000000A 
-        $registryPath = "HKCU:\SOFTWARE\Microsoft\VisualStudio\16.0_$($instanceId)_Config\MSBuild"
+        $registryPath = "HKCU:\SOFTWARE\Microsoft\VisualStudio\17.0_$($instanceId)_Config\MSBuild"
         if (!(Test-Path $registryPath)) {
             New-Item -Path $registryPath -Force | Out-Null
         }
