@@ -47,7 +47,7 @@ jobs:
     - name: Update Version in project files
       shell: pwsh
       run: |
-        ./DVT/updateVersion.ps1 -gitversion "${{ env.GITVERSION_FULLSEMVER }}"
+        ./DVT/updateVersion.ps1 -gitversion "${{ steps.gitversion.outputs.majorMinorPatch }}"
 
     - name: Update Copyright year in AssemblyInfo files
       shell: pwsh
@@ -197,7 +197,7 @@ jobs:
       shell: pwsh
       run: |
         $searchPath = "bin\Setups\Release"
-        $version = "${{ env.GITVERSION_FULLSEMVER }}"
+        $version = "${{ steps.gitversion.outputs.majorMinorPatch }}"
         
         Write-Host "Search all MSI files in: $searchPath"
         $msiFiles = Get-ChildItem -Path $searchPath -Filter "*-a.b.c.msi" -Recurse
@@ -226,7 +226,7 @@ jobs:
       if: ${{ always() }}
       uses: actions/upload-artifact@v4
       with:
-        name: "${{ github.event.repository.name }}-Package-${{ env.GITVERSION_FULLSEMVER }}"
+        name: "${{ github.event.repository.name }}-Package-${{ steps.gitversion.outputs.majorMinorPatch }}.${{ steps.gitversion.outputs.preReleaseNumber }}.vs2022"
         path: ./staging
 
   publish-test-results:
