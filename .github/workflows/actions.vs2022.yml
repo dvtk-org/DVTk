@@ -132,7 +132,7 @@ jobs:
       run: |
         New-Item -ItemType Directory -Force -Path ./staging
         # Importeer de VS Developer Environment voor x86
-        & cmd /c "call `"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat`" x86 && msbuild Dicom.sln /t:Rebuild /p:Configuration=Release /p:Platform=x86 /m /fl /flp:LogFile=./staging/build-msbuild.log"
+        & cmd /c "call `"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat`" x86 -vcvars_ver=14.2 && msbuild Dicom.sln /t:Rebuild /p:Configuration=Release /p:Platform=x86 /m /fl /flp:LogFile=./staging/build-msbuild.log"
 
     - name: Build setup projects (devenv)
       id: vdproj
