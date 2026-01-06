@@ -40,8 +40,6 @@ jobs:
 
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v2
-      with:
-        nuget-config-file: 'NuGet.config'
 
     - name: Restore Nuget packages
       run: nuget restore ${{ env.SOLUTION }} -Verbosity Detailed
