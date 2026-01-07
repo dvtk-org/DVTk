@@ -226,46 +226,97 @@ jobs:
         Get-ChildItem -Path "./staging" -Filter "*.msi" -Recurse | Select-Object FullName
 
     - name: Sign MSI files
+      if: ${{ github.event_name != 'pull_request' && secrets.CERTIFICATE_BASE64 != '' }}
       shell: pwsh
       run: |
+        # Check of de secrets beschikbaar zijn
+        if ([string]::IsNullOrEmpty("${{ secrets.CERTIFICATE_BASE64 }}")) {
+            Write-Warning "⚠️ CERTIFICATE_BASE64 secret niet gevonden. MSI signing wordt overgeslagen."
+            exit 0
+        }
+        
+        if ([string]::IsNullOrEmpty("${{ secrets.CERTIFICATE_PASSWORD }}")) {
+            Write-Warning "⚠️ CERTIFICATE_PASSWORD secret niet gevonden. MSI signing wordt overgeslagen."
+            exit 0
+        }
+        
+        Write-Host "📜 Decoding certificaat..."
+        
         # Decode het base64 certificaat naar een bestand
-        $certPath = "./certificate.pfx"
+        $certPath = Join-Path $env:TEMP "signing-cert.pfx"
         $certPassword = "${{ secrets.CERTIFICATE_PASSWORD }}"
-        $certBytes = [Convert]::FromBase64String("${{ secrets.CERTIFICATE_BASE64 }}")
-        [IO.File]::WriteAllBytes($certPath, $certBytes)
+        
+        try {
+            $certBytes = [Convert]::FromBase64String("${{ secrets.CERTIFICATE_BASE64 }}")
+            [IO.File]::WriteAllBytes($certPath, $certBytes)
+            Write-Host "✅ Certificaat bestand aangemaakt: $certPath"
+        } catch {
+            Write-Error "❌ Fout bij decoden van certificaat: $_"
+            exit 1
+        }
+        
+        # Verificeer dat het bestand bestaat en leesbaar is
+        if (-not (Test-Path $certPath)) {
+            Write-Error "❌ Certificaat bestand niet gevonden na decode!"
+            exit 1
+        }
+        
+        $fileSize = (Get-Item $certPath).Length
+        Write-Host "Certificaat bestand grootte: $fileSize bytes"
         
         # Vind signtool.exe
         $signtool = Get-ChildItem -Path "C:\Program Files (x86)\Windows Kits" -Recurse -Filter "signtool.exe" -ErrorAction SilentlyContinue | 
+                    Where-Object { $_.FullName -match '\\x64\\' -or $_.FullName -match '\\x86\\' } |
                     Sort-Object FullName -Descending | 
                     Select-Object -First 1
         
         if (-not $signtool) {
-            Write-Error "signtool.exe niet gevonden!"
+            Write-Error "❌ signtool.exe niet gevonden!"
+            Remove-Item $certPath -Force -ErrorAction SilentlyContinue
             exit 1
         }
         
-        Write-Host "Using signtool: $($signtool.FullName)"
+        Write-Host "🔧 Using signtool: $($signtool.FullName)"
         
         # Sign alle MSI bestanden in staging
         $msiFiles = Get-ChildItem -Path "./staging" -Filter "*.msi" -Recurse
         
+        if ($msiFiles.Count -eq 0) {
+            Write-Warning "⚠️ Geen MSI bestanden gevonden om te signen."
+            Remove-Item $certPath -Force -ErrorAction SilentlyContinue
+            exit 0
+        }
+        
+        Write-Host "Found $($msiFiles.Count) MSI file(s) to sign"
+        
+        $signedCount = 0
+        $failedCount = 0
+        
         foreach ($msi in $msiFiles) {
-            Write-Host "Signing: $($msi.Name)"
+            Write-Host "`n📝 Signing: $($msi.Name)"
             
-            & $signtool.FullName sign /f $certPath /p $certPassword /tr http://timestamp.digicert.com /td sha256 /fd sha256 $msi.FullName
+            # Probeer te signen
+            & $signtool.FullName sign /f $certPath /p $certPassword /tr http://timestamp.digicert.com /td sha256 /fd sha256 /v $msi.FullName
             
-            if ($LASTEXITCODE -ne 0) {
-                Write-Error "Failed to sign $($msi.Name)"
-                Remove-Item $certPath -Force
-                exit 1
+            if ($LASTEXITCODE -eq 0) {
+                Write-Host "✅ Successfully signed: $($msi.Name)"
+                $signedCount++
+            } else {
+                Write-Warning "❌ Failed to sign $($msi.Name) (Exit code: $LASTEXITCODE)"
+                $failedCount++
             }
-            
-            Write-Host "✅ Successfully signed: $($msi.Name)"
         }
         
         # Verwijder het certificaat bestand
-        Remove-Item $certPath -Force
-        Write-Host "Certificate file removed"
+        Remove-Item $certPath -Force -ErrorAction SilentlyContinue
+        Write-Host "`n🗑️ Certificate file removed"
+        
+        Write-Host "`n📊 Summary: $signedCount signed, $failedCount failed"
+        
+        if ($failedCount -gt 0) {
+            Write-Error "❌ Some files failed to sign. Check if certificate and password are correct."
+            exit 1
+        }
 
     - name: Publish build artifacts
       if: ${{ always() }}
