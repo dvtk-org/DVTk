@@ -225,6 +225,48 @@ jobs:
         }
         Get-ChildItem -Path "./staging" -Filter "*.msi" -Recurse | Select-Object FullName
 
+    - name: Sign MSI files
+      shell: pwsh
+      run: |
+        # Decode het base64 certificaat naar een bestand
+        $certPath = "./certificate.pfx"
+        $certPassword = "${{ secrets.CERTIFICATE_PASSWORD }}"
+        $certBytes = [Convert]::FromBase64String("${{ secrets.CERTIFICATE_BASE64 }}")
+        [IO.File]::WriteAllBytes($certPath, $certBytes)
+        
+        # Vind signtool.exe
+        $signtool = Get-ChildItem -Path "C:\Program Files (x86)\Windows Kits" -Recurse -Filter "signtool.exe" -ErrorAction SilentlyContinue | 
+                    Sort-Object FullName -Descending | 
+                    Select-Object -First 1
+        
+        if (-not $signtool) {
+            Write-Error "signtool.exe niet gevonden!"
+            exit 1
+        }
+        
+        Write-Host "Using signtool: $($signtool.FullName)"
+        
+        # Sign alle MSI bestanden in staging
+        $msiFiles = Get-ChildItem -Path "./staging" -Filter "*.msi" -Recurse
+        
+        foreach ($msi in $msiFiles) {
+            Write-Host "Signing: $($msi.Name)"
+            
+            & $signtool.FullName sign /f $certPath /p $certPassword /tr http://timestamp.digicert.com /td sha256 /fd sha256 $msi.FullName
+            
+            if ($LASTEXITCODE -ne 0) {
+                Write-Error "Failed to sign $($msi.Name)"
+                Remove-Item $certPath -Force
+                exit 1
+            }
+            
+            Write-Host "✅ Successfully signed: $($msi.Name)"
+        }
+        
+        # Verwijder het certificaat bestand
+        Remove-Item $certPath -Force
+        Write-Host "Certificate file removed"
+
     - name: Publish build artifacts
       if: ${{ always() }}
       uses: actions/upload-artifact@v4
