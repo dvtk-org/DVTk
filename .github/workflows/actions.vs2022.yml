@@ -226,7 +226,7 @@ jobs:
         Get-ChildItem -Path "./staging" -Filter "*.msi" -Recurse | Select-Object FullName
 
     - name: Sign MSI files
-      if: ${{ github.event_name != 'pull_request' && secrets.CERTIFICATE_BASE64 != '' }}
+      if: ${{ github.event_name != 'pull_request' }}
       shell: pwsh
       run: |
         # Check of de secrets beschikbaar zijn
