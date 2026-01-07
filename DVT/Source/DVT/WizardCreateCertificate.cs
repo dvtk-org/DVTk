@@ -80,6 +80,8 @@ namespace Dvt
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button ButtonCertificateBrowse;
+        private System.Windows.Forms.Button ButtonCertificatePathBrowse;
+        private System.Windows.Forms.CheckBox CheckBoxUseGeneratedCertificate;
         private System.Windows.Forms.TextBox TextBoxCertificateFileRoot;
         private System.Windows.Forms.TextBox TextBoxCertificateFilename;
         private System.Windows.Forms.TextBox TextBoxKeyFile;
@@ -88,6 +90,7 @@ namespace Dvt
         private System.Windows.Forms.TabControl WizardPages;
         private System.Windows.Forms.ComboBox ComboBoxKeyLength;
         private System.Windows.Forms.OpenFileDialog OpenCertificateFileDialog;
+        private System.Windows.Forms.FolderBrowserDialog OpenCertificatePathFileDialog;
         private System.Windows.Forms.DateTimePicker DateTimeFrom;
         private System.Windows.Forms.DateTimePicker DateTimeTo;
         private System.Windows.Forms.Label labelCN;
@@ -102,6 +105,22 @@ namespace Dvt
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
+		public string GetTextBoxCertificateFilename()
+		{
+			return TextBoxCertificateFilename.Text;
+        }
+        public string GetTextBoxCredentialFilename()
+        {
+            return TextBoxKeyFile.Text;
+        }
+		public bool GetUseGeneratedCertificate()
+		{ 
+			return CheckBoxUseGeneratedCertificate.Checked; 
+		}
+        public void SetUseGeneratedCertificate(bool value)
+        {
+            CheckBoxUseGeneratedCertificate.Checked = value;
+        }
         public WizardCreateCertificate()
 		{
 			//
@@ -188,6 +207,8 @@ namespace Dvt
 			this.Page5 = new System.Windows.Forms.TabPage();
 			this.TextBoxCertificateFileRoot = new System.Windows.Forms.TextBox();
 			this.ButtonCertificateBrowse = new System.Windows.Forms.Button();
+			this.ButtonCertificatePathBrowse = new System.Windows.Forms.Button();
+			this.CheckBoxUseGeneratedCertificate = new System.Windows.Forms.CheckBox();
 			this.label11 = new System.Windows.Forms.Label();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.label6 = new System.Windows.Forms.Label();
@@ -204,6 +225,7 @@ namespace Dvt
 			this.ButtonNext = new System.Windows.Forms.Button();
 			this.ButtonPrev = new System.Windows.Forms.Button();
 			this.OpenCertificateFileDialog = new System.Windows.Forms.OpenFileDialog();
+			this.OpenCertificatePathFileDialog = new System.Windows.Forms.FolderBrowserDialog();
 			this.WizardPages.SuspendLayout();
 			this.Page1.SuspendLayout();
 			this.PanelPage1.SuspendLayout();
@@ -921,7 +943,8 @@ namespace Dvt
 			// Page5
 			// 
 			this.Page5.Controls.Add(this.TextBoxCertificateFileRoot);
-			this.Page5.Controls.Add(this.ButtonCertificateBrowse);
+			this.Page5.Controls.Add(this.ButtonCertificateBrowse); 
+			this.Page5.Controls.Add(this.ButtonCertificatePathBrowse); 
 			this.Page5.Controls.Add(this.label11);
 			this.Page5.Controls.Add(this.panel4);
 			this.Page5.Controls.Add(this.label12);
@@ -932,7 +955,8 @@ namespace Dvt
 			this.Page5.Controls.Add(this.TextBoxKeyFile);
 			this.Page5.Controls.Add(this.TextBoxCertificatePassword);
 			this.Page5.Controls.Add(this.TextBoxCertificateReEnterPassword);
-			this.Page5.Location = new System.Drawing.Point(4, 25);
+            this.Page5.Controls.Add(this.CheckBoxUseGeneratedCertificate);
+            this.Page5.Location = new System.Drawing.Point(4, 25);
 			this.Page5.Name = "Page5";
 			this.Page5.Size = new System.Drawing.Size(408, 203);
 			this.Page5.TabIndex = 4;
@@ -953,10 +977,30 @@ namespace Dvt
 			this.ButtonCertificateBrowse.TabIndex = 20;
 			this.ButtonCertificateBrowse.Text = "Browse";
 			this.ButtonCertificateBrowse.Click += new System.EventHandler(this.ButtonCertificateBrowse_Click);
+
 			// 
 			// label11
 			// 
-			this.label11.Location = new System.Drawing.Point(8, 48);
+            this.ButtonCertificatePathBrowse.Location = new System.Drawing.Point(320, 80);
+            this.ButtonCertificatePathBrowse.Name = "ButtonCertificatePathBrowse";
+            this.ButtonCertificatePathBrowse.TabIndex = 21;
+            this.ButtonCertificatePathBrowse.Text = "Browse";
+            this.ButtonCertificatePathBrowse.Click += new System.EventHandler(this.ButtonCertificatePathBrowse_Click);
+            // 
+            // CheckBoxUseGeneratedCerticate
+            // 
+            this.CheckBoxUseGeneratedCertificate.Location = new System.Drawing.Point(320, 74);
+            this.CheckBoxUseGeneratedCertificate.Name = "CheckBoxUseGeneratedCertificate";
+            this.CheckBoxUseGeneratedCertificate.Size = new System.Drawing.Size(320, 100);
+            this.CheckBoxUseGeneratedCertificate.TabIndex = 0;
+            this.CheckBoxUseGeneratedCertificate.Text = "Use";
+			this.CheckBoxUseGeneratedCertificate.Enabled = true;
+			this.CheckBoxUseGeneratedCertificate.Checked = true;
+            this.CheckBoxUseGeneratedCertificate.CheckedChanged += new System.EventHandler(this.CheckBoxUseGeneratedCertificate_CheckedChanged);
+            // 
+            // label11
+            // 
+            this.label11.Location = new System.Drawing.Point(8, 48);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(104, 23);
 			this.label11.TabIndex = 17;
@@ -1085,11 +1129,11 @@ namespace Dvt
 			// OpenCertificateFileDialog
 			// 
 			this.OpenCertificateFileDialog.DefaultExt = "pem";
-			this.OpenCertificateFileDialog.Filter = "Certificate files (*.pem)|*.pem";
-			// 
-			// WizardCreateCertificate
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+			this.OpenCertificateFileDialog.Filter = "Certificate files (*.pem)|*.pem";			
+            // 
+            // WizardCreateCertificate
+            // 
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.ClientSize = new System.Drawing.Size(430, 270);
 			this.Controls.Add(this.WizardPages);
 			this.Controls.Add(this.groupBox1);
@@ -1253,6 +1297,18 @@ namespace Dvt
                 this.TextBoxCertificateFilename.Text = file.FullName;
                 this.TextBoxKeyFile.Text = file.DirectoryName + "\\key" + file.Name;
             }
+        }
+        private void ButtonCertificatePathBrowse_Click(object sender, System.EventArgs e)
+        {
+            if (this.OpenCertificatePathFileDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                this.TextBoxCertificateFilename.Text = this.OpenCertificatePathFileDialog.SelectedPath + @"\" + this.TextBoxCertificateFilename.Text;
+				this.TextBoxKeyFile.Text = this.OpenCertificatePathFileDialog.SelectedPath + @"\" + this.TextBoxKeyFile.Text;
+            }
+        }
+        private void CheckBoxUseGeneratedCertificate_CheckedChanged(object sender, System.EventArgs e)
+        {
+			SetUseGeneratedCertificate(CheckBoxUseGeneratedCertificate.Checked);
         }
 
         private bool CheckPage1Settings ()

@@ -249,6 +249,8 @@ namespace Wrappers
             throw gcnew System::ApplicationException("Credentials file does not exist");
         case ::MSG_INVALID_PASSWORD:
             throw gcnew System::ApplicationException("Credentials file password is invalid");
+        case ::MSG_PERMISSION_NOT_SUFFICIENT:
+            throw gcnew System::ApplicationException("Permission insufficient to create certificate/credential files. Please run DVT as admin or select a different path");
         case ::MSG_ERROR:
 		default:
             throw gcnew System::ApplicationException("Error generating certificate.");
