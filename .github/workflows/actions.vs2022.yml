@@ -68,9 +68,9 @@ jobs:
       run: |
         $header = Get-ChildItem -Path "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC" -Recurse -Filter "afx.h" -ErrorAction SilentlyContinue
         if ($header) {
-            Write-Host "✅ afx.h gevonden in: $($header.FullName)"
+            Write-Host "✅ afx.h found in: $($header.FullName)"
         } else {
-            Write-Error "❌ afx.h nog steeds niet gevonden op de schijf."
+            Write-Error "❌ afx.h still not found on disk."
             exit 1
         }
 
@@ -90,14 +90,14 @@ jobs:
         } else {
             Write-Host "⚠️ Waarschuwing: vswhere herkent de component nog niet. We checken nu het bestandssysteem..."
             
-            # Fallback: Controleer of de MFC mappen daadwerkelijk bestaan op schijf
+            # Fallback: Check if MFC folders actually exist on disk
             $vsPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath
             $mfcHeader = Get-ChildItem -Path "$vsPath\VC\Tools\MSVC" -Recurse -Filter "afxwin.h" -ErrorAction SilentlyContinue
             
             if ($mfcHeader) {
-                Write-Host "✅ MFC bestanden gevonden op schijf: $($mfcHeader.FullName)"
+                Write-Host "✅ MFC files found on disk: $($mfcHeader.FullName)"
             } else {
-                Write-Error "❌ MFC Component NIET gevonden (niet via vswhere en niet op het bestandssysteem)."
+                Write-Error "❌ MFC Component NOT found (not via vswhere and not on the filesystem)."
                 exit 1
             }
         }
@@ -215,7 +215,7 @@ jobs:
             
             Write-Host "Rename: $($file.Name) -> $newName"
             
-            # Controleer of het doelbestand al bestaat om fouten te voorkomen
+            # Check if target file already exists to prevent errors
             if (Test-Path $destination) {
                 Write-Host "Bestand $newName bestaat al, verwijderen van oud bestand..."
                 Remove-Item $destination -Force
@@ -229,20 +229,20 @@ jobs:
       if: ${{ github.event_name != 'pull_request' }}
       shell: pwsh
       run: |
-        # Check of de secrets beschikbaar zijn
+        # Check if secrets are available
         if ([string]::IsNullOrEmpty("${{ secrets.CERTIFICATE_BASE64 }}")) {
-            Write-Warning "⚠️ CERTIFICATE_BASE64 secret niet gevonden. MSI signing wordt overgeslagen."
+            Write-Warning "⚠️ CERTIFICATE_BASE64 secret not found. MSI signing will be skipped."
             exit 0
         }
         
         if ([string]::IsNullOrEmpty("${{ secrets.CERTIFICATE_PASSWORD }}")) {
-            Write-Warning "⚠️ CERTIFICATE_PASSWORD secret niet gevonden. MSI signing wordt overgeslagen."
+            Write-Warning "⚠️ CERTIFICATE_PASSWORD secret not found. MSI signing will be skipped."
             exit 0
         }
         
-        Write-Host "📜 Decoding certificaat..."
+        Write-Host "📜 Decoding certificate..."
         
-        # Decode het base64 certificaat naar een bestand
+        # Decode the base64 certificate to a file
         $certPath = Join-Path $env:TEMP "signing-cert.pfx"
         $certPassword = "${{ secrets.CERTIFICATE_PASSWORD }}"
         $securePassword = ConvertTo-SecureString -String $certPassword -AsPlainText -Force
@@ -250,79 +250,79 @@ jobs:
         try {
             $certBytes = [Convert]::FromBase64String("${{ secrets.CERTIFICATE_BASE64 }}")
             [IO.File]::WriteAllBytes($certPath, $certBytes)
-            Write-Host "✅ Certificaat bestand aangemaakt: $certPath"
+            Write-Host "✅ Certificate file created: $certPath"
         } catch {
-            Write-Error "❌ Fout bij decoden van certificaat: $_"
+            Write-Error "❌ Error decoding certificate: $_"
             exit 1
         }
         
-        # Verificeer dat het bestand bestaat en leesbaar is
+        # Verify that the file exists and is readable
         if (-not (Test-Path $certPath)) {
-            Write-Error "❌ Certificaat bestand niet gevonden na decode!"
+            Write-Error "❌ Certificate file not found after decode!"
             exit 1
         }
         
         $fileSize = (Get-Item $certPath).Length
-        Write-Host "Certificaat bestand grootte: $fileSize bytes"
+        Write-Host "Certificate file size: $fileSize bytes"
         
-        # Importeer het certificaat in de certificate store
-        Write-Host "📥 Importeren certificaat in certificate store..."
+        # Import the certificate into the certificate store
+        Write-Host "📥 Importing certificate into certificate store..."
         try {
             $cert = Import-PfxCertificate -FilePath $certPath -CertStoreLocation Cert:\CurrentUser\My -Password $securePassword -ErrorAction Stop
-            Write-Host "✅ Certificaat geïmporteerd met thumbprint: $($cert.Thumbprint)"
+            Write-Host "✅ Certificate imported with thumbprint: $($cert.Thumbprint)"
             Write-Host "   Subject: $($cert.Subject)"
             Write-Host "   Valid from: $($cert.NotBefore) to $($cert.NotAfter)"
             Write-Host "   Has private key: $($cert.HasPrivateKey)"
             
             if (-not $cert.HasPrivateKey) {
-                Write-Error "❌ Certificaat heeft geen private key!"
+                Write-Error "❌ Certificate has no private key!"
                 exit 1
             }
             
             $certThumbprint = $cert.Thumbprint
             
-            # Controleer Enhanced Key Usage
+            # Check Enhanced Key Usage
             $eku = $cert.EnhancedKeyUsageList | Select-Object -ExpandProperty FriendlyName
             Write-Host "   Enhanced Key Usage: $($eku -join ', ')"
             
             if ($eku -notcontains "Code Signing") {
-                Write-Warning "⚠️ Certificaat heeft geen 'Code Signing' capability. Signing kan falen."
+                Write-Warning "⚠️ Certificate does not have 'Code Signing' capability. Signing may fail."
             }
         } catch {
-            Write-Error "❌ Fout bij importeren certificaat: $_"
-            Write-Error "   Controleer of het wachtwoord correct is!"
+            Write-Error "❌ Error importing certificate: $_"
+            Write-Error "   Check if the password is correct!"
             Remove-Item $certPath -Force -ErrorAction SilentlyContinue
             exit 1
         }
         
-        # Verificeer dat certificaat zichtbaar is in store
+        # Verify that certificate is visible in store
         $storeCheck = Get-ChildItem Cert:\CurrentUser\My | Where-Object { $_.Thumbprint -eq $certThumbprint }
         if ($storeCheck) {
-            Write-Host "✓ Certificaat is zichtbaar in certificate store"
+            Write-Host "✓ Certificate is visible in certificate store"
         } else {
-            Write-Error "❌ Certificaat niet gevonden in store na import!"
+            Write-Error "❌ Certificate not found in store after import!"
             exit 1
         }
         
-        # Vind signtool.exe - gebruik ALTIJD x64 versie voor betere store toegang
+        # Find signtool.exe - ALWAYS use x64 version for better store access
         $signtool = Get-ChildItem -Path "C:\Program Files (x86)\Windows Kits" -Recurse -Filter "signtool.exe" -ErrorAction SilentlyContinue | 
                     Where-Object { $_.FullName -match '\\x64\\' } |
                     Sort-Object FullName -Descending | 
                     Select-Object -First 1
         
         if (-not $signtool) {
-            Write-Error "❌ signtool.exe niet gevonden!"
+            Write-Error "❌ signtool.exe not found!"
             Remove-Item $certPath -Force -ErrorAction SilentlyContinue
             exit 1
         }
         
         Write-Host "🔧 Using signtool: $($signtool.FullName)"
         
-        # Sign alle MSI bestanden in staging
+        # Sign all MSI files in staging
         $msiFiles = Get-ChildItem -Path "./staging" -Filter "*.msi" -Recurse
         
         if ($msiFiles.Count -eq 0) {
-            Write-Warning "⚠️ Geen MSI bestanden gevonden om te signen."
+            Write-Warning "⚠️ No MSI files found to sign."
             Remove-Item $certPath -Force -ErrorAction SilentlyContinue
             exit 0
         }
@@ -335,21 +335,21 @@ jobs:
         foreach ($msi in $msiFiles) {
             Write-Host "`n📝 Signing: $($msi.Name)"
             
-            # Sign met certificaat thumbprint uit de store + subject name als fallback
+            # Sign with certificate thumbprint from store + subject name as fallback
             & $signtool.FullName sign /sha1 $certThumbprint /n "Bennert.de.Wijs" /tr http://timestamp.digicert.com /td sha256 /fd sha256 /v /debug $msi.FullName
             
             if ($LASTEXITCODE -eq 0) {
                 Write-Host "✅ Successfully signed: $($msi.Name)"
                 $signedCount++
                 
-                # Verify signature - gebruik /a in plaats van /pa voor self-signed certificaten
+                # Verify signature - use /a instead of /pa for self-signed certificates
                 $verifyOutput = & $signtool.FullName verify /a $msi.FullName 2>&1
                 $verifyExitCode = $LASTEXITCODE
                 
                 if ($verifyExitCode -eq 0) {
                     Write-Host "   ✓ Signature verified (trusted)"
                 } else {
-                    # Voor self-signed certificaten is dit normaal
+                    # For self-signed certificates this is normal
                     if ($verifyOutput -match "root certificate which is not trusted") {
                         Write-Host "   ⚠ Self-signed certificate (expected for test certificates)"
                     } else {
@@ -357,7 +357,7 @@ jobs:
                     }
                 }
                 
-                # Reset exit code na verify zodat het script niet faalt
+                # Reset exit code after verify so the script doesn't fail
                 $LASTEXITCODE = 0
             } else {
                 Write-Warning "❌ Failed to sign $($msi.Name) (Exit code: $LASTEXITCODE)"
@@ -365,13 +365,13 @@ jobs:
             }
         }
         
-        # Verwijder het certificaat uit de store en het bestand
+        # Remove the certificate from store and the file
         Write-Host "`n🗑️ Cleaning up..."
         try {
             Remove-Item "Cert:\CurrentUser\My\$certThumbprint" -Force -ErrorAction SilentlyContinue
-            Write-Host "   Certificaat verwijderd uit store"
+            Write-Host "   Certificate removed from store"
         } catch {
-            Write-Warning "   Kon certificaat niet verwijderen uit store: $_"
+            Write-Warning "   Could not remove certificate from store: $_"
         }
         Remove-Item $certPath -Force -ErrorAction SilentlyContinue
         Write-Host "   Certificate file removed"
