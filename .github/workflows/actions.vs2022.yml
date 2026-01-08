@@ -245,6 +245,7 @@ jobs:
         # Decode het base64 certificaat naar een bestand
         $certPath = Join-Path $env:TEMP "signing-cert.pfx"
         $certPassword = "${{ secrets.CERTIFICATE_PASSWORD }}"
+        $securePassword = ConvertTo-SecureString -String $certPassword -AsPlainText -Force
         
         try {
             $certBytes = [Convert]::FromBase64String("${{ secrets.CERTIFICATE_BASE64 }}")
@@ -263,6 +264,28 @@ jobs:
         
         $fileSize = (Get-Item $certPath).Length
         Write-Host "Certificaat bestand grootte: $fileSize bytes"
+        
+        # Importeer het certificaat in de certificate store
+        Write-Host "📥 Importeren certificaat in certificate store..."
+        try {
+            $cert = Import-PfxCertificate -FilePath $certPath -CertStoreLocation Cert:\CurrentUser\My -Password $securePassword -ErrorAction Stop
+            Write-Host "✅ Certificaat geïmporteerd met thumbprint: $($cert.Thumbprint)"
+            Write-Host "   Subject: $($cert.Subject)"
+            Write-Host "   Valid from: $($cert.NotBefore) to $($cert.NotAfter)"
+            Write-Host "   Has private key: $($cert.HasPrivateKey)"
+            
+            if (-not $cert.HasPrivateKey) {
+                Write-Error "❌ Certificaat heeft geen private key!"
+                exit 1
+            }
+            
+            $certThumbprint = $cert.Thumbprint
+        } catch {
+            Write-Error "❌ Fout bij importeren certificaat: $_"
+            Write-Error "   Controleer of het wachtwoord correct is!"
+            Remove-Item $certPath -Force -ErrorAction SilentlyContinue
+            exit 1
+        }
         
         # Vind signtool.exe
         $signtool = Get-ChildItem -Path "C:\Program Files (x86)\Windows Kits" -Recurse -Filter "signtool.exe" -ErrorAction SilentlyContinue | 
@@ -295,21 +318,34 @@ jobs:
         foreach ($msi in $msiFiles) {
             Write-Host "`n📝 Signing: $($msi.Name)"
             
-            # Probeer te signen
-            & $signtool.FullName sign /f $certPath /p $certPassword /tr http://timestamp.digicert.com /td sha256 /fd sha256 /v $msi.FullName
+            # Sign met certificaat thumbprint uit de store
+            & $signtool.FullName sign /sha1 $certThumbprint /tr http://timestamp.digicert.com /td sha256 /fd sha256 /v $msi.FullName
             
             if ($LASTEXITCODE -eq 0) {
                 Write-Host "✅ Successfully signed: $($msi.Name)"
                 $signedCount++
+                
+                # Verify signature
+                & $signtool.FullName verify /pa /v $msi.FullName | Out-Null
+                if ($LASTEXITCODE -eq 0) {
+                    Write-Host "   ✓ Signature verified"
+                }
             } else {
                 Write-Warning "❌ Failed to sign $($msi.Name) (Exit code: $LASTEXITCODE)"
                 $failedCount++
             }
         }
         
-        # Verwijder het certificaat bestand
+        # Verwijder het certificaat uit de store en het bestand
+        Write-Host "`n🗑️ Cleaning up..."
+        try {
+            Remove-Item "Cert:\CurrentUser\My\$certThumbprint" -Force -ErrorAction SilentlyContinue
+            Write-Host "   Certificaat verwijderd uit store"
+        } catch {
+            Write-Warning "   Kon certificaat niet verwijderen uit store: $_"
+        }
         Remove-Item $certPath -Force -ErrorAction SilentlyContinue
-        Write-Host "`n🗑️ Certificate file removed"
+        Write-Host "   Certificate file removed"
         
         Write-Host "`n📊 Summary: $signedCount signed, $failedCount failed"
         
