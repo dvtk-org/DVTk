@@ -280,6 +280,14 @@ jobs:
             }
             
             $certThumbprint = $cert.Thumbprint
+            
+            # Controleer Enhanced Key Usage
+            $eku = $cert.EnhancedKeyUsageList | Select-Object -ExpandProperty FriendlyName
+            Write-Host "   Enhanced Key Usage: $($eku -join ', ')"
+            
+            if ($eku -notcontains "Code Signing") {
+                Write-Warning "⚠️ Certificaat heeft geen 'Code Signing' capability. Signing kan falen."
+            }
         } catch {
             Write-Error "❌ Fout bij importeren certificaat: $_"
             Write-Error "   Controleer of het wachtwoord correct is!"
@@ -287,9 +295,18 @@ jobs:
             exit 1
         }
         
-        # Vind signtool.exe
+        # Verificeer dat certificaat zichtbaar is in store
+        $storeCheck = Get-ChildItem Cert:\CurrentUser\My | Where-Object { $_.Thumbprint -eq $certThumbprint }
+        if ($storeCheck) {
+            Write-Host "✓ Certificaat is zichtbaar in certificate store"
+        } else {
+            Write-Error "❌ Certificaat niet gevonden in store na import!"
+            exit 1
+        }
+        
+        # Vind signtool.exe - gebruik ALTIJD x64 versie voor betere store toegang
         $signtool = Get-ChildItem -Path "C:\Program Files (x86)\Windows Kits" -Recurse -Filter "signtool.exe" -ErrorAction SilentlyContinue | 
-                    Where-Object { $_.FullName -match '\\x64\\' -or $_.FullName -match '\\x86\\' } |
+                    Where-Object { $_.FullName -match '\\x64\\' } |
                     Sort-Object FullName -Descending | 
                     Select-Object -First 1
         
@@ -318,8 +335,8 @@ jobs:
         foreach ($msi in $msiFiles) {
             Write-Host "`n📝 Signing: $($msi.Name)"
             
-            # Sign met certificaat thumbprint uit de store
-            & $signtool.FullName sign /sha1 $certThumbprint /tr http://timestamp.digicert.com /td sha256 /fd sha256 /v $msi.FullName
+            # Sign met certificaat thumbprint uit de store + subject name als fallback
+            & $signtool.FullName sign /sha1 $certThumbprint /n "Bennert.de.Wijs" /tr http://timestamp.digicert.com /td sha256 /fd sha256 /v /debug $msi.FullName
             
             if ($LASTEXITCODE -eq 0) {
                 Write-Host "✅ Successfully signed: $($msi.Name)"
