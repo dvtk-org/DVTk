@@ -477,6 +477,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_E81771AFA3614D319330587476519D84"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_E9ED7D0C5A854A54A1D22D4ABE5DB0ED"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -2133,6 +2139,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E81771AFA3614D319330587476519D84"
+            {
+            "SourcePath" = "8:..\\Resources\\Ico\\DVTk Based Application.ico"
+            "TargetName" = "8:DVTk Based Application.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_765938367A2247F5899D0F7EDA1E6219"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E9ED7D0C5A854A54A1D22D4ABE5DB0ED"
             {
             "SourcePath" = "8:Resources\\Example\\Scripts\\Report\\Scp\\SR_SCP.ses"
@@ -3146,7 +3172,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:DVT Examples"
         "ProductCode" = "8:{0D981EB6-7EFB-45A7-B8DF-963DAF066FF2}"
-        "PackageCode" = "8:{C80012D7-89CB-4978-9307-CC938F263726}"
+        "PackageCode" = "8:{D13A4F3C-23D3-4781-AA14-3F5FD282B5B7}"
         "UpgradeCode" = "8:{D4657724-A12D-428F-BA30-7DDF5AFCC2B1}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -3163,7 +3189,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:DVT Example Projects"
         "ARPURLINFOABOUT" = "8:http://www.dvtk.org"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_E81771AFA3614D319330587476519D84"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"

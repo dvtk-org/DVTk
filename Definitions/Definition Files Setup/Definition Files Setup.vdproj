@@ -189,6 +189,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_2386B35690E04716B7DEE42D093E3E77"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_23EA1247EF0440C0A24644A30AFB02FF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1597,6 +1603,26 @@
             "TargetName" = "8:Composite Instance Root Retrieve - Move.def"
             "Tag" = "8:"
             "Folder" = "8:_C5310A17609743ABA344B84CE5624841"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2386B35690E04716B7DEE42D093E3E77"
+            {
+            "SourcePath" = "8:..\\..\\Resources\\Ico\\DVTk Based Application.ico"
+            "TargetName" = "8:DVTk Based Application.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_6C47B7E516A145579DD5895AAAE1A5B0"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4223,6 +4249,7 @@
         "MsiBootstrapper"
         {
         "LangId" = "3:1033"
+        "RequiresElevation" = "11:FALSE"
         }
         "Product"
         {
@@ -4231,6 +4258,7 @@
         "ProductCode" = "8:{D23D3D44-B021-4A21-BC55-3E212C7D8B2D}"
         "PackageCode" = "8:{0DB5AD75-87AD-48AA-AD0F-74F06E5AFB47}"
         "UpgradeCode" = "8:{471875AD-CA34-4B49-99E5-72DA6C68E979}"
+        "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
@@ -4245,7 +4273,7 @@
         "Keywords" = "8:DVTk, DICOM, Definition, Files"
         "ARPCOMMENTS" = "8:Definition Files"
         "ARPURLINFOABOUT" = "8:http://www.dvtk.org"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_2386B35690E04716B7DEE42D093E3E77"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -4596,9 +4624,6 @@
         {
         }
         "ProjectOutput"
-        {
-        }
-        "VJSharpPlugin"
         {
         }
     }
