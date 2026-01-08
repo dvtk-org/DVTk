@@ -2096,7 +2096,7 @@
             "Name" = "8:DICOM Definition Files"
             "Condition" = "8:DEFINITIONFILESEXISTS"
             "Message" = "8:You will need to install the latest DICOM Definition Files before installing the QR SCU Emulator. Do you want to download the latest DICOM Definition Files now?"
-            "InstallUrl" = "8:http://dicom.dvtk.org/modules/wiwimod/index.php?page=Download+DICOM+Definition+Files&cmenu=downloads"
+            "InstallUrl" = "8:http://www.dvtk.org/downloads/?key=a5ad4566f90491b620a8b93f9597748b"
             }
         }
         "Locator"
