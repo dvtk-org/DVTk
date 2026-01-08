@@ -139,7 +139,7 @@ jobs:
       shell: pwsh
       run: |
         $projects = @(
-            #"Definition Files Setup",
+            "Definition Files Setup",
             "DICOM Compare Setup",
             "DICOM Editor Setup",
             "DICOM Network Analyzer Setup",
