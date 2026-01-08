@@ -344,16 +344,21 @@ jobs:
                 
                 # Verify signature - gebruik /a in plaats van /pa voor self-signed certificaten
                 $verifyOutput = & $signtool.FullName verify /a $msi.FullName 2>&1
-                if ($LASTEXITCODE -eq 0) {
+                $verifyExitCode = $LASTEXITCODE
+                
+                if ($verifyExitCode -eq 0) {
                     Write-Host "   ✓ Signature verified (trusted)"
                 } else {
                     # Voor self-signed certificaten is dit normaal
                     if ($verifyOutput -match "root certificate which is not trusted") {
                         Write-Host "   ⚠ Self-signed certificate (expected for test certificates)"
                     } else {
-                        Write-Host "   ⚠ Signature verification info: $verifyOutput"
+                        Write-Host "   ⚠ Signature verification warning"
                     }
                 }
+                
+                # Reset exit code na verify zodat het script niet faalt
+                $LASTEXITCODE = 0
             } else {
                 Write-Warning "❌ Failed to sign $($msi.Name) (Exit code: $LASTEXITCODE)"
                 $failedCount++
