@@ -336,7 +336,7 @@ jobs:
             Write-Host "`n📝 Signing: $($msi.Name)"
             
             # Sign with certificate thumbprint from store + subject name as fallback
-            & $signtool.FullName sign /sha1 $certThumbprint /n "Bennert.de.Wijs" /tr http://timestamp.digicert.com /td sha256 /fd sha256 /v /debug $msi.FullName
+            & $signtool.FullName sign /sha1 $certThumbprint /n "DVTk" /tr http://timestamp.digicert.com /td sha256 /fd sha256 /v /debug $msi.FullName
             
             if ($LASTEXITCODE -eq 0) {
                 Write-Host "✅ Successfully signed: $($msi.Name)"
