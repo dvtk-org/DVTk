@@ -2106,7 +2106,7 @@
             "Name" = "8:Search for DICOM Definition Files"
             "Folder" = "8:[CommonFilesFolder]\\DVTk\\Definition Files\\DICOM\\"
             "Depth" = "2:0"
-            "FileName" = "8:FileMeta.def"
+            "FileName" = "8:File Meta.def"
             "MinVesion" = "8:"
             "MaxVersion" = "8:"
             "MinSize" = "8:"
