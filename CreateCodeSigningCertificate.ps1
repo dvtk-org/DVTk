@@ -1,7 +1,8 @@
 # Maak een NIEUW code signing certificaat
 $cert = New-SelfSignedCertificate `
     -Type CodeSigningCert `
-    -Subject "CN=DVTk" `
+    -Subject "CN=DVTk, E=healthcare.info@ict.nl" `
+    -TextExtension @("2.5.29.17={text}email=healthcare.info@ict.nl") `
     -KeyAlgorithm RSA `
     -KeyLength 2048 `
     -HashAlgorithm SHA256 `
