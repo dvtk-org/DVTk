@@ -2128,7 +2128,7 @@
         "ProductName" = "8:DVTk Query Retrieve SCU Emulator"
         "ProductCode" = "8:{C404E1CA-9C35-4BE8-8EF0-915576F04DD6}"
         "PackageCode" = "8:{C1625E62-F50A-43AF-A268-0450D009C2E2}"
-        "UpgradeCode" = "8:{65BD9A5B-841B-4C46-964D-526A86E10385}"
+        "UpgradeCode" = "8:{A7E8F2C4-3D91-4B5E-9A12-8F6C5D4E3B2A}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
