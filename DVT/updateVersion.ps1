@@ -32,6 +32,6 @@ if ($version -eq "") {
 $filterList = @("*.vdproj")
 foreach ($filter in $filterList) {
     Write-Host "Updating $filter files with version: $version"
-    $fileList = Get-ChildItem -Path $PSScriptRoot/.. -Filter $filter -Recurse
+    $fileList = Get-ChildItem -Path $PSScriptRoot/.. -Filter $filter -Recurse | Where-Object { $_.Name -notlike "*Definition Files Setup*" }
     UpdateFilesWithVersion $fileList $version $filter
 }
