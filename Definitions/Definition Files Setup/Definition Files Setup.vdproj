@@ -4254,7 +4254,7 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Definition Files"
+        "ProductName" = "8:DVTk Definition Files"
         "ProductCode" = "8:{D23D3D44-B021-4A21-BC55-3E212C7D8B2D}"
         "PackageCode" = "8:{0DB5AD75-87AD-48AA-AD0F-74F06E5AFB47}"
         "UpgradeCode" = "8:{471875AD-CA34-4B49-99E5-72DA6C68E979}"
