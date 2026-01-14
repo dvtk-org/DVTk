@@ -203,21 +203,40 @@ jobs:
         $version = "${{ steps.gitversion.outputs.majorMinorPatch }}"
         
         Write-Host "Search all MSI files in: $searchPath"
-        $msiFiles = Get-ChildItem -Path $searchPath -Filter "*-a.b.c.msi" -Recurse
         
-        if ($msiFiles.Count -eq 0) {
-            Write-Warning "No MSI files found with placeholder '-a.b.c.msi'."
+        # Get all MSI files (including those with hardcoded versions)
+        $allMsiFiles = Get-ChildItem -Path $searchPath -Filter "*.msi" -Recurse
+        
+        if ($allMsiFiles.Count -eq 0) {
+            Write-Warning "No MSI files found in $searchPath"
+            exit 0
         }
         
-        foreach ($file in $msiFiles) {
-            $newName = $file.Name.Replace("-a.b.c", "-$version")
-            $destination = Join-Path "./staging" $newName
+        Write-Host "Found $($allMsiFiles.Count) MSI file(s)"
+        
+        foreach ($file in $allMsiFiles) {
+            $newName = $file.Name
             
-            Write-Host "Rename: $($file.Name) -> $newName"
+            # Replace placeholder version pattern
+            if ($newName -match '-a\.b\.c\.msi$') {
+                $newName = $newName -replace '-a\.b\.c\.msi$', "-$version.msi"
+                Write-Host "Rename (placeholder): $($file.Name) -> $newName"
+            }
+            # Keep file with hardcoded version pattern (e.g., -1.1.10.msi)
+            elseif ($newName -match '-\d+\.\d+\.\d+\.msi$') {
+                Write-Host "Copy: $newName"
+            }
+            # No version pattern found, continue with next file
+            else {
+                Write-Warning "Skipping file (no version pattern found): $($file.Name)"
+                continue
+            }
+            
+            $destination = Join-Path "./staging" $newName
             
             # Check if target file already exists to prevent errors
             if (Test-Path $destination) {
-                Write-Host "Bestand $newName bestaat al, verwijderen van oud bestand..."
+                Write-Host "  -> File exists, removing old file..."
                 Remove-Item $destination -Force
             }
             
