@@ -36,16 +36,37 @@ namespace DvtkApplicationLayer
         /// <returns>Boolean value</returns>
         public static bool CheckVersion(string minimumVersion, string maximumVersion)
         {
+            // Check both possible registry paths for definition files
+            string version = null;
 
-            RegistryKey key = Registry.LocalMachine;
-            key = key.OpenSubKey(@"Software\DVTk\Definition Files");
-
-            string version = (string)key.GetValue("Version");
+            foreach (string path in new[]
+            {
+                @"Software\DVTk\Definition Files",
+                @"Software\DVTk\DVTk Definition Files"
+            })
+            {
+                using (var key = Registry.LocalMachine.OpenSubKey(path))
+                {
+                    if (key != null)
+                    {
+                        version = key.GetValue("Version") as string;
+                        if (version != null)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            
             if (version == null)
             {
-                MessageBox.Show("There are no definition files installed on the machine or the installed version is very old.Please install the latest definition files.The latest stable version can be found at http://www.dvtk.org/downloads/"
-                                 , "Error", MessageBoxButtons.OK,
-                                 MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "There are no definition files installed on the machine or the installed version is very old. " + 
+                    "Please install the latest definition files. " +
+                    "The latest stable version can be found at http://www.dvtk.org/downloads/",
+                    "Error", 
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return false;
             }
             else
