@@ -14,11 +14,10 @@ Note that the DVTk library and DVTk based applications are **not** for clinical 
 
         i.	C++ ATL for v142
         ii.	C++ MFC for v142
-    ![Visual Studio Individual Components](VisualStudioIndividualComponentsToInstall.png)
  
     b.	Desktop development with C++ with following Optional components:
 
-        i.	MSVC v142 – VS 2019 C++ x64/x86 build tools
+        i.	MSVC v142 - VS 2019 C++ x64/x86 build tools
 
     c.	.NET desktop development
 
@@ -31,10 +30,21 @@ Note that the DVTk library and DVTk based applications are **not** for clinical 
 
 4.	Open Visual Studio and open DICOM.sln solution file. Do **NOT** upgrade/use latest version, if Visual Studio asks to upgrade a project.
 
-5.	Right click on the DICOM solution and click ‘Build’.
+5.	Right click on the DICOM solution and click *Build*.
 
 ### Errors
 
-If you get error regarding ‘afx.h’ (“Cannot open include file 'afx.h': No such file or directory.”), make sure to check Output tab in Visual Studio and locate the error related to afx.h. Make sure the file exists and the path is correct. If the file does not exist, download the correct MSVC version from Microsoft.
+If you get error regarding *afx.h* (*Cannot open include file 'afx.h': No such file or directory.*), make sure to check Output tab in Visual Studio and locate the error related to afx.h. Make sure the file exists and the path is correct. If the file does not exist, download the correct MSVC version from Microsoft.
+If you get error HRESULT 8000000A when building .vdproj (setup) projects, apply the following registry fix in PowerShell as Administrator:
 
+```powershell
+$instanceId = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -version "[17.0,18.0)" -property instanceId
+$registryPath = "HKCU:\SOFTWARE\Microsoft\VisualStudio\17.0_$($instanceId)_Config\MSBuild"
+if (!(Test-Path $registryPath)) {
+    New-Item -Path $registryPath -Force | Out-Null
+}
+Set-ItemProperty -Path $registryPath -Name "EnableOutOfProcBuild" -Value 0 -Type DWord
+```
+
+The setup projects can only be built after all other projects have been successfully compiled.
 
