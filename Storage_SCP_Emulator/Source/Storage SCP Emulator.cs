@@ -293,7 +293,9 @@ namespace StorageSCPEmulator
                     break;
             }
             this.textBoxCertificate.Text = this.storageOptions.DvtkScriptSession.SecuritySettings.CertificateFileName;
+            this.textBoxCertificate.BackColor = File.Exists(textBoxCertificate.Text) ? SystemColors.Control : Color.Red;
             this.textBoxCredential.Text = this.storageOptions.DvtkScriptSession.SecuritySettings.CredentialsFileName;
+            this.textBoxCredential.BackColor = File.Exists(textBoxCredential.Text) ? SystemColors.Control : Color.Red;
 
             //
             // Construct the Storage DicomOptions implicitly by constructing a DicomThread.

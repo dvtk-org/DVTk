@@ -340,7 +340,9 @@ namespace StorageSCUEmulator
                     break;
             }
             this.textBoxCertificate.Text = this.storageOptions.DvtkScriptSession.SecuritySettings.CertificateFileName;
+            this.textBoxCertificate.BackColor = File.Exists(this.textBoxCertificate.Text) ? SystemColors.Control : Color.Red;
             this.textBoxCredential.Text = this.storageOptions.DvtkScriptSession.SecuritySettings.CredentialsFileName;
+            this.textBoxCredential.BackColor = File.Exists(this.textBoxCredential.Text) ? SystemColors.Control : Color.Red;
             //Environment.CurrentDirectory = this.storageOptions.ResultsDirectory;
             //Set the Commit thread
             CommitScu commitScu = new CommitScu(this, autoValidate);
