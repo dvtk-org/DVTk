@@ -132,6 +132,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <!-- Zorg dat PIX bestanden naar output gaan -->
+    <Content Include="Resources\SQATests\Media\**\*.PIX">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
