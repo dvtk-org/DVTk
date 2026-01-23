@@ -216,13 +216,11 @@ namespace DvtkHighLevelInterface.InformationModel
             worklistQueryRequest.DataSet.Set("0x00100010", VR.PN, "");
             worklistQueryRequest.DataSet.Set("0x00400100[1]/0x00400001", VR.AE, "");
             worklistQueryRequest.DataSet.Set("0x00400100[1]/0x00400002", VR.DA, "");
-            worklistQueryRequest.DataSet.Set("0x00400100[1]/0x00080060", VR.CS, "CT");
+            worklistQueryRequest.DataSet.Set("0x00400100[1]/0x00080060", VR.CS, "MA"); // Only d1I00011.dcm matches
 
             ThreadManager threadManager = new ThreadManager();
 
             Ticket1152DicomThread thread = new Ticket1152DicomThread(worklistQueryRequest, 4);
-
-
 
             thread.Initialize(threadManager);
 
@@ -232,7 +230,8 @@ namespace DvtkHighLevelInterface.InformationModel
 
             thread.WaitForCompletion();
 
-            Assert.That(thread.RspMessageCount, Is.EqualTo(3));
+            // Expecting 1 match and 1 final response.
+            Assert.AreEqual(2, thread.RspMessageCount, "Response Message Count not as expected.");
         }
 
         private class Ticket1152DicomThread : DicomThread
