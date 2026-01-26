@@ -144,9 +144,9 @@
 		XCOPY /E /I "$(ProjectDir)Data" "$(TargetDir)Data"
 
 		IF NOT EXIST "$(TargetDir)CharacterSets" (
-		mkdir "$(TargetDir)CharacterSets"
+		mkdir "$(TargetDir)CharacterSets" 2&gt;nul
 		)
-		xcopy /Y "$(ProjectDir)..\..\..\Resources\CharacterSets" "$(TargetDir)CharacterSets"
+		xcopy /Y /D "$(ProjectDir)..\..\..\Resources\CharacterSets" "$(TargetDir)CharacterSets"
 		copy "$(ProjectDir)..\..\..\Resources\CharacterSets.dat" "$(TargetDir)"
 		copy "$(ProjectDir)..\..\..\Resources\AllDimseCommands.def" "$(TargetDir)"
 		copy "$(ProjectDir)..\..\..\..\Resources\Libs\libcrypto-3.dll" "$(TargetDir)"
