@@ -1528,7 +1528,7 @@ namespace DvtkHighLevelInterface.Dicom.Threads
             scu1358.Options.DvtkScriptSession.SecuritySettings.MaxTlsVersionFlags = DvtkSession.TlsVersionFlags.TLS_VERSION_TLSv1_0;
             scu1358.Options.DvtkScriptSession.SecuritySettings.MinTlsVersionFlags = DvtkSession.TlsVersionFlags.TLS_VERSION_TLSv1_0;
             //scu1358.Options.DvtkScriptSession.SecuritySettings.CipherFlags = DvtkSession.CipherFlags.TLS_AUTHENICATION_METHOD_RSA | DvtkSession.CipherFlags.TLS_KEY_EXCHANGE_METHOD_RSA | DvtkSession.CipherFlags.TLS_DATA_INTEGRITY_METHOD_SHA1 | DvtkSession.CipherFlags.TLS_ENCRYPTION_METHOD_3DES;
-            
+
             scp1358.Options.ResultsFileNameOnlyWithoutExtension = "Ticket1358_2_scp_" + timeoutScp.ToString();
             scp1358.Options.DvtkScriptSession.SecuritySettings.MaxTlsVersionFlags = DvtkSession.TlsVersionFlags.TLS_VERSION_TLSv1_0;
             scp1358.Options.DvtkScriptSession.SecuritySettings.MinTlsVersionFlags = DvtkSession.TlsVersionFlags.TLS_VERSION_TLSv1_0;
@@ -2210,7 +2210,7 @@ namespace DvtkHighLevelInterface.Dicom.Threads
                 }
                 else
                 {
-                    throw new Exception("Not supposed to get here");
+                    throw new Exception("Not suppose to get here");
                 }
             }
         }

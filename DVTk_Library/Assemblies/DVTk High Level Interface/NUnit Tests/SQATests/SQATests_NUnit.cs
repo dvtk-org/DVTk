@@ -985,7 +985,7 @@ namespace DvtkHighLevelInterface.SqaTests
             string scpScriptFile = Path.Combine(Paths.SQATestsResourcesDirectoryFullPath, @"extendedchar\worklist\SCP_MWL.dss");
             string scpSessionFile = Path.Combine(Paths.SQATestsResourcesDirectoryFullPath, @"extendedchar\worklist\SCP_MWL.ses");
 
-            Assert.That(ValidateDicomScriptPair(scuScriptFile, scuSessionFile, scpScriptFile, scpSessionFile, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0));
+            Assert.That(ValidateDicomScriptPair(scuScriptFile, scuSessionFile, scpScriptFile, scpSessionFile, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0));
         }
 
 

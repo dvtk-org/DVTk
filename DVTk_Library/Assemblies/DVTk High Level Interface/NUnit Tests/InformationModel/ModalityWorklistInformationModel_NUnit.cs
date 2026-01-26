@@ -26,6 +26,7 @@ using NUnit.Framework;
 using System;
 //using NUnit.Framework.SyntaxHelpers;
 using System.IO;
+using System.Threading;
 using DataSet = DvtkHighLevelInterface.Dicom.Other.DataSet;
 using DimseCommand = DvtkData.Dimse.DimseCommand;
 using VR = DvtkData.Dimse.VR;
@@ -76,7 +77,7 @@ namespace DvtkHighLevelInterface.InformationModel
             String dataDirectoryFullName = Path.Combine(Paths.DataDirectoryFullPath, "Ticket1152");
             DirectoryInfo directoryInfo = new DirectoryInfo(dataDirectoryFullName);
 
-            FileInfo[] fileInfos = directoryInfo.GetFiles();
+            FileInfo[] fileInfos = directoryInfo.GetFiles("*.dcm");
 
             if (fileInfos.Length != 0)
             {
@@ -265,6 +266,8 @@ namespace DvtkHighLevelInterface.InformationModel
                 scu.Initialize(this);
 
                 Config.SetOptions(scu, "Ticket1152", "SCU " + i.ToString());
+                Options.ResultsDirectory = Paths.ResultsDirectoryFullPath;
+                Options.ResultsFileNameOnlyWithoutExtension = "Ticket1152_" + i.ToString();
 
                 scp = new CFINDSCP();
 
