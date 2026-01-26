@@ -262,9 +262,9 @@
 			Copy "$(ProjectDir)..\DVTk_Library\Resources\CharacterSets.dat" "$(TargetDir)"
 			Copy "$(ProjectDir)..\DVTk_Library\Resources\ImageDisplayFormat.dat" "$(TargetDir)"
 			IF NOT EXIST "$(TargetDir)CharacterSets" (
-			mkdir "$(TargetDir)CharacterSets" 2&gt;nul
+			mkdir "$(TargetDir)CharacterSets"
 			)
-			xcopy /Y /D "$(ProjectDir)..\DVTk_Library\Resources\CharacterSets" "$(TargetDir)CharacterSets"
+			xcopy /Y "$(ProjectDir)..\DVTk_Library\Resources\CharacterSets" "$(TargetDir)CharacterSets"
 			Copy "$(ProjectDir)Resources\fold.gif" "$(TargetDir)"
 			Copy "$(ProjectDir)Resources\list.gif" "$(TargetDir)"
 			Copy "$(ProjectDir)Resources\open.gif" "$(TargetDir)"

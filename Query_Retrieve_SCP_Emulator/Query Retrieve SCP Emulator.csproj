@@ -205,9 +205,9 @@
 			copy "$(ProjectDir)..\DVTk_Library\Resources\DVT_RESULTS.xslt" "$(TargetDir)"
 
 			IF NOT EXIST "$(TargetDir)CharacterSets" (
-			mkdir "$(TargetDir)CharacterSets" 2&gt;nul
+			mkdir "$(TargetDir)CharacterSets"
 			)
-			xcopy /Y /D "$(ProjectDir)..\DVTk_Library\Resources\CharacterSets" "$(TargetDir)CharacterSets"
+			xcopy /Y "$(ProjectDir)..\DVTk_Library\Resources\CharacterSets" "$(TargetDir)CharacterSets"
 
 			copy "$(ProjectDir)..\Resources\Libs\libeay32.dll" "$(TargetDir)"
 			copy "$(ProjectDir)..\Resources\Libs\ssleay32.dll" "$(TargetDir)"

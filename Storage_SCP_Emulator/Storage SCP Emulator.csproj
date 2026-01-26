@@ -183,8 +183,8 @@
 			copy /Y "$(ProjectDir)..\DVTk_Library\Resources\DVT_RESULTS.xslt" "$(TargetDir)"
 			copy /Y "$(ProjectDir)..\Resources\Libs\Microsoft.mshtml.dll" "$(TargetDir)"
 
-			if not exist "$(TargetDir)CharacterSets" mkdir "$(TargetDir)CharacterSets" 2&gt;nul
-			xcopy /Y /D /S /E /I "$(ProjectDir)..\DVTk_Library\Resources\CharacterSets" "$(TargetDir)CharacterSets"
+			if not exist "$(TargetDir)CharacterSets" mkdir "$(TargetDir)CharacterSets"
+			xcopy /Y /S /E /I "$(ProjectDir)..\DVTk_Library\Resources\CharacterSets" "$(TargetDir)CharacterSets"
 		</PostBuildEvent>
 	</PropertyGroup>
 </Project>

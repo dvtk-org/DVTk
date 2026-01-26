@@ -179,17 +179,17 @@
 			copy "$(ProjectDir)\Resources\Microsoft.mshtml.dll" "$(TargetDir)"
 
 			IF NOT EXIST "$(TargetDir)Results" (
-			mkdir "$(TargetDir)Results" 2&gt;nul
+			mkdir "$(TargetDir)Results"
 			)
 
 			IF NOT EXIST "$(TargetDir)Definitions" (
-			mkdir "$(TargetDir)Definitions" 2&gt;nul
+			mkdir "$(TargetDir)Definitions"
 			)
 
 			IF NOT EXIST "$(TargetDir)CharacterSets" (
-			mkdir "$(TargetDir)CharacterSets" 2&gt;nul
+			mkdir "$(TargetDir)CharacterSets"
 			)
-			xcopy /Y /D "$(ProjectDir)..\DVTk_Library\Resources\CharacterSets" "$(TargetDir)CharacterSets"
+			xcopy /Y "$(ProjectDir)..\DVTk_Library\Resources\CharacterSets" "$(TargetDir)CharacterSets"
 		</PostBuildEvent>
 	</PropertyGroup>
 </Project>

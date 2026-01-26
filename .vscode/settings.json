@@ -1,4 +1,0 @@
-{
-    "dotnet.preferCSharpExtension": true,
-    "dotnet.defaultSolution": "DICOM.sln"
-}

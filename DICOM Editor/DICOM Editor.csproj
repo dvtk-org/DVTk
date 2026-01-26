@@ -219,7 +219,7 @@
 			echo Creating directories and copying files to "$(TargetDir)".
 
 			IF NOT EXIST "$(TargetDir)Results" (
-			mkdir "$(TargetDir)Results" 2&gt;nul
+			mkdir "$(TargetDir)Results"
 			)
 
 			copy "$(ProjectDir)..\DVTk_Library\Resources\DVT_RESULTS.xslt" "$(TargetDir)"

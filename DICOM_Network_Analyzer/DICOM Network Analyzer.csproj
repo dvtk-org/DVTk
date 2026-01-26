@@ -225,17 +225,17 @@
 			copy "$(ProjectDir)..\DVTk_Library\Resources\DVT_RESULTS.xslt" "$(TargetDir)"
 
 			IF NOT EXIST "$(TargetDir)Results" (
-			mkdir "$(TargetDir)Results" 2&gt;nul
+			mkdir "$(TargetDir)Results"
 			)
 
 			IF NOT EXIST "$(TargetDir)Dcm" (
-			mkdir "$(TargetDir)DCM" 2&gt;nul
+			mkdir "$(TargetDir)DCM"
 			)
 
 			IF NOT EXIST "$(TargetDir)CharacterSets" (
-			mkdir "$(TargetDir)CharacterSets" 2&gt;nul
+			mkdir "$(TargetDir)CharacterSets"
 			)
-			xcopy /Y /D "$(ProjectDir)..\DVTk_Library\Resources\CharacterSets" "$(TargetDir)CharacterSets"
+			xcopy /Y "$(ProjectDir)..\DVTk_Library\Resources\CharacterSets" "$(TargetDir)CharacterSets"
 		</PostBuildEvent>
 	</PropertyGroup>
 </Project>
