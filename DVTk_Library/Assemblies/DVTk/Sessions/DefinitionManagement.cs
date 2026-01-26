@@ -524,7 +524,8 @@ namespace Dvtk.Sessions
                 System.IO.DirectoryInfo directoryInfo =
                     new System.IO.DirectoryInfo(value);
                 if (!directoryInfo.Exists)
-                    throw new System.ArgumentException("Definition file directory does not exist.");
+                    throw new System.ArgumentException(
+                        $"Definition file directory '{value}' does not exist.");
                 base.Insert(index, value);
             }
         }
@@ -540,7 +541,8 @@ namespace Dvtk.Sessions
             System.IO.DirectoryInfo directoryInfo =
                 new System.IO.DirectoryInfo(value);
             if (!directoryInfo.Exists)
-                throw new System.ArgumentException("Definition file directory does not exist.");
+                throw new System.ArgumentException(
+                    $"Definition file directory '{value}' does not exist.");
             base.Insert(index, value);
         }
 
@@ -584,7 +586,8 @@ namespace Dvtk.Sessions
             System.IO.DirectoryInfo directoryInfo =
                 new System.IO.DirectoryInfo(value);
             if (!directoryInfo.Exists)
-                throw new System.ArgumentException("Definition file directory does not exist.");
+                throw new System.ArgumentException(
+                    $"Definition file directory '{value}' does not exist.");
             return base.Add(value);
         }
     }
