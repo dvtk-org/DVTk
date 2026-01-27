@@ -62,7 +62,7 @@ ADD-GROUP-LENGTH false
 CONTINUE-ON-ERROR false
 
 # Definitions
-DEFINITION-DIRECTORY "..\..\..\..\..\definitions\DICOM\"
+DEFINITION-DIRECTORY "..\..\..\..\..\..\definitions\DICOM\"
 DEFINITION "Modality Worklist Information Model - Find.def"
 
 # DICOMScripts
