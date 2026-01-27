@@ -199,6 +199,21 @@ jobs:
         $fileCount = (Get-ChildItem -Path $targetDir -File).Count
         Write-Host "Installed $fileCount definition files"
 
+    - name: Copy SQA Tests Resources
+      shell: pwsh
+      run: |
+        $sourceDir = "DVTk_Library\SQA Tests\Validation_tests"
+        $targetDir = "bin\Release\Resources\SQATests"
+        
+        Write-Host "Creating directory: $targetDir"
+        New-Item -ItemType Directory -Force -Path $targetDir | Out-Null
+        
+        Write-Host "Copying SQA test resources from $sourceDir to $targetDir"
+        Copy-Item -Path "$sourceDir\*" -Destination $targetDir -Recurse -Force
+        
+        $itemCount = (Get-ChildItem -Path $targetDir -Recurse | Measure-Object).Count
+        Write-Host "Copied $itemCount items to test resources directory"
+
     - name: Run Tests
       continue-on-error: true
       shell: cmd
