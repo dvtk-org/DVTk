@@ -141,14 +141,14 @@ jobs:
         $targetDir = "C:\Program Files (x86)\Common Files\DVTk\Definition Files\DICOM"
         $sourceDir = "Definitions\DICOM"
         
-        Write-Host "📁 Creating definition files directory: $targetDir"
+        Write-Host "Creating definition files directory: $targetDir"
         New-Item -ItemType Directory -Force -Path $targetDir | Out-Null
         
-        Write-Host "📋 Copying definition files from $sourceDir to $targetDir"
+        Write-Host "Copying definition files from $sourceDir to $targetDir"
         Copy-Item -Path "$sourceDir\*" -Destination $targetDir -Recurse -Force
         
         $fileCount = (Get-ChildItem -Path $targetDir -File).Count
-        Write-Host "✅ Installed $fileCount definition files"
+        Write-Host "Installed $fileCount definition files"
 
     - name: Run Tests
       continue-on-error: true
