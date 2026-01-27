@@ -62,7 +62,7 @@ ADD-GROUP-LENGTH false
 CONTINUE-ON-ERROR false
 
 # Definitions
-DEFINITION-DIRECTORY "..\..\..\..\definitions\DICOM\"
+DEFINITION-DIRECTORY "..\..\..\..\..\definitions\DICOM\"
 DEFINITION "File Meta.def"
 DEFINITION "Media Storage Directory.def"
 DEFINITION "Secondary Capture Image Storage.def"

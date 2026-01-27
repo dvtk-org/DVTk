@@ -63,7 +63,7 @@ ADD-GROUP-LENGTH false
 SUPPORTED-TRANSFER-SYNTAX "1.2.840.10008.1.2"
 
 # Definitions
-DEFINITION-DIRECTORY "..\..\..\..\..\definitions\DICOM\"
+DEFINITION-DIRECTORY "..\..\..\..\..\..\definitions\DICOM\"
 DEFINITION "Secondary Capture Image Storage.def"
 DEFINITION "File Meta.def"
 
