@@ -336,7 +336,7 @@ namespace DvtkHighLevelInterface.SqaTests
             string scriptFile = Path.Combine(Paths.SQATestsResourcesDirectoryFullPath, @"Validation\val_test_vr_fail.ds");
             string sessionFile = Path.Combine(Paths.SQATestsResourcesDirectoryFullPath, @"Validation\test_validation.ses");
 
-            Assert.That(ValidateDicomScript(sessionFile, scriptFile, 0, 0, 0, 0, 102, 2));
+            Assert.That(ValidateDicomScript(sessionFile, scriptFile, 0, 0, 0, 0, 96, 3));
         }
 
 
