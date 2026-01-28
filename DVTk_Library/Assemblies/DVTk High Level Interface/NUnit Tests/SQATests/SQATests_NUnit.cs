@@ -95,6 +95,19 @@ namespace DvtkHighLevelInterface.SqaTests
             dicomThread.Options.Identifier = "Overview";
             dicomThread.Options.LogChildThreadsOverview = false;
 
+            // Log definition directory for debugging
+            string defDir = Path.Combine(
+                Path.GetDirectoryName(
+                    Path.GetDirectoryName(
+                        Path.GetDirectoryName(
+                            Path.GetDirectoryName(Paths.SQATestsResourcesDirectoryFullPath)))),
+                "definitions",
+                "DICOM"
+            );
+            bool defDirExists = Directory.Exists(defDir);
+            System.Diagnostics.Debug.WriteLine($"Expected definitions directory: {defDir}");
+            System.Diagnostics.Debug.WriteLine($"Definitions directory exists: {defDirExists}");
+
             HliForm theHliForm = new HliForm();
             theHliForm.Attach(dicomThread);
 
