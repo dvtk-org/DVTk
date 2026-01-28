@@ -17,10 +17,10 @@
 
 RECEIVE ASSOCIATE-RQ (
         PRESENTATION-CONTEXT-ITEMS
-        ("Modality Worklist FIND SOP Class", "Implicit VR Little Endian")
+        ("Modality Worklist Information Model - FIND SOP Class", "Implicit VR Little Endian")
 )
 
 SEND ASSOCIATE-AC (
         PRESENTATION-CONTEXT-ITEMS
-        ("Modality Worklist FIND SOP Class", 0, "Implicit VR Little Endian")
+        ("Modality Worklist Information Model - FIND SOP Class", 0, "Implicit VR Little Endian")
 )
