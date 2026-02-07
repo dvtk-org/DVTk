@@ -110,7 +110,7 @@ Write-Host "            CERTIFICATE-FILENAME test_sys_2.cert.pem" -ForegroundCol
 Write-Host "   SCU uses: CREDENTIALS-FILENAME test_sys_2.cert_and_key.pem" -ForegroundColor Gray
 Write-Host "            CERTIFICATE-FILENAME test_sys_1.cert.pem" -ForegroundColor Gray
 Write-Host ""
-Write-Host "You can now run the secure_connection_1 NUnit test." -ForegroundColor Green
+Write-Host "You can now run the DicomThread_NUnit tests." -ForegroundColor Green
 Write-Host ""
 
 Pop-Location
