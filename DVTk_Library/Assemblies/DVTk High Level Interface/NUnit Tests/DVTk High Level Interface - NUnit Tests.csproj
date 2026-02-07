@@ -151,11 +151,11 @@
 		copy "$(ProjectDir)..\..\..\Resources\AllDimseCommands.def" "$(TargetDir)"
 		copy "$(ProjectDir)..\..\..\..\Resources\Libs\libcrypto-3.dll" "$(TargetDir)"
 		copy "$(ProjectDir)..\..\..\..\Resources\Libs\libssl-3.dll" "$(TargetDir)"
-    REM Copy SQA Tests resources
-    IF NOT EXIST "$(TargetDir)Resources\SQATests" (
-    mkdir "$(TargetDir)Resources\SQATests"
-    )
-    xcopy /Y /E /I "$(ProjectDir)..\..\..\SQA Tests\Validation_tests\*" "$(TargetDir)Resources\SQATests"
+		REM Copy SQA Tests resources
+		IF NOT EXIST "$(TargetDir)Resources\SQATests" (
+		mkdir "$(TargetDir)Resources\SQATests"
+		)
+		xcopy /Y /E /I "$(ProjectDir)..\..\..\SQA Tests\Validation_tests\*" "$(TargetDir)Resources\SQATests"
     </PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
