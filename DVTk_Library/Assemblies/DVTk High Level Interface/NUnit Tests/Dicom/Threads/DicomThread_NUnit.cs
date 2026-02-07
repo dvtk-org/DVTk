@@ -185,11 +185,6 @@ namespace DvtkHighLevelInterface.Dicom.Threads
 
             DicomMessage dicomMessage = DicomMessage_NUnit.CreateValidPatientRootQueryRetrieveCFindRq();
 
-            dicomMessage.DataSet.Set("0x00080018", VR.UI, "");
-            dicomMessage.DataSet.Set("0x00100020", VR.LO, "*");
-            dicomMessage.DataSet.Set("0x0020000D", VR.UI, "1.2.3.4.5");
-            dicomMessage.DataSet.Set("0x0020000E", VR.UI, "1.2.3.4.5.6");
-
             DicomThreadValideDicomMessageTwiceWithoutIodNameParameter dicomThread = new DicomThreadValideDicomMessageTwiceWithoutIodNameParameter(dicomMessage);
             dicomThread.Initialize(threadManager);
 
