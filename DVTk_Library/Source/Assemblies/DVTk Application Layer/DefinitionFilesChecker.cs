@@ -43,7 +43,7 @@ namespace DvtkApplicationLayer
             string version = (string)key.GetValue("Version");
             if (version == null)
             {
-                MessageBox.Show("There are no definition files installed on the machine or the installed version is very old.Please install the latest definition files.The latest stable version can be found at http://dicom.dvtk.org/modules/wiwimod/index.php?page=Downloads&cmenu=downloads"
+                MessageBox.Show("There are no definition files installed on the machine or the installed version is very old.Please install the latest definition files.The latest stable version can be found at http://www.dvtk.org/downloads/"
                                  , "Error", MessageBoxButtons.OK,
                                  MessageBoxIcon.Error);
                 return false;
@@ -72,7 +72,7 @@ namespace DvtkApplicationLayer
                     }
                     else 
                     {
-                        MessageBox.Show("The definition files need to be updated.The latest stable definition files can be found at http://dicom.dvtk.org/modules/wiwimod/index.php?page=Downloads&cmenu=downloads",
+                        MessageBox.Show("The definition files need to be updated.The latest stable definition files can be found at http://www.dvtk.org/downloads/",
                                     "Warning",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Exclamation);
@@ -87,7 +87,7 @@ namespace DvtkApplicationLayer
                         }
                         else
                         {
-                            MessageBox.Show("The definition files are not compatible with the application.Check for an update of the application or downgrade the application.Use the following link http://dicom.dvtk.org/modules/wiwimod/index.php?page=Downloads&cmenu=downloads",
+                            MessageBox.Show("The definition files are not compatible with the application.Check for an update of the application or downgrade the application.Use the following link http://www.dvtk.org/downloads/",
                                     "Warning",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Exclamation);
@@ -97,7 +97,7 @@ namespace DvtkApplicationLayer
                 }
                 else if (definitionFilesVersion < minVersion)
                 {
-                    MessageBox.Show("The definition files need to be updated.The latest stable definition files can be found at http://dicom.dvtk.org/modules/wiwimod/index.php?page=Downloads&cmenu=downloads",
+                    MessageBox.Show("The definition files need to be updated.The latest stable definition files can be found at http://www.dvtk.org/downloads/",
                                     "Warning",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Exclamation);
@@ -106,7 +106,7 @@ namespace DvtkApplicationLayer
                 }
                 else
                 {
-                    MessageBox.Show("The definition files are not compatible with the application.Check for an update of the application or downgrade the application.Use the following link http://dicom.dvtk.org/modules/wiwimod/index.php?page=Downloads&cmenu=downloads",
+                    MessageBox.Show("The definition files are not compatible with the application.Check for an update of the application or downgrade the application.Use the following link http://www.dvtk.org/downloads/",
                                     "Warning",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Exclamation);

@@ -189,6 +189,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_2386B35690E04716B7DEE42D093E3E77"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_23EA1247EF0440C0A24644A30AFB02FF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -957,7 +963,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\Definition Files Setup.msi"
+        "OutputFilename" = "8:..\\..\\bin\\Setups\\Debug\\DVTk_Definition_Files-1.1.10.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -984,19 +990,19 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\Definitions.msi"
+        "OutputFilename" = "8:..\\..\\bin\\Setups\\Release\\DVTk_Definition_Files-1.1.10.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
         "Compression" = "3:2"
-        "SignOutput" = "11:FALSE"
+        "SignOutput" = "11:TRUE"
         "CertificateFile" = "8:"
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
             "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
             {
-            "Enabled" = "11:FALSE"
+            "Enabled" = "11:TRUE"
             "PromptEnabled" = "11:TRUE"
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
@@ -1597,6 +1603,26 @@
             "TargetName" = "8:Composite Instance Root Retrieve - Move.def"
             "Tag" = "8:"
             "Folder" = "8:_C5310A17609743ABA344B84CE5624841"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2386B35690E04716B7DEE42D093E3E77"
+            {
+            "SourcePath" = "8:..\\..\\Resources\\Ico\\DVTk Based Application.ico"
+            "TargetName" = "8:DVTk Based Application.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_6C47B7E516A145579DD5895AAAE1A5B0"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4223,14 +4249,16 @@
         "MsiBootstrapper"
         {
         "LangId" = "3:1033"
+        "RequiresElevation" = "11:FALSE"
         }
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Definition Files"
+        "ProductName" = "8:DVTk Definition Files"
         "ProductCode" = "8:{D23D3D44-B021-4A21-BC55-3E212C7D8B2D}"
         "PackageCode" = "8:{0DB5AD75-87AD-48AA-AD0F-74F06E5AFB47}"
         "UpgradeCode" = "8:{471875AD-CA34-4B49-99E5-72DA6C68E979}"
+        "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
@@ -4245,7 +4273,7 @@
         "Keywords" = "8:DVTk, DICOM, Definition, Files"
         "ARPCOMMENTS" = "8:Definition Files"
         "ARPURLINFOABOUT" = "8:http://www.dvtk.org"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_2386B35690E04716B7DEE42D093E3E77"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -4596,9 +4624,6 @@
         {
         }
         "ProjectOutput"
-        {
-        }
-        "VJSharpPlugin"
         {
         }
     }

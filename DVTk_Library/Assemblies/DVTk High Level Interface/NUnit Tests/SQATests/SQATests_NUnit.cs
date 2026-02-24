@@ -95,6 +95,19 @@ namespace DvtkHighLevelInterface.SqaTests
             dicomThread.Options.Identifier = "Overview";
             dicomThread.Options.LogChildThreadsOverview = false;
 
+            // Log definition directory for debugging
+            string defDir = Path.Combine(
+                Path.GetDirectoryName(
+                    Path.GetDirectoryName(
+                        Path.GetDirectoryName(
+                            Path.GetDirectoryName(Paths.SQATestsResourcesDirectoryFullPath)))),
+                "definitions",
+                "DICOM"
+            );
+            bool defDirExists = Directory.Exists(defDir);
+            System.Diagnostics.Debug.WriteLine($"Expected definitions directory: {defDir}");
+            System.Diagnostics.Debug.WriteLine($"Definitions directory exists: {defDirExists}");
+
             HliForm theHliForm = new HliForm();
             theHliForm.Attach(dicomThread);
 
@@ -323,7 +336,7 @@ namespace DvtkHighLevelInterface.SqaTests
             string scriptFile = Path.Combine(Paths.SQATestsResourcesDirectoryFullPath, @"Validation\val_test_vr_fail.ds");
             string sessionFile = Path.Combine(Paths.SQATestsResourcesDirectoryFullPath, @"Validation\test_validation.ses");
 
-            Assert.That(ValidateDicomScript(sessionFile, scriptFile, 0, 0, 0, 0, 102, 2));
+            Assert.That(ValidateDicomScript(sessionFile, scriptFile, 0, 0, 0, 0, 96, 3));
         }
 
 

@@ -132,6 +132,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <!-- Zorg dat PIX bestanden naar output gaan -->
+    <Content Include="Resources\SQATests\Media\**\*.PIX">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -140,14 +144,19 @@
 		XCOPY /E /I "$(ProjectDir)Data" "$(TargetDir)Data"
 
 		IF NOT EXIST "$(TargetDir)CharacterSets" (
-		mkdir "$(TargetDir)CharacterSets"
+		mkdir "$(TargetDir)CharacterSets" 2&gt;nul
 		)
-		xcopy /Y "$(ProjectDir)..\..\..\Resources\CharacterSets" "$(TargetDir)CharacterSets"
+		xcopy /Y /D "$(ProjectDir)..\..\..\Resources\CharacterSets" "$(TargetDir)CharacterSets"
 		copy "$(ProjectDir)..\..\..\Resources\CharacterSets.dat" "$(TargetDir)"
 		copy "$(ProjectDir)..\..\..\Resources\AllDimseCommands.def" "$(TargetDir)"
 		copy "$(ProjectDir)..\..\..\..\Resources\Libs\libcrypto-3.dll" "$(TargetDir)"
 		copy "$(ProjectDir)..\..\..\..\Resources\Libs\libssl-3.dll" "$(TargetDir)"
-	</PostBuildEvent>
+		REM Copy SQA Tests resources
+		IF NOT EXIST "$(TargetDir)Resources\SQATests" (
+		mkdir "$(TargetDir)Resources\SQATests"
+		)
+		xcopy /Y /E /I "$(ProjectDir)..\..\..\SQA Tests\Validation_tests\*" "$(TargetDir)Resources\SQATests"
+    </PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -13,8 +13,8 @@
 ##  Post-conditions:
 ##       - query started
 ## 
-RECEIVE C-FIND-RQ "Modality Worklist FIND" (
- (0x00000002, UI, "Modality Worklist FIND SOP Class")
+RECEIVE C-FIND-RQ "Modality Worklist Information Model - FIND SOP Class" (
+ (0x00000002, UI, "Modality Worklist Information Model - FIND SOP Class")
 
  (0x00400100, SQ,
 > (0x00400001, "CALLINGAETITLE")

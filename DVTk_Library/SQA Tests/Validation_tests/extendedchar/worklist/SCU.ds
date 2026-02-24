@@ -4,20 +4,20 @@
 
 SEND ASSOCIATE-RQ (
         PRESENTATION-CONTEXT-ITEMS
-        ("Modality Worklist FIND SOP Class",
+        ("Modality Worklist Information Model - FIND SOP Class",
          "Implicit VR Little Endian")
 )
 
 RECEIVE ASSOCIATE-AC (
         PRESENTATION-CONTEXT-ITEMS
-        ("Modality Worklist FIND SOP Class",
+        ("Modality Worklist Information Model - FIND SOP Class",
          0,
          "Implicit VR Little Endian")
 )
 
 
-SEND C-FIND-RQ "Modality Worklist FIND" (
-(0x00000002, "Modality Worklist FIND SOP Class")
+SEND C-FIND-RQ "Modality Worklist Information Model - FIND SOP Class" (
+(0x00000002, "Modality Worklist Information Model - FIND SOP Class")
 
 (0x00100010, "*") # Patient's Name
 (0x00100020, "") # Patient ID
@@ -29,28 +29,28 @@ SEND C-FIND-RQ "Modality Worklist FIND" (
 )
 )
 
-RECEIVE C-FIND-RSP "Modality Worklist FIND" (
-(0x00000002, "Modality Worklist FIND SOP Class")
+RECEIVE C-FIND-RSP "Modality Worklist Information Model - FIND SOP Class" (
+(0x00000002, "Modality Worklist Information Model - FIND SOP Class")
 (0x00000900, 0xFF00)
 )
 
-RECEIVE C-FIND-RSP "Modality Worklist FIND" (
-(0x00000002, "Modality Worklist FIND SOP Class")
+RECEIVE C-FIND-RSP "Modality Worklist Information Model - FIND SOP Class" (
+(0x00000002, "Modality Worklist Information Model - FIND SOP Class")
 (0x00000900, 0xFF00)
 )
 
-RECEIVE C-FIND-RSP "Modality Worklist FIND" (
-(0x00000002, "Modality Worklist FIND SOP Class")
+RECEIVE C-FIND-RSP "Modality Worklist Information Model - FIND SOP Class" (
+(0x00000002, "Modality Worklist Information Model - FIND SOP Class")
 (0x00000900, 0xFF00)
 )
 
-RECEIVE C-FIND-RSP "Modality Worklist FIND" (
-(0x00000002, "Modality Worklist FIND SOP Class")
+RECEIVE C-FIND-RSP "Modality Worklist Information Model - FIND SOP Class" (
+(0x00000002, "Modality Worklist Information Model - FIND SOP Class")
 (0x00000900, 0xFF00)
 )
 
-RECEIVE C-FIND-RSP "Modality Worklist FIND" (
-(0x00000002, "Modality Worklist FIND SOP Class")
+RECEIVE C-FIND-RSP "Modality Worklist Information Model - FIND SOP Class" (
+(0x00000002, "Modality Worklist Information Model - FIND SOP Class")
 (0x00000900, 0xFF00)
 )
 

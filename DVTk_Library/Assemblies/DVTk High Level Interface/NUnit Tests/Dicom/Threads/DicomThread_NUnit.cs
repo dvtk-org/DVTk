@@ -195,7 +195,8 @@ namespace DvtkHighLevelInterface.Dicom.Threads
             dicomThread.Start();
             dicomThread.WaitForCompletion();
 
-            Assert.That(dicomThread.NrOfErrors + dicomThread.NrOfWarnings, Is.EqualTo(0));
+            Assert.AreEqual(0, dicomThread.NrOfErrors, "NrOfErrors should be 0");
+            Assert.AreEqual(0, dicomThread.NrOfWarnings, "NrOfWarnings should be 0");
         }
 
         /// <summary>
@@ -523,32 +524,95 @@ namespace DvtkHighLevelInterface.Dicom.Threads
         public void Ticket1266_1()
         {
             ThreadManager threadManager = new ThreadManager();
+            var dtTestCases = new[]
+            {
+                new {
+                    Value = "19701201-19701231",
+                    Description = "Valid DT format",
+                    UserErrors = 0,
+                    UserWarnings = 0,
+                    ValidationErrors = 0,
+                    ValidationWarnings = 0
+                },
+                new {
+                    Value = "1970.12.01-1970.12.31",
+                    Description = "Invalid DT format: exceeds 18 characters",
+                    UserErrors = 1,
+                    UserWarnings = 1,
+                    ValidationErrors = 1,
+                    ValidationWarnings = 1
+                },
+                new {
+                    Value = "197012X-19701231",
+                    Description = "Invalid DT format: letter 'X'",
+                    UserErrors = 1,
+                    UserWarnings = 0,
+                    ValidationErrors = 1,
+                    ValidationWarnings = 0
+                },
+                new {
+                    Value = "1970p121-19701231",
+                    Description = "Invalid DT format: letter 'p'",
+                    UserErrors = 1,
+                    UserWarnings = 0,
+                    ValidationErrors = 1,
+                    ValidationWarnings = 0
+                }
+            };
 
-            DicomMessage cFindMessage = new DicomMessage(DimseCommand.CFINDRQ);
+            for (int i = 0; i < dtTestCases.Length; i++)
+            {
+                var testCase = dtTestCases[i];
 
-            cFindMessage.CommandSet.Set("0x00000000", VR.UL, 10); // "Group length", set to incorrect value.
-            cFindMessage.CommandSet.Set("0x00000002", VR.UI, "1.2.840.10008.5.1.4.1.2.1.1"); // "Affected SOP Class UID"
-            cFindMessage.CommandSet.Set("0x00000110", VR.US, 100); // "Message ID"
-            cFindMessage.CommandSet.Set("0x00000700", VR.US, 0); // "Priority"
-            cFindMessage.CommandSet.Set("0x00000800", VR.US, 0); // "Data Set Type"
+                DicomMessage cFindMessage = new DicomMessage(DimseCommand.CFINDRQ);
 
-            cFindMessage.DataSet.Set("0x00080052", VR.CS, "PATIENT"); // "Query Retrieve Level"
-            //cFindMessage.DataSet.Set("0x00100020", VR.LO, "");
-            cFindMessage.DataSet.Set("0x10080001", VR.DA, "1970.12-1970.12.312", "1970.12.02-1970.12.312");
-            cFindMessage.DataSet.Set("0x10080002", VR.DA, "1970.12X-1970.12.312");
-            cFindMessage.DataSet.Set("0x10080003", VR.DA, "1970p121-1970.12.312");
-            cFindMessage.DataSet.Set("0x10080004", VR.DA, "19701201-19701231");
+                cFindMessage.CommandSet.Set("0x00000002", VR.UI, "1.2.840.10008.5.1.4.1.2.1.1"); // "Affected SOP Class UID"
+                cFindMessage.CommandSet.Set("0x00000110", VR.US, 100); // "Message ID"
+                cFindMessage.CommandSet.Set("0x00000700", VR.US, 0); // "Priority"
+                cFindMessage.CommandSet.Set("0x00000800", VR.US, 0); // "Data Set Type"
 
-            CFINDDicomThread dicomThread = new CFINDDicomThread(1, cFindMessage, "1.2.840.10008.5.1.4.1.2.1.1", "1.2.840.10008.1.2");
-            dicomThread.Initialize(threadManager);
+                cFindMessage.DataSet.Set("0x00080052", VR.CS, "PATIENT"); // "Query Retrieve Level"
+                cFindMessage.DataSet.Set("0x00080018", VR.UI, "");
+                cFindMessage.DataSet.Set("0x00100020", VR.LO, "*");
+                cFindMessage.DataSet.Set("0x0020000D", VR.UI, "1.2.3.4.5");
+                cFindMessage.DataSet.Set("0x0020000E", VR.UI, "1.2.3.4.5.6");
 
-            dicomThread.Options.ResultsDirectory = Paths.ResultsDirectoryFullPath;
-            dicomThread.Options.ResultsFileNameOnlyWithoutExtension = "Ticket1266_1";
+                cFindMessage.DataSet.Set("0x00080020", VR.DA, testCase.Value);
 
-            dicomThread.Start();
-            dicomThread.WaitForCompletion();
+                CFINDDicomThread dicomThread = new CFINDDicomThread(1, cFindMessage, "1.2.840.10008.5.1.4.1.2.1.1", "1.2.840.10008.1.2");
+                dicomThread.Initialize(threadManager);
 
-            Assert.That(dicomThread.NrOfErrors + dicomThread.NrOfWarnings, Is.EqualTo(2));
+                dicomThread.Options.ResultsDirectory = Paths.ResultsDirectoryFullPath;
+                dicomThread.Options.ResultsFileNameOnlyWithoutExtension = "Ticket1266_1";
+
+                dicomThread.Start();
+                dicomThread.WaitForCompletion();
+
+                Assert.AreEqual(
+                    0,
+                    dicomThread.NrOfGeneralErrors,
+                    "NrOfGeneralErrors not as expected in " + testCase.Description);
+                Assert.AreEqual(
+                    testCase.ValidationErrors,
+                    dicomThread.NrOfValidationErrors,
+                    "NrOfValidationErrors not as expected in " + testCase.Description);
+                Assert.AreEqual(
+                    testCase.UserErrors,
+                    dicomThread.NrOfUserErrors,
+                    "NrOfUserErrors not as expected in " + testCase.Description);
+                Assert.AreEqual(
+                    0,
+                    dicomThread.NrOfGeneralWarnings,
+                    "NrOfGeneralWarnings not as expected in " + testCase.Description);
+                Assert.AreEqual(
+                    testCase.UserWarnings,
+                    dicomThread.NrOfUserWarnings,
+                    "NrOfUserWarnings not as expected in " + testCase.Description);
+                Assert.AreEqual(
+                    testCase.ValidationWarnings,
+                    dicomThread.NrOfValidationWarnings,
+                    "NrOfValidationWarnings not as expected in " + testCase.Description);
+            }
         }
 
         /// <summary>
@@ -561,33 +625,108 @@ namespace DvtkHighLevelInterface.Dicom.Threads
         {
             ThreadManager threadManager = new ThreadManager();
 
-            DicomMessage cFindMessage = new DicomMessage(DimseCommand.CFINDRQ);
+            var dtTestCases = new[]
+            {
+                new {
+                    Value = "19991213125930.123456+1212",
+                    Description = "Valid DT format",
+                    UserErrors = 0,
+                    ValidationErrors = 0
+                },
+                new {
+                    Value = "1999.02.28",
+                    Description = "Valid old date time format",
+                    UserErrors = 0,
+                    ValidationErrors = 0
+                },
+                new {
+                    Value = "19991231235959.123456+123",
+                    Description = "Invalid: time zone too short",
+                    UserErrors = 1,
+                    ValidationErrors = 1
+                },
+                new {
+                    Value = "1999/12/31",
+                    Description = "Invalid: slash not allowed",
+                    UserErrors = 1,
+                    ValidationErrors = 1
+                },
+                new { 
+                    Value = "1999-12-31",
+                    Description = "Invalid: dash not allowed",
+                    UserErrors = 1,
+                    ValidationErrors = 1
+                },
+                new {
+                    Value = "19991231 235959",
+                    Description = "Invalid: space not allowed",
+                    UserErrors = 1,
+                    ValidationErrors = 1
+                },
+                new {
+                    Value = "19991231T235959",
+                    Description = "Invalid: 'T' separator not allowed",
+                    UserErrors = 1,
+                    ValidationErrors = 1
+                }
+            };
 
-            cFindMessage.CommandSet.Set("0x00000000", VR.UL, 10); // "Group length", set to incorrect value.
-            cFindMessage.CommandSet.Set("0x00000002", VR.UI, "1.2.840.10008.5.1.4.1.2.1.1"); // "Affected SOP Class UID"
-            cFindMessage.CommandSet.Set("0x00000110", VR.US, 100); // "Message ID"
-            cFindMessage.CommandSet.Set("0x00000700", VR.US, 0); // "Priority"
-            cFindMessage.CommandSet.Set("0x00000800", VR.US, 0); // "Data Set Type"
+            for (int i = 0; i < dtTestCases.Length; i++)
+            {
+                var testCase = dtTestCases[i];
 
-            cFindMessage.DataSet.Set("0x00080052", VR.CS, "PATIENT"); // "Query Retrieve Level"
-            //cFindMessage.DataSet.Set("0x00100020", VR.LO, "");
-            cFindMessage.DataSet.Set("0x100C0001", VR.DT, "20011213125930.123456+1212-20011213125930.123456+1212");
-            cFindMessage.DataSet.Set("0x100C0002", VR.DT, "19.99.02.28-19990228");
-            cFindMessage.DataSet.Set("0x100C0003", VR.DT, "1999.1 -1999.2");
-            cFindMessage.DataSet.Set("0x100C0004", VR.DT, "1999.+1212-1999.+1213");
-            cFindMessage.DataSet.Set("0x100C0005", VR.DT, "20011213125930.123456+121212-20011213125930.123456+121212");
-            cFindMessage.DataSet.Set("0x100C0006", VR.DT, "1999.123x- 1999.124");
+                DicomMessage cFindMessage = new DicomMessage(DimseCommand.CFINDRQ);
 
-            CFINDDicomThread dicomThread = new CFINDDicomThread(2, cFindMessage, "1.2.840.10008.5.1.4.1.2.1.1", "1.2.840.10008.1.2");
-            dicomThread.Initialize(threadManager);
+                cFindMessage.CommandSet.Set("0x00000000", VR.UL, 10); // "Group length", set to incorrect value.
+                cFindMessage.CommandSet.Set("0x00000002", VR.UI, "1.2.840.10008.5.1.4.34.4.3"); // UPS Pull SOP Class
+                cFindMessage.CommandSet.Set("0x00000110", VR.US, 100); // "Message ID"
+                cFindMessage.CommandSet.Set("0x00000700", VR.US, 0); // "Priority"
+                cFindMessage.CommandSet.Set("0x00000800", VR.US, 0); // "Data Set Type"
 
-            dicomThread.Options.ResultsDirectory = Paths.ResultsDirectoryFullPath;
-            dicomThread.Options.ResultsFileNameOnlyWithoutExtension = "Ticket1266_2";
+                // Add required SOP Common Module attributes to avoid validation errors
+                cFindMessage.DataSet.Set("0x00080016", VR.UI, "1.2.840.10008.5.1.4.34.4.3"); // SOP Class UID
+                cFindMessage.DataSet.Set("0x00080018", VR.UI, "1.2.3.4.5.6.7.8.9." + (i + 1)); // SOP Instance UID (unique per test)
 
-            dicomThread.Start();
-            dicomThread.WaitForCompletion();
+                // Use Scheduled Procedure Step Start DateTime (defined in UPS)
+                cFindMessage.DataSet.Set("0x00404005", VR.DT, testCase.Value);
 
-            Assert.That(dicomThread.NrOfErrors + dicomThread.NrOfWarnings, Is.EqualTo(2));
+                CFINDDicomThread dicomThread = new CFINDDicomThread(2, cFindMessage, "1.2.840.10008.5.1.4.34.4.3", "1.2.840.10008.1.2");
+                dicomThread.Initialize(threadManager);
+
+                dicomThread.Options.ResultsDirectory = Paths.ResultsDirectoryFullPath;
+                dicomThread.Options.ResultsFileNameOnlyWithoutExtension = string.Format("Ticket1266_2_{0}", i + 1);
+
+                // Load UPS definition file instead of Patient Root QR to test DT VR in UPS IOD
+                dicomThread.Options.LoadDefinitionFile(Path.Combine(Paths.DefinitionsDirectoryFullPath, "UnifiedProcedureStep-Pull.def"));
+
+                dicomThread.Start();
+                dicomThread.WaitForCompletion();
+
+                Assert.AreEqual(
+                    0,
+                    dicomThread.NrOfGeneralErrors,
+                    "NrOfGeneralErrors not as expected in " + testCase.Description);
+                Assert.AreEqual(
+                    testCase.ValidationErrors,
+                    dicomThread.NrOfValidationErrors,
+                    "NrOfValidationErrors not as expected in " + testCase.Description);
+                Assert.AreEqual(
+                    testCase.UserErrors,
+                    dicomThread.NrOfUserErrors,
+                    "NrOfUserErrors not as expected in " + testCase.Description);
+                Assert.AreEqual(
+                    0,
+                    dicomThread.NrOfGeneralWarnings,
+                    "NrOfGeneralWarnings not as expected in " + testCase.Description);
+                Assert.AreEqual(
+                    0,
+                    dicomThread.NrOfUserWarnings,
+                    "NrOfUserWarnings not as expected in " + testCase.Description);
+                Assert.AreEqual(
+                    0,
+                    dicomThread.NrOfValidationWarnings,
+                    "NrOfValidationWarnings not as expected in " + testCase.Description);
+            }
         }
 
         /// <summary>
@@ -600,36 +739,89 @@ namespace DvtkHighLevelInterface.Dicom.Threads
         {
             ThreadManager threadManager = new ThreadManager();
 
-            DicomMessage cFindMessage = new DicomMessage(DimseCommand.CFINDRQ);
+            var dtTestCases = new[]
+            {
+                new {
+                    Value = "010000-125959",
+                    Description = "Valid TM format",
+                    UserErrors = 0,
+                    UserWarnings = 0,
+                    ValidationErrors = 0,
+                    ValidationWarnings = 0
+                },
+                new {
+                    Value = "23:14:01-23:14:01",
+                    Description = "Valid TM format: old style time format",
+                    UserErrors = 0,
+                    UserWarnings = 1,
+                    ValidationErrors = 0,
+                    ValidationWarnings = 2
+                },
+                new {
+                    Value = "070907.0705-010101 1",
+                    Description = "Invalid TM format: exceeds 16 characters",
+                    UserErrors = 1,
+                    UserWarnings = 0,
+                    ValidationErrors = 1,
+                    ValidationWarnings = 0
+                },
+                new {
+                    Value = "070907.0705-0710007.0706",
+                    Description = "Invalid TM format: second time value exceeds 6 characters",
+                    UserErrors = 1,
+                    UserWarnings = 0,
+                    ValidationErrors = 1,
+                    ValidationWarnings = 0
+                },
+                new {
+                    Value = "010159-010160",
+                    Description = "Invalid TM format: minutes exceed 59",
+                    UserErrors = 1,
+                    UserWarnings = 0,
+                    ValidationErrors = 1,
+                    ValidationWarnings = 0
+                }
+            };
 
-            cFindMessage.CommandSet.Set("0x00000000", VR.UL, 10); // "Group length", set to incorrect value.
-            cFindMessage.CommandSet.Set("0x00000002", VR.UI, "1.2.840.10008.5.1.4.1.2.1.1"); // "Affected SOP Class UID"
-            cFindMessage.CommandSet.Set("0x00000110", VR.US, 100); // "Message ID"
-            cFindMessage.CommandSet.Set("0x00000700", VR.US, 0); // "Priority"
-            cFindMessage.CommandSet.Set("0x00000800", VR.US, 0); // "Data Set Type"
+            for (int i = 0; i < dtTestCases.Length; i++)
+            {
+                var testCase = dtTestCases[i];
 
-            cFindMessage.DataSet.Set("0x00080052", VR.CS, "PATIENT"); // "Query Retrieve Level"
-            //cFindMessage.DataSet.Set("0x00100020", VR.LO, "");
-            cFindMessage.DataSet.Set("0x10280001", VR.TM, "12345678901234567-12345678901234");
-            cFindMessage.DataSet.Set("0x10280002", VR.TM, "070907.0705-010101 1");
-            cFindMessage.DataSet.Set("0x10280003", VR.TM, "070907.0705-071007.0706");
-            cFindMessage.DataSet.Set("0x10280004", VR.TM, "010160-010170");
-            cFindMessage.DataSet.Set("0x10280005", VR.TM, "23:14:01-23:14:01");
+                DicomMessage cFindMessage = new DicomMessage(DimseCommand.CFINDRQ);
 
-            CFINDDicomThread dicomThread = new CFINDDicomThread(3, cFindMessage, "1.2.840.10008.5.1.4.1.2.1.1", "1.2.840.10008.1.2");
-            dicomThread.Initialize(threadManager);
+                cFindMessage.CommandSet.Set("0x00000000", VR.UL, 10); // "Group length", set to incorrect value.
+                cFindMessage.CommandSet.Set("0x00000002", VR.UI, "1.2.840.10008.5.1.4.1.2.1.1"); // "Affected SOP Class UID"
+                cFindMessage.CommandSet.Set("0x00000110", VR.US, 100); // "Message ID"
+                cFindMessage.CommandSet.Set("0x00000700", VR.US, 0); // "Priority"
+                cFindMessage.CommandSet.Set("0x00000800", VR.US, 0); // "Data Set Type"
 
-            dicomThread.Options.ResultsDirectory = Paths.ResultsDirectoryFullPath;
-            dicomThread.Options.ResultsFileNameOnlyWithoutExtension = "Ticket1266_3";
+                cFindMessage.DataSet.Set("0x00080018", VR.UI, "1.2.3.4.5.6.7.8.9"); // SOP Instance UID (unique per test)
+                cFindMessage.DataSet.Set("0x00100020", VR.LO, "*");
+                cFindMessage.DataSet.Set("0x0020000D", VR.UI, "1.2.3.4.5");
+                cFindMessage.DataSet.Set("0x0020000E", VR.UI, "1.2.3.4.5.6");
 
-            dicomThread.Start();
-            dicomThread.WaitForCompletion();
+                cFindMessage.DataSet.Set("0x00080052", VR.CS, "PATIENT"); // "Query Retrieve Level"
+                                                                          //cFindMessage.DataSet.Set("0x00100020", VR.LO, "");
 
-            Assert.That(dicomThread.NrOfErrors + dicomThread.NrOfWarnings, Is.EqualTo(2));
+                cFindMessage.DataSet.Set("0x00080013", VR.TM, testCase.Value);
+
+                CFINDDicomThread dicomThread = new CFINDDicomThread(3, cFindMessage, "1.2.840.10008.5.1.4.1.2.1.1", "1.2.840.10008.1.2");
+                dicomThread.Initialize(threadManager);
+
+                dicomThread.Options.ResultsDirectory = Paths.ResultsDirectoryFullPath;
+                dicomThread.Options.ResultsFileNameOnlyWithoutExtension = "Ticket1266_3";
+
+                dicomThread.Start();
+                dicomThread.WaitForCompletion();
+
+                Assert.AreEqual(testCase.UserErrors, dicomThread.NrOfUserErrors, "NrOfUserErrors not as expected in test case " + testCase.Description);
+                Assert.AreEqual(testCase.ValidationErrors, dicomThread.NrOfValidationErrors, "NrOfValidationErrors not as expected in test case " + testCase.Description);
+                Assert.AreEqual(0, dicomThread.NrOfGeneralErrors, "NrOfGeneralErrors not as expected in test case " + testCase.Description);
+                Assert.AreEqual(0, dicomThread.NrOfGeneralWarnings, "NrOfGeneralWarnings not as expected in test case " + testCase.Description);
+                Assert.AreEqual(testCase.UserWarnings, dicomThread.NrOfUserWarnings, "NrOfUserWarnings not as expected in test case " + testCase.Description);
+                Assert.AreEqual(testCase.ValidationWarnings, dicomThread.NrOfValidationWarnings, "NrOfValidationWarnings not as expected in test case " + testCase.Description);
+            }
         }
-
-        
-      
 
         private class DicomThreadValidateSession : DicomThread
         {
@@ -1755,27 +1947,41 @@ namespace DvtkHighLevelInterface.Dicom.Threads
         /// <summary>
         /// Test for ticket 1282.
         /// 
-        /// This test will verify that DT range matching is allowed for a QR C-FIND-RQ.
+        /// This test will verify that DT range matching is allowed for a UPS C-FIND-RQ.
         /// </summary>
         [Test]
         public void Ticket1282_1_1()
         {
             ThreadManager threadManager = new ThreadManager();
 
-            DicomMessage cFindRq = new DicomMessage(DimseCommand.CFINDRQ);
-            cFindRq.CommandSet.Set("0x00000002", VR.UI, "1.2.840.10008.5.1.4.1.2.1.1");
-            cFindRq.DataSet.Set("0x00404005", VR.DT, "20090724000000.0000-20090724235959.9999");
+            DicomMessage cFindMessage = new DicomMessage(DimseCommand.CFINDRQ);
+            cFindMessage.CommandSet.Set("0x00000000", VR.UL, 10); // "Group length", set to incorrect value.
+            cFindMessage.CommandSet.Set("0x00000002", VR.UI, "1.2.840.10008.5.1.4.34.4.3"); // UPS Pull SOP Class
+            cFindMessage.CommandSet.Set("0x00000110", VR.US, 100); // "Message ID"
+            cFindMessage.CommandSet.Set("0x00000700", VR.US, 0); // "Priority"
+            cFindMessage.CommandSet.Set("0x00000800", VR.US, 0); // "Data Set Type"
 
-            DicomThreadValideDicomMessage dicomThread = new DicomThreadValideDicomMessage(cFindRq);
+            cFindMessage.DataSet.Set("0x00404005", VR.DT, "20090724000000.0000-20090724235959.9999");
+
+            // Add required SOP Common Module attributes to avoid validation errors
+            cFindMessage.DataSet.Set("0x00080016", VR.UI, "1.2.840.10008.5.1.4.34.4.3"); // SOP Class UID
+            cFindMessage.DataSet.Set("0x00080018", VR.UI, "1.2.3.4.5.6.7.8.9"); // SOP Instance UID
+
+            DicomThreadValideDicomMessage dicomThread = new DicomThreadValideDicomMessage(cFindMessage);
             dicomThread.Initialize(threadManager);
 
             Config.SetOptions(dicomThread, "Ticket1282_1_1", "MainThread");
-            dicomThread.Options.LoadDefinitionFile(Path.Combine(Paths.DefinitionsDirectoryFullPath, "PatientRootQueryRetrieve-FIND.def")); 
+            // Load UPS definition file to test DT VR in UPS IOD
+            dicomThread.Options.LoadDefinitionFile(Path.Combine(Paths.DefinitionsDirectoryFullPath, "UnifiedProcedureStep-Pull.def"));
+            dicomThread.Options.ResultsDirectory = Paths.ResultsDirectoryFullPath;
+            dicomThread.Options.ResultsFileNameOnlyWithoutExtension = "Ticket1282_1_1";
 
             dicomThread.Start();
             dicomThread.WaitForCompletion();
 
-            Assert.That(dicomThread.NrOfErrors, Is.EqualTo(5));
+            // Verify that DT range matching is allowed (should have no validation errors)
+            Assert.AreEqual(0, dicomThread.NrOfErrors, "NrOfErrors not as expected - DT range should be valid for C-FIND-RQ");
+            Assert.AreEqual(0, dicomThread.NrOfWarnings, "NrOfWarnings not as expected");
         }
 
         /// <summary>
@@ -1788,20 +1994,54 @@ namespace DvtkHighLevelInterface.Dicom.Threads
         {
             ThreadManager threadManager = new ThreadManager();
 
-            DicomMessage cFindRq = new DicomMessage(DimseCommand.CFINDRSP);
-            cFindRq.CommandSet.Set("0x00000002", VR.UI, "1.2.840.10008.5.1.4.1.2.1.1");
-            cFindRq.DataSet.Set("0x00404005", VR.DT, "20090724000000.0000-20090724235959.9999");
+            DicomMessage cFindMessage = new DicomMessage(DimseCommand.CFINDRSP);
+            
+            // C-FIND-RSP Command attributes
+            cFindMessage.CommandSet.Set("0x00000000", VR.UL, 10); // Group Length - set to incorrect value
+            cFindMessage.CommandSet.Set("0x00000002", VR.UI, "1.2.840.10008.5.1.4.34.4.3"); // Affected SOP Class UID
+            cFindMessage.CommandSet.Set("0x00000120", VR.US, 1); // Message ID Being Responded To
+            cFindMessage.CommandSet.Set("0x00000800", VR.US, 0x0101); // Data Set Type - Contains Identifier
+            cFindMessage.CommandSet.Set("0x00000900", VR.US, 0); // Status - Success
 
-            DicomThreadValideDicomMessage dicomThread = new DicomThreadValideDicomMessage(cFindRq);
+            // UPS Scheduled Procedure Information Module - Type 1 and Type 2 attributes
+            cFindMessage.DataSet.Set("0x0020000D", VR.UI, "1.2.3.4.5.6.7.8.9.10"); // Study Instance UID - Type 2
+
+
+            // Input Information Sequence - Type 2 (can be empty)
+            cFindMessage.DataSet.Set("0x00404021", VR.SQ);
+            
+            cFindMessage.DataSet.Set("0x00741200", VR.CS, "HIGH"); // Scheduled Procedure Step Priority - Type 1
+            cFindMessage.DataSet.Set("0x00741202", VR.LO, "Worklist 1"); // Worklist Label - Type 1
+            cFindMessage.DataSet.Set("0x00741204", VR.LO, "Step 1"); // Procedure Step Label - Type 1
+            // For this simplified test, we accept that some Type 1 sequences will be missing
+            // The focus is on verifying DT format validation, not creating a fully compliant UPS message
+            // Type 1 Sequences that are missing will cause validation errors:
+            // - Scheduled Workitem Code Sequence (0x00404018)
+            // - Scheduled Station Name Code Sequence (0x00404025)
+            // - Scheduled Station Class Code Sequence (0x00404026)
+            // - Scheduled Station Geographic Location Code Sequence (0x00404027)
+            // - Scheduled Human Performers Sequence (0x00404034)
+            // - Scheduled Processing Parameters Sequence (0x00741210) - Type 2
+
+            cFindMessage.DataSet.Set("0x00404005", VR.DT, "20090724000000-20090724235959"); // Validation error
+            cFindMessage.DataSet.Set("0x00404011", VR.DT, "20090725080000");
+
+            DicomThreadValideDicomMessage dicomThread = new DicomThreadValideDicomMessage(cFindMessage);
             dicomThread.Initialize(threadManager);
 
             Config.SetOptions(dicomThread, "Ticket1282_2_1", "MainThread");
-            dicomThread.Options.LoadDefinitionFile(Path.Combine(Paths.DefinitionsDirectoryFullPath, "PatientRootQueryRetrieve-FIND.def")); 
+            dicomThread.Options.LoadDefinitionFile(Path.Combine(Paths.DefinitionsDirectoryFullPath, "UnifiedProcedureStep-Pull.def"));
+            dicomThread.Options.ResultsDirectory = Paths.ResultsDirectoryFullPath;
+            dicomThread.Options.ResultsFileNameOnlyWithoutExtension = "Ticket1282_2_1";
 
             dicomThread.Start();
             dicomThread.WaitForCompletion();
 
-            Assert.That(dicomThread.NrOfErrors, Is.EqualTo(9));
+            // Verify that DT range matching is allowed (should have no validation errors)
+            Assert.AreEqual(0, dicomThread.NrOfGeneralErrors, "NrOfGeneralErrors not as expected");
+            Assert.AreEqual(0, dicomThread.NrOfUserErrors, "NrOfUserErrors not as expected");
+            Assert.AreEqual(7, dicomThread.NrOfValidationErrors, "NrOfValidationErrors not as expected");
+            Assert.AreEqual(0, dicomThread.NrOfWarnings, "NrOfWarnings not as expected");
         }
 
         /// <summary>

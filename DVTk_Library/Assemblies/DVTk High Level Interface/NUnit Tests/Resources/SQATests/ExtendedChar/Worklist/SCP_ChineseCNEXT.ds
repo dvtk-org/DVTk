@@ -13,8 +13,8 @@
 ##  Post-conditions:
 ##       - search continuing
 ## 
-SEND C-FIND-RSP "Modality Worklist FIND" (
-(0x00000002, UI, "Modality Worklist FIND SOP Class")
+SEND C-FIND-RSP "Modality Worklist Information Model - FIND SOP Class" (
+(0x00000002, UI, "Modality Worklist Information Model - FIND SOP Class")
 (0x00000900, US, 0xFF00)                  # Status = PENDING
 (0x00080005, CS, "","ISO 2022 CN EXT")	# Character Set
 

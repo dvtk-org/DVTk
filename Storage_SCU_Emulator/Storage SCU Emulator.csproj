@@ -193,20 +193,17 @@
 
 			xcopy /Y /E "%25LIBRARY_DIRECTORY%25" "$(ProjectDir)DVTk_Library"-->
     </PreBuildEvent>
-    <PostBuildEvent>
-			Echo Creating directories and copying files to "$(TargetDir)".
+	<PostBuildEvent>
+		echo Copying resources to "$(TargetDir)"
+		copy /Y "$(ProjectDir)Resources\StorageSCUEmulator.ses" "$(TargetDir)"
+		copy /Y "$(ProjectDir)Resources\CommitSCUEmulator.ses" "$(TargetDir)"
+		copy /Y "$(ProjectDir)..\DVTk_Library\Resources\CharacterSets.dat" "$(TargetDir)"
+		copy /Y "$(ProjectDir)..\DVTk_Library\Resources\DVT_RESULTS.xslt" "$(TargetDir)"
+		copy /Y "$(ProjectDir)..\Resources\Libs\Microsoft.mshtml.dll" "$(TargetDir)"
+		copy /Y "$(ProjectDir)..\Resources\Libs\dcmconv.exe" "$(TargetDir)"
 
-			copy "$(ProjectDir)Resources\StorageSCUEmulator.ses" "$(TargetDir)"
-			copy "$(ProjectDir)Resources\CommitSCUEmulator.ses" "$(TargetDir)"
-			copy "$(ProjectDir)..\DVTk_Library\Resources\CharacterSets.dat" "$(TargetDir)"
-			copy "$(ProjectDir)..\DVTk_Library\Resources\DVT_RESULTS.xslt" "$(TargetDir)"
-			copy "$(ProjectDir)..\Resources\Libs\Microsoft.mshtml.dll" "$(TargetDir)"
-			copy "$(ProjectDir)..\Resources\Libs\dcmconv.exe" "$(TargetDir)"
-
-			IF NOT EXIST "$(TargetDir)CharacterSets" (
-			mkdir "$(TargetDir)CharacterSets"
-			)
-			xcopy /Y "$(ProjectDir)..\DVTk_Library\Resources\CharacterSets" "$(TargetDir)CharacterSets"
-		</PostBuildEvent>
+		if not exist "$(TargetDir)CharacterSets" mkdir "$(TargetDir)CharacterSets" 2&gt;nul
+		xcopy /Y /D /S /E /I "$(ProjectDir)..\DVTk_Library\Resources\CharacterSets" "$(TargetDir)CharacterSets"
+	</PostBuildEvent>
   </PropertyGroup>
 </Project>

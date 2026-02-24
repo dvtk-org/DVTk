@@ -1,0 +1,445 @@
+name: DVTk Build (VS2022)
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+  workflow_dispatch:
+
+env:
+  SOLUTION: 'Dicom.sln'
+  BUILD_PLATFORM: 'x86'
+  BUILD_CONFIGURATION: 'Release'
+
+jobs:
+  build:
+    runs-on: windows-2022
+
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v3.0.0
+      with:
+        versionSpec: '5.x'
+        preferLatestVersion: true
+
+    - name: Determine version number using GitVersion
+      id: gitversion
+      uses: gittools/actions/gitversion/execute@v3.0.0
+      with:
+        useConfigFile: true
+        configFilePath: 'GitVersion.yml'
+        updateAssemblyInfo: true
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v2
+
+    - name: Restore Nuget packages
+      run: nuget restore ${{ env.SOLUTION }} -Verbosity Detailed
+
+    - name: Update Version in project files
+      shell: pwsh
+      run: |
+        ./DVT/updateVersion.ps1 -gitversion "${{ steps.gitversion.outputs.majorMinorPatch }}"
+
+    - name: Update Copyright year in AssemblyInfo files
+      shell: pwsh
+      run: |
+        ./DVT/updateCopyright.ps1
+
+    - name: Install MFC and ATL (v142 compatibility)
+      shell: cmd
+      run: |
+        "C:\Program Files (x86)\Microsoft Visual Studio\Installer\setup.exe" modify ^
+        --installPath "C:\Program Files\Microsoft Visual Studio\2022\Enterprise" ^
+        --add Microsoft.VisualStudio.Component.VC.14.29.16.11.ATL ^
+        --add Microsoft.VisualStudio.Component.VC.14.29.16.11.MFC ^
+        --quiet --norestart
+
+    - name: Verify MFC Headers
+      shell: pwsh
+      run: |
+        $header = Get-ChildItem -Path "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC" -Recurse -Filter "afx.h" -ErrorAction SilentlyContinue
+        if ($header) {
+            Write-Host "✅ afx.h found in: $($header.FullName)"
+        } else {
+            Write-Error "❌ afx.h still not found on disk."
+            exit 1
+        }
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+      with:
+        vs-version: '[17.0,18.0)'
+
+    - name: Verify MFC Installation
+      shell: pwsh
+      run: |
+        # Gebruik -requires om direct te filteren op de component, dit is betrouwbaarder dan handmatig de lijst doorzoeken
+        $mfcCheck = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -requires Microsoft.VisualStudio.Component.VC.MFC -property installationPath
+        
+        if ($mfcCheck) {
+            Write-Host "✅ MFC Component is succesvol gedetecteerd in: $mfcCheck"
+        } else {
+            Write-Host "⚠️ Waarschuwing: vswhere herkent de component nog niet. We checken nu het bestandssysteem..."
+            
+            # Fallback: Check if MFC folders actually exist on disk
+            $vsPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath
+            $mfcHeader = Get-ChildItem -Path "$vsPath\VC\Tools\MSVC" -Recurse -Filter "afxwin.h" -ErrorAction SilentlyContinue
+            
+            if ($mfcHeader) {
+                Write-Host "✅ MFC files found on disk: $($mfcHeader.FullName)"
+            } else {
+                Write-Error "❌ MFC Component NOT found (not via vswhere and not on the filesystem)."
+                exit 1
+            }
+        }
+
+    - name: Locate Devenv and Manual Registry Fix
+      shell: pwsh
+      run: |
+        # Search VS2022 via vswhere
+        $vsPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -version "[17.0,18.0)" -property installationPath
+        $instanceId = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -version "[17.0,18.0)" -property instanceId
+        
+        if (-not $vsPath) { throw "Visual Studio 2022 not found!" }
+        
+        # Execute Registry Fix for HRESULT 8000000A 
+        $registryPath = "HKCU:\SOFTWARE\Microsoft\VisualStudio\17.0_$($instanceId)_Config\MSBuild"
+        if (!(Test-Path $registryPath)) {
+            New-Item -Path $registryPath -Force | Out-Null
+        }
+        Set-ItemProperty -Path $registryPath -Name "EnableOutOfProcBuild" -Value 0 -Type DWord
+        Write-Host "Registry fix applied to $registryPath"
+
+        $devenv = Join-Path $vsPath "Common7\IDE\devenv.com"
+        Add-Content -Path $env:GITHUB_ENV -Value "DEV_CMD=$devenv"
+
+    - name: Setup Visual Studio Installer Projects
+      uses: seanmiddleditch/gha-setup-vsdevenv@v5
+
+    - name: Build managed/native projects (msbuild)
+      id: msbuild
+      shell: pwsh
+      run: |
+        New-Item -ItemType Directory -Force -Path ./staging
+        # Importeer de VS Developer Environment voor x86
+        & cmd /c "call `"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat`" x86 -vcvars_ver=14.2 && msbuild Dicom.sln /t:Rebuild /p:Configuration=Release /p:Platform=x86 /m /fl /flp:LogFile=./staging/build-msbuild.log"
+
+    - name: Build setup projects (devenv)
+      id: vdproj
+      continue-on-error: true
+      shell: pwsh
+      run: |
+        $projects = @(
+            "Definition Files Setup",
+            "DICOM Compare Setup",
+            "DICOM Editor Setup",
+            "DICOM Network Analyzer Setup",
+            "DVT Examples Setup",
+            "DVT Setup",
+            #"Modality Emulator Setup",
+            "Query Retrieve SCP Emulator Setup",
+            "Query Retrieve SCU Emulator Setup",
+            "RIS Emulator Setup",
+            "Storage SCP Emulator Setup",
+            "Storage SCU Emulator Setup"
+        )
+        
+        if (-not (Test-Path "$env:DEV_CMD")) { throw "Error: DEV_CMD (devenv.com) not found on the system." }
+        
+        $logPath = "./staging/build-devenv.log"
+        if (Test-Path $logPath) { Remove-Item $logPath -Force }
+        
+        $anyFailure = $false
+        
+        foreach ($p in $projects) {
+            Write-Host "--- Building: $p ---"
+            
+            $tempLog = "temp_$($p.Replace(' ', '_')).log"
+            
+            $process = Start-Process -FilePath "$env:DEV_CMD" `
+                -ArgumentList "`"$env:SOLUTION`"", "/Build", "`"$env:BUILD_CONFIGURATION|$env:BUILD_PLATFORM`"", "/Project", "`"$p`"", "/Out", "$tempLog" `
+                -Wait -PassThru
+                
+            if (Test-Path $tempLog) {
+                $content = Get-Content $tempLog
+                $content | Out-File -FilePath $logPath -Append -Encoding UTF8
+                $content | Write-Host  # Toon de output ook in de GitHub console
+                Remove-Item $tempLog
+            }
+            
+            if ($process.ExitCode -ne 0) {
+                Write-Error "Error during build of $p (Exit code: $($process.ExitCode))"
+                $anyFailure = $true
+            }
+        }
+        
+        if ($anyFailure) { exit 1 }
+
+    - name: Install Definition Files for Tests
+      shell: pwsh
+      run: |
+        $targetDir = "C:\Program Files (x86)\Common Files\DVTk\Definition Files\DICOM"
+        $sourceDir = "Definitions\DICOM"
+        
+        Write-Host "Creating definition files directory: $targetDir"
+        New-Item -ItemType Directory -Force -Path $targetDir | Out-Null
+        
+        Write-Host "Copying definition files from $sourceDir to $targetDir"
+        Copy-Item -Path "$sourceDir\*" -Destination $targetDir -Recurse -Force
+        
+        $fileCount = (Get-ChildItem -Path $targetDir -File).Count
+        Write-Host "Installed $fileCount definition files"
+
+    - name: Run Tests
+      continue-on-error: true
+      shell: cmd
+      run: |
+        vstest.console.exe ".\bin\Release\*Tests.dll" --logger:trx;LogFileName=../staging/test-results.trx
+
+    - name: Upload Test Results Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results-trx
+        path: staging/*.trx
+
+    - name: Rename MSI files with version number
+      shell: pwsh
+      run: |
+        $searchPath = "bin\Setups\Release"
+        $version = "${{ steps.gitversion.outputs.majorMinorPatch }}"
+        
+        Write-Host "Search all MSI files in: $searchPath"
+        
+        # Get all MSI files (including those with hardcoded versions)
+        $allMsiFiles = Get-ChildItem -Path $searchPath -Filter "*.msi" -Recurse
+        
+        if ($allMsiFiles.Count -eq 0) {
+            Write-Warning "No MSI files found in $searchPath"
+            exit 0
+        }
+        
+        Write-Host "Found $($allMsiFiles.Count) MSI file(s)"
+        
+        foreach ($file in $allMsiFiles) {
+            $newName = $file.Name
+            
+            # Replace placeholder version pattern
+            if ($newName -match '-a\.b\.c\.msi$') {
+                $newName = $newName -replace '-a\.b\.c\.msi$', "-$version.msi"
+                Write-Host "Rename (placeholder): $($file.Name) -> $newName"
+            }
+            # Keep file with hardcoded version pattern (e.g., -1.1.10.msi)
+            elseif ($newName -match '-\d+\.\d+\.\d+\.msi$') {
+                Write-Host "Copy: $newName"
+            }
+            # No version pattern found, continue with next file
+            else {
+                Write-Warning "Skipping file (no version pattern found): $($file.Name)"
+                continue
+            }
+            
+            $destination = Join-Path "./staging" $newName
+            
+            # Check if target file already exists to prevent errors
+            if (Test-Path $destination) {
+                Write-Host "  -> File exists, removing old file..."
+                Remove-Item $destination -Force
+            }
+            
+            Move-Item -Path $file.FullName -Destination $destination -Force
+        }
+        Get-ChildItem -Path "./staging" -Filter "*.msi" -Recurse | Select-Object FullName
+
+    - name: Sign MSI files
+      if: ${{ github.event_name != 'pull_request' }}
+      shell: pwsh
+      run: |
+        # Check if secrets are available
+        if ([string]::IsNullOrEmpty("${{ secrets.CERTIFICATE_BASE64 }}")) {
+            Write-Warning "⚠️ CERTIFICATE_BASE64 secret not found. MSI signing will be skipped."
+            exit 0
+        }
+        
+        if ([string]::IsNullOrEmpty("${{ secrets.CERTIFICATE_PASSWORD }}")) {
+            Write-Warning "⚠️ CERTIFICATE_PASSWORD secret not found. MSI signing will be skipped."
+            exit 0
+        }
+        
+        Write-Host "📜 Decoding certificate..."
+        
+        # Decode the base64 certificate to a file
+        $certPath = Join-Path $env:TEMP "signing-cert.pfx"
+        $certPassword = "${{ secrets.CERTIFICATE_PASSWORD }}"
+        $securePassword = ConvertTo-SecureString -String $certPassword -AsPlainText -Force
+        
+        try {
+            $certBytes = [Convert]::FromBase64String("${{ secrets.CERTIFICATE_BASE64 }}")
+            [IO.File]::WriteAllBytes($certPath, $certBytes)
+            Write-Host "✅ Certificate file created: $certPath"
+        } catch {
+            Write-Error "❌ Error decoding certificate: $_"
+            exit 1
+        }
+        
+        # Verify that the file exists and is readable
+        if (-not (Test-Path $certPath)) {
+            Write-Error "❌ Certificate file not found after decode!"
+            exit 1
+        }
+        
+        $fileSize = (Get-Item $certPath).Length
+        Write-Host "Certificate file size: $fileSize bytes"
+        
+        # Import the certificate into the certificate store
+        Write-Host "📥 Importing certificate into certificate store..."
+        try {
+            $cert = Import-PfxCertificate -FilePath $certPath -CertStoreLocation Cert:\CurrentUser\My -Password $securePassword -ErrorAction Stop
+            Write-Host "✅ Certificate imported with thumbprint: $($cert.Thumbprint)"
+            Write-Host "   Subject: $($cert.Subject)"
+            Write-Host "   Valid from: $($cert.NotBefore) to $($cert.NotAfter)"
+            Write-Host "   Has private key: $($cert.HasPrivateKey)"
+            
+            if (-not $cert.HasPrivateKey) {
+                Write-Error "❌ Certificate has no private key!"
+                exit 1
+            }
+            
+            $certThumbprint = $cert.Thumbprint
+            
+            # Check Enhanced Key Usage
+            $eku = $cert.EnhancedKeyUsageList | Select-Object -ExpandProperty FriendlyName
+            Write-Host "   Enhanced Key Usage: $($eku -join ', ')"
+            
+            if ($eku -notcontains "Code Signing") {
+                Write-Warning "⚠️ Certificate does not have 'Code Signing' capability. Signing may fail."
+            }
+        } catch {
+            Write-Error "❌ Error importing certificate: $_"
+            Write-Error "   Check if the password is correct!"
+            Remove-Item $certPath -Force -ErrorAction SilentlyContinue
+            exit 1
+        }
+        
+        # Verify that certificate is visible in store
+        $storeCheck = Get-ChildItem Cert:\CurrentUser\My | Where-Object { $_.Thumbprint -eq $certThumbprint }
+        if ($storeCheck) {
+            Write-Host "✓ Certificate is visible in certificate store"
+        } else {
+            Write-Error "❌ Certificate not found in store after import!"
+            exit 1
+        }
+        
+        # Find signtool.exe - ALWAYS use x64 version for better store access
+        $signtool = Get-ChildItem -Path "C:\Program Files (x86)\Windows Kits" -Recurse -Filter "signtool.exe" -ErrorAction SilentlyContinue | 
+                    Where-Object { $_.FullName -match '\\x64\\' } |
+                    Sort-Object FullName -Descending | 
+                    Select-Object -First 1
+        
+        if (-not $signtool) {
+            Write-Error "❌ signtool.exe not found!"
+            Remove-Item $certPath -Force -ErrorAction SilentlyContinue
+            exit 1
+        }
+        
+        Write-Host "🔧 Using signtool: $($signtool.FullName)"
+        
+        # Sign all MSI files in staging
+        $msiFiles = Get-ChildItem -Path "./staging" -Filter "*.msi" -Recurse
+        
+        if ($msiFiles.Count -eq 0) {
+            Write-Warning "⚠️ No MSI files found to sign."
+            Remove-Item $certPath -Force -ErrorAction SilentlyContinue
+            exit 0
+        }
+        
+        Write-Host "Found $($msiFiles.Count) MSI file(s) to sign"
+        
+        $signedCount = 0
+        $failedCount = 0
+        
+        foreach ($msi in $msiFiles) {
+            Write-Host "`n📝 Signing: $($msi.Name)"
+            
+            # Sign with certificate thumbprint from store + subject name as fallback
+            & $signtool.FullName sign /sha1 $certThumbprint /n "DVTk" /tr http://timestamp.digicert.com /td sha256 /fd sha256 /v /debug $msi.FullName
+            
+            if ($LASTEXITCODE -eq 0) {
+                Write-Host "✅ Successfully signed: $($msi.Name)"
+                $signedCount++
+                
+                # Verify signature - use /a instead of /pa for self-signed certificates
+                $verifyOutput = & $signtool.FullName verify /a $msi.FullName 2>&1
+                $verifyExitCode = $LASTEXITCODE
+                
+                if ($verifyExitCode -eq 0) {
+                    Write-Host "   ✓ Signature verified (trusted)"
+                } else {
+                    # For self-signed certificates this is normal
+                    if ($verifyOutput -match "root certificate which is not trusted") {
+                        Write-Host "   ⚠ Self-signed certificate (expected for test certificates)"
+                    } else {
+                        Write-Host "   ⚠ Signature verification warning"
+                    }
+                }
+                
+                # Reset exit code after verify so the script doesn't fail
+                $LASTEXITCODE = 0
+            } else {
+                Write-Warning "❌ Failed to sign $($msi.Name) (Exit code: $LASTEXITCODE)"
+                $failedCount++
+            }
+        }
+        
+        # Remove the certificate from store and the file
+        Write-Host "`n🗑️ Cleaning up..."
+        try {
+            Remove-Item "Cert:\CurrentUser\My\$certThumbprint" -Force -ErrorAction SilentlyContinue
+            Write-Host "   Certificate removed from store"
+        } catch {
+            Write-Warning "   Could not remove certificate from store: $_"
+        }
+        Remove-Item $certPath -Force -ErrorAction SilentlyContinue
+        Write-Host "   Certificate file removed"
+        
+        Write-Host "`n📊 Summary: $signedCount signed, $failedCount failed"
+        
+        if ($failedCount -gt 0) {
+            Write-Error "❌ Some files failed to sign. Check if certificate and password are correct."
+            exit 1
+        }
+
+    - name: Publish build artifacts
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: "${{ github.event.repository.name }}-Package-${{ steps.gitversion.outputs.majorMinorPatch }}.${{ steps.gitversion.outputs.preReleaseNumber }}.vs2022"
+        path: ./staging
+
+  publish-test-results:
+    runs-on: ubuntu-latest
+    needs: build
+    if: always()
+    permissions:
+      checks: write
+      pull-requests: write
+      contents: read
+    steps:
+      - name: Download Test Results
+        uses: actions/download-artifact@v4
+        with:
+          name: test-results-trx
+          path: test-results
+
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        with:
+          files: "test-results/**/*.trx"

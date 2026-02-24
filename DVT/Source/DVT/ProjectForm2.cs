@@ -5543,8 +5543,13 @@ namespace Dvt
 		private void ButtonCreateCertificate_Click(object sender, System.EventArgs e) 
 		{
 			WizardCreateCertificate wizard = new WizardCreateCertificate();
-			wizard.ShowDialog(this);		
-		}
+			wizard.ShowDialog(this);
+			if(wizard.GetUseGeneratedCertificate())
+			{
+				TextBoxSecurityCredentialsFile.Text = wizard.GetTextBoxCredentialFilename();
+				TextBoxTrustedCertificatesFile.Text = wizard.GetTextBoxCertificateFilename();
+			}
+        }
 
 		private void CheckBoxSecureConnection_CheckedChanged(object sender, System.EventArgs e) 
 		{     

@@ -1150,7 +1150,9 @@ namespace QR_Emulator
                     break;
             }
             this.textBoxCertificate.Text = this.sourceQRScp.Options.DvtkScriptSession.SecuritySettings.CertificateFileName;
+            this.textBoxCertificate.BackColor = File.Exists(this.textBoxCertificate.Text) ? SystemColors.Control : Color.Red;
             this.textBoxCredential.Text = this.sourceQRScp.Options.DvtkScriptSession.SecuritySettings.CredentialsFileName;
+            this.textBoxCredential.BackColor = File.Exists(this.textBoxCredential.Text) ? SystemColors.Control : Color.Red;
             //
             //Initialize move destinations
             //

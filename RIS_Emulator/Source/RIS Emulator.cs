@@ -1211,7 +1211,9 @@ namespace RIS_Emulator
                     break;
             }
             this.textBoxCertificate.Text = this.worklistOptions.DvtkScriptSession.SecuritySettings.CertificateFileName;
+            this.textBoxCertificate.BackColor = File.Exists(textBoxCertificate.Text) ? SystemColors.Control : Color.Red;
             this.textBoxCredential.Text = this.worklistOptions.DvtkScriptSession.SecuritySettings.CredentialsFileName;
+            this.textBoxCredential.BackColor = File.Exists(textBoxCredential.Text) ? SystemColors.Control : Color.Red;
 
         }
 

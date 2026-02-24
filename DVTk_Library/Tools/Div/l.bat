@@ -1,27 +1,25 @@
-: @echo off
-
+@echo off
 : Save environment
 setlocal
 : Arguments
 set InputDir=%1
 set InputName=%2
-PATH=%PATH%;%cd%;%cd%\..\..\Tools\DIV
+set flex_command=%cd%\..\..\Tools\DIV\flex
 
+echo === FLEX ===
 echo Input directory : %InputDir%
 echo Input name      : %InputName%
 
 : Check InputDir exist
-if exist %InputDir% goto continue1
-mkdir %InputDir%
-:continue1
-
+if not exist %InputDir% mkdir %InputDir%
 cd %InputDir%
 
-:process
-echo Processing : "flex -l -t %InputName%.l | sed -f yy-sed > %InputName%.cpp"
-echo ****** %PATH%
-flex -l -t %InputName%.l | sed -f yy-sed > %InputName%.cpp
+@REM Clean up left over files
+if exist %InputName%.cpp del %InputName%.cpp
 
-:end
+: Use sed to rename function names in yy-sed file
+echo Creating: %InputName%.cpp
+%flex_command% -l -t %InputName%.l | sed -f yy-sed > %InputName%.cpp
+
 : restore environment
 endlocal
