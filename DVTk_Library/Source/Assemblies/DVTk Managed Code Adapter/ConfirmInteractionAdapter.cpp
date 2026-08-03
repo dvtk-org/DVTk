@@ -1,6 +1,6 @@
 // ------------------------------------------------------
 // DVTk - The Healthcare Validation Toolkit (www.dvtk.org)
-// Copyright © 2009 DVTk
+// Copyright ï¿½ 2009 DVTk
 // ------------------------------------------------------
 // This file is part of DVTk.
 //
@@ -35,5 +35,13 @@ namespace Wrappers
     {
         // Translation from unmanaged -> managed CLR
         m_pConfirmInteractionTarget->ConfirmInteraction();
-    } 
+    }
+
+    void ConfirmInteractionAdapter::ConfirmInteraction(const char *checkText)
+    {
+        String __gc *managedText = (checkText != NULL) ? new String(checkText) : S"";
+
+        // Translation from unmanaged -> managed CLR
+        m_pConfirmInteractionTarget->ConfirmInteraction(managedText);
+    }
 }

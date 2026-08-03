@@ -2,7 +2,7 @@
 
 %{
 // Part of Dvtk Libraries - Internal Native Library Code
-// Copyright © 2001-2006
+// Copyright ï¿½ 2001-2006
 // Philips Medical Systems NL B.V., Agfa-Gevaert N.V.
 
 #ifdef _WINDOWS
@@ -224,6 +224,17 @@ VALUE						 { RETURN(T_VALUE);}
 [0-9]:[0-9]+n           {
                             strcpy(yylval.string, yytext);
                             RETURN(STRING);
+						}
+
+INFO\([^\n]*\)		{
+                            if (yyleng >= sizeof(yylval.string))
+						    {
+						        yywarn("STRING too long!!! truncated") ;
+					            yyleng = sizeof(yylval.string);
+						    }
+						    memcpy(yylval.string, yytext, yyleng);
+                            yylval.string[yyleng] = '\0';
+						    RETURN(STRING);
 						}
 
 
