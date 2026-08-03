@@ -1,6 +1,6 @@
-// ------------------------------------------------------
+ï»¿// ------------------------------------------------------
 // DVTk - The Healthcare Validation Toolkit (www.dvtk.org)
-// Copyright © 2009 DVTk
+// Copyright ï¿½ 2009 DVTk
 // ------------------------------------------------------
 // This file is part of DVTk.
 //
@@ -27,6 +27,7 @@ namespace Wrappers
     public interface class IConfirmInteractionTarget
     {
         void ConfirmInteraction();
+        void ConfirmInteraction(System::String^ checkText);
     };
     
     class ConfirmInteractionAdapter
@@ -39,6 +40,7 @@ namespace Wrappers
         ~ConfirmInteractionAdapter(void);
 
         void ConfirmInteraction();
+        void ConfirmInteraction(const char *checkText);
 
     private:
         gcroot<IConfirmInteractionTarget^> m_pConfirmInteractionTarget;

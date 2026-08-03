@@ -1,6 +1,6 @@
-// ------------------------------------------------------
+ï»¿// ------------------------------------------------------
 // DVTk - The Healthcare Validation Toolkit (www.dvtk.org)
-// Copyright © 2009 DVTk
+// Copyright Â© 2009 DVTk
 // ------------------------------------------------------
 // This file is part of DVTk.
 //
@@ -473,7 +473,7 @@ namespace Dvtk.Sessions
         /// - e.g., DICOMScript that makes an Association for CT Image Storage.
         /// It is possible to repeat the DICOMScript execution a number of times using the<br></br>
         /// <c>DO n dicomscript</c><br></br>
-        /// instruction where ‘n’ is the number of times that dicomscript is to be executed.
+        /// instruction where â€˜nâ€™ is the number of times that dicomscript is to be executed.
         /// </p>
         /// </remarks>
         /// <param name="dicomScriptFileName">Script File of type DICOMScript (.DS) / DICOMSuperScript (.DSS)</param>
@@ -510,7 +510,7 @@ namespace Dvtk.Sessions
         System.Boolean TerminateConnection();
         /// <summary>
         /// Reset the state of the DULP Finite State Machine 
-        /// (to allow new Associations – Presentation Context ID is reset to 1).
+        /// (to allow new Associations â€“ Presentation Context ID is reset to 1).
         /// </summary>
         void ResetAssociation();
         /// <summary>
@@ -683,8 +683,8 @@ namespace Dvtk.Sessions
 
         /// <summary>
         /// <see cref="IDimseMessaging.Send(DicomMessage)"/>
-        /// With the new UPS SOP classes (Unified Procedure Step – Push SOP Class, Unified Procedure Step – 
-        /// Watch SOP Class, Unified Procedure Step – Pull SOP Class, Unified Procedure Step – Event SOP Class), 
+        /// With the new UPS SOP classes (Unified Procedure Step â€“ Push SOP Class, Unified Procedure Step â€“ 
+        /// Watch SOP Class, Unified Procedure Step â€“ Pull SOP Class, Unified Procedure Step â€“ Event SOP Class), 
         /// fully specified in frozen supplement 96, it is now possible to send a DICOM message with an affected 
         /// or requested SOP Class UID attribute that is different from the abstract syntax UID in an accepted 
         /// presentation context.
@@ -1358,11 +1358,38 @@ namespace Dvtk.Sessions
         /// Results in a windows messagebox towards the user. 
         /// </summary>
         /// <remarks>
-        /// The user needs to click the messagebox to continue the application.
+        /// The user can confirm to continue or reject to fail the current step.
         /// </remarks>
         static public void ConfirmInteractionForms()
         {
-            System.Windows.Forms.MessageBox.Show("Click to continue.");
+            ConfirmInteractionForms("Continue this script step?");
+        }
+
+        /// <summary>
+        /// Stub callback implementation for <see cref="ConfirmInteractionCallBack"/>.
+        /// Results in a windows messagebox towards the user with a custom tester check instruction.
+        /// </summary>
+        /// <param name="testerCheckInstruction">Instruction describing what the tester should verify.</param>
+        static public void ConfirmInteractionForms(string testerCheckInstruction)
+        {
+            if (string.IsNullOrEmpty(testerCheckInstruction)) {
+                testerCheckInstruction = "Continue this script step?";
+            }
+
+            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show(
+                testerCheckInstruction,
+                "Confirm Step",
+                System.Windows.Forms.MessageBoxButtons.YesNo,
+                System.Windows.Forms.MessageBoxIcon.Question,
+                System.Windows.Forms.MessageBoxDefaultButton.Button1);
+
+            if (result == System.Windows.Forms.DialogResult.No) {
+                throw new System.ApplicationException(
+                    string.Format(
+                        "Step rejected by tester input. Check: {0}",
+                        testerCheckInstruction));
+            }
+
             return;
         }
         /*delegated implementation*/
@@ -1443,8 +1470,25 @@ namespace Dvtk.Sessions
         #region Wrappers.IConfirmInteractionTarget
         public void ConfirmInteraction()
         {
-            // Call the delegate
-            this.m_parentSession.ConfirmInteraction();
+            try {
+                // Call the delegate.
+                this.m_parentSession.ConfirmInteraction();
+            }
+            catch (System.Exception ex) {
+                // Mark the step as failed, but keep the application running.
+                this.m_parentSession.WriteValidationError(ex.Message);
+            }
+        }
+
+        public void ConfirmInteraction(string checkText)
+        {
+            try {
+                ScriptSession.ConfirmInteractionForms(checkText);
+            }
+            catch (System.Exception ex) {
+                // Mark the step as failed, but keep the application running.
+                this.m_parentSession.WriteValidationError(ex.Message);
+            }
         }
         #endregion
     }

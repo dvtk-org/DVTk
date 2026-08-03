@@ -91,7 +91,7 @@
 #line 1 "script_parser.y"
 
 // Part of Dvtk Libraries - Internal Native Library Code
-// Copyright © 2001-2006
+// Copyright ï¿½ 2001-2006
 // Philips Medical Systems NL B.V., Agfa-Gevaert N.V.
 
 //*****************************************************************************
@@ -1572,7 +1572,28 @@ case 41:
 	;
     break;}
 case 42:
-#line 434 "script_parser.y"
+#line 435 "script_parser.y"
+{
+        if (!script3ParseOnly)
+		{	  
+			LOG_CLASS *logger_ptr = script3Session_ptr->getLogger();
+			BASE_CONFIRMER *confirmer_ptr = script3Session_ptr->getConfirmer();
+
+			// ask user to confirm action through interaction with logger and confirmer
+			if ((logger_ptr) &&
+				(confirmer_ptr))
+			{
+				logger_ptr->text(LOG_SCRIPT, 2, "CONFIRM \"%s\"", script3vsp[0].string_ptr);
+				confirmer_ptr->ConfirmInteraction(script3vsp[0].string_ptr);
+			}
+		}
+
+		// free malloced string buffer
+		free(script3vsp[0].string_ptr);
+	;
+    break;}
+case 43:
+#line 460 "script_parser.y"
 {
         if (!script3ParseOnly)
 		{	  
@@ -1586,8 +1607,8 @@ case 42:
 		}
 	;
     break;}
-case 44:
-#line 452 "script_parser.y"
+case 45:
+#line 478 "script_parser.y"
 {
         if (!script3ParseOnly)
 		{	  

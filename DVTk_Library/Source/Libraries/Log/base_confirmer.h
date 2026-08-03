@@ -1,6 +1,6 @@
 // ------------------------------------------------------
 // DVTk - The Healthcare Validation Toolkit (www.dvtk.org)
-// Copyright © 2009 DVTk
+// Copyright ï¿½ 2009 DVTk
 // ------------------------------------------------------
 // This file is part of DVTk.
 //
@@ -42,6 +42,7 @@ class BASE_CONFIRMER
 {
 public:
     virtual void ConfirmInteraction() = 0;
+    virtual void ConfirmInteraction(const char *checkText) = 0;
 public:
     ~BASE_CONFIRMER();
 };

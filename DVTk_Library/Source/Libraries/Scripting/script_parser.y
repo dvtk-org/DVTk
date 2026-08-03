@@ -1,6 +1,6 @@
 %{
 // Part of Dvtk Libraries - Internal Native Library Code
-// Copyright © 2001-2006
+// Copyright ï¿½ 2001-2006
 // Philips Medical Systems NL B.V., Agfa-Gevaert N.V.
 
 //*****************************************************************************
@@ -427,6 +427,25 @@ ConfirmCommand	: T_CONFIRM
 				confirmer_ptr->ConfirmInteraction();
 			}
 		}
+	}
+	| T_CONFIRM STRING
+	{
+        if (!scriptParseOnly)
+		{	  
+			LOG_CLASS *logger_ptr = scriptSession_ptr->getLogger();
+			BASE_CONFIRMER *confirmer_ptr = scriptSession_ptr->getConfirmer();
+
+			// ask user to confirm action through interaction with logger and confirmer
+			if ((logger_ptr) &&
+				(confirmer_ptr))
+			{
+				logger_ptr->text(LOG_SCRIPT, 2, "CONFIRM \"%s\"", $2);
+				confirmer_ptr->ConfirmInteraction($2);
+			}
+		}
+
+		// free malloced string buffer
+		free($2);
 	}
 	;
 
