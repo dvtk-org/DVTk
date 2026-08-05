@@ -525,11 +525,6 @@ bool DEFINITION_FILE_CLASS::GetDetails(DEF_DETAILS_CLASS& details)
 				delete fileContentM_ptr;
 				fileContentM_ptr = NULL;
 
-				//char* errorText = new char[100];
-
-				//sprintf(errorText, "Parse error in line %i.", lineNumber);
-				//throw errorText;
-
 				// Read the offending line from file (best-effort) and include it in the error.
 				std::string offendingLine;
 				{
