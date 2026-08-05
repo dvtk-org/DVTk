@@ -1,6 +1,6 @@
 %{
 // Part of Dvtk Libraries - Internal Native Library Code
-// Copyright © 2001-2006
+// Copyright ï¿½ 2001-2006
 // Philips Medical Systems NL B.V., Agfa-Gevaert N.V.
 
 /*
@@ -645,7 +645,31 @@ SequenceIntro	: T_SQ ',' AttributeVM ','
 			attributes.push(currentAttribute_ptr);
 		}
 	}
-	;
+	| T_SQ ',' AttributeVM
+	{
+		if (!definitionParseOnly && !skipDefinition)
+		{
+			currentAttribute_ptr->SetVR(ATTR_VR_SQ);
+
+			currentItem_ptr = new DEF_ITEM_CLASS();
+
+			// create new value and value list, add item
+			currentValue_ptr = CreateNewValue(ATTR_VR_SQ);
+			currentValue_ptr->Set(currentItem_ptr);
+
+			// add value to attribute - indexed by value list index
+			currentAttribute_ptr->AddValue(currentValue_ptr, currentValueListIndex);
+			currentAttribute_ptr->SetValueType(ATTR_VAL_TYPE_NOVALUE, currentValueListIndex);
+
+			// the item is the new current attribute group. 
+			// store the old one
+			groups.push(currentAttributeGroup_ptr);
+			currentAttributeGroup_ptr = currentItem_ptr;
+
+			// store currentAttribute_ptr
+			attributes.push(currentAttribute_ptr);
+		}
+	};
 
 OtherValueDef	: AttributeVR ',' AttributeVM ValuesDef
 	;
@@ -951,7 +975,7 @@ Condition	:
 			// reset textual condition
 			lTextualCondition.erase();
 		}
-	} 
+	}
 	| ':' T_WEAK '(' PrimaryCond ',' SecondaryCond ')' 
 	{
 		if (!definitionParseOnly && !skipDefinition)

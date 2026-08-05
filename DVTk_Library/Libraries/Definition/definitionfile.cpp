@@ -1,6 +1,6 @@
-// ------------------------------------------------------
+﻿// ------------------------------------------------------
 // DVTk - The Healthcare Validation Toolkit (www.dvtk.org)
-// Copyright � 2009 DVTk
+// Copyright © 2009 DVTk
 // ------------------------------------------------------
 // This file is part of DVTk.
 //
@@ -23,7 +23,8 @@
 #include "definitiondetails.h"
 #include "definition.h"
 #include "Isession.h"			// Session component interface
-
+#include <fstream>
+#include <sstream>
 
 extern FILE*      definitionin;
 extern string     definitionfilename;
@@ -524,9 +525,44 @@ bool DEFINITION_FILE_CLASS::GetDetails(DEF_DETAILS_CLASS& details)
 				delete fileContentM_ptr;
 				fileContentM_ptr = NULL;
 
-				char* errorText = new char[100];
+				//char* errorText = new char[100];
 
-				sprintf(errorText, "Parse error in line %i.", lineNumber);
+				//sprintf(errorText, "Parse error in line %i.", lineNumber);
+				//throw errorText;
+
+				// Read the offending line from file (best-effort) and include it in the error.
+				std::string offendingLine;
+				{
+					std::ifstream ifs(defFile.c_str());
+					if (ifs)
+					{
+						std::string tmp;
+						int ln = 0;
+						while (std::getline(ifs, tmp))
+						{
+							ln++;
+							if (ln == lineNumber)
+							{
+								offendingLine = tmp;
+								break;
+							}
+						}
+					}
+				}
+				
+				// Build a descriptive error message that includes the line number and the line content (if available).
+				std::ostringstream oss;
+				oss << "Parse error in line " << lineNumber << ".";
+				if (!offendingLine.empty())
+				{
+					// Trim trailing CR if present (def files might have CRLF)
+					if (!offendingLine.empty() && offendingLine.back() == '\r') offendingLine.pop_back();
+					oss << " Offending line: \"" << offendingLine << "\"";
+				}
+
+				std::string errStr = oss.str();
+				char* errorText = new char[errStr.size() + 1];
+				strcpy(errorText, errStr.c_str());
 				throw errorText;
 			}
 		}
