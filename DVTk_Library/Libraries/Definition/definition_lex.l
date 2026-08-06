@@ -226,16 +226,19 @@ VALUE						 { RETURN(T_VALUE);}
                             RETURN(STRING);
 						}
 
-INFO\([^\n]*\)		{
-                            if (yyleng >= sizeof(yylval.string))
-						    {
-						        yywarn("STRING too long!!! truncated") ;
-					            yyleng = sizeof(yylval.string);
-						    }
-						    memcpy(yylval.string, yytext, yyleng);
-                            yylval.string[yyleng] = '\0';
-						    RETURN(STRING);
-						}
+INFO\([^\n]*\) {
+	/* copy only the inner text between INFO( and ) into STRING */
+	int innerStart = 5; /* skip "INFO(" */
+	int innerLen = yyleng - innerStart - 1; /* remove trailing ')' */
+	if (innerLen < 0) innerLen = 0;
+	if (innerLen >= (int)sizeof(yylval.string)) {
+		yywarn("STRING too long!!! truncated");
+		innerLen = (int)sizeof(yylval.string) - 1;
+	}
+	memcpy(yylval.string, yytext + innerStart, innerLen);
+	yylval.string[innerLen] = '\0';
+	RETURN(STRING);
+}
 
 
 0(x|X)[0-9a-f]+		|

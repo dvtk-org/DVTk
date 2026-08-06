@@ -1,6 +1,6 @@
-// ------------------------------------------------------
+﻿// ------------------------------------------------------
 // DVTk - The Healthcare Validation Toolkit (www.dvtk.org)
-// Copyright � 2009 DVTk
+// Copyright © 2009 DVTk
 // ------------------------------------------------------
 // This file is part of DVTk.
 //
@@ -239,7 +239,7 @@ namespace Dvt
 						{
 							string theErrorText;
 
-							theErrorText = string.Format("Definition file {0} could not be interpreted while reading directory:\n{1}\n\n", theDefinitionFileInfo.FullName, exception.Message);
+							theErrorText = string.Format("Definition file {0} could not be interpreted while reading directory:\n{1}\n\n", theDefinitionFileInfo.FullName, exception.ToString());
 
 							_RichTextBoxInfo.AppendText(theErrorText);
 						}						
