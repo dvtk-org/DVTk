@@ -54,6 +54,49 @@ Set-ItemProperty -Path $registryPath -Name "EnableOutOfProcBuild" -Value 0 -Type
 
 The setup projects can only be built after all other projects have been successfully compiled.
 
+## Building from VS Code or VS Code-derived IDEs (Cursor, Antigravity)
+
+You **do not need to open or use the Visual Studio IDE GUI** to develop or build DVTk—you can write code and trigger builds entirely within **VS Code**, **Cursor**, **Antigravity**, or any terminal-focused editor.
+
+### Do I still need to install Visual Studio or VS Build Tools?
+
+**Yes, but only the background compiler toolchain and SDKs (no IDE GUI required).**
+
+Windows C++ and .NET Framework builds require the underlying Microsoft C++ compiler (`cl.exe`), C++ MFC/ATL headers, and Windows SDK. These tools can be installed via either **Visual Studio Community/Professional** OR the standalone **Build Tools for Visual Studio**. 
+
+Once installed, you can perform all coding, building, and debugging entirely inside **VS Code**, **Cursor**, **Antigravity**, or your terminal.
+
+### 1. Prerequisites Check
+Ensure the required build components are installed via the **Visual Studio Installer** (or **VS Build Tools Installer**):
+- **Desktop development with C++** (specifically **C++ MFC for v142/v143** and **C++ ATL**)
+- **Windows 10 SDK (10.0.19041.0)**
+- **.NET desktop development** (.NET Framework 4.8 & 3.5 SP1)
+
+### 2. Full Solution CLI Build
+Run the following PowerShell command in the integrated terminal to compile all C++ libraries, C# assemblies, emulators, and executables:
+
+```powershell
+& 'C:\Program Files\Microsoft Visual Studio\2022\Professional\MSBuild\Current\Bin\MSBuild.exe' DICOM.sln /p:Configuration=Debug /p:Platform=x86 /p:WindowsTargetPlatformVersion=10.0.19041.0 /p:BscMakeEnabled=false /m
+```
+
+> **Note on Flags:**
+> * `/p:Platform=x86`: DVTk targets 32-bit (`x86`) binaries.
+> * `/p:WindowsTargetPlatformVersion=10.0.19041.0`: Resolves SDK header compatibility issues with `WinDNS.h`.
+> * `/p:BscMakeEnabled=false`: Disables legacy source browser database generation to prevent heap errors during parallel builds (`/m`).
+
+### 3. Single Component Build Example
+To build an individual component (for example, the `Session` library):
+
+```powershell
+& 'C:\Program Files\Microsoft Visual Studio\2022\Professional\MSBuild\Current\Bin\MSBuild.exe' DVTk_Library\Libraries\Session\Session.vcxproj /p:Configuration=Debug /p:Platform=Win32 /p:WindowsTargetPlatformVersion=10.0.19041.0 /p:BscMakeEnabled=false
+```
+
+### 4. Output Location
+All compiled binaries (executables, DLLs, static `.lib` files, and PDB debug symbols) are generated in:
+```text
+bin\Debug\  (or bin\Release\)
+```
+
 ## NuGet package
 
 The GitHub Actions workflow builds a NuGet package for `DvtkHighLevelInterface` and publishes it to GitHub Packages for the `dvtk-org` owner.
